@@ -6,10 +6,10 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const LoginGreenButton = () => {
+const LoginGreenButton = ({title}) => {
   return (
     <TouchableOpacity style={styles.buttonContainer}>
-      <Text style={styles.buttonText}>Log In</Text>
+      <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
 };

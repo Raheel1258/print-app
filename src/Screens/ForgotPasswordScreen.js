@@ -5,19 +5,16 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {BackArrowHeader, SigninTextField,LoginGreenButton} from '../Components';
 import {colors} from '../Utils/theme';
 
-const SigninScreen = () => {
+const ForgotPasswordScreen = () => {
   return (
     <>
-    <BackArrowHeader title="Sign in" />
+    <BackArrowHeader title="Forgot password" />
     <ScrollView>
       <View style={styles.container}>
+          <Text style={styles.emailDescription}>Please enter your email address below, we’ll send you a password reset link.</Text>
         <SigninTextField title="Email" keyboardType="email-address" secureTextEntry={false} />
-        <SigninTextField title="Password"  secureTextEntry={true} />
-        <TouchableOpacity style={styles.forgotWrapper}>
-        <Text style={styles.forgotPassword}>Forgot password</Text>
-        </TouchableOpacity>
         <View style={styles.buttonWrapper}>
-          <LoginGreenButton title="Log In"/>
+          <LoginGreenButton title="Send"/>
         </View>
       </View>
     </ScrollView>
@@ -31,24 +28,22 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.whiteColor,
     padding: '12@s',
   },
-  forgotPassword:{
+  buttonWrapper:{
+    marginTop:'20@s',
+  },
+  emailDescription:{
       // fontFamily:Avenir LT Std,
-      fontSize: '12@s',
+      fontSize: '13@s',
       fontStyle: 'normal',
       fontWeight: '400',
       fontStyle: 'normal',
-      lineHeight: '15@s',
+      lineHeight: '17@s',
       letterSpacing: '0.3@s',
       textAlign: 'left',
-      color: colors.greenColor,
-  },
-  forgotWrapper:{
-    paddingVertical:'7@s',
-    marginTop:-7,
-  },
-  buttonWrapper:{
-    marginTop:'40@s',
+      color: colors.blackColor,
+      marginBottom:'40@s',
+      marginTop:'10@s'
   }
 });
 
-export default SigninScreen;
+export default ForgotPasswordScreen;

@@ -4,19 +4,20 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {BackArrowHeader, SigninTextField,LoginGreenButton} from '../Components';
 import {colors} from '../Utils/theme';
+import Toast from 'react-native-toast-message';
 
-const SigninScreen = () => {
+const SigninScreen = ({handleChange, navigation, handleLoginPress}) => {
   return (
     <ScrollView>
       <BackArrowHeader />
       <View style={styles.container}>
-        <SigninTextField title="Email" keyboardType="email-address" secureTextEntry={false} />
-        <SigninTextField title="Password"  secureTextEntry={true} />
+        <SigninTextField title="email" handleChange={handleChange} keyboardType="email-address" secureTextEntry={false} />
+        <SigninTextField title="password"  handleChange={handleChange} secureTextEntry={true} />
         <TouchableOpacity style={styles.forgotWrapper}>
         <Text style={styles.forgotPassword}>Forgot password</Text>
         </TouchableOpacity>
         <View style={styles.buttonWrapper}>
-          <LoginGreenButton/>
+          <LoginGreenButton handleLoginPress={handleLoginPress}/>
         </View>
       </View>
     </ScrollView>

@@ -5,11 +5,11 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const SigninTextField = ({keyboardType,title,secureTextEntry}) => {
+const SigninTextField = ({keyboardType,title,secureTextEntry , handleChange}) => {
   return (
     <View style={styles.textInputContainer}>
       <Text style={styles.textInputTitle}>{title}</Text>
-      <TextInput style={styles.textInput} keyboardType={keyboardType} secureTextEntry={secureTextEntry} />
+      <TextInput style={styles.textInput} keyboardType={keyboardType} secureTextEntry={secureTextEntry} onChangeText={(text) => handleChange(`${title}`, text)}/>
     </View>
   );
 };

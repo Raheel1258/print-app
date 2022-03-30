@@ -5,7 +5,8 @@ import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import { ScaledSheet } from 'react-native-size-matters';
 import {Text, View} from 'react-native';
 
-import {SigninContainer, HomeContainer,CartContainer} from '../Containers';
+import {SigninContainer, HomeContainer,CartContainer , RouteCheckingContainer} from '../Containers';
+
 import { colors } from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
 import BrowseIcon from '../Assests/Svgs/BrowseIcon';
@@ -46,7 +47,12 @@ const App = () => {
 
 const AuthStack = () => {
   return (
-    <Auth.Navigator initialRouteName="signin">
+    <Auth.Navigator initialRouteName="RouteChecking">
+        <Auth.Screen
+        name="RouteChecking"
+        component={RouteCheckingContainer}
+        options={{ headerShown: false }}
+      />
       <Auth.Screen
         name="signin"
         component={SigninContainer}

@@ -11,8 +11,8 @@ const SigninScreen = ({handleChange, navigation, handleLoginPress}) => {
     <ScrollView>
       <BackArrowHeader />
       <View style={styles.container}>
-        <SigninTextField title="email" handleChange={handleChange} keyboardType="email-address" secureTextEntry={false} />
-        <SigninTextField title="password"  handleChange={handleChange} secureTextEntry={true} />
+        <SigninTextField title="Email" name="email" handleChange={handleChange} keyboardType="email-address" secureTextEntry={false} />
+        <SigninTextField title="Password"  name="password" handleChange={handleChange} secureTextEntry={true} />
         <TouchableOpacity style={styles.forgotWrapper}>
         <Text style={styles.forgotPassword}>Forgot password</Text>
         </TouchableOpacity>

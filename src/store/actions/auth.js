@@ -25,7 +25,7 @@ export const login = (data, navigation) => {
         console.log("Login", data)
         dispatch(loading(true));
         try {
-            //await Storage.storeData('token', "123");
+            Storage.storeData('token', "123");
             dispatch(loading(false));
             Toast.show({
                 type: 'success',

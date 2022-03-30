@@ -64,7 +64,6 @@ const SigninContainer = () => {
     }
   };
 
-
   return (
     <View style={styles.container}>
       <SigninScreen handleChange={handleChange} handleLoginPress={handleLoginPress} navigation={navigation}/>

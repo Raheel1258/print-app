@@ -6,7 +6,7 @@ import {useTranslation} from 'react-i18next';
 import {BackArrowHeader, SigninTextField,LoginGreenButton,VerificationModal} from '../Components';
 import {colors} from '../Utils/theme';
 
-const ForgotPasswordScreen = ({toggleModal,isModalVisible}) => {
+const ForgotPasswordScreen = ({toggleModal,isModalVisible , handleChange , handleForgotPasswordPress}) => {
   const {t} = useTranslation();
   return (
     <>
@@ -14,9 +14,9 @@ const ForgotPasswordScreen = ({toggleModal,isModalVisible}) => {
     <ScrollView>
       <View style={styles.container}>
           <Text style={styles.emailDescription}>{t('email_description')}</Text>
-        <SigninTextField title={t('email_text')} keyboardType="email-address" secureTextEntry={false} />
+        <SigninTextField title={t('email_text')} keyboardType="email-address" name="email" secureTextEntry={false} handleChange={handleChange} />
         <View style={styles.buttonWrapper}>
-          <LoginGreenButton title={t('send_text')} onPress={toggleModal}/>
+          <LoginGreenButton title={t('send_text')} onPress={handleForgotPasswordPress}/>
         </View>
         <VerificationModal
          isModalVisible={isModalVisible}

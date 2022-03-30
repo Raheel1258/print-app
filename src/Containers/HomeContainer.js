@@ -7,6 +7,7 @@ import HomeScreen from '../Screens/HomeScreen';
 import { colors } from '../Utils/theme';
 
 const HomeContainer = () => {
+
   return (
     <View style={styles.container}>
       <HomeScreen />

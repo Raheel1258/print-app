@@ -90,6 +90,9 @@ export const login = (data, navigation) => {
 
 export const signup = (data, navigation) => {
     return (dispatch) => {
+        console.log("signup", data);
+        dispatch(loading(true));
+        dispatch(setUserSignup(data));
         // axios
         // 	.post(`${Api}/user/signup`, data)
         // 	.then(async (res) => {
@@ -114,6 +117,7 @@ export const signup = (data, navigation) => {
 
 export const forgotPassword = (data, navigation) => {
     return (dispatch) => {
+        console.log("forgot" , data)
         // axios
         // 	.post(`${Api}/user/forgetPassword`, data)
         // 	.then(async (res) => {

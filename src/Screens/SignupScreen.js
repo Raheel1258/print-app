@@ -17,7 +17,7 @@ import {
 } from '../Components';
 import {colors} from '../Utils/theme';
 
-const SignupScreen = () => {
+const SignupScreen = ({handleChange , navigation , handleSignupPress}) => {
   const {t} = useTranslation();
   return (
     <>
@@ -26,32 +26,40 @@ const SignupScreen = () => {
         <View style={styles.container}>
           <SigninTextField
             title={t('first_name')}
+            name="firstName"
             keyboardType="default"
             secureTextEntry={false}
+            handleChange={handleChange}
           />
           <SigninTextField
             title={t('last_name')}
+            name="lastName"
             keyboardType="default"
             secureTextEntry={false}
+            handleChange={handleChange}
           />
           <SigninTextField
             title={t('mobile_text')}
+            name="phone"
             keyboardType="phone-pad"
             secureTextEntry={false}
+            handleChange={handleChange}
           />
           <SigninTextField
             title={t('email_text')}
+            name="email"
             keyboardType="email-address"
             secureTextEntry={false}
+            handleChange={handleChange}
           />
-          <SigninTextField title={t('new_password')} secureTextEntry={true} />
+          <SigninTextField title={t('new_password')} name="password" secureTextEntry={true} handleChange={handleChange}/>
           <Text style={styles.signupDescription}>
            {t('by_signingup')}{' '}
             <Text style={styles.privacyText}>{t('terms_services')}</Text> {t('and_text')}{' '}
             <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
           </Text>
           <View style={styles.buttonWrapper}>
-            <LoginGreenButton title={t('create_account')} />
+            <LoginGreenButton title={t('create_account')} onPress={handleSignupPress}/>
           </View>
         </View>
       </ScrollView>

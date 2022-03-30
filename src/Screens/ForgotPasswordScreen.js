@@ -1,21 +1,26 @@
 import React from 'react';
 import {View, Text,TouchableOpacity,ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+import {useTranslation} from 'react-i18next';
 
-import {BackArrowHeader, SigninTextField,LoginGreenButton} from '../Components';
+import {BackArrowHeader, SigninTextField,LoginGreenButton,VerificationModal} from '../Components';
 import {colors} from '../Utils/theme';
 
-const ForgotPasswordScreen = () => {
+const ForgotPasswordScreen = ({toggleModal,isModalVisible}) => {
+  const {t} = useTranslation();
   return (
     <>
-    <BackArrowHeader title="Forgot password" />
+    <BackArrowHeader title={t('forgot_password')} />
     <ScrollView>
       <View style={styles.container}>
-          <Text style={styles.emailDescription}>Please enter your email address below, we’ll send you a password reset link.</Text>
-        <SigninTextField title="Email" keyboardType="email-address" secureTextEntry={false} />
+          <Text style={styles.emailDescription}>{t('email_description')}</Text>
+        <SigninTextField title={t('email_text')} keyboardType="email-address" secureTextEntry={false} />
         <View style={styles.buttonWrapper}>
-          <LoginGreenButton title="Send"/>
+          <LoginGreenButton title={t('send_text')} onPress={toggleModal}/>
         </View>
+        <VerificationModal
+         isModalVisible={isModalVisible}
+         toggleModal={toggleModal} />
       </View>
     </ScrollView>
     </>

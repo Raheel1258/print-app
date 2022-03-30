@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import React from 'react';
 import {
   View,
@@ -7,6 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+import {useTranslation} from 'react-i18next';
 
 import {
   BackArrowHeader,
@@ -16,39 +18,40 @@ import {
 import {colors} from '../Utils/theme';
 
 const SignupScreen = () => {
+  const {t} = useTranslation();
   return (
     <>
-      <BackArrowHeader title="Sign up" />
+      <BackArrowHeader title={t('signup_text')} />
       <ScrollView>
         <View style={styles.container}>
           <SigninTextField
-            title="First Name"
+            title={t('first_name')}
             keyboardType="default"
             secureTextEntry={false}
           />
           <SigninTextField
-            title="Last Name"
+            title={t('last_name')}
             keyboardType="default"
             secureTextEntry={false}
           />
           <SigninTextField
-            title="Mobile  (for order confirmation)"
+            title={t('mobile_text')}
             keyboardType="phone-pad"
             secureTextEntry={false}
           />
           <SigninTextField
-            title="Email"
+            title={t('email_text')}
             keyboardType="email-address"
             secureTextEntry={false}
           />
-          <SigninTextField title="New Password" secureTextEntry={true} />
+          <SigninTextField title={t('new_password')} secureTextEntry={true} />
           <Text style={styles.signupDescription}>
-            By signing up, you agree to our{' '}
-            <Text style={styles.privacyText}>Terms of Services</Text> and{' '}
-            <Text style={styles.privacyText}>Privacy Policy</Text>
+           {t('by_signingup')}{' '}
+            <Text style={styles.privacyText}>{t('terms_services')}</Text> {t('and_text')}{' '}
+            <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
           </Text>
           <View style={styles.buttonWrapper}>
-            <LoginGreenButton title="Create Account" />
+            <LoginGreenButton title={t('create_account')} />
           </View>
         </View>
       </ScrollView>

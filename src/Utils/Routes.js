@@ -52,7 +52,7 @@ const App = () => {
 
 const AuthStack = () => {
   return (
-    <Auth.Navigator initialRouteName="forgotPassword">
+    <Auth.Navigator initialRouteName="signin">
       <Auth.Screen
         name="signin"
         component={SigninContainer}
@@ -151,7 +151,7 @@ const MainScreen = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Tab',
   },
 );
 

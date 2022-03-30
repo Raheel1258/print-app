@@ -2,12 +2,18 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
-import { ScaledSheet } from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 import {Text, View} from 'react-native';
 
-import {SigninContainer, HomeContainer,CartContainer , RouteCheckingContainer} from '../Containers';
-
-import { colors } from './theme';
+import {
+  SigninContainer,
+  HomeContainer,
+  CartContainer,
+  SignupContainer,
+  ForgotPasswordContainer,
+  RouteCheckingContainer
+} from '../Containers';
+import {colors} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
 import BrowseIcon from '../Assests/Svgs/BrowseIcon';
 import CartActiveIcon from '../Assests/Svgs/CartActiveIcon';
@@ -26,7 +32,7 @@ const Tab = createBottomTabNavigator();
 const App = () => {
   return (
     <Stack.Navigator initialRouteName="tab">
-       <Stack.Screen
+      <Stack.Screen
         name="tab"
         component={MyTabs}
         options={{headerShown: false}}
@@ -47,7 +53,7 @@ const App = () => {
 
 const AuthStack = () => {
   return (
-    <Auth.Navigator initialRouteName="RouteChecking">
+    <Auth.Navigator initialRouteName="forgotPassword">
         <Auth.Screen
         name="RouteChecking"
         component={RouteCheckingContainer}
@@ -59,14 +65,19 @@ const AuthStack = () => {
         options={{headerShown: false}}
       />
       <Auth.Screen
-        component={App}
-        name="home"
+        name="signup"
+        component={SignupContainer}
         options={{headerShown: false}}
       />
+      <Auth.Screen
+        name="forgotPassword"
+        component={ForgotPasswordContainer}
+        options={{headerShown: false}}
+      />
+      <Auth.Screen component={App} name="home" options={{headerShown: false}} />
     </Auth.Navigator>
   );
 };
-
 
 const MyTabs = () => {
   return (
@@ -75,8 +86,8 @@ const MyTabs = () => {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          borderTopWidth:1,
-          borderTopColor:colors.lightGreyColor,
+          borderTopWidth: 1,
+          borderTopColor: colors.lightGreyColor,
           backgroundColor: colors.whiteColor,
           position: 'absolute',
           paddingBottom: 5,
@@ -84,25 +95,20 @@ const MyTabs = () => {
           height: Platform.OS === 'ios' ? 70 : 70,
         },
       }}>
-
-<Tab.Screen
+      <Tab.Screen
         options={{
           title: '',
           tabBarIcon: ({focused, color}) => (
             <View>
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                 <BrowseActiveIcon />
-                  <Text style={styles.activeText}>
-                    Browse
-                  </Text>
+                  <BrowseActiveIcon />
+                  <Text style={styles.activeText}>Browse</Text>
                 </View>
               ) : (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                   < BrowseIcon/>
-                  <Text  style={styles.unActiveText}>
-                  Browse
-                  </Text>
+                  <BrowseIcon />
+                  <Text style={styles.unActiveText}>Browse</Text>
                 </View>
               )}
             </View>
@@ -112,24 +118,20 @@ const MyTabs = () => {
         component={HomeContainer}
       />
 
-<Tab.Screen
+      <Tab.Screen
         options={{
           title: '',
           tabBarIcon: ({focused, color}) => (
             <View>
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                 <CartActiveIcon />
-                  <Text style={styles.activeText}>
-                    Cart
-                  </Text>
+                  <CartActiveIcon />
+                  <Text style={styles.activeText}>Cart</Text>
                 </View>
               ) : (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                   <CartIcon/>
-                  <Text  style={styles.unActiveText}>
-                      Cart
-                  </Text>
+                  <CartIcon />
+                  <Text style={styles.unActiveText}>Cart</Text>
                 </View>
               )}
             </View>
@@ -138,8 +140,6 @@ const MyTabs = () => {
         name="cart"
         component={CartContainer}
       />
-
-
     </Tab.Navigator>
   );
 };
@@ -161,32 +161,31 @@ const MainScreen = createSwitchNavigator(
   },
 );
 
-const styles = ScaledSheet.create ({
-activeText:{
-color:colors.greenColor,
-// fontFamily: 'Avenir',
-fontSize: '12@s',
-fontStyle: 'normal',
-fontWeight: '400',
-lineHeight: '17@s',
-letterSpacing: '0.6@s',
-textAlign: 'center',
-
-},
-unActiveText:{
-color:colors.greyColor,
-// fontFamily: 'Avenir',
-fontSize: '12@s',
-fontStyle: 'normal',
-fontWeight: '400',
-lineHeight: '17@s',
-letterSpacing: '0.6@s',
-textAlign: 'center',
-},
-tabContainer:{
-  flexDirection:'column',
-  alignItems:'center',
-}
+const styles = ScaledSheet.create({
+  activeText: {
+    color: colors.greenColor,
+    // fontFamily: 'Avenir',
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: '17@s',
+    letterSpacing: '0.6@s',
+    textAlign: 'center',
+  },
+  unActiveText: {
+    color: colors.greyColor,
+    // fontFamily: 'Avenir',
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: '17@s',
+    letterSpacing: '0.6@s',
+    textAlign: 'center',
+  },
+  tabContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 });
 
 export default createAppContainer(MainScreen);

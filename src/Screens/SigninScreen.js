@@ -1,26 +1,40 @@
 import React from 'react';
-import {View, Text,TouchableOpacity,ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+import {useTranslation} from 'react-i18next';
 
-import {BackArrowHeader, SigninTextField,LoginGreenButton} from '../Components';
+import {
+  BackArrowHeader,
+  SigninTextField,
+  LoginGreenButton,
+} from '../Components';
 import {colors} from '../Utils/theme';
-import Toast from 'react-native-toast-message';
+
 
 const SigninScreen = ({handleChange, navigation, handleLoginPress}) => {
+  const {t} = useTranslation();
   return (
-    <ScrollView>
-      <BackArrowHeader />
-      <View style={styles.container}>
-        <SigninTextField title="Email" name="email" handleChange={handleChange} keyboardType="email-address" secureTextEntry={false} />
-        <SigninTextField title="Password"  name="password" handleChange={handleChange} secureTextEntry={true} />
-        <TouchableOpacity style={styles.forgotWrapper}>
-        <Text style={styles.forgotPassword}>Forgot password</Text>
-        </TouchableOpacity>
-        <View style={styles.buttonWrapper}>
-          <LoginGreenButton handleLoginPress={handleLoginPress}/>
+    <>
+      <BackArrowHeader title={t('signin_text')} />
+      <ScrollView>
+        <View style={styles.container}>
+          <SigninTextField
+            title={t('email_text')}
+            keyboardType="email-address"
+            secureTextEntry={false}
+            name="email" 
+            handleChange={handleChange}
+          />
+          <SigninTextField title={t('password_text')} secureTextEntry={true} name="password" handleChange={handleChange} />
+          <TouchableOpacity style={styles.forgotWrapper}>
+            <Text style={styles.forgotPassword}>{t('forgot_password')}</Text>
+          </TouchableOpacity>
+          <View style={styles.buttonWrapper}>
+            <LoginGreenButton onPress={handleLoginPress} title={t('login_text')} />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 };
 
@@ -30,24 +44,24 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.whiteColor,
     padding: '12@s',
   },
-  forgotPassword:{
-      // fontFamily:Avenir LT Std,
-      fontSize: '12@s',
-      fontStyle: 'normal',
-      fontWeight: '400',
-      fontStyle: 'normal',
-      lineHeight: '15@s',
-      letterSpacing: '0.5@s',
-      textAlign: 'left',
-      color: colors.greenColor,
+  forgotPassword: {
+    // fontFamily:Avenir LT Std,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontStyle: 'normal',
+    lineHeight: '15@s',
+    letterSpacing: '0.3@s',
+    textAlign: 'left',
+    color: colors.greenColor,
   },
-  forgotWrapper:{
-    paddingVertical:'7@s',
-    marginTop:-7,
+  forgotWrapper: {
+    paddingVertical: '7@s',
+    marginTop: -7,
   },
-  buttonWrapper:{
-    marginTop:'40@s',
-  }
+  buttonWrapper: {
+    marginTop: '40@s',
+  },
 });
 
 export default SigninScreen;

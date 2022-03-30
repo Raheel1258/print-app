@@ -1,15 +1,14 @@
 import React from 'react';
-import {View, Text, TextInput} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const LoginGreenButton = ({handleLoginPress}) => {
+const LoginGreenButton = ({title, onPress, backgroundColor = colors.greenColor}) => {
   return (
-    <TouchableOpacity onPress={handleLoginPress} style={styles.buttonContainer}>
-      <Text style={styles.buttonText}>Log In</Text>
+    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor}}>
+      <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
 };

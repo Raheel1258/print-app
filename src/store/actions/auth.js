@@ -13,6 +13,13 @@ function setUserLogin(loginData) {
     };
 }
 
+function setUserSignup(signupData) {
+    return {
+        type: types.USER_SIGNUP,
+        signupData,
+    };
+}
+
 const loading = (loading) => {
     return {
         type: types.LOADING,
@@ -79,12 +86,7 @@ export const login = (data, navigation) => {
 };
 
 
-function setUserSignup(signupData) {
-    return {
-        type: types.USER_SIGNUP,
-        signupData,
-    };
-}
+
 
 export const signup = (data, navigation) => {
     return (dispatch) => {
@@ -108,3 +110,47 @@ export const signup = (data, navigation) => {
 
     }
 }
+
+
+export const forgotPassword = (data, navigation) => {
+    return (dispatch) => {
+        // axios
+        // 	.post(`${Api}/user/forgetPassword`, data)
+        // 	.then(async (res) => {
+        // 		Toast.show({
+        // 			type: 'success',
+        // 			text1: 'You are successfully sent email'
+        // 		})
+        //        dispatch(loading(false));
+        // 	})
+        // 	.catch((err) => {
+        // 		console.log('forgot password', err)
+        //      dispatch(loading(false))
+        // 		Toast.show({
+        // 			type: 'error',
+        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
+        // 		});
+        // 	});
+
+    }
+}
+
+
+// export const forgotPassword = (data, navigateion) => async dispatch => {
+//     try {
+//       const res = await axios.post(`${Api}/user/forgetPassword/`, data);
+//       setAnimation(false);
+//       Toast.show({
+//         type: 'success',
+//         text1: res.data,
+//       });
+//       navigateion.navigate('EnterOtp');
+//     } catch (err) {
+//       setAnimation(false);
+//       console.log(err?.response?.data);
+//       Toast.show({
+//         type: 'error',
+//         text1: err?.response?.data,
+//       });
+//     }
+//   };

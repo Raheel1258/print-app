@@ -11,6 +11,7 @@ const RouteCheckingContainer = (props) => {
 	const { navigation } = props;
 	const token = async () => {
 		const userToken= await Storage.retrieveData('token');
+    //await Storage.removeData('token');
 		navigation.reset({
 			index: 0,
 			routes: [

@@ -20,33 +20,35 @@ function setUserSignup(signupData) {
     };
 }
 
-// const loading = (loading) => {
-//     return {
-//         type: types.LOADING,
-//         loading
-//     }
-// }
 
-
-
-export const login = (data, navigation , setAnimation) => {
-    return (dispatch) => {
+export const login = (data, navigation, setAnimation) => {
+    return async (dispatch) => {
         console.log("Login", data);
         setAnimation(true);
         try {
-            Storage.storeData('token', "123");
-            setAnimation(false);
-            Toast.show({
-                type: 'success',
-                text1: 'You are successfully logged in',
-            });
-            navigation.reset({
-                index: 0,
-                routes: [{
-                    name: 'home'
-                }]
-            })
-            dispatch(setUserLogin(data));
+            if (data.email === "test@gmail.com" && data.password === "12345")
+            {
+                //await Storage.storeData('token', "123");
+                setAnimation(false);
+                Toast.show({
+                    type: 'success',
+                    text1: 'You are successfully logged in',
+                });
+                navigation.reset({
+                    index: 0,
+                    routes: [{
+                        name: 'home'
+                    }]
+                })
+                dispatch(setUserLogin(data));
+            }
+            else {
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: 'Invalid email or password',
+                });
+            }
         }
         catch {
             setAnimation(false);
@@ -91,10 +93,10 @@ export const login = (data, navigation , setAnimation) => {
 
 
 export const signup = (data, navigation, setAnimation) => {
-    return (dispatch) => {
+    return  async(dispatch) => {
         console.log("signup", data);
         setAnimation(true);
-        Storage.storeData('token', "123");
+        //await Storage.storeData('token', "123");
         Toast.show({
             type: 'success',
             text1: 'You are successfully signup in',
@@ -131,7 +133,7 @@ export const signup = (data, navigation, setAnimation) => {
 
 export const forgotPassword = (data, navigation, setAnimation) => {
     return (dispatch) => {
-        console.log("forgot" , data);
+        console.log("forgot", data);
         //setAnimation(true);
         // axios
         // 	.post(`${Api}/user/forgetPassword`, data)
@@ -155,21 +157,3 @@ export const forgotPassword = (data, navigation, setAnimation) => {
 }
 
 
-// export const forgotPassword = (data, navigateion) => async dispatch => {
-//     try {
-//       const res = await axios.post(`${Api}/user/forgetPassword/`, data);
-//       setAnimation(false);
-//       Toast.show({
-//         type: 'success',
-//         text1: res.data,
-//       });
-//       navigateion.navigate('EnterOtp');
-//     } catch (err) {
-//       setAnimation(false);
-//       console.log(err?.response?.data);
-//       Toast.show({
-//         type: 'error',
-//         text1: err?.response?.data,
-//       });
-//     }
-//   };

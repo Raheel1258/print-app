@@ -1,15 +1,19 @@
 import createReducer from '../createReducer';
 import * as types from "../types/types"
 
-export const categories = createReducer({
+const categories = createReducer({
   categories: {},
 },
   {
     [types.GET_CATEGORIES](state, action) {
+      console.log('getting thre', action.Payload);
       return {
         ...state,
-        categories: action?.payload
+        categories: action.Payload
       };
     }
   },
 );
+
+
+export default categories;

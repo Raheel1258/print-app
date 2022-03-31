@@ -32,6 +32,10 @@ const ForgotPasswordContainer = () => {
     navigation.navigate(routeName, data)
   }
 
+  const goBack = () => {
+    navigation.goBack();
+  };
+
   const handleForgotPasswordPress = () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (
@@ -63,6 +67,7 @@ const ForgotPasswordContainer = () => {
       animation={animation}
       isModalVisible={isModalVisible}
       navigate={navigate}
+      goBack={goBack}
       toggleModal={toggleModal} />
     </View>
   );

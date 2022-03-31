@@ -27,6 +27,10 @@ const SignupContainer = () => {
     navigation.navigate(routeName, data)
   }
 
+  const goBack = () => {
+    navigation.goBack();
+  };
+
   const handleChange = (name, value) => {
     console.log(name , value )
     setSignupData({...signupData, [name]: value});
@@ -133,7 +137,13 @@ const SignupContainer = () => {
 
   return (
     <View style={styles.container}>
-      <SignupScreen handleChange={handleChange} navigate={navigate} handleSignupPress={handleSignupPress} animation={animation}/>
+      <SignupScreen 
+      handleChange={handleChange} 
+      navigate={navigate} 
+      handleSignupPress={handleSignupPress} 
+      animation={animation}
+      goBack={goBack}
+      />
     </View>
   );
 };

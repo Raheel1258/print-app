@@ -17,11 +17,11 @@ import {
 } from '../Components';
 import {colors} from '../Utils/theme';
 
-const SignupScreen = ({handleChange , navigate, animation, handleSignupPress}) => {
+const SignupScreen = ({handleChange , navigate, animation, handleSignupPress, goBack}) => {
   const {t} = useTranslation();
   return (
     <>
-      <BackArrowHeader title={t('signup_text')} />
+      <BackArrowHeader goBack={goBack} title={t('signup_text')} />
       <ScrollView>
         <View style={styles.container}>
           <SigninTextField

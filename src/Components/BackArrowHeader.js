@@ -5,10 +5,10 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const BackArrowHeader = ({title}) => {
+const BackArrowHeader = ({title, goBack}) => {
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity style={styles.headerArrow}>
+      <TouchableOpacity onPress={goBack} style={styles.headerArrow}>
       <LeftArrow />
       </TouchableOpacity>
       <Text style={styles.headerText}>{title}</Text>

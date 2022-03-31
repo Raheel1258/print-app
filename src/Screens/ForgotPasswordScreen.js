@@ -6,11 +6,11 @@ import {useTranslation} from 'react-i18next';
 import {BackArrowHeader, SigninTextField,LoginGreenButton,VerificationModal} from '../Components';
 import {colors} from '../Utils/theme';
 
-const ForgotPasswordScreen = ({toggleModal,isModalVisible , handleChange, animation, handleForgotPasswordPress, navigate}) => {
+const ForgotPasswordScreen = ({toggleModal, isModalVisible, handleChange, animation, handleForgotPasswordPress, navigate, goBack}) => {
   const {t} = useTranslation();
   return (
     <>
-    <BackArrowHeader title={t('forgot_password')} />
+    <BackArrowHeader goBack={goBack} title={t('forgot_password')} />
     <ScrollView>
       <View style={styles.container}>
           <Text style={styles.emailDescription}>{t('email_description')}</Text>

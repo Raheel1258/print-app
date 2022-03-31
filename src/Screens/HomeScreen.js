@@ -1,7 +1,7 @@
-import React,{ useEffect, useState } from 'react';
-import {View, Text,FlatList} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import cardImage from '../Assests/Images/business-card.png';
 import bookletImage from '../Assests/Images/booklet-image.png';
@@ -11,8 +11,8 @@ import stickerImage from '../Assests/Images/stickers&label-image.png';
 import envelopImage from '../Assests/Images/envelope-image.png';
 import letterheadImage from '../Assests/Images/letterhead-image.png';
 
-import {ImageSlider,AllCategoriesCard} from '../Components';
-import {colors} from '../Utils/theme';
+import { ImageSlider, AllCategoriesCard } from '../Components';
+import { colors } from '../Utils/theme';
 
 const DATA = [
   {
@@ -66,8 +66,8 @@ const DATA = [
   },
 ];
 
-const HomeScreen = () => {
-  const {t} = useTranslation();
+const HomeScreen = ({ categories }) => {
+  const { t } = useTranslation();
   const renderItem = ({ item }) => (
     <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} />
   );
@@ -75,14 +75,22 @@ const HomeScreen = () => {
     <>
       <ImageSlider />
       <View style={styles.container}>
-        <Text style={styles.printText}>{t('lets_print')}</Text>
-        <FlatList
-        numColumns={2}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.flatlistContainer}
-      />
+        {
+          categories?.length !== undefined ?
+            <>
+              <Text style={styles.printText}>{t('lets_print')}</Text>
+              <FlatList
+                numColumns={2}
+                data={categories}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                contentContainerStyle={styles.flatlistContainer}
+              /></> :
+            <View style={styles.toastContainer}>
+              <ActivityIndicator size="small" color="#000" animating={true} />
+            </View>
+        }
+
       </View>
     </>
   );
@@ -94,20 +102,20 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.whiteColor,
     padding: '15@s',
   },
-  printText:{
-      // fontFamily:Avenir Next,
-      fontSize: '18@s',
-      fontStyle: 'normal',
-      fontWeight: '800',
-      fontStyle: 'normal',
-      lineHeight: '20@s',
-      letterSpacing: '0.4@s',
-      textAlign: 'left',
-      color: colors.blackColor,
-      marginVertical:'6@s'
+  printText: {
+    // fontFamily:Avenir Next,
+    fontSize: '18@s',
+    fontStyle: 'normal',
+    fontWeight: '800',
+    fontStyle: 'normal',
+    lineHeight: '20@s',
+    letterSpacing: '0.4@s',
+    textAlign: 'left',
+    color: colors.blackColor,
+    marginVertical: '6@s'
   },
-  flatlistContainer:{
-    paddingBottom:'70@s',
+  flatlistContainer: {
+    paddingBottom: '70@s',
   }
 });
 

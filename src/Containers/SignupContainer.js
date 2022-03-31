@@ -14,6 +14,7 @@ const SignupContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const [animation, setAnimation] = useState(false);
   const [signupData, setSignupData] = useState({
     firstName: '',
     lastName: '',
@@ -21,6 +22,10 @@ const SignupContainer = () => {
     email:'',
     password:''
   });
+  
+  const navigate = (routeName, data = {}) => {
+    navigation.navigate(routeName, data)
+  }
 
   const handleChange = (name, value) => {
     console.log(name , value )
@@ -121,14 +126,14 @@ const SignupContainer = () => {
         email: signupData?.email.toLocaleLowerCase(),
         password: signupData.password,
       };
-      dispatch(signup(signDetail, navigation));
+      dispatch(signup(signDetail, navigation, setAnimation));
     }
   };
 
 
   return (
     <View style={styles.container}>
-      <SignupScreen handleChange={handleChange} navigation={navigation} handleSignupPress={handleSignupPress}/>
+      <SignupScreen handleChange={handleChange} navigate={navigate} handleSignupPress={handleSignupPress} animation={animation}/>
     </View>
   );
 };

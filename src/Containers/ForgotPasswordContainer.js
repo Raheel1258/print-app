@@ -14,6 +14,7 @@ const ForgotPasswordContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const [animation, setAnimation] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -26,6 +27,10 @@ const ForgotPasswordContainer = () => {
   const handleChange = (name, value) => {
     setForgotPasswordData({...forgotPassword, [name]: value});
   };
+
+  const navigate = (routeName, data = {}) => {
+    navigation.navigate(routeName, data)
+  }
 
   const handleForgotPasswordPress = () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -45,7 +50,7 @@ const ForgotPasswordContainer = () => {
       const forgotPassowrdData = {
         email: forgotPasswordData?.email.toLocaleLowerCase(),
       };
-      dispatch(forgotPassword(forgotPassowrdData, navigation));
+      dispatch(forgotPassword(forgotPassowrdData, navigation, setAnimation));
       toggleModal();
     }
   };
@@ -55,7 +60,9 @@ const ForgotPasswordContainer = () => {
       <ForgotPasswordScreen
       handleChange={handleChange}
       handleForgotPasswordPress={handleForgotPasswordPress}
+      animation={animation}
       isModalVisible={isModalVisible}
+      navigate={navigate}
       toggleModal={toggleModal} />
     </View>
   );

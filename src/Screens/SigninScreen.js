@@ -11,7 +11,7 @@ import {
 import {colors} from '../Utils/theme';
 
 
-const SigninScreen = ({handleChange, navigation, handleLoginPress}) => {
+const SigninScreen = ({handleChange, navigate, handleLoginPress , animation}) => {
   const {t} = useTranslation();
   return (
     <>
@@ -26,11 +26,11 @@ const SigninScreen = ({handleChange, navigation, handleLoginPress}) => {
             handleChange={handleChange}
           />
           <SigninTextField title={t('password_text')} secureTextEntry={true} name="password" handleChange={handleChange} />
-          <TouchableOpacity style={styles.forgotWrapper}>
+          <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("forgotPassword")}>
             <Text style={styles.forgotPassword}>{t('forgot_password')}</Text>
           </TouchableOpacity>
           <View style={styles.buttonWrapper}>
-            <LoginGreenButton onPress={handleLoginPress} title={t('login_text')} />
+            <LoginGreenButton onPress={handleLoginPress} animation={animation} title={t('login_text')} />
           </View>
         </View>
       </ScrollView>

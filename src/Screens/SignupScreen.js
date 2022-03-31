@@ -17,7 +17,7 @@ import {
 } from '../Components';
 import {colors} from '../Utils/theme';
 
-const SignupScreen = ({handleChange , navigation , handleSignupPress}) => {
+const SignupScreen = ({handleChange , navigate, animation, handleSignupPress}) => {
   const {t} = useTranslation();
   return (
     <>
@@ -59,7 +59,7 @@ const SignupScreen = ({handleChange , navigation , handleSignupPress}) => {
             <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
           </Text>
           <View style={styles.buttonWrapper}>
-            <LoginGreenButton title={t('create_account')} onPress={handleSignupPress}/>
+            <LoginGreenButton title={t('create_account')} animation={animation} onPress={handleSignupPress}/>
           </View>
         </View>
       </ScrollView>

@@ -1,14 +1,17 @@
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const LoginGreenButton = ({title, onPress, backgroundColor = colors.greenColor}) => {
+const LoginGreenButton = ({title, onPress, animation, backgroundColor = colors.greenColor}) => {
   return (
     <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor}}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text style={styles.buttonText}> {animation ?
+          <ActivityIndicator size="small" color="#FFFFFF" animating={animation} />
+          : title
+        }</Text>
     </TouchableOpacity>
   );
 };

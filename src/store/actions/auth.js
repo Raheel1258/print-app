@@ -20,20 +20,22 @@ function setUserSignup(signupData) {
     };
 }
 
-const loading = (loading) => {
-    return {
-        type: types.LOADING,
-        loading
-    }
-}
+// const loading = (loading) => {
+//     return {
+//         type: types.LOADING,
+//         loading
+//     }
+// }
 
-export const login = (data, navigation) => {
+
+
+export const login = (data, navigation , setAnimation) => {
     return (dispatch) => {
-        console.log("Login", data)
-        dispatch(loading(true));
+        console.log("Login", data);
+        setAnimation(true);
         try {
             Storage.storeData('token', "123");
-            dispatch(loading(false));
+            setAnimation(false);
             Toast.show({
                 type: 'success',
                 text1: 'You are successfully logged in',
@@ -47,7 +49,7 @@ export const login = (data, navigation) => {
             dispatch(setUserLogin(data));
         }
         catch {
-            dispatch(loading(false));
+            setAnimation(false);
             Toast.show({
                 type: 'error',
                 text1: 'error',
@@ -88,10 +90,22 @@ export const login = (data, navigation) => {
 
 
 
-export const signup = (data, navigation) => {
+export const signup = (data, navigation, setAnimation) => {
     return (dispatch) => {
         console.log("signup", data);
-        dispatch(loading(true));
+        setAnimation(true);
+        Storage.storeData('token', "123");
+        Toast.show({
+            type: 'success',
+            text1: 'You are successfully signup in',
+        });
+        navigation.reset({
+            index: 0,
+            routes: [{
+                name: 'home'
+            }]
+        })
+        setAnimation(false);
         dispatch(setUserSignup(data));
         // axios
         // 	.post(`${Api}/user/signup`, data)
@@ -115,9 +129,10 @@ export const signup = (data, navigation) => {
 }
 
 
-export const forgotPassword = (data, navigation) => {
+export const forgotPassword = (data, navigation, setAnimation) => {
     return (dispatch) => {
-        console.log("forgot" , data)
+        console.log("forgot" , data);
+        //setAnimation(true);
         // axios
         // 	.post(`${Api}/user/forgetPassword`, data)
         // 	.then(async (res) => {

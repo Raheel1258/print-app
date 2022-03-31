@@ -15,11 +15,15 @@ const SigninContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const [animation, setAnimation] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
 
+  const navigate = (routeName, data = {}) => {
+    navigation.navigate(routeName, data)
+  }
   const handleChange = (name, value) => {
     setLoginData({...loginData, [name]: value});
   };
@@ -60,13 +64,13 @@ const SigninContainer = () => {
         email: loginData?.email.toLocaleLowerCase(),
         password: loginData.password,
       };
-      dispatch(login(loginDetail, navigation));
+      dispatch(login(loginDetail, navigation, setAnimation));
     }
   };
 
   return (
     <View style={styles.container}>
-      <SigninScreen handleChange={handleChange} handleLoginPress={handleLoginPress} navigation={navigation}/>
+      <SigninScreen handleChange={handleChange} handleLoginPress={handleLoginPress} navigate={navigate} animation={animation}/>
     </View>
   );
 };

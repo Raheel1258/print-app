@@ -1,5 +1,5 @@
-import * as types from "../types/types"
 import createReducer from '../createReducer';
+import * as types from "../types/types"
 
 
 const auth = createReducer({}, {
@@ -16,11 +16,11 @@ const auth = createReducer({}, {
 			signupData: action.signupData,
 		};
 	},
-	[types.LOADING](state, action) {
-		return {
-			...state,
-			loading: action.loading,
-		};
-	},
+	// [types.LOADING](state, action) {
+	// 	return {
+	// 		...state,
+	// 		loading: action.loading,
+	// 	};
+	// },
 });
 export default auth;

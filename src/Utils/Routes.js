@@ -53,7 +53,7 @@ const App = () => {
 
 const AuthStack = () => {
   return (
-    <Auth.Navigator initialRouteName="forgotPassword">
+    <Auth.Navigator initialRouteName="signin">
         <Auth.Screen
         name="RouteChecking"
         component={RouteCheckingContainer}

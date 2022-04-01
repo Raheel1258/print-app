@@ -4,7 +4,8 @@ import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from '../Utils/theme';
 
-const ImageSlider = () => {
+const ImageSlider = ({homeSliderImages}) => {
+  console.log("home" , homeSliderImages[0].images)
   const [images, setImges] = useState([
     'https://source.unsplash.com/1024x768/?nature',
     'https://source.unsplash.com/1024x768/?water',

@@ -66,18 +66,18 @@ const DATA = [
   },
 ];
 
-const HomeScreen = ({ categories }) => {
+const HomeScreen = ({ categories , homeSliderImages}) => {
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
     <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} />
   );
   return (
     <>
-      <ImageSlider />
-      <View style={styles.container}>
-        {
-          categories?.length !== undefined ?
-            <>
+      {
+        categories?.length !== undefined ?
+          <>
+            <ImageSlider homeSliderImages={homeSliderImages}/>
+            <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
               <FlatList
                 numColumns={2}
@@ -85,13 +85,13 @@ const HomeScreen = ({ categories }) => {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 contentContainerStyle={styles.flatlistContainer}
-              /></> :
-            <View style={styles.toastContainer}>
-              <ActivityIndicator size="small" color="#000" animating={true} />
+              />
             </View>
-        }
-
-      </View>
+          </> :
+          <View style={styles.toastContainer}>
+            <ActivityIndicator size="small" color="#000" animating={true} />
+          </View>
+      }
     </>
   );
 };
@@ -116,6 +116,11 @@ const styles = ScaledSheet.create({
   },
   flatlistContainer: {
     paddingBottom: '70@s',
+  },
+  toastContainer:{
+    flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
   }
 });
 

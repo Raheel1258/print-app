@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors} from '../Utils/theme';
 
 const AllCategoriesCard = ({title,days,image,price}) => {
   return (
+    <TouchableOpacity >
     <View style={styles.headerContainer}>
       <Image style={styles.cardImage} source={image} />
       <Text style={styles.cardName}>{title}</Text>
@@ -18,6 +20,7 @@ const AllCategoriesCard = ({title,days,image,price}) => {
         <Text style={styles.descriptionText}>{price}</Text>
       </View>
     </View>
+    </TouchableOpacity>
   );
 };
 

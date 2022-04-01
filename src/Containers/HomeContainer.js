@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
-import {getCategories} from "../store/actions/categories"
+import {getCategories,getHomeSliderImages} from "../store/actions/categories"
 import { useSelector } from 'react-redux';
 
 import HomeScreen from '../Screens/HomeScreen';
@@ -16,6 +16,8 @@ const HomeContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const categoriesData = useSelector(state => state.categories.categories); 
+  const homeSliderImages = useSelector(state => state.categories.homeSliderImages);
+  
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -23,11 +25,12 @@ const HomeContainer = () => {
 
   useEffect(()=> {
     dispatch(getCategories(setAnimation));
+    dispatch(getHomeSliderImages());
   },[])
 
   return (
     <View style={styles.container}>
-      <HomeScreen categories={categoriesData}/>
+      <HomeScreen categories={categoriesData} homeSliderImages={homeSliderImages}/>
     </View>
   );
 };

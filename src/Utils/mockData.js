@@ -58,4 +58,17 @@ export const CategoriesData =
       days: '4-6 business days ',
       price: '100 units from $120'
     },
-  ];
+];
+
+
+export const sliderImagesHome = [
+  {
+    images:[
+    'https://source.unsplash.com/1024x768/?nature',
+    'https://source.unsplash.com/1024x768/?water',
+    'https://source.unsplash.com/1024x768/?girl',
+    'https://source.unsplash.com/1024x768/?tree'],
+    title: "Order your next print in just new taps",
+  }
+  
+]

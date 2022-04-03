@@ -69,7 +69,7 @@ const DATA = [
 const HomeScreen = ({ categories , homeSliderImages}) => {
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
-    <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} />
+    <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price}/>
   );
   return (
     <>

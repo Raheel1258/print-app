@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -6,8 +7,14 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors} from '../Utils/theme';
 
 const AllCategoriesCard = ({title,days,image,price}) => {
+  const navigation = useNavigation();
+
+  const navigate = (routeName, data = {}) => {
+    navigation.navigate(routeName, data)
+  }
+
   return (
-    <TouchableOpacity >
+    <TouchableOpacity onPress={()=> navigate('cart')}>
     <View style={styles.headerContainer}>
       <Image style={styles.cardImage} source={image} />
       <Text style={styles.cardName}>{title}</Text>

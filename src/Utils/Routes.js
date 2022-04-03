@@ -157,7 +157,7 @@ const MainScreen = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'Tab',
+    initialRouteName: 'Auth',
   },
 );
 

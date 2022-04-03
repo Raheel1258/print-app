@@ -10,12 +10,11 @@ const ImageSlider = ({homeSliderImages}) => {
     'https://source.unsplash.com/1024x768/?nature',
     'https://source.unsplash.com/1024x768/?water',
     'https://source.unsplash.com/1024x768/?girl',
-    'https://source.unsplash.com/1024x768/?tree',
   ]);
   return (
     <View>
       <SliderBox
-        images={images}
+        images={homeSliderImages[0].images}
         sliderBoxHeight={200}
         dotColor={colors.whiteColor}
         inactiveDotColor="transparent"

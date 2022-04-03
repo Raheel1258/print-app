@@ -5,11 +5,13 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const SigninTextField = ({keyboardType,title,secureTextEntry ,name , handleChange}) => {
+const SigninTextField = (props) => {
+  const {keyboardType,title,secureTextEntry,error} = props;
   return (
     <View style={styles.textInputContainer}>
       <Text style={styles.textInputTitle}>{title}</Text>
-      <TextInput style={styles.textInput} keyboardType={keyboardType} secureTextEntry={secureTextEntry} onChangeText={(text) => handleChange(`${name}`, text)}/>
+      <TextInput {...props} style={styles.textInput} keyboardType={keyboardType} secureTextEntry={secureTextEntry} />
+      {error ? <Text style={styles.textError}>{error}</Text> : null }
     </View>
   );
 };
@@ -30,6 +32,7 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
     marginBottom:'7@s',
   },
+
   textInput: {
     borderBottomWidth: 1,
     borderBottomColor: colors.inputBorderColor,
@@ -43,6 +46,17 @@ const styles = ScaledSheet.create({
     paddingLeft: '0@s',
     marginBottom:'10@s',
   },
+  textError:  {
+    fontSize: '13@s',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontStyle: 'normal',
+    lineHeight: '22@s',
+    letterSpacing: '0.5@s',
+    textAlign: 'left',
+    color: 'red',
+    marginBottom:'7@s',
+  }
 });
 
 export default SigninTextField;

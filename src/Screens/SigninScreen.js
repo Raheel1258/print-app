@@ -1,40 +1,67 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import { loginValidationSchema } from '../Utils/validationSchema';
+
+import { Formik } from "formik";
+
 
 import {
   BackArrowHeader,
   SigninTextField,
   LoginGreenButton,
 } from '../Components';
-import {colors} from '../Utils/theme';
+import { colors } from '../Utils/theme';
 
 
-const SigninScreen = ({handleChange, navigate, handleLoginPress , animation}) => {
-  const {t} = useTranslation();
+const SigninScreen = ({  navigate, handleLoginPress, animation , loginData }) => {
+  const { t } = useTranslation();
   return (
     <>
       <BackArrowHeader title={t('signin_text')} />
       <ScrollView>
         <View style={styles.container}>
-          <SigninTextField
-            title={t('email_text')}
-            keyboardType="email-address"
-            secureTextEntry={false}
-            name="email" 
-            handleChange={handleChange}
-          />
-          <SigninTextField title={t('password_text')} secureTextEntry={true} name="password" handleChange={handleChange} />
-          <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("forgotPassword")}>
-            <Text style={styles.forgotPassword}>{t('forgot_password')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("signup")}>
-            <Text style={styles.forgotPassword}>{t('Create your account')}</Text>
-          </TouchableOpacity>
-          <View style={styles.buttonWrapper}>
-            <LoginGreenButton onPress={handleLoginPress} animation={animation} title={t('login_text')} />
-          </View>
+          <Formik initialValues={loginData} validationSchema={loginValidationSchema} onSubmit={(values)=>handleLoginPress(values)}> 
+            {({values,handleChange, handleSubmit, handleBlur,errors, touched}) => {
+              const {email,password} = values;
+              return <>
+                <SigninTextField
+                  value={email}
+                  error={touched.email && errors.email}
+                  title={t('email_text')}
+                  keyboardType="email-address"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                />
+                <SigninTextField
+                  password={password}
+                  error={touched.password && errors.password}
+                  title={t('password_text')}
+                  secureTextEntry={true}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                />
+                <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("forgotPassword")}>
+                  <Text style={styles.forgotPassword}>{t('forgot_password')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("signup")}>
+                  <Text style={styles.forgotPassword}>{t('Create your account')}</Text>
+                </TouchableOpacity>
+                <View style={styles.buttonWrapper}>
+                  <LoginGreenButton onPress={handleSubmit} animation={animation} title={t('login_text')} />
+                </View>
+              </>
+
+            }
+
+            }
+
+          </Formik>
+
+
+
         </View>
       </ScrollView>
     </>

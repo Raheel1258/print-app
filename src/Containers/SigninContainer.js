@@ -28,49 +28,51 @@ const SigninContainer = () => {
     setLoginData({...loginData, [name]: value});
   };
 
-  const handleLoginPress = () => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (
-      loginData?.email.length > 0 &&
-      loginData.password.length <= 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Password cannot be empty',
-      });
-    } else if (
-      loginData?.password.length > 0 &&
-      loginData.email.length <= 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Email cannot be empty',
-      });
-    } else if (
-      loginData?.password.length <= 0 &&
-      loginData?.email.length <= 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Fields cannot be empty',
-      });
-    } else if (reg.test(loginData.email) === false) {
-      Toast.show({
-        type: 'error',
-        text1: 'Please Provide a valid email',
-      });
-    } else {
-      const loginDetail = {
-        email: loginData?.email.toLocaleLowerCase(),
-        password: loginData.password,
-      };
-      dispatch(login(loginDetail, navigation, setAnimation));
-    }
+  const handleLoginPress = (values) => {
+    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    // if (
+    //   loginData?.email.length > 0 &&
+    //   loginData.password.length <= 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Password cannot be empty',
+    //   });
+    // } else if (
+    //   loginData?.password.length > 0 &&
+    //   loginData.email.length <= 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Email cannot be empty',
+    //   });
+    // } else if (
+    //   loginData?.password.length <= 0 &&
+    //   loginData?.email.length <= 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Fields cannot be empty',
+    //   });
+    // } else if (reg.test(loginData.email) === false) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Please Provide a valid email',
+    //   });
+    // } else {
+    //   const loginDetail = {
+    //     email: loginData?.email.toLocaleLowerCase(),
+    //     password: loginData.password,
+    //   };
+    //   dispatch(login(loginDetail, navigation, setAnimation));
+    // }
+    console.log("handle login" , values);
+    dispatch(login(values,navigation,setAnimation));
   };
 
   return (
     <View style={styles.container}>
-      <SigninScreen handleChange={handleChange} handleLoginPress={handleLoginPress} navigate={navigate} animation={animation}/>
+      <SigninScreen loginData={loginData} handleChange={handleChange} handleLoginPress={handleLoginPress} navigate={navigate} animation={animation}/>
     </View>
   );
 };

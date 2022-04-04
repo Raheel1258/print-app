@@ -4,7 +4,7 @@ import {View, Text, Button} from 'react-native';
 import Modal from 'react-native-modal';
 import {useTranslation} from 'react-i18next';
 
-import ModalButton from '../Components/LoginGreenButton';
+import ModalButton from '../Components/GreenButton';
 import {colors} from '../Utils/theme';
 
 const VerificationModal = ({toggleModal, isModalVisible}) => {

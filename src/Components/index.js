@@ -1,8 +1,8 @@
 import BackArrowHeader from './BackArrowHeader';
-import SigninTextField from './SigninTextField';
-import LoginGreenButton from './LoginGreenButton';
+import InputTextField from './InputTextField';
+import GreenButton from './GreenButton';
 import VerificationModal from './VerificationModal';
 import ImageSlider from './ImageSlider';
 import AllCategoriesCard from './AllCategoriesCard';
 
-export {BackArrowHeader, SigninTextField, LoginGreenButton,VerificationModal,ImageSlider,AllCategoriesCard};
+export {BackArrowHeader, InputTextField, GreenButton,VerificationModal,ImageSlider,AllCategoriesCard};

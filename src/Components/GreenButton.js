@@ -5,7 +5,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const LoginGreenButton = ({title, onPress, animation, backgroundColor = colors.greenColor}) => {
+const GreenButton = ({title, onPress, animation, backgroundColor = colors.greenColor}) => {
   return (
     <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor}}>
       <Text style={styles.buttonText}> {animation ?
@@ -37,4 +37,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default LoginGreenButton;
+export default GreenButton;

@@ -14,8 +14,8 @@ import { Formik } from 'formik'
 
 import {
   BackArrowHeader,
-  SigninTextField,
-  LoginGreenButton,
+  InputTextField,
+  GreenButton,
 } from '../Components';
 import { colors } from '../Utils/theme';
 
@@ -30,7 +30,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
             {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => {
               const { firstName, lastName, phone, email, password } = values;
               return <>
-                <SigninTextField
+                <InputTextField
                   value={firstName}
                   error={touched.firstName && errors.firstName}
                   title={t('first_name')}
@@ -40,7 +40,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
                   onChangeText={handleChange('firstName')}
                   onBlur={handleBlur('firstName')}
                 />
-                <SigninTextField
+                <InputTextField
                   value={lastName}
                   error={touched.lastName && errors.lastName}
                   title={t('last_name')}
@@ -50,7 +50,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
                   onChangeText={handleChange('lastName')}
                   onBlur={handleBlur('lastName')}
                 />
-                <SigninTextField
+                <InputTextField
                   value={phone}
                   error={touched.phone && errors.phone}
                   title={t('mobile_text')}
@@ -60,7 +60,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
                   onChangeText={handleChange('phone')}
                   onBlur={handleBlur('phone')}
                 />
-                <SigninTextField
+                <InputTextField
                   value={email}
                   error={touched.email && errors.email}
                   title={t('email_text')}
@@ -70,7 +70,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                 />
-                <SigninTextField
+                <InputTextField
                   value={password}
                   error={touched.password && errors.password}
                   title={t('new_password')}
@@ -86,7 +86,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
                   <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
                 </Text>
                 <View style={styles.buttonWrapper}>
-                  <LoginGreenButton title={t('create_account')} animation={animation} onPress={handleSubmit} />
+                  <GreenButton title={t('create_account')} animation={animation} onPress={handleSubmit} />
                 </View>
               </>
             }}

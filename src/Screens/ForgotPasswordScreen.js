@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { forgotPasswordValidationSchema } from '../Utils/validationSchema';
 
-import { BackArrowHeader, SigninTextField, LoginGreenButton, VerificationModal } from '../Components';
+import { BackArrowHeader, InputTextField, GreenButton, VerificationModal } from '../Components';
 import { colors } from '../Utils/theme';
 
 const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleForgotPassword, forgotPasswordData, navigate, goBack }) => {
@@ -20,7 +20,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
               const { email } = values;
               return <>
                 <Text style={styles.emailDescription}>{t('email_description')}</Text>
-                <SigninTextField
+                <InputTextField
                   value={email}
                   error={touched.email && errors.email}
                   title={t('email_text')}
@@ -31,7 +31,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
                   onBlur={handleBlur('email')}
                 />
                 <View style={styles.buttonWrapper}>
-                  <LoginGreenButton title={t('send_text')} animation={animation} onPress={handleSubmit} />
+                  <GreenButton title={t('send_text')} animation={animation} onPress={handleSubmit} />
                 </View>
                 <VerificationModal
                   isModalVisible={isModalVisible}

@@ -8,8 +8,8 @@ import { Formik } from "formik";
 
 import {
   BackArrowHeader,
-  SigninTextField,
-  LoginGreenButton,
+  InputTextField,
+  GreenButton,
 } from '../Components';
 import { colors } from '../Utils/theme';
 
@@ -25,7 +25,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { email, password } = values;
               return <>
-                <SigninTextField
+                <InputTextField
                   value={email}
                   error={touched.email && errors.email}
                   title={t('email_text')}
@@ -34,7 +34,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                 />
-                <SigninTextField
+                <InputTextField
                   password={password}
                   error={touched.password && errors.password}
                   title={t('password_text')}
@@ -49,7 +49,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
                   <Text style={styles.forgotPassword}>{t('Create your account')}</Text>
                 </TouchableOpacity>
                 <View style={styles.buttonWrapper}>
-                  <LoginGreenButton onPress={handleSubmit} animation={animation} title={t('login_text')} />
+                  <GreenButton onPress={handleSubmit} animation={animation} title={t('login_text')} />
                 </View>
               </>
             }}

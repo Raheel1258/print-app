@@ -5,7 +5,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const SigninTextField = (props) => {
+const InputTextField = (props) => {
   const {keyboardType,title,secureTextEntry,error} = props;
   return (
     <View style={styles.textInputContainer}>
@@ -59,4 +59,4 @@ const styles = ScaledSheet.create({
   }
 });
 
-export default SigninTextField;
+export default InputTextField;

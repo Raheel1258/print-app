@@ -36,102 +36,104 @@ const SignupContainer = () => {
     setSignupData({...signupData, [name]: value});
   };
 
-  const handleSignupPress = () => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (
-      signupData?.email.length > 0 &&
-      signupData?.firstName.length > 0 &&
-      signupData?.lastName.length > 0 &&
-      signupData.password.length <= 0 &&
-      signupData.phone.length > 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Password cannot be empty',
-      });
-    } else if (
-      signupData?.email.length <= 0 ||
-      signupData?.firstName.length <= 0 ||
-      signupData?.lastName.length <= 0 ||
-      signupData.password.length <= 0 ||
-      signupData.phone.length <= 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Fields cannot be empty',
-      });
-    }else if (
-      signupData?.email.length <= 0 &&
-      signupData?.firstName.length > 0 &&
-      signupData?.lastName.length > 0 &&
-      signupData.password.length > 0 &&
-      signupData.phone.length > 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Email cannot be empty',
-      });
-    } else if (
-      signupData?.email.length > 0 &&
-      signupData?.firstName.length <= 0 &&
-      signupData?.lastName.length > 0 &&
-      signupData.password.length > 0 &&
-      signupData.phone.length > 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'First_Name cannot be empty',
-      });
-    }
-    else if (
-      signupData?.email.length > 0 &&
-      signupData?.firstName.length > 0 &&
-      signupData?.lastName.length <= 0 &&
-      signupData.password.length > 0 &&
-      signupData.phone.length > 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Last_Name cannot be empty',
-      });
-    } else if (
-      signupData?.email.length > 0 &&
-      signupData?.firstName.length > 0 &&
-      signupData?.lastName.length > 0 &&
-      signupData.password.length > 0 &&
-      signupData.phone.length <= 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Phone Number cannot be empty',
-      });
+  const handleSignup = (values) => {
+    console.log('sign up' , values);
+    dispatch(signup(values, navigation, setAnimation));
+    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    // if (
+    //   signupData?.email.length > 0 &&
+    //   signupData?.firstName.length > 0 &&
+    //   signupData?.lastName.length > 0 &&
+    //   signupData.password.length <= 0 &&
+    //   signupData.phone.length > 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Password cannot be empty',
+    //   });
+    // } else if (
+    //   signupData?.email.length <= 0 ||
+    //   signupData?.firstName.length <= 0 ||
+    //   signupData?.lastName.length <= 0 ||
+    //   signupData.password.length <= 0 ||
+    //   signupData.phone.length <= 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Fields cannot be empty',
+    //   });
+    // }else if (
+    //   signupData?.email.length <= 0 &&
+    //   signupData?.firstName.length > 0 &&
+    //   signupData?.lastName.length > 0 &&
+    //   signupData.password.length > 0 &&
+    //   signupData.phone.length > 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Email cannot be empty',
+    //   });
+    // } else if (
+    //   signupData?.email.length > 0 &&
+    //   signupData?.firstName.length <= 0 &&
+    //   signupData?.lastName.length > 0 &&
+    //   signupData.password.length > 0 &&
+    //   signupData.phone.length > 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'First_Name cannot be empty',
+    //   });
+    // }
+    // else if (
+    //   signupData?.email.length > 0 &&
+    //   signupData?.firstName.length > 0 &&
+    //   signupData?.lastName.length <= 0 &&
+    //   signupData.password.length > 0 &&
+    //   signupData.phone.length > 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Last_Name cannot be empty',
+    //   });
+    // } else if (
+    //   signupData?.email.length > 0 &&
+    //   signupData?.firstName.length > 0 &&
+    //   signupData?.lastName.length > 0 &&
+    //   signupData.password.length > 0 &&
+    //   signupData.phone.length <= 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Phone Number cannot be empty',
+    //   });
       
-    } else if (
-      signupData?.email.length <= 0 &&
-      signupData?.firstName.length <= 0 &&
-      signupData?.lastName.length <= 0 &&
-      signupData.password.length <= 0 &&
-      signupData.phone.length <= 0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Fields cannot be empty',
-      });
-    } else if (reg.test(signupData.email) === false) {
-      Toast.show({
-        type: 'error',
-        text1: 'Please Provide a valid email',
-      });
-    } else {
-      const signDetail = {
-        firstName: signupData.firstName,
-        lastName:signupData.lastName,
-        phone: signupData.phone,
-        email: signupData?.email.toLocaleLowerCase(),
-        password: signupData.password,
-      };
-      dispatch(signup(signDetail, navigation, setAnimation));
-    }
+    // } else if (
+    //   signupData?.email.length <= 0 &&
+    //   signupData?.firstName.length <= 0 &&
+    //   signupData?.lastName.length <= 0 &&
+    //   signupData.password.length <= 0 &&
+    //   signupData.phone.length <= 0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Fields cannot be empty',
+    //   });
+    // } else if (reg.test(signupData.email) === false) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Please Provide a valid email',
+    //   });
+    // } else {
+    //   const signDetail = {
+    //     firstName: signupData.firstName,
+    //     lastName:signupData.lastName,
+    //     phone: signupData.phone,
+    //     email: signupData?.email.toLocaleLowerCase(),
+    //     password: signupData.password,
+    //   };
+    //   dispatch(signup(signDetail, navigation, setAnimation));
+    // }
   };
 
 
@@ -140,9 +142,10 @@ const SignupContainer = () => {
       <SignupScreen 
       handleChange={handleChange} 
       navigate={navigate} 
-      handleSignupPress={handleSignupPress} 
+      handleSignup={handleSignup} 
       animation={animation}
       goBack={goBack}
+      signupData={signupData}
       />
     </View>
   );

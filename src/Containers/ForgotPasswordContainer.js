@@ -36,34 +36,38 @@ const ForgotPasswordContainer = () => {
     navigation.goBack();
   };
 
-  const handleForgotPasswordPress = () => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (
-      forgotPasswordData?.email.length <=0
-    ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Email cannot be empty',
-      });
-    } else if (reg.test(forgotPasswordData.email) === false) {
-      Toast.show({
-        type: 'error',
-        text1: 'Please Provide a valid email',
-      });
-    } else {
-      const forgotPassowrdData = {
-        email: forgotPasswordData?.email.toLocaleLowerCase(),
-      };
-      dispatch(forgotPassword(forgotPassowrdData, navigation, setAnimation));
-      toggleModal();
-    }
+  const handleForgotPassword = (values) => {
+    console.log("forgot password" , values);
+    dispatch(forgotPassword(values, navigation, setAnimation));
+    toggleModal();
+    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    // if (
+    //   forgotPasswordData?.email.length <=0
+    // ) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Email cannot be empty',
+    //   });
+    // } else if (reg.test(forgotPasswordData.email) === false) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Please Provide a valid email',
+    //   });
+    // } else {
+    //   const forgotPassowrdData = {
+    //     email: forgotPasswordData?.email.toLocaleLowerCase(),
+    //   };
+    //   dispatch(forgotPassword(forgotPassowrdData, navigation, setAnimation));
+    //   toggleModal();
+    // }
   };
   
   return (
     <View style={styles.container}>
       <ForgotPasswordScreen
       handleChange={handleChange}
-      handleForgotPasswordPress={handleForgotPasswordPress}
+      handleForgotPassword={handleForgotPassword}
+      forgotPasswordData={forgotPasswordData}
       animation={animation}
       isModalVisible={isModalVisible}
       navigate={navigate}

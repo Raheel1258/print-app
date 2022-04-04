@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { loginValidationSchema } from '../Utils/validationSchema';
-
 import { Formik } from "formik";
 
 
@@ -15,16 +14,16 @@ import {
 import { colors } from '../Utils/theme';
 
 
-const SigninScreen = ({  navigate, handleLoginPress, animation , loginData }) => {
+const SigninScreen = ({ navigate, handleLogin, animation, loginData }) => {
   const { t } = useTranslation();
   return (
     <>
       <BackArrowHeader title={t('signin_text')} />
       <ScrollView>
         <View style={styles.container}>
-          <Formik initialValues={loginData} validationSchema={loginValidationSchema} onSubmit={(values)=>handleLoginPress(values)}> 
-            {({values,handleChange, handleSubmit, handleBlur,errors, touched}) => {
-              const {email,password} = values;
+          <Formik initialValues={loginData} validationSchema={loginValidationSchema} onSubmit={(values) => handleLogin(values)}>
+            {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
+              const { email, password } = values;
               return <>
                 <SigninTextField
                   value={email}
@@ -53,15 +52,9 @@ const SigninScreen = ({  navigate, handleLoginPress, animation , loginData }) =>
                   <LoginGreenButton onPress={handleSubmit} animation={animation} title={t('login_text')} />
                 </View>
               </>
-
             }
-
             }
-
           </Formik>
-
-
-
         </View>
       </ScrollView>
     </>

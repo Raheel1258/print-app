@@ -7,60 +7,91 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import { signupValidationSchema } from '../Utils/validationSchema';
+import { Formik } from 'formik'
 
 import {
   BackArrowHeader,
   SigninTextField,
   LoginGreenButton,
 } from '../Components';
-import {colors} from '../Utils/theme';
+import { colors } from '../Utils/theme';
 
-const SignupScreen = ({handleChange , navigate, animation, handleSignupPress, goBack}) => {
-  const {t} = useTranslation();
+const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData }) => {
+  const { t } = useTranslation();
   return (
     <>
       <BackArrowHeader goBack={goBack} title={t('signup_text')} />
       <ScrollView>
         <View style={styles.container}>
-          <SigninTextField
-            title={t('first_name')}
-            name="firstName"
-            keyboardType="default"
-            secureTextEntry={false}
-            handleChange={handleChange}
-          />
-          <SigninTextField
-            title={t('last_name')}
-            name="lastName"
-            keyboardType="default"
-            secureTextEntry={false}
-            handleChange={handleChange}
-          />
-          <SigninTextField
-            title={t('mobile_text')}
-            name="phone"
-            keyboardType="phone-pad"
-            secureTextEntry={false}
-            handleChange={handleChange}
-          />
-          <SigninTextField
-            title={t('email_text')}
-            name="email"
-            keyboardType="email-address"
-            secureTextEntry={false}
-            handleChange={handleChange}
-          />
-          <SigninTextField title={t('new_password')} name="password" secureTextEntry={true} handleChange={handleChange}/>
-          <Text style={styles.signupDescription}>
-           {t('by_signingup')}{' '}
-            <Text style={styles.privacyText}>{t('terms_services')}</Text> {t('and_text')}{' '}
-            <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
-          </Text>
-          <View style={styles.buttonWrapper}>
-            <LoginGreenButton title={t('create_account')} animation={animation} onPress={handleSignupPress}/>
-          </View>
+          <Formik initialValues={signupData} validationSchema={signupValidationSchema} onSubmit={(values) => handleSignup(values)}>
+            {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => {
+              const { firstName, lastName, phone, email, password } = values;
+              return <>
+                <SigninTextField
+                  value={firstName}
+                  error={touched.firstName && errors.firstName}
+                  title={t('first_name')}
+                  name="firstName"
+                  keyboardType="default"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('firstName')}
+                  onBlur={handleBlur('firstName')}
+                />
+                <SigninTextField
+                  value={lastName}
+                  error={touched.lastName && errors.lastName}
+                  title={t('last_name')}
+                  name="lastName"
+                  keyboardType="default"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('lastName')}
+                  onBlur={handleBlur('lastName')}
+                />
+                <SigninTextField
+                  value={phone}
+                  error={touched.phone && errors.phone}
+                  title={t('mobile_text')}
+                  name="phone"
+                  keyboardType="phone-pad"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('phone')}
+                  onBlur={handleBlur('phone')}
+                />
+                <SigninTextField
+                  value={email}
+                  error={touched.email && errors.email}
+                  title={t('email_text')}
+                  name="email"
+                  keyboardType="email-address"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                />
+                <SigninTextField
+                  value={password}
+                  error={touched.password && errors.password}
+                  title={t('new_password')}
+                  name="password"
+                  secureTextEntry={true}
+                  onChangeText={handleChange('password')} 
+                  onBlur={handleBlur('password')}
+                />
+                  
+                <Text style={styles.signupDescription}>
+                  {t('by_signingup')}{' '}
+                  <Text style={styles.privacyText}>{t('terms_services')}</Text> {t('and_text')}{' '}
+                  <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
+                </Text>
+                <View style={styles.buttonWrapper}>
+                  <LoginGreenButton title={t('create_account')} animation={animation} onPress={handleSubmit} />
+                </View>
+              </>
+            }}
+          </Formik>
+
         </View>
       </ScrollView>
     </>

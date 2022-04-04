@@ -24,11 +24,11 @@ const SigninContainer = () => {
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
-  const handleChange = (name, value) => {
-    setLoginData({...loginData, [name]: value});
-  };
+  // const handleChange = (name, value) => {
+  //   setLoginData({...loginData, [name]: value});
+  // };
 
-  const handleLoginPress = (values) => {
+  const handleLogin = (values) => {
     // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     // if (
     //   loginData?.email.length > 0 &&
@@ -72,7 +72,7 @@ const SigninContainer = () => {
 
   return (
     <View style={styles.container}>
-      <SigninScreen loginData={loginData} handleChange={handleChange} handleLoginPress={handleLoginPress} navigate={navigate} animation={animation}/>
+      <SigninScreen loginData={loginData} handleLogin={handleLogin} navigate={navigate} animation={animation}/>
     </View>
   );
 };

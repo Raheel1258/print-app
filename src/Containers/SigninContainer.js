@@ -11,7 +11,10 @@ import Toast from 'react-native-toast-message';
 import SigninScreen from '../Screens/SigninScreen';
 import {colors} from '../Utils/theme';
 
-const SigninContainer = () => {
+const SigninContainer = ({route}) => {
+  const {title} = route;
+  console.log("tttt" , title);
+  console.log("params" , route.params)
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -20,6 +23,10 @@ const SigninContainer = () => {
     email: '',
     password: '',
   });
+
+  const goBack = () => {
+    navigation.goBack();
+  };
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -72,7 +79,7 @@ const SigninContainer = () => {
 
   return (
     <View style={styles.container}>
-      <SigninScreen loginData={loginData} handleLogin={handleLogin} navigate={navigate} animation={animation}/>
+      <SigninScreen loginData={loginData} handleLogin={handleLogin} navigate={navigate} animation={animation} goBack={goBack}/>
     </View>
   );
 };

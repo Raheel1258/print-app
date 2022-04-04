@@ -5,7 +5,7 @@
     signin_text: 'Sign in',
     email_text: 'Email',
     password_text: 'Password',
-    forgot_password: 'Forgot password',
+    forgot_password: 'Forgot password?',
     login_text: 'Log In',
   //<=Sign up Screen=>
     signup_text: 'Sign up',

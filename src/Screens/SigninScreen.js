@@ -14,11 +14,11 @@ import {
 import { colors } from '../Utils/theme';
 
 
-const SigninScreen = ({ navigate, handleLogin, animation, loginData }) => {
+const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) => {
   const { t } = useTranslation();
   return (
     <>
-      <BackArrowHeader title={t('signin_text')} />
+      <BackArrowHeader goBack={goBack} title={t('signin_text')} />
       <ScrollView>
         <View style={styles.container}>
           <Formik initialValues={loginData} validationSchema={loginValidationSchema} onSubmit={(values) => handleLogin(values)}>
@@ -52,8 +52,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData }) => {
                   <LoginGreenButton onPress={handleSubmit} animation={animation} title={t('login_text')} />
                 </View>
               </>
-            }
-            }
+            }}
           </Formik>
         </View>
       </ScrollView>

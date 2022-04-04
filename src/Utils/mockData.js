@@ -72,3 +72,26 @@ export const sliderImagesHome = [
   }
   
 ]
+
+export const productSliderImages = [
+  {
+    heading: 'Premium(Thick) Business Card',
+    price: '68',
+    images:['https://source.unsplash.com/1024x768/?nature',
+    'https://source.unsplash.com/1024x768/?water'],
+    feature1: 'Think, smooth and premium',
+    feature2: 'Perfect for professionals',
+    paper_type: 'woodfree Card(350g)',
+    Lead_time: '2-3 business days',
+    colour:'CYMK',
+    sizes: '3 sizes',
+    choose_size: [{standard:'standard' , height:'90mm' , width:'54mm'}, {shortend:'shortend' , height:'90mm' , width:'54mm'},{sqaure:'sqaure' , height:'90mm' , width:'54mm'}],
+    choose_corner:{sqaure:'tranditional', Round:'Smooth'},
+    table:[
+      {quantity:'100' , Price:'$68', unit_price:'$0.5'},
+      {quantity:'200' , Price:'$108', unit_price:'$0.5'},
+      {quantity:'300' , Price:'$158', unit_price:'$0.5'},
+      {quantity:'400' , Price:'$210', unit_price:'$0.5'},
+     ]
+  },
+]

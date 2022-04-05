@@ -1,6 +1,6 @@
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
-import {productListData} from "../../Utils/mockData"
+import {productListCardData} from "../../Utils/mockData"
 
 import {Api} from '../../Utils/Api'
 import * as types from '../types/types'
@@ -18,7 +18,7 @@ export const getProductList = (title, setAnimation) => async dispatch => {
     setAnimation(true);
     try {
       //const res = await axios.get(`${Api}/title=title`);
-      dispatch(setProductList(productListData));
+      dispatch(setProductList(productListCardData));
       setAnimation(false);
     } catch (err) {
       setAnimation(false);

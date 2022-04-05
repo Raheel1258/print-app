@@ -73,7 +73,7 @@ export const sliderImagesHome = [
   
 ]
 
-export const productListData = [
+export const productListCardData = [
   {
     id:111,
     heading: 'Premium(Thick) Business Card',

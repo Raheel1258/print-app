@@ -36,10 +36,9 @@ const DATA = [
 const ProductsListingScreen = ({ goBack, productList, navigate }) => {
   const renderItem = ({ item }) => (
     <>
-    {console.log("img",item?.images)}
       <TouchableOpacity onPress={() => navigate('singleProduct', { item: item })}>
         <ImageSlider sliderImages={item?.images} />
-      </TouchableOpacity>
+    
         <View style={styles.paddingContainer}>
           <Text style={styles.cardTitle} onPress={() => navigate('singleProduct', { item: item })}>{item?.heading}</Text>
           <Text style={styles.cardPrice}>From HK$ ${item?.price} / 100pcs</Text>
@@ -52,6 +51,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate }) => {
             <Text style={styles.cardDescription}>{item?.feature2}</Text>
           </View>
         </View>
+        </TouchableOpacity>
     </>
   );
 

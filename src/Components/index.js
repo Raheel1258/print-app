@@ -6,6 +6,8 @@ import ImageSlider from './ImageSlider';
 import AllCategoriesCard from './AllCategoriesCard';
 import ImageBackArrowHeader from './ImageBackArrowHeader';
 import CategoriesTitleHeader from './CategoriesTitleHeader';
+import CardSizeComponent from './CardSizeComponent';
+import SingleCardDescription from './SingleCardDescription';
 
 export {
   BackArrowHeader,
@@ -15,5 +17,7 @@ export {
   ImageSlider,
   AllCategoriesCard,
   ImageBackArrowHeader,
-  CategoriesTitleHeader
+  CategoriesTitleHeader,
+  CardSizeComponent,
+  SingleCardDescription
 };

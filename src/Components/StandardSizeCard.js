@@ -3,41 +3,41 @@ import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors} from '../Utils/theme';
-import StandardSizeCard from '../Components/StandardSizeCard';
 
-const CardSizeComponent = ({
+const StandardSizeCard = ({
+  dotColor,
+  borderColor,
+  cardWidth,
+  cardHeight,
+  textWidth,
   cardStandard,
   cardDimensions,
-  Childern
 }) => {
-
   return (
-    <View style={styles.container}>
-      {Childern}
-      <View style={styles.standardPositionContainer}>
-        <Text style={styles.standardText} numberOfLines={1}>
-          {cardStandard}
-        </Text>
-        <Text style={styles.dimensionsText} numberOfLines={1}>
-          {cardDimensions}
-        </Text>
+    <View
+      style={{...styles.cardContainer, width: cardWidth, height: cardHeight}}>
+      <Text style={styles.cardTitle} numberOfLines={1}>
+        Julia Halvorson
+      </Text>
+      <Text style={styles.cardDirector} numberOfLines={1}>
+        creative Director
+      </Text>
+      <View style={styles.halvorsonPositionContainer}>
+        <View style={styles.contentContainer}>
+          <Text style={{...styles.cardStudio, width: textWidth}}>
+            Halvorson Studio
+          </Text>
+          <View style={{...styles.cardDot, backgroundColor: dotColor}} />
+        </View>
+        <View
+          style={{...styles.cardGradientBorder, backgroundColor: borderColor}}
+        />
       </View>
     </View>
   );
 };
 
 const styles = ScaledSheet.create({
-  container: {
-    borderWidth: 1,
-    borderColor: colors.innerBorderColor,
-    borderRadius: '10@s',
-    marginLeft: '14@s',
-    padding: '8@s',
-    width: '156@s',
-    height: '164@s',
-    marginVertical: '6@s',
-    position: 'relative',
-  },
   cardContainer: {
     borderWidth: 1.5,
     borderColor: colors.cardBorderColor,
@@ -132,4 +132,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default CardSizeComponent;
+export default StandardSizeCard;

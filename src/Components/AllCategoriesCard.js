@@ -13,7 +13,7 @@ const AllCategoriesCard = ({title,days,image,price}) => {
   }
 
   return (
-    <TouchableOpacity onPress={()=> navigate('signin', {title:title})}>
+    <TouchableOpacity onPress={()=> navigate('productsListing', {title:title})}>
     <View style={styles.headerContainer}>
       <Image style={styles.cardImage} source={image} />
       <Text style={styles.cardName}>{title}</Text>

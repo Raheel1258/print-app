@@ -99,7 +99,7 @@ const AuthStack = () => {
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="singleProduct"
+      initialRouteName="home"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -131,8 +131,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="singleProduct"
-        component={SingleProductContainer}
+        name="home"
+        component={HomeContainer}
       />
 
       <Tab.Screen
@@ -174,7 +174,7 @@ const MainScreen = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'Tab',
+    initialRouteName: 'Auth',
   },
 );
 

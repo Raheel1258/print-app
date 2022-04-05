@@ -20,12 +20,12 @@ const DATA = [
   },
 ];
 
-const ProductsListingScreen = () => {
+const ProductsListingScreen = ({goBack,navigate}) => {
   const renderItem = ({item}) => (
     <>
       <ImageSlider title={item.title} />
       <View style={styles.paddingContainer}>
-        <Text style={styles.cardTitle}>Premium (Thick) Business Card</Text>
+        <Text onPress={()=>navigate('singleProduct')} style={styles.cardTitle}>Premium (Thick) Business Card</Text>
         <Text style={styles.cardPrice}>From HK$ 68 / 100pcs</Text>
         <View style={styles.descriptionContainer}>
           <View style={styles.dotContainer} />
@@ -40,7 +40,7 @@ const ProductsListingScreen = () => {
   );
   return (
     <View style={styles.container}>
-      <ImageBackArrowHeader />
+      <ImageBackArrowHeader  goBack={goBack}/>
       <FlatList
         data={DATA}
         renderItem={renderItem}

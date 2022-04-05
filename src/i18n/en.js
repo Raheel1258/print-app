@@ -26,6 +26,7 @@
     ok_text: 'Ok',
   //<=Forgot Password Screen=>
     lets_print: 'Let’s print it',
-
+  //<=Single Product Screen=>
+    business_card:'Business Card',
   },
 };

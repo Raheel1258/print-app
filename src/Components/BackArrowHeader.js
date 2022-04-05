@@ -38,6 +38,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.6@s',
     textAlign: 'center',
     color:colors.blackColor,
+    marginLeft:-20,
   },
   headerArrow:{
     padding:'7@s',

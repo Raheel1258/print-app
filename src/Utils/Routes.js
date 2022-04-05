@@ -11,7 +11,9 @@ import {
   CartContainer,
   SignupContainer,
   ForgotPasswordContainer,
-  RouteCheckingContainer
+  RouteCheckingContainer,
+  ProductsListingContainer,
+  SingleProductContainer,
 } from '../Containers';
 import {colors} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -48,9 +50,19 @@ const App = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-      name="signin"
-      component={SigninContainer}
-      options={{headerShown:false}}
+        name="signin"
+        component={SigninContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="productsListing"
+        component={ProductsListingContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="singleProduct"
+        component={SingleProductContainer}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
@@ -59,10 +71,10 @@ const App = () => {
 const AuthStack = () => {
   return (
     <Auth.Navigator initialRouteName="signin">
-        <Auth.Screen
+      <Auth.Screen
         name="RouteChecking"
         component={RouteCheckingContainer}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Auth.Screen
         name="signin"
@@ -87,7 +99,7 @@ const AuthStack = () => {
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="home"
+      initialRouteName="singleProduct"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -119,8 +131,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="home"
-        component={HomeContainer}
+        name="singleProduct"
+        component={SingleProductContainer}
       />
 
       <Tab.Screen
@@ -162,7 +174,7 @@ const MainScreen = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Tab',
   },
 );
 

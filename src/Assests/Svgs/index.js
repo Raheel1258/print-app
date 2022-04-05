@@ -9,5 +9,19 @@ import AccountActiveIcon from './AccountActiveIcon';
 import OrderIcon from './OrderIcon';
 import AccountIcon from './AccountIcon';
 import LeftArrow from './LeftArrow';
+import BackArrow from './BackArrow';
 
-export {BrowseActiveIcon,BrowseIcon,CartActiveIcon,CartIcon,OrdersActiveIcon,OrdersIcon,ActivityIcon,AccountActiveIcon,OrderIcon,AccountIcon,LeftArrow};
+export {
+  BrowseActiveIcon,
+  BrowseIcon,
+  CartActiveIcon,
+  CartIcon,
+  OrdersActiveIcon,
+  OrdersIcon,
+  ActivityIcon,
+  AccountActiveIcon,
+  OrderIcon,
+  AccountIcon,
+  LeftArrow,
+  BackArrow
+};

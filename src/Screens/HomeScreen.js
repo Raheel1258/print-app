@@ -67,6 +67,7 @@ const DATA = [
 ];
 
 const HomeScreen = ({ categories , homeSliderImages}) => {
+  const sliderImages = homeSliderImages[0]?.images; 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
     <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price}/>
@@ -76,7 +77,7 @@ const HomeScreen = ({ categories , homeSliderImages}) => {
       {
         categories?.length !== undefined ?
           <>
-            <ImageSlider homeSliderImages={homeSliderImages}/>
+            <ImageSlider sliderImages={sliderImages}/>
             <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
               <FlatList

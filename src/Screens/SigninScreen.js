@@ -35,6 +35,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
                   onBlur={handleBlur('email')}
                 />
                 <InputTextField
+                  value={password}
                   password={password}
                   error={touched.password && errors.password}
                   title={t('password_text')}

@@ -11,7 +11,9 @@ import {
   CartContainer,
   SignupContainer,
   ForgotPasswordContainer,
-  RouteCheckingContainer
+  RouteCheckingContainer,
+  ProductsListingContainer,
+  SingleProductContainer,
 } from '../Containers';
 import {colors} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -37,14 +39,24 @@ const App = () => {
         component={MyTabs}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="home"
         component={HomeContainer}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="cart"
         component={CartContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="productsListing"
+        component={ProductsListingContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="singleProduct"
+        component={SingleProductContainer}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -54,10 +66,10 @@ const App = () => {
 const AuthStack = () => {
   return (
     <Auth.Navigator initialRouteName="signin">
-        <Auth.Screen
+      <Auth.Screen
         name="RouteChecking"
         component={RouteCheckingContainer}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Auth.Screen
         name="signin"

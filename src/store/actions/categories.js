@@ -3,7 +3,6 @@ import axios from 'axios';
 import {CategoriesData, sliderImagesHome} from "../../Utils/mockData"
 
 import {Api} from '../../Utils/Api'
-import Storage from '../../Utils/Storage';
 import * as types from '../types/types'
 
 

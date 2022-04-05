@@ -47,11 +47,6 @@ const App = () => {
         component={CartContainer}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-      name="signin"
-      component={SigninContainer}
-      options={{headerShown:false}}
-      />
     </Stack.Navigator>
   );
 };
@@ -67,7 +62,7 @@ const AuthStack = () => {
       <Auth.Screen
         name="signin"
         component={SigninContainer}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
       />
       <Auth.Screen
         name="signup"

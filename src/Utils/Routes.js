@@ -74,7 +74,7 @@ const AuthStack = () => {
       <Auth.Screen
         name="signin"
         component={SigninContainer}
-        options={{headerShown: true}}
+        options={{headerShown: false}}
       />
       <Auth.Screen
         name="signup"
@@ -129,6 +129,7 @@ const MyTabs = () => {
         name="home"
         component={HomeContainer}
       />
+
 
       <Tab.Screen
         options={{

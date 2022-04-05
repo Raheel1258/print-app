@@ -18,17 +18,19 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.offWhiteColor,
     width:'100%',
     height:'60@s',
-    marginVertical:'15@s'
+    justifyContent:'center',
   },
   headerText: {
     // fontFamily: Avenir LT Std,
     fontSize: '14@s',
     fontStyle: 'normal',
-    fontWeight: '900',
+    fontWeight: '800',
     lineHeight: '15@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',
     color:colors.blackColor,
+    marginLeft:'18@s',
+    marginTop:'7@s'
   },
 });
 

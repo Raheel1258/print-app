@@ -12,9 +12,9 @@ import SigninScreen from '../Screens/SigninScreen';
 import {colors} from '../Utils/theme';
 
 const SigninContainer = ({route}) => {
-  const {title} = route;
-  console.log("tttt" , title);
-  console.log("params" , route.params)
+  // const {title} = route;
+  // console.log("tttt" , title);
+  // console.log("params" , route.params)
   const navigation = useNavigation();
   const dispatch = useDispatch();
 

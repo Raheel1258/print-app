@@ -11,14 +11,14 @@ import HeaderImage from '../Assests/Images/businesscard-header-image.png';
 import BackArrow from '../Assests/Svgs/BackArrow';
 import {colors} from '../Utils/theme';
 
-const ImageBackArrowHeader = () => {
+const ImageBackArrowHeader = ({goBack}) => {
   return (
     <View style={styles.container}>
     <ImageBackground
       resizeMode="cover"
       style={styles.headerImage}
       source={HeaderImage}>
-      <TouchableOpacity style={styles.headerArrow}>
+      <TouchableOpacity style={styles.headerArrow} onPress={goBack}>
         <BackArrow />
       </TouchableOpacity>
       <Text style={styles.headerTitle}>Business card</Text>

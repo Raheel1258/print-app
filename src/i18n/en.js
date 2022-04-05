@@ -27,6 +27,14 @@
   //<=Forgot Password Screen=>
     lets_print: 'Let’s print it',
   //<=Single Product Screen=>
-    business_card:'Business Card',
+    business_card: 'Business Card',
+    choose_size: 'Choose size',
+    standard_text: 'Standard',
+    shortened_text: 'Shortened',
+    square_text: 'Square',
+    first_dimension: '90mm x 54mm',
+    second_dimension: '84mm x 55mm',
+    third_dimension: '56mm x 56mm',
+    choose_corner: 'Choose corner',
   },
 };

@@ -7,6 +7,12 @@
     password_text: 'Password',
     forgot_password: 'Forgot password?',
     login_text: 'Log In',
+    //Validation_Messages
+    invalid_email: 'Invalid email',
+    email_required: 'Email is required',
+    password_required:'Password is required',
+    min_required_5: 'Minimun 5 required',
+
   //<=Sign up Screen=>
     signup_text: 'Sign up',
     first_name: 'First Name',
@@ -18,6 +24,11 @@
     and_text: 'and',
     privacy_policy: 'Privacy Policy',
     create_account: 'Create Account',
+    //Validation_Messages
+    invalid_phone:'Phone number is not valid',
+    phone_required:'Phone number is required',
+    firstName_required: 'First Name is required',
+    lastName_required: 'Last Name is required',
   //<=Forgot Password Screen=>
     email_description: 'Please enter your email address below, we’ll send you a password reset link.',
     send_text: 'Send',
@@ -29,6 +40,7 @@
   //<=Single Product Screen=>
     business_card: 'Business Card',
     choose_size: 'Choose size',
+    choose_book_size:'Choose size(when book is folded)',
     standard_text: 'Standard',
     shortened_text: 'Shortened',
     square_text: 'Square',
@@ -36,5 +48,18 @@
     second_dimension: '84mm x 55mm',
     third_dimension: '56mm x 56mm',
     choose_corner: 'Choose corner',
+    square_text: 'Square',
+    traditional_text: 'Traditional',
+    round_text: 'Round',
+    smooth_text: 'Smooth',
+    choose_quantity: 'Choose quantity',
+    send_preview: 'Send me a preview before printing?',
+    upload_design: 'Upload your design file',
+    artwork_guidelines: 'Artwork guidelines',
+    upload_file: 'Upload file from this device',
+    upload_url: 'Upload file URL (e.g. Dropbox, Google Drive)',
+    upload_mail: 'Send file via e-mail',
+    order_remark: 'Order remarks',
+    anything_about_order: 'Anything you’d like to let us know about this order?',
   },
 };

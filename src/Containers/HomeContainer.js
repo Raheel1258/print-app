@@ -1,8 +1,9 @@
-import { types } from '@babel/core';
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import {View} from 'react-native';
+import { types } from '@babel/core';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import {getCategories,getHomeSliderImages} from "../store/actions/categories";
 import { useSelector } from 'react-redux';

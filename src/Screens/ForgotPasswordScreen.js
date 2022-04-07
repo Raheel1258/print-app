@@ -15,7 +15,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
       <BackArrowHeader goBack={goBack} title={t('forgot_password')} />
       <ScrollView>
         <View style={styles.container}>
-          <Formik initialValues={forgotPasswordData} validationSchema={forgotPasswordValidationSchema} onSubmit={(values) => handleForgotPassword(values)}>
+          <Formik initialValues={forgotPasswordData} validationSchema={()=>forgotPasswordValidationSchema(t)} onSubmit={(values) => handleForgotPassword(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { email } = values;
               return <>

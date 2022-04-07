@@ -1,9 +1,10 @@
-import { types } from '@babel/core';
 import React, {useState} from 'react';
-import {View} from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch } from 'react-redux';
+import { ScaledSheet } from 'react-native-size-matters';
+import { types } from '@babel/core';
+import {View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 import { login } from '../store/actions/auth';
 import Toast from 'react-native-toast-message';
 
@@ -11,10 +12,7 @@ import Toast from 'react-native-toast-message';
 import SigninScreen from '../Screens/SigninScreen';
 import {colors} from '../Utils/theme';
 
-const SigninContainer = ({route}) => {
-  // const {title} = route;
-  // console.log("tttt" , title);
-  // console.log("params" , route.params)
+const SigninContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
-import {productListCardData} from "../../Utils/mockData"
+import {productListBusinessCardData,productListBookletData} from "../../Utils/mockData"
 
 import {Api} from '../../Utils/Api'
 import * as types from '../types/types'
@@ -18,7 +18,11 @@ export const getProductList = (title, setAnimation) => async dispatch => {
     setAnimation(true);
     try {
       //const res = await axios.get(`${Api}/title=title`);
-      dispatch(setProductList(productListCardData));
+      if(title === 'Booklet')
+      {
+        dispatch(setProductList(productListBookletData));
+      }
+      else dispatch(setProductList(productListBusinessCardData));
       setAnimation(false);
     } catch (err) {
       setAnimation(false);

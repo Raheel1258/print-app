@@ -5,10 +5,10 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const GreenButton = ({title, onPress, animation, backgroundColor = colors.greenColor}) => {
+const GreenButton = ({title, onPress, animation, backgroundColor = colors.greenColor, color = colors.whiteColor}) => {
   return (
     <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor}}>
-      <Text style={styles.buttonText}> {animation ?
+      <Text style={{...styles.buttonText,color:color}}> {animation ?
           <ActivityIndicator size="small" color="#FFFFFF" animating={animation} />
           : title
         }</Text>

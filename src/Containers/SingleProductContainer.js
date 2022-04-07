@@ -1,13 +1,14 @@
 import React from 'react';
-import {View} from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import {View} from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
 
 import SingleProductScreen from '../Screens/SingleProductScreen';
 import {colors} from '../Utils/theme';
 
-const SingleProductContainer = () => {
+const SingleProductContainer = ({route}) => {
+  const {item, title} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -21,7 +22,7 @@ const SingleProductContainer = () => {
 
   return (
     <View style={styles.container}>
-      <SingleProductScreen goBack={goBack}/>
+      <SingleProductScreen goBack={goBack} item={item} title={title}/>
     </View>
   );
 };

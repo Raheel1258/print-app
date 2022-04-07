@@ -1,7 +1,7 @@
-import { types } from '@babel/core';
 import React from 'react';
 import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
+import { types } from '@babel/core';
 
 import CartScreen from '../Screens/CartScreen';
 import { colors } from '../Utils/theme';

@@ -1,7 +1,7 @@
-import { types } from '@babel/core';
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import { types } from '@babel/core';
 import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { signup } from '../store/actions/auth';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -70,7 +70,7 @@ const HomeScreen = ({ categories , homeSliderImages}) => {
   const sliderImages = homeSliderImages[0]?.images; 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
-    <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price}/>
+    <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} item={item}/>
   );
   return (
     <>
@@ -89,7 +89,7 @@ const HomeScreen = ({ categories , homeSliderImages}) => {
               />
             </View>
           </> :
-          <View style={styles.toastContainer}>
+          <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View>
       }
@@ -118,7 +118,7 @@ const styles = ScaledSheet.create({
   flatlistContainer: {
     paddingBottom: '70@s',
   },
-  toastContainer:{
+  loaderContainer:{
     flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',

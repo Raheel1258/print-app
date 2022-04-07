@@ -4,41 +4,40 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors} from '../Utils/theme';
 
-const SingleCardDescription = () => {
+const SingleCardDescription = ({item}) => {
   return (
     <View style={styles.paddingContainer}>
       <Text style={styles.productTitle} numberOfLines={1}>
-        Premium (Thick) Business Card
+        {item?.heading}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-        From HK$ 68 / 100 pc
+        From HK$ ${item.price}/ 100 pc
       </Text>
       <Text style={styles.productDescription}>
-        Thick, smooth and premium. The Premium Business Card is a popular choice
-        for professionals.
+        {item?.description}
       </Text>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Paper type:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          Woodfree Card (350g)
+          {item.paper_type}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Lead time:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          2-3 business days
+          {item?.lead_time}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Colour:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          CYMK
+          {item?.colour}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Sizes:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          3 sizes
+          {item?.sizes}
         </Text>
       </View>
     </View>

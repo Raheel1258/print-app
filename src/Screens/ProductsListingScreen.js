@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 
 import { ImageBackArrowHeader, ImageSlider } from '../Components';
@@ -33,14 +32,13 @@ const DATA = [
   },
 ];
 
-const ProductsListingScreen = ({ goBack, productList, navigate }) => {
+const ProductsListingScreen = ({ goBack, productList, navigate, title, image, animation }) => {
   const renderItem = ({ item }) => (
     <>
-      <TouchableOpacity onPress={() => navigate('singleProduct', { item: item })}>
-        <ImageSlider sliderImages={item?.images} />
-    
+      <ImageSlider sliderImages={item?.images} />
+      <TouchableOpacity onPress={() => navigate('singleProduct', { item: item, title: title })}>
         <View style={styles.paddingContainer}>
-          <Text style={styles.cardTitle} onPress={() => navigate('singleProduct', { item: item })}>{item?.heading}</Text>
+          <Text style={styles.cardTitle}>{item?.heading}</Text>
           <Text style={styles.cardPrice}>From HK$ ${item?.price} / 100pcs</Text>
           <View style={styles.descriptionContainer}>
             <View style={styles.dotContainer} />
@@ -51,20 +49,26 @@ const ProductsListingScreen = ({ goBack, productList, navigate }) => {
             <Text style={styles.cardDescription}>{item?.feature2}</Text>
           </View>
         </View>
-        </TouchableOpacity>
+      </TouchableOpacity>
     </>
   );
 
   return (
-    <View style={styles.container}>
-      <ImageBackArrowHeader goBack={goBack} />
-      <FlatList
-        data={productList}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.flatlistContainer}
-      />
-    </View>
+    <>
+      {productList?.length !== undefined ?
+        <View style={styles.container}>
+          <ImageBackArrowHeader title={title} image={image} goBack={goBack} />
+          <FlatList
+            data={productList}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            contentContainerStyle={styles.flatlistContainer}
+          />
+        </View> : <View style={styles.loaderContainer}>
+            <ActivityIndicator size="small" color="#000" animating={true} />
+          </View>
+      }
+    </>
   );
 };
 
@@ -129,6 +133,11 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '17@s',
     marginTop: '16@s',
   },
+  loaderContainer:{
+    flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+  }
 });
 
 export default ProductsListingScreen;

@@ -1,4 +1,3 @@
-import { t } from 'i18next';
 import React from 'react';
 import {
   View,
@@ -26,7 +25,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
       <BackArrowHeader goBack={goBack} title={t('signup_text')} />
       <ScrollView>
         <View style={styles.container}>
-          <Formik initialValues={signupData} validationSchema={signupValidationSchema} onSubmit={(values) => handleSignup(values)}>
+          <Formik initialValues={signupData} validationSchema={()=>signupValidationSchema(t)} onSubmit={(values) => handleSignup(values)}>
             {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => {
               const { firstName, lastName, phone, email, password } = values;
               return <>

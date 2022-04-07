@@ -8,6 +8,9 @@ import ImageBackArrowHeader from './ImageBackArrowHeader';
 import CategoriesTitleHeader from './CategoriesTitleHeader';
 import CardSizeComponent from './CardSizeComponent';
 import SingleCardDescription from './SingleCardDescription';
+import StandardSizeCard from './StandardSizeCard';
+import QuantityTable from './QuantityTable';
+import UploadFileComponent from './UploadFileComponent';
 
 export {
   BackArrowHeader,
@@ -19,5 +22,8 @@ export {
   ImageBackArrowHeader,
   CategoriesTitleHeader,
   CardSizeComponent,
-  SingleCardDescription
+  SingleCardDescription,
+  StandardSizeCard,
+  QuantityTable,
+  UploadFileComponent
 };

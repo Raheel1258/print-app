@@ -21,7 +21,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
       <BackArrowHeader goBack={goBack} title={t('signin_text')} />
       <ScrollView>
         <View style={styles.container}>
-          <Formik initialValues={loginData} validationSchema={loginValidationSchema} onSubmit={(values) => handleLogin(values)}>
+          <Formik initialValues={loginData} validationSchema={() => loginValidationSchema(t)} onSubmit={(values) => handleLogin(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { email, password } = values;
               return <>

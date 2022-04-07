@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import {View} from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
+import { ScaledSheet } from 'react-native-size-matters';
+
 import {getProductList} from '../store/actions/productList';
 
 import ProductsListingScreen from '../Screens/ProductsListingScreen';
 import {colors} from '../Utils/theme';
 
-const ProductsListingContainer = () => {
+
+const ProductsListingContainer = ({route}) => { 
+  const {title,image} = route.params;
+
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -24,12 +28,12 @@ const ProductsListingContainer = () => {
   };
 
   useEffect(()=>{
-    dispatch(getProductList("124",setAnimation))
+    dispatch(getProductList(title,setAnimation))
 
   },[])
   return (
     <View style={styles.container}>
-      <ProductsListingScreen goBack={goBack} productList={productList} navigate={navigate}/>
+      <ProductsListingScreen goBack={goBack} productList={productList} navigate={navigate} title={title} image={image} animation={animation}/>
     </View>
   );
 };

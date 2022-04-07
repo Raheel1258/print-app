@@ -5,6 +5,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import BackArrow from '../Assests/Svgs/BackArrow';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
+import { fonts } from '../Utils/theme';
 
 const BackArrowHeader = ({title, goBack, arrow = true}) => {
   return (
@@ -33,10 +34,10 @@ const styles = ScaledSheet.create({
   },
 
   headerText: {
-    // fontFamily: Avenir Next,
+    fontFamily:fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
-    fontWeight: '900',
+    // fontWeight: '800',
     lineHeight: '20@s',
     letterSpacing: '0.6@s',
     textAlign: 'center',

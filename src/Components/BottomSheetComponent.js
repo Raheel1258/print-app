@@ -5,7 +5,7 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 
 import {ArtworkGuidelines,FilePickerInput} from '../Components';
 import CloseIcon from '../Assests/Svgs/CloseIcon';
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const BottomSheetComponent = ({refRBSheet,title, childern}) => {
   return (
@@ -49,10 +49,10 @@ const styles = ScaledSheet.create({
     marginBottom:'40@s'
   },
   headerTitle:{
-      // fontFamily:Avenir LT Std,
+      fontFamily:fonts.avenir_bold,
       fontSize: '14@s',
       fontStyle: 'normal',
-      fontWeight: '800',
+      // fontWeight: '800',
       fontStyle: 'normal',
       lineHeight: '14@s',
       letterSpacing: '0.3@s',

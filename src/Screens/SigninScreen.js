@@ -11,7 +11,7 @@ import {
   InputTextField,
   GreenButton,
 } from '../Components';
-import { colors } from '../Utils/theme';
+import { colors,fonts } from '../Utils/theme';
 
 
 const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) => {
@@ -68,10 +68,10 @@ const styles = ScaledSheet.create({
     padding: '12@s',
   },
   forgotPassword: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '15@s',
     letterSpacing: '0.3@s',

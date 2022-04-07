@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const SingleCardDescription = () => {
   return (
@@ -51,10 +51,10 @@ const styles = ScaledSheet.create({
     marginTop: '10@s',
   },
   productTitle: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '18@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '24@s',
     letterSpacing: '0.4@s',
@@ -62,10 +62,10 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
   },
   productPrice: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '13@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.4@s',
@@ -74,10 +74,10 @@ const styles = ScaledSheet.create({
     marginTop: '9@s',
   },
   productDescription: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.4@s',
@@ -86,10 +86,10 @@ const styles = ScaledSheet.create({
     marginVertical: '6@s',
   },
   categoryType: {
-    // fontFamily:Avenir LT Std,
-    fontSize: '12@s',
+    fontFamily:fonts.avenir_bold,
+    fontSize: '13@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.4@s',
@@ -98,10 +98,10 @@ const styles = ScaledSheet.create({
     width: '85@s',
   },
   categoryDescription: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.4@s',

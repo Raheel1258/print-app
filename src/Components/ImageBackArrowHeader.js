@@ -9,7 +9,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import HeaderImage from '../Assests/Images/businesscard-header-image.png';
 import BackArrow from '../Assests/Svgs/BackArrow';
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const ImageBackArrowHeader = ({goBack}) => {
   return (
@@ -44,10 +44,10 @@ const styles = ScaledSheet.create({
     marginTop:'25@s'
   },
   headerTitle: {
-    // fontFamily:Avenir Next,
+fontFamily:fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '18@s',
     letterSpacing: '0.4@s',

@@ -28,6 +28,7 @@ import AccountIcon from '../Assests/Svgs/AccountIcon';
 
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
+const Home = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -96,10 +97,32 @@ const AuthStack = () => {
   );
 };
 
+const HomeStack = () => {
+  return (
+    <Home.Navigator initialRouteName="home">
+      <Home.Screen
+        name="home"
+        component={HomeContainer}
+        options={{headerShown: false}}
+      />
+      <Home.Screen
+        name="productsListing"
+        component={ProductsListingContainer}
+        options={{headerShown: false}}
+      />
+      <Home.Screen
+        name="singleProduct"
+        component={SingleProductContainer}
+        options={{headerShown: false}}
+      />
+    </Home.Navigator>
+  );
+};
+
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="home"
+      initialRouteName="homeStack"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -131,8 +154,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="home"
-        component={HomeContainer}
+        name="homeStack"
+        component={HomeStack}
       />
 
       <Tab.Screen

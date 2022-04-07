@@ -17,7 +17,7 @@ import {
   InputTextField,
   GreenButton,
 } from '../Components';
-import { colors } from '../Utils/theme';
+import { colors,fonts } from '../Utils/theme';
 
 const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData }) => {
   const { t } = useTranslation();
@@ -80,8 +80,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
                   onBlur={handleBlur('password')}
                 />
                   
-                <Text style={styles.signupDescription}>
-                  {t('by_signingup')}{' '}
+                <Text style={styles.signupDescription}>{t('by_signingup')}{' '}
                   <Text style={styles.privacyText}>{t('terms_services')}</Text> {t('and_text')}{' '}
                   <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
                 </Text>
@@ -108,10 +107,10 @@ const styles = ScaledSheet.create({
     marginTop: '50@s',
   },
   signupDescription: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '20@s',
     letterSpacing: '0.3@s',

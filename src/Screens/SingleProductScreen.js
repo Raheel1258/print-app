@@ -18,7 +18,7 @@ import {
   UrlPickerInput,
   VerificationModal,
 } from '../Components';
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 import roundImage from '../Assests/Images/round-image.png';
 import squareImage from '../Assests/Images/square-image.png';
 
@@ -34,13 +34,17 @@ const SingleProductScreen = ({
   setSelectedCorner,
   setQuantityId,
   quantityId,
-  review, 
-  setReview
+  review,
+  setReview,
 }) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
-      <BackArrowHeader goBack={goBack} title={t('business_card')} arrow = {false}/>
+      <BackArrowHeader
+        goBack={goBack}
+        title={t('business_card')}
+        arrow={false}
+      />
       <ScrollView style={styles.marginContainer}>
         <View style={styles.sliderWrapper}>
           <ImageSlider />
@@ -49,8 +53,8 @@ const SingleProductScreen = ({
         <CategoriesTitleHeader title={t('choose_size')} />
         <View style={styles.cardsContainer}>
           <CardSizeComponent
-            selectedSize = {selectedSize}
-            onPress = {() => setSelectedSize(t('standard_text'))}
+            selectedSize={selectedSize}
+            onPress={() => setSelectedSize(t('standard_text'))}
             Childern={
               <StandardSizeCard
                 textWidth={100}
@@ -64,8 +68,8 @@ const SingleProductScreen = ({
             cardDimensions={t('first_dimension')}
           />
           <CardSizeComponent
-            selectedSize = {selectedSize}
-            onPress = {() => setSelectedSize(t('shortened_text'))}
+            selectedSize={selectedSize}
+            onPress={() => setSelectedSize(t('shortened_text'))}
             Childern={
               <StandardSizeCard
                 textWidth={100}
@@ -79,8 +83,8 @@ const SingleProductScreen = ({
             cardDimensions={t('second_dimension')}
           />
           <CardSizeComponent
-            selectedSize = {selectedSize}
-            onPress = {() => setSelectedSize(t('square_text'))}
+            selectedSize={selectedSize}
+            onPress={() => setSelectedSize(t('square_text'))}
             Childern={
               <StandardSizeCard
                 textWidth={60}
@@ -97,22 +101,22 @@ const SingleProductScreen = ({
         <CategoriesTitleHeader title={t('choose_corner')} />
         <View style={styles.cardsContainer}>
           <CardSizeComponent
-          selectedCorner={selectedCorner}
-          onPress = {() => setSelectedCorner(t('square_text'))}
+            selectedCorner={selectedCorner}
+            onPress={() => setSelectedCorner(t('square_text'))}
             Childern={<Image style={styles.squareimage} source={squareImage} />}
             cardStandard={t('square_text')}
             cardDimensions={t('traditional_text')}
           />
           <CardSizeComponent
-          selectedCorner={selectedCorner}
-          onPress = {() => setSelectedCorner(t('round_text'))}
+            selectedCorner={selectedCorner}
+            onPress={() => setSelectedCorner(t('round_text'))}
             Childern={<Image style={styles.squareimage} source={roundImage} />}
             cardStandard={t('round_text')}
             cardDimensions={t('smooth_text')}
           />
         </View>
         <CategoriesTitleHeader title={t('choose_quantity')} />
-        <QuantityTable quantityId = {quantityId} setQuantityId = {setQuantityId}/>
+        <QuantityTable quantityId={quantityId} setQuantityId={setQuantityId} />
         <CategoriesTitleHeader title={t('send_preview')} />
         <Text style={styles.previewDescription}>
           After you’ve placed the order, we will send you a preview in e-mail
@@ -121,20 +125,24 @@ const SingleProductScreen = ({
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonWrapper}>
             <GreenButton
-               buttonHeight={47}
-              backgroundColor={review ? colors.greenColor : colors.smokeWhiteColor}
+              buttonHeight={47}
+              backgroundColor={
+                review ? colors.greenColor : colors.smokeWhiteColor
+              }
               color={review ? colors.blackColor : colors.lightBlackColor}
               title={t('yes_text')}
-              onPress = {()=> setReview(true)}
+              onPress={() => setReview(true)}
             />
           </View>
           <View style={styles.buttonWrapper}>
             <GreenButton
-             buttonHeight={47}
-              backgroundColor={review ? colors.smokeWhiteColor : colors.greenColor}
+              buttonHeight={47}
+              backgroundColor={
+                review ? colors.smokeWhiteColor : colors.greenColor
+              }
               color={review ? colors.lightBlackColor : colors.blackColor}
               title={t('no_text')}
-              onPress = {()=> setReview(false)}
+              onPress={() => setReview(false)}
             />
           </View>
         </View>
@@ -212,10 +220,10 @@ const styles = ScaledSheet.create({
     marginTop: '30@s',
   },
   previewDescription: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.3@s',
@@ -236,10 +244,10 @@ const styles = ScaledSheet.create({
     width: '47%',
   },
   aboutOrder: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.3@s',
@@ -262,10 +270,10 @@ const styles = ScaledSheet.create({
     padding: '12@s',
   },
   addCart: {
-    // fontFamily:Avenir,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
@@ -275,10 +283,10 @@ const styles = ScaledSheet.create({
     marginTop: '5@s',
   },
   questionText: {
-    // fontFamily:Avenir,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
@@ -287,10 +295,10 @@ const styles = ScaledSheet.create({
     marginTop: '15@s',
   },
   mailText: {
-    // fontFamily:Avenir,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',

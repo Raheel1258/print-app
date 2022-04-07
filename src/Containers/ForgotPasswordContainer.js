@@ -70,9 +70,10 @@ const ForgotPasswordContainer = () => {
       forgotPasswordData={forgotPasswordData}
       animation={animation}
       isModalVisible={isModalVisible}
-      toggleModal={toggleModal} />
+      toggleModal={toggleModal} 
       navigate={navigate}
       goBack={goBack}
+      />
     </View>
   );
 };

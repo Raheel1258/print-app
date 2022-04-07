@@ -13,7 +13,7 @@
     last_name: 'Last Name',
     mobile_text: 'Mobile  (for order confirmation)',
     new_password: 'New password',
-    by_signingup: ' By signing up, you agree to our',
+    by_signingup: 'By signing up, you agree to our',
     terms_services: 'Terms of Services',
     and_text: 'and',
     privacy_policy: 'Privacy Policy',
@@ -24,6 +24,7 @@
     sent_text: 'Sent!',
     email_modal_description: 'We have sent you an e-mail with the instruction to reset your password.',
     ok_text: 'Ok',
+  forgot_text: 'Forgot password',
   //<=Forgot Password Screen=>
     lets_print: 'Let’s print it',
   //<=Single Product Screen=>

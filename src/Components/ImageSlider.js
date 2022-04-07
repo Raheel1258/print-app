@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text,Image} from 'react-native';
 import {SliderBox} from 'react-native-image-slider-box';
 import {ScaledSheet} from 'react-native-size-matters';
 
@@ -8,9 +8,12 @@ import {colors} from '../Utils/theme';
 const ImageSlider = ({homeSliderImages}) => {
   //console.log("home" , homeSliderImages[0].images)
   const [images, setImges] = useState([
-    'https://source.unsplash.com/1024x768/?nature',
-    'https://source.unsplash.com/1024x768/?water',
-    'https://source.unsplash.com/1024x768/?girl',
+    // 'https://source.unsplash.com/1024x768/?nature',
+    // 'https://source.unsplash.com/1024x768/?water',
+    // 'https://source.unsplash.com/1024x768/?girl',
+    require('../Assests/Images/businesscard-header-image.png'), 
+    require('../Assests/Images/poster-image.png'),
+    require('../Assests/Images/booklet-image.png'),
   ]);
   return (
     <View>

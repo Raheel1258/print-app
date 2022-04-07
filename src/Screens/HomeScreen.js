@@ -12,7 +12,7 @@ import envelopImage from '../Assests/Images/envelope-image.png';
 import letterheadImage from '../Assests/Images/letterhead-image.png';
 
 import { ImageSlider, AllCategoriesCard } from '../Components';
-import { colors } from '../Utils/theme';
+import { colors,fonts } from '../Utils/theme';
 
 const DATA = [
   {
@@ -103,10 +103,10 @@ const styles = ScaledSheet.create({
     padding: '15@s',
   },
   printText: {
-    // fontFamily:Avenir Next,
+    fontFamily:fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '20@s',
     letterSpacing: '0.4@s',

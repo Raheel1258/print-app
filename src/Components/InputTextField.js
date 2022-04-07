@@ -3,7 +3,7 @@ import {View, Text, TextInput} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import LeftArrow from '../Assests/Svgs/LeftArrow';
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const InputTextField = (props) => {
   const {keyboardType,title,secureTextEntry,error} = props;
@@ -21,13 +21,13 @@ const styles = ScaledSheet.create({
     marginTop: '5@s',
   },
   textInputTitle: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '13@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
-    lineHeight: '22@s',
-    letterSpacing: '0.5@s',
+    lineHeight: '21@s',
+    letterSpacing: '0.4@s',
     textAlign: 'left',
     color: colors.blackColor,
     marginBottom:'7@s',

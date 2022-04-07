@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import LeftArrow from '../Assests/Svgs/LeftArrow';
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const UploadFileComponent = ({title, onPress}) => {
   return (
@@ -28,10 +28,10 @@ const styles = ScaledSheet.create({
     borderBottomColor: colors.offWhiteColor,
   },
   title: {
-    // fontFamily: Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     lineHeight: '16@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',

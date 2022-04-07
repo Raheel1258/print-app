@@ -2,8 +2,7 @@ import React from 'react';
 import {View, Text,TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import LeftArrow from '../Assests/Svgs/LeftArrow';
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const CategoriesTitleHeader = ({title,description}) => {
   return (
@@ -25,10 +24,10 @@ const styles = ScaledSheet.create({
 paddingHorizontal:'17@s',
   },
   headerText: {
-    // fontFamily: Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '14@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     lineHeight: '15@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',
@@ -36,10 +35,10 @@ paddingHorizontal:'17@s',
     marginTop:'8@s',
   },
   headerRightText:{
-      // fontFamily: Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
       fontSize: '12@s',
       fontStyle: 'normal',
-      fontWeight: '400',
+      // fontWeight: '400',
       lineHeight: '15@s',
       letterSpacing: '0.6@s',
       textAlign: 'left',

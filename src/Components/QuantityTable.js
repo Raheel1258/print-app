@@ -45,7 +45,7 @@ const DATA = [
 
 const QuantityTable = ({setQuantityId, quantityId}) => {
   const renderItem = ({item}) => {
-    const quantityStyle = quantityId == item?.id ? {...styles.selectedQuantity} : {};
+    const quantityStyle = quantityId == item?.id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
     return (
       <TouchableOpacity activeOpacity={1} onPress = { () => setQuantityId(item?.id)} style={{...styles.tableItems, ...quantityStyle}}>
         <Text style={styles.priceText}>{item.quantity}</Text>
@@ -79,7 +79,8 @@ const styles = ScaledSheet.create({
     borderColor: colors.greenColor,
   },
   notSelectedQuantity: {
-    borderWidth: 2,
+    borderWidth: 1,
+    borderTopWidth:0,
     borderColor: colors.innerBorderColor,
   },
   tableItems: {
@@ -121,7 +122,6 @@ const styles = ScaledSheet.create({
   },
   tableHeader: {
     borderBottomWidth: 1,
-    borderBottomWidth: 0,
     borderBottomColor: colors.innerBorderColor,
     flexDirection: 'row',
     alignItems: 'center',

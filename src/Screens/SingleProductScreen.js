@@ -121,7 +121,7 @@ const SingleProductScreen = ({
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonWrapper}>
             <GreenButton
-               buttonHeight={50}
+               buttonHeight={47}
               backgroundColor={review ? colors.greenColor : colors.smokeWhiteColor}
               color={review ? colors.blackColor : colors.lightBlackColor}
               title={t('yes_text')}
@@ -130,7 +130,7 @@ const SingleProductScreen = ({
           </View>
           <View style={styles.buttonWrapper}>
             <GreenButton
-             buttonHeight={50}
+             buttonHeight={47}
               backgroundColor={review ? colors.smokeWhiteColor : colors.greenColor}
               color={review ? colors.lightBlackColor : colors.blackColor}
               title={t('no_text')}

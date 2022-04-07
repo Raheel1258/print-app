@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {ImageBackArrowHeader, ImageSlider} from '../Components';
@@ -24,7 +24,7 @@ const ProductsListingScreen = ({goBack,navigate}) => {
   const renderItem = ({item}) => (
     <>
       <ImageSlider title={item.title} />
-      <View style={styles.paddingContainer}>
+      <TouchableOpacity onPress={()=>navigate('singleProduct')} style={styles.paddingContainer}>
         <Text onPress={()=>navigate('singleProduct')} style={styles.cardTitle}>Premium (Thick) Business Card</Text>
         <Text style={styles.cardPrice}>From HK$ 68 / 100pcs</Text>
         <View style={styles.descriptionContainer}>
@@ -35,7 +35,7 @@ const ProductsListingScreen = ({goBack,navigate}) => {
           <View style={styles.dotContainer} />
           <Text style={styles.cardDescription}>Perfect for professionals</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </>
   );
   return (

@@ -109,7 +109,7 @@ const MyTabs = () => {
           position: 'absolute',
           paddingBottom: 5,
           paddingTop: 20,
-          height: Platform.OS === 'ios' ? 70 : 70,
+          height: Platform.OS === 'ios' ? 62 : 62,
         },
       }}>
       <Tab.Screen
@@ -131,8 +131,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="home"
-        component={HomeContainer}
+        name="singleProduct"
+        component={SingleProductContainer}
       />
 
       <Tab.Screen
@@ -174,7 +174,7 @@ const MainScreen = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Tab',
   },
 );
 

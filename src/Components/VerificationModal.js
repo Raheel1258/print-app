@@ -7,15 +7,15 @@ import {useTranslation} from 'react-i18next';
 import ModalButton from '../Components/GreenButton';
 import {colors} from '../Utils/theme';
 
-const VerificationModal = ({toggleModal, isModalVisible}) => {
+const VerificationModal = ({toggleModal, isModalVisible,title,description}) => {
   const {t} = useTranslation();
   return (
     <>
       <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
         <View style={styles.modalContainer}>
-          <Text style={styles.sentText}>{t('sent_text')}</Text>
+          <Text style={styles.sentText}>{title}</Text>
           <Text style={styles.emailDescription}>
-            {t('email_modal_description')}
+            {description}
           </Text>
           <View style={styles.buttonWrapper}>
             <ModalButton

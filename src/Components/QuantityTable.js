@@ -1,10 +1,59 @@
 import React from 'react';
-import {View, Text,TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors} from '../Utils/theme';
 
-const QuantityTable = () => {
+const DATA = [
+  {
+    id: '1',
+    quantity: 100,
+    price: 12,
+    unit_price: 23,
+  },
+  {
+    id: '2',
+    quantity: 100,
+    price: 12,
+    unit_price: 23,
+  },
+  {
+    id: '3',
+    quantity: 100,
+    price: 12,
+    unit_price: 23,
+  },
+  {
+    id: '4',
+    quantity: 100,
+    price: 12,
+    unit_price: 23,
+  },
+  {
+    id: '5',
+    quantity: 100,
+    price: 12,
+    unit_price: 23,
+  },
+  {
+    id: '6',
+    quantity: 100,
+    price: 12,
+    unit_price: 23,
+  },
+];
+
+const QuantityTable = ({setQuantityId, quantityId}) => {
+  const renderItem = ({item}) => {
+    const quantityStyle = quantityId == item?.id ? {...styles.selectedQuantity} : {};
+    return (
+      <TouchableOpacity activeOpacity={1} onPress = { () => setQuantityId(item?.id)} style={{...styles.tableItems, ...quantityStyle}}>
+        <Text style={styles.priceText}>{item.quantity}</Text>
+        <Text style={styles.dollerPrice}>${item.price}</Text>
+        <Text style={styles.priceText}>{item.unit_price}</Text>
+      </TouchableOpacity>
+    );
+  };
   return (
     <View style={styles.tableContainer}>
       <View style={styles.tableHeader}>
@@ -12,36 +61,11 @@ const QuantityTable = () => {
         <Text style={styles.headerTitle}>Price (HK$)</Text>
         <Text style={styles.headerTitle}>Unit price</Text>
       </View>
-      <View style={styles.tableHeader}>
-        <Text style={styles.priceText}>100</Text>
-        <Text style={styles.dollerPrice}>$68</Text>
-        <Text style={styles.priceText}>$0.5</Text>
-      </View>
-      <View style={styles.tableHeader}>
-        <Text style={styles.priceText}>200</Text>
-        <Text style={styles.dollerPrice}>$108</Text>
-        <Text style={styles.priceText}>$0.5</Text>
-      </View>
-      <View style={styles.tableHeader}>
-        <Text style={styles.priceText}>300</Text>
-        <Text style={styles.dollerPrice}>$158</Text>
-        <Text style={styles.priceText}>$0.5</Text>
-      </View>
-      <View style={styles.tableHeader}>
-        <Text style={styles.priceText}>400</Text>
-        <Text style={styles.dollerPrice}>$210</Text>
-        <Text style={styles.priceText}>$0.5</Text>
-      </View>
-      <View style={styles.tableHeader}>
-        <Text style={styles.priceText}>500</Text>
-        <Text style={styles.dollerPrice}>$90</Text>
-        <Text style={styles.priceText}>$0.5</Text>
-      </View>
-      <View style={styles.tableHeader}>
-        <Text style={styles.priceText}>600</Text>
-        <Text style={styles.dollerPrice}>$90</Text>
-        <Text style={styles.priceText}>$0.5</Text>
-      </View>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
       <TouchableOpacity style={styles.tableBottom}>
         <Text style={styles.showMore}>Show more quantity</Text>
       </TouchableOpacity>
@@ -50,12 +74,27 @@ const QuantityTable = () => {
 };
 
 const styles = ScaledSheet.create({
+  selectedQuantity: {
+    borderWidth: 2,
+    borderColor: colors.greenColor,
+  },
+  notSelectedQuantity: {
+    borderWidth: 2,
+    borderColor: colors.innerBorderColor,
+  },
+  tableItems: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: '18@s',
+    height: '50@s',
+  },
   tableContainer: {
     borderWidth: 1,
     borderColor: colors.innerBorderColor,
     marginHorizontal: '15@s',
     borderRadius: '10@s',
-    marginVertical:'17@s',
+    marginVertical: '17@s',
   },
   headerTitle: {
     // fontFamily:Avenir LT Std,
@@ -68,20 +107,21 @@ const styles = ScaledSheet.create({
     textAlign: 'left',
     color: colors.blackColor,
   },
-  dollerPrice:{
-  // fontFamily:Avenir LT Std,
-  fontSize: '12@s',
-  fontStyle: 'normal',
-  fontWeight: '800',
-  fontStyle: 'normal',
-  lineHeight: '13@s',
-  letterSpacing: '0.5@s',
-  textAlign: 'left',
-  width:'60@s',
-  color: colors.blackColor,
+  dollerPrice: {
+    // fontFamily:Avenir LT Std,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '800',
+    fontStyle: 'normal',
+    lineHeight: '13@s',
+    letterSpacing: '0.5@s',
+    textAlign: 'left',
+    width: '78@s',
+    color: colors.blackColor,
   },
   tableHeader: {
     borderBottomWidth: 1,
+    borderBottomWidth: 0,
     borderBottomColor: colors.innerBorderColor,
     flexDirection: 'row',
     alignItems: 'center',
@@ -100,13 +140,13 @@ const styles = ScaledSheet.create({
     textAlign: 'left',
     color: colors.greenColor,
   },
-  tableBottom:{
-    justifyContent:'center',
+  tableBottom: {
+    justifyContent: 'center',
     paddingHorizontal: '18@s',
     height: '50@s',
   },
-  priceText:{
-         // fontFamily:Avenir LT Std,
+  priceText: {
+    // fontFamily:Avenir LT Std,
     fontSize: '12@s',
     fontStyle: 'normal',
     fontWeight: '400',
@@ -114,9 +154,9 @@ const styles = ScaledSheet.create({
     lineHeight: '16@s',
     letterSpacing: '0.4@s',
     textAlign: 'left',
-    color: colors.blackColor, 
-    width:'60@s',
-  }
+    color: colors.blackColor,
+    width: '58@s',
+  },
 });
 
 export default QuantityTable;

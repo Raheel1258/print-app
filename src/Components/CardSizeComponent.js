@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors} from '../Utils/theme';
@@ -8,11 +8,21 @@ import StandardSizeCard from '../Components/StandardSizeCard';
 const CardSizeComponent = ({
   cardStandard,
   cardDimensions,
-  Childern
+  Childern,
+  selectedSize = '',
+  onPress,
+  selectedCorner
 }) => {
+  const conditionalStyle =
+    selectedSize == cardStandard || selectedCorner == cardStandard
+      ? {...styles.selected}
+      : {...styles.notSelected};
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={1}
+      onPress={onPress}
+      style={{...styles.container, ...conditionalStyle}}>
       {Childern}
       <View style={styles.standardPositionContainer}>
         <Text style={styles.standardText} numberOfLines={1}>
@@ -22,14 +32,12 @@ const CardSizeComponent = ({
           {cardDimensions}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = ScaledSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: colors.innerBorderColor,
     borderRadius: '10@s',
     marginLeft: '14@s',
     padding: '8@s',
@@ -37,6 +45,14 @@ const styles = ScaledSheet.create({
     height: '164@s',
     marginVertical: '6@s',
     position: 'relative',
+  },
+  selected: {
+    borderWidth: 2,
+    borderColor: colors.greenColor,
+  },
+  notSelected: {
+    borderWidth: 1,
+    borderColor: colors.innerBorderColor,
   },
   cardContainer: {
     borderWidth: 1.5,

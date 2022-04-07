@@ -13,16 +13,34 @@ import {
   QuantityTable,
   GreenButton,
   UploadFileComponent,
+  BottomSheetComponent,
+  FilePickerInput,
+  UrlPickerInput,
+  VerificationModal,
 } from '../Components';
 import {colors} from '../Utils/theme';
 import roundImage from '../Assests/Images/round-image.png';
 import squareImage from '../Assests/Images/square-image.png';
 
-const SingleProductScreen = ({goBack}) => {
+const SingleProductScreen = ({
+  goBack,
+  refRBSheet,
+  urlRBSheet,
+  isModalVisible,
+  toggleModal,
+  selectedSize,
+  setSelectedSize,
+  selectedCorner,
+  setSelectedCorner,
+  setQuantityId,
+  quantityId,
+  review, 
+  setReview
+}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
-      <BackArrowHeader goBack={goBack} title={t('business_card')} />
+      <BackArrowHeader goBack={goBack} title={t('business_card')} arrow = {false}/>
       <ScrollView style={styles.marginContainer}>
         <View style={styles.sliderWrapper}>
           <ImageSlider />
@@ -31,6 +49,8 @@ const SingleProductScreen = ({goBack}) => {
         <CategoriesTitleHeader title={t('choose_size')} />
         <View style={styles.cardsContainer}>
           <CardSizeComponent
+            selectedSize = {selectedSize}
+            onPress = {() => setSelectedSize(t('standard_text'))}
             Childern={
               <StandardSizeCard
                 textWidth={100}
@@ -44,6 +64,8 @@ const SingleProductScreen = ({goBack}) => {
             cardDimensions={t('first_dimension')}
           />
           <CardSizeComponent
+            selectedSize = {selectedSize}
+            onPress = {() => setSelectedSize(t('shortened_text'))}
             Childern={
               <StandardSizeCard
                 textWidth={100}
@@ -57,6 +79,8 @@ const SingleProductScreen = ({goBack}) => {
             cardDimensions={t('second_dimension')}
           />
           <CardSizeComponent
+            selectedSize = {selectedSize}
+            onPress = {() => setSelectedSize(t('square_text'))}
             Childern={
               <StandardSizeCard
                 textWidth={60}
@@ -73,18 +97,22 @@ const SingleProductScreen = ({goBack}) => {
         <CategoriesTitleHeader title={t('choose_corner')} />
         <View style={styles.cardsContainer}>
           <CardSizeComponent
+          selectedCorner={selectedCorner}
+          onPress = {() => setSelectedCorner(t('square_text'))}
             Childern={<Image style={styles.squareimage} source={squareImage} />}
             cardStandard={t('square_text')}
             cardDimensions={t('traditional_text')}
           />
           <CardSizeComponent
+          selectedCorner={selectedCorner}
+          onPress = {() => setSelectedCorner(t('round_text'))}
             Childern={<Image style={styles.squareimage} source={roundImage} />}
             cardStandard={t('round_text')}
             cardDimensions={t('smooth_text')}
           />
         </View>
         <CategoriesTitleHeader title={t('choose_quantity')} />
-        <QuantityTable />
+        <QuantityTable quantityId = {quantityId} setQuantityId = {setQuantityId}/>
         <CategoriesTitleHeader title={t('send_preview')} />
         <Text style={styles.previewDescription}>
           After you’ve placed the order, we will send you a preview in e-mail
@@ -93,16 +121,20 @@ const SingleProductScreen = ({goBack}) => {
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonWrapper}>
             <GreenButton
-              backgroundColor={colors.greenColor}
-              color={colors.blackColor}
-              title="Yes"
+               buttonHeight={50}
+              backgroundColor={review ? colors.greenColor : colors.smokeWhiteColor}
+              color={review ? colors.blackColor : colors.lightBlackColor}
+              title={t('yes_text')}
+              onPress = {()=> setReview(true)}
             />
           </View>
           <View style={styles.buttonWrapper}>
             <GreenButton
-              backgroundColor={colors.smokeWhiteColor}
-              color={colors.lightBlackColor}
-              title="Yes"
+             buttonHeight={50}
+              backgroundColor={review ? colors.smokeWhiteColor : colors.greenColor}
+              color={review ? colors.lightBlackColor : colors.blackColor}
+              title={t('no_text')}
+              onPress = {()=> setReview(false)}
             />
           </View>
         </View>
@@ -110,9 +142,31 @@ const SingleProductScreen = ({goBack}) => {
           title={t('upload_design')}
           description={t('artwork_guidelines')}
         />
-        <UploadFileComponent title={t('upload_file')} />
-        <UploadFileComponent title={t('upload_url')} />
-        <UploadFileComponent title={t('upload_mail')} />
+        <UploadFileComponent
+          onPress={() => refRBSheet.current.open()}
+          title={t('upload_file')}
+        />
+        <UploadFileComponent
+          onPress={() => urlRBSheet.current.open()}
+          title={t('upload_url')}
+        />
+        <UploadFileComponent onPress={toggleModal} title={t('upload_mail')} />
+        <BottomSheetComponent
+          title={t('sheet_upload_file')}
+          refRBSheet={refRBSheet}
+          childern={<FilePickerInput />}
+        />
+        <BottomSheetComponent
+          title={t('sheet_upload_url')}
+          refRBSheet={urlRBSheet}
+          childern={<UrlPickerInput />}
+        />
+        <VerificationModal
+          title={t('sent_text')}
+          description={t('you_can_send')}
+          isModalVisible={isModalVisible}
+          toggleModal={toggleModal}
+        />
         <CategoriesTitleHeader title={t('order_remark')} />
         <Text style={styles.aboutOrder}>{t('anything_about_order')}</Text>
         <TextInput
@@ -122,17 +176,13 @@ const SingleProductScreen = ({goBack}) => {
           style={styles.textAreaInput}
         />
         <View style={styles.bottomContainer}>
-          <Text style={styles.addCart}>Add to cart and add another design</Text>
+          <Text style={styles.addCart}>{t('add_to_cart')}</Text>
           <GreenButton
             backgroundColor={colors.blackColor}
             title="Add to cart"
           />
-          <Text style={[styles.addCart, styles.questionText]}>
-            Got question? Send us an e-mail at
-          </Text>
-          <Text style={[styles.addCart, styles.mailText]}>
-            support@printprint.com.hk
-          </Text>
+          <Text style={styles.questionText}>{t('send_us_mail')}</Text>
+          <Text style={styles.mailText}>{t('mail_text')}</Text>
         </View>
       </ScrollView>
     </View>
@@ -145,7 +195,7 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.whiteColor,
   },
   marginContainer: {
-    marginBottom: '75@s',
+    marginBottom: '62@s',
   },
   cardsContainer: {
     flexDirection: 'row',
@@ -198,6 +248,7 @@ const styles = ScaledSheet.create({
     marginVertical: '17@s',
   },
   textAreaInput: {
+    height: '100@s',
     borderWidth: 1,
     borderColor: colors.innerBorderColor,
     marginHorizontal: '17@s',
@@ -220,14 +271,32 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     color: colors.greenColor,
     textAlign: 'center',
-    marginBottom: '17@s',
+    marginBottom: '15@s',
+    marginTop: '5@s',
   },
   questionText: {
-    color: colors.blackColor,
-    marginTop: '20@s',
+    // fontFamily:Avenir,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontStyle: 'normal',
+    lineHeight: '13@s',
+    letterSpacing: '0.2@s',
+    color: colors.lightBlackColor,
+    textAlign: 'center',
+    marginTop: '15@s',
   },
   mailText: {
-    marginTop: -10,
+    // fontFamily:Avenir,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontStyle: 'normal',
+    lineHeight: '13@s',
+    letterSpacing: '0.2@s',
+    color: colors.greenColor,
+    textAlign: 'center',
+    marginTop: '3@s',
   },
 });
 

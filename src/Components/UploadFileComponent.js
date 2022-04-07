@@ -5,9 +5,9 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const UploadFileComponent = ({title}) => {
+const UploadFileComponent = ({title, onPress}) => {
   return (
-    <TouchableOpacity style={styles.Container}>
+    <TouchableOpacity style={styles.Container} onPress={onPress}>
       <Text style={styles.title} numberOfLines={1}>{title}</Text>
       <View style={styles.rightArrow}>
 <LeftArrow/>

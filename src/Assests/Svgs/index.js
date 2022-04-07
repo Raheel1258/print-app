@@ -10,6 +10,7 @@ import OrderIcon from './OrderIcon';
 import AccountIcon from './AccountIcon';
 import LeftArrow from './LeftArrow';
 import BackArrow from './BackArrow';
+import CloseIcon from './CloseIcon';
 
 export {
   BrowseActiveIcon,
@@ -23,5 +24,6 @@ export {
   OrderIcon,
   AccountIcon,
   LeftArrow,
-  BackArrow
+  BackArrow,
+  CloseIcon,
 };

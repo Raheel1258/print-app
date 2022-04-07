@@ -11,6 +11,10 @@ import SingleCardDescription from './SingleCardDescription';
 import StandardSizeCard from './StandardSizeCard';
 import QuantityTable from './QuantityTable';
 import UploadFileComponent from './UploadFileComponent';
+import BottomSheetComponent from './BottomSheetComponent';
+import ArtworkGuidelines from './ArtworkGuidelines';
+import FilePickerInput from './FilePickerInput';
+import UrlPickerInput from './UrlPickerInput';
 
 export {
   BackArrowHeader,
@@ -25,5 +29,9 @@ export {
   SingleCardDescription,
   StandardSizeCard,
   QuantityTable,
-  UploadFileComponent
+  UploadFileComponent,
+  BottomSheetComponent,
+  ArtworkGuidelines,
+  FilePickerInput,
+  UrlPickerInput
 };

@@ -2,14 +2,16 @@ import React from 'react';
 import {View, Text,TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
+import BackArrow from '../Assests/Svgs/BackArrow';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const BackArrowHeader = ({title, goBack}) => {
+const BackArrowHeader = ({title, goBack, arrow = true}) => {
   return (
-    <View style={styles.headerContainer}>
+    <View style={{...styles.headerContainer, height: arrow? 60 : 70}}>
       <TouchableOpacity onPress={goBack} style={styles.headerArrow}>
-      <LeftArrow />
+      {arrow ? <LeftArrow /> :  <BackArrow/>}
+      
       </TouchableOpacity>
       <Text style={styles.headerText}>{title}</Text>
       <View></View>
@@ -29,6 +31,7 @@ const styles = ScaledSheet.create({
     borderBottomWidth:9,
     borderBottomColor:colors.offWhiteColor,
   },
+
   headerText: {
     // fontFamily: Avenir Next,
     fontSize: '18@s',
@@ -38,7 +41,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.6@s',
     textAlign: 'center',
     color:colors.blackColor,
-    marginLeft:-20,
+    marginLeft:-25,
   },
   headerArrow:{
     padding:'7@s',

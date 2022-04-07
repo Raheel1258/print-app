@@ -5,13 +5,14 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors} from '../Utils/theme';
 
 const SingleCardDescription = ({item}) => {
+  console.log("into desc" , item);
   return (
     <View style={styles.paddingContainer}>
       <Text style={styles.productTitle} numberOfLines={1}>
         {item?.heading}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-        From HK$ ${item.price}/ 100 pc
+        From HK$ ${item?.price}/ 100 pc
       </Text>
       <Text style={styles.productDescription}>
         {item?.description}
@@ -19,7 +20,7 @@ const SingleCardDescription = ({item}) => {
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Paper type:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item.paper_type}
+          {item?.paper_type}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
@@ -66,7 +67,7 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     fontWeight: '800',
     fontStyle: 'normal',
-    lineHeight: '12@s',
+    lineHeight: '13@s',
     letterSpacing: '0.4@s',
     textAlign: 'left',
     color: colors.greenColor,

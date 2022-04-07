@@ -6,7 +6,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors} from '../Utils/theme';
 
 const ImageSlider = ({sliderImages}) => {
-  console.log("home" , sliderImages[0])
+  
   const [images, setImges] = useState([
     'https://source.unsplash.com/1024x768/?nature',
     'https://source.unsplash.com/1024x768/?water',

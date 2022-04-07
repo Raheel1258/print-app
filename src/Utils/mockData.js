@@ -60,6 +60,15 @@ export const CategoriesData =
       days: '4-6 business days ',
       price: '100 units from $120'
     },
+
+    // {
+    //   id: '7',
+    //   productImage: letterheadImage,
+    //   productTitle: 'Letterhead',
+    //   deliveryDays: '4-6 business days ',
+    //   priceDescription: '100 units from $120',
+    //   category: {BUSINESS_CARDS, LETTER_HEAD, ENVELOP,.....}
+    // },
   ];
 
 
@@ -187,7 +196,7 @@ export const productListBookletData = [
   {
     id: 222,
     heading: 'Premium(Thick) Business Card',
-    price: '68',
+    price: 68,
     images: [
       'https://source.unsplash.com/1024x768/?nature',
       'https://source.unsplash.com/1024x768/?water'],
@@ -199,9 +208,9 @@ export const productListBookletData = [
     colour: 'CYMK',
     sizes: '3 sizes',
     choose_size: [
-      { size_name: 'A6', height: '105mm', width: '148mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage},
-      { size_name: 'A5', height: '148mm', width: '210mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage},
-      { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' ,image:squareImage}, ,
+      { size_name: 'A6', height: '105mm', width: '148mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+      { size_name: 'A5', height: '148mm', width: '210mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+      { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' ,image:squareImage }, ,
     ],
     choose_paper_type : [
       {coverpages:['xyz' , 'xyz' , 'xyz']},

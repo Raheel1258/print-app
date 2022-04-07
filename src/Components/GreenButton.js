@@ -1,13 +1,12 @@
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 
-const GreenButton = ({title, onPress, animation, backgroundColor = colors.greenColor, color = colors.whiteColor}) => {
+const GreenButton = ({title, onPress = () => {}, animation, backgroundColor = colors.greenColor, color = colors.whiteColor, buttonHeight = 57 }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor}}>
+    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor, height: buttonHeight}}>
       <Text style={{...styles.buttonText,color:color}}> {animation ?
           <ActivityIndicator size="small" color="#FFFFFF" animating={animation} />
           : title
@@ -23,7 +22,6 @@ const styles = ScaledSheet.create({
     justifyContent:'center',
     alignItems:'center',
     width:'100%',
-    height:'52@s',
   },
   buttonText: {
     // fontFamily:Avenir LT Std,

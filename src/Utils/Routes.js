@@ -128,7 +128,7 @@ const MyTabs = () => {
           position: 'absolute',
           paddingBottom: 5,
           paddingTop: 20,
-          height: Platform.OS === 'ios' ? 70 : 70,
+          height: Platform.OS === 'ios' ? 62 : 62,
         },
       }}>
       <Tab.Screen
@@ -150,7 +150,7 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="homestack"
+        name="home"
         component={HomeStack}
       />
 

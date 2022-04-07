@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
+import {View, Text, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import { ImageBackArrowHeader, ImageSlider } from '../Components';
 import { colors } from '../Utils/theme';
@@ -35,19 +35,17 @@ const DATA = [
 const ProductsListingScreen = ({ goBack, productList, navigate, title, image, animation }) => {
   const renderItem = ({ item }) => (
     <>
-      <ImageSlider sliderImages={item?.images} />
-      <TouchableOpacity onPress={() => navigate('singleProduct', { item: item, title: title })}>
-        <View style={styles.paddingContainer}>
-          <Text style={styles.cardTitle}>{item?.heading}</Text>
-          <Text style={styles.cardPrice}>From HK$ ${item?.price} / 100pcs</Text>
-          <View style={styles.descriptionContainer}>
-            <View style={styles.dotContainer} />
-            <Text style={styles.cardDescription}>{item?.feature1}</Text>
-          </View>
-          <View style={styles.descriptionContainer}>
-            <View style={styles.dotContainer} />
-            <Text style={styles.cardDescription}>{item?.feature2}</Text>
-          </View>
+      <ImageSlider sliderImages={item?.images} title={item.title} />
+      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item , title:title})} style={styles.paddingContainer}>
+        <Text style={styles.cardTitle}>{item?.heading}</Text>
+        <Text style={styles.cardPrice}>From HK$ {item?.price} / 100pcs</Text>
+        <View style={styles.descriptionContainer}>
+          <View style={styles.dotContainer} />
+          <Text style={styles.cardDescription}>{item?.feature1}</Text>
+        </View>
+        <View style={styles.descriptionContainer}>
+          <View style={styles.dotContainer} />
+          <Text style={styles.cardDescription}>{item?.feature2}</Text>
         </View>
       </TouchableOpacity>
     </>

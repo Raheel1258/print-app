@@ -14,8 +14,10 @@ import {
   RouteCheckingContainer,
   ProductsListingContainer,
   SingleProductContainer,
+  AccountContainer,
+  AccountDetailContainer,
 } from '../Containers';
-import {colors} from './theme';
+import {colors, fonts} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
 import BrowseIcon from '../Assests/Svgs/BrowseIcon';
 import CartActiveIcon from '../Assests/Svgs/CartActiveIcon';
@@ -29,6 +31,7 @@ import AccountIcon from '../Assests/Svgs/AccountIcon';
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
 const Home = createStackNavigator();
+const Account = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -63,6 +66,16 @@ const App = () => {
       <Stack.Screen
         name="singleProduct"
         component={SingleProductContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="account"
+        component={AccountContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="accountDetail"
+        component={AccountDetailContainer}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -119,10 +132,27 @@ const HomeStack = () => {
   );
 };
 
+const AccountStack = () => {
+  return (
+    <Account.Navigator initialRouteName="account">
+      <Account.Screen
+        name="account"
+        component={AccountContainer}
+        options={{headerShown: false}}
+      />
+      <Account.Screen
+        name="accountDetail"
+        component={AccountDetailContainer}
+        options={{headerShown: false}}
+      />
+    </Account.Navigator>
+  );
+};
+
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="homeStack"
+      initialRouteName="cart"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -158,7 +188,7 @@ const MyTabs = () => {
         component={HomeStack}
       />
 
-      <Tab.Screen
+<Tab.Screen
         options={{
           title: '',
           tabBarIcon: ({focused, color}) => (
@@ -179,6 +209,29 @@ const MyTabs = () => {
         }}
         name="cart"
         component={CartContainer}
+      />
+
+      <Tab.Screen
+        options={{
+          title: '',
+          tabBarIcon: ({focused, color}) => (
+            <View>
+              {focused ? (
+                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                  <AccountActiveIcon />
+                  <Text style={styles.activeText}>Account</Text>
+                </View>
+              ) : (
+                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                  <AccountIcon />
+                  <Text style={styles.unActiveText}>Account</Text>
+                </View>
+              )}
+            </View>
+          ),
+        }}
+        name="accountStack"
+        component={AccountStack}
       />
     </Tab.Navigator>
   );
@@ -203,8 +256,8 @@ const MainScreen = createSwitchNavigator(
 
 const styles = ScaledSheet.create({
   activeText: {
+    fontFamily: fonts.avenir_regular,
     color: colors.greenColor,
-    // fontFamily: 'Avenir',
     fontSize: '12@s',
     fontStyle: 'normal',
     fontWeight: '400',
@@ -213,8 +266,8 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
   },
   unActiveText: {
+    fontFamily: fonts.avenir_regular,
     color: colors.greyColor,
-    // fontFamily: 'Avenir',
     fontSize: '12@s',
     fontStyle: 'normal',
     fontWeight: '400',

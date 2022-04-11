@@ -28,7 +28,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
                 <InputTextField
                   value={email}
                   error={touched.email && errors.email}
-                  title={t('email_text')}
+                  title={t('signin_email_text')}
                   keyboardType="email-address"
                   secureTextEntry={false}
                   onChangeText={handleChange('email')}

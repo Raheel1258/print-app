@@ -4,9 +4,9 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors,fonts} from '../Utils/theme';
 
-const GreenButton = ({title, onPress = () => {}, animation, backgroundColor = colors.greenColor, color = colors.whiteColor, buttonHeight = 57 }) => {
+const GreenButton = ({title, onPress = () => {}, animation, backgroundColor = colors.greenColor, color = colors.whiteColor, buttonHeight = 56, borderWidth = null }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor, height: buttonHeight}}>
+    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor, height: buttonHeight, borderWidth: borderWidth}}>
       <Text style={{...styles.buttonText,color:color}}> {animation ?
           <ActivityIndicator size="small" color="#FFFFFF" animating={animation} />
           : title
@@ -22,6 +22,7 @@ const styles = ScaledSheet.create({
     justifyContent:'center',
     alignItems:'center',
     width:'100%',
+    borderColor:colors.smokeWhiteColor
   },
   buttonText: {
     fontFamily:fonts.avenir_bold,

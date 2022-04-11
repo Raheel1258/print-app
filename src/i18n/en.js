@@ -3,7 +3,7 @@
 
   //<=Sign In Screen=>
     signin_text: 'Sign in',
-    email_text: 'Email',
+    signin_email_text: 'Email',
     password_text: 'Password',
     forgot_password: 'Forgot password?',
     login_text: 'Log In',
@@ -24,7 +24,7 @@
     sent_text: 'Sent!',
     email_modal_description: 'We have sent you an e-mail with the instruction to reset your password.',
     ok_text: 'Ok',
-  forgot_text: 'Forgot password',
+    forgot_text: 'Forgot password',
   //<=Forgot Password Screen=>
     lets_print: 'Let’s print it',
   //<=Single Product Screen=>
@@ -67,6 +67,35 @@
     browse_text: 'Browse',
     email_us: 'E-mail us your file',
     you_can_send: 'You can send us your design file to files@printprint.com.hk after you have placed the order in the app.',
-    
+  //<=Account Screen=>
+    my_details: 'My Details',
+    faqs_text: 'Faqs',
+    language_text: 'Language',
+    sign_out: 'Sign Out',
+    question_support:'Got question or need support? Send us an e-mail at',
+    support_mail: 'support@printprint.com.hk',
+ //<=Account Screen=>
+    personal_detail: 'Personal Details',
+    mobile_number: 'Mobile',
+    e_mail: 'E-mail',
+    new_password: 'New Password',
+    peter_text: 'Peter',
+    park_text: 'Park',
+    number_text: '93542554',
+    email_text: 'peterchung@gmail.com',
+    new_password_text: 'New Password',
+    update_text: 'update',
+    my_address: 'My Addresses',
+    new_address: '+ New address',
+    my_payment: 'My Payment Card',
+    new_card: '+ New card',
+    english_text: 'English',
+    chinese_text: '中文',
+    select_language: 'Select your preferred language',
+ //<=Cart Screen=>
+    cart_text: 'Cart',   
+    my_cart: 'My Cart',
+    promo_cord: 'Promo Cord'
+
   },
 };

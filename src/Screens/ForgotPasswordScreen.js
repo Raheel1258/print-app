@@ -23,7 +23,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
                 <InputTextField
                   value={email}
                   error={touched.email && errors.email}
-                  title={t('email_text')}
+                  title={t('signin_email_text')}
                   keyboardType="email-address"
                   name="email"
                   secureTextEntry={false}

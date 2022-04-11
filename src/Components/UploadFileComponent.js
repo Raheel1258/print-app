@@ -3,32 +3,52 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import LeftArrow from '../Assests/Svgs/LeftArrow';
-import {colors,fonts} from '../Utils/theme';
+import {colors, fonts} from '../Utils/theme';
 
-const UploadFileComponent = ({title, onPress}) => {
+const UploadFileComponent = ({title, onPress,Children}) => {
   return (
-    <TouchableOpacity style={styles.Container} onPress={onPress}>
-      <Text style={styles.title} numberOfLines={1}>{title}</Text>
+    <TouchableOpacity  style={Children ? styles.accountContainer :  styles.Container} onPress={onPress}>
+      <View style={styles.iconContainer}>
+        <View style={Children ? styles.iconWrapper : null}>
+        {Children}
+        </View>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
+      </View>
       <View style={styles.rightArrow}>
-<LeftArrow/>
-</View>
+        <LeftArrow />
+      </View>
     </TouchableOpacity>
   );
 };
 
 const styles = ScaledSheet.create({
   Container: {
-    width: '100%',
     height: '65@s',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: '25@s',
+    paddingHorizontal: '20@s',
     borderBottomWidth: 1,
-    borderBottomColor: colors.offWhiteColor,
+    borderBottomColor: colors.inputBorderColor,
+  },
+  accountContainer:{
+    height: '60@s',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: '10@s',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.inputBorderColor,
+    marginTop:'5@s'
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '400',
@@ -37,9 +57,12 @@ const styles = ScaledSheet.create({
     textAlign: 'left',
     color: colors.blackColor,
   },
-  rightArrow:{
-transform:[{rotate:'180deg'}]
-  }
+  rightArrow: {
+    transform: [{rotate: '180deg'}],
+  },
+  iconWrapper: {
+    marginRight: '12@s',
+  },
 });
 
 export default UploadFileComponent;

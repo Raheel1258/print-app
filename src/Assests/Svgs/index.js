@@ -11,6 +11,10 @@ import AccountIcon from './AccountIcon';
 import LeftArrow from './LeftArrow';
 import BackArrow from './BackArrow';
 import CloseIcon from './CloseIcon';
+import AccountBlackIcon from './AccountBlackIcon';
+import FaqsIcon from './FaqsIcon';
+import LanguageIcon from './LanguageIcon';
+import ShuffleIcon from './ShuffleIcon';
 
 export {
   BrowseActiveIcon,
@@ -26,4 +30,8 @@ export {
   LeftArrow,
   BackArrow,
   CloseIcon,
+  AccountBlackIcon,
+  FaqsIcon,
+  LanguageIcon,
+  ShuffleIcon
 };

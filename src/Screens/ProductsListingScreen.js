@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
+import HeaderImage from '../Assests/Images/businesscard-header-image.png';
 import {ImageBackArrowHeader, ImageSlider} from '../Components';
 import {colors,fonts} from '../Utils/theme';
 
@@ -21,6 +23,7 @@ const DATA = [
 ];
 
 const ProductsListingScreen = ({goBack,navigate}) => {
+  const {t} = useTranslation();
   const renderItem = ({item}) => (
     <>
       <ImageSlider title={item.title} />
@@ -40,7 +43,7 @@ const ProductsListingScreen = ({goBack,navigate}) => {
   );
   return (
     <View style={styles.container}>
-      <ImageBackArrowHeader  goBack={goBack}/>
+      <ImageBackArrowHeader Children={HeaderImage} title={t('business_card')}  goBack={goBack}/>
       <FlatList
         data={DATA}
         renderItem={renderItem}

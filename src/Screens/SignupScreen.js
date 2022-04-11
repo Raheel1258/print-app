@@ -63,7 +63,7 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
                 <InputTextField
                   value={email}
                   error={touched.email && errors.email}
-                  title={t('email_text')}
+                  title={t('signin_email_text')}
                   name="email"
                   keyboardType="email-address"
                   secureTextEntry={false}

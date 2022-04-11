@@ -6,6 +6,8 @@ import ForgotPasswordContainer from './ForgotPasswordContainer';
 import SignupContainer from './SignupContainer';
 import ProductsListingContainer from './ProductsListingContainer';
 import SingleProductContainer from './SingleProductContainer';
+import AccountContainer from './AccountContainer';
+import AccountDetailContainer from './AccountDetailContainer';
 
 export {
   SigninContainer,
@@ -15,5 +17,7 @@ export {
   ForgotPasswordContainer,
   SignupContainer,
   ProductsListingContainer,
-  SingleProductContainer
+  SingleProductContainer,
+  AccountContainer,
+  AccountDetailContainer
 };

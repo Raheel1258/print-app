@@ -15,6 +15,9 @@ import BottomSheetComponent from './BottomSheetComponent';
 import ArtworkGuidelines from './ArtworkGuidelines';
 import FilePickerInput from './FilePickerInput';
 import UrlPickerInput from './UrlPickerInput';
+import MyAddresses from './MyAddresses';
+import PreferredLanguageBottomSheet from './PreferredLanguageBottomSheet';
+import MyCartComponent from './MyCartComponent';
 
 export {
   BackArrowHeader,
@@ -33,5 +36,8 @@ export {
   BottomSheetComponent,
   ArtworkGuidelines,
   FilePickerInput,
-  UrlPickerInput
+  UrlPickerInput,
+  MyAddresses,
+  PreferredLanguageBottomSheet,
+  MyCartComponent
 };

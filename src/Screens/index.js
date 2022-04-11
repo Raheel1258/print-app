@@ -5,6 +5,8 @@ import SignupScreen from './SigninScreen';
 import ForgotPasswordScreen from './ForgotPasswordScreen';
 import ProductsListingScreen from './ProductsListingScreen';
 import SingleProductScreen from './SingleProductScreen';
+import AccountScreen from './AccountScreen';
+import AccountDetailScreen from './AccountDetailScreen';
 
 export {
   SigninScreen,
@@ -13,5 +15,7 @@ export {
   SignupScreen,
   ForgotPasswordScreen,
   ProductsListingScreen,
-  SingleProductScreen
+  SingleProductScreen,
+  AccountScreen,
+  AccountDetailScreen
 };

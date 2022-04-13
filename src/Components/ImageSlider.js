@@ -3,12 +3,16 @@ import {View, Text, Image} from 'react-native';
 import {SliderBox} from 'react-native-image-slider-box';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {colors} from '../Utils/theme';
+import {colors, fonts} from '../Utils/theme';
 
 const ImageSlider = ({homeSliderImages}) => {
   //console.log("home" , homeSliderImages[0].images)
   const [current, setCurrent] = useState(0);
-  const [text, setText] = useState(['Hello1', 'Hello2', 'Hello3']);
+  const [text, setText] = useState([
+    'Order your next print in just a few taps',
+    'Order your next print in just a few taps',
+    'Order your next print in just a few taps',
+  ]);
   const [images, setImges] = useState([
     // 'https://source.unsplash.com/1024x768/?nature',
     // 'https://source.unsplash.com/1024x768/?water',
@@ -19,9 +23,7 @@ const ImageSlider = ({homeSliderImages}) => {
   ]);
   return (
     <View>
-      <Text style={{position: 'absolute', zIndex: 99999, top: 70, left: 30}}>
-        {text[current]}
-      </Text>
+      <Text style={styles.slidertitle}>{text[current]}</Text>
       <SliderBox
         currentImageEmitter={i => setCurrent(i)}
         images={images}
@@ -64,5 +66,22 @@ const ImageSlider = ({homeSliderImages}) => {
     </View>
   );
 };
+
+const styles = ScaledSheet.create({
+  slidertitle: {
+    fontFamily: fonts.avenir_bold,
+    fontSize: '22@s',
+    fontStyle: 'normal',
+    lineHeight: '25@s',
+    letterSpacing: '0.4@s',
+    textAlign: 'left',
+    color: colors.whiteColor,
+    position: 'absolute',
+    zIndex: 99999,
+    top: 70,
+    left: 30,
+    width: 200,
+  },
+});
 
 export default ImageSlider;

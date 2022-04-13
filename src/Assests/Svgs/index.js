@@ -15,6 +15,13 @@ import AccountBlackIcon from './AccountBlackIcon';
 import FaqsIcon from './FaqsIcon';
 import LanguageIcon from './LanguageIcon';
 import ShuffleIcon from './ShuffleIcon';
+import GreenCheckIcon from './GreenCheckIcon';
+import UnCheckedCircleIcon from './UnCheckedCircleIcon';
+import CheckedBlueIcon from './CheckedBlueIcon';
+import MasterCard from './MasterCard';
+import VisaCard from './VisaCard';
+import ThankyouIcon from './ThankyouIcon';
+import EmptyIcon from './EmptyIcon';
 
 export {
   BrowseActiveIcon,
@@ -33,5 +40,12 @@ export {
   AccountBlackIcon,
   FaqsIcon,
   LanguageIcon,
-  ShuffleIcon
+  ShuffleIcon,
+  GreenCheckIcon,
+  UnCheckedCircleIcon,
+  CheckedBlueIcon,
+  MasterCard,
+  VisaCard,
+  ThankyouIcon,
+  EmptyIcon
 };

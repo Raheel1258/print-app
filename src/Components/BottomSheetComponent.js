@@ -17,6 +17,7 @@ const BottomSheetComponent = ({
   childern,
   height = '93%',
   languageTitle = undefined,
+  note = true
 }) => {
   return (
     <View>
@@ -51,10 +52,9 @@ const BottomSheetComponent = ({
           )}
         </View>
         {childern}
-        {title && (
+        {note && (
           <>
             <ArtworkGuidelines />
-            <PreferredLanguageBottomSheet />
           </>
         )}
       </RBSheet>
@@ -69,7 +69,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-between',
     marginTop: '2@s',
     marginHorizontal: '5@s',
-    marginBottom: '40@s',
+    marginBottom: '35@s',
   },
   headerTitle: {
     fontFamily: fonts.avenir_bold,

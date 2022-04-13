@@ -16,6 +16,9 @@ import {
   SingleProductContainer,
   AccountContainer,
   AccountDetailContainer,
+  OrderReceivedContainer,
+  EmptyCartContainer,
+  MyOrderContainer
 } from '../Containers';
 import {colors, fonts} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -23,6 +26,7 @@ import BrowseIcon from '../Assests/Svgs/BrowseIcon';
 import CartActiveIcon from '../Assests/Svgs/CartActiveIcon';
 import CartIcon from '../Assests/Svgs/CartIcon';
 import OrderActiveIcon from '../Assests/Svgs/OrdersActiveIcon';
+import OrdersIcon from '../Assests/Svgs/OrderIcon';
 import ActivityActiveIcon from '../Assests/Svgs/ActivityIcon';
 import ActivityIcon from '../Assests/Svgs/ActivityIcon';
 import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
@@ -76,6 +80,21 @@ const App = () => {
       <Stack.Screen
         name="accountDetail"
         component={AccountDetailContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="orderReceived"
+        component={OrderReceivedContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="emptyCart"
+        component={EmptyCartContainer}
+        options={{headerShown: false}}
+      />
+            <Stack.Screen
+        name="myOrder"
+        component={MyOrderContainer}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -152,7 +171,7 @@ const AccountStack = () => {
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="cart"
+      initialRouteName="myorder"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -188,7 +207,7 @@ const MyTabs = () => {
         component={HomeStack}
       />
 
-<Tab.Screen
+      <Tab.Screen
         options={{
           title: '',
           tabBarIcon: ({focused, color}) => (
@@ -211,6 +230,29 @@ const MyTabs = () => {
         component={CartContainer}
       />
 
+<Tab.Screen
+        options={{
+          title: '',
+          tabBarIcon: ({focused, color}) => (
+            <View>
+              {focused ? (
+                <View style={{flexDirection: 'column', alignItems: 'center',marginTop:6}}>
+                  <OrderActiveIcon />
+                  <Text style={styles.activeText}>Order</Text>
+                </View>
+              ) : (
+                <View style={{flexDirection: 'column', alignItems: 'center',marginTop:6}}>
+                  <OrdersIcon />
+                  <Text style={styles.unActiveText}>Order</Text>
+                </View>
+              )}
+            </View>
+          ),
+        }}
+        name="myorder"
+        component={MyOrderContainer}
+      />
+
       <Tab.Screen
         options={{
           title: '',
@@ -230,8 +272,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="accountStack"
-        component={AccountStack}
+        name="signin"
+        component={SigninContainer}
       />
     </Tab.Navigator>
   );

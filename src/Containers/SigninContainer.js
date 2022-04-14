@@ -18,8 +18,8 @@ const SigninContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
+    email: 'link@gmail.com',
+    password: '123456',
   });
 
   const goBack = () => {

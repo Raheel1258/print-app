@@ -5,14 +5,15 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors, fonts} from '../Utils/theme';
 
-const ImageSlider = ({homeSliderImages}) => {
+const ImageSlider = ({sliderImages, text}) => {
+  
   //console.log("home" , homeSliderImages[0].images)
   const [current, setCurrent] = useState(0);
-  const [text, setText] = useState([
-    'Order your next print in just a few taps',
-    'Order your next print in just a few taps',
-    'Order your next print in just a few taps',
-  ]);
+  // const [text, setText] = useState([
+  //   'Order your next print in just a few taps1',
+  //   'Order your next print in just a few taps2',
+  //   'Order your next print in just a few taps3',
+  // ]);
   const [images, setImges] = useState([
     // 'https://source.unsplash.com/1024x768/?nature',
     // 'https://source.unsplash.com/1024x768/?water',
@@ -23,10 +24,10 @@ const ImageSlider = ({homeSliderImages}) => {
   ]);
   return (
     <View>
-      <Text style={styles.slidertitle}>{text[current]}</Text>
+      {text && <Text style={styles.slidertitle}>{text[current]}</Text>}
       <SliderBox
         currentImageEmitter={i => setCurrent(i)}
-        images={homeSliderImages}
+        images={sliderImages}
         position="relative"
         sliderBoxHeight={200}
         dotColor={colors.whiteColor}

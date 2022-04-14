@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -66,7 +66,15 @@ const DATA = [
   },
 ];
 
+
+
 const HomeScreen = ({ categories , homeSliderImages}) => {
+  const [text, setText] = useState([
+    'Order your next print in just a few taps',
+    'Order your next print in just a few taps',
+    'Order your next print in just a few taps',
+  ]);
+  // console.log("images" ,homeSliderImages[0]?.images );
   const sliderImages = homeSliderImages[0]?.images; 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
@@ -77,7 +85,7 @@ const HomeScreen = ({ categories , homeSliderImages}) => {
       {
         categories?.length !== undefined ?
           <>
-            <ImageSlider sliderImages={sliderImages}/>
+            <ImageSlider sliderImages={sliderImages} text={text}/>
             <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
               <FlatList

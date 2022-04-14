@@ -15,6 +15,7 @@ const CartContainer = () => {
   const refRBSheet = useRef();
   const [textValue, setTextValue] = useState('');
   const [delivery, setDelivery] = useState(true);
+  const [paymentMethod, setPaymentMethod] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
   const [data , setData] = useState([
     {
@@ -78,6 +79,8 @@ const CartContainer = () => {
         navigate={navigate}
         delivery = {delivery}
         setDelivery = {setDelivery}
+        setPaymentMethod={setPaymentMethod}
+        paymentMethod={paymentMethod}
         
       />
     </View>

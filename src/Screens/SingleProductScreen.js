@@ -18,11 +18,12 @@ import {
   UrlPickerInput,
   VerificationModal,
 } from '../Components';
-import {colors,fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 import roundImage from '../Assests/Images/round-image.png';
 import squareImage from '../Assests/Images/square-image.png';
 
 const SingleProductScreen = ({
+  title,
   item,
   goBack,
   refRBSheet,
@@ -38,10 +39,10 @@ const SingleProductScreen = ({
   review,
   setReview,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <BackArrowHeader goBack={goBack} title={title} arrow = {false}/>
+      <BackArrowHeader goBack={goBack} title={title} arrow={false} />
       <ScrollView style={styles.marginContainer}>
         <View style={styles.sliderWrapper}>
           <ImageSlider sliderImages={item?.images} />
@@ -52,14 +53,14 @@ const SingleProductScreen = ({
           {item?.choose_size && item?.choose_size.map((item, index) => {
             return (
               <>
-                {title === 'Business Card' ?
+                {(title === 'Business Card')?
                   <CardSizeComponent
                     key={index}
                     Childern={
                       item?.size_name === 'Sqaure' ?
 
                         <StandardSizeCard
-                        key={index}
+                          key={index}
                           name={item?.name}
                           designation={item?.designation}
                           studio={item?.studio}
@@ -71,7 +72,7 @@ const SingleProductScreen = ({
                         />
                         :
                         <StandardSizeCard
-                        key={index}
+                          key={index}
                           name={item?.name}
                           designation={item?.designation}
                           studio={item?.studio}
@@ -82,48 +83,49 @@ const SingleProductScreen = ({
                           dotColor={item?.size_name === 'Standard' ? colors.darkGreenColor : colors.lightBlueColor}
                         />
                     }
-                    selectedSize = {selectedSize}
-                    onPress = {() => setSelectedSize(item?.size_name)}
+                    selectedSize={selectedSize}
+                    onPress={() => setSelectedSize(item?.size_name)}
                     cardStandard={item?.size_name}
                     cardDimensions={`${item?.height}x${item?.width}`}
-                  /> : <CardSizeComponent
-                  key={index}
+                  /> :
+                 <CardSizeComponent
+                    key={index}
                     Childern={
                       <Image style={styles.squareimage} source={item?.image} />}
                     cardStandard={item?.size_name}
                     cardDimensions={`${item?.height}x${item?.width}`}
-                    selectedSize = {selectedSize}
-                    onPress = {() => setSelectedSize(item?.size_name)}
+                    selectedSize={selectedSize}
+                    onPress={() => setSelectedSize(item?.size_name)}
                   />}
+                  
               </>
             )
           })
           }
         </View>
         {title === 'Business Card' &&
-        <>
-        <CategoriesTitleHeader title={t('choose_corner')} />
-        <View style={styles.cardsContainer}>
-          {item?.choose_corner && item?.choose_corner.map((item,index) => {
-            return (
-              
-              <CardSizeComponent
-              key={index}
-              selectedCorner={selectedCorner}
-              onPress = {() => setSelectedCorner(item?.corner)}
-                Childern={
-                  <Image style={styles.squareimage} source={item?.image} />}
-                cardStandard={item?.corner}
-                cardDimensions={item?.variation}
-              />
-            )
-          })
-          }
-        </View>
-        </>}
-        
+          <>
+            <CategoriesTitleHeader title={t('choose_corner')} />
+            <View style={styles.cardsContainer}>
+              {item?.choose_corner && item?.choose_corner.map((item, index) => {
+                return (
+                  <CardSizeComponent
+                    key={index}
+                    selectedCorner={selectedCorner}
+                    onPress={() => setSelectedCorner(item?.corner)}
+                    Childern={
+                      <Image style={styles.squareimage} source={item?.image} />}
+                    cardStandard={item?.corner}
+                    cardDimensions={item?.variation}
+                  />
+                )
+              })
+              }
+            </View>
+          </>}
+
         <CategoriesTitleHeader title={t('choose_quantity')} />
-        <QuantityTable quantityTable={item?.quantity_table} quantityId = {quantityId} setQuantityId = {setQuantityId}/>
+        <QuantityTable quantityTable={item?.quantity_table} quantityId={quantityId} setQuantityId={setQuantityId} />
         <CategoriesTitleHeader title={t('send_preview')} />
         <Text style={styles.previewDescription}>
           After you’ve placed the order, we will send you a preview in e-mail
@@ -227,7 +229,7 @@ const styles = ScaledSheet.create({
     marginTop: '30@s',
   },
   previewDescription: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '400',
@@ -251,7 +253,7 @@ const styles = ScaledSheet.create({
     width: '47%',
   },
   aboutOrder: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '400',
@@ -277,7 +279,7 @@ const styles = ScaledSheet.create({
     padding: '12@s',
   },
   addCart: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '400',
@@ -290,7 +292,7 @@ const styles = ScaledSheet.create({
     marginTop: '5@s',
   },
   questionText: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '400',
@@ -302,7 +304,7 @@ const styles = ScaledSheet.create({
     marginTop: '15@s',
   },
   mailText: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '400',

@@ -14,15 +14,15 @@ const RadioButtonComponent = ({
   secondDescription,
   thirdDescription,
   onPress,
-  delivery,
-  setDelivery,
+  radioButtonStatus,
+  setRadioButtonStatus,
 }) => {
   const {t} = useTranslation();
   return (
     <View>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setDelivery(true)}>
-          {delivery ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
+        <TouchableOpacity onPress={() => setRadioButtonStatus(true)}>
+          {radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <View>
           <TouchableOpacity onPress={onPress}>
@@ -33,8 +33,8 @@ const RadioButtonComponent = ({
       </View>
       <View style={styles.borderBottom} />
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setDelivery(false)}>
-          {!delivery ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
+        <TouchableOpacity onPress={() => setRadioButtonStatus(false)}>
+          {!radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.deliveryText}>{secondTitle}</Text>

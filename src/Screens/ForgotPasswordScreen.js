@@ -6,13 +6,13 @@ import { Formik } from 'formik';
 import { forgotPasswordValidationSchema } from '../Utils/validationSchema';
 
 import { BackArrowHeader, InputTextField, GreenButton, VerificationModal } from '../Components';
-import { colors } from '../Utils/theme';
+import { colors,fonts } from '../Utils/theme';
 
 const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleForgotPassword, forgotPasswordData, navigate, goBack }) => {
   const { t } = useTranslation();
   return (
     <>
-      <BackArrowHeader goBack={goBack} title={t('forgot_password')} />
+      <BackArrowHeader goBack={goBack} title={t('forgot_text')} />
       <ScrollView>
         <View style={styles.container}>
           <Formik initialValues={forgotPasswordData} validationSchema={()=>forgotPasswordValidationSchema(t)} onSubmit={(values) => handleForgotPassword(values)}>
@@ -23,7 +23,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
                 <InputTextField
                   value={email}
                   error={touched.email && errors.email}
-                  title={t('email_text')}
+                  title={t('signin_email_text')}
                   keyboardType="email-address"
                   name="email"
                   secureTextEntry={false}
@@ -41,7 +41,6 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
               </>
             }}
           </Formik>
-
         </View>
       </ScrollView>
     </>
@@ -58,10 +57,10 @@ const styles = ScaledSheet.create({
     marginTop: '20@s',
   },
   emailDescription: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '13@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '17@s',
     letterSpacing: '0.3@s',

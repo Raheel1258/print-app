@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const DATA = [
   {
@@ -107,10 +107,10 @@ const styles = ScaledSheet.create({
     marginVertical: '17@s',
   },
   headerTitle: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.5@s',
@@ -118,10 +118,10 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
   },
   dollerPrice: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.5@s',
@@ -139,10 +139,10 @@ const styles = ScaledSheet.create({
     height: '50@s',
   },
   showMore: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.4@s',
@@ -155,10 +155,10 @@ const styles = ScaledSheet.create({
     height: '50@s',
   },
   priceText: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.4@s',

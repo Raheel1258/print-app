@@ -18,7 +18,7 @@ import {
   UrlPickerInput,
   VerificationModal,
 } from '../Components';
-import { colors } from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 import roundImage from '../Assests/Images/round-image.png';
 import squareImage from '../Assests/Images/square-image.png';
 
@@ -35,9 +35,8 @@ const SingleProductScreen = ({
   setSelectedCorner,
   setQuantityId,
   quantityId,
-  review, 
+  review,
   setReview,
-  title
 }) => {
   const {t} = useTranslation();
   return (
@@ -133,20 +132,24 @@ const SingleProductScreen = ({
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonWrapper}>
             <GreenButton
-               buttonHeight={47}
-              backgroundColor={review ? colors.greenColor : colors.smokeWhiteColor}
+              buttonHeight={47}
+              backgroundColor={
+                review ? colors.greenColor : colors.smokeWhiteColor
+              }
               color={review ? colors.blackColor : colors.lightBlackColor}
               title={t('yes_text')}
-              onPress = {()=> setReview(true)}
+              onPress={() => setReview(true)}
             />
           </View>
           <View style={styles.buttonWrapper}>
             <GreenButton
-             buttonHeight={47}
-              backgroundColor={review ? colors.smokeWhiteColor : colors.greenColor}
+              buttonHeight={47}
+              backgroundColor={
+                review ? colors.smokeWhiteColor : colors.greenColor
+              }
               color={review ? colors.lightBlackColor : colors.blackColor}
               title={t('no_text')}
-              onPress = {()=> setReview(false)}
+              onPress={() => setReview(false)}
             />
           </View>
         </View>
@@ -224,10 +227,10 @@ const styles = ScaledSheet.create({
     marginTop: '30@s',
   },
   previewDescription: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.3@s',
@@ -248,10 +251,10 @@ const styles = ScaledSheet.create({
     width: '47%',
   },
   aboutOrder: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.3@s',
@@ -274,10 +277,10 @@ const styles = ScaledSheet.create({
     padding: '12@s',
   },
   addCart: {
-    // fontFamily:Avenir,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
@@ -287,10 +290,10 @@ const styles = ScaledSheet.create({
     marginTop: '5@s',
   },
   questionText: {
-    // fontFamily:Avenir,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
@@ -299,10 +302,10 @@ const styles = ScaledSheet.create({
     marginTop: '15@s',
   },
   mailText: {
-    // fontFamily:Avenir,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',

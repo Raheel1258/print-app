@@ -1,17 +1,17 @@
 import React from 'react';
-import {View, Text,TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import BackArrow from '../Assests/Svgs/BackArrow';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
+import {fonts} from '../Utils/theme';
 
-const BackArrowHeader = ({title, goBack, arrow = true}) => {
+const BackArrowHeader = ({title, goBack, arrow = true,borderBottomWidth=9}) => {
   return (
-    <View style={{...styles.headerContainer, height: arrow? 60 : 70}}>
+    <View style={{...styles.headerContainer, height: arrow ? 65 : 70,borderBottomWidth:borderBottomWidth}}>
       <TouchableOpacity onPress={goBack} style={styles.headerArrow}>
-      {arrow ? <LeftArrow /> :  <BackArrow/>}
-      
+        {arrow ? <LeftArrow /> : <BackArrow />}
       </TouchableOpacity>
       <Text style={styles.headerText}>{title}</Text>
       <View></View>
@@ -26,26 +26,26 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: '15@s',
-    paddingTop:'15@s',
-    paddingBottom:'3@s',
-    borderBottomWidth:9,
-    borderBottomColor:colors.offWhiteColor,
+    paddingTop: '15@s',
+    paddingBottom: '3@s',
+    borderBottomWidth: 9,
+    borderBottomColor: colors.offWhiteColor,
   },
 
   headerText: {
-    // fontFamily: Avenir Next,
+    fontFamily: fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
-    fontWeight: '900',
+    // fontWeight: '800',
     lineHeight: '20@s',
     letterSpacing: '0.6@s',
     textAlign: 'center',
-    color:colors.blackColor,
-    marginLeft:-25,
+    color: colors.blackColor,
+    marginLeft: -25,
   },
-  headerArrow:{
-    padding:'7@s',
-  }
+  headerArrow: {
+    padding: '7@s',
+  },
 });
 
 export default BackArrowHeader;

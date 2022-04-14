@@ -4,7 +4,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import DocumentPicker, {isInProgress} from 'react-native-document-picker';
 import {useTranslation} from 'react-i18next';
 
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const FilePickerInput = () => {
   const {t} = useTranslation();
@@ -63,12 +63,12 @@ const FilePickerInput = () => {
 
 const styles = ScaledSheet.create({
   fileAdded: {
-    // fontFamily: Avenir Next,
+    fontFamily:fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     lineHeight: '16@s',
-    letterSpacing: '0.2@s',
+    letterSpacing: '0.4@s',
     textAlign: 'center',
     color: colors.lightBlackColor,
     marginBottom: '35@s',
@@ -78,12 +78,12 @@ const styles = ScaledSheet.create({
     borderColor: colors.cardBorderColor,
   },
   browseText: {
-    // fontFamily: Avenir Next,
+    fontFamily:fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     lineHeight: '16@s',
-    letterSpacing: '0.2@s',
+    letterSpacing: '0.4@s',
     textAlign: 'left',
     color: colors.greenColor,
     padding: '8@s',

@@ -2,11 +2,11 @@ import React from 'react';
 import {Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
-const GreenButton = ({title, onPress = () => {}, animation, backgroundColor = colors.greenColor, color = colors.whiteColor, buttonHeight = 57 }) => {
+const GreenButton = ({title, onPress = () => {}, animation, backgroundColor = colors.greenColor, color = colors.whiteColor, buttonHeight = 56, borderWidth = null }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor, height: buttonHeight}}>
+    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor, height: buttonHeight, borderWidth: borderWidth}}>
       <Text style={{...styles.buttonText,color:color}}> {animation ?
           <ActivityIndicator size="small" color="#FFFFFF" animating={animation} />
           : title
@@ -22,12 +22,13 @@ const styles = ScaledSheet.create({
     justifyContent:'center',
     alignItems:'center',
     width:'100%',
+    borderColor:colors.smokeWhiteColor
   },
   buttonText: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '13@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '22@s',
     letterSpacing: '0.5@s',

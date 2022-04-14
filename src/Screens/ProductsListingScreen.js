@@ -1,9 +1,11 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
-import { ImageBackArrowHeader, ImageSlider } from '../Components';
-import { colors } from '../Utils/theme';
+import HeaderImage from '../Assests/Images/businesscard-header-image.png';
+import {ImageBackArrowHeader, ImageSlider} from '../Components';
+import {colors,fonts} from '../Utils/theme';
 
 const DATA = [
   {
@@ -55,7 +57,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, title, image, an
     <>
       {productList?.length !== undefined ?
         <View style={styles.container}>
-          <ImageBackArrowHeader title={title} image={image} goBack={goBack} />
+          <ImageBackArrowHeader Children={HeaderImage} title={title} image={image} goBack={goBack} />
           <FlatList
             data={productList}
             renderItem={renderItem}
@@ -81,10 +83,10 @@ const styles = ScaledSheet.create({
     paddingBottom: '80@s',
   },
   cardTitle: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '14@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '14@s',
     letterSpacing: '0.4@s',
@@ -92,10 +94,10 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
   },
   cardPrice: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '12@s',
     letterSpacing: '0.4@s',
@@ -117,10 +119,10 @@ const styles = ScaledSheet.create({
     marginRight: '7@s',
   },
   cardDescription: {
-    // fontFamily:Avenir LT Std,
+    fontFamily:fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '12@s',
     letterSpacing: '0.3@s',

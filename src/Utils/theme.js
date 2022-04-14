@@ -17,3 +17,10 @@ export const colors = {
   orangeColor: '#FFB075',
   lightOrangeColor: '#FBDBC3',
 };
+
+export const fonts = {
+  avenir_bold:'AvenirLTStd-Black',
+  avenir_regular:'AvenirLTStd-Book',
+  avenir_light:'AvenirLTStd-Roman',
+  avenir_next: 'AvenirNextLTPro-Heavy',
+}

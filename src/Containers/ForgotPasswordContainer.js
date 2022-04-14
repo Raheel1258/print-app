@@ -72,7 +72,8 @@ const ForgotPasswordContainer = () => {
       isModalVisible={isModalVisible}
       toggleModal={toggleModal} 
       navigate={navigate}
-      goBack={goBack}/>
+      goBack={goBack}
+      />
     </View>
   );
 };

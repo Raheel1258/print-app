@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, Image,TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const AllCategoriesCard = ({title,days,image,price}) => {
   const navigation = useNavigation();
@@ -36,10 +36,10 @@ const styles = ScaledSheet.create({
     marginRight:'15@s',
   },
   cardName: {
-    // fontFamily: Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '14@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     lineHeight: '16@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',
@@ -65,10 +65,10 @@ const styles = ScaledSheet.create({
     marginRight: '7@s',
   },
   descriptionText: {
-    // fontFamily: Avenir LT Std,
+    fontFamily:fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     lineHeight: '14@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',

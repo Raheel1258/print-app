@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const ArtworkGuidelines = () => {
   const {t} = useTranslation();
@@ -28,20 +28,20 @@ const styles = ScaledSheet.create({
     marginTop:'23%'
   },
   heading: {
-    // fontFamily: Avenir LT Std,
+    fontFamily:fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     lineHeight: '12@s',
     letterSpacing: '0.4@s',
     textAlign: 'left',
     color: colors.blackColor,
   },
   paragraph: {
-    // fontFamily: Avenir LT Std,
+    fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     lineHeight: '14@s',
     letterSpacing: '0.4@s',
     textAlign: 'left',

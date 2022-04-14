@@ -3,7 +3,7 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 
-import {colors} from '../Utils/theme';
+import {colors,fonts} from '../Utils/theme';
 
 const UrlPickerInput = () => {
   const {t} = useTranslation();
@@ -29,20 +29,20 @@ const styles = ScaledSheet.create({
     paddingLeft: 0,
   },
   fileUrl: {
-    // fontFamily: Avenir LT Std,
+   fontFamily:fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '800',
+    // fontWeight: '800',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
   },
   addMore: {
-    // fontFamily: Avenir LT Std,
+   fontFamily:fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    // fontWeight: '400',
     lineHeight: '15@s',
     letterSpacing: '0.5@s',
     textAlign: 'left',

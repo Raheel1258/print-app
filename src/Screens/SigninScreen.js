@@ -47,7 +47,7 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
                   <Text style={styles.forgotPassword}>{t('forgot_password')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("signup")}>
-                  <Text style={styles.forgotPassword}>{t('Create your account')}</Text>
+                  <Text style={styles.forgotPassword}>{t('create_account')}</Text>
                 </TouchableOpacity>
                 <View style={styles.buttonWrapper}>
                   <GreenButton onPress={handleSubmit} animation={animation} title={t('login_text')} />

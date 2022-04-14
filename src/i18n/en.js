@@ -7,6 +7,7 @@
     password_text: 'Password',
     forgot_password: 'Forgot password?',
     login_text: 'Log In',
+    create_account: 'Create your account',
     //Validation_Messages
     invalid_email: 'Invalid email',
     email_required: 'Email is required',

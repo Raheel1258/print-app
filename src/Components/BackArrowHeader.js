@@ -7,7 +7,7 @@ import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors} from '../Utils/theme';
 import {fonts} from '../Utils/theme';
 
-const BackArrowHeader = ({title, goBack, arrow = true,borderBottomWidth=9}) => {
+const BackArrowHeader = ({title, goBack, arrow = true, borderBottomWidth=9}) => {
   return (
     <View style={{...styles.headerContainer, height: arrow ? 65 : 70,borderBottomWidth:borderBottomWidth}}>
       <TouchableOpacity onPress={goBack} style={styles.headerArrow}>

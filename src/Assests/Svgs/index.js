@@ -22,6 +22,15 @@ import MasterCard from './MasterCard';
 import VisaCard from './VisaCard';
 import ThankyouIcon from './ThankyouIcon';
 import EmptyIcon from './EmptyIcon';
+import CalendarIcon from './CalendarIcon';
+import DollarIcon from './DollarIcon';
+import ActivityActiveIcon from './ActivityActiveIcon';
+import OrderReceivedIcon from './OrderReceivedIcon';
+import OrderCompletedIcon from './OrderCompletedIcon';
+import DeliveryIcon from './DeliveryIcon';
+import OrderCancelledIcon from './OrderCancelledIcon';
+import OrderPicupIcon from './OrderPicupIcon';
+import PrintingIcon from './PrintingIcon';
 
 export {
   BrowseActiveIcon,
@@ -47,5 +56,14 @@ export {
   MasterCard,
   VisaCard,
   ThankyouIcon,
-  EmptyIcon
+  EmptyIcon,
+  CalendarIcon,
+  DollarIcon,
+  ActivityActiveIcon,
+  OrderReceivedIcon,
+  OrderCompletedIcon,
+  DeliveryIcon,
+  OrderCancelledIcon,
+  OrderPicupIcon,
+  PrintingIcon
 };

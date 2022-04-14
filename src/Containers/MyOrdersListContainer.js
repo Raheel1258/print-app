@@ -3,20 +3,17 @@ import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 
-import MyOrderScreen from '../Screens/MyOrderScreen';
+import MyOrdersListScreen from '../Screens/MyOrdersListScreen';
 import { colors } from '../Utils/theme';
 
-const MyOrderContainer = () => {
+const MyOrdersListContainer = () => {
   const navigation = useNavigation();
-  const navigate = (routeName, data = {}) => {
-    navigation.navigate(routeName, data)
-  }
   const goBack = () => {
     navigation.goBack();
   };
   return (
     <View style={styles.container}>
-        <MyOrderScreen navigate={navigate} goBack={goBack}/>
+        <MyOrdersListScreen goBack={goBack}/>
     </View>
   );
 };
@@ -28,4 +25,4 @@ const styles = ScaledSheet.create ({
   },
 });
 
-export default MyOrderContainer;
+export default MyOrdersListContainer;

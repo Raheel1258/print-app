@@ -26,6 +26,10 @@ import AddNewAddressForm from './AddNewAddressForm';
 import AddNewCreditCardForm from './AddNewCreditCardForm';
 import DeliverAndCreditCard from './DeliverAndCreditCard';
 import CartNotifyComponent from './CartNotifyComponent';
+import OrdersComponent from './OrdersComponent';
+import OrderDetailsComponent from './OrderDetailsComponent';
+import NotificationComponent from './NotificationComponent';
+import NotificationActivity from './NotificationActivity';
 
 export {
   BackArrowHeader,
@@ -55,5 +59,9 @@ export {
   AddNewAddressForm,
   AddNewCreditCardForm,
   DeliverAndCreditCard,
-  CartNotifyComponent
+  CartNotifyComponent,
+  OrdersComponent,
+  OrderDetailsComponent,
+  NotificationComponent,
+  NotificationActivity
 };

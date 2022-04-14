@@ -1,27 +1,107 @@
 import React from 'react';
-import {View, Text, useWindowDimensions} from 'react-native';
+import {View, FlatList, useWindowDimensions} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 
-import { BackArrowHeader } from '../Components';
+import {BackArrowHeader, OrdersComponent} from '../Components';
 import {colors, fonts} from '../Utils/theme';
 
+const activeOrder = [
+  {
+    id: '1',
+    orderNotify: 'Order received',
+  },
+  {
+    id: '2',
+    orderNotify: 'Out for delivery',
+  },
+  {
+    id: '3',
+    orderNotify: 'Ready for pickup',
+  },
+  {
+    id: '4',
+    orderNotify: 'Cancelled',
+  },
+  {
+    id: '5',
+    orderNotify: 'Order received',
+  },
+  {
+    id: '6',
+    orderNotify: 'Printing in process',
+  },
+  {
+    id: '7',
+    orderNotify: 'Order completed',
+  },
+];
+const completedOrder = [
+  {
+    id: '1',
+    orderNotify: 'Order completed',
+  },
+  {
+    id: '2',
+    orderNotify: 'Order completed',
+  },
+  {
+    id: '3',
+    orderNotify: 'Order completed',
+  },
+  {
+    id: '4',
+    orderNotify: 'Order completed',
+  },
+  {
+    id: '5',
+    orderNotify: 'Order completed',
+  },
+  {
+    id: '6',
+    orderNotify: 'Order completed',
+  },
+  {
+    id: '7',
+    orderNotify: 'Order completed',
+  },
+];
 
-const FirstRoute = () => 
-<View style={{flex: 1, backgroundColor: '#ff4081'}} />;
-const SecondRoute = () => (
-<View style={{flex: 1, backgroundColor: '#673ab7'}} />
-);
-
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-});
-
-const MyOrderScreen = () => {
+const MyOrderScreen = ({navigate,goBack}) => {
   const {t} = useTranslation();
   const layout = useWindowDimensions();
+
+  const renderItem = ({item}) => (
+    <OrdersComponent navigate={navigate}  orderNotify={item.orderNotify} />
+  );
+
+  const FirstRoute = () => (
+    <View style={styles.activeContainer}>
+      <FlatList
+        data={activeOrder}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        contentContainerStyle={styles.flatlistContainer}
+      />
+    </View>
+  );
+
+  const SecondRoute = () => (
+    <View style={styles.activeContainer}>
+      <FlatList
+        data={completedOrder}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        contentContainerStyle={styles.flatlistContainer}
+      />
+    </View>
+  );
+
+  const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+  });
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -44,7 +124,7 @@ const MyOrderScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BackArrowHeader title={t('my_orders')} borderBottomWidth={0}/>
+      <BackArrowHeader goBack={goBack} title={t('my_orders')} borderBottomWidth={0} />
       <TabView
         renderTabBar={renderTabBar}
         navigationState={{index, routes}}
@@ -61,6 +141,9 @@ const styles = ScaledSheet.create({
     flex: 1,
     backgroundColor: colors.whiteColor,
   },
+  activeContainer: {
+    padding: '15@s',
+  },
   labelStyle: {
     fontFamily: fonts.avenir_bold,
     marginTop: '12@s',
@@ -76,6 +159,7 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.offWhiteColor,
     padding: '5@s',
     height: '72@s',
+    marginBottom: '10@s',
   },
   indicatorStyle: {
     borderColor: colors.greenColor,
@@ -83,6 +167,9 @@ const styles = ScaledSheet.create({
     width: '100@s',
     marginLeft: '38@s',
     marginBottom: '20@s',
+  },
+  flatlistContainer: {
+    paddingBottom: '50@s',
   },
 });
 

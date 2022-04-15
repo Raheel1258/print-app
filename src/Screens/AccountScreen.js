@@ -80,7 +80,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.3@s',
     color: colors.lightBlackColor,

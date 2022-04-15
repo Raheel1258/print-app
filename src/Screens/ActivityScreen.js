@@ -10,7 +10,7 @@ const DATA = [
   {
     id: '1',
     date: 'Today',
-    readMark: 'Mark as all read',
+    mark: 'Mark as all read',
   },
   {
     id: '2',
@@ -24,7 +24,7 @@ const DATA = [
 
 const ActivityScreen = ({goBack}) => {
   const {t} = useTranslation();
-  const renderItem = ({item}) => <NotificationActivity date={item.date} />;
+  const renderItem = ({item}) => <NotificationActivity date={item.date} mark={item.mark} />;
   return (
     <View style={styles.container}>
       <BackArrowHeader goBack={goBack} title={t('activity_text')} borderBottomWidth={0} />

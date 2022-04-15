@@ -34,7 +34,7 @@ const DATA = [
   },
 ];
 
-const NotificationActivity = ({date,readMark}) => {
+const NotificationActivity = ({date,mark}) => {
   const {t} = useTranslation();
   const renderItem = ({item}, index) => (
     <NotificationComponent
@@ -50,7 +50,7 @@ const NotificationActivity = ({date,readMark}) => {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>{date}</Text>
-        <Text style={styles.headerText}>{readMark}</Text>
+        <Text style={styles.headerText}>{mark}</Text>
       </View>
       <FlatList
         data={DATA}

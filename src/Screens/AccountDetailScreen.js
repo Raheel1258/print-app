@@ -9,10 +9,13 @@ import {
   InputTextField,
   GreenButton,
   MyAddresses,
+  BottomSheetComponent,
+  AddNewAddressForm,
+  AddNewCreditCardForm
 } from '../Components';
 import {colors, fonts} from '../Utils/theme';
 
-const AccountDetailScreen = ({goBack, navigate}) => {
+const AccountDetailScreen = ({goBack, navigate,addAddressRBSheet,addCardetCardRBSheet}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
@@ -55,6 +58,7 @@ const AccountDetailScreen = ({goBack, navigate}) => {
           <CategoriesTitleHeader
             title={t('my_address')}
             description={t('new_address')}
+            onPress={() => addAddressRBSheet.current.open()}
           />
         </View>
         <MyAddresses address title="Peter Park" description="Primary" />
@@ -64,11 +68,24 @@ const AccountDetailScreen = ({goBack, navigate}) => {
           <CategoriesTitleHeader
             title={t('my_payment')}
             description={t('new_card')}
+            onPress={() => addCardetCardRBSheet.current.open()}
           />
           <MyAddresses title="Peter Park" description="Primary" />
         </View>
         <View style={styles.screenBorderBottom}/>
       </ScrollView>
+      <BottomSheetComponent
+        childern={<AddNewAddressForm />}
+        title={t('add_new_address')}
+        note={false}
+        refRBSheet={addAddressRBSheet}
+      />
+      <BottomSheetComponent
+        childern={<AddNewCreditCardForm />}
+        title={t('add_new_cardet_card')}
+        note={false}
+        refRBSheet={addCardetCardRBSheet}
+      />
     </View>
   );
 };

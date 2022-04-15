@@ -1,5 +1,4 @@
-import {types} from '@babel/core';
-import React from 'react';
+import React,{useRef} from 'react';
 import {View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {ScaledSheet} from 'react-native-size-matters';
@@ -8,6 +7,8 @@ import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import {colors} from '../Utils/theme';
 
 const AccountDetailContainer = () => {
+  const addAddressRBSheet = useRef();
+  const addCardetCardRBSheet = useRef();
   const navigation = useNavigation();
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -17,7 +18,7 @@ const AccountDetailContainer = () => {
   };
   return (
     <View style={styles.container}>
-      <AccountDetailScreen navigate={navigate} goBack={goBack}/>
+      <AccountDetailScreen navigate={navigate} goBack={goBack} addAddressRBSheet={addAddressRBSheet} addCardetCardRBSheet={addCardetCardRBSheet}/>
     </View>
   );
 };

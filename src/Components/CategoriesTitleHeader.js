@@ -4,11 +4,11 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors,fonts} from '../Utils/theme';
 
-const CategoriesTitleHeader = ({title,description}) => {
+const CategoriesTitleHeader = ({title,description,onPress}) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerText}>{title}</Text>
-      <Text style={styles.headerRightText}>{description}</Text>
+     <TouchableOpacity onPress={onPress} style={styles.touchableText}><Text style={styles.headerRightText}>{description}</Text></TouchableOpacity>
     </View>
   );
 };
@@ -44,6 +44,9 @@ paddingHorizontal:'17@s',
       textAlign: 'left',
       color:colors.greenColor,
       marginTop:'8@s',
+  },
+  touchableText:{
+    paddingVertical:'7@s',
   }
 });
 

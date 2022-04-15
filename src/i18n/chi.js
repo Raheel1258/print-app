@@ -181,5 +181,8 @@ export const chi = {
     activity_text: '活动',
     order_text: '命令',
     account_text: '帐户',
+    sheet_login_in: '登录',
+    Signup_today: '立即注册下达打印订单',
+    you_signed_out: '您现在已退出'
   },
 };

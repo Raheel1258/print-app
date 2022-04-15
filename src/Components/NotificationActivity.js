@@ -27,7 +27,7 @@ const DATA = [
   {
     id: '3',
     orderCode: '#PRT2084593',
-    orderReceived: 'Cancelled',
+    orderReceived: '“Cancelled”',
     time: '2h',
     seen: true,
     childern:<OrderCancelledIcon/>

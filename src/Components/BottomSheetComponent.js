@@ -17,14 +17,15 @@ const BottomSheetComponent = ({
   childern,
   height = '93%',
   languageTitle = undefined,
-  note = true
+  note = true,
+  onClose = true
 }) => {
   return (
     <View>
       <RBSheet
         ref={refRBSheet}
-        closeOnDragDown={true}
-        closeOnPressMask={true}
+        closeOnDragDown={onClose}
+        closeOnPressMask={onClose}
         customStyles={{
           draggableIcon: {
             display: 'none',

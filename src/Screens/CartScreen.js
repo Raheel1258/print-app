@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, ScrollView} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 
@@ -17,9 +18,11 @@ import {
   AddNewAddressForm,
   AddNewCreditCardForm,
 } from '../Components';
+import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
 import SecondBusinessCard from '../Assests/Images/Premium-business-card-two.png';
 import {colors, fonts} from '../Utils/theme';
+import {NavigationContainer} from '@react-navigation/native';
 
 const DATA = [
   {
@@ -46,19 +49,27 @@ const CartScreen = ({
   addAddressRBSheet,
   addCardetCardRBSheet,
   navigate,
-  delivery, 
+  delivery,
   setDelivery,
   paymentMethod,
   setPaymentMethod,
+  authRBSheet,
+  focused,
+  setFocused,
 }) => {
   const {t} = useTranslation();
-  const renderItem = ({item, index,}) => (
+  const navigation = useNavigation();
+  const renderItem = ({item, index}) => (
     <MyCartComponent image={item.image} index={index} length={DATA?.length} />
   );
   return (
     <View style={styles.container}>
       <ScrollView nestedScrollEnabled={true}>
-        <BackArrowHeader arrow={false} title={t('cart_text')} borderBottomWidth={0} />
+        <BackArrowHeader
+          arrow={false}
+          title={t('cart_text')}
+          borderBottomWidth={0}
+        />
         <CategoriesTitleHeader title={t('my_cart')} />
         <FlatList
           data={DATA}
@@ -70,7 +81,7 @@ const CartScreen = ({
         <PromoCodeInput textValue={textValue} setTextValue={setTextValue} />
         <View style={styles.buttonWrapper}>
           <GreenButton
-           onPress={() => navigate("emptyCart")}
+            onPress={() => navigate('emptyCart')}
             backgroundColor={colors.inputBorderColor}
             color={colors.lightBlackColor}
             title={t('apply_code')}
@@ -121,6 +132,7 @@ const CartScreen = ({
           />
         </View>
       </ScrollView>
+
       <BottomSheetComponent
         refRBSheet={refRBSheet}
         childern={
@@ -165,6 +177,48 @@ const CartScreen = ({
         note={false}
         refRBSheet={addCardetCardRBSheet}
       />
+      <BottomSheetComponent
+        childern={
+          <>
+            <View style={styles.logoWrapper}>
+              <AuthenticationLogo />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                backgroundColor={
+                  focused ? colors.greenColor : colors.whiteColor
+                }
+                color={focused ? colors.whiteColor : colors.greenColor}
+                borderWidth={2}
+                title={t('signup_text')}
+                onPress={() => {
+                   navigate('auth',{next: 'signup'});
+                  setFocused(true);
+                }}
+              />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                title={t('sheet_login_in')}
+                backgroundColor={
+                  focused ? colors.whiteColor : colors.greenColor
+                }
+                color={focused ? colors.greenColor : colors.whiteColor}
+                borderWidth={2}
+                onPress={() => {
+                  navigate('auth',{next: 'signin'});
+                  setFocused(false);
+                }}
+              />
+            </View>
+          </>
+        }
+        languageTitle={t('Signup_today')}
+        note={false}
+        refRBSheet={authRBSheet}
+        height={420}
+        onClose={false}
+      />
     </View>
   );
 };
@@ -204,6 +258,13 @@ const styles = ScaledSheet.create({
   },
   fullRefundText: {
     color: colors.greenColor,
+  },
+  logoWrapper: {
+    alignItems: 'center',
+    marginVertical: '15@s',
+  },
+  signinButtonWrapper: {
+    marginTop: '20@s',
   },
 });
 

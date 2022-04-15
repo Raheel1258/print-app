@@ -31,7 +31,7 @@
     verification_code: 'Verification Code',
     verification_description: 'Please enter the verification code sent to your e-mail address to reset your password.',
     reset_password: 'Reset password',
-    confirm_new_password: 'Confirm new password',
+    confirm_new_password: 'Confirm New Password',
     confirm_text: 'Confirm',
     password_updated: 'Password updated',
     successfully_description: 'Your password has now been successfully updated. Sign in to your account using your new password.',
@@ -95,7 +95,7 @@
     new_password_text: 'New Password',
     update_text: 'Update',
     my_address: 'My Addresses',
-    new_address: '+ New Address',
+    new_address: '+ New address',
     my_payment: 'My Payment Cards',
     new_card: '+ New card',
     english_text: 'English',
@@ -170,13 +170,16 @@
     email_receipt: 'Email receipt',
     contact_support: 'Contact support for this order',
  //<=Change Password=>
-    change_password: 'Change Password',   
-    current_password: 'Current password',
+    change_password: 'Change password',   
+    current_password: 'Current Password',
     password_changed: ' Password Changed!',
     successfully_changed_password: 'Your password has been changed successfully',
  //<=Change Password=>  
     activity_text: 'Activity',
     order_text: 'Order',
     account_text: 'Account',
+    sheet_login_in: 'log in',
+    Signup_today: 'Sign up today to place your printing order',
+    you_signed_out: 'You are now signed out'
   },
 };

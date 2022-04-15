@@ -34,7 +34,6 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
             Children={<AccountIcon />}
           />
           <UploadFileComponent 
-          onPress={() => navigate('changePassword')}
            title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}
@@ -80,7 +79,6 @@ const styles = ScaledSheet.create({
   signOutDescription: {
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
-    fontStyle: 'normal',
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.3@s',

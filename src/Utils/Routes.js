@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {ScaledSheet} from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 import {Text, View} from 'react-native';
 
 import {
@@ -141,9 +142,9 @@ const HomeStack = () => {
 
 const AuthStack = () => {
   return (
-    <Auth.Navigator initialRouteName="signin">
+    <Auth.Navigator initialRouteName="routeChecking">
       <Auth.Screen
-        name="RouteChecking"
+        name="routeChecking"
         component={RouteCheckingContainer}
         options={{headerShown: false}}
       />
@@ -177,6 +178,7 @@ const AuthStack = () => {
   );
 };
 
+
 const AccountStack = () => {
   return (
     <Account.Navigator initialRouteName="account">
@@ -195,6 +197,7 @@ const AccountStack = () => {
 };
 
 const MyTabs = () => {
+  const {t} = useTranslation();
   return (
     <Tab.Navigator
       initialRouteName="homeStack"
@@ -218,12 +221,12 @@ const MyTabs = () => {
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <BrowseActiveIcon />
-                  <Text style={styles.activeText}>Browse</Text>
+                  <Text style={styles.activeText}>{t('browse_text')}</Text>
                 </View>
               ) : (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <BrowseIcon />
-                  <Text style={styles.unActiveText}>Browse</Text>
+                  <Text style={styles.unActiveText}>{t('browse_text')}</Text>
                 </View>
               )}
             </View>
@@ -242,12 +245,12 @@ const MyTabs = () => {
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <CartActiveIcon />
-                  <Text style={styles.activeText}>Cart</Text>
+                  <Text style={styles.activeText}>{t('cart_text')}</Text>
                 </View>
               ) : (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <CartIcon />
-                  <Text style={styles.unActiveText}>Cart</Text>
+                  <Text style={styles.unActiveText}>{t('cart_text')}</Text>
                 </View>
               )}
             </View>
@@ -270,7 +273,7 @@ const MyTabs = () => {
                     marginTop: 6,
                   }}>
                   <OrderActiveIcon />
-                  <Text style={styles.activeText}>Order</Text>
+                  <Text style={styles.activeText}>{t('order_text')}</Text>
                 </View>
               ) : (
                 <View
@@ -280,7 +283,7 @@ const MyTabs = () => {
                     marginTop: 6,
                   }}>
                   <OrdersIcon />
-                  <Text style={styles.unActiveText}>Order</Text>
+                  <Text style={styles.unActiveText}>{t('order_text')}</Text>
                 </View>
               )}
             </View>
@@ -302,7 +305,7 @@ const MyTabs = () => {
                     alignItems: 'center',
                   }}>
                   <ActivityActiveIcon />
-                  <Text style={styles.activeText}>Activity</Text>
+                  <Text style={styles.activeText}>{t('activity_text')}</Text>
                 </View>
               ) : (
                 <View
@@ -311,7 +314,7 @@ const MyTabs = () => {
                     alignItems: 'center',
                   }}>
                   <ActivityIcon />
-                  <Text style={styles.unActiveText}>Activity</Text>
+                  <Text style={styles.unActiveText}>{t('activity_text')}</Text>
                 </View>
               )}
             </View>
@@ -329,19 +332,19 @@ const MyTabs = () => {
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <AccountActiveIcon />
-                  <Text style={styles.activeText}>Account</Text>
+                  <Text style={styles.activeText}>{t('account_text')}</Text>
                 </View>
               ) : (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <AccountIcon />
-                  <Text style={styles.unActiveText}>Account</Text>
+                  <Text style={styles.unActiveText}>{t('account_text')}</Text>
                 </View>
               )}
             </View>
           ),
         }}
         name="account"
-        component={AccountContainer}
+        component={AccountStack}
       />
     </Tab.Navigator>
   );
@@ -360,7 +363,7 @@ const MainScreen = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Home',
   },
 );
 
@@ -370,7 +373,6 @@ const styles = ScaledSheet.create({
     color: colors.greenColor,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
     lineHeight: '17@s',
     letterSpacing: '0.6@s',
     textAlign: 'center',
@@ -380,7 +382,6 @@ const styles = ScaledSheet.create({
     color: colors.greyColor,
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '400',
     lineHeight: '17@s',
     letterSpacing: '0.6@s',
     textAlign: 'center',

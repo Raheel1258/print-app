@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
+import MasterCard from '../Assests/Svgs/MasterCard';
 import {colors, fonts} from '../Utils/theme';
 
 const MyAddresses = ({title,description,address}) => {
@@ -20,7 +21,8 @@ const MyAddresses = ({title,description,address}) => {
 <View>
 <View style={styles.cardPrivacyContainer}>
   <Text style={styles.cardNumText}>Card number:</Text>
-  <Text style={styles.cardNumText}>Master (9881)</Text>
+  <Text style={styles.masterCardText}>Master (9881)</Text>
+  <MasterCard/>
 </View>
 <View style={styles.cardPrivacyContainer}>
   <Text style={styles.cardNumText}>Expiry:</Text>
@@ -116,6 +118,17 @@ const styles = ScaledSheet.create({
     color: colors.lightBlackColor, 
     width:'110@s',
     marginTop:'2@s'
+  },
+  masterCardText:{
+    fontFamily: fonts.avenir_light,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    lineHeight: '16@s',
+    letterSpacing: '0.4@s',
+    textAlign: 'left',
+    color: colors.lightBlackColor, 
+    marginTop:'2@s',
+    marginRight:'7@s'
   }
 });
 

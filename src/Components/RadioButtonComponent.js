@@ -21,7 +21,7 @@ const RadioButtonComponent = ({
   return (
     <View>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setRadioButtonStatus(true)}>
+        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => setRadioButtonStatus(true)}>
           {radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <View>
@@ -33,7 +33,7 @@ const RadioButtonComponent = ({
       </View>
       <View style={styles.borderBottom} />
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setRadioButtonStatus(false)}>
+        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => setRadioButtonStatus(false)}>
           {!radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <TouchableOpacity>
@@ -61,7 +61,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.5@s',
     textAlign: 'left',
     color: colors.blackColor,
-    marginLeft: '12@s',
+    marginLeft: '10@s',
     marginBottom: '6@s',
   },
   deliveryDescription: {
@@ -72,13 +72,16 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.5@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    marginLeft: '12@s',
+    marginLeft: '10@s',
   },
   borderBottom: {
     borderBottomWidth: 1,
     borderBottomColor: colors.innerBorderColor,
     marginHorizontal: '20@s',
   },
+  radioButtonWrapper:{
+    padding:'5@s'
+  }
 });
 
 export default RadioButtonComponent;

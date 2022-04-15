@@ -79,9 +79,8 @@ const CartContainer = () => {
         navigate={navigate}
         delivery = {delivery}
         setDelivery = {setDelivery}
-        setPaymentMethod={setPaymentMethod}
         paymentMethod={paymentMethod}
-        
+        setPaymentMethod={setPaymentMethod}
       />
     </View>
   );

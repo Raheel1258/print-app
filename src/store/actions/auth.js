@@ -26,9 +26,9 @@ export const login = (data, navigation, setAnimation) => {
         console.log("Login", data);
         setAnimation(true);
         try {
-            if ((data.email === "Test@gmail.com" || data.email === "test@gmail.com" ) && data.password === "12345" || true)
+            if ((data.email === "Test@gmail.com" || data.email === "test@gmail.com" ) && data.password === "12345")
             {
-                //await Storage.storeData('token', "123");
+                await Storage.storeData('token', "123");
                 setAnimation(false);
                 Toast.show({
                     type: 'success',

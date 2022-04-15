@@ -58,7 +58,7 @@ fontFamily:fonts.avenir_next,
   headerDescription:{
     fontSize: '12@s',
     fontStyle: 'normal',
-    fontWeight: '5s00',
+    fontWeight: '500',
     marginLeft:'15@s',
     fontStyle: 'normal',
     lineHeight: '17@s',

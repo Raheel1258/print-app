@@ -10,6 +10,11 @@ import AccountDetailScreen from './AccountDetailScreen';
 import OrderReceivedScreen from './OrderReceivedScreen';
 import EmptyCartScreen from './EmptyCartScreen';
 import MyOrderScreen from './MyOrderScreen';
+import MyOrdersListScreen from './MyOrdersListScreen';
+import VerificationCodeScreen from './VerificationCodeScreen';
+import ResetPasswordScreen from './ResetPasswordScreen';
+import ChangePasswordScreen from './ChangePasswordScreen';
+import ActivityScreen from './ActivityScreen';
 
 export {
   SigninScreen,
@@ -23,5 +28,10 @@ export {
   AccountDetailScreen,
   OrderReceivedScreen,
   EmptyCartScreen,
-  MyOrderScreen
+  MyOrderScreen,
+  MyOrdersListScreen,
+  VerificationCodeScreen,
+  ResetPasswordScreen,
+  ChangePasswordScreen,
+  ActivityScreen
 };

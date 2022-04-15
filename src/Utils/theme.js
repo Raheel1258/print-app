@@ -16,6 +16,10 @@ export const colors = {
   gradientBlueColor: 'rgba(96, 134, 240, 0.3)',
   orangeColor: '#FFB075',
   lightOrangeColor: '#FBDBC3',
+  pearlColor: '#37B3CB',
+  lightRedColor: '#CB3769',
+  lightOrangeColor: '#F5924C',
+  lightGreenColor: '#2E9C96',
 };
 
 export const fonts = {

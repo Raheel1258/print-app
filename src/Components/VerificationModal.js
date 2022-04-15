@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next';
 import ModalButton from '../Components/GreenButton';
 import {colors,fonts} from '../Utils/theme';
 
-const VerificationModal = ({toggleModal, isModalVisible,title,description}) => {
+const VerificationModal = ({toggleModal, isModalVisible,title,description,modalButton='Ok'}) => {
   const {t} = useTranslation();
   return (
     <>
@@ -20,7 +20,7 @@ const VerificationModal = ({toggleModal, isModalVisible,title,description}) => {
           <View style={styles.buttonWrapper}>
             <ModalButton
               backgroundColor={colors.blackColor}
-              title={t('ok_text')}
+              title={modalButton}
               onPress={() => toggleModal()}
             />
           </View>

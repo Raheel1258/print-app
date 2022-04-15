@@ -37,8 +37,16 @@
     email_modal_description: 'We have sent you an e-mail with the instruction to reset your password.',
     ok_text: 'Ok',
     forgot_text: 'Forgot password',
-  //<=Forgot Password Screen=>
+    send_verification_code: 'Send verification code',
     lets_print: 'Let’s print it',
+  //<=Verification Password Screen=>
+    verification_code: 'Verification Code',
+    verification_description: 'Please enter the verification code sent to your e-mail address to reset your password.',
+    reset_password: 'Reset password',
+    confirm_new_password: 'Confirm new password',
+    confirm_text: 'Confirm',
+    password_updated: 'Password updated',
+    successfully_description: 'Your password has now been successfully updated. Sign in to your account using your new password.',
   //<=Single Product Screen=>
     business_card: 'Business Card',
     choose_size: 'Choose size',
@@ -117,7 +125,7 @@
     pick_up: 'Self pick-up',
     cradit_card_text: 'Credit Card / Debit Card',
     bank_transfer: 'Bank Transfer / Cheque',
-    payment_method: 'Payment Method',
+    payment_method: 'Payment Method:',
     sub_total: 'Sub Total',
     delivery_order_text: 'Delivery',
     discount_text: 'Discount',
@@ -160,5 +168,24 @@
     empty_cart: 'cart is empty',
  //<=Cart Screen=>
     my_orders: 'My Orders',
+    order_date: 'Order date:',
+    order_ammount: 'Order ammount:',
+    order_details: 'Order Details',
+    delivery_method: 'Delivery method:',
+    delivery_address: 'Delivery address:',
+    payment_details: 'Payment Details',
+    order_sub_total: 'Sub-total:',
+    delivery: 'Delivery:',
+    total: 'Total:',
+    order_support: 'Order Support',
+    email_receipt: 'Email receipt',
+    contact_support: 'Contact support for this order',
+ //<=Change Password=>
+    change_password: 'Change Password',   
+    current_password: 'Current password',
+    password_changed: ' Password Changed!',
+    successfully_changed_password: 'Your password has been changed successfully',
+ //<=Change Password=>  
+    activity_text: 'Activity',
   },
 };

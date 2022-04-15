@@ -31,7 +31,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
                   onBlur={handleBlur('email')}
                 />
                 <View style={styles.buttonWrapper}>
-                  <GreenButton title={t('send_text')} animation={animation} onPress={handleSubmit} />
+                  <GreenButton onPress={() => navigate("verificationCode")} title={t('send_verification_code')} />
                 </View>
                 <VerificationModal
                 title={t('email_us')}

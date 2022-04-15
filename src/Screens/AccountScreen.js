@@ -33,7 +33,9 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
             title={t('my_details')}
             Children={<AccountIcon />}
           />
-          <UploadFileComponent title={t('faqs_text')} Children={<FaqsIcon />} />
+          <UploadFileComponent 
+          onPress={() => navigate('changePassword')}
+           title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}
             title={t('language_text')}
@@ -52,6 +54,7 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
             </>}
           />
           <UploadFileComponent
+          onPress={() => navigate('signin')}
             title={t('sign_out')}
             Children={<ShuffleIcon />}
           />

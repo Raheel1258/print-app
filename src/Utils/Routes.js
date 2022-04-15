@@ -18,7 +18,12 @@ import {
   AccountDetailContainer,
   OrderReceivedContainer,
   EmptyCartContainer,
-  MyOrderContainer
+  MyOrderContainer,
+  MyOrdersListContainer,
+  VerificationCodeContainer,
+  ResetPasswordContainer,
+  ChangePasswordContainer,
+  ActivityContainer,
 } from '../Containers';
 import {colors, fonts} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -27,7 +32,7 @@ import CartActiveIcon from '../Assests/Svgs/CartActiveIcon';
 import CartIcon from '../Assests/Svgs/CartIcon';
 import OrderActiveIcon from '../Assests/Svgs/OrdersActiveIcon';
 import OrdersIcon from '../Assests/Svgs/OrderIcon';
-import ActivityActiveIcon from '../Assests/Svgs/ActivityIcon';
+import ActivityActiveIcon from '../Assests/Svgs/ActivityActiveIcon';
 import ActivityIcon from '../Assests/Svgs/ActivityIcon';
 import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
 import AccountIcon from '../Assests/Svgs/AccountIcon';
@@ -87,9 +92,24 @@ const App = () => {
         component={EmptyCartContainer}
         options={{headerShown: false}}
       />
-            <Stack.Screen
+      <Stack.Screen
         name="myOrder"
         component={MyOrderContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="myOrdersList"
+        component={MyOrdersListContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="changePassword"
+        component={ChangePasswordContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="activity"
+        component={ActivityContainer}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -142,6 +162,16 @@ const AuthStack = () => {
         component={ForgotPasswordContainer}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name="verificationCode"
+        component={VerificationCodeContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="resetPassword"
+        component={ResetPasswordContainer}
+        options={{headerShown: false}}
+      />
       <Auth.Screen component={App} name="home" options={{headerShown: false}} />
     </Auth.Navigator>
   );
@@ -167,7 +197,7 @@ const AccountStack = () => {
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="myorder"
+      initialRouteName="homeStack"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -227,18 +257,28 @@ const MyTabs = () => {
         component={CartContainer}
       />
 
-<Tab.Screen
+      <Tab.Screen
         options={{
           title: '',
           tabBarIcon: ({focused, color}) => (
             <View>
               {focused ? (
-                <View style={{flexDirection: 'column', alignItems: 'center',marginTop:6}}>
+                <View
+                  style={{
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    marginTop: 6,
+                  }}>
                   <OrderActiveIcon />
                   <Text style={styles.activeText}>Order</Text>
                 </View>
               ) : (
-                <View style={{flexDirection: 'column', alignItems: 'center',marginTop:6}}>
+                <View
+                  style={{
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    marginTop: 6,
+                  }}>
                   <OrdersIcon />
                   <Text style={styles.unActiveText}>Order</Text>
                 </View>
@@ -248,6 +288,37 @@ const MyTabs = () => {
         }}
         name="myorder"
         component={MyOrderContainer}
+      />
+
+      <Tab.Screen
+        options={{
+          title: '',
+          tabBarIcon: ({focused, color}) => (
+            <View>
+              {focused ? (
+                <View
+                  style={{
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityActiveIcon />
+                  <Text style={styles.activeText}>Activity</Text>
+                </View>
+              ) : (
+                <View
+                  style={{
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIcon />
+                  <Text style={styles.unActiveText}>Activity</Text>
+                </View>
+              )}
+            </View>
+          ),
+        }}
+        name="activity"
+        component={ActivityContainer}
       />
 
       <Tab.Screen
@@ -269,8 +340,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="signin"
-        component={SigninContainer}
+        name="account"
+        component={AccountContainer}
       />
     </Tab.Navigator>
   );

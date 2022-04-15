@@ -116,7 +116,6 @@ const styles = ScaledSheet.create({
     fontSize: '18@s',
     fontStyle: 'normal',
     // fontWeight: '800',
-    fontStyle: 'normal',
     lineHeight: '20@s',
     letterSpacing: '0.4@s',
     textAlign: 'left',

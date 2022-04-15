@@ -56,7 +56,7 @@ const CartScreen = ({
   return (
     <View style={styles.container}>
       <ScrollView nestedScrollEnabled={true}>
-        <BackArrowHeader title={t('cart_text')} borderBottomWidth={0} />
+        <BackArrowHeader arrow={false} title={t('cart_text')} borderBottomWidth={0} />
         <CategoriesTitleHeader title={t('my_cart')} />
         <FlatList
           data={DATA}
@@ -64,7 +64,7 @@ const CartScreen = ({
           keyExtractor={item => item.id}
           contentContainerStyle={{paddingBottom: 0}}
         />
-        <CategoriesTitleHeader title={t('promo_cord')} />
+        <CategoriesTitleHeader title={t('promo_code')} />
         <PromoCodeInput textValue={textValue} setTextValue={setTextValue} />
         <View style={styles.buttonWrapper}>
           <GreenButton

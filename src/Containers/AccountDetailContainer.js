@@ -9,12 +9,15 @@ import {colors} from '../Utils/theme';
 
 const AccountDetailContainer = () => {
   const navigation = useNavigation();
+  const navigate = (routeName, data = {}) => {
+    navigation.navigate(routeName, data)
+  }
   const goBack = () => {
     navigation.goBack();
   };
   return (
     <View style={styles.container}>
-      <AccountDetailScreen goBack={goBack}/>
+      <AccountDetailScreen navigate={navigate} goBack={goBack}/>
     </View>
   );
 };

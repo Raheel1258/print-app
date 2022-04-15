@@ -187,7 +187,7 @@ const SingleProductScreen = ({
           <Text style={styles.addCart}>{t('add_to_cart')}</Text>
           <GreenButton
             backgroundColor={colors.blackColor}
-            title="Add to cart"
+            title={t('add_to_cart_text')}
           />
           <Text style={styles.questionText}>{t('send_us_mail')}</Text>
           <Text style={styles.mailText}>{t('mail_text')}</Text>

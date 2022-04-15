@@ -34,7 +34,6 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
             Children={<AccountIcon />}
           />
           <UploadFileComponent 
-          onPress={() => navigate('changePassword')}
            title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}

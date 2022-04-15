@@ -53,7 +53,7 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
             </>}
           />
           <UploadFileComponent
-          onPress={() => navigate('signin')}
+            onPress={() => navigate('signin')}
             title={t('sign_out')}
             Children={<ShuffleIcon />}
           />

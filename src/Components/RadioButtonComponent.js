@@ -14,15 +14,15 @@ const RadioButtonComponent = ({
   secondDescription,
   thirdDescription,
   onPress,
-  delivery,
-  setDelivery,
+  radioButtonStatus,
+  setRadioButtonStatus,
 }) => {
   const {t} = useTranslation();
   return (
     <View>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setDelivery(true)}>
-          {delivery ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
+        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => setRadioButtonStatus(true)}>
+          {radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <View>
           <TouchableOpacity onPress={onPress}>
@@ -33,8 +33,8 @@ const RadioButtonComponent = ({
       </View>
       <View style={styles.borderBottom} />
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setDelivery(false)}>
-          {!delivery ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
+        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => setRadioButtonStatus(false)}>
+          {!radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.deliveryText}>{secondTitle}</Text>
@@ -61,7 +61,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.5@s',
     textAlign: 'left',
     color: colors.blackColor,
-    marginLeft: '12@s',
+    marginLeft: '10@s',
     marginBottom: '6@s',
   },
   deliveryDescription: {
@@ -72,13 +72,16 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.5@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    marginLeft: '12@s',
+    marginLeft: '10@s',
   },
   borderBottom: {
     borderBottomWidth: 1,
     borderBottomColor: colors.innerBorderColor,
     marginHorizontal: '20@s',
   },
+  radioButtonWrapper:{
+    padding:'5@s'
+  }
 });
 
 export default RadioButtonComponent;

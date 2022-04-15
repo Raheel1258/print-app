@@ -22,12 +22,12 @@ const DATA = [
   },
 ];
 
-const ActivityScreen = () => {
+const ActivityScreen = ({goBack}) => {
   const {t} = useTranslation();
   const renderItem = ({item}) => <NotificationActivity date={item.date} />;
   return (
     <View style={styles.container}>
-      <BackArrowHeader title={t('activity_text')} borderBottomWidth={0} />
+      <BackArrowHeader goBack={goBack} title={t('activity_text')} borderBottomWidth={0} />
       <FlatList
         data={DATA}
         renderItem={renderItem}

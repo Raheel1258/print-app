@@ -47,7 +47,9 @@ const CartScreen = ({
   addCardetCardRBSheet,
   navigate,
   delivery, 
-  setDelivery
+  setDelivery,
+  paymentMethod,
+  setPaymentMethod,
 }) => {
   const {t} = useTranslation();
   const renderItem = ({item, index,}) => (
@@ -83,8 +85,8 @@ const CartScreen = ({
           description="Select delivery address"
           secondDescription="Pick up yourself at:"
           thirdDescription="11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
-          delivery={delivery}
-          setDelivery={setDelivery}
+          radioButtonStatus={delivery}
+          setRadioButtonStatus={setDelivery}
         />
         <CategoriesTitleHeader title={t('payment_method')} />
         <RadioButtonComponent
@@ -93,6 +95,8 @@ const CartScreen = ({
           secondTitle={t('bank_transfer')}
           description="Select card"
           secondDescription="Bank account info available after checkout"
+          radioButtonStatus={paymentMethod}
+          setRadioButtonStatus={setPaymentMethod}
         />
         <CategoriesTitleHeader title={t('order_summary')} />
         <OrderSummaryComponent />

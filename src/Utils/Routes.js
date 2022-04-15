@@ -162,7 +162,7 @@ const AuthStack = () => {
 
 const HomeStack = () => {
   return (
-    <Home.Navigator initialRouteName="home">
+    <Home.Navigator initialRouteName="homeStack">
       <Home.Screen
         name="home"
         component={HomeContainer}

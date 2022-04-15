@@ -27,7 +27,7 @@ const AccountDetailScreen = ({goBack, navigate}) => {
           <InputTextField
             title={t('first_name')}
             placeholder={t('peter_text')}
-            keyboardType="defaylt"
+            keyboardType="default"
             secureTextEntry={false}
           />
           <InputTextField title={t('last_name')} placeholder={t('park_text')} />

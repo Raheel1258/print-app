@@ -16,10 +16,14 @@ const HomeContainer = () => {
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
-  const categoriesData = useSelector(state => state.categories.categories); 
-  const homeSliderImages = useSelector(state => state.categories.homeSliderImages);
-  
+  const categoriesData = useSelector(state => state?.categories?.categories); 
+  const homeSliderImagesData = useSelector(state =>  state?.categories?.homeSliderImages);
 
+  
+  const homeSliderImages =  homeSliderImagesData?.map(item => (item.image));
+  const homeSliderImagesCaptions = homeSliderImagesData?.map(item => (item.caption));
+  
+  
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -31,7 +35,7 @@ const HomeContainer = () => {
 
   return (
     <View style={styles.container}>
-      <HomeScreen categories={categoriesData} homeSliderImages={homeSliderImages} navigate={navigate}/>
+      <HomeScreen categories={categoriesData} homeSliderImages={homeSliderImages} homeSliderImagesCaptions={homeSliderImagesCaptions} navigate={navigate}/>
     </View>
   );
 };

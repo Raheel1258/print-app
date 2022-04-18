@@ -74,13 +74,20 @@ export const CategoriesData =
 
 export const sliderImagesHome = [
   {
-    images: [
-      require('../Assests/Images/businesscard-header-image.png'),
-      require('../Assests/Images/poster-image.png'),
-      require('../Assests/Images/booklet-image.png'),
-    ],
-  }
+    image:require('../Assests/Images/businesscard-header-image.png'),
+    caption:'Order your next print in just a few taps1'
 
+  },
+  {
+    image:require('../Assests/Images/poster-image.png'),
+    caption:'Order your next print in just a few taps2'
+
+  },
+  {
+    image:require('../Assests/Images/booklet-image.png'),
+    caption:'Order your next print in just a few taps3'
+
+  },
 ]
 
 export const productListBusinessCardData = [

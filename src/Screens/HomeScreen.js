@@ -68,14 +68,15 @@ const DATA = [
 
 
 
-const HomeScreen = ({ categories , homeSliderImages}) => {
+const HomeScreen = ({ categories , homeSliderImages, homeSliderImagesCaptions}) => {
+
   const [text, setText] = useState([
     'Order your next print in just a few taps',
     'Order your next print in just a few taps',
     'Order your next print in just a few taps',
   ]);
   // console.log("images" ,homeSliderImages[0]?.images );
-  const sliderImages = homeSliderImages[0]?.images; 
+  // const sliderImages = homeSliderImages[0]?.images; 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
     <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} item={item}/>
@@ -85,7 +86,7 @@ const HomeScreen = ({ categories , homeSliderImages}) => {
       {
         categories?.length !== undefined ?
           <>
-            <ImageSlider sliderImages={sliderImages} text={text}/>
+            <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions}/>
             <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
               <FlatList

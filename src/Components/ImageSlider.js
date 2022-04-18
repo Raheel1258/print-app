@@ -5,7 +5,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors, fonts} from '../Utils/theme';
 
-const ImageSlider = ({sliderImages, text}) => {
+const ImageSlider = ({sliderImages, captions}) => {
   
   //console.log("home" , homeSliderImages[0].images)
   const [current, setCurrent] = useState(0);
@@ -24,7 +24,7 @@ const ImageSlider = ({sliderImages, text}) => {
   ]);
   return (
     <View>
-      {text && <Text style={styles.slidertitle}>{text[current]}</Text>}
+      {captions && <Text style={styles.slidertitle}>{captions[current]}</Text>}
       <SliderBox
         currentImageEmitter={i => setCurrent(i)}
         images={sliderImages}

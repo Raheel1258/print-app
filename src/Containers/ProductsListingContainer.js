@@ -12,16 +12,12 @@ import {colors} from '../Utils/theme';
 
 const ProductsListingContainer = ({route}) => { 
   const {title,image} = route.params;
-  
-  console.log("item title" , title);
-
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
   const productList = useSelector(state => state.productList.productList);
   
-  console.log("prrrrrrrr" , productList);
   
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)

@@ -14,7 +14,6 @@ export const setCategories = data => {
 }
 
 export const setHomeSliderImages = data => {
-  console.log("home data" , data)
   return {
     type: types.HOME_SLIDER_IMAGES,
     Payload: data,

@@ -1,7 +1,8 @@
-import React, {useState,useRef} from 'react';
-import {View} from 'react-native';
+import React, {useState,useRef, useEffect} from 'react';
+import {View, BackHandler} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import Storage from '../Utils/Storage';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
@@ -12,11 +13,15 @@ const CartContainer = () => {
   const addAddressRBSheet = useRef();
   const addCardetCardRBSheet = useRef();
   const creditCardRBSheet = useRef();
+  const authRBSheet = useRef();
   const refRBSheet = useRef();
   const [textValue, setTextValue] = useState('');
   const [delivery, setDelivery] = useState(true);
+  const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [userToken, setUserToken] = useState(null);
+
   const [data , setData] = useState([
     {
       id: '1',
@@ -54,6 +59,21 @@ const CartContainer = () => {
     },
   ]);
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
+
+
+  useEffect(()=>{
+    
+  isFocused && Storage.retrieveData('token').then((token)=>{
+    setUserToken(token);
+    !token && authRBSheet.current.open()
+  });
+  },[isFocused])
+
+  useEffect(() => {
+    console.log('this is all the hell',authRBSheet);
+  }, [authRBSheet]);
+
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -81,6 +101,10 @@ const CartContainer = () => {
         setDelivery = {setDelivery}
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
+        authRBSheet={authRBSheet}
+        userToken={userToken}
+        focused={focused}
+        setFocused={setFocused}
       />
     </View>
   );

@@ -7,8 +7,10 @@ import {
   ImageBackArrowHeader,
   UploadFileComponent,
   BottomSheetComponent,
-  GreenButton
+  GreenButton,
+  VerificationModal
 } from '../Components';
+import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import HeaderImage from '../Assests/Images/account-header-image.png';
 import AccountIcon from '../Assests/Svgs/AccountBlackIcon';
 import FaqsIcon from '../Assests/Svgs/FaqsIcon';
@@ -16,7 +18,7 @@ import LanguageIcon from '../Assests/Svgs/LanguageIcon';
 import ShuffleIcon from '../Assests/Svgs/ShuffleIcon';
 import {colors, fonts} from '../Utils/theme';
 
-const AccountScreen = ({navigate, goBack, refRBSheet}) => {
+const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBSheet,focused,setFocused,isModalVisible,toggleModal}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
@@ -41,7 +43,7 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
             Children={<LanguageIcon />}
           />
           <BottomSheetComponent
-            height={'30%'}
+            height={250}
             refRBSheet={refRBSheet}
             languageTitle = {t('select_language')}
             childern = {
@@ -52,8 +54,8 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
             </View>
             </>}
           />
-          <UploadFileComponent
-            onPress={() => navigate('signin')}
+          <UploadFileComponent 
+            onPress={toggleModal}
             title={t('sign_out')}
             Children={<ShuffleIcon />}
           />
@@ -63,6 +65,51 @@ const AccountScreen = ({navigate, goBack, refRBSheet}) => {
           </Text>
         </View>
       </ScrollView>
+      <BottomSheetComponent
+        childern={
+          <>
+          <View style={styles.logoWrapper}>
+          <AuthenticationLogo/>
+          </View>
+          <View style={styles.signinButtonWrapper}>
+            <GreenButton
+            backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+            color={focused ? colors.whiteColor : colors.greenColor}
+            borderWidth={2}
+              title={t('signup_text')}
+              onPress={() => {
+                navigate('auth',{next: 'signup'});
+                setFocused(true);
+              }}
+            />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+            <GreenButton
+              title={t('sheet_login_in')}
+              backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+              color={focused ? colors.greenColor : colors.whiteColor}
+              borderWidth={2}
+              onPress={() => {
+                navigate('auth',{next: 'signin'});
+                setFocused(false);
+              }}
+            />
+            </View>
+          </>
+        }
+        languageTitle={t('Signup_today')}
+        note={false}
+        refRBSheet={accountRBSheet}
+        height={420}
+        onClose={false}
+      />
+                <VerificationModal
+            title={t('you_signed_out')}
+            description={t('curabitur_aliquet')}
+            isModalVisible={isModalVisible}
+            toggleModal={toggleModal}
+            aditionalAction={() => logoutHandler()}
+          />
     </View>
   );
 };
@@ -90,7 +137,14 @@ const styles = ScaledSheet.create({
   },
   buttonWrapper:{
     marginTop:'15@s'
-  }
+  },
+  logoWrapper:{
+    alignItems:'center',
+    marginVertical:'15@s'
+  },
+  signinButtonWrapper:{
+    marginTop:'20@s'
+  },
 });
 
 export default AccountScreen;

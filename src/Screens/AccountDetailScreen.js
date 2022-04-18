@@ -44,7 +44,7 @@ const AccountDetailScreen = ({goBack, navigate,addAddressRBSheet,addCardetCardRB
           <TouchableOpacity
             onPress={() => navigate('changePassword')}
             style={styles.passwordWrapper}>
-            <Text style={styles.changePassword}>Change Password</Text>
+            <Text style={styles.changePassword}>Change password</Text>
           </TouchableOpacity>
           <View style={styles.buttonWrapper}>
             <GreenButton

@@ -43,7 +43,7 @@ const MyOrdersListScreen = ({goBack}) => {
           <Text style={styles.orderRefText}>Order reference:</Text>
           <Text style={styles.orderRefText}>RHF39284-23</Text>
         </View>
-        <Text style={styles.orderCompleted}>Order completed</Text>
+        <Text style={styles.orderCompleted}>Order Completed</Text>
         <FlatList
           data={DATA}
           renderItem={renderItem}
@@ -57,11 +57,7 @@ const MyOrdersListScreen = ({goBack}) => {
         deliveryAddress={t('delivery_address')}
         date="22/4/2022"
         method="Courier"
-        address="
-        [Full name], [Company Name]
-        [Address Line 1],[Address Line 2]
-        [Area], [District], [City / Country]
-        "
+        address="[Full name], [Company Name][Address Line 1],[Address Line 2][Area], [District], [City / Country]"
         />
         <CategoriesTitleHeader title={t('payment_details')} />
         <OrderDetailsComponent 
@@ -116,8 +112,9 @@ const styles = ScaledSheet.create({
     marginTop: '5@s',
   },
   borderBottom:{
-    borderBottomWidth:20,
-    borderBottomColor:colors.offWhiteColor
+    borderTopWidth:30,
+    borderTopColor:colors.offWhiteColor,
+    paddingBottom:'50@s'
   }
 });
 

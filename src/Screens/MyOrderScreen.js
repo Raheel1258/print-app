@@ -4,7 +4,8 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 
-import {BackArrowHeader, OrdersComponent} from '../Components';
+import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
+import {BackArrowHeader, OrdersComponent,BottomSheetComponent,GreenButton} from '../Components';
 import {colors, fonts} from '../Utils/theme';
 
 const activeOrder = [
@@ -68,7 +69,7 @@ const completedOrder = [
   },
 ];
 
-const MyOrderScreen = ({navigate,goBack}) => {
+const MyOrderScreen = ({navigate,goBack,focused,setFocused,orderRBSheet}) => {
   const {t} = useTranslation();
   const layout = useWindowDimensions();
 
@@ -124,13 +125,51 @@ const MyOrderScreen = ({navigate,goBack}) => {
 
   return (
     <View style={styles.container}>
-      <BackArrowHeader goBack={goBack} title={t('my_orders')} borderBottomWidth={0} />
+      <BackArrowHeader arrow={false} goBack={goBack} title={t('my_orders')} borderBottomWidth={0} />
       <TabView
         renderTabBar={renderTabBar}
         navigationState={{index, routes}}
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{width: layout.width}}
+      />
+            <BottomSheetComponent
+        childern={
+          <>
+          <View style={styles.logoWrapper}>
+          <AuthenticationLogo/>
+          </View>
+          <View style={styles.signinButtonWrapper}>
+            <GreenButton
+            backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+            color={focused ? colors.whiteColor : colors.greenColor}
+            borderWidth={2}
+              title={t('signup_text')}
+              onPress={() => {
+                navigate('auth',{next: 'signup'});
+                setFocused(true);
+              }}
+            />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+            <GreenButton
+              title={t('sheet_login_in')}
+              backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+              color={focused ? colors.greenColor : colors.whiteColor}
+              borderWidth={2}
+              onPress={() => {
+                navigate('auth',{next: 'signin'});
+                setFocused(false);
+              }}
+            />
+            </View>
+          </>
+        }
+        languageTitle={t('Signup_today')}
+        note={false}
+        refRBSheet={orderRBSheet}
+        height={420}
+        onClose={false}
       />
     </View>
   );
@@ -170,6 +209,13 @@ const styles = ScaledSheet.create({
   },
   flatlistContainer: {
     paddingBottom: '50@s',
+  },
+  logoWrapper:{
+    alignItems:'center',
+    marginVertical:'15@s'
+  },
+  signinButtonWrapper:{
+    marginTop:'20@s'
   },
 });
 

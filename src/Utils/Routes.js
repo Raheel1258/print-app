@@ -42,6 +42,7 @@ const Stack = createStackNavigator();
 const Auth = createStackNavigator();
 const Home = createStackNavigator();
 const Account = createStackNavigator();
+const Order = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -113,41 +114,19 @@ const App = () => {
         component={ActivityContainer}
         options={{headerShown: false}}
       />
-       <Stack.Screen
-        name="signin"
-        component={SigninContainer}
+      <Stack.Screen
+        name="auth"
+        component={AuthStack}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
 };
 
-const HomeStack = () => {
+const AuthStack = (props) => {
+  const r = props?.route?.params?.next;
   return (
-    <Home.Navigator initialRouteName="home">
-      <Home.Screen
-       name="home"
-       component={HomeContainer}
-       options={{headerShown: false}}
-      />
-      <Home.Screen
-       name="productsListing"
-       component={ProductsListingContainer}
-       options={{headerShown: false}}
-      />
-      <Home.Screen
-         name="singleProduct"
-         component={SingleProductContainer}
-         options={{headerShown: false}}
-      />
-    </Home.Navigator>
-  );
-
-}
-
-const AuthStack = () => {
-  return (
-    <Auth.Navigator initialRouteName="routeChecking">
+    <Auth.Navigator initialRouteName={r? r: "routeChecking"}>
       <Auth.Screen
         name="routeChecking"
         component={RouteCheckingContainer}
@@ -183,6 +162,55 @@ const AuthStack = () => {
   );
 };
 
+const HomeStack = () => {
+  return (
+    <Home.Navigator initialRouteName="home">
+      <Home.Screen
+        name="home"
+        component={HomeContainer}
+        options={{headerShown: false}}
+      />
+      <Home.Screen
+        name="productsListing"
+        component={ProductsListingContainer}
+        options={{headerShown: false}}
+      />
+      <Home.Screen
+        name="singleProduct"
+        component={SingleProductContainer}
+        options={{headerShown: false}}
+      />
+       <Home.Screen
+        name="authTest"
+        component={AuthStack}
+        options={{headerShown: false}}
+      />
+    </Home.Navigator>
+  );
+};
+
+
+const OrderStack = () => {
+  return (
+    <Order.Navigator initialRouteName="myOrder">
+      <Order.Screen
+        name="myOrder"
+        component={MyOrderContainer}
+        options={{headerShown: false}}
+      />
+      <Order.Screen
+        name="myOrdersList"
+        component={MyOrdersListContainer}
+        options={{headerShown: false}}
+      />
+    <Order.Screen
+        name="Home"
+        component={App}
+        options={{headerShown: false}}
+      />
+    </Order.Navigator>
+  );
+};
 
 const AccountStack = () => {
   return (
@@ -195,6 +223,11 @@ const AccountStack = () => {
       <Account.Screen
         name="accountDetail"
         component={AccountDetailContainer}
+        options={{headerShown: false}}
+      />
+      <Account.Screen
+        name="Home"
+        component={App}
         options={{headerShown: false}}
       />
     </Account.Navigator>
@@ -294,8 +327,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="myorder"
-        component={MyOrderContainer}
+        name="orderStack"
+        component={OrderStack}
       />
 
       <Tab.Screen
@@ -348,7 +381,7 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="account"
+        name="accountStack"
         component={AccountStack}
       />
     </Tab.Navigator>

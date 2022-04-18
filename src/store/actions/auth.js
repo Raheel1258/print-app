@@ -96,7 +96,7 @@ export const signup = (data, navigation, setAnimation) => {
     return  async(dispatch) => {
         console.log("signup", data);
         setAnimation(true);
-        //await Storage.storeData('token', "123");
+        await Storage.storeData('token', "123");
         Toast.show({
             type: 'success',
             text1: 'You are successfully signup in',
@@ -147,6 +147,46 @@ export const forgotPassword = (data, navigation, setAnimation) => {
         // 	.catch((err) => {
         // 		console.log('forgot password', err)
         //      dispatch(loading(false))
+        // 		Toast.show({
+        // 			type: 'error',
+        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
+        // 		});
+        // 	});
+
+    }
+}
+
+
+export const logout = (navigation, setAnimation) => {
+    console.log("logout")
+    return  async(dispatch) => {
+        setAnimation(true);
+        await Storage.removeData('token');
+        Toast.show({
+            type: 'success',
+            text1: 'You are logout',
+        });
+        navigation.navigate('auth',{next: 'signin'});
+        // navigation.reset({
+        //     index: 0,
+        //     routes: [{
+        //         name: 'authStack'
+        //     }]
+        // })
+        setAnimation(false);
+        dispatch(setUserSignup(data));
+        // axios
+        // 	.post(`${Api}/user/signup`, data)
+        // 	.then(async (res) => {
+        // 		Toast.show({
+        // 			type: 'success',
+        // 			text1: 'You are successfully signed up'
+        // 		})
+        // 		navigation.navigate('LogIn')
+        // 		dispatch(setUserSignup(res));
+        // 	})
+        // 	.catch((err) => {
+        // 		console.log('signup err', err)
         // 		Toast.show({
         // 			type: 'error',
         // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',

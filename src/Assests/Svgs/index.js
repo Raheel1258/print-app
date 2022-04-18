@@ -31,6 +31,7 @@ import DeliveryIcon from './DeliveryIcon';
 import OrderCancelledIcon from './OrderCancelledIcon';
 import OrderPicupIcon from './OrderPicupIcon';
 import PrintingIcon from './PrintingIcon';
+import AuthenticationLogo from './AuthenticationLogo';
 
 export {
   BrowseActiveIcon,
@@ -65,5 +66,6 @@ export {
   DeliveryIcon,
   OrderCancelledIcon,
   OrderPicupIcon,
-  PrintingIcon
+  PrintingIcon,
+  AuthenticationLogo
 };

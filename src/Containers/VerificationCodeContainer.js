@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { forgotPassword } from '../store/actions/auth';
+import { verificationOptCode } from '../store/actions/auth';
 import Toast from 'react-native-toast-message';
 
 import VerificationCodeScreen from '../Screens/VerificationCodeScreen';
@@ -20,8 +20,8 @@ const VerificationCodeContainer = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const [forgotPasswordData, setForgotPasswordData] = useState({
-    email: '',
+  const [verificationCode, setVerificationCode] = useState({
+    optCode: '',
   });
 
   const handleChange = (name, value) => {
@@ -36,10 +36,9 @@ const VerificationCodeContainer = () => {
     navigation.goBack();
   };
 
-  const handleForgotPassword = (values) => {
-    console.log("forgot password" , values);
-    dispatch(forgotPassword(values, navigation, setAnimation));
-    toggleModal();
+  const handleVerificationCode = (values) => {
+    console.log("verification code from handler" , values);
+    dispatch(verificationOptCode(values, navigation, setAnimation));
     // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     // if (
     //   forgotPasswordData?.email.length <=0
@@ -65,9 +64,8 @@ const VerificationCodeContainer = () => {
   return (
     <View style={styles.container}>
       <VerificationCodeScreen
-      handleChange={handleChange}
-      handleForgotPassword={handleForgotPassword}
-      forgotPasswordData={forgotPasswordData}
+      handleVerificationCode={handleVerificationCode}
+      verificationCode={verificationCode}
       animation={animation}
       isModalVisible={isModalVisible}
       toggleModal={toggleModal} 

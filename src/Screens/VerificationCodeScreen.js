@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import {Formik} from 'formik';
-import {forgotPasswordValidationSchema} from '../Utils/validationSchema';
+import {verificationCodeSchema} from '../Utils/validationSchema';
 
 import {
   BackArrowHeader,
@@ -13,8 +13,11 @@ import {
 import {colors, fonts} from '../Utils/theme';
 
 const VerificationCodeScreen = ({
+  animation,
   navigate,
   goBack,
+  handleVerificationCode,
+  verificationCode,
 }) => {
   const {t} = useTranslation();
   return (
@@ -22,20 +25,31 @@ const VerificationCodeScreen = ({
       <BackArrowHeader goBack={goBack} title={t('verification_code')} />
       <View style={styles.container}>
         <ScrollView>
-          <Text style={styles.emailDescription}>
-            {t('verification_description')}
-          </Text>
-          <InputTextField
-            title={t('verification_code')}
-            keyboardType="phone-pad"
-            secureTextEntry={false}
-          />
-          <View style={styles.buttonWrapper}>
-            <GreenButton
-            onPress={() => navigate("resetPassword")}
-              title={t('reset_password')}
-            />
-          </View>
+        <Formik initialValues={verificationCode} validationSchema={()=>verificationCodeSchema(t)} onSubmit={(values) => handleVerificationCode(values)}>
+            {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
+              const { optCode } = values;
+              return <>
+                 <Text style={styles.emailDescription}>{t('verification_description')}</Text>
+                <InputTextField
+                  value={optCode}
+                  error={touched.optCode && errors.optCode}
+                  title={t('verification_code')}
+                  keyboardType="phone-pad"
+                  name="optCode"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('optCode')}
+                  onBlur={handleBlur('optCode')}
+                />
+                <View style={styles.buttonWrapper}>
+                <GreenButton
+                  onPress={handleSubmit}
+                  title={t('reset_password')}
+                  animation={animation}
+                  />
+                </View>    
+              </>
+            }}
+          </Formik>
         </ScrollView>
       </View>
     </>

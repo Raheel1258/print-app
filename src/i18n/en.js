@@ -193,6 +193,8 @@
     account_text: 'Account',
     sheet_login_in: 'log in',
     Signup_today: 'Sign up today to place your printing order',
-    you_signed_out: 'You are now signed out'
+    you_signed_out: 'You are now signed out',
+    //<=Verification screen, validation Messages=>
+    opt_required:"Verification code is required"
   },
 };

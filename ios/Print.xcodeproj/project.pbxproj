@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PrintTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PrintTests.m */; };
+		090CC076280E8EA4005A8248 /* libreact-native-splash-screen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 090CC075280E8EA4005A8248 /* libreact-native-splash-screen.a */; };
+		09E13F70280EA9050048169A /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E13F6F280EA9050048169A /* LaunchScreen.png */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -35,6 +37,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PrintTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrintTests.m; sourceTree = "<group>"; };
 		028DA8F91790B1108E214692 /* Pods-Print.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Print.debug.xcconfig"; path = "Target Support Files/Pods-Print/Pods-Print.debug.xcconfig"; sourceTree = "<group>"; };
+		090CC075280E8EA4005A8248 /* libreact-native-splash-screen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-splash-screen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09E13F6F280EA9050048169A /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen.png; path = ../../../Downloads/LaunchScreen.png; sourceTree = "<group>"; };
 		118F40B9232049D1883F786E /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Roman.otf"; path = "../src/Assests/Fonts/AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Print.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Print.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Print/AppDelegate.h; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090CC076280E8EA4005A8248 /* libreact-native-splash-screen.a in Frameworks */,
 				E9A59047C72C4E8AEFE1E0A6 /* libPods-Print.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +108,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				09E13F6F280EA9050048169A /* LaunchScreen.png */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = Print;
@@ -111,6 +117,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				090CC075280E8EA4005A8248 /* libreact-native-splash-screen.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				584B1076CF99E237A1C077DF /* libPods-Print.a */,
 				55EA04F7DF9BF99F643BDC95 /* libPods-Print-PrintTests.a */,
@@ -274,6 +281,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C979ECDC04434373A8D84347 /* AvenirLTStd-Black.otf in Resources */,
 				90BC3EF9B7BF4BDFB80E43FD /* AvenirLTStd-Book.otf in Resources */,
+				09E13F70280EA9050048169A /* LaunchScreen.png in Resources */,
 				2818BF5404CD4616BAE071D6 /* AvenirLTStd-Roman.otf in Resources */,
 				F803B86E57EE4723BD08CD7A /* AvenirNextLTPro-Heavy.otf in Resources */,
 			);

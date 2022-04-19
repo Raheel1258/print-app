@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text,ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
@@ -31,7 +31,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
                   onBlur={handleBlur('email')}
                 />
                 <View style={styles.buttonWrapper}>
-                  <GreenButton onPress={() => navigate("verificationCode")} title={t('send_verification_code')} />
+                  <GreenButton onPress={handleSubmit} animation={animation} title={t('send_verification_code')} />
                 </View>
                 <VerificationModal
                 title={t('email_us')}

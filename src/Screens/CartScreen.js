@@ -28,10 +28,14 @@ const DATA = [
   {
     id: '1',
     image: PremiumBusinessCard,
+    edit: 'Edit',
+    remove: 'Remove',
   },
   {
     id: '2',
     image: SecondBusinessCard,
+    edit: 'Edit',
+    remove: 'Remove',
   },
 ];
 
@@ -56,11 +60,12 @@ const CartScreen = ({
   authRBSheet,
   focused,
   setFocused,
+  goBack
 }) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({item, index}) => (
-    <MyCartComponent image={item.image} index={index} length={DATA?.length} />
+    <MyCartComponent image={item.image} edit={item.edit} remove={item.remove} index={index} length={DATA?.length} />
   );
   return (
     <View style={styles.container}>
@@ -69,6 +74,7 @@ const CartScreen = ({
           arrow={false}
           title={t('cart_text')}
           borderBottomWidth={0}
+          goBack={goBack}
         />
         <CategoriesTitleHeader title={t('my_cart')} />
         <FlatList

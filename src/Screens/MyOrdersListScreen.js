@@ -28,7 +28,7 @@ const DATA = [
 const MyOrdersListScreen = ({goBack}) => {
   const {t} = useTranslation();
   const renderItem = ({item, index}) => (
-    <MyCartComponent image={item.image} index={index} length={DATA?.length} />
+    <MyCartComponent fontFamily={fonts.avenir_regular} image={item.image} index={index} length={DATA?.length} />
   );
   return (
     <View style={styles.container}>

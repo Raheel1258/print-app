@@ -77,6 +77,11 @@ const CartContainer = () => {
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
+
+  const goBack = () => {
+    navigation.goBack();
+  };
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -105,6 +110,7 @@ const CartContainer = () => {
         userToken={userToken}
         focused={focused}
         setFocused={setFocused}
+        goBack={goBack}
       />
     </View>
   );

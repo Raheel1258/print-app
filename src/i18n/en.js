@@ -153,7 +153,7 @@
     new_credit_card: '+ New credit card',
     thankyou_text: 'Thankyou',
     order_refrence: 'Order ref: PP202203-10642',
-    empty_cart: 'cart is empty',
+    empty_cart: 'Cart is empty',
     full_name: 'Full Name',
  //<=Cart Screen=>
     my_orders: 'My Orders',
@@ -172,7 +172,7 @@
  //<=Change Password=>
     change_password: 'Change password',   
     current_password: 'Current Password',
-    password_changed: ' Password Changed!',
+    password_changed: ' Password changed!',
     successfully_changed_password: 'Your password has been changed successfully',
  //<=Change Password=>  
     activity_text: 'Activity',

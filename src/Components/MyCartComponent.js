@@ -4,12 +4,13 @@ import {ScaledSheet} from 'react-native-size-matters';
 import { colors,fonts } from '../Utils/theme';
 
 
-const MyCartComponent = ({image, index, length}) => {
+const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit, remove }) => {
   return (
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
       <Image style={styles.cardImage} source={image} />
       <View>
-        <Text style={styles.cardTitle}>Premium business name card HK$ 85</Text>
+        <Text style={{...styles.cardTitle,fontFamily:fontFamily}}>Premium business name card</Text>
+        <Text style={styles.cardTitle}>HK$ 85</Text>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
           <Text style={styles.quantityText} numberOfLines={1}>100</Text>
@@ -26,14 +27,16 @@ const MyCartComponent = ({image, index, length}) => {
           <Text style={styles.quantityText}>Folding: </Text>
           <Text style={styles.quantityText} numberOfLines={1}>Half fold</Text>
         </View>
+     
         <View style={styles.quantityContainer}>
           <TouchableOpacity style={styles.paddingWrapper}>
-          <Text style={styles.editText}>Edit</Text>
+          <Text style={styles.editText}>{edit}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.paddingWrapper}>
-          <Text style={styles.editText}>Remove</Text>
+          <Text style={styles.editText}>{remove}</Text>
           </TouchableOpacity>
         </View>
+    
       </View>
     </View>
   );
@@ -66,6 +69,15 @@ const styles = ScaledSheet.create({
     textAlign: 'left',
     color: colors.blackColor,
     width:'240@s'
+  },
+  OrderCardTitle:{
+    fontFamily: fonts.avenir_regular,
+    fontSize: '14@s',
+    fontStyle: 'normal',
+    lineHeight: '20@s',
+    letterSpacing: '0.6@s',
+    textAlign: 'left',
+    color: colors.blackColor,
   },
   quantityText:{
     fontFamily: fonts.avenir_light,

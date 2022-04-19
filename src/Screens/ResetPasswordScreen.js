@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import {Formik} from 'formik';
-import {forgotPasswordValidationSchema} from '../Utils/validationSchema';
+import {resetPasswordSchema} from '../Utils/validationSchema';
 
 import {
   BackArrowHeader,
@@ -14,34 +14,52 @@ import {
 } from '../Components';
 import {colors, fonts} from '../Utils/theme';
 
-const ResetPasswordScreen = ({goBack, toggleModal, isModalVisible, modalButton}) => {
+const ResetPasswordScreen = ({goBack, toggleModal, isModalVisible, modalButton, resetPassword, animation, handleResetPassword}) => {
   const {t} = useTranslation();
   return (
     <>
       <BackArrowHeader goBack={goBack} title={t('reset_password')} />
       <View style={styles.container}>
-        <ScrollView>
-          <InputTextField
-            title={t('new_password')}
-            keyboardType="default"
-            secureTextEntry={false}
-          />
-          <InputTextField
-            title={t('confirm_new_password')}
-            keyboardType="default"
-            secureTextEntry={false}
-          />
-          <View style={styles.buttonWrapper}>
-            <GreenButton onPress={toggleModal} title={t('confirm_text')} />
-          </View>
-          <VerificationModal
-            title={t('password_updated')}
-            description={t('successfully_description')}
-            modalButton={t('signin_text')}
-            isModalVisible={isModalVisible}
-            toggleModal={toggleModal}
-          />
-        </ScrollView>
+      <Formik initialValues={resetPassword} validationSchema={()=>resetPasswordSchema(t)} onSubmit={(values) => handleResetPassword(values)}>
+            {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
+              const { newPassword, confirmPassword } = values;
+              return <>
+                <InputTextField
+                  value={newPassword}
+                  error={touched.newPassword && errors.newPassword}
+                  title={t('new_password')}
+                  keyboardType="default"
+                  secureTextEntry={true}
+                  name="newPassword"
+                  onChangeText={handleChange('newPassword')}
+                  onBlur={handleBlur('newPassword')}
+                />
+
+                <InputTextField
+                  value={confirmPassword}
+                  error={touched.confirmPassword && errors.confirmPassword}
+                  title={t('confirm_new_password')}
+                  keyboardType="default"
+                  secureTextEntry={true}
+                  name="confirmPassword"
+                  onChangeText={handleChange('confirmPassword')}
+                  onBlur={handleBlur('confirmPassword')}
+                />
+
+                <View style={styles.buttonWrapper}>
+                  <GreenButton onPress={handleSubmit} animation={animation} title={t('confirm_text')} />
+                </View>
+
+                <VerificationModal
+                  title={t('password_updated')}
+                  description={t('successfully_description')}
+                  modalButton={t('signin_text')}
+                  isModalVisible={isModalVisible}
+                  toggleModal={toggleModal}
+                />   
+              </>
+            }}
+          </Formik>
       </View>
     </>
   );

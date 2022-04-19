@@ -184,6 +184,34 @@ export const verificationOptCode = (data, navigation, setAnimation) => {
 }
 
 
+export const resetPasswordAction = (data, navigation, setAnimation) => {
+    return (dispatch) => {
+        console.log("new password", data);
+        navigation.navigate('signin');
+        //navigation.navigate('verificationCode');
+        //setAnimation(true);
+        // axios
+        // 	.post(`${Api}/user/forgetPassword`, data)
+        // 	.then(async (res) => {
+        // 		Toast.show({
+        // 			type: 'success',
+        // 			text1: 'You are successfully sent email'
+        // 		})
+        //        dispatch(loading(false));
+        // 	})
+        // 	.catch((err) => {
+        // 		console.log('forgot password', err)
+        //      dispatch(loading(false))
+        // 		Toast.show({
+        // 			type: 'error',
+        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
+        // 		});
+        // 	});
+
+    }
+}
+
+
 export const logout = (navigation, setAnimation) => {
     console.log("logout")
     return  async(dispatch) => {

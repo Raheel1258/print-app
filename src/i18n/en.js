@@ -187,6 +187,7 @@
     current_password: 'Current Password',
     password_changed: ' Password Changed!',
     successfully_changed_password: 'Your password has been changed successfully',
+    confirm_password_required:'Confirm password is also required',
  //<=Change Password=>  
     activity_text: 'Activity',
     order_text: 'Order',

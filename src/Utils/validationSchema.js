@@ -22,7 +22,6 @@ export const signupValidationSchema = (t) => {
     }))
 }
 
-
 export const forgotPasswordValidationSchema = (t) => {
     return (Yup.object({
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
@@ -30,10 +29,17 @@ export const forgotPasswordValidationSchema = (t) => {
 
 }
 
-
 export const verificationCodeSchema = (t) => {
     return (Yup.object({
         optCode: Yup.string().required(t('opt_required')),
     }))
 
+}
+
+
+export const resetPasswordSchema = (t) => {
+    return (Yup.object({
+        newPassword: Yup.string().min(5, t('min_required_5')).required(t('password_required')),
+        confirmPassword: Yup.string().required(t('confirm_password_required'))
+    }))
 }

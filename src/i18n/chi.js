@@ -177,12 +177,14 @@ export const chi = {
     current_password: '当前密码',
     password_changed: '密码已更改！',
     successfully_changed_password: '你已经成功更改密码',
+    confirm_password_required:'还需要确认密码',
     //<=Change Password=>
     activity_text: '活动',
     order_text: '命令',
     account_text: '帐户',
     sheet_login_in: '登录',
     Signup_today: '立即注册下达打印订单',
-    you_signed_out: '您现在已退出'
+    you_signed_out: '您现在已退出',
+    opt_required:"需要验证码"
   },
 };

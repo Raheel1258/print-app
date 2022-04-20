@@ -189,7 +189,7 @@
     successfully_changed_password: 'Your password has been changed successfully',
  //<=Change Password=>  
     activity_text: 'Activity',
-    order_text: 'Order',
+    order_text: 'Orders',
     account_text: 'Account',
     sheet_login_in: 'log in',
     Signup_today: 'Sign up today to place your printing order',

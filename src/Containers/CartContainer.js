@@ -1,13 +1,13 @@
-import React, {useState,useRef, useEffect} from 'react';
-import {View, BackHandler} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, BackHandler } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
 import CartScreen from '../Screens/CartScreen';
-import {colors} from '../Utils/theme';
+import { colors } from '../Utils/theme';
 
 const CartContainer = () => {
   const addAddressRBSheet = useRef();
@@ -22,39 +22,39 @@ const CartContainer = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [userToken, setUserToken] = useState(null);
 
-  const [data , setData] = useState([
+  const [data, setData] = useState([
     {
       id: '1',
       title: 'Karen Chan',
-      addressLineOne:'23 Wings IIIB, 19 Tong Sun Street,',
-      addressLineTwo:'Ma On Shan, New Territories, Hong Kong',
+      addressLineOne: '23 Wings IIIB, 19 Tong Sun Street,',
+      addressLineTwo: 'Ma On Shan, New Territories, Hong Kong',
       selected: true
     },
     {
       id: '2',
       title: '[Full Name]',
-      companyName:'[Company Name]',
-      addressLineOne:'[Address Line 1], [Address Line 2]',
-      addressLineTwo:'[Area], [District], [City/Country]',
+      companyName: '[Company Name]',
+      addressLineOne: '[Address Line 1], [Address Line 2]',
+      addressLineTwo: '[Area], [District], [City/Country]',
       selected: false
     },
   ]);
 
-  const [cardData , setCardData] = useState([
+  const [cardData, setCardData] = useState([
     {
       id: '1',
       title: 'Mastercard (9238)',
-      addressLineOne:'Peter Leung',
-      addressLineTwo:'Exp: 09/23',
-      children:<MasterCard/>,
+      addressLineOne: 'Peter Leung',
+      addressLineTwo: 'Exp: 09/23',
+      children: <MasterCard />,
       selected: true
     },
     {
       id: '2',
       title: 'Visa (1628)',
-      addressLineOne:'Peter Leung',
-      addressLineTwo:'Exp: 09/23',
-      children:<VisaCard/>,
+      addressLineOne: 'Peter Leung',
+      addressLineTwo: 'Exp: 09/23',
+      children: <VisaCard />,
       selected: false
     },
   ]);
@@ -62,16 +62,16 @@ const CartContainer = () => {
   const isFocused = useIsFocused();
 
 
-  useEffect(()=>{
-    
-  isFocused && Storage.retrieveData('token').then((token)=>{
-    setUserToken(token);
-    !token && authRBSheet.current.open()
-  });
-  },[isFocused])
+  useEffect(() => {
+
+    isFocused && Storage.retrieveData('token').then((token) => {
+      setUserToken(token);
+      !token && authRBSheet.current.open()
+    });
+  }, [isFocused])
 
   useEffect(() => {
-    console.log('this is all the hell',authRBSheet);
+    console.log('this is all the hell', authRBSheet);
   }, [authRBSheet]);
 
   const navigate = (routeName, data = {}) => {
@@ -85,7 +85,7 @@ const CartContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  
+
   return (
     <View style={styles.container}>
       <CartScreen
@@ -102,8 +102,8 @@ const CartContainer = () => {
         setCardData={setCardData}
         setData={setData}
         navigate={navigate}
-        delivery = {delivery}
-        setDelivery = {setDelivery}
+        delivery={delivery}
+        setDelivery={setDelivery}
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
         authRBSheet={authRBSheet}

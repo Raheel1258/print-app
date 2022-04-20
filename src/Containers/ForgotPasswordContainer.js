@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { types } from '@babel/core';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +8,7 @@ import { forgotPassword } from '../store/actions/auth';
 import Toast from 'react-native-toast-message';
 
 import ForgotPasswordScreen from '../Screens/ForgotPasswordScreen';
-import {colors} from '../Utils/theme';
+import { colors } from '../Utils/theme';
 
 const ForgotPasswordContainer = () => {
   const navigation = useNavigation();
@@ -25,7 +25,7 @@ const ForgotPasswordContainer = () => {
   });
 
   const handleChange = (name, value) => {
-    setForgotPasswordData({...forgotPassword, [name]: value});
+    setForgotPasswordData({ ...forgotPassword, [name]: value });
   };
 
   const navigate = (routeName, data = {}) => {
@@ -37,7 +37,7 @@ const ForgotPasswordContainer = () => {
   };
 
   const handleForgotPassword = (values) => {
-    console.log("forgot password" , values);
+    console.log("forgot password", values);
     dispatch(forgotPassword(values, navigation, setAnimation));
     toggleModal();
     // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -61,26 +61,26 @@ const ForgotPasswordContainer = () => {
     //   toggleModal();
     // }
   };
-  
+
   return (
     <View style={styles.container}>
       <ForgotPasswordScreen
-      handleChange={handleChange}
-      handleForgotPassword={handleForgotPassword}
-      forgotPasswordData={forgotPasswordData}
-      animation={animation}
-      isModalVisible={isModalVisible}
-      toggleModal={toggleModal} 
-      navigate={navigate}
-      goBack={goBack}
+        handleChange={handleChange}
+        handleForgotPassword={handleForgotPassword}
+        forgotPasswordData={forgotPasswordData}
+        animation={animation}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        navigate={navigate}
+        goBack={goBack}
       />
     </View>
   );
 };
 
-const styles = ScaledSheet.create ({
-  container:{
-    flex:1,
+const styles = ScaledSheet.create({
+  container: {
+    flex: 1,
     backgroundColor: colors.whiteColor,
   },
 });

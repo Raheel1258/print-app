@@ -1,23 +1,23 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import EmptyIcon from '../Assests/Svgs/EmptyIcon';
-import {CartNotifyComponent} from '../Components';
-import {colors, fonts} from '../Utils/theme';
+import { CartNotifyComponent } from '../Components';
+import { colors, fonts } from '../Utils/theme';
 
 const EmptyCartScreen = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.orderReceived}>{t('cart_text')}</Text>
       </View>
       <CartNotifyComponent
-      title={t('empty_cart')}
-      description='Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta.'
-      childern={<EmptyIcon/>}
+        title={t('empty_cart')}
+        description='Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta.'
+        childern={<EmptyIcon />}
       />
     </View>
   );

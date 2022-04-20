@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text,FlatList} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, FlatList } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
-import  AuthenticationLogo  from '../Assests/Svgs/AuthenticationLogo';
-import {BackArrowHeader, NotificationActivity,BottomSheetComponent,GreenButton} from '../Components';
-import {colors, fonts} from '../Utils/theme';
+import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
+import { BackArrowHeader, NotificationActivity, BottomSheetComponent, GreenButton } from '../Components';
+import { colors, fonts } from '../Utils/theme';
 
 const DATA = [
   {
@@ -23,9 +23,9 @@ const DATA = [
   },
 ];
 
-const ActivityScreen = ({goBack,focused,setFocused,activityRBSheet,navigate}) => {
-  const {t} = useTranslation();
-  const renderItem = ({item}) => <NotificationActivity date={item.date} readMark={item.readMark} />;
+const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate }) => {
+  const { t } = useTranslation();
+  const renderItem = ({ item }) => <NotificationActivity date={item.date} readMark={item.readMark} />;
   return (
     <View style={styles.container}>
       <BackArrowHeader arrow={false} goBack={goBack} title={t('activity_text')} borderBottomWidth={0} />
@@ -35,37 +35,37 @@ const ActivityScreen = ({goBack,focused,setFocused,activityRBSheet,navigate}) =>
         keyExtractor={item => item.id}
         contentContainerStyle={styles.flatlistContainer}
       />
-            <BottomSheetComponent
+      <BottomSheetComponent
         childern={
           <>
-          <View style={styles.logoWrapper}>
-          <AuthenticationLogo/>
-          </View>
-          <View style={styles.signinButtonWrapper}>
-            <GreenButton
-            backgroundColor={focused ? colors.greenColor : colors.whiteColor}
-            color={focused ? colors.whiteColor : colors.greenColor}
-            borderWidth={2}
-              title={t('signup_text')}
-              onPress={() => {
-                activityRBSheet.current.close();
-                navigate('auth',{next: 'signup'});
-                setFocused(true);
-              }}
-            />
+            <View style={styles.logoWrapper}>
+              <AuthenticationLogo />
             </View>
             <View style={styles.signinButtonWrapper}>
-            <GreenButton
-              title={t('sheet_login_in')}
-              backgroundColor={focused ? colors.whiteColor : colors.greenColor}
-              color={focused ? colors.greenColor : colors.whiteColor}
-              borderWidth={2}
-              onPress={() => {
-                activityRBSheet.current.close();
-                navigate('auth',{next: 'signin'});
-                setFocused(false);
-              }}
-            />
+              <GreenButton
+                backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+                color={focused ? colors.whiteColor : colors.greenColor}
+                borderWidth={2}
+                title={t('signup_text')}
+                onPress={() => {
+                  activityRBSheet.current.close();
+                  navigate('auth', { next: 'signup' });
+                  setFocused(true);
+                }}
+              />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                title={t('sheet_login_in')}
+                backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+                color={focused ? colors.greenColor : colors.whiteColor}
+                borderWidth={2}
+                onPress={() => {
+                  activityRBSheet.current.close();
+                  navigate('auth', { next: 'signin' });
+                  setFocused(false);
+                }}
+              />
             </View>
           </>
         }
@@ -84,15 +84,15 @@ const styles = ScaledSheet.create({
     flex: 1,
     backgroundColor: colors.offWhiteColor,
   },
-  flatlistContainer:{
-    paddingBottom:'60@s'
+  flatlistContainer: {
+    paddingBottom: '60@s'
   },
-  logoWrapper:{
-    alignItems:'center',
-    marginVertical:'15@s'
+  logoWrapper: {
+    alignItems: 'center',
+    marginVertical: '15@s'
   },
-  signinButtonWrapper:{
-    marginTop:'20@s'
+  signinButtonWrapper: {
+    marginTop: '20@s'
   },
 
 });

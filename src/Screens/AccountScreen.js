@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import {
   ImageBackArrowHeader,
@@ -16,10 +16,10 @@ import AccountIcon from '../Assests/Svgs/AccountBlackIcon';
 import FaqsIcon from '../Assests/Svgs/FaqsIcon';
 import LanguageIcon from '../Assests/Svgs/LanguageIcon';
 import ShuffleIcon from '../Assests/Svgs/ShuffleIcon';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
-const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBSheet,focused,setFocused,isModalVisible,toggleModal}) => {
-  const {t} = useTranslation();
+const AccountScreen = ({ navigate, goBack, refRBSheet, logoutHandler, accountRBSheet, focused, setFocused, isModalVisible, toggleModal }) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <ImageBackArrowHeader
@@ -35,8 +35,8 @@ const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBShe
             title={t('my_details')}
             Children={<AccountIcon />}
           />
-          <UploadFileComponent 
-           title={t('faqs_text')} Children={<FaqsIcon />} />
+          <UploadFileComponent
+            title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}
             title={t('language_text')}
@@ -45,16 +45,16 @@ const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBShe
           <BottomSheetComponent
             height={250}
             refRBSheet={refRBSheet}
-            languageTitle = {t('select_language')}
-            childern = {
-            <>
-            <GreenButton title={t('english_text')}/>
-            <View style={styles.buttonWrapper}>
-            <GreenButton borderWidth={2} backgroundColor={colors.whiteColor} color={colors.greenColor} title={t('chinese_text')}/>
-            </View>
-            </>}
+            languageTitle={t('select_language')}
+            childern={
+              <>
+                <GreenButton title={t('english_text')} />
+                <View style={styles.buttonWrapper}>
+                  <GreenButton borderWidth={2} backgroundColor={colors.whiteColor} color={colors.greenColor} title={t('chinese_text')} />
+                </View>
+              </>}
           />
-          <UploadFileComponent 
+          <UploadFileComponent
             onPress={toggleModal}
             title={t('sign_out')}
             Children={<ShuffleIcon />}
@@ -68,34 +68,34 @@ const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBShe
       <BottomSheetComponent
         childern={
           <>
-          <View style={styles.logoWrapper}>
-          <AuthenticationLogo/>
-          </View>
-          <View style={styles.signinButtonWrapper}>
-            <GreenButton
-            backgroundColor={focused ? colors.greenColor : colors.whiteColor}
-            color={focused ? colors.whiteColor : colors.greenColor}
-            borderWidth={2}
-              title={t('signup_text')}
-              onPress={() => {
-                accountRBSheet.current.close();
-                navigate('auth',{next: 'signup'});
-                setFocused(true);
-              }}
-            />
+            <View style={styles.logoWrapper}>
+              <AuthenticationLogo />
             </View>
             <View style={styles.signinButtonWrapper}>
-            <GreenButton
-              title={t('sheet_login_in')}
-              backgroundColor={focused ? colors.whiteColor : colors.greenColor}
-              color={focused ? colors.greenColor : colors.whiteColor}
-              borderWidth={2}
-              onPress={() => {
-                accountRBSheet.current.close();
-                navigate('auth',{next: 'signin'});
-                setFocused(false);
-              }}
-            />
+              <GreenButton
+                backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+                color={focused ? colors.whiteColor : colors.greenColor}
+                borderWidth={2}
+                title={t('signup_text')}
+                onPress={() => {
+                  accountRBSheet.current.close();
+                  navigate('auth', { next: 'signup' });
+                  setFocused(true);
+                }}
+              />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                title={t('sheet_login_in')}
+                backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+                color={focused ? colors.greenColor : colors.whiteColor}
+                borderWidth={2}
+                onPress={() => {
+                  accountRBSheet.current.close();
+                  navigate('auth', { next: 'signin' });
+                  setFocused(false);
+                }}
+              />
             </View>
           </>
         }
@@ -105,13 +105,13 @@ const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBShe
         height={420}
         onClose={false}
       />
-            <VerificationModal
-            title={t('you_signed_out')}
-            description={t('curabitur_aliquet')}
-            isModalVisible={isModalVisible}
-            toggleModal={toggleModal}
-            aditionalAction={() => logoutHandler()}
-          />
+      <VerificationModal
+        title={t('you_signed_out')}
+        description={t('curabitur_aliquet')}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        aditionalAction={() => logoutHandler()}
+      />
     </View>
   );
 };
@@ -137,15 +137,15 @@ const styles = ScaledSheet.create({
   mailText: {
     color: colors.greenColor,
   },
-  buttonWrapper:{
-    marginTop:'15@s'
+  buttonWrapper: {
+    marginTop: '15@s'
   },
-  logoWrapper:{
-    alignItems:'center',
-    marginVertical:'15@s'
+  logoWrapper: {
+    alignItems: 'center',
+    marginVertical: '15@s'
   },
-  signinButtonWrapper:{
-    marginTop:'20@s'
+  signinButtonWrapper: {
+    marginTop: '20@s'
   },
 });
 

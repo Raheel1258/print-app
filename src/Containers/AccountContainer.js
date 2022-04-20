@@ -1,13 +1,13 @@
-import React, {useRef, useState, useEffect} from 'react';
-import {View} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { View } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import Storage from '../Utils/Storage';
 
-import {logout} from '../store/actions/auth';
+import { logout } from '../store/actions/auth';
 import AccountScreen from '../Screens/AccountScreen';
-import {colors} from '../Utils/theme';
+import { colors } from '../Utils/theme';
 
 const AccountContainer = () => {
   const refRBSheet = useRef();

@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text,ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { forgotPasswordValidationSchema } from '../Utils/validationSchema';
 
 import { BackArrowHeader, InputTextField, GreenButton, VerificationModal } from '../Components';
-import { colors,fonts } from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleForgotPassword, forgotPasswordData, navigate, goBack }) => {
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
       <BackArrowHeader goBack={goBack} title={t('forgot_text')} />
       <ScrollView>
         <View style={styles.container}>
-          <Formik initialValues={forgotPasswordData} validationSchema={()=>forgotPasswordValidationSchema(t)} onSubmit={(values) => handleForgotPassword(values)}>
+          <Formik initialValues={forgotPasswordData} validationSchema={() => forgotPasswordValidationSchema(t)} onSubmit={(values) => handleForgotPassword(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { email } = values;
               return <>
@@ -57,7 +57,7 @@ const styles = ScaledSheet.create({
     marginTop: '20@s',
   },
   emailDescription: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '13@s',
     fontStyle: 'normal',
     // fontWeight: '400',

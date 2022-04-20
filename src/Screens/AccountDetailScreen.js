@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { updatePersonalDetailSchema } from '../Utils/validationSchema';
 
@@ -15,10 +15,10 @@ import {
   AddNewAddressForm,
   AddNewCreditCardForm
 } from '../Components';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
-const AccountDetailScreen = ({goBack, navigate, animation, addAddressRBSheet,addCardetCardRBSheet,personalDetail, handleUpdatedPersonalDetail}) => {
-  const {t} = useTranslation();
+const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail }) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <BackArrowHeader
@@ -30,7 +30,7 @@ const AccountDetailScreen = ({goBack, navigate, animation, addAddressRBSheet,add
       <ScrollView>
 
         <View style={styles.paddingContainer}>
-        <Formik initialValues={personalDetail} validationSchema={()=>updatePersonalDetailSchema(t)} onSubmit={(values) => handleUpdatedPersonalDetail(values)}>
+          <Formik initialValues={personalDetail} validationSchema={() => updatePersonalDetailSchema(t)} onSubmit={(values) => handleUpdatedPersonalDetail(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { firstName, lastName, mobile, email } = values;
               return <>
@@ -89,13 +89,13 @@ const AccountDetailScreen = ({goBack, navigate, animation, addAddressRBSheet,add
                 </TouchableOpacity>
 
                 <View style={styles.buttonWrapper}>
-                <GreenButton
+                  <GreenButton
                     backgroundColor={colors.blackColor}
                     color={colors.whiteColor}
                     title={t('update_text')}
                     animation={animation}
                     onPress={handleSubmit}
-            />
+                  />
                 </View>
               </>
             }}
@@ -147,7 +147,7 @@ const AccountDetailScreen = ({goBack, navigate, animation, addAddressRBSheet,add
           />
           <MyAddresses title="Peter Park" description="Primary" />
         </View>
-        <View style={styles.screenBorderBottom}/>
+        <View style={styles.screenBorderBottom} />
       </ScrollView>
       <BottomSheetComponent
         childern={<AddNewAddressForm />}
@@ -198,11 +198,11 @@ const styles = ScaledSheet.create({
     paddingVertical: '5@s',
     width: '45%',
   },
-  screenBorderBottom:{
-    borderBottomColor:colors.offWhiteColor,
-    borderBottomWidth:'25@s',
-    marginTop:'10@s',
-    marginBottom:'55@s'
+  screenBorderBottom: {
+    borderBottomColor: colors.offWhiteColor,
+    borderBottomWidth: '25@s',
+    marginTop: '10@s',
+    marginBottom: '55@s'
   }
 });
 

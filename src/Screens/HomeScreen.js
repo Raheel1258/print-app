@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ import envelopImage from '../Assests/Images/envelope-image.png';
 import letterheadImage from '../Assests/Images/letterhead-image.png';
 
 import { ImageSlider, AllCategoriesCard } from '../Components';
-import { colors,fonts } from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 const DATA = [
   {
@@ -68,7 +68,7 @@ const DATA = [
 
 
 
-const HomeScreen = ({ categories , homeSliderImages, homeSliderImagesCaptions}) => {
+const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) => {
 
   const [text, setText] = useState([
     'Order your next print in just a few taps',
@@ -79,14 +79,14 @@ const HomeScreen = ({ categories , homeSliderImages, homeSliderImagesCaptions}) 
   // const sliderImages = homeSliderImages[0]?.images; 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
-    <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} item={item}/>
+    <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} item={item} />
   );
   return (
     <>
       {
         categories?.length !== undefined ?
           <>
-            <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions}/>
+            <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions} />
             <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
               <FlatList
@@ -113,7 +113,7 @@ const styles = ScaledSheet.create({
     padding: '15@s',
   },
   printText: {
-    fontFamily:fonts.avenir_next,
+    fontFamily: fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
     // fontWeight: '800',
@@ -126,10 +126,10 @@ const styles = ScaledSheet.create({
   flatlistContainer: {
     paddingBottom: '70@s',
   },
-  loaderContainer:{
+  loaderContainer: {
     flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 

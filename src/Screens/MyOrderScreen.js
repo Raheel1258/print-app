@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, FlatList, useWindowDimensions} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
-import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import { View, FlatList, useWindowDimensions } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
-import {BackArrowHeader, OrdersComponent,BottomSheetComponent,GreenButton} from '../Components';
-import {colors, fonts} from '../Utils/theme';
+import { BackArrowHeader, OrdersComponent, BottomSheetComponent, GreenButton } from '../Components';
+import { colors, fonts } from '../Utils/theme';
 
 const activeOrder = [
   {
@@ -69,12 +69,12 @@ const completedOrder = [
   },
 ];
 
-const MyOrderScreen = ({navigate,goBack,focused,setFocused,orderRBSheet}) => {
-  const {t} = useTranslation();
+const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet }) => {
+  const { t } = useTranslation();
   const layout = useWindowDimensions();
 
-  const renderItem = ({item}) => (
-    <OrdersComponent navigate={navigate}  orderNotify={item.orderNotify} />
+  const renderItem = ({ item }) => (
+    <OrdersComponent navigate={navigate} orderNotify={item.orderNotify} />
   );
 
   const FirstRoute = () => (
@@ -106,8 +106,8 @@ const MyOrderScreen = ({navigate,goBack,focused,setFocused,orderRBSheet}) => {
 
   const [index, setIndex] = React.useState(1);
   const [routes] = React.useState([
-    {key: 'first', title: 'Active'},
-    {key: 'second', title: 'Completed'},
+    { key: 'first', title: 'Active' },
+    { key: 'second', title: 'Completed' },
   ]);
 
   const renderTabBar = props => (
@@ -128,42 +128,42 @@ const MyOrderScreen = ({navigate,goBack,focused,setFocused,orderRBSheet}) => {
       <BackArrowHeader arrow={false} goBack={goBack} title={t('my_orders')} borderBottomWidth={0} />
       <TabView
         renderTabBar={renderTabBar}
-        navigationState={{index, routes}}
+        navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
-        initialLayout={{width: layout.width}}
+        initialLayout={{ width: layout.width }}
       />
-            <BottomSheetComponent
+      <BottomSheetComponent
         childern={
           <>
-          <View style={styles.logoWrapper}>
-          <AuthenticationLogo/>
-          </View>
-          <View style={styles.signinButtonWrapper}>
-            <GreenButton
-            backgroundColor={focused ? colors.greenColor : colors.whiteColor}
-            color={focused ? colors.whiteColor : colors.greenColor}
-            borderWidth={2}
-              title={t('signup_text')}
-              onPress={() => {
-                orderRBSheet.current.close();
-                navigate('auth',{next: 'signup'});
-                setFocused(true);
-              }}
-            />
+            <View style={styles.logoWrapper}>
+              <AuthenticationLogo />
             </View>
             <View style={styles.signinButtonWrapper}>
-            <GreenButton
-              title={t('sheet_login_in')}
-              backgroundColor={focused ? colors.whiteColor : colors.greenColor}
-              color={focused ? colors.greenColor : colors.whiteColor}
-              borderWidth={2}
-              onPress={() => {
-                orderRBSheet.current.close();
-                navigate('auth',{next: 'signin'});
-                setFocused(false);
-              }}
-            />
+              <GreenButton
+                backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+                color={focused ? colors.whiteColor : colors.greenColor}
+                borderWidth={2}
+                title={t('signup_text')}
+                onPress={() => {
+                  orderRBSheet.current.close();
+                  navigate('auth', { next: 'signup' });
+                  setFocused(true);
+                }}
+              />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                title={t('sheet_login_in')}
+                backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+                color={focused ? colors.greenColor : colors.whiteColor}
+                borderWidth={2}
+                onPress={() => {
+                  orderRBSheet.current.close();
+                  navigate('auth', { next: 'signin' });
+                  setFocused(false);
+                }}
+              />
             </View>
           </>
         }
@@ -212,12 +212,12 @@ const styles = ScaledSheet.create({
   flatlistContainer: {
     paddingBottom: '50@s',
   },
-  logoWrapper:{
-    alignItems:'center',
-    marginVertical:'15@s'
+  logoWrapper: {
+    alignItems: 'center',
+    marginVertical: '15@s'
   },
-  signinButtonWrapper:{
-    marginTop:'20@s'
+  signinButtonWrapper: {
+    marginTop: '20@s'
   },
 });
 

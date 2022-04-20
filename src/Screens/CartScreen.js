@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, FlatList, ScrollView} from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import {
   BackArrowHeader,
@@ -21,8 +21,8 @@ import {
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
 import SecondBusinessCard from '../Assests/Images/Premium-business-card-two.png';
-import {colors, fonts} from '../Utils/theme';
-import {NavigationContainer} from '@react-navigation/native';
+import { colors, fonts } from '../Utils/theme';
+import { NavigationContainer } from '@react-navigation/native';
 
 const DATA = [
   {
@@ -62,9 +62,9 @@ const CartScreen = ({
   setFocused,
   goBack
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
-  const renderItem = ({item, index}) => (
+  const renderItem = ({ item, index }) => (
     <MyCartComponent image={item.image} edit={item.edit} remove={item.remove} index={index} length={DATA?.length} />
   );
   return (
@@ -81,7 +81,7 @@ const CartScreen = ({
           data={DATA}
           renderItem={renderItem}
           keyExtractor={item => item.id}
-          contentContainerStyle={{paddingBottom: 0}}
+          contentContainerStyle={{ paddingBottom: 0 }}
         />
         <CategoriesTitleHeader title={t('promo_code')} />
         <PromoCodeInput textValue={textValue} setTextValue={setTextValue} />
@@ -199,7 +199,7 @@ const CartScreen = ({
                 title={t('signup_text')}
                 onPress={() => {
                   authRBSheet.current.close();
-                   navigate('auth',{next: 'signup'});
+                  navigate('auth', { next: 'signup' });
                   setFocused(true);
                 }}
               />
@@ -214,7 +214,7 @@ const CartScreen = ({
                 borderWidth={2}
                 onPress={() => {
                   authRBSheet.current.close();
-                  navigate('auth',{next: 'signin'});
+                  navigate('auth', { next: 'signin' });
                   setFocused(false);
                 }}
               />

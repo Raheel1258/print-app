@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View, FlatList, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { Text, View, FlatList, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import {
   BackArrowHeader,
@@ -12,7 +12,7 @@ import {
 } from '../Components';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
 import SecondBusinessCard from '../Assests/Images/Premium-business-card-two.png';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 const DATA = [
   {
@@ -25,20 +25,20 @@ const DATA = [
   },
 ];
 
-const MyOrdersListScreen = ({goBack}) => {
-  const {t} = useTranslation();
-  const renderItem = ({item, index}) => (
+const MyOrdersListScreen = ({ goBack }) => {
+  const { t } = useTranslation();
+  const renderItem = ({ item, index }) => (
     <MyCartComponent fontFamily={fonts.avenir_regular} image={item.image} index={index} length={DATA?.length} />
   );
   return (
     <View style={styles.container}>
-        <BackArrowHeader
+      <BackArrowHeader
         goBack={goBack}
-          title={t('my_orders')}
-          borderBottomWidth={15}
-          arrow={false}
-          />
-          <ScrollView nestedScrollEnabled={true}>
+        title={t('my_orders')}
+        borderBottomWidth={15}
+        arrow={false}
+      />
+      <ScrollView nestedScrollEnabled={true}>
         <View style={styles.orderRefContainer}>
           <Text style={styles.orderRefText}>Order reference:</Text>
           <Text style={styles.orderRefText}>RHF39284-23</Text>
@@ -48,32 +48,32 @@ const MyOrdersListScreen = ({goBack}) => {
           data={DATA}
           renderItem={renderItem}
           keyExtractor={item => item.id}
-          contentContainerStyle={{paddingBottom: 0}}
+          contentContainerStyle={{ paddingBottom: 0 }}
         />
         <CategoriesTitleHeader title={t('order_details')} />
-        <OrderDetailsComponent 
-        orderDate={t('order_date')}
-        deliveryMethod={t('delivery_method')}
-        deliveryAddress={t('delivery_address')}
-        date="22/4/2022"
-        method="Courier"
-        address="[Full name], [Company Name][Address Line 1],[Address Line 2][Area], [District], [City / Country]"
+        <OrderDetailsComponent
+          orderDate={t('order_date')}
+          deliveryMethod={t('delivery_method')}
+          deliveryAddress={t('delivery_address')}
+          date="22/4/2022"
+          method="Courier"
+          address="[Full name], [Company Name][Address Line 1],[Address Line 2][Area], [District], [City / Country]"
         />
         <CategoriesTitleHeader title={t('payment_details')} />
-        <OrderDetailsComponent 
-        orderDate={t('order_sub_total')}
-        deliveryMethod={t('delivery')}
-        deliveryAddress={t('total')}
-        paymentMethod={t('payment_method')}
-        date="HK$ 590"
-        method="HK$ 590"
-        address="HK$ 590"
-        payment="Credit Card / Debit Card"
+        <OrderDetailsComponent
+          orderDate={t('order_sub_total')}
+          deliveryMethod={t('delivery')}
+          deliveryAddress={t('total')}
+          paymentMethod={t('payment_method')}
+          date="HK$ 590"
+          method="HK$ 590"
+          address="HK$ 590"
+          payment="Credit Card / Debit Card"
         />
         <CategoriesTitleHeader title={t('order_support')} />
-        <UploadFileComponent title={t('email_receipt')}/>
-        <UploadFileComponent title={t('contact_support')}/>
-        <View style={styles.borderBottom}/>
+        <UploadFileComponent title={t('email_receipt')} />
+        <UploadFileComponent title={t('contact_support')} />
+        <View style={styles.borderBottom} />
       </ScrollView>
     </View>
   );
@@ -111,10 +111,10 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '20@s',
     marginTop: '5@s',
   },
-  borderBottom:{
-    borderTopWidth:30,
-    borderTopColor:colors.offWhiteColor,
-    paddingBottom:'50@s'
+  borderBottom: {
+    borderTopWidth: 30,
+    borderTopColor: colors.offWhiteColor,
+    paddingBottom: '50@s'
   }
 });
 

@@ -36,7 +36,7 @@ export const verificationCodeSchema = (t) => {
 
 export const resetPasswordSchema = (t) => {
     return (Yup.object({
-        newPassword: Yup.string().min(5, t('min_required_5')).required(t('password_required')),
+        newPassword: Yup.string().min(5, t('min_required_5')).required(t('new_password_required')),
         confirmPassword: Yup.string().required(t('confirm_password_required'))
     }))
 }
@@ -48,6 +48,14 @@ export const updatePersonalDetailSchema = (t) => {
         lastName: Yup.string().required(t('lastName_required')),
         mobile: Yup.string().matches(phoneRegExp, t('invalid_phone')).required(t('phone_required')),
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
+    }))
+}
+
+export const changePasswordSchema = (t) => {
+    return (Yup.object({
+        currentPassword: Yup.string().min(5, t('min_required_5')).required(t('current_password_required')),
+        newPassword: Yup.string().min(5, t('min_required_5')).required(t('new_password_required')),
+        confirmPassword: Yup.string().required(t('confirm_password_required'))
     }))
 }
 

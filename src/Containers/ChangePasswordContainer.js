@@ -8,6 +8,14 @@ import {colors} from '../Utils/theme';
 
 const ChangePasswordContainer = () => {
   const navigation = useNavigation();
+
+  const [animation, setAnimation] = useState(false);
+  const [changePasswordState, setChangePasswordState] = useState({
+    currentPassword: '',
+    newPassword:'',
+    confirmPassword:''
+  });
+
   const goBack = () => {
     navigation.goBack();
   };
@@ -17,9 +25,20 @@ const ChangePasswordContainer = () => {
     setModalVisible(!isModalVisible);
   };
 
+  const handleChangePassword = (values) => {
+    console.log("change Password", values);
+
+  }
+
   return (
     <View style={styles.container}>
-      <ChangePasswordScreen goBack={goBack} toggleModal={toggleModal} isModalVisible={isModalVisible}/>
+      <ChangePasswordScreen 
+      goBack={goBack} 
+      toggleModal={toggleModal} 
+      isModalVisible={isModalVisible} 
+      changePasswordState={changePasswordState} 
+      animation={animation}
+      handleChangePassword={handleChangePassword}/>
     </View>
   );
 };

@@ -178,6 +178,8 @@ export const chi = {
     password_changed: '密码已更改！',
     successfully_changed_password: '你已经成功更改密码',
     confirm_password_required:'还需要确认密码',
+    current_password_required:'需要当前密码',
+    new_password_required: '需要新密码',
     //<=Change Password=>
     activity_text: '活动',
     order_text: '订单',

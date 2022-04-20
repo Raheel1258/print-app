@@ -27,8 +27,8 @@ const AccountDetailContainer = () => {
     navigation.goBack();
   };
 
-  const handleUpdatedPersonalDetail = () => {
-    console.log("updated deatil")
+  const handleUpdatedPersonalDetail = (values) => {
+    console.log("updated deatil");
   }
 
   return (

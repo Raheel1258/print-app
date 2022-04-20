@@ -26,7 +26,7 @@ export const login = (data, navigation, setAnimation) => {
         console.log("Login", data);
         setAnimation(true);
         try {
-            if ((data.email === "Test@gmail.com") && data.password === "111111")
+            if ((data.email === "Test@gmail.com") || (data.email === "test@gmail.com") && data.password === "123456")
             {
                 await Storage.storeData('token', "123");
                 setAnimation(false);

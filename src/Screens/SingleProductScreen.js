@@ -36,8 +36,12 @@ const SingleProductScreen = ({
   setSelectedCorner,
   setQuantityId,
   quantityId,
-  review,
-  setReview,
+  preview,
+  setPreview,
+  handleAddToCart,
+  remarks,
+  setRemarks,
+  handleChange
 }) => {
   const { t } = useTranslation();
   return (
@@ -136,22 +140,22 @@ const SingleProductScreen = ({
             <GreenButton
               buttonHeight={47}
               backgroundColor={
-                review ? colors.greenColor : colors.smokeWhiteColor
+                preview ? colors.greenColor : colors.smokeWhiteColor
               }
-              color={review ? colors.blackColor : colors.lightBlackColor}
+              color={preview ? colors.blackColor : colors.lightBlackColor}
               title={t('yes_text')}
-              onPress={() => setReview(true)}
+              onPress={() => setPreview(true)}
             />
           </View>
           <View style={styles.buttonWrapper}>
             <GreenButton
               buttonHeight={47}
               backgroundColor={
-                review ? colors.smokeWhiteColor : colors.greenColor
+                preview ? colors.smokeWhiteColor : colors.greenColor
               }
-              color={review ? colors.lightBlackColor : colors.blackColor}
+              color={preview ? colors.lightBlackColor : colors.blackColor}
               title={t('no_text')}
-              onPress={() => setReview(false)}
+              onPress={() => setPreview(false)}
             />
           </View>
         </View>
@@ -187,6 +191,7 @@ const SingleProductScreen = ({
         <CategoriesTitleHeader title={t('order_remark')} />
         <Text style={styles.aboutOrder}>{t('anything_about_order')}</Text>
         <TextInput
+          onChangeText={handleChange}
           textAlignVertical="top"
           multiline={true}
           numberOfLines={5}
@@ -197,6 +202,7 @@ const SingleProductScreen = ({
           <GreenButton
             backgroundColor={colors.blackColor}
             title={t('add_to_cart_text')}
+            onPress={()=>handleAddToCart()}
           />
           <Text style={styles.questionText}>{t('send_us_mail')}</Text>
           <Text style={styles.mailText}>{t('mail_text')}</Text>

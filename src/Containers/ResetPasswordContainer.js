@@ -38,10 +38,17 @@ const ResetPasswordContainer = () => {
   };
 
   const handleResetPassword = (values) => {
-    console.log("reset password" , values);
-    dispatch(resetPasswordAction(values, navigation, setAnimation));
-    toggleModal();
-
+    if(values.newPassword !== values.confirmPassword){
+      Toast.show({
+            type: 'error',
+            text1: 'Password not match',
+          });
+    }
+    else{
+      toggleModal();
+      console.log("reset password" , values);
+      dispatch(resetPasswordAction(values, navigation, setAnimation));
+    }
   };
   
   return (

@@ -37,12 +37,14 @@ import ActivityActiveIcon from '../Assests/Svgs/ActivityActiveIcon';
 import ActivityIcon from '../Assests/Svgs/ActivityIcon';
 import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
 import AccountIcon from '../Assests/Svgs/AccountIcon';
+import EmptyCartScreen from '../Screens/EmptyCartScreen';
 
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
 const Home = createStackNavigator();
 const Account = createStackNavigator();
 const Order = createStackNavigator();
+const Cart = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -234,6 +236,33 @@ const AccountStack = () => {
   );
 };
 
+const CartStack = () => {
+  return (
+    <Cart.Navigator initialRouteName="cart">
+      <Cart.Screen
+        name="cart"
+        component={CartContainer}
+        options={{headerShown: false}}
+      />
+      <Cart.Screen
+        name="orderReceived"
+        component={OrderReceivedContainer}
+        options={{headerShown: false}}
+      />
+            <Cart.Screen
+        name="emptyCart"
+        component={EmptyCartScreen}
+        options={{headerShown: false}}
+      />
+      <Cart.Screen
+        name="Home"
+        component={App}
+        options={{headerShown: false}}
+      />
+    </Cart.Navigator>
+  );
+};
+
 const MyTabs = () => {
   const {t} = useTranslation();
   return (
@@ -294,8 +323,8 @@ const MyTabs = () => {
             </View>
           ),
         }}
-        name="cart"
-        component={CartContainer}
+        name="cartStack"
+        component={CartStack}
       />
 
       <Tab.Screen

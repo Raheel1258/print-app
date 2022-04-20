@@ -40,8 +40,8 @@ const styles = ScaledSheet.create({
   headerArrow: {
     padding: '7@s',
     width: '30@s',
-    marginLeft:'13@s',
-    marginTop:'25@s'
+    marginLeft:'11@s',
+    marginTop:'25@s',
   },
   headerTitle: {
 fontFamily:fonts.avenir_next,

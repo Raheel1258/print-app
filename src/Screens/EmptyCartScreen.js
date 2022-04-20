@@ -12,7 +12,7 @@ const EmptyCartScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.orderReceived}>Cart</Text>
+        <Text style={styles.orderReceived}>{t('cart_text')}</Text>
       </View>
       <CartNotifyComponent
       title={t('empty_cart')}

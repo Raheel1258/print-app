@@ -25,14 +25,12 @@ export const forgotPasswordValidationSchema = (t) => {
     return (Yup.object({
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
     }))
-
 }
 
 export const verificationCodeSchema = (t) => {
     return (Yup.object({
         optCode: Yup.string().required(t('opt_required')),
     }))
-
 }
 
 
@@ -42,3 +40,15 @@ export const resetPasswordSchema = (t) => {
         confirmPassword: Yup.string().required(t('confirm_password_required'))
     }))
 }
+
+
+export const updatePersonalDetailSchema = (t) => {
+    return (Yup.object({
+        firstName: Yup.string().required(t('firstName_required')),
+        lastName: Yup.string().required(t('lastName_required')),
+        mobile: Yup.string().matches(phoneRegExp, t('invalid_phone')).required(t('phone_required')),
+        email: Yup.string().email(t('invalid_email')).required(t('email_required')),
+    }))
+}
+
+

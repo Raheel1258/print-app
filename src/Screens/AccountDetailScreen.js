@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
+import { Formik } from 'formik';
+import { updatePersonalDetailSchema } from '../Utils/validationSchema';
 
 import {
   BackArrowHeader,
@@ -15,7 +17,7 @@ import {
 } from '../Components';
 import {colors, fonts} from '../Utils/theme';
 
-const AccountDetailScreen = ({goBack, navigate,addAddressRBSheet,addCardetCardRBSheet}) => {
+const AccountDetailScreen = ({goBack, navigate, animation, addAddressRBSheet,addCardetCardRBSheet,personalDetail, handleUpdatedPersonalDetail}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
@@ -26,34 +28,107 @@ const AccountDetailScreen = ({goBack, navigate,addAddressRBSheet,addCardetCardRB
       />
       <CategoriesTitleHeader title={t('personal_detail')} />
       <ScrollView>
+
         <View style={styles.paddingContainer}>
-          <InputTextField
+        <Formik initialValues={personalDetail} validationSchema={()=>updatePersonalDetailSchema(t)} onSubmit={(values) => handleUpdatedPersonalDetail(values)}>
+            {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
+              const { firstName, lastName, mobile, email } = values;
+              return <>
+                <InputTextField
+                  value={firstName}
+                  error={touched.firstName && errors.firstName}
+                  title={t('first_name')}
+                  placeholder={firstName}
+                  keyboardType="default"
+                  name="firstName"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('firstName')}
+                  onBlur={handleBlur('firstName')}
+                />
+
+                <InputTextField
+                  value={lastName}
+                  error={touched.lastName && errors.lastName}
+                  title={t('last_name')}
+                  placeholder={lastName}
+                  keyboardType="default"
+                  name="lastName"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('lastName')}
+                  onBlur={handleBlur('lastName')}
+                />
+
+                <InputTextField
+                  value={mobile}
+                  error={touched.mobile && errors.mobile}
+                  title={t('mobile_number')}
+                  placeholder={mobile}
+                  keyboardType="phone-pad"
+                  name="mobile"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('mobile')}
+                  onBlur={handleBlur('mobile')}
+                />
+
+                <InputTextField
+                  value={email}
+                  error={touched.email && errors.email}
+                  title={t('e_mail')}
+                  placeholder={email}
+                  keyboardType="email-address"
+                  name="email"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                />
+
+                <TouchableOpacity
+                  onPress={() => navigate('changePassword')}
+                  style={styles.passwordWrapper}>
+                  <Text style={styles.changePassword}>Change password</Text>
+                </TouchableOpacity>
+
+                <View style={styles.buttonWrapper}>
+                <GreenButton
+                    backgroundColor={colors.blackColor}
+                    color={colors.whiteColor}
+                    title={t('update_text')}
+                    animation={animation}
+                    onPress={handleSubmit}
+            />
+                </View>
+              </>
+            }}
+          </Formik>
+          {/* ...... */}
+          {/* <InputTextField
             title={t('first_name')}
             placeholder={t('peter_text')}
             keyboardType="default"
             secureTextEntry={false}
           />
-          <InputTextField title={t('last_name')} placeholder={t('park_text')} />
-          <InputTextField
+          <InputTextField title={t('last_name')} placeholder={t('park_text')} /> */}
+          {/* <InputTextField
             title={t('mobile_number')}
             placeholder={t('number_text')}
             keyboardType="phone-pad"
             secureTextEntry={false}
-          />
-          <InputTextField title={t('e_mail')} placeholder={t('email_text')} />
-          <TouchableOpacity
+          /> */}
+          {/* <InputTextField title={t('e_mail')} placeholder={t('email_text')} /> */}
+          {/* <TouchableOpacity
             onPress={() => navigate('changePassword')}
             style={styles.passwordWrapper}>
             <Text style={styles.changePassword}>Change password</Text>
-          </TouchableOpacity>
-          <View style={styles.buttonWrapper}>
+          </TouchableOpacity> */}
+          {/* <View style={styles.buttonWrapper}>
             <GreenButton
               backgroundColor={colors.blackColor}
               color={colors.whiteColor}
               title={t('update_text')}
             />
-          </View>
+          </View> */}
         </View>
+
         <View style={styles.categoriesWrapper}>
           <CategoriesTitleHeader
             title={t('my_address')}

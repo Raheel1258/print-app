@@ -17,7 +17,9 @@ const ResetPasswordContainer = () => {
   const [animation, setAnimation] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
+    isModalVisible && navigate('signin');
     setModalVisible(!isModalVisible);
+
   };
 
   const [resetPassword, setResetPassword] = useState({
@@ -45,9 +47,8 @@ const ResetPasswordContainer = () => {
           });
     }
     else{
-      toggleModal();
       console.log("reset password" , values);
-      dispatch(resetPasswordAction(values, navigation, setAnimation));
+      dispatch(resetPasswordAction(values, navigation, setAnimation,toggleModal));
     }
   };
   

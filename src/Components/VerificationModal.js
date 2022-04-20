@@ -14,11 +14,13 @@ const VerificationModal = ({
   description,
   modalButton = 'Ok',
   aditionalAction = () => {},
+  backDrop = () => toggleModal(),
+
 }) => {
   const {t} = useTranslation();
   return (
     <>
-      <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
+      <Modal isVisible={isModalVisible} onBackdropPress={backDrop}>
         <View style={styles.modalContainer}>
           <Text style={styles.sentText}>{title}</Text>
           <Text style={styles.emailDescription}>{description}</Text>

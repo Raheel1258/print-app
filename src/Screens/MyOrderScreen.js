@@ -146,6 +146,7 @@ const MyOrderScreen = ({navigate,goBack,focused,setFocused,orderRBSheet}) => {
             borderWidth={2}
               title={t('signup_text')}
               onPress={() => {
+                orderRBSheet.current.close();
                 navigate('auth',{next: 'signup'});
                 setFocused(true);
               }}
@@ -158,6 +159,7 @@ const MyOrderScreen = ({navigate,goBack,focused,setFocused,orderRBSheet}) => {
               color={focused ? colors.greenColor : colors.whiteColor}
               borderWidth={2}
               onPress={() => {
+                orderRBSheet.current.close();
                 navigate('auth',{next: 'signin'});
                 setFocused(false);
               }}

@@ -180,7 +180,7 @@ export const chi = {
     confirm_password_required:'还需要确认密码',
     //<=Change Password=>
     activity_text: '活动',
-    order_text: '命令',
+    order_text: '订单',
     account_text: '帐户',
     sheet_login_in: '登录',
     Signup_today: '立即注册下达打印订单',

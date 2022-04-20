@@ -198,6 +198,7 @@ const CartScreen = ({
                 borderWidth={2}
                 title={t('signup_text')}
                 onPress={() => {
+                  authRBSheet.current.close();
                    navigate('auth',{next: 'signup'});
                   setFocused(true);
                 }}
@@ -212,6 +213,7 @@ const CartScreen = ({
                 color={focused ? colors.greenColor : colors.whiteColor}
                 borderWidth={2}
                 onPress={() => {
+                  authRBSheet.current.close();
                   navigate('auth',{next: 'signin'});
                   setFocused(false);
                 }}

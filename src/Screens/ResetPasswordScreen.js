@@ -56,6 +56,7 @@ const ResetPasswordScreen = ({goBack, toggleModal, isModalVisible, modalButton, 
                   modalButton={t('signin_text')}
                   isModalVisible={isModalVisible}
                   toggleModal={toggleModal}
+                  backDrop={() => {}}
                 />   
               </>
             }}

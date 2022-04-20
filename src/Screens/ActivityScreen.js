@@ -48,6 +48,7 @@ const ActivityScreen = ({goBack,focused,setFocused,activityRBSheet,navigate}) =>
             borderWidth={2}
               title={t('signup_text')}
               onPress={() => {
+                activityRBSheet.current.close();
                 navigate('auth',{next: 'signup'});
                 setFocused(true);
               }}
@@ -60,6 +61,7 @@ const ActivityScreen = ({goBack,focused,setFocused,activityRBSheet,navigate}) =>
               color={focused ? colors.greenColor : colors.whiteColor}
               borderWidth={2}
               onPress={() => {
+                activityRBSheet.current.close();
                 navigate('auth',{next: 'signin'});
                 setFocused(false);
               }}

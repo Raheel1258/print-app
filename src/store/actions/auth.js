@@ -26,7 +26,7 @@ export const login = (data, navigation, setAnimation) => {
         console.log("Login", data);
         setAnimation(true);
         try {
-            if ((data.email === "Test@gmail.com" || data.email === "test@gmail.com" ) && data.password === "12345")
+            if ((data.email === "Test@gmail.com") && data.password === "111111")
             {
                 await Storage.storeData('token', "123");
                 setAnimation(false);
@@ -184,10 +184,11 @@ export const verificationOptCode = (data, navigation, setAnimation) => {
 }
 
 
-export const resetPasswordAction = (data, navigation, setAnimation) => {
+export const resetPasswordAction = (data, navigation, setAnimation, toggleModal) => {
     return (dispatch) => {
         console.log("new password", data);
-        navigation.navigate('signin');
+        toggleModal();
+
         //navigation.navigate('verificationCode');
         //setAnimation(true);
         // axios

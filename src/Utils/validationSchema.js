@@ -1,11 +1,10 @@
 import * as Yup from "yup";
-import { useTranslation } from 'react-i18next';
+
 
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 export const loginValidationSchema = (t) => {
-    console.log('this is errrokwfh', t);
     return (Yup.object({
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
         password: Yup.string().min(5, t('min_required_5')).required(t('password_required'))

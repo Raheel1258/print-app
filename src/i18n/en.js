@@ -190,7 +190,7 @@
     confirm_password_required:'Confirm password is also required',
  //<=Change Password=>  
     activity_text: 'Activity',
-    order_text: 'Order',
+    order_text: 'Orders',
     account_text: 'Account',
     sheet_login_in: 'log in',
     Signup_today: 'Sign up today to place your printing order',

@@ -78,6 +78,7 @@ const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBShe
             borderWidth={2}
               title={t('signup_text')}
               onPress={() => {
+                accountRBSheet.current.close();
                 navigate('auth',{next: 'signup'});
                 setFocused(true);
               }}
@@ -90,6 +91,7 @@ const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBShe
               color={focused ? colors.greenColor : colors.whiteColor}
               borderWidth={2}
               onPress={() => {
+                accountRBSheet.current.close();
                 navigate('auth',{next: 'signin'});
                 setFocused(false);
               }}
@@ -103,7 +105,7 @@ const AccountScreen = ({navigate, goBack, refRBSheet, logoutHandler,accountRBShe
         height={420}
         onClose={false}
       />
-                <VerificationModal
+            <VerificationModal
             title={t('you_signed_out')}
             description={t('curabitur_aliquet')}
             isModalVisible={isModalVisible}

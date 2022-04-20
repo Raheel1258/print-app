@@ -126,9 +126,9 @@ const App = () => {
 };
 
 const AuthStack = (props) => {
-  const r = props?.route?.params?.next;
+  const next = props?.route?.params?.next;
   return (
-    <Auth.Navigator initialRouteName={r? r: "routeChecking"}>
+    <Auth.Navigator initialRouteName={next ? next: "routeChecking"}>
       <Auth.Screen
         name="routeChecking"
         component={RouteCheckingContainer}
@@ -430,7 +430,7 @@ const MainScreen = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Home',
   },
 );
 

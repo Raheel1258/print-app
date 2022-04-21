@@ -16,6 +16,7 @@ const SingleProductContainer = ({ route }) => {
   const dispatch = useDispatch();
   const refRBSheet = useRef();
   const urlRBSheet = useRef();
+  const finishingRBSheet = useRef();
 
   const [selectedSize, setSelectedSize] = useState(item?.choose_size[0]?.size_name);
   const [selectedCorner, setSelectedCorner] = useState(title == 'Business Card' ? item?.choose_corner[0]?.corner : undefined);
@@ -78,6 +79,7 @@ const SingleProductContainer = ({ route }) => {
         setRemarks={setRemarks}
         handleAddToCart={handleAddToCart}
         handleChange={handleChange}
+        finishingRBSheet={finishingRBSheet}
       />
     </View>
   );

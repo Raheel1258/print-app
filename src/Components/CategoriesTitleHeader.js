@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Children } from 'react';
 import {View, Text,TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors,fonts} from '../Utils/theme';
 
-const CategoriesTitleHeader = ({title,description,onPress}) => {
+const CategoriesTitleHeader = ({title,description,onPress,Children}) => {
   return (
     <View style={styles.headerContainer}>
+      <View style={styles.infoIconContainer}>
       <Text style={styles.headerText}>{title}</Text>
+      {Children}
+      </View>
      <TouchableOpacity onPress={onPress} style={styles.touchableText}><Text style={styles.headerRightText}>{description}</Text></TouchableOpacity>
     </View>
   );
@@ -32,7 +35,7 @@ paddingHorizontal:'17@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',
     color:colors.blackColor,
-    marginTop:'8@s',
+    marginRight:'10@s'
   },
   headerRightText:{
     fontFamily:fonts.avenir_regular,
@@ -47,6 +50,11 @@ paddingHorizontal:'17@s',
   },
   touchableText:{
     paddingVertical:'7@s',
+  },
+  infoIconContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    marginTop:'5@s',
   }
 });
 

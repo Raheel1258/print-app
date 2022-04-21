@@ -16,8 +16,8 @@ const SignupContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const [signupState, setSignupState] = useState({
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     phone:'',
     email:'',
     password:''

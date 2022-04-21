@@ -5,16 +5,19 @@ import {ScaledSheet} from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import {colors, fonts} from '../Utils/theme';
 
-const UploadFileComponent = ({title, onPress,Children}) => {
+const UploadFileComponent = ({title, onPress,Children,selection}) => {
   return (
     <TouchableOpacity  style={Children ? styles.accountContainer :  styles.Container} onPress={onPress}>
       <View style={styles.iconContainer}>
         <View style={Children ? styles.iconWrapper : null}>
         {Children}
         </View>
+        <View style={styles.infoConatiner}>
         <Text style={styles.title} numberOfLines={1}>
           {title}
         </Text>
+        <Text style={styles.desText}>{selection}</Text>
+      </View>
       </View>
       <View style={styles.rightArrow}>
         <LeftArrow />
@@ -63,6 +66,20 @@ const styles = ScaledSheet.create({
   iconWrapper: {
     marginRight: '12@s',
   },
+  infoConatiner:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  desText:{
+    fontFamily: fonts.avenir_regular,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    lineHeight: '16@s',
+    letterSpacing: '0.6@s',
+    textAlign: 'left',
+    color: colors.lightBlackColor,  
+    marginLeft:'20@s'
+  }
 });
 
 export default UploadFileComponent;

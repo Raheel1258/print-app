@@ -93,24 +93,25 @@ export const sliderImagesHome = [
 export const productListBusinessCardData = [
   {
     id: 111,
-    heading: 'Premium(Thick) Business Card',
+    heading: 'Premium (Thick) Business Card',
     price: '68',
     images: [
       'https://source.unsplash.com/1024x768/?nature',
+      'https://source.unsplash.com/1024x768/?water',
       'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Think, smooth and premium',
+    feature1: 'Thick, smooth and premium',
     feature2: 'Perfect for professionals',
-    description: 'Think, smooth and premium. The Premium Business card is a popular choice for professionals',
-    paper_type: 'woodfree Card(350g)',
+    description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
+    paper_type: 'Woodfree Card(350g)',
     lead_time: '2-3 business days',
     colour: 'CYMK',
     sizes: '3 sizes',
     choose_size: [
       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage },
-      { size_name: 'Shortend', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
+      { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
       { size_name: 'Sqaure', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
     choose_corner: [
-      { corner: 'Saqure', variation: 'Traditional', image: squareImage },
+      { corner: 'Square', variation: 'Traditional', image: squareImage },
       { corner: 'Round', variation: 'Smooth', image: roundImage },
     ],
     choose_finishing: ['Matte', 'xyz', 'xzy'],
@@ -129,22 +130,22 @@ export const productListBusinessCardData = [
 
   {
     id: 112,
-    heading: 'Blod(Extra Thick) Business Card',
+    heading: 'Bold (Extra Thick) Business Card',
     price: 128,
     images: ['https://source.unsplash.com/1024x768/?nature'],
-    feature1: 'Think, smooth and premium',
+    feature1: 'Thick, smooth and premium',
     feature2: 'Perfect for professionals',
-    description: 'Think, smooth and premium. The Premium Business card is a popular choice for professionals',
-    paper_type: 'woodfree Card(350g)',
+    description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
+    paper_type: 'Woodfree Card(350g)',
     lead_time: '3-4 business days',
     colour: 'CYMK',
     sizes: '3 sizes',
     choose_size: [
       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-      { size_name: 'Shortend', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
+      { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
       { size_name: 'Sqaure', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
     choose_corner: [
-      { corner: 'Saqure', variation: 'Traditional', image: squareImage },
+      { corner: 'Square', variation: 'Traditional', image: squareImage },
       { corner: 'Round', variation: 'Smooth', image: roundImage },
     ],
     choose_finishing: ['Matte', 'xyz', 'xzy'],
@@ -163,22 +164,22 @@ export const productListBusinessCardData = [
 
   {
     id: 113,
-    heading: 'Style(Texture Paper) Business Card',
+    heading: 'Style (Textured Paper) Business Card',
     price: 158,
     images: ['https://source.unsplash.com/1024x768/?nature'],
-    feature1: 'Think, smooth and premium',
+    feature1: 'Thick, smooth and premium',
     feature2: 'Perfect for professionals',
-    description: 'Think, smooth and premium. The Premium Business card is a popular choice for professionals',
-    paper_type: 'woodfree Card(350g)',
+    description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
+    paper_type: 'Woodfree Card(350g)',
     lead_time: '3-4 business days',
     colour: 'CYMK',
     sizes: '3 sizes',
     choose_size: [
       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Shortend', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
+      { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
       { size_name: 'Sqaure', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
     choose_corner: [
-      { corner: 'Saqure', variation: 'Traditional', image: squareImage },
+      { corner: 'Square', variation: 'Traditional', image: squareImage },
       { corner: 'Round', variation: 'Smooth', image: roundImage },
     ],
     choose_finishing: ['Matte', 'xyz', 'xzy'],
@@ -410,7 +411,7 @@ export const productListStickerData = [
 
   {
     id: 446,
-    heading: 'Saqure sticker',
+    heading: 'Square sticker',
     price: 68,
     images: [
       'https://source.unsplash.com/1024x768/?nature',
@@ -490,7 +491,7 @@ export const productListFlyerData = [
 
   {
     id: 556,
-    heading: 'Saqure Flyer',
+    heading: 'Square Flyer',
     price: 68,
     images: [
       'https://source.unsplash.com/1024x768/?nature',

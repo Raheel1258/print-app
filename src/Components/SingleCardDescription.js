@@ -12,7 +12,7 @@ const SingleCardDescription = ({item}) => {
         {item?.heading}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-        From HK$ ${item?.price}/ 100 pc
+        From HK$ {item?.price} / 100 pc
       </Text>
       <Text style={styles.productDescription}>
         {item?.description}
@@ -51,7 +51,7 @@ const styles = ScaledSheet.create({
     marginTop: '10@s',
   },
   productTitle: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily:fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
     lineHeight: '24@s',
@@ -87,7 +87,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.4@s',
     textAlign: 'left',
     color: colors.blackColor,
-    width: '85@s',
+    width: '100@s',
   },
   categoryDescription: {
     fontFamily:fonts.avenir_regular,

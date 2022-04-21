@@ -18,6 +18,7 @@ import {
   UrlPickerInput,
   VerificationModal,
 } from '../Components';
+import InfoIcon from '../Assests/Svgs/InfoIcon';
 import { colors, fonts } from '../Utils/theme';
 import roundImage from '../Assests/Images/round-image.png';
 import squareImage from '../Assests/Images/square-image.png';
@@ -41,7 +42,8 @@ const SingleProductScreen = ({
   handleAddToCart,
   remarks,
   setRemarks,
-  handleChange
+  handleChange,
+  finishingRBSheet
 }) => {
   const { t } = useTranslation();
   return (
@@ -90,7 +92,7 @@ const SingleProductScreen = ({
                     selectedSize={selectedSize}
                     onPress={() => setSelectedSize(item?.size_name)}
                     cardStandard={item?.size_name}
-                    cardDimensions={`${item?.height}x${item?.width}`}
+                    cardDimensions={`${item?.height} x ${item?.width}`}
                   /> :
                  <CardSizeComponent
                     key={index}
@@ -109,7 +111,9 @@ const SingleProductScreen = ({
         </View>
         {title === 'Business Card' &&
           <>
-            <CategoriesTitleHeader title={t('choose_corner')} />
+            <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon/>} />
+            <UploadFileComponent   onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={'Mate'}/>
+            <CategoriesTitleHeader title={t('choose_corner')}  />
             <View style={styles.cardsContainer}>
               {item?.choose_corner && item?.choose_corner.map((item, index) => {
                 return (
@@ -181,6 +185,15 @@ const SingleProductScreen = ({
           title={t('sheet_upload_url')}
           refRBSheet={urlRBSheet}
           childern={<UrlPickerInput />}
+        />
+         <BottomSheetComponent
+          title={'finigfhf'}
+          refRBSheet={finishingRBSheet}
+          note={false}
+          height = {300}
+          childern={
+            <Text>vghvjhv</Text>
+          }
         />
         <VerificationModal
           title={t('sent_text')}

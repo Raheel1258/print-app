@@ -59,7 +59,7 @@ const QuantityTable = ({setQuantityId, quantityId, quantityTable }) => {
       <TouchableOpacity activeOpacity={1} onPress = { () => setQuantityId(item?.id)} style={{...styles.tableItems, ...quantityStyle}}>
         <Text style={styles.priceText}>{item?.quantity}</Text>
         <Text style={styles.dollerPrice}>${item?.price}</Text>
-        <Text style={styles.priceText}>{item?.unit_price}</Text>
+        <Text style={styles.priceText}>${item?.unit_price}</Text>
       </TouchableOpacity>
     );
   };

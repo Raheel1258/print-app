@@ -38,6 +38,8 @@ export const chi = {
     password_updated: '密码已更新',
     successfully_description: '您的密码现已成功更新。使用新密码登录您的帐户。',
     //<=Single Product Screen=>
+    choose_finishing: '选择整理',
+    finishing:'精加工',
     business_card: '名片',
     choose_size: '选择尺寸',
     standard_text: '标准',

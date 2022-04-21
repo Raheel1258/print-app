@@ -13,8 +13,8 @@ export const loginValidationSchema = (t) => {
 
 export const signupValidationSchema = (t) => {
     return (Yup.object({
-        first_name: Yup.string().required(t('firstName_required')),
-        last_name: Yup.string().required(t('lastName_required')),
+        firstName: Yup.string().required(t('firstName_required')),
+        lastName: Yup.string().required(t('lastName_required')),
         phone: Yup.string().matches(phoneRegExp, t('invalid_phone')).required(t('phone_required')),
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
         password: Yup.string().min(5, t('min_required_5')).required(t('password_required'))

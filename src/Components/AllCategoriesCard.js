@@ -16,14 +16,14 @@ const AllCategoriesCard = ({title,days,image,price}) => {
     <TouchableOpacity onPress={()=> navigate('productsListing' , {title:title, image:image})}>
     <View style={styles.headerContainer}>
       <Image style={styles.cardImage} source={image} />
-      <Text style={styles.cardName}>{title}</Text>
+      <Text numberOfLines={1} style={styles.cardName}>{title}</Text>
       <View style={styles.descriptionContainer}>
         <View style={styles.dotContainer} />
-        <Text style={styles.descriptionText}>{days}</Text>
+        <Text numberOfLines={1} style={styles.descriptionText}>{days}</Text>
       </View>
       <View style={styles.descriptionContainer}>
         <View style={styles.dotContainer} />
-        <Text style={styles.descriptionText}>{price}</Text>
+        <Text numberOfLines={1} style={styles.descriptionText}>{price}</Text>
       </View>
     </View>
     </TouchableOpacity>
@@ -44,8 +44,8 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.6@s',
     textAlign: 'left',
     color: colors.blackColor,
-    marginTop: '10@s',
-    marginBottom:'5@s',
+    marginTop: '12@s',
+    marginBottom:'6@s',
   },
   cardImage: {
     width: '150@s',
@@ -66,13 +66,13 @@ const styles = ScaledSheet.create({
   },
   descriptionText: {
     fontFamily:fonts.avenir_light,
-    fontSize: '12@s',
+    fontSize: '10.5@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '14@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
+    width:'135@s'
   },
 });
 

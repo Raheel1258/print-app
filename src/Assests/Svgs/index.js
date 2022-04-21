@@ -32,6 +32,7 @@ import OrderCancelledIcon from './OrderCancelledIcon';
 import OrderPicupIcon from './OrderPicupIcon';
 import PrintingIcon from './PrintingIcon';
 import AuthenticationLogo from './AuthenticationLogo';
+import InfoIcon from './InfoIcon';
 
 export {
   BrowseActiveIcon,
@@ -67,5 +68,6 @@ export {
   OrderCancelledIcon,
   OrderPicupIcon,
   PrintingIcon,
-  AuthenticationLogo
+  AuthenticationLogo,
+  InfoIcon,
 };

@@ -25,67 +25,29 @@ export const login = (data, navigation, setAnimation) => {
     return async (dispatch) => {
         console.log("Login", data);
         setAnimation(true);
-        try {
-            if ((data.email === "Test@gmail.com") || (data.email === "test@gmail.com") && data.password === "123456")
-            {
-                await Storage.storeData('token', "123");
-                setAnimation(false);
-                Toast.show({
-                    type: 'success',
-                    text1: 'You are successfully logged in',
-                });
-                navigation.reset({
-                    index: 0,
-                    routes: [{
-                        name: 'home'
-                    }]
-                })
-                dispatch(setUserLogin(data));
-            }
-            else {
-                setAnimation(false);
-                Toast.show({
-                    type: 'error',
-                    text1: 'Invalid email or password',
-                });
-            }
-        }
-        catch {
-            setAnimation(false);
-            Toast.show({
-                type: 'error',
-                text1: 'error',
-            });
-        }
-        // axios
-        // 	.post(`${Api}/user/login`, data)
-        // 	.then(async (res) => {
-        // 		Toast.show({
-        // 			type: 'success',
-        // 			text1: 'You are successfully logged in',
-
-        // 		});
-        // 		dispatch(loading(false))
-
-        // 		await AsyncStorage.setItem('token', res?.data?.token);
-        // 		navigation.reset({
-        // 			index: 0,
-        // 			routes: [{
-        // 				name: 'Home'
-        // 			}],
-        // 		});
-
-        // 		dispatch(setUserLogin(res));
-        // 	})
-        // 	.catch((err) => {
-        // 		console.log('login err', err)
-        // 		dispatch(loading(false))
-
-        // 		Toast.show({
-        // 			type: 'error',
-        // 			text1: err?.response?.data?.errorMessage,
-        // 		});
-        // 	});
+        axios.post(`${Api}/user/login`, data)
+            .then(async (res) => {
+        		Toast.show({
+        			type: 'success',
+        			text1: 'You are successfully logged in',
+        		});
+        		setAnimation(false);
+        		await Storage.storeData('token', res?.data?.accessToken);
+        		navigation.reset({
+        			index: 0,
+        			routes: [{
+        				name: 'home'
+        			}],
+        		});
+        		dispatch(setUserLogin(res));
+        	})
+            .catch((err) => {
+        		setAnimation(false);
+        		Toast.show({
+        			type: 'error',
+        			text1: err?.response?.data?.message,
+        		});
+        	});
     }
 };
 
@@ -96,36 +58,35 @@ export const signup = (data, navigation, setAnimation) => {
     return  async(dispatch) => {
         console.log("signup", data);
         setAnimation(true);
-        await Storage.storeData('token', "123");
-        Toast.show({
-            type: 'success',
-            text1: 'You are successfully signup in',
-        });
-        navigation.reset({
-            index: 0,
-            routes: [{
-                name: 'home'
-            }]
-        })
+        // await Storage.storeData('token', "123");
+        // Toast.show({
+        //     type: 'success',
+        //     text1: 'You are successfully signup in',
+        // });
+        // navigation.reset({
+        //     index: 0,
+        //     routes: [{
+        //         name: 'home'
+        //     }]
+        // })
         setAnimation(false);
         dispatch(setUserSignup(data));
-        // axios
-        // 	.post(`${Api}/user/signup`, data)
-        // 	.then(async (res) => {
-        // 		Toast.show({
-        // 			type: 'success',
-        // 			text1: 'You are successfully signed up'
-        // 		})
-        // 		navigation.navigate('LogIn')
-        // 		dispatch(setUserSignup(res));
-        // 	})
-        // 	.catch((err) => {
-        // 		console.log('signup err', err)
-        // 		Toast.show({
-        // 			type: 'error',
-        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
-        // 		});
-        // 	});
+        axios.post(`${Api}/user/signup`, data)
+        	.then(async (res) => {
+        		Toast.show({
+        			type: 'success',
+        			text1: 'You are successfully signed up'
+        		})
+        		navigation.navigate('LogIn')
+        		dispatch(setUserSignup(res));
+        	})
+        	.catch((err) => {
+        		console.log('signup err', err)
+        		Toast.show({
+        			type: 'error',
+        			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
+        		});
+        	});
 
     }
 }
@@ -231,23 +192,6 @@ export const logout = (navigation, setAnimation) => {
         // })
         setAnimation(false);
         dispatch(setUserSignup(data));
-        // axios
-        // 	.post(`${Api}/user/signup`, data)
-        // 	.then(async (res) => {
-        // 		Toast.show({
-        // 			type: 'success',
-        // 			text1: 'You are successfully signed up'
-        // 		})
-        // 		navigation.navigate('LogIn')
-        // 		dispatch(setUserSignup(res));
-        // 	})
-        // 	.catch((err) => {
-        // 		console.log('signup err', err)
-        // 		Toast.show({
-        // 			type: 'error',
-        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
-        // 		});
-        // 	});
 
     }
 }

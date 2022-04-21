@@ -15,7 +15,7 @@ const SignupContainer = () => {
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
-  const [signupData, setSignupData] = useState({
+  const [signupState, setSignupState] = useState({
     first_name: '',
     last_name: '',
     phone:'',
@@ -145,7 +145,7 @@ const SignupContainer = () => {
       handleSignup={handleSignup} 
       animation={animation}
       goBack={goBack}
-      signupData={signupData}
+      signupState={signupState}
       />
     </View>
   );

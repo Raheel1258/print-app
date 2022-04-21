@@ -18,8 +18,8 @@ const SigninContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const [loginData, setLoginData] = useState({
-    email: 'Test@gmail.com',
-    password: '123456',
+    email: 'nor@gmail.com',
+    password: '2123423',
   });
 
   const goBack = () => {
@@ -29,49 +29,8 @@ const SigninContainer = () => {
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
-  // const handleChange = (name, value) => {
-  //   setLoginData({...loginData, [name]: value});
-  // };
-
+ 
   const handleLogin = (values) => {
-    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    // if (
-    //   loginData?.email.length > 0 &&
-    //   loginData.password.length <= 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Password cannot be empty',
-    //   });
-    // } else if (
-    //   loginData?.password.length > 0 &&
-    //   loginData.email.length <= 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Email cannot be empty',
-    //   });
-    // } else if (
-    //   loginData?.password.length <= 0 &&
-    //   loginData?.email.length <= 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Fields cannot be empty',
-    //   });
-    // } else if (reg.test(loginData.email) === false) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Please Provide a valid email',
-    //   });
-    // } else {
-    //   const loginDetail = {
-    //     email: loginData?.email.toLocaleLowerCase(),
-    //     password: loginData.password,
-    //   };
-    //   dispatch(login(loginDetail, navigation, setAnimation));
-    // }
-    console.log("handle login" , values);
     dispatch(login(values,navigation,setAnimation));
   };
 

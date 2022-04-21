@@ -18,14 +18,14 @@ import {
 } from '../Components';
 import { colors,fonts } from '../Utils/theme';
 
-const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData }) => {
+const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupState }) => {
   const { t } = useTranslation();
   return (
     <>
       <BackArrowHeader goBack={goBack} title={t('signup_text')} />
       <ScrollView>
         <View style={styles.container}>
-          <Formik initialValues={signupData} validationSchema={()=>signupValidationSchema(t)} onSubmit={(values) => handleSignup(values)}>
+          <Formik initialValues={signupState} validationSchema={()=>signupValidationSchema(t)} onSubmit={(values) => handleSignup(values)}>
             {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => {
               const { first_name, last_name, phone, email, password } = values;
               return <>

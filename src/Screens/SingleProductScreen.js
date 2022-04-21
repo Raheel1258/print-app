@@ -59,7 +59,7 @@ const SingleProductScreen = ({
           {item?.choose_size && item?.choose_size.map((item, index) => {
             return (
               <>
-                {(title === 'Business Card')?
+                {(title === 'Business Card') ?
                   <CardSizeComponent
                     key={index}
                     Childern={
@@ -94,7 +94,7 @@ const SingleProductScreen = ({
                     cardStandard={item?.size_name}
                     cardDimensions={`${item?.height} x ${item?.width}`}
                   /> :
-                 <CardSizeComponent
+                  <CardSizeComponent
                     key={index}
                     Childern={
                       <Image style={styles.squareimage} source={item?.image} />}
@@ -103,17 +103,23 @@ const SingleProductScreen = ({
                     selectedSize={selectedSize}
                     onPress={() => setSelectedSize(item?.size_name)}
                   />}
-                  
+
               </>
             )
           })
           }
         </View>
+        {title === 'Booklet' &&
+          <>
+            <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
+            <UploadFileComponent title={t('finishing')} selection={'Mate'} />
+          </>
+        }
         {title === 'Business Card' &&
           <>
-            <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon/>} />
-            <UploadFileComponent   onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={'Mate'}/>
-            <CategoriesTitleHeader title={t('choose_corner')}  />
+            <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
+            <UploadFileComponent title={t('finishing')} selection={'Mate'} />
+            <CategoriesTitleHeader title={t('choose_corner')} />
             <View style={styles.cardsContainer}>
               {item?.choose_corner && item?.choose_corner.map((item, index) => {
                 return (
@@ -186,11 +192,13 @@ const SingleProductScreen = ({
           refRBSheet={urlRBSheet}
           childern={<UrlPickerInput />}
         />
-         <BottomSheetComponent
+
+        {/* Finishing BottomSheet */}
+        <BottomSheetComponent
           title={'finigfhf'}
           refRBSheet={finishingRBSheet}
           note={false}
-          height = {300}
+          height={300}
           childern={
             <Text>vghvjhv</Text>
           }
@@ -215,7 +223,7 @@ const SingleProductScreen = ({
           <GreenButton
             backgroundColor={colors.blackColor}
             title={t('add_to_cart_text')}
-            onPress={()=>handleAddToCart()}
+            onPress={() => handleAddToCart()}
           />
           <Text style={styles.questionText}>{t('send_us_mail')}</Text>
           <Text style={styles.mailText}>{t('mail_text')}</Text>

@@ -27,27 +27,27 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupData })
         <View style={styles.container}>
           <Formik initialValues={signupData} validationSchema={()=>signupValidationSchema(t)} onSubmit={(values) => handleSignup(values)}>
             {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => {
-              const { firstName, lastName, phone, email, password } = values;
+              const { first_name, last_name, phone, email, password } = values;
               return <>
                 <InputTextField
-                  value={firstName}
-                  error={touched.firstName && errors.firstName}
+                  value={first_name}
+                  error={touched.first_name && errors.first_name}
                   title={t('first_name')}
-                  name="firstName"
+                  name="first_name"
                   keyboardType="default"
                   secureTextEntry={false}
-                  onChangeText={handleChange('firstName')}
-                  onBlur={handleBlur('firstName')}
+                  onChangeText={handleChange('first_name')}
+                  onBlur={handleBlur('first_name')}
                 />
                 <InputTextField
-                  value={lastName}
-                  error={touched.lastName && errors.lastName}
+                  value={last_name}
+                  error={touched.last_name && errors.last_name}
                   title={t('last_name')}
-                  name="lastName"
+                  name="last_name"
                   keyboardType="default"
                   secureTextEntry={false}
-                  onChangeText={handleChange('lastName')}
-                  onBlur={handleBlur('lastName')}
+                  onChangeText={handleChange('last_name')}
+                  onBlur={handleBlur('last_name')}
                 />
                 <InputTextField
                   value={phone}

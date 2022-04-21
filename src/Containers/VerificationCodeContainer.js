@@ -20,8 +20,8 @@ const VerificationCodeContainer = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const [verificationCode, setVerificationCode] = useState({
-    optCode: '',
+  const [verificationCodeState, setVerificationCodeState] = useState({
+    otpCode: '',
   });
 
   const handleChange = (name, value) => {
@@ -65,7 +65,7 @@ const VerificationCodeContainer = () => {
     <View style={styles.container}>
       <VerificationCodeScreen
       handleVerificationCode={handleVerificationCode}
-      verificationCode={verificationCode}
+      verificationCodeState={verificationCodeState}
       animation={animation}
       isModalVisible={isModalVisible}
       toggleModal={toggleModal} 

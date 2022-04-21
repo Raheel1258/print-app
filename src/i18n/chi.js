@@ -187,6 +187,6 @@ export const chi = {
     sheet_login_in: '登录',
     Signup_today: '立即注册下达打印订单',
     you_signed_out: '您现在已退出',
-    opt_required:"需要验证码"
+    otp_required:"需要验证码"
   },
 };

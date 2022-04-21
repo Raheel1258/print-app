@@ -17,7 +17,7 @@ const VerificationCodeScreen = ({
   navigate,
   goBack,
   handleVerificationCode,
-  verificationCode,
+  verificationCodeState,
 }) => {
   const {t} = useTranslation();
   return (
@@ -25,20 +25,20 @@ const VerificationCodeScreen = ({
       <BackArrowHeader goBack={goBack} title={t('verification_code')} />
       <View style={styles.container}>
         <ScrollView>
-        <Formik initialValues={verificationCode} validationSchema={()=>verificationCodeSchema(t)} onSubmit={(values) => handleVerificationCode(values)}>
+        <Formik initialValues={verificationCodeState} validationSchema={()=>verificationCodeSchema(t)} onSubmit={(values) => handleVerificationCode(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
-              const { optCode } = values;
+              const { otpCode } = values;
               return <>
                  <Text style={styles.emailDescription}>{t('verification_description')}</Text>
                 <InputTextField
-                  value={optCode}
-                  error={touched.optCode && errors.optCode}
+                  value={otpCode}
+                  error={touched.otpCode && errors.otpCode}
                   title={t('verification_code')}
                   keyboardType="phone-pad"
-                  name="optCode"
+                  name="otpCode"
                   secureTextEntry={false}
-                  onChangeText={handleChange('optCode')}
-                  onBlur={handleBlur('optCode')}
+                  onChangeText={handleChange('otpCode')}
+                  onBlur={handleBlur('otpCode')}
                 />
                 <View style={styles.buttonWrapper}>
                 <GreenButton

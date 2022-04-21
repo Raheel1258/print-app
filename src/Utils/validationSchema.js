@@ -29,7 +29,7 @@ export const forgotPasswordValidationSchema = (t) => {
 
 export const verificationCodeSchema = (t) => {
     return (Yup.object({
-        optCode: Yup.string().required(t('opt_required')),
+        otpCode: Yup.string().required(t('otp_required')),
     }))
 }
 

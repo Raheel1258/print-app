@@ -198,6 +198,6 @@
     current_password_required:'Current password is required',
     new_password_required: 'New password is required',
     //<=Verification screen, validation Messages=>
-    opt_required:"Verification code is required"
+    otp_required:"Verification code is required"
   },
 };

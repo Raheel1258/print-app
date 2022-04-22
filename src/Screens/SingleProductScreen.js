@@ -54,9 +54,9 @@ const SingleProductScreen = ({
           <ImageSlider sliderImages={item?.images} />
           <SingleCardDescription item={item} />
         </View>
-        <CategoriesTitleHeader title={title === 'Business Card' ? t('choose_size') : t('choose_book_size')} />
+        <CategoriesTitleHeader title={title === 'Booklet' ? t('choose_book_size') : t('choose_size')} />
         <View style={styles.cardsContainer}>
-          {item?.choose_size && item?.choose_size.map((item, index) => {
+          {item?.choose_size ? item?.choose_size.map((item, index) => {
             return (
               <>
                 {(title === 'Business Card') ?
@@ -107,7 +107,7 @@ const SingleProductScreen = ({
               </>
             )
           })
-          }
+          :<Text>Letterhead and envelope</Text>}
         </View>
         {title === 'Booklet' &&
           <>

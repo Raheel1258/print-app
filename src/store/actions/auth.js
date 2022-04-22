@@ -20,74 +20,62 @@ function setUserSignup(signupData) {
     };
 }
 
-
+//Login Api Action
 export const login = (data, navigation, setAnimation) => {
     return async (dispatch) => {
-        console.log("Login", data);
         setAnimation(true);
         axios.post(`${Api}/user/login`, data)
             .then(async (res) => {
-        		Toast.show({
-        			type: 'success',
-        			text1: 'You are successfully logged in',
-        		});
-        		setAnimation(false);
-        		await Storage.storeData('token', res?.data?.accessToken);
-        		navigation.reset({
-        			index: 0,
-        			routes: [{
-        				name: 'home'
-        			}],
-        		});
-        		dispatch(setUserLogin(res));
-        	})
+                Toast.show({
+                    type: 'success',
+                    text1: 'You are successfully logged in',
+                });
+                setAnimation(false);
+                await Storage.storeData('token', res?.data?.accessToken);
+                navigation.reset({
+                    index: 0,
+                    routes: [{
+                        name: 'home'
+                    }],
+                });
+                dispatch(setUserLogin(res));
+            })
             .catch((err) => {
-        		setAnimation(false);
-        		Toast.show({
-        			type: 'error',
-        			text1: err?.response?.data?.message,
-        		});
-        	});
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message,
+                });
+            });
     }
 };
 
 
 
-
+//SignUp Api Action
 export const signup = (data, navigation, setAnimation) => {
-    return  async(dispatch) => {
-        console.log("signup", data);
+    return async (dispatch) => {
+        const newData = { ...data, role: 'USER' }
         setAnimation(true);
-        // await Storage.storeData('token', "123");
-        // Toast.show({
-        //     type: 'success',
-        //     text1: 'You are successfully signup in',
-        // });
-        // navigation.reset({
-        //     index: 0,
-        //     routes: [{
-        //         name: 'home'
-        //     }]
-        // })
-        setAnimation(false);
-        dispatch(setUserSignup(data));
-        axios.post(`${Api}/user/signup`, data)
-        	.then(async (res) => {
-        		Toast.show({
-        			type: 'success',
-        			text1: 'You are successfully signed up'
-        		})
-        		navigation.navigate('LogIn')
-        		dispatch(setUserSignup(res));
-        	})
-        	.catch((err) => {
-        		console.log('signup err', err)
-        		Toast.show({
-        			type: 'error',
-        			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
-        		});
-        	});
-
+        axios.post(`${Api}/user/signup`, newData)
+            .then(async (res) => {
+                console.log("ressssssss", res);
+                Toast.show({
+                    type: 'success',
+                    text1: 'You are successfully signed up'
+                })
+                navigation.navigate('home')
+                dispatch(setUserSignup(res));
+                await Storage.storeData('token', res?.data?.accessToken);
+            })
+            .catch((err) => {
+                setAnimation(false);
+                console.log('signup err', err.response)
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
     }
 }
 
@@ -176,20 +164,14 @@ export const resetPasswordAction = (data, navigation, setAnimation, toggleModal)
 
 export const logout = (navigation, setAnimation) => {
     console.log("logout")
-    return  async(dispatch) => {
+    return async (dispatch) => {
         setAnimation(true);
         await Storage.removeData('token');
         Toast.show({
             type: 'success',
-            text1: 'You are logout',
+            text1: 'You are logged out',
         });
-        navigation.navigate('auth',{next: 'signin'});
-        // navigation.reset({
-        //     index: 0,
-        //     routes: [{
-        //         name: 'authStack'
-        //     }]
-        // })
+        navigation.navigate('auth', { next: 'signin' });
         setAnimation(false);
         dispatch(setUserSignup(data));
 

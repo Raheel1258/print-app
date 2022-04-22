@@ -22,28 +22,28 @@ export const setProductList = data => {
 }
 
 
-export const getProductList = (title, setAnimation) => async dispatch => {
+export const getProductListByCategory = (category, setAnimation) => async dispatch => {
     setAnimation(true);
     try {
-      //const res = await axios.get(`${Api}/title=title`);
+      //const res = await axios.get(`${Api}/category=category`);
       setAnimation(false);
-      if(title === 'Booklet')
+      if(category === 'BOOKLET')
       {
         dispatch(setProductList(productListBookletData));
       }
-      else if(title === 'Poster'){
+      else if(category === 'POSTER'){
         dispatch(setProductList(productListPosterData));
       }
-      else if(title === 'Stickers & Label'){
+      else if(category === 'FLYERS_LEAFLET'){
         dispatch(setProductList(productListStickerData));
       }
-      else if(title === 'Flyers & Leaflet'){
+      else if(category === 'STICKERS_LABEL'){
         dispatch(setProductList(productListFlyerData))
       }
-      else if(title === 'Envelope'){
+      else if(category === 'ENVELOPE'){
         dispatch(setProductList(productListEnvelopeData))
       }
-      else if(title === 'Letterhead'){
+      else if(category === 'LETTERHEAD'){
         dispatch(setProductList(productListLetterheadData))
       }
       else dispatch(setProductList(productListBusinessCardData));

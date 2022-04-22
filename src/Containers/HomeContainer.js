@@ -5,7 +5,7 @@ import {View} from 'react-native';
 import { types } from '@babel/core';
 
 import { ScaledSheet } from 'react-native-size-matters';
-import {getCategories,getHomeSliderImages} from "../store/actions/categories";
+import {getCategories,getHomeSliderImages, testSlider} from "../store/actions/categories";
 import { useSelector } from 'react-redux';
 
 import HomeScreen from '../Screens/HomeScreen';

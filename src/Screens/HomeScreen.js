@@ -79,7 +79,7 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
   // const sliderImages = homeSliderImages[0]?.images; 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
-    <AllCategoriesCard title={item.title} days={item.days} image={item.image} price={item.price} item={item} />
+    <AllCategoriesCard title={item.title} deliveryTime={item.deliveryTime} image={item.image} priceDescription={item.priceDescription} category={item.category} />
   );
   return (
     <>

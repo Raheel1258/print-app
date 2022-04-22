@@ -18,7 +18,7 @@ const SingleProductContainer = ({ route }) => {
   const urlRBSheet = useRef();
   const finishingRBSheet = useRef();
 
-  const [selectedSize, setSelectedSize] = useState(item?.choose_size[0]?.size_name);
+  const [selectedSize, setSelectedSize] = useState(title !== 'Letterhead' ? item?.choose_size[0]?.size_name : undefined);
   const [selectedCorner, setSelectedCorner] = useState(title == 'Business Card' ? item?.choose_corner[0]?.corner : undefined);
   const [quantityId, setQuantityId] = useState(item?.quantity_table[0]?.id);
   const [preview, setPreview] = useState(true);

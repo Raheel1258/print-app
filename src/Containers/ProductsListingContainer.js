@@ -4,14 +4,15 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScaledSheet } from 'react-native-size-matters';
 
-import {getProductList} from '../store/actions/productList';
+import {getProductListByCategory} from '../store/actions/productList';
 
 import ProductsListingScreen from '../Screens/ProductsListingScreen';
 import {colors} from '../Utils/theme';
 
 
 const ProductsListingContainer = ({route}) => { 
-  const {title,image} = route.params;
+  const {title,image, category} = route.params;
+  console.log("cate" , category);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const ProductsListingContainer = ({route}) => {
   };
 
   useEffect(()=>{
-    dispatch(getProductList(title,setAnimation))
+    dispatch(getProductListByCategory(category,setAnimation))
 
   },[])
   return (

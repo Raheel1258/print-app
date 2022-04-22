@@ -36,14 +36,17 @@ export const getCategories = (setAnimation) => async dispatch => {
 };
 
 
-export const getHomeSliderImages = () => async dispatch => {
-  try {
-    //const res = await axios.get(`${Api}/category`);
-    dispatch(setHomeSliderImages(sliderImagesHome));
-  } catch (err) {
-    Toast.show({
-      type: 'error',
-      text1: "Not found",
-    });
+export const getHomeSliderImages  = () => {
+  return async (dispatch) => {
+      axios.get(`${Api}/home-slider/findall`)
+          .then(async (res) => {
+            dispatch(setHomeSliderImages(res?.data));
+          })
+          .catch((err) => {
+              Toast.show({
+                  type: 'error',
+                  text1: err?.response?.data?.message,
+              });
+          });
   }
 };

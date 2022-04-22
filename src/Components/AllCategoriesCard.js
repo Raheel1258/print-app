@@ -5,7 +5,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors,fonts} from '../Utils/theme';
 
-const AllCategoriesCard = ({title,days,image,price}) => {
+const AllCategoriesCard = ({title,deliveryTime,image,priceDescription, category}) => {
   const navigation = useNavigation();
 
   const navigate = (routeName, data = {}) => {
@@ -13,17 +13,17 @@ const AllCategoriesCard = ({title,days,image,price}) => {
   }
 
   return (
-    <TouchableOpacity onPress={()=> navigate('productsListing' , {title:title, image:image})}>
+    <TouchableOpacity onPress={()=> navigate('productsListing' , {title:title, image:image, category:category})}>
     <View style={styles.headerContainer}>
       <Image style={styles.cardImage} source={image} />
       <Text numberOfLines={1} style={styles.cardName}>{title}</Text>
       <View style={styles.descriptionContainer}>
         <View style={styles.dotContainer} />
-        <Text numberOfLines={1} style={styles.descriptionText}>{days}</Text>
+        <Text numberOfLines={1} style={styles.descriptionText}>{deliveryTime}</Text>
       </View>
       <View style={styles.descriptionContainer}>
         <View style={styles.dotContainer} />
-        <Text numberOfLines={1} style={styles.descriptionText}>{price}</Text>
+        <Text numberOfLines={1} style={styles.descriptionText}>{priceDescription}</Text>
       </View>
     </View>
     </TouchableOpacity>

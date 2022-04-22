@@ -15,50 +15,57 @@ export const CategoriesData =
       id: '1',
       image: cardImage,
       title: 'Business Card',
-      days: '2-5 business days',
-      price: '100 cards from $68'
+      deliveryTime: '2-5 business days',
+      priceDescription: '100 cards from $68',
+      category:"BUSINESS_CARD"
     },
     {
       id: '2',
       image: bookletImage,
       title: 'Booklet',
-      days: '4-7 business days',
-      price: '10 booklets from $184'
+      deliveryTime: '4-7 business deliveryTime',
+      priceDescription: '10 booklets from $184',
+      category:"BOOKLET"
     },
     {
       id: '3',
       image: posterImage,
       title: 'Poster',
-      days: '3-4 business days',
-      price: '5 posters from $48'
+      deliveryTime: '3-4 business days',
+      priceDescription: '5 posters from $48',
+      category:"POSTER",
     },
     {
       id: '4',
       image: leafletImage,
       title: 'Flyers & Leaflet',
-      days: '3-4 business days',
-      price: '100 flyers from $58'
+      deliveryTime: '3-4 business days',
+      priceDescription: '100 flyers from $58',
+      category:"FLYERS_LEAFLET",
     },
     {
       id: '5',
       image: stickerImage,
-      title: 'Stickers & Label',
-      days: '3-5 business days',
-      price: '100 stickers from $178'
+      title: 'Sticker',
+      deliveryTime: '3-5 business days',
+      priceDescription: '100 stickers from $178',
+      category:"STICKERS_LABEL",
     },
     {
       id: '6',
       image: envelopImage,
       title: 'Envelope',
-      days: '4-6 business days',
-      price: '100 envelops from $128'
+      deliveryTime: '4-6 business days',
+      priceDescription: '100 envelops from $128',
+      category:"ENVELOPE",
     },
     {
       id: '7',
       image: letterheadImage,
       title: 'Letterhead',
-      days: '4-6 business days ',
-      price: '100 units from $120'
+      deliveryTime: '4-6 business days ',
+      priceDescription: '100 units from $120',
+      category:"LETTERHEAD"
     },
 
     // {
@@ -109,7 +116,7 @@ export const productListBusinessCardData = [
     choose_size: [
       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage },
       { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Sqaure', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
+      { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
     choose_corner: [
       { corner: 'Square', variation: 'Traditional', image: squareImage },
       { corner: 'Round', variation: 'Smooth', image: roundImage },
@@ -143,7 +150,7 @@ export const productListBusinessCardData = [
     choose_size: [
       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
       { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Sqaure', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
+      { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
     choose_corner: [
       { corner: 'Square', variation: 'Traditional', image: squareImage },
       { corner: 'Round', variation: 'Smooth', image: roundImage },
@@ -177,7 +184,7 @@ export const productListBusinessCardData = [
     choose_size: [
       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
       { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Sqaure', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
+      { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
     choose_corner: [
       { corner: 'Square', variation: 'Traditional', image: squareImage },
       { corner: 'Round', variation: 'Smooth', image: roundImage },
@@ -648,10 +655,10 @@ export const productListLetterheadData = [
     lead_time: '4-6 business days',
     colour: 'CYMK',
     sizes: 'A4(210mm x 297mm)',
-    choose_size: [
-      { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
-      { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
-    ],
+    // choose_size: [
+    //   { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
+    //   { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
+    // ],
     quantity_table: [
       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },

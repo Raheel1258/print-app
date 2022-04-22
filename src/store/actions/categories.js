@@ -40,6 +40,7 @@ export const getHomeSliderImages  = () => {
   return async (dispatch) => {
       axios.get(`${Api}/home-slider/findall`)
           .then(async (res) => {
+            console.log("res", res)
             dispatch(setHomeSliderImages(res?.data));
           })
           .catch((err) => {

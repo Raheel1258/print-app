@@ -27,7 +27,7 @@ const ImageSlider = ({sliderImages, captions}) => {
       {captions && <Text style={styles.slidertitle}>{captions[current]}</Text>}
       <SliderBox
         currentImageEmitter={i => setCurrent(i)}
-        images={sliderImages}
+        images={sliderImages && sliderImages}
         position="relative"
         sliderBoxHeight={200}
         dotColor={colors.whiteColor}

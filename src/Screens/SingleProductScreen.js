@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, ScrollView, Text, TextInput } from 'react-native';
+import { View, Image, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -107,7 +107,7 @@ const SingleProductScreen = ({
               </>
             )
           })
-          :<Text>Letterhead and envelope</Text>}
+            : <Text>Letterhead and envelope</Text>}
         </View>
         {title === 'Booklet' &&
           <>
@@ -118,7 +118,7 @@ const SingleProductScreen = ({
         {title === 'Business Card' &&
           <>
             <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
-            <UploadFileComponent title={t('finishing')} selection={'Mate'} />
+            <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={'Mate'} />
             <CategoriesTitleHeader title={t('choose_corner')} />
             <View style={styles.cardsContainer}>
               {item?.choose_corner && item?.choose_corner.map((item, index) => {
@@ -200,7 +200,7 @@ const SingleProductScreen = ({
           note={false}
           height={300}
           childern={
-            <Text>vghvjhv</Text>
+            <TouchableOpacity style={styles.listContainer}><Text style={styles.listStyle}>List</Text></TouchableOpacity>
           }
         />
         <VerificationModal
@@ -343,6 +343,19 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     marginTop: '3@s',
   },
+  listStyle: {
+    fontFamily: fonts.avenir_regular,
+    fontSize: '14@s',
+    fontStyle: 'normal',
+    lineHeight: '13@s',
+    letterSpacing: '0.2@s',
+    paddingVertical: '10@s',
+  },
+  listContainer: {
+    borderBottomColor: colors.innerBorderColor,
+    borderBottomWidth: 1,
+    paddingHorizontal: '10@s'
+  }
 });
 
 export default SingleProductScreen;

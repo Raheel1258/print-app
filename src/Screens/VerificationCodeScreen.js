@@ -1,16 +1,16 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
-import {Formik} from 'formik';
-import {verificationCodeSchema} from '../Utils/validationSchema';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import { Formik } from 'formik';
+import { verificationCodeSchema } from '../Utils/validationSchema';
 
 import {
   BackArrowHeader,
   InputTextField,
   GreenButton,
 } from '../Components';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 const VerificationCodeScreen = ({
   animation,
@@ -19,17 +19,17 @@ const VerificationCodeScreen = ({
   handleVerificationCode,
   verificationCodeState,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <BackArrowHeader goBack={goBack} title={t('verification_code')} />
       <View style={styles.container}>
         <ScrollView>
-        <Formik initialValues={verificationCodeState} validationSchema={()=>verificationCodeSchema(t)} onSubmit={(values) => handleVerificationCode(values)}>
+          <Formik initialValues={verificationCodeState} validationSchema={() => verificationCodeSchema(t)} onSubmit={(values) => handleVerificationCode(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { otpCode } = values;
               return <>
-                 <Text style={styles.emailDescription}>{t('verification_description')}</Text>
+                <Text style={styles.emailDescription}>{t('verification_description')}</Text>
                 <InputTextField
                   value={otpCode}
                   error={touched.otpCode && errors.otpCode}
@@ -41,12 +41,12 @@ const VerificationCodeScreen = ({
                   onBlur={handleBlur('otpCode')}
                 />
                 <View style={styles.buttonWrapper}>
-                <GreenButton
-                  onPress={handleSubmit}
-                  title={t('reset_password')}
-                  animation={animation}
+                  <GreenButton
+                    onPress={handleSubmit}
+                    title={t('reset_password')}
+                    animation={animation}
                   />
-                </View>    
+                </View>
               </>
             }}
           </Formik>

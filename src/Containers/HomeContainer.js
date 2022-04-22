@@ -17,9 +17,8 @@ const HomeContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const categoriesData = useSelector(state => state?.categories?.categories); 
-  const homeSliderImagesData = useSelector(state =>  state?.categories?.homeSliderImages);
+  const homeSliderImagesData = useSelector(state => state?.categories?.homeSliderImages);
 
-  
   const homeSliderImages =  homeSliderImagesData?.map(item => (item.image));
   const homeSliderImagesCaptions = homeSliderImagesData?.map(item => (item.caption));
   

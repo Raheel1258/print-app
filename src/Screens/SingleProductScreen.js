@@ -300,6 +300,7 @@ const styles = ScaledSheet.create({
     paddingLeft: 7,
     fontSize: '14@s',
     marginBottom: '15@s',
+    color: colors.blackColor
   },
   bottomContainer: {
     backgroundColor: colors.offWhiteColor,

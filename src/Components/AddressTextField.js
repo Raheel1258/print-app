@@ -5,16 +5,19 @@ import {useTranslation} from 'react-i18next';
 
 import {colors, fonts} from '../Utils/theme';
 
-const AddressTextField = ({childern, placeholder=null, title, keyboardType, placeholderTextColor=colors.lightBlackColor }) => {
+const AddressTextField = (props) => {
+  const {childern, placeholder=null, title, keyboardType, placeholderTextColor=colors.lightBlackColor,secureTextEntry, error } = props;
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.titleText}>{title}{error ? <Text style={styles.textError}>{error}</Text> : null }</Text>
         <TextInput
+          {...props}
           style={styles.textInput}
           placeholder={placeholder}
           keyboardType={keyboardType}
+          secureTextEntry={secureTextEntry}
           placeholderTextColor={placeholderTextColor}
         />
       </View>
@@ -42,6 +45,17 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.4@s',
     textAlign: 'left',
     color: colors.blackColor,
+  },
+  textError:  {
+    fontSize: '13@s',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontStyle: 'normal',
+    lineHeight: '22@s',
+    letterSpacing: '0.5@s',
+    textAlign: 'left',
+    color: 'red',
+    marginBottom:'7@s',
   },
   textInput: {
     fontFamily: fonts.avenir_light,

@@ -115,6 +115,7 @@
     english_text: 'English',
     chinese_text: '中文',
     select_language: 'Select your preferred language',
+    add_card:'Add Card',
  //<=Cart Screen=>
     cart_text: 'Cart',   
     my_cart: 'My Cart',

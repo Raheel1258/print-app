@@ -33,11 +33,6 @@ const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleFo
                 <View style={styles.buttonWrapper}>
                   <GreenButton onPress={handleSubmit} animation={animation} title={t('send_verification_code')} />
                 </View>
-                {/* <VerificationModal
-                title={t('email_us')}
-                description={t('email_modal_description')}
-                  isModalVisible={isModalVisible}
-                  toggleModal={toggleModal} /> */}
               </>
             }}
           </Formik>

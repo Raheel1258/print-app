@@ -6,7 +6,7 @@ import {colors,fonts} from '../Utils/theme';
 
 const GreenButton = ({title, onPress = () => {}, animation = false, backgroundColor = colors.greenColor, color = colors.whiteColor, buttonHeight = 56, borderWidth = null, borderColor = colors.smokeWhiteColor }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor, height: buttonHeight, borderWidth: borderWidth, borderColor: borderColor}}>
+    <TouchableOpacity  onPress={onPress} style={{...styles.buttonContainer, backgroundColor:backgroundColor, height: buttonHeight, borderWidth: borderWidth, borderColor: borderColor}}>
       <Text style={{...styles.buttonText,color:color}}> {animation ?
           <ActivityIndicator size="small" color="#FFFFFF" animating={animation} />
           : title

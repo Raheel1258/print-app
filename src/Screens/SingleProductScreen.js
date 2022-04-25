@@ -40,11 +40,12 @@ const SingleProductScreen = ({
   preview,
   setPreview,
   handleAddToCart,
-  remarks,
-  setRemarks,
   handleChange,
-  finishingRBSheet
+  finishingRBSheet,
+  selectFinishing,
+  setSelectFinishing,
 }) => {
+  const arr1 = ['mate', 'list', 'blue']
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
@@ -66,7 +67,6 @@ const SingleProductScreen = ({
                       item?.size_name === 'Sqaure' ?
 
                         <StandardSizeCard
-                          key={index}
                           name={item?.name}
                           designation={item?.designation}
                           studio={item?.studio}
@@ -78,7 +78,6 @@ const SingleProductScreen = ({
                         />
                         :
                         <StandardSizeCard
-                          key={index}
                           name={item?.name}
                           designation={item?.designation}
                           studio={item?.studio}
@@ -118,7 +117,7 @@ const SingleProductScreen = ({
         {title === 'Business Card' &&
           <>
             <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
-            <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={'Mate'} />
+            <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
             <CategoriesTitleHeader title={t('choose_corner')} />
             <View style={styles.cardsContainer}>
               {item?.choose_corner && item?.choose_corner.map((item, index) => {
@@ -195,12 +194,21 @@ const SingleProductScreen = ({
 
         {/* Finishing BottomSheet */}
         <BottomSheetComponent
-          title={'finigfhf'}
+          title={'Choose Finishing'}
           refRBSheet={finishingRBSheet}
           note={false}
           height={300}
           childern={
-            <TouchableOpacity style={styles.listContainer}><Text style={styles.listStyle}>List</Text></TouchableOpacity>
+            arr1.map((item, index) => {
+              return <TouchableOpacity key={index} onPress={() => {
+                setSelectFinishing(item);
+                finishingRBSheet.current.close()
+              }} style={styles.listContainer}>
+                <Text style={styles.listStyle}>{item}</Text>
+              </TouchableOpacity>
+
+            })
+
           }
         />
         <VerificationModal

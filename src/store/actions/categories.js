@@ -20,19 +20,23 @@ export const setHomeSliderImages = data => {
   };
 }
 
-export const getCategories = (setAnimation) => async dispatch => {
-  setAnimation(true);
-  try {
-    //const res = await axios.get(`${Api}/category`);
-    dispatch(setCategories(CategoriesData));
-    setAnimation(false);
-  } catch (err) {
-    setAnimation(false);
-    Toast.show({
-      type: 'error',
-      text1: "Not found",
-    });
-  }
+export const getCategories = (setAnimation) => {
+  return async (dispatch) => {
+    setAnimation(true);
+
+    axios.get(`${Api}/category/findall`)
+        .then(async (res) => {
+          dispatch(setCategories(res?.data));
+          setAnimation(false);
+        })
+        .catch((err) => {
+          setAnimation(false);
+            Toast.show({
+                type: 'error',
+                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+            });
+        });
+}
 };
 
 
@@ -40,7 +44,6 @@ export const getHomeSliderImages  = () => {
   return async (dispatch) => {
       axios.get(`${Api}/home-slider/findall`)
           .then(async (res) => {
-            console.log("res", res)
             dispatch(setHomeSliderImages(res?.data));
           })
           .catch((err) => {

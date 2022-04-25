@@ -12,7 +12,6 @@ import {colors} from '../Utils/theme';
 
 const ProductsListingContainer = ({route}) => { 
   const {title,image, category} = route.params;
-  console.log("cate" , category);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 

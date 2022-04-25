@@ -20,6 +20,7 @@ const SingleProductContainer = ({ route }) => {
 
   const [selectedSize, setSelectedSize] = useState(title !== 'Letterhead' ? item?.choose_size[0]?.size_name : undefined);
   const [selectedCorner, setSelectedCorner] = useState(title == 'Business Card' ? item?.choose_corner[0]?.corner : undefined);
+  const [selectFinishing, setSelectFinishing] = useState('Mate');
   const [quantityId, setQuantityId] = useState(item?.quantity_table[0]?.id);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
@@ -45,6 +46,7 @@ const SingleProductContainer = ({ route }) => {
     const obj = {
       selectedSize: selectedSize,
       selectedCorner: selectedCorner,
+      selectedFinishing: selectFinishing,
       quantityId: quantityId,
       preview: preview,
       remarks: remarks
@@ -55,6 +57,7 @@ const SingleProductContainer = ({ route }) => {
     console.log('review', preview);
     console.log('remarks', remarks);
     console.log("new obj", obj);
+    console.log("choose-finishing", selectFinishing);
   }
 
   return (
@@ -80,6 +83,8 @@ const SingleProductContainer = ({ route }) => {
         handleAddToCart={handleAddToCart}
         handleChange={handleChange}
         finishingRBSheet={finishingRBSheet}
+        selectFinishing={selectFinishing}
+        setSelectFinishing={setSelectFinishing}
       />
     </View>
   );

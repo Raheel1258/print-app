@@ -87,6 +87,7 @@ export const chi = {
     sign_out: '登出',
     question_support: '有问题或需要支持？向我们发送电子邮件至',
     support_mail: 'support@printprint.com.hk',
+    add_card:'添加卡',
     //<=Account Screen=>
     personal_detail: '个人资料',
     mobile_number: '移动的',

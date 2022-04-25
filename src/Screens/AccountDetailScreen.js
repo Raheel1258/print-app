@@ -100,33 +100,6 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
               </>
             }}
           </Formik>
-          {/* ...... */}
-          {/* <InputTextField
-            title={t('first_name')}
-            placeholder={t('peter_text')}
-            keyboardType="default"
-            secureTextEntry={false}
-          />
-          <InputTextField title={t('last_name')} placeholder={t('park_text')} /> */}
-          {/* <InputTextField
-            title={t('mobile_number')}
-            placeholder={t('number_text')}
-            keyboardType="phone-pad"
-            secureTextEntry={false}
-          /> */}
-          {/* <InputTextField title={t('e_mail')} placeholder={t('email_text')} /> */}
-          {/* <TouchableOpacity
-            onPress={() => navigate('changePassword')}
-            style={styles.passwordWrapper}>
-            <Text style={styles.changePassword}>Change password</Text>
-          </TouchableOpacity> */}
-          {/* <View style={styles.buttonWrapper}>
-            <GreenButton
-              backgroundColor={colors.blackColor}
-              color={colors.whiteColor}
-              title={t('update_text')}
-            />
-          </View> */}
         </View>
 
         <View style={styles.categoriesWrapper}>

@@ -59,4 +59,26 @@ export const changePasswordSchema = (t) => {
     }))
 }
 
+export const addAddressSchema = (t) => {
+    return (Yup.object({
+        fullName: Yup.string().required('required name'),
+        companyName: Yup.string(),
+        addressLine1: Yup.string().required('*'),
+        addressLine2: Yup.string().required('*'),
+        area: Yup.string().required('*'),
+        district: Yup.string().required('*'),
+        cityCountry: Yup.string().required('*'),
+        contactNumber: Yup.string().matches(phoneRegExp, ('*')).required('*'),
+    }))
+}
+
+export const addCreditCardSchema = (t) => {
+    return (Yup.object({
+        cardNumber: Yup.string().required('*'),
+        cardName:Yup.string().required('*'),
+        expiryMonth: Yup.string().required('*'),
+        expiryYear: Yup.string().required('*')
+    }))
+}
+
 

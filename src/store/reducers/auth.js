@@ -16,5 +16,11 @@ const auth = createReducer({}, {
 			signupData: action.signupData,
 		};
 	},
+	[types.USER_ADDRESS](state, action) {
+		return {
+			...state,
+			userAddress: action.userAddress,
+		};
+	},
 });
 export default auth;

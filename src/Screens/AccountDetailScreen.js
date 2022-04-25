@@ -123,7 +123,7 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
         <View style={styles.screenBorderBottom} />
       </ScrollView>
       <BottomSheetComponent
-        childern={<AddNewAddressForm />}
+        childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet}/>}
         title={t('add_new_address')}
         note={false}
         refRBSheet={addAddressRBSheet}

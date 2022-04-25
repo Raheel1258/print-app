@@ -61,7 +61,7 @@ export const changePasswordSchema = (t) => {
 
 export const addAddressSchema = (t) => {
     return (Yup.object({
-        fullName: Yup.string().required('required name'),
+        fullName: Yup.string().required('*'),
         companyName: Yup.string(),
         addressLine1: Yup.string().required('*'),
         addressLine2: Yup.string().required('*'),

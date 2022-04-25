@@ -20,6 +20,13 @@ function setUserSignup(signupData) {
     };
 }
 
+function setUserAddress(userAddress) {
+    return {
+        type: types.USER_SIGNUP,
+        userAddress,
+    };
+}
+
 //Login Api Action
 export const login = (data, navigation, setAnimation) => {
     return async (dispatch) => {
@@ -79,7 +86,7 @@ export const signup = (data, navigation, setAnimation) => {
     }
 }
 
-
+//forgot Password
 export const forgotPassword = (data, navigation, setAnimation) => {
     return (dispatch) => {
         console.log("forgot", data);
@@ -106,6 +113,7 @@ export const forgotPassword = (data, navigation, setAnimation) => {
     }
 }
 
+//VerificationOptCode
 export const verificationOptCode = (data, navigation, setAnimation) => {
     return (dispatch) => {
         console.log("optCode", data);
@@ -132,7 +140,7 @@ export const verificationOptCode = (data, navigation, setAnimation) => {
     }
 }
 
-
+//ResetPasswordAction
 export const resetPasswordAction = (data, navigation, setAnimation, toggleModal) => {
     return (dispatch) => {
         console.log("new password", data);
@@ -161,7 +169,7 @@ export const resetPasswordAction = (data, navigation, setAnimation, toggleModal)
     }
 }
 
-
+//Logout API Action
 export const logout = (navigation, setAnimation) => {
     console.log("logout")
     return async (dispatch) => {
@@ -174,6 +182,33 @@ export const logout = (navigation, setAnimation) => {
         navigation.navigate('auth', { next: 'signin' });
         setAnimation(false);
         dispatch(setUserSignup(data));
+
+    }
+}
+
+//Add Address
+export const addAddress = (setAnimation, data,addAddressRBSheet) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setAnimation(true);
+        axios.patch(`${Api}/user/address/add`, data, { headers: {"Authorization" : `Bearer ${accessToken}`} })
+            .then(async (res) => {
+                console.log("address api response", res);
+                Toast.show({
+                    type: 'success',
+                    text1: 'You are successfully added your address'
+                })
+                setAnimation(false);
+                dispatch(setUserAddress(res?.data));
+                addAddressRBSheet.current.close();       
+            })
+            .catch((err) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message,
+                });
+            });
 
     }
 }

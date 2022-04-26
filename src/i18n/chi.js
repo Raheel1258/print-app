@@ -19,7 +19,7 @@ export const chi = {
     create_account: '创建帐号',
     //<=Forgot Password Screen=>
     email_description:
-      '请在下方输入您的电子邮件地址，我们将向您发送密码重置链接。',
+      '请在下方输入您的电子邮件地址，我们将向您发送验证码，以便您重置密码.',
     send_text: '发送',
     sent_text: '发送！',
     email_modal_description:

@@ -31,7 +31,7 @@
     firstName_required: 'First Name is required',
     lastName_required: 'Last Name is required',
   //<=Forgot Password Screen=>
-    email_description: 'Please enter your email address below, we’ll send you a password reset link.',
+    email_description: 'Please enter your email address below, we’ll send you a verification code for you to reset your password.',
     send_text: 'Send',
     sent_text: 'Sent!',
     email_modal_description: 'We have sent you an e-mail with the instruction to reset your password.',

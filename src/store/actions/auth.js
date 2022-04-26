@@ -51,7 +51,7 @@ export const login = (data, navigation, setAnimation) => {
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message,
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
     }
@@ -66,7 +66,6 @@ export const signup = (data, navigation, setAnimation) => {
         setAnimation(true);
         axios.post(`${Api}/user/signup`, newData)
             .then(async (res) => {
-                console.log("ressssssss", res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully signed up'
@@ -89,7 +88,6 @@ export const signup = (data, navigation, setAnimation) => {
 //forgot Password
 export const forgotPassword = (data, navigation, setAnimation) => {
     return (dispatch) => {
-        console.log("forgot", data);
         navigation.navigate('verificationCode');
         //setAnimation(true);
         // axios

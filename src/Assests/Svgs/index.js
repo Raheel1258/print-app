@@ -33,6 +33,7 @@ import OrderPicupIcon from './OrderPicupIcon';
 import PrintingIcon from './PrintingIcon';
 import AuthenticationLogo from './AuthenticationLogo';
 import InfoIcon from './InfoIcon';
+import ShortenedIcon from './ShortenedIcon';
 
 export {
   BrowseActiveIcon,
@@ -70,4 +71,5 @@ export {
   PrintingIcon,
   AuthenticationLogo,
   InfoIcon,
+  ShortenedIcon
 };

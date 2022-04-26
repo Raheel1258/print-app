@@ -58,7 +58,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
     <>
       {productList?.length !== undefined ?
         <View style={styles.container}>
-          <ImageBackArrowHeader Children={categoryImage} title={categoryTitle} image={categoryImage} goBack={goBack} />
+          <ImageBackArrowHeader  title={categoryTitle} image={categoryImage} goBack={goBack} />
           <FlatList
             data={productList}
             renderItem={renderItem}

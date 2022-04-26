@@ -10,13 +10,14 @@ import {ScaledSheet} from 'react-native-size-matters';
 import BackArrow from '../Assests/Svgs/BackArrow';
 import {colors,fonts} from '../Utils/theme';
 
-const ImageBackArrowHeader = ({goBack,title,description,Children, image}) => {
+const ImageBackArrowHeader = ({goBack,title,description,Children, image, borderBottomWidth=9}) => {
+  const newImage = image ? {uri:image}:Children
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container,borderBottomWidth:borderBottomWidth}}>
     <ImageBackground
       resizeMode="cover"
       style={styles.headerImage}
-      source={{uri: Children}}>
+      source={image ? {uri: image}: Children}>
       <TouchableOpacity onPress={goBack} style={styles.headerArrow}>
         <BackArrow />
       </TouchableOpacity>
@@ -29,7 +30,6 @@ const ImageBackArrowHeader = ({goBack,title,description,Children, image}) => {
 
 const styles = ScaledSheet.create({
   container:{
-    borderBottomWidth:9,
     borderBottomColor:colors.offWhiteColor,
   },
   headerImage: {

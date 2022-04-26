@@ -38,7 +38,7 @@ const MyAddresses = ({title,description,address}) => {
 
       <View style={styles.editableContainer}>
         <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>
+      {!description &&  <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
         <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
       </View>
     </View>
@@ -79,7 +79,6 @@ const styles = ScaledSheet.create({
   editableContainer:{
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'space-between',
     width:'60%',
     marginTop:'7@s'
   },
@@ -100,6 +99,8 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.4@s',
     textAlign: 'left',
     color: colors.greenColor, 
+    marginLeft:'-2@s',
+    marginRight:'5@s'
   },
   paddingWrapper:{
     padding:'4@s'

@@ -16,6 +16,7 @@ const RadioButtonComponent = ({
   onPress,
   radioButtonStatus,
   setRadioButtonStatus,
+  toggleModal = ()=> {}
 }) => {
   const {t} = useTranslation();
   return (
@@ -33,7 +34,8 @@ const RadioButtonComponent = ({
       </View>
       <View style={styles.borderBottom} />
       <View style={styles.container}>
-        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => setRadioButtonStatus(false)}>
+        <TouchableOpacity style={secondTitle === 'Bank Transfer / Cheque' ? styles.radiostyling : styles.radioButtonWrapper} onPress={() =>{setRadioButtonStatus(false) 
+          toggleModal()}}>
           {!radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <TouchableOpacity>
@@ -80,7 +82,11 @@ const styles = ScaledSheet.create({
     marginHorizontal: '20@s',
   },
   radioButtonWrapper:{
-    padding:'5@s'
+    padding:'5@s',
+  },
+  radiostyling:{
+    marginBottom:'13@s',
+    padding:'5@s',
   }
 });
 

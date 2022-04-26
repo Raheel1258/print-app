@@ -26,7 +26,7 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
       {
         categories?.length !== undefined ?
           <>
-            <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions} />
+            <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions} autoPlaySlider={true}/>
             <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
               <FlatList

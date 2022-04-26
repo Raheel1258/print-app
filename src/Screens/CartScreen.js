@@ -108,10 +108,11 @@ const CartScreen = ({
         <CategoriesTitleHeader title={t('payment_method')} />
         <RadioButtonComponent
           onPress={() => creditCardRBSheet.current.open()}
+          toggleModal={toggleModal}
           title={t('cradit_card_text')}
-          secondTitle={t('bank_transfer')}
           description="Select card"
-          secondDescription="Bank account info available after checkout"
+          secondTitle={t('bank_transfer')}
+          secondDescription="Pick up yourself at:"
           radioButtonStatus={paymentMethod}
           setRadioButtonStatus={setPaymentMethod}
         />
@@ -125,7 +126,6 @@ const CartScreen = ({
             {t('before_production')}
           </Text>
           <GreenButton
-            onPress={toggleModal}
             backgroundColor={colors.blackColor}
             buttonHeight={57}
             title={t('place_order')}

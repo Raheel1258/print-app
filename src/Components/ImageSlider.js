@@ -5,15 +5,9 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors, fonts} from '../Utils/theme';
 
-const ImageSlider = ({sliderImages, captions}) => {
+const ImageSlider = ({sliderImages, captions, autoPlaySlider=false}) => {
   
-  //console.log("home" , homeSliderImages[0].images)
   const [current, setCurrent] = useState(0);
-  // const [text, setText] = useState([
-  //   'Order your next print in just a few taps1',
-  //   'Order your next print in just a few taps2',
-  //   'Order your next print in just a few taps3',
-  // ]);
   const [images, setImges] = useState([
     // 'https://source.unsplash.com/1024x768/?nature',
     // 'https://source.unsplash.com/1024x768/?water',
@@ -33,7 +27,7 @@ const ImageSlider = ({sliderImages, captions}) => {
         dotColor={colors.whiteColor}
         inactiveDotColor="transparent"
         paginationBoxVerticalPadding={20}
-        autoplay
+        autoplay={autoPlaySlider}
         circleLoop
         resizeMethod={'resize'}
         resizeMode={'cover'}
@@ -47,8 +41,8 @@ const ImageSlider = ({sliderImages, captions}) => {
           paddingVertical: 10,
         }}
         dotStyle={{
-          width: 15,
-          height: 15,
+          width: 12,
+          height: 12,
           borderRadius: 50,
           marginHorizontal: 0,
           padding: 0,
@@ -58,7 +52,7 @@ const ImageSlider = ({sliderImages, captions}) => {
           backgroundColor: 'transparent',
         }}
         ImageComponentStyle={{
-          borderRadius: 15,
+          borderRadius: 5,
           width: '92%',
           marginTop: 10,
         }}

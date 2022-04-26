@@ -27,6 +27,7 @@ const AccountScreen = ({ navigate, goBack, refRBSheet, logoutHandler, accountRBS
         title="Account"
         description="Spread the word"
         goBack={goBack}
+        borderBottomWidth={0}
       />
       <ScrollView>
         <View style={styles.paddingContainer}>

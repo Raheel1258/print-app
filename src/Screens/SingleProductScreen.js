@@ -65,7 +65,7 @@ const SingleProductScreen = ({
               Childern={
                 <InfoIcon style={styles.squareimage} />}
               cardStandard={item?.name}
-              cardDimensions={`${item?.height}x${item?.width}`}
+              cardDimensions={`${item?.height}mm x ${item?.width}mm`}
               selectedSize={selectedSize}
               onPress={() => setSelectedSize(item?.name)}
 

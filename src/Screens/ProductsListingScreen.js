@@ -34,13 +34,14 @@ const DATA = [
   },
 ];
 
-const ProductsListingScreen = ({ goBack, productList, navigate, title, image, animation }) => {
+const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, categoryImage, animation, category }) => {
   const renderItem = ({ item }) => (
     <>
-      <ImageSlider sliderImages={item?.images} title={item.title} />
-      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item , title:title})} style={styles.paddingContainer}>
-        <Text style={styles.cardTitle}>{item?.heading}</Text>
-        <Text style={styles.cardPrice}>From HK$ {item?.price} / 100pcs</Text>
+    {console.log("itemall" , item)}
+      <ImageSlider sliderImages={item?.image} title={item.title} />
+      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer}>
+        <Text style={styles.cardTitle}>{item?.category?.name}</Text>
+        <Text style={styles.cardPrice}>From HK$ {item?.category?.pricePerHunderd} / 100pcs</Text>
         <View style={styles.descriptionContainer}>
           <View style={styles.dotContainer} />
           <Text style={styles.cardDescription}>{item?.feature1}</Text>
@@ -57,7 +58,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, title, image, an
     <>
       {productList?.length !== undefined ?
         <View style={styles.container}>
-          <ImageBackArrowHeader Children={HeaderImage} title={title} image={image} goBack={goBack} />
+          <ImageBackArrowHeader Children={categoryImage} title={categoryTitle} image={categoryImage} goBack={goBack} />
           <FlatList
             data={productList}
             renderItem={renderItem}

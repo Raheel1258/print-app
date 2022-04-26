@@ -10,7 +10,9 @@ import { colors } from '../Utils/theme';
 
 const SingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
-  const { item, title } = route.params;
+  const { item, categoryTitle, category } = route.params;
+
+  
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -18,10 +20,10 @@ const SingleProductContainer = ({ route }) => {
   const urlRBSheet = useRef();
   const finishingRBSheet = useRef();
 
-  const [selectedSize, setSelectedSize] = useState(title !== 'Letterhead' ? item?.choose_size[0]?.size_name : undefined);
-  const [selectedCorner, setSelectedCorner] = useState(title == 'Business Card' ? item?.choose_corner[0]?.corner : undefined);
+  const [selectedSize, setSelectedSize] = useState(category !== 'LETTERHEAD' ? item?.size[0]?.name : undefined);
+  const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
   const [selectFinishing, setSelectFinishing] = useState('Mate');
-  const [quantityId, setQuantityId] = useState(item?.quantity_table[0]?.id);
+  const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
 
@@ -64,7 +66,8 @@ const SingleProductContainer = ({ route }) => {
     <View style={styles.container}>
       <SingleProductScreen
         item={item}
-        title={title}
+        categoryTitle={categoryTitle}
+        category={category}
         goBack={goBack}
         refRBSheet={refRBSheet}
         urlRBSheet={urlRBSheet}

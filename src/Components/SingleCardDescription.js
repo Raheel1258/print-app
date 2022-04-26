@@ -5,40 +5,39 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors,fonts} from '../Utils/theme';
 
 const SingleCardDescription = ({item}) => {
-  console.log("into desc" , item);
   return (
     <View style={styles.paddingContainer}>
       <Text style={styles.productTitle} numberOfLines={1}>
-        {item?.heading}
+        {item?.category?.name}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-        From HK$ {item?.price} / 100 pc
+        From HK$ {item?.category?.pricePerHunderd} / 100 pc
       </Text>
       <Text style={styles.productDescription}>
-        {item?.description}
+        {item?.category?.description}
       </Text>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Paper type:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item?.paper_type}
+          {item?.category?.paperType}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Lead time:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item?.lead_time}
+          {item?.category?.leadTime}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Colour:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item?.colour}
+          {item?.category?.colour}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>Sizes:</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item?.sizes}
+          {item?.category?.Sizes}
         </Text>
       </View>
     </View>

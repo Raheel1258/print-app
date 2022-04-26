@@ -54,12 +54,12 @@ const QuantityTable = ({setQuantityId, quantityId, quantityTable }) => {
   }
 
   const renderItem = ({item}) => {
-    const quantityStyle = quantityId == item?.id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
+    const quantityStyle = quantityId == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
     return (
-      <TouchableOpacity activeOpacity={1} onPress = { () => setQuantityId(item?.id)} style={{...styles.tableItems, ...quantityStyle}}>
+      <TouchableOpacity activeOpacity={1} onPress = { () => setQuantityId(item?._id)} style={{...styles.tableItems, ...quantityStyle}}>
         <Text style={styles.priceText}>{item?.quantity}</Text>
-        <Text style={styles.dollerPrice}>${item?.price}</Text>
-        <Text style={styles.priceText}>${item?.unit_price}</Text>
+        <Text style={styles.dollerPrice}>${"100"}</Text>
+        <Text style={styles.priceText}>${item?.unitPrice}</Text>
       </TouchableOpacity>
     );
   };

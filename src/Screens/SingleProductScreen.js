@@ -24,8 +24,9 @@ import roundImage from '../Assests/Images/round-image.png';
 import squareImage from '../Assests/Images/square-image.png';
 
 const SingleProductScreen = ({
-  title,
+  categoryTitle,
   item,
+  category,
   goBack,
   refRBSheet,
   urlRBSheet,
@@ -49,87 +50,57 @@ const SingleProductScreen = ({
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <BackArrowHeader goBack={goBack} title={title} arrow={false} />
+      <BackArrowHeader goBack={goBack} title={categoryTitle} arrow={false} />
       <ScrollView style={styles.marginContainer}>
         <View style={styles.sliderWrapper}>
-          <ImageSlider sliderImages={item?.images} />
+          <ImageSlider sliderImages={item?.image} />
           <SingleCardDescription item={item} />
         </View>
-        <CategoriesTitleHeader title={title === 'Booklet' ? t('choose_book_size') : t('choose_size')} />
+        <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
         <View style={styles.cardsContainer}>
-          {item?.choose_size ? item?.choose_size.map((item, index) => {
+          {category === "BUSINESS_CARD" && item?.size.map((item,index)=> {
             return (
-              <>
-                {(title === 'Business Card') ?
-                  <CardSizeComponent
-                    key={index}
-                    Childern={
-                      item?.size_name === 'Sqaure' ?
+            <>
+            <CardSizeComponent
+              Childern={
+                <InfoIcon style={styles.squareimage} />}
+              cardStandard={item?.name}
+              cardDimensions={`${item?.height}x${item?.width}`}
+              selectedSize={selectedSize}
+              onPress={() => setSelectedSize(item?.name)}
 
-                        <StandardSizeCard
-                          name={item?.name}
-                          designation={item?.designation}
-                          studio={item?.studio}
-                          textWidth={60}
-                          cardWidth={100}
-                          cardHeight={100}
-                          borderColor={colors.lightOrangeColor}
-                          dotColor={colors.orangeColor}
-                        />
-                        :
-                        <StandardSizeCard
-                          name={item?.name}
-                          designation={item?.designation}
-                          studio={item?.studio}
-                          textWidth={100}
-                          cardWidth={135}
-                          cardHeight={80}
-                          borderColor={item?.size_name === 'Standard' ? colors.gradientGreenColor : colors.gradientBlueColor}
-                          dotColor={item?.size_name === 'Standard' ? colors.darkGreenColor : colors.lightBlueColor}
-                        />
-                    }
-                    selectedSize={selectedSize}
-                    onPress={() => setSelectedSize(item?.size_name)}
-                    cardStandard={item?.size_name}
-                    cardDimensions={`${item?.height} x ${item?.width}`}
-                  /> :
-                  <CardSizeComponent
-                    key={index}
-                    Childern={
-                      <Image style={styles.squareimage} source={item?.image} />}
-                    cardStandard={item?.size_name}
-                    cardDimensions={`${item?.height}x${item?.width}`}
-                    selectedSize={selectedSize}
-                    onPress={() => setSelectedSize(item?.size_name)}
-                  />}
-
-              </>
+            />
+            </>
             )
-          })
-            : <Text>Letterhead and envelope</Text>}
+          })}
         </View>
-        {title === 'Booklet' &&
+        {(category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card" ) &&
+         <>
+          <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
+          <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
+         </>
+        }
+
+        {category === 'BOOKLET' &&
           <>
             <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
             <UploadFileComponent title={t('finishing')} selection={'Mate'} />
           </>
         }
-        {title === 'Business Card' &&
+        {category === 'BUSINESS_CARD' &&
           <>
-            <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
-            <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
             <CategoriesTitleHeader title={t('choose_corner')} />
             <View style={styles.cardsContainer}>
-              {item?.choose_corner && item?.choose_corner.map((item, index) => {
+              {item?.corner && item?.corner.map((item, index) => {
                 return (
                   <CardSizeComponent
                     key={index}
                     selectedCorner={selectedCorner}
-                    onPress={() => setSelectedCorner(item?.corner)}
-                    Childern={
-                      <Image style={styles.squareimage} source={item?.image} />}
-                    cardStandard={item?.corner}
-                    cardDimensions={item?.variation}
+                    onPress={() => setSelectedCorner(item?.cornerName)}
+                    // Childern={
+                    //   <Image style={styles.squareimage} source={item?.image} />}
+                    cardStandard={item?.cornerName}
+                    cardDimensions={item?.cornerDescription}
                   />
                 )
               })
@@ -138,7 +109,7 @@ const SingleProductScreen = ({
           </>}
 
         <CategoriesTitleHeader title={t('choose_quantity')} />
-        <QuantityTable quantityTable={item?.quantity_table} quantityId={quantityId} setQuantityId={setQuantityId} />
+        <QuantityTable quantityTable={item?.priceChart} quantityId={quantityId} setQuantityId={setQuantityId} />
         <CategoriesTitleHeader title={t('send_preview')} />
         <Text style={styles.previewDescription}>
           After you’ve placed the order, we will send you a preview in e-mail

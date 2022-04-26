@@ -7,6 +7,7 @@ import envelopImage from '../Assests/Images/envelope-image.png';
 import letterheadImage from '../Assests/Images/letterhead-image.png';
 import roundImage from '../Assests/Images/round-image.png';
 import squareImage from '../Assests/Images/square-image.png';
+import { ShortenedIcon } from '../Assests/Svgs';
 
 
 export const CategoriesData =
@@ -675,3 +676,194 @@ export const productListLetterheadData = [
 
 
 
+export const BusinessCardData = [
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "name": "Premium (Thick) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "feature1":"Thick, smooth and premium",
+    "feature2":"Perfect for professionals",
+    "size": [
+       { 
+         "name": "Standard",
+         "height": "90",
+         "width":'54'
+       },
+  
+      { 
+         "name": "Shortened",
+         "height": "84",
+         "width":'55'
+      },
+  
+      { 
+         "name": "Square",
+         "height": "56",
+         "width":'56'
+      }
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "corner": [
+     {
+       "cornerName" : "Square",
+       "cornerDescription" : "Traditional"
+     },
+     {
+       "cornerName" : "Round",
+       "cornerDescription" : "Smooth"
+     },
+      
+    ],
+    
+  },
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "name": "Matte / Glossy Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "feature1":"Thick, smooth and premium",
+    "feature2":"Perfect for professionals",
+    "size": [
+       { 
+         "name": "Standard",
+         "height": "90",
+         "width":'54'
+       },
+  
+      { 
+         "name": "Shortened",
+         "height": "84",
+         "width":'55'
+      },
+  
+      { 
+         "name": "Square",
+         "height": "56",
+         "width":'56'
+      }
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "corner": [
+     {
+       "cornerName" : "Square",
+       "cornerDescription" : "Traditional"
+     },
+     {
+       "cornerName" : "Round",
+       "cornerDescription" : "Smooth"
+     },
+      
+    ],
+    "finishing": ['Matte' , 'Glossy'] 
+  }
+]
+
+
+export const BusinessCard = [ShortenedIcon, ShortenedIcon, ShortenedIcon]

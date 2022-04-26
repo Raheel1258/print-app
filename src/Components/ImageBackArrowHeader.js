@@ -16,7 +16,7 @@ const ImageBackArrowHeader = ({goBack,title,description,Children, image}) => {
     <ImageBackground
       resizeMode="cover"
       style={styles.headerImage}
-      source={Children}>
+      source={{uri: Children}}>
       <TouchableOpacity onPress={goBack} style={styles.headerArrow}>
         <BackArrow />
       </TouchableOpacity>

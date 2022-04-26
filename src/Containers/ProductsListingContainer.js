@@ -11,12 +11,14 @@ import {colors} from '../Utils/theme';
 
 
 const ProductsListingContainer = ({route}) => { 
-  const {title,image, category} = route.params;
+  const {categoryTitle, categoryImage, category} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
   const productList = useSelector(state => state.productList.productList);
+
+  console.log("newProduct List " , productList);
   
   
   const navigate = (routeName, data = {}) => {
@@ -33,7 +35,7 @@ const ProductsListingContainer = ({route}) => {
   },[])
   return (
     <View style={styles.container}>
-      <ProductsListingScreen goBack={goBack} productList={productList} navigate={navigate} title={title} image={image} animation={animation}/>
+      <ProductsListingScreen goBack={goBack} productList={productList} navigate={navigate} category={category} categoryTitle={categoryTitle} categoryImage={categoryImage} animation={animation}/>
     </View>
   );
 };

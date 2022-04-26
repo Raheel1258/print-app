@@ -7,7 +7,8 @@ import {
   productListStickerData , 
   productListFlyerData,
   productListEnvelopeData,
-  productListLetterheadData
+  productListLetterheadData,
+  BusinessCardData
 } from "../../Utils/mockData"
 
 import {Api} from '../../Utils/Api'
@@ -26,27 +27,28 @@ export const getProductListByCategory = (category, setAnimation) => async dispat
     setAnimation(true);
     try {
       //const res = await axios.get(`${Api}/category=category`);
-      setAnimation(false);
-      if(category === 'BOOKLET')
-      {
-        dispatch(setProductList(productListBookletData));
-      }
-      else if(category === 'POSTER'){
-        dispatch(setProductList(productListPosterData));
-      }
-      else if(category === 'FLYERS_LEAFLET'){
-        dispatch(setProductList(productListStickerData));
-      }
-      else if(category === 'STICKERS_LABEL'){
-        dispatch(setProductList(productListFlyerData))
-      }
-      else if(category === 'ENVELOPE'){
-        dispatch(setProductList(productListEnvelopeData))
-      }
-      else if(category === 'LETTERHEAD'){
-        dispatch(setProductList(productListLetterheadData))
-      }
-      else dispatch(setProductList(productListBusinessCardData));
+      // setAnimation(false);
+      // if(category === 'BOOKLET')
+      // {
+      //   dispatch(setProductList(productListBookletData));
+      // }
+      // else if(category === 'POSTER'){
+      //   dispatch(setProductList(productListPosterData));
+      // }
+      // else if(category === 'FLYERS_LEAFLET'){
+      //   dispatch(setProductList(productListStickerData));
+      // }
+      // else if(category === 'STICKERS_LABEL'){
+      //   dispatch(setProductList(productListFlyerData))
+      // }
+      // else if(category === 'ENVELOPE'){
+      //   dispatch(setProductList(productListEnvelopeData))
+      // }
+      // else if(category === 'LETTERHEAD'){
+      //   dispatch(setProductList(productListLetterheadData))
+      // }
+      // else dispatch(setProductList(productListBusinessCardData));
+      dispatch(setProductList(BusinessCardData))
     } catch (err) {
       setAnimation(false);
       Toast.show({

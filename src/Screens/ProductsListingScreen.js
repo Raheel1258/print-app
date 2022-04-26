@@ -37,7 +37,6 @@ const DATA = [
 const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, categoryImage, animation, category }) => {
   const renderItem = ({ item }) => (
     <>
-    {console.log("itemall" , item)}
       <ImageSlider sliderImages={item?.image} title={item.title} />
       <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer}>
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>

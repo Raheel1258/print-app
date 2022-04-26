@@ -10,93 +10,84 @@ import squareImage from '../Assests/Images/square-image.png';
 import { ShortenedIcon } from '../Assests/Svgs';
 
 
-export const CategoriesData =
-  [
-    {
-      id: '1',
-      image: cardImage,
-      title: 'Business Card',
-      deliveryTime: '2-5 business days',
-      priceDescription: '100 cards from $68',
-      category:"BUSINESS_CARD"
-    },
-    {
-      id: '2',
-      image: bookletImage,
-      title: 'Booklet',
-      deliveryTime: '4-7 business deliveryTime',
-      priceDescription: '10 booklets from $184',
-      category:"BOOKLET"
-    },
-    {
-      id: '3',
-      image: posterImage,
-      title: 'Poster',
-      deliveryTime: '3-4 business days',
-      priceDescription: '5 posters from $48',
-      category:"POSTER",
-    },
-    {
-      id: '4',
-      image: leafletImage,
-      title: 'Flyers & Leaflet',
-      deliveryTime: '3-4 business days',
-      priceDescription: '100 flyers from $58',
-      category:"FLYERS_LEAFLET",
-    },
-    {
-      id: '5',
-      image: stickerImage,
-      title: 'Sticker',
-      deliveryTime: '3-5 business days',
-      priceDescription: '100 stickers from $178',
-      category:"STICKERS_LABEL",
-    },
-    {
-      id: '6',
-      image: envelopImage,
-      title: 'Envelope',
-      deliveryTime: '4-6 business days',
-      priceDescription: '100 envelops from $128',
-      category:"ENVELOPE",
-    },
-    {
-      id: '7',
-      image: letterheadImage,
-      title: 'Letterhead',
-      deliveryTime: '4-6 business days ',
-      priceDescription: '100 units from $120',
-      category:"LETTERHEAD"
-    },
-
-    // {
-    //   id: '7',
-    //   productImage: letterheadImage,
-    //   productTitle: 'Letterhead',
-    //   deliveryDays: '4-6 business days ',
-    //   priceDescription: '100 units from $120',
-    //   category: {BUSINESS_CARDS, LETTER_HEAD, ENVELOP,.....}
-    // },
-  ];
+// export const CategoriesData =
+//   [
+//     {
+//       id: '1',
+//       image: cardImage,
+//       title: 'Business Card',
+//       deliveryTime: '2-5 business days',
+//       priceDescription: '100 cards from $68',
+//       category:"BUSINESS_CARD"
+//     },
+//     {
+//       id: '2',
+//       image: bookletImage,
+//       title: 'Booklet',
+//       deliveryTime: '4-7 business deliveryTime',
+//       priceDescription: '10 booklets from $184',
+//       category:"BOOKLET"
+//     },
+//     {
+//       id: '3',
+//       image: posterImage,
+//       title: 'Poster',
+//       deliveryTime: '3-4 business days',
+//       priceDescription: '5 posters from $48',
+//       category:"POSTER",
+//     },
+//     {
+//       id: '4',
+//       image: leafletImage,
+//       title: 'Flyers & Leaflet',
+//       deliveryTime: '3-4 business days',
+//       priceDescription: '100 flyers from $58',
+//       category:"FLYERS_LEAFLET",
+//     },
+//     {
+//       id: '5',
+//       image: stickerImage,
+//       title: 'Sticker',
+//       deliveryTime: '3-5 business days',
+//       priceDescription: '100 stickers from $178',
+//       category:"STICKERS_LABEL",
+//     },
+//     {
+//       id: '6',
+//       image: envelopImage,
+//       title: 'Envelope',
+//       deliveryTime: '4-6 business days',
+//       priceDescription: '100 envelops from $128',
+//       category:"ENVELOPE",
+//     },
+//     {
+//       id: '7',
+//       image: letterheadImage,
+//       title: 'Letterhead',
+//       deliveryTime: '4-6 business days ',
+//       priceDescription: '100 units from $120',
+//       category:"LETTERHEAD"
+//     },
+//   ];
 
 
-export const sliderImagesHome = [
-  {
-    image:require('../Assests/Images/businesscard-header-image.png'),
-    caption:'Order your next print in just a few taps1'
+// export const sliderImagesHome = [
+//   {
+//     image:require('../Assests/Images/businesscard-header-image.png'),
+//     caption:'Order your next print in just a few taps1'
 
-  },
-  {
-    image:require('../Assests/Images/poster-image.png'),
-    caption:'Order your next print in just a few taps2'
+//   },
+//   {
+//     image:require('../Assests/Images/poster-image.png'),
+//     caption:'Order your next print in just a few taps2'
 
-  },
-  {
-    image:require('../Assests/Images/booklet-image.png'),
-    caption:'Order your next print in just a few taps3'
+//   },
+//   {
+//     image:require('../Assests/Images/booklet-image.png'),
+//     caption:'Order your next print in just a few taps3'
 
-  },
-]
+//   },
+// ]
 
 export const productListBusinessCardData = [
   {
@@ -687,6 +678,99 @@ export const BusinessCardData = [
     "title": "BUSINESS_CARD",
     "category": {
       "name": "Premium (Thick) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "feature1":"Thick, smooth and premium",
+    "feature2":"Perfect for professionals",
+    "size": [
+       { 
+         "name": "Standard",
+         "height": "90",
+         "width":'54'
+       },
+  
+      { 
+         "name": "Shortened",
+         "height": "84",
+         "width":'55'
+      },
+  
+      { 
+         "name": "Square",
+         "height": "56",
+         "width":'56'
+      }
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "corner": [
+     {
+       "cornerName" : "Square",
+       "cornerDescription" : "Traditional"
+     },
+     {
+       "cornerName" : "Round",
+       "cornerDescription" : "Smooth"
+     },
+      
+    ],
+    
+  },
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "name": "Bold (Extra Thick) Business Card",
       "pricePerHunderd": "68",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
       "paperType": "Woodfree Card(350g)",

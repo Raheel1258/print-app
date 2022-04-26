@@ -45,6 +45,7 @@ const SingleProductScreen = ({
   finishingRBSheet,
   selectFinishing,
   setSelectFinishing,
+  sizeRBSheet,
 }) => {
   const arr1 = ['mate', 'list', 'blue']
   const { t } = useTranslation();
@@ -58,12 +59,13 @@ const SingleProductScreen = ({
         </View>
         <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
         <View style={styles.cardsContainer}>
-          {category === "BUSINESS_CARD" && item?.size.map((item,index)=> {
+          {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item,index)=> {
             return (
             <>
             <CardSizeComponent
+              key={index}
               Childern={
-                <InfoIcon style={styles.squareimage} />}
+              <InfoIcon style={styles.squareimage} />}
               cardStandard={item?.name}
               cardDimensions={`${item?.height}mm x ${item?.width}mm`}
               selectedSize={selectedSize}
@@ -72,7 +74,10 @@ const SingleProductScreen = ({
             />
             </>
             )
-          })}
+          }): 
+          <>
+          <UploadFileComponent title={"Size"} onPress={() => sizeRBSheet.current.open()} selection={selectedSize? selectedSize: "xyz"} />
+        </>}
         </View>
         {(category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card" ) &&
          <>
@@ -99,6 +104,8 @@ const SingleProductScreen = ({
                     onPress={() => setSelectedCorner(item?.cornerName)}
                     // Childern={
                     //   <Image style={styles.squareimage} source={item?.image} />}
+                    Childern={
+                      <InfoIcon style={styles.squareimage} />}
                     cardStandard={item?.cornerName}
                     cardDimensions={item?.cornerDescription}
                   />
@@ -162,26 +169,6 @@ const SingleProductScreen = ({
           refRBSheet={urlRBSheet}
           childern={<UrlPickerInput />}
         />
-
-        {/* Finishing BottomSheet */}
-        <BottomSheetComponent
-          title={'Choose Finishing'}
-          refRBSheet={finishingRBSheet}
-          note={false}
-          height={300}
-          childern={
-            arr1.map((item, index) => {
-              return <TouchableOpacity key={index} onPress={() => {
-                setSelectFinishing(item);
-                finishingRBSheet.current.close()
-              }} style={styles.listContainer}>
-                <Text style={styles.listStyle}>{item}</Text>
-              </TouchableOpacity>
-
-            })
-
-          }
-        />
         <VerificationModal
           title={t('sent_text')}
           description={t('you_can_send')}
@@ -207,6 +194,42 @@ const SingleProductScreen = ({
           <Text style={styles.questionText}>{t('send_us_mail')}</Text>
           <Text style={styles.mailText}>{t('mail_text')}</Text>
         </View>
+
+         {/* Finishing BottomSheet */}
+         <BottomSheetComponent
+          title={'Choose Finishing'}
+          refRBSheet={finishingRBSheet}
+          note={false}
+          height={300}
+          childern={
+            arr1.map((item, index) => {
+              return <TouchableOpacity key={index} onPress={() => {
+                setSelectFinishing(item);
+                finishingRBSheet.current.close()
+              }} style={styles.listContainer}>
+                <Text style={styles.listStyle}>{item}</Text>
+              </TouchableOpacity>
+            })
+          }
+        />
+
+        {/* Size BottomSheet */}
+        <BottomSheetComponent
+          title={'Size'}
+          refRBSheet={sizeRBSheet}
+          note={false}
+          height={300}
+          childern={
+            arr1.map((item, index) => {
+              return <TouchableOpacity key={index} onPress={() => {
+                setSelectedSize(item);
+                sizeRBSheet.current.close()
+              }} style={styles.listContainer}>
+                <Text style={styles.listStyle}>{item}</Text>
+              </TouchableOpacity>
+            })
+          }
+        />
       </ScrollView>
     </View>
   );

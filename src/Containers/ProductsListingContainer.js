@@ -17,10 +17,7 @@ const ProductsListingContainer = ({route}) => {
 
   const [animation, setAnimation] = useState(false);
   const productList = useSelector(state => state.productList.productList);
-
-  console.log("newProduct List " , productList);
-  
-  
+ 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }

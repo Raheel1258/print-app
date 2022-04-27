@@ -951,3 +951,8 @@ export const BusinessCardData = [
 
 
 export const BusinessCard = [ShortenedIcon, ShortenedIcon, ShortenedIcon]
+
+
+
+
+

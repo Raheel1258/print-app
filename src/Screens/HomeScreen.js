@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator,ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -41,6 +41,7 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
           <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View>
+          
       }
     </>
   );

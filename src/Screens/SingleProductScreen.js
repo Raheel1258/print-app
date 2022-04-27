@@ -202,7 +202,7 @@ const SingleProductScreen = ({
           note={false}
           height={300}
           childern={
-            arr1.map((item, index) => {
+            item?.finishing?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setSelectFinishing(item);
                 finishingRBSheet.current.close()
@@ -220,12 +220,12 @@ const SingleProductScreen = ({
           note={false}
           height={300}
           childern={
-            arr1.map((item, index) => {
+            item?.size?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setSelectedSize(item);
                 sizeRBSheet.current.close()
               }} style={styles.listContainer}>
-                <Text style={styles.listStyle}>{item}</Text>
+                <Text style={styles.listStyle}>{item?.name}</Text>
               </TouchableOpacity>
             })
           }

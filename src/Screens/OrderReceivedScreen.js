@@ -19,7 +19,7 @@ const OrderReceivedScreen = () => {
         order={t('order_refrence')}
         description="Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta."
         childern={<ThankyouIcon/>}
-      />
+        />
     </View>
   );
 };

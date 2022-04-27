@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import OrderReceivedScreen from '../Screens/OrderReceivedScreen';
@@ -14,6 +14,7 @@ const CartNotifyComponent = ({title, order, description, childern}) => {
       <Text style={styles.orderRefrence}>{order}</Text>
       <Text style={styles.description}>{description}</Text>
     </View>
+    
   );
 };
 
@@ -21,7 +22,7 @@ const styles = ScaledSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent:'center',
     paddingHorizontal: '20@s',
   },
   thankyouText: {

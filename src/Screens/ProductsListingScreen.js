@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, ActivityIndicator,ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -57,6 +57,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
     <>
       {productList?.length !== undefined ?
         <View style={styles.container}>
+          <ScrollView nestedScrollEnabled={true}>
           <ImageBackArrowHeader  title={categoryTitle} image={categoryImage} goBack={goBack} />
           <FlatList
             data={productList}
@@ -64,6 +65,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
             keyExtractor={item => item.id}
             contentContainerStyle={styles.flatlistContainer}
           />
+          </ScrollView>
         </View> : <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View>

@@ -21,19 +21,19 @@ const SingleProductContainer = ({ route }) => {
   const finishingRBSheet = useRef();
   const sizeRBSheet = useRef();
 
-  // const [selectedSize, setSelectedSize] = useState(category !== 'LETTERHEAD' ? item?.size[0]?.name : undefined);
-  // const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
-  // const [selectFinishing, setSelectFinishing] = useState('Mate');
-  // const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
-  // const [preview, setPreview] = useState(true);
-  // const [remarks, setRemarks] = useState('');
-
-  const [selectedSize, setSelectedSize] = useState("");
-  const [selectedCorner, setSelectedCorner] = useState("");
-  const [selectFinishing, setSelectFinishing] = useState('Matte');
-  const [quantityId, setQuantityId] = useState("");
+  const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
+  const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
+  const [selectFinishing, setSelectFinishing] = useState(item?.finishing ? item?.finishing[0] : undefined);
+  const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
+
+  // const [selectedSize, setSelectedSize] = useState("");
+  // const [selectedCorner, setSelectedCorner] = useState("");
+  // const [selectFinishing, setSelectFinishing] = useState('Matte');
+  // const [quantityId, setQuantityId] = useState("");
+  // const [preview, setPreview] = useState(true);
+  // const [remarks, setRemarks] = useState('');
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)

@@ -126,6 +126,7 @@ const CartScreen = ({
             {t('before_production')}
           </Text>
           <GreenButton
+            onPress={() => navigate('orderReceived')}
             backgroundColor={colors.blackColor}
             buttonHeight={57}
             title={t('place_order')}

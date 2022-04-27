@@ -337,20 +337,20 @@ const MyTabs = () => {
                   style={{
                     flexDirection: 'column',
                     alignItems: 'center',
-                    marginTop: 6,
+                    marginTop: 2.2,
                   }}>
                   <OrderActiveIcon />
-                  <Text style={styles.activeText}>{t('order_text')}</Text>
+                  <Text style={{...styles.activeText,marginTop:5}}>{t('order_text')}</Text>
                 </View>
               ) : (
                 <View
                   style={{
                     flexDirection: 'column',
                     alignItems: 'center',
-                    marginTop: 6,
+                    marginTop: 2.2,
                   }}>
                   <OrdersIcon />
-                  <Text style={styles.unActiveText}>{t('order_text')}</Text>
+                  <Text style={{...styles.unActiveText,marginTop:5}}>{t('order_text')}</Text>
                 </View>
               )}
             </View>
@@ -443,6 +443,7 @@ const styles = ScaledSheet.create({
     lineHeight: '17@s',
     letterSpacing: '0.6@s',
     textAlign: 'center',
+    marginTop:'4@s'
   },
   unActiveText: {
     fontFamily: fonts.avenir_regular,
@@ -452,6 +453,7 @@ const styles = ScaledSheet.create({
     lineHeight: '17@s',
     letterSpacing: '0.6@s',
     textAlign: 'center',
+    marginTop:'4@s'
   },
   tabContainer: {
     flexDirection: 'column',

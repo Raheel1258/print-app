@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, ActivityIndicator,ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -38,6 +38,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
   const renderItem = ({ item }) => (
     <>
     {console.log("itemall" , item)}
+    <ScrollView>
       <ImageSlider sliderImages={item?.image} title={item.title} />
       <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer}>
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
@@ -51,6 +52,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
           <Text style={styles.cardDescription}>{item?.feature2}</Text>
         </View>
       </TouchableOpacity>
+      </ScrollView>
     </>
   );
 

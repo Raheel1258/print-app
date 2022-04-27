@@ -26,7 +26,6 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
       {
         categories?.length !== undefined ?
           <>
-          <ScrollView nestedScrollEnabled={true}>
             <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions} autoPlaySlider={true}/>
             <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
@@ -38,9 +37,7 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
                 contentContainerStyle={styles.flatlistContainer}
               />
             </View>
-            </ScrollView>
           </> :
-          
           <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View>

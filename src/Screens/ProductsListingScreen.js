@@ -38,7 +38,6 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
   const renderItem = ({ item }) => (
     <>
     {console.log("itemall" , item)}
-    <ScrollView>
       <ImageSlider sliderImages={item?.image} title={item.title} />
       <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer}>
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
@@ -52,7 +51,6 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
           <Text style={styles.cardDescription}>{item?.feature2}</Text>
         </View>
       </TouchableOpacity>
-      </ScrollView>
     </>
   );
 
@@ -60,6 +58,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
     <>
       {productList?.length !== undefined ?
         <View style={styles.container}>
+          <ScrollView nestedScrollEnabled={true}>
           <ImageBackArrowHeader  title={categoryTitle} image={categoryImage} goBack={goBack} />
           <FlatList
             data={productList}
@@ -67,6 +66,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
             keyExtractor={item => item.id}
             contentContainerStyle={styles.flatlistContainer}
           />
+          </ScrollView>
         </View> : <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View>

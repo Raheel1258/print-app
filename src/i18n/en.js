@@ -5,7 +5,7 @@
     signin_text: 'Sign in',
     signin_email_text: 'Email',
     password_text: 'Password',
-    forgot_password: 'Forgot password?',
+    forgot_password: 'Forgot password',
     login_text: 'Log In',
     create_account: 'Create your account',
     //Validation_Messages
@@ -194,7 +194,7 @@
     activity_text: 'Activity',
     order_text: 'Orders',
     account_text: 'Account',
-    sheet_login_in: 'log in',
+    sheet_login_in: 'Log in',
     Signup_today: 'Sign up today to place your printing order',
     you_signed_out: 'You are now signed out',
     current_password_required:'Current password is required',

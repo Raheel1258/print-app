@@ -271,9 +271,10 @@ const styles = ScaledSheet.create({
   logoWrapper: {
     alignItems: 'center',
     marginVertical: '15@s',
+    marginBottom:'25@s'
   },
   signinButtonWrapper: {
-    marginTop: '20@s',
+    marginTop: '10@s',
   },
 });
 

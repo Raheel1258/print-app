@@ -25,7 +25,17 @@ export const setProductList = data => {
 
 export const getProductListByCategory = (category, setAnimation) => async dispatch => {
     setAnimation(true);
+    console.log("cccccc" , category)
     try {
+      if(category === "BOOKLET"){
+        console.log("into book")
+        dispatch(setProductList(productListBookletData))
+      }
+      else {
+        dispatch(setProductList(BusinessCardData))
+        
+      }
+     
       //const res = await axios.get(`${Api}/category=category`);
       // setAnimation(false);
       // if(category === 'BOOKLET')
@@ -48,7 +58,7 @@ export const getProductListByCategory = (category, setAnimation) => async dispat
       //   dispatch(setProductList(productListLetterheadData))
       // }
       // else dispatch(setProductList(productListBusinessCardData));
-      dispatch(setProductList(BusinessCardData))
+      
     } catch (err) {
       setAnimation(false);
       Toast.show({

@@ -46,8 +46,15 @@ const SingleProductScreen = ({
   selectFinishing,
   setSelectFinishing,
   sizeRBSheet,
+  spotVuRBSheet,
+  selectSpotUv,
+  setSelectSpotUv,
+  addUrl,
+  setAddUrl,
+  setAddUrlArray,
+  addUrlArray
+
 }) => {
-  const arr1 = ['mate', 'list', 'blue']
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
@@ -76,22 +83,25 @@ const SingleProductScreen = ({
             )
           }): 
           <>
-          <UploadFileComponent title={"Size"} onPress={() => sizeRBSheet.current.open()} selection={selectedSize? selectedSize: "xyz"} />
+          <View style={{width:'100%'}} >
+          <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize? selectedSize: ""} />
+          </View>
         </>}
         </View>
-        {(category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card" ) &&
+        {((category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card") || category=== "BOOKLET" ) &&
          <>
           <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
           <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
          </>
         }
 
-        {category === 'BOOKLET' &&
-          <>
-            <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
-            <UploadFileComponent title={t('finishing')} selection={'Mate'} />
+        {(category === "BUSNIESS_CARD" && item?.category?.name === "Spot Gloss (UV) Business Card") &&
+          <>  
+           <CategoriesTitleHeader title={t('choose_SpotUv')} Children={<InfoIcon />} />
+          <UploadFileComponent onPress={() => spotVuRBSheet.current.open()} title={t('spotUv')} selection={selectSpotUv} />
           </>
         }
+
         {category === 'BUSINESS_CARD' &&
           <>
             <CategoriesTitleHeader title={t('choose_corner')} />
@@ -167,7 +177,7 @@ const SingleProductScreen = ({
         <BottomSheetComponent
           title={t('sheet_upload_url')}
           refRBSheet={urlRBSheet}
-          childern={<UrlPickerInput />}
+          childern={<UrlPickerInput addUrl={addUrl} setAddUrl={setAddUrl} setAddUrlArray={setAddUrlArray} addUrlArray={addUrlArray}/>}
         />
         <VerificationModal
           title={t('sent_text')}
@@ -197,7 +207,7 @@ const SingleProductScreen = ({
 
          {/* Finishing BottomSheet */}
          <BottomSheetComponent
-          title={'Choose Finishing'}
+          title={t('choose_finishing')}
           refRBSheet={finishingRBSheet}
           note={false}
           height={300}
@@ -215,14 +225,14 @@ const SingleProductScreen = ({
 
         {/* Size BottomSheet */}
         <BottomSheetComponent
-          title={'Size'}
+          title={t('choose_size')}
           refRBSheet={sizeRBSheet}
           note={false}
           height={300}
           childern={
             item?.size?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
-                setSelectedSize(item);
+                setSelectedSize(item?.name);
                 sizeRBSheet.current.close()
               }} style={styles.listContainer}>
                 <Text style={styles.listStyle}>{item?.name}</Text>
@@ -230,6 +240,26 @@ const SingleProductScreen = ({
             })
           }
         />
+
+        {/* Spot Vu Effect */}
+        <BottomSheetComponent
+          title={t('choose_SpotUv')}
+          refRBSheet={spotVuRBSheet}
+          note={false}
+          height={300}
+          childern={
+            item?.spotVu?.map((item, index) => {
+              return <TouchableOpacity key={index} onPress={() => {
+                setSelectSpotUv(item);
+                spotVuRBSheet.current.close()
+              }} style={styles.listContainer}>
+                <Text style={styles.listStyle}>{item}</Text>
+              </TouchableOpacity>
+            })
+          }
+        />
+
+
       </ScrollView>
     </View>
   );

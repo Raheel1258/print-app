@@ -89,208 +89,208 @@ import { ShortenedIcon } from '../Assests/Svgs';
 //   },
 // ]
 
-export const productListBusinessCardData = [
-  {
-    id: 111,
-    heading: 'Premium (Thick) Business Card',
-    price: '68',
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Thick, smooth and premium',
-    feature2: 'Perfect for professionals',
-    description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
-    paper_type: 'Woodfree Card(350g)',
-    lead_time: '2-3 business days',
-    colour: 'CYMK',
-    sizes: '3 sizes',
-    choose_size: [
-      { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage },
-      { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
-    choose_corner: [
-      { corner: 'Square', variation: 'Traditional', image: squareImage },
-      { corner: 'Round', variation: 'Smooth', image: roundImage },
-    ],
-    choose_finishing: ['Matte', 'xyz', 'xzy'],
-    spot_vu_effect: ['1 side' , '2 side'],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.5 },
-      { id:2, quantity: '200', price: 108, unit_price: 0.5 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.5 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.5 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.5 },
-      { id:6, quantity: '600', price: 410, unit_price: 0.5 },
-      { id:7, quantity: '500', price: 558, unit_price: 0.5 },
-      { id:8 ,quantity: '600', price: 610, unit_price: 0.5 },
-    ]
-  },
+// export const productListBusinessCardData = [
+//   {
+//     id: 111,
+//     heading: 'Premium (Thick) Business Card',
+//     price: '68',
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Thick, smooth and premium',
+//     feature2: 'Perfect for professionals',
+//     description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
+//     paper_type: 'Woodfree Card(350g)',
+//     lead_time: '2-3 business days',
+//     colour: 'CYMK',
+//     sizes: '3 sizes',
+//     choose_size: [
+//       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage },
+//       { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
+//       { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
+//     choose_corner: [
+//       { corner: 'Square', variation: 'Traditional', image: squareImage },
+//       { corner: 'Round', variation: 'Smooth', image: roundImage },
+//     ],
+//     choose_finishing: ['Matte', 'xyz', 'xzy'],
+//     spot_vu_effect: ['1 side' , '2 side'],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.5 },
+//       { id:2, quantity: '200', price: 108, unit_price: 0.5 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.5 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.5 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.5 },
+//       { id:6, quantity: '600', price: 410, unit_price: 0.5 },
+//       { id:7, quantity: '500', price: 558, unit_price: 0.5 },
+//       { id:8 ,quantity: '600', price: 610, unit_price: 0.5 },
+//     ]
+//   },
 
-  {
-    id: 112,
-    heading: 'Bold (Extra Thick) Business Card',
-    price: 128,
-    images: ['https://source.unsplash.com/1024x768/?nature'],
-    feature1: 'Thick, smooth and premium',
-    feature2: 'Perfect for professionals',
-    description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
-    paper_type: 'Woodfree Card(350g)',
-    lead_time: '3-4 business days',
-    colour: 'CYMK',
-    sizes: '3 sizes',
-    choose_size: [
-      { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-      { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
-    choose_corner: [
-      { corner: 'Square', variation: 'Traditional', image: squareImage },
-      { corner: 'Round', variation: 'Smooth', image: roundImage },
-    ],
-    choose_finishing: ['Matte', 'xyz', 'xzy'],
-    spot_vu_effect: ['1 side' , '2 side'],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.5 },
-      { id:2 ,quantity: '200', price: 108, unit_price: 0.5 },
-      { id:3 ,quantity: '300', price: 158, unit_price: 0.5 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.5 },
-      { id:5 ,quantity: '500', price: 358, unit_price: 0.5 },
-      { id:6 ,quantity: '600', price: 410, unit_price: 0.5 },
-      { id:7 ,quantity: '500', price: 558, unit_price: 0.5 },
-      { id:8 ,quantity: '600', price: 610, unit_price: 0.5 },
-    ]
-  },
+//   {
+//     id: 112,
+//     heading: 'Bold (Extra Thick) Business Card',
+//     price: 128,
+//     images: ['https://source.unsplash.com/1024x768/?nature'],
+//     feature1: 'Thick, smooth and premium',
+//     feature2: 'Perfect for professionals',
+//     description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
+//     paper_type: 'Woodfree Card(350g)',
+//     lead_time: '3-4 business days',
+//     colour: 'CYMK',
+//     sizes: '3 sizes',
+//     choose_size: [
+//       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+//       { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
+//       { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
+//     choose_corner: [
+//       { corner: 'Square', variation: 'Traditional', image: squareImage },
+//       { corner: 'Round', variation: 'Smooth', image: roundImage },
+//     ],
+//     choose_finishing: ['Matte', 'xyz', 'xzy'],
+//     spot_vu_effect: ['1 side' , '2 side'],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.5 },
+//       { id:2 ,quantity: '200', price: 108, unit_price: 0.5 },
+//       { id:3 ,quantity: '300', price: 158, unit_price: 0.5 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.5 },
+//       { id:5 ,quantity: '500', price: 358, unit_price: 0.5 },
+//       { id:6 ,quantity: '600', price: 410, unit_price: 0.5 },
+//       { id:7 ,quantity: '500', price: 558, unit_price: 0.5 },
+//       { id:8 ,quantity: '600', price: 610, unit_price: 0.5 },
+//     ]
+//   },
 
-  {
-    id: 113,
-    heading: 'Style (Textured Paper) Business Card',
-    price: 158,
-    images: ['https://source.unsplash.com/1024x768/?nature'],
-    feature1: 'Thick, smooth and premium',
-    feature2: 'Perfect for professionals',
-    description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
-    paper_type: 'Woodfree Card(350g)',
-    lead_time: '3-4 business days',
-    colour: 'CYMK',
-    sizes: '3 sizes',
-    choose_size: [
-      { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
-      { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
-    choose_corner: [
-      { corner: 'Square', variation: 'Traditional', image: squareImage },
-      { corner: 'Round', variation: 'Smooth', image: roundImage },
-    ],
-    choose_finishing: ['Matte', 'xyz', 'xzy'],
-    spot_vu_effect: ['1 side' , '2 side'],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.5 },
-      { id:2 ,quantity: '200', price: 108, unit_price: 0.5 },
-      { id:3 ,quantity: '300', price: 158, unit_price: 0.5 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.5 },
-      { id:5 ,quantity: '500', price: 358, unit_price: 0.5 },
-      { id:6 ,quantity: '600', price: 410, unit_price: 0.5 },
-      { id:7 ,quantity: '500', price: 558, unit_price: 0.5 },
-      { id:8 ,quantity: '600', price: 610, unit_price: 0.5 },
-    ]
-  },
+//   {
+//     id: 113,
+//     heading: 'Style (Textured Paper) Business Card',
+//     price: 158,
+//     images: ['https://source.unsplash.com/1024x768/?nature'],
+//     feature1: 'Thick, smooth and premium',
+//     feature2: 'Perfect for professionals',
+//     description: 'Thick, smooth and premium. The Premium Business card is a popular choice for professionals',
+//     paper_type: 'Woodfree Card(350g)',
+//     lead_time: '3-4 business days',
+//     colour: 'CYMK',
+//     sizes: '3 sizes',
+//     choose_size: [
+//       { size_name: 'Standard', height: '90mm', width: '54mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
+//       { size_name: 'Shortened', height: '84mm', width: '55mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage},
+//       { size_name: 'Square', height: '56mm', width: '56mm', name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' , image:squareImage}],
+//     choose_corner: [
+//       { corner: 'Square', variation: 'Traditional', image: squareImage },
+//       { corner: 'Round', variation: 'Smooth', image: roundImage },
+//     ],
+//     choose_finishing: ['Matte', 'xyz', 'xzy'],
+//     spot_vu_effect: ['1 side' , '2 side'],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.5 },
+//       { id:2 ,quantity: '200', price: 108, unit_price: 0.5 },
+//       { id:3 ,quantity: '300', price: 158, unit_price: 0.5 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.5 },
+//       { id:5 ,quantity: '500', price: 358, unit_price: 0.5 },
+//       { id:6 ,quantity: '600', price: 410, unit_price: 0.5 },
+//       { id:7 ,quantity: '500', price: 558, unit_price: 0.5 },
+//       { id:8 ,quantity: '600', price: 610, unit_price: 0.5 },
+//     ]
+//   },
 
-]
-//Booklet Data
+// ]
+// //Booklet Data
 
-export const productListBookletData = [
-  {
-    id: 222,
-    heading: 'Stapled Binding Booklet',
-    price: 184,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Pages are binding together with stapled',
-    feature2: 'Ideal for brochures, magazines, price list, etc',
-    description: 'Beautiful booklets with pages binded by stape, ideal for multi-pages promotional products, magazine, etc',
-    paper_type: 'Art Card(157gsm)/Woodree paper(140gsm) ',
-    lead_time: '4-7 business days',
-    colour: 'CYMK',
-    sizes: 'A4 /A5 /A6',
-    choose_size: [
-      { size_name: 'A6', height: '105mm', width: '148mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-      { size_name: 'A5', height: '148mm', width: '210mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-      { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' ,image:squareImage }, ,
-    ],
-    choose_paper_type : [
-      {coverpages:['xyz' , 'xyz' , 'xyz']},
-      {innerpages:['xyz' , 'xyz' , 'xyz']}
+// export const productListBookletData = [
+//   {
+//     id: 222,
+//     heading: 'Stapled Binding Booklet',
+//     price: 184,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Pages are binding together with stapled',
+//     feature2: 'Ideal for brochures, magazines, price list, etc',
+//     description: 'Beautiful booklets with pages binded by stape, ideal for multi-pages promotional products, magazine, etc',
+//     paper_type: 'Art Card(157gsm)/Woodree paper(140gsm) ',
+//     lead_time: '4-7 business days',
+//     colour: 'CYMK',
+//     sizes: 'A4 /A5 /A6',
+//     choose_size: [
+//       { size_name: 'A6', height: '105mm', width: '148mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+//       { size_name: 'A5', height: '148mm', width: '210mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+//       { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' ,image:squareImage }, ,
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['xyz' , 'xyz' , 'xyz']},
+//       {innerpages:['xyz' , 'xyz' , 'xyz']}
 
-    ],
-    choose_page_number : [
-      {
-        coverpages:[10 , 12 , 12]
-      },
-      {
-        innerpages:[36 ,13 , 67]
-      }
+//     ],
+//     choose_page_number : [
+//       {
+//         coverpages:[10 , 12 , 12]
+//       },
+//       {
+//         innerpages:[36 ,13 , 67]
+//       }
 
-    ],
-    choose_finishing: ['Matte', 'xyz', 'xzy'],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
+//     ],
+//     choose_finishing: ['Matte', 'xyz', 'xzy'],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
 
-  {
-    id: 223,
-    heading: 'Perfect Binding Booklet',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Pages are binding together with stapled',
-    feature2: 'Perfect for luxury look-books, catalogues, etc',
-    description: 'luxury booklet with paper binded together using strong adhesive, ideal for thicker booklets with a high-end look.',
-    paper_type: 'Art Card(157gsm)/Woodree paper(140gsm) ',
-    lead_time: '4-7 business days',
-    colour: 'CYMK',
-    sizes: 'A4 /A5 /A6',
-    choose_size: [
-      { size_name: 'A6', height: '105mm', width: '148mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-      { size_name: 'A5', height: '148mm', width: '210mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-      { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' ,image:squareImage }, ,
-    ],
-    choose_paper_type : [
-      {coverpages:['xyz' , 'xyz' , 'xyz']},
-      {innerpages:['xyz' , 'xyz' , 'xyz']}
+//   {
+//     id: 223,
+//     heading: 'Perfect Binding Booklet',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Pages are binding together with stapled',
+//     feature2: 'Perfect for luxury look-books, catalogues, etc',
+//     description: 'luxury booklet with paper binded together using strong adhesive, ideal for thicker booklets with a high-end look.',
+//     paper_type: 'Art Card(157gsm)/Woodree paper(140gsm) ',
+//     lead_time: '4-7 business days',
+//     colour: 'CYMK',
+//     sizes: 'A4 /A5 /A6',
+//     choose_size: [
+//       { size_name: 'A6', height: '105mm', width: '148mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+//       { size_name: 'A5', height: '148mm', width: '210mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+//       { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio' ,image:squareImage }, ,
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['xyz' , 'xyz' , 'xyz']},
+//       {innerpages:['xyz' , 'xyz' , 'xyz']}
 
-    ],
-    choose_page_number : [
-      {
-        coverpages:[10 , 12 , 12]
-      },
-      {
-        innerpages:[36 ,13 , 67]
-      }
+//     ],
+//     choose_page_number : [
+//       {
+//         coverpages:[10 , 12 , 12]
+//       },
+//       {
+//         innerpages:[36 ,13 , 67]
+//       }
 
-    ],
-    choose_finishing: ['Matte', 'xyz', 'xzy'],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
-]
+//     ],
+//     choose_finishing: ['Matte', 'xyz', 'xzy'],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
+// ]
 
 //Poster
 export const productListPosterData = [
@@ -761,6 +761,7 @@ export const BusinessCardData = [
     ],
     
   },
+
   {
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
@@ -946,7 +947,188 @@ export const BusinessCardData = [
       
     ],
     "finishing": ['Matte' , 'Glossy'] 
-  }
+  },
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "name": "Spot Gloss (UV) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Add a glossy coating to highlight a specific area in your card to draw additional attention.",
+      "paperType": "Matte art card (400 gsm)",
+      "leadTime": "6-8 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "feature1":"Thick, smooth and premium",
+    "feature2":"Perfect for professionals",
+    "size": [
+       { 
+         "name": "Standard",
+         "height": "90",
+         "width":'54'
+       },
+  
+      { 
+         "name": "Shortened",
+         "height": "84",
+         "width":'55'
+      },
+  
+      { 
+         "name": "Square",
+         "height": "56",
+         "width":'56'
+      }
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "corner": [
+     {
+       "cornerName" : "Square",
+       "cornerDescription" : "Traditional"
+     },
+     {
+       "cornerName" : "Round",
+       "cornerDescription" : "Smooth"
+     },
+      
+    ],
+    "spotVu": ['1 side' , '2 side']  
+  },
+]
+
+
+export const productListBookletData = [
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "BOOKLET",
+    "category": {
+      "name": "Stapled Binding Booklet",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "feature1":"Thick, smooth and premium",
+    "feature2":"Perfect for professionals",
+    "size": [
+       { 
+         "name": "Standard",
+         "height": "90",
+         "width":'54'
+       },
+  
+      { 
+         "name": "Shortened",
+         "height": "84",
+         "width":'55'
+      },
+  
+      { 
+         "name": "Square",
+         "height": "56",
+         "width":'56'
+      }
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "finishing": ['Matte' , 'Glossy']
+    
+  },
+
 ]
 
 

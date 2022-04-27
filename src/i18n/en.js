@@ -200,6 +200,11 @@
     current_password_required:'Current password is required',
     new_password_required: 'New password is required',
     //<=Verification screen, validation Messages=>
-    otp_required:"Verification code is required"
+    otp_required:"Verification code is required",
+
+    //new changing
+    size:'Size',
+    choose_SpotUv: 'Choose spot UV',
+    spotUv:'Spot UV effect'
   },
 };

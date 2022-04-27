@@ -20,13 +20,22 @@ const SingleProductContainer = ({ route }) => {
   const urlRBSheet = useRef();
   const finishingRBSheet = useRef();
   const sizeRBSheet = useRef();
+  const spotVuRBSheet = useRef();
 
   const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
   const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing ? item?.finishing[0] : undefined);
+  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUv ? item?.spotUv[0] : undefined);
   const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
+  const [addUrl , setAddUrl] = useState('');
+  const [addUrlArray, setAddUrlArray] = useState([])
+
+
+  console.log("url" , addUrl);
+  console.log("pushed",addUrlArray);
+
 
   // const [selectedSize, setSelectedSize] = useState("");
   // const [selectedCorner, setSelectedCorner] = useState("");
@@ -97,6 +106,13 @@ const SingleProductContainer = ({ route }) => {
         selectFinishing={selectFinishing}
         setSelectFinishing={setSelectFinishing}
         sizeRBSheet={sizeRBSheet}
+        spotVuRBSheet={spotVuRBSheet}
+        selectSpotUv={selectSpotUv}
+        setSelectSpotUv={setSelectSpotUv}
+        addUrl={addUrl}
+        setAddUrl = {setAddUrl}
+        setAddUrlArray={setAddUrlArray}
+        addUrlArray={addUrlArray}
       />
     </View>
   );

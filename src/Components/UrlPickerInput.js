@@ -5,15 +5,21 @@ import {useTranslation} from 'react-i18next';
 
 import {colors,fonts} from '../Utils/theme';
 
-const UrlPickerInput = () => {
+const UrlPickerInput = ({addUrl , setAddUrl, setAddUrlArray, addUrlArray}) => {
   const {t} = useTranslation();
+  
+  const handleChange = (e) =>{
+    setAddUrl(e);
+    addUrlArray?.push(e); 
+  }
+  
   return (
     <View style={styles.container}>
       <Text style={styles.fileUrl}>{t('file_url')}</Text>
-      <TextInput
+      <TextInput onChangeText={(e)=>handleChange(e)}
         style={styles.textInput}
       />
-     <TouchableOpacity><Text style={styles.addMore}>{t('add_more')}</Text></TouchableOpacity>
+     <TouchableOpacity onPress={handleAdd}><Text style={styles.addMore}>{t('add_more')}</Text></TouchableOpacity>
     </View>
   );
 };

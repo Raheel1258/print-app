@@ -38,7 +38,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
   const renderItem = ({ item }) => (
     <>
       <ImageSlider sliderImages={item?.image} title={item.title} />
-      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer}>
+      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer} >
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
         <Text style={styles.cardPrice}>From HK$ {item?.category?.pricePerHunderd} / 100pcs</Text>
         <View style={styles.descriptionContainer}>
@@ -110,13 +110,13 @@ const styles = ScaledSheet.create({
   descriptionContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: '8@s',
+    paddingHorizontal: '7@s',
     marginBottom: '5@s',
   },
   dotContainer: {
     backgroundColor: colors.greyColor,
-    width: '7@s',
-    height: '7@s',
+    width: '5@s',
+    height: '5@s',
     borderRadius: '20@s',
     marginRight: '7@s',
   },

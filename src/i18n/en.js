@@ -138,7 +138,6 @@
     full_refund: 'full refund',
     before_production: 'at any point before production.',
     place_order: 'Place Order',
-    pay_bank_transfer: 'Pay by bank transfer',
     curabitur_aliquet: 'Curabitur aliquet quam id dui posuere blandit.',
     deviver_to: 'Deliver to:',
     credit_cards: 'Credit Cards',
@@ -205,6 +204,12 @@
     //new changing
     size:'Size',
     choose_SpotUv: 'Choose spot UV',
-    spotUv:'Spot UV effect'
+    spotUv:'Spot UV effect',
+    quantity_text: 'Quantity',
+    price_HK:'Price (HK$)',
+    unit_text: 'Unit price',
+    show_more: 'Show more quantity',
+    pay_bank_transfer: 'Pay by bank transfer / cheque',
+    bank_transfer_description: "We will show you our bank account information after you've placed your order.",
   },
 };

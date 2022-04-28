@@ -6,9 +6,8 @@ import {useTranslation} from 'react-i18next';
 
 import {colors,fonts} from '../Utils/theme';
 
-const FilePickerInput = () => {
+const FilePickerInput = ({result,setResult}) => {
   const {t} = useTranslation();
-  const [result, setResult] = useState(undefined);
   useEffect(() => {
     console.log(JSON.stringify(result, null, 2));
   }, [result]);
@@ -34,7 +33,7 @@ const FilePickerInput = () => {
         <Text style={styles.fileAdded}>{t('no_file_added')}</Text>
       )}
       {result?.length !== undefined && (
-        <Text selectable>{JSON.stringify(result[0]?.name, null, 2)}</Text>
+        <Text style={{color:colors.blackColor}} selectable>{JSON.stringify(result[0]?.name, null, 2)}</Text>
       )}
       {result?.length !== undefined && (
         <TouchableOpacity onPress={removeHandler}>

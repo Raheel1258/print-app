@@ -293,41 +293,41 @@ import { ShortenedIcon } from '../Assests/Svgs';
 // ]
 
 //Poster
-export const productListPosterData = [
-  {
-    id: 333,
-    heading: 'Rectangular Poater',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Create impactful poster in the size of A3 or A4',
-    feature2: 'High quality paper to make your design stand out',
-    description: 'Create impactful poster in the size of A3 or A4. Choose between two high quality paper to make your design stand out',
-    paper_type: 'Glossy paper(157 gsm)/Glossy card(400 gsm)',
-    lead_time: '3-4 business days',
-    colour: 'CYMK',
-    sizes: 'A3 / A4 ',
-    choose_size: [
-      { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-      { size_name: 'A3', height: '297mm', width: '420mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
-    ],
-    choose_paper_type : [
-      {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
-    ],
-    numberSide : {sides: ['single side' , 'double side']},
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
-]
+// export const productListPosterData = [
+//   {
+//     id: 333,
+//     heading: 'Rectangular Poater',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Create impactful poster in the size of A3 or A4',
+//     feature2: 'High quality paper to make your design stand out',
+//     description: 'Create impactful poster in the size of A3 or A4. Choose between two high quality paper to make your design stand out',
+//     paper_type: 'Glossy paper(157 gsm)/Glossy card(400 gsm)',
+//     lead_time: '3-4 business days',
+//     colour: 'CYMK',
+//     sizes: 'A3 / A4 ',
+//     choose_size: [
+//       { size_name: 'A4', height: '210mm', width: '297mm', image:squareImage , name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+//       { size_name: 'A3', height: '297mm', width: '420mm', image:squareImage, name: 'Julia Halvorsen', designation: "Creative Director", studio: 'Halvorsen Studio', image:squareImage },
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
+//     ],
+//     numberSide : {sides: ['single side' , 'double side']},
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
+// ]
 
 //sticker
 
@@ -677,6 +677,7 @@ export const BusinessCardData = [
     ],
     "title": "BUSINESS_CARD",
     "category": {
+      "productType": 'BizCard-Premium',
       "name": "Premium (Thick) Business Card",
       "pricePerHunderd": "68",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
@@ -691,19 +692,22 @@ export const BusinessCardData = [
        { 
          "name": "Standard",
          "height": "90",
-         "width":'54'
+         "width":'54',
+         "image": "xyz"
        },
   
       { 
          "name": "Shortened",
          "height": "84",
-         "width":'55'
+         "width":'55',
+         "image" : 'xyz'
       },
   
       { 
          "name": "Square",
          "height": "56",
-         "width":'56'
+         "width":'56',
+         "image": 'xyz'
       }
     ],
   
@@ -715,32 +719,32 @@ export const BusinessCardData = [
       },
       {
         "_id":"2",
-        "quantity": "100",
+        "quantity": "200",
         "unitPrice": "0.5"
       },
       {
         "_id":"3",
-        "quantity": "100",
+        "quantity": "300",
         "unitPrice": "0.5"
       },
       {
         "_id":"4",
-        "quantity": "100",
+        "quantity": "400",
         "unitPrice": "0.5"
       },
       {
         "_id":"5",
-        "quantity": "100",
+        "quantity": "500",
         "unitPrice": "0.5"
       },
       {
         "_id":"6",
-        "quantity": "100",
+        "quantity": "600",
         "unitPrice": "0.5"
       },
       {
         "_id":"7",
-        "quantity": "100",
+        "quantity": "700",
         "unitPrice": "0.5"
       },
   
@@ -751,11 +755,13 @@ export const BusinessCardData = [
     "corner": [
      {
        "cornerName" : "Square",
-       "cornerDescription" : "Traditional"
+       "cornerDescription" : "Traditional",
+       "image": squareImage,
      },
      {
        "cornerName" : "Round",
-       "cornerDescription" : "Smooth"
+       "cornerDescription" : "Smooth",
+       "image": roundImage,
      },
       
     ],
@@ -772,15 +778,15 @@ export const BusinessCardData = [
     "title": "BUSINESS_CARD",
     "category": {
       "name": "Bold (Extra Thick) Business Card",
-      "pricePerHunderd": "68",
-      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "pricePerHunderd": "258",
+      "description": "Additional layer for extra thickness Extraordinary rigidness and impressively strong.",
       "paperType": "Woodfree Card(350g)",
       "leadTime": "2-3 business days",
       "colour": "CYMK",
       "Sizes": "3 sizes"
     },
-    "feature1":"Thick, smooth and premium",
-    "feature2":"Perfect for professionals",
+    "feature1":"Additional layer for extra thickness",
+    "feature2":"Extraordinary rigidness and impressively strong",
     "size": [
        { 
          "name": "Standard",
@@ -843,16 +849,17 @@ export const BusinessCardData = [
     "designUrl": "string",
     "remarks": "string",
     "corner": [
-     {
-       "cornerName" : "Square",
-       "cornerDescription" : "Traditional"
-     },
-     {
-       "cornerName" : "Round",
-       "cornerDescription" : "Smooth"
-     },
-      
-    ],
+      {
+        "cornerName" : "Square",
+        "cornerDescription" : "Traditional",
+        "image": squareImage,
+      },
+      {
+        "cornerName" : "Round",
+        "cornerDescription" : "Smooth",
+        "image": roundImage,
+      },
+    ]
     
   },
   {
@@ -866,14 +873,14 @@ export const BusinessCardData = [
     "category": {
       "name": "Matte / Glossy Business Card",
       "pricePerHunderd": "68",
-      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
-      "paperType": "Woodfree Card(350g)",
-      "leadTime": "2-3 business days",
+      "description": "A ‘velvety’ or glass-like look and feel, our matte and glossy finishing business card combines vibrancy and durability.",
+      "paperType": "Art card (400 gsm)",
+      "leadTime": "3-5 business days",
       "colour": "CYMK",
       "Sizes": "3 sizes"
     },
-    "feature1":"Thick, smooth and premium",
-    "feature2":"Perfect for professionals",
+    "feature1":"High quality matte and glossy finish",
+    "feature2":"Perfect combination of vibrancy and durability",
     "size": [
        { 
          "name": "Standard",
@@ -936,18 +943,20 @@ export const BusinessCardData = [
     "designUrl": "string",
     "remarks": "string",
     "corner": [
-     {
-       "cornerName" : "Square",
-       "cornerDescription" : "Traditional"
-     },
-     {
-       "cornerName" : "Round",
-       "cornerDescription" : "Smooth"
-     },
-      
+      {
+        "cornerName" : "Square",
+        "cornerDescription" : "Traditional",
+        "image": squareImage,
+      },
+      {
+        "cornerName" : "Round",
+        "cornerDescription" : "Smooth",
+        "image": roundImage,
+      },
     ],
     "finishing": ['Matte' , 'Glossy'] 
   },
+
   {
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
@@ -958,15 +967,15 @@ export const BusinessCardData = [
     "title": "BUSINESS_CARD",
     "category": {
       "name": "Spot Gloss (UV) Business Card",
-      "pricePerHunderd": "68",
+      "pricePerHunderd": "78",
       "description": "Add a glossy coating to highlight a specific area in your card to draw additional attention.",
       "paperType": "Matte art card (400 gsm)",
       "leadTime": "6-8 business days",
       "colour": "CYMK",
       "Sizes": "3 sizes"
     },
-    "feature1":"Thick, smooth and premium",
-    "feature2":"Perfect for professionals",
+    "feature1":"Glossy coating to highlight a specific area",
+    "feature2":"Print on top of a high quality matte art card",
     "size": [
        { 
          "name": "Standard",
@@ -1029,17 +1038,18 @@ export const BusinessCardData = [
     "designUrl": "string",
     "remarks": "string",
     "corner": [
-     {
-       "cornerName" : "Square",
-       "cornerDescription" : "Traditional"
-     },
-     {
-       "cornerName" : "Round",
-       "cornerDescription" : "Smooth"
-     },
-      
+      {
+        "cornerName" : "Square",
+        "cornerDescription" : "Traditional",
+        "image": squareImage,
+      },
+      {
+        "cornerName" : "Round",
+        "cornerDescription" : "Smooth",
+        "image": roundImage,
+      },
     ],
-    "spotVu": ['1 side' , '2 side']  
+    "spotUv": ['1 side' , '2 side']  
   },
 ]
 
@@ -1056,29 +1066,29 @@ export const productListBookletData = [
     "category": {
       "name": "Stapled Binding Booklet",
       "pricePerHunderd": "68",
-      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
-      "paperType": "Woodfree Card(350g)",
-      "leadTime": "2-3 business days",
+      "description": "Beautiful booklets with pages binded by staple, ideal for multi-page promotional products, magazines, etc.",
+      "paperType": "Art Card (157gsm) / Woodree paper (140gsm)",
+      "leadTime": "4-7 business days",
       "colour": "CYMK",
-      "Sizes": "3 sizes"
+      "Sizes": "A4 / A5 / A6"
     },
-    "feature1":"Thick, smooth and premium",
-    "feature2":"Perfect for professionals",
+    "feature1":"Pages are binded together using staple",
+    "feature2":"Ideal for brochures, magazines, price lists, etc",
     "size": [
        { 
-         "name": "Standard",
+         "name": "A6",
          "height": "90",
          "width":'54'
        },
   
       { 
-         "name": "Shortened",
+         "name": "A5",
          "height": "84",
          "width":'55'
       },
   
       { 
-         "name": "Square",
+         "name": "A4",
          "height": "56",
          "width":'56'
       }
@@ -1129,6 +1139,110 @@ export const productListBookletData = [
     
   },
 
+]
+
+
+
+export const productListPosterData =  [
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "POSTER",
+    "category": {
+      "productType": 'BizCard-Premium',
+      "name": "Rectangular Poster",
+      "pricePerHunderd": "68",
+      "description": "Create impactful posters in either A3 or A4. Choose between two high quality paper to make your design stand out.",
+      "paperType": "Glossy paper (157 gsm) / Glossy card (400 gsm)",
+      "leadTime": "3-4 business days",
+      "colour": "CYMK",
+      "Sizes": "A3 / A4"
+    },
+    "feature1":"Create impacful poster in the size of A3 or A4",
+    "feature2":"High quality paper to make your design stand out",
+    "size": [
+       { 
+         "name": "A3",
+         "height": "90",
+         "width":'54',
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "A4",
+         "height": "84",
+         "width":'55',
+         "image" : 'xyz'
+      },
+  
+      { 
+         "name": "Square",
+         "height": "56",
+         "width":'56',
+         "image": 'xyz'
+      }
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "200",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "300",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "400",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "500",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "600",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "700",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "corner": [
+     {
+       "cornerName" : "Square",
+       "cornerDescription" : "Traditional",
+       "image": squareImage,
+     },
+     {
+       "cornerName" : "Round",
+       "cornerDescription" : "Smooth",
+       "image": roundImage,
+     },
+      
+    ],
+    
+  },
 ]
 
 

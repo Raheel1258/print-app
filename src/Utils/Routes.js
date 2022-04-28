@@ -277,7 +277,7 @@ const MyTabs = () => {
           position: 'absolute',
           paddingBottom: 5,
           paddingTop: 20,
-          height: Platform.OS === 'ios' ? 62 : 62,
+          height: Platform.OS === 'ios' ? 64 : 62,
         },
       }}>
       <Tab.Screen
@@ -308,7 +308,10 @@ const MyTabs = () => {
         options={{
           title: '',
           tabBarIcon: ({focused, color}) => (
-            <View>
+            <View >
+              <View style={styles.cartNumContainer}>
+                <Text style={styles.cartNumText}>2</Text>
+              </View>
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <CartActiveIcon />
@@ -459,6 +462,28 @@ const styles = ScaledSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  cartNumContainer:{
+    backgroundColor:colors.greenColor,
+    width:'12.5@s',
+    height:'12.5@s',
+    borderRadius:'50@s',
+    justifyContent:'center',
+    alignItems:'center',
+    position:'absolute',
+  right:-2,
+  bottom:34,
+    zIndex:1,
+  },
+  cartNumText:{
+    fontFamily: fonts.avenir_bold,
+    color: colors.whiteColor,
+    fontSize: '8@s',
+    fontStyle: 'normal',
+    lineHeight: '14@s',
+    letterSpacing: '0.1@s',
+    textAlign:'center',
+    zIndex:1,
+  }
 });
 
 export default createAppContainer(MainScreen);

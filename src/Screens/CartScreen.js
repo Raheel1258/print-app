@@ -133,7 +133,7 @@ const CartScreen = ({
           />
           <VerificationModal
             title={t('pay_bank_transfer')}
-            description={t('curabitur_aliquet')}
+            description={t('bank_transfer_description')}
             isModalVisible={isModalVisible}
             toggleModal={toggleModal}
           />

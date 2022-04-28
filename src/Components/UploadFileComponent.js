@@ -1,23 +1,33 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
 
 import LeftArrow from '../Assests/Svgs/LeftArrow';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
-const UploadFileComponent = ({title, onPress,Children,selection}) => {
+const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false }) => {
+  const borderStyle = { 
+    borderBottomWidth: isSelected ? 2 : 1 ,
+    borderBottomColor: isSelected ? null : colors.inputBorderColor,
+    borderWidth: isSelected ? 2 : 0,
+    borderColor: isSelected ? colors.greenColor : 0,
+  }
+
   return (
-    <TouchableOpacity  style={Children ? styles.accountContainer :  styles.Container} onPress={onPress}>
+    <TouchableOpacity
+      style={Children ? styles.accountContainer : 
+        { ...styles.Container, ...borderStyle }}
+      onPress={onPress}>
       <View style={styles.iconContainer}>
         <View style={Children ? styles.iconWrapper : null}>
-        {Children}
+          {Children}
         </View>
         <View style={styles.infoConatiner}>
-        <Text style={styles.title} numberOfLines={1}>
-          {title}
-        </Text>
-        <Text style={styles.desText}>{selection}</Text>
-      </View>
+          <Text style={styles.title} numberOfLines={1}>
+            {title}
+          </Text>
+          <Text style={styles.desText}>{selection}</Text>
+        </View>
       </View>
       <View style={styles.rightArrow}>
         <LeftArrow />
@@ -33,10 +43,12 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: '20@s',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.inputBorderColor,
+
+    // borderBottomWidth: 1,
+    borderWidth: 2,
+    borderColor: colors.greenColor,
   },
-  accountContainer:{
+  accountContainer: {
     height: '60@s',
     flexDirection: 'row',
     alignItems: 'center',
@@ -44,7 +56,7 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '10@s',
     borderBottomWidth: 1,
     borderBottomColor: colors.inputBorderColor,
-    marginTop:'5@s'
+    marginTop: '5@s'
   },
   iconContainer: {
     flexDirection: 'row',
@@ -61,24 +73,24 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
   },
   rightArrow: {
-    transform: [{rotate: '180deg'}],
+    transform: [{ rotate: '180deg' }],
   },
   iconWrapper: {
     marginRight: '12@s',
   },
-  infoConatiner:{
-    flexDirection:'row',
-    alignItems:'center',
+  infoConatiner: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  desText:{
+  desText: {
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.6@s',
     textAlign: 'left',
-    color: colors.lightBlackColor,  
-    marginLeft:'20@s'
+    color: colors.lightBlackColor,
+    marginLeft: '20@s'
   }
 });
 

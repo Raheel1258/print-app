@@ -10,15 +10,25 @@ const UrlPickerInput = ({addUrl , setAddUrl, setAddUrlArray, addUrlArray}) => {
   
   const handleChange = (e) =>{
     setAddUrl(e);
-    addUrlArray?.push(e); 
+    
+  }
+
+  const handleAdd = () => {
+    console.log("add" , addUrl )
+    addUrlArray?.push(addUrl); 
   }
   
   return (
     <View style={styles.container}>
       <Text style={styles.fileUrl}>{t('file_url')}</Text>
-      <TextInput onChangeText={(e)=>handleChange(e)}
+      {/* {addUrlArray && addUrlArray?.map((item)=> {
+        return <TextInput onChangeText={(e)=>handleChange(e)} value={item}
         style={styles.textInput}
       />
+      })}  */}
+      <TextInput style={styles.textInput}
+      />
+      
      <TouchableOpacity onPress={handleAdd}><Text style={styles.addMore}>{t('add_more')}</Text></TouchableOpacity>
     </View>
   );

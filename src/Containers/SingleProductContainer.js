@@ -12,16 +12,15 @@ const SingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
 
-  
-
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const refRBSheet = useRef();
   const urlRBSheet = useRef();
   const finishingRBSheet = useRef();
   const sizeRBSheet = useRef();
-  const spotVuRBSheet = useRef();
+  const spotUvRBSheet = useRef();
 
+  const [selectedUpload, setSelectedUpload] =useState (t('upload_file'));
   const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
   const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing ? item?.finishing[0] : undefined);
@@ -30,19 +29,10 @@ const SingleProductContainer = ({ route }) => {
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [addUrl , setAddUrl] = useState('');
-  const [addUrlArray, setAddUrlArray] = useState([])
+  const [addUrlArray, setAddUrlArray] = useState([]);
+  const [result, setResult] = useState(undefined);
 
 
-  console.log("url" , addUrl);
-  console.log("pushed",addUrlArray);
-
-
-  // const [selectedSize, setSelectedSize] = useState("");
-  // const [selectedCorner, setSelectedCorner] = useState("");
-  // const [selectFinishing, setSelectFinishing] = useState('Matte');
-  // const [quantityId, setQuantityId] = useState("");
-  // const [preview, setPreview] = useState(true);
-  // const [remarks, setRemarks] = useState('');
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -106,13 +96,17 @@ const SingleProductContainer = ({ route }) => {
         selectFinishing={selectFinishing}
         setSelectFinishing={setSelectFinishing}
         sizeRBSheet={sizeRBSheet}
-        spotVuRBSheet={spotVuRBSheet}
+        spotUvRBSheet={spotUvRBSheet}
         selectSpotUv={selectSpotUv}
         setSelectSpotUv={setSelectSpotUv}
         addUrl={addUrl}
         setAddUrl = {setAddUrl}
         setAddUrlArray={setAddUrlArray}
         addUrlArray={addUrlArray}
+        selectedUpload={selectedUpload}
+        setSelectedUpload={setSelectedUpload}
+        result={result}
+        setResult={setResult}
       />
     </View>
   );

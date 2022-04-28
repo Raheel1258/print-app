@@ -1,49 +1,14 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import {colors,fonts} from '../Utils/theme';
 
-const DATA = [
-  {
-    id: '1',
-    quantity: 100,
-    price: 12,
-    unit_price: 23,
-  },
-  {
-    id: '2',
-    quantity: 100,
-    price: 12,
-    unit_price: 23,
-  },
-  {
-    id: '3',
-    quantity: 100,
-    price: 12,
-    unit_price: 23,
-  },
-  {
-    id: '4',
-    quantity: 100,
-    price: 12,
-    unit_price: 23,
-  },
-  {
-    id: '5',
-    quantity: 100,
-    price: 12,
-    unit_price: 23,
-  },
-  {
-    id: '6',
-    quantity: 100,
-    price: 12,
-    unit_price: 23,
-  },
-];
+
 
 const QuantityTable = ({setQuantityId, quantityId, quantityTable }) => {
+  const { t } = useTranslation();
   const [sliceArray, setSliceArray] = useState(quantityTable?.slice(0,6));
   const [flag , setflag] = useState(true)
  
@@ -58,7 +23,7 @@ const QuantityTable = ({setQuantityId, quantityId, quantityTable }) => {
     return (
       <TouchableOpacity activeOpacity={1} onPress = { () => setQuantityId(item?._id)} style={{...styles.tableItems, ...quantityStyle}}>
         <Text style={styles.priceText}>{item?.quantity}</Text>
-        <Text style={styles.dollerPrice}>${"100"}</Text>
+        <Text style={styles.dollerPrice}>${item?.quantity * item?.unitPrice}</Text>
         <Text style={styles.priceText}>${item?.unitPrice}</Text>
       </TouchableOpacity>
     );
@@ -66,17 +31,17 @@ const QuantityTable = ({setQuantityId, quantityId, quantityTable }) => {
   return (
     <View style={styles.tableContainer}>
       <View style={styles.tableHeader}>
-        <Text style={styles.headerTitle}>Quantity</Text>
-        <Text style={styles.headerTitle}>Price (HK$)</Text>
-        <Text style={styles.headerTitle}>Unit price</Text>
+        <Text style={styles.headerTitle}>{t('quantity_text')}</Text>
+        <Text style={styles.headerTitle}>{t('price_HK')}</Text>
+        <Text style={styles.headerTitle}>{t('unit_text')}</Text>
       </View>
       <FlatList
         data={sliceArray}
         renderItem={renderItem}
         keyExtractor={item => item?.id}
       />
-      {flag && <TouchableOpacity style={styles.tableBottom}>
-        <Text style={styles.showMore} onPress={sliceData}>Show more quantity</Text>
+      {flag && <TouchableOpacity  onPress={sliceData} style={styles.tableBottom}>
+        <Text style={styles.showMore}>{t('show_more')}</Text>
       </TouchableOpacity>}
     </View>
   );

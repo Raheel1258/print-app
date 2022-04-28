@@ -31,9 +31,11 @@ export const getProductListByCategory = (category, setAnimation) => async dispat
         console.log("into book")
         dispatch(setProductList(productListBookletData))
       }
+      else if(category === 'POSTER'){
+        dispatch(setProductList(productListPosterData));
+      }
       else {
         dispatch(setProductList(BusinessCardData))
-        
       }
      
       //const res = await axios.get(`${Api}/category=category`);

@@ -11,7 +11,7 @@ const DATA = [
   {
     id: '1',
     date: 'Today',
-    mark: 'Mark as all read',
+    readMark: 'Mark as all read',
   },
   {
     id: '2',

@@ -64,7 +64,7 @@ const ImageSlider = ({sliderImages, captions, autoPlaySlider=false}) => {
 
 const styles = ScaledSheet.create({
   slidertitle: {
-    fontFamily: fonts.avenir_bold,
+    fontFamily: fonts.avenir_next,
     fontSize: '22@s',
     fontStyle: 'normal',
     lineHeight: '25@s',
@@ -75,7 +75,7 @@ const styles = ScaledSheet.create({
     zIndex: 99999,
     top: 70,
     left: 30,
-    width: 200,
+    width: 230,
   },
 });
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Image, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
+import { ShortenedIcon } from '../Assests/Svgs'
+
 
 import {
   BackArrowHeader,
@@ -46,14 +48,17 @@ const SingleProductScreen = ({
   selectFinishing,
   setSelectFinishing,
   sizeRBSheet,
-  spotVuRBSheet,
+  spotUvRBSheet,
   selectSpotUv,
   setSelectSpotUv,
   addUrl,
   setAddUrl,
   setAddUrlArray,
-  addUrlArray
-
+  addUrlArray,
+  selectedUpload,
+  setSelectedUpload,
+  result,
+  setResult
 }) => {
   const { t } = useTranslation();
   return (
@@ -66,39 +71,40 @@ const SingleProductScreen = ({
         </View>
         <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
         <View style={styles.cardsContainer}>
-          {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item,index)=> {
+          {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item, index) => {
             return (
-            <>
-            <CardSizeComponent
-              key={index}
-              Childern={
-              <InfoIcon style={styles.squareimage} />}
-              cardStandard={item?.name}
-              cardDimensions={`${item?.height}mm x ${item?.width}mm`}
-              selectedSize={selectedSize}
-              onPress={() => setSelectedSize(item?.name)}
+              <>
+                <CardSizeComponent
+                  key={index}
+                  Childern={
+                    <ShortenedIcon style={styles.squareimage} />}
+                  cardStandard={item?.name}
+                  cardDimensions={`${item?.height}mm x ${item?.width}mm`}
+                  selectedSize={selectedSize}
+                  onPress={() => setSelectedSize(item?.name)}
 
-            />
-            </>
+                />
+              </>
             )
-          }): 
-          <>
-          <View style={{width:'100%'}} >
-          <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize? selectedSize: ""} />
-          </View>
-        </>}
+          }) :
+            <>
+              <View style={{ width: '100%' }} >
+                <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize ? selectedSize : ""} />
+              </View>
+            </>}
         </View>
-        {((category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card") || category=== "BOOKLET" ) &&
-         <>
-          <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
-          <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
-         </>
+        {((category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card") || category === "BOOKLET") &&
+          <>
+            <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
+            <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
+          </>
         }
 
-        {(category === "BUSNIESS_CARD" && item?.category?.name === "Spot Gloss (UV) Business Card") &&
-          <>  
-           <CategoriesTitleHeader title={t('choose_SpotUv')} Children={<InfoIcon />} />
-          <UploadFileComponent onPress={() => spotVuRBSheet.current.open()} title={t('spotUv')} selection={selectSpotUv} />
+        {(category === "BUSINESS_CARD" && item?.category?.name === "Spot Gloss (UV) Business Card") &&
+          <>
+            {console.log("xyzdsdfs")}
+            <CategoriesTitleHeader title={t('choose_SpotUv')} Children={<InfoIcon />} />
+            <UploadFileComponent onPress={() => spotUvRBSheet.current.open()} title={t('spotUv')} selection={selectSpotUv} />
           </>
         }
 
@@ -115,7 +121,7 @@ const SingleProductScreen = ({
                     // Childern={
                     //   <Image style={styles.squareimage} source={item?.image} />}
                     Childern={
-                      <InfoIcon style={styles.squareimage} />}
+                      <Image style={styles.squareimage} source={item?.image} />}
                     cardStandard={item?.cornerName}
                     cardDimensions={item?.cornerDescription}
                   />
@@ -161,23 +167,32 @@ const SingleProductScreen = ({
           description={t('artwork_guidelines')}
         />
         <UploadFileComponent
-          onPress={() => refRBSheet.current.open()}
+          onPress={() => {refRBSheet.current.open(), setSelectedUpload(t('upload_file')) }}
           title={t('upload_file')}
+          isSelected={selectedUpload == t('upload_file') ? true : false}
         />
         <UploadFileComponent
-          onPress={() => urlRBSheet.current.open()}
+          onPress={() => {urlRBSheet.current.open(), setSelectedUpload(t('upload_url'))}}
           title={t('upload_url')}
+          isSelected={selectedUpload == t('upload_url') ? true : false}
+
         />
-        <UploadFileComponent onPress={toggleModal} title={t('upload_mail')} />
+        <UploadFileComponent
+          onPress={() => {toggleModal() , setSelectedUpload(t('upload_mail'))}}
+          title={t('upload_mail')}
+          isSelected={selectedUpload == t('upload_mail') ? true : false}
+        />
+
+
         <BottomSheetComponent
           title={t('sheet_upload_file')}
           refRBSheet={refRBSheet}
-          childern={<FilePickerInput />}
+          childern={<FilePickerInput result={result} setResult={setResult}/>}
         />
         <BottomSheetComponent
           title={t('sheet_upload_url')}
           refRBSheet={urlRBSheet}
-          childern={<UrlPickerInput addUrl={addUrl} setAddUrl={setAddUrl} setAddUrlArray={setAddUrlArray} addUrlArray={addUrlArray}/>}
+          childern={<UrlPickerInput addUrl={addUrl} setAddUrl={setAddUrl} setAddUrlArray={setAddUrlArray} addUrlArray={addUrlArray} />}
         />
         <VerificationModal
           title={t('sent_text')}
@@ -205,8 +220,8 @@ const SingleProductScreen = ({
           <Text style={styles.mailText}>{t('mail_text')}</Text>
         </View>
 
-         {/* Finishing BottomSheet */}
-         <BottomSheetComponent
+        {/* Finishing BottomSheet */}
+        <BottomSheetComponent
           title={t('choose_finishing')}
           refRBSheet={finishingRBSheet}
           note={false}
@@ -244,14 +259,14 @@ const SingleProductScreen = ({
         {/* Spot Vu Effect */}
         <BottomSheetComponent
           title={t('choose_SpotUv')}
-          refRBSheet={spotVuRBSheet}
+          refRBSheet={spotUvRBSheet}
           note={false}
           height={300}
           childern={
             item?.spotVu?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setSelectSpotUv(item);
-                spotVuRBSheet.current.close()
+                spotUvRBSheet.current.close()
               }} style={styles.listContainer}>
                 <Text style={styles.listStyle}>{item}</Text>
               </TouchableOpacity>
@@ -291,9 +306,7 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
-    fontStyle: 'normal',
-    lineHeight: '13@s',
+    lineHeight: '18@s',
     letterSpacing: '0.3@s',
     color: colors.lightBlackColor,
     paddingHorizontal: '10@s',

@@ -58,8 +58,8 @@ const styles = ScaledSheet.create({
     marginBottom:'2@s'
   },
   dotContainer: {
-    width: '7@s',
-    height: '7@s',
+    width: '5@s',
+    height: '5@s',
     borderRadius: '50@s',
     backgroundColor: colors.lightBlackColor,
     marginRight: '7@s',

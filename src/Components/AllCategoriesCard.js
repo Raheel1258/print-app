@@ -16,7 +16,7 @@ const AllCategoriesCard = ({title,deliveryTime,image,priceDescription, category}
     <TouchableOpacity onPress={()=> navigate('productsListing' , {categoryTitle:title, categoryImage:image, category:category})}>
     <View style={styles.headerContainer}>
       <Image style={styles.cardImage} source={{uri: image}} />
-      <Text numberOfLines={1} style={styles.cardName}>{title}</Text>
+      <Text numberOfLines={1} style={styles.cardName}>{category == "STICKERS_LABEL" ? title+' & Label':title}</Text>
       <View style={styles.descriptionContainer}>
         <View style={styles.dotContainer} />
         <Text numberOfLines={1} style={styles.descriptionText}>{deliveryTime}</Text>

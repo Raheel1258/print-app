@@ -26,6 +26,10 @@ const SingleProductContainer = ({ route }) => {
       {url_link: ''}
     ]
   }
+  const handleAddUrl = (values) => {
+    console.log("xyz", values)
+
+  }
 
   const [selectedUpload, setSelectedUpload] =useState (t('upload_file'));
   const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
@@ -109,6 +113,7 @@ const SingleProductContainer = ({ route }) => {
         result={result}
         setResult={setResult}
         initialValuesAddUrl={initialValuesAddUrl}
+        handleAddUrl={handleAddUrl}
       />
     </View>
   );

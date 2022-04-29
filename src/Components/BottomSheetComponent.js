@@ -18,7 +18,7 @@ const BottomSheetComponent = ({
   height = '93%',
   languageTitle = undefined,
   note = true,
-  onClose = true
+  onClose = true,
 }) => {
   return (
     <View>

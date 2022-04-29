@@ -6,17 +6,13 @@ import { Formik, FieldArray } from 'formik';
 import { colors, fonts } from '../Utils/theme';
 
 
-const UrlPickerInput = ({ initialValuesAddUrl }) => {
+const UrlPickerInput = ({ initialValuesAddUrl,handleAddUrl }) => {
   const { t } = useTranslation();
 
-  const handleAdd = (values) => {
-    console.log("xyz", values)
-
-  }
 
   return (
     <View style={styles.container}>
-      <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAdd(values)}>
+      <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAddUrl(values)}>
         {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
           return <>
             <FieldArray name='url'>
@@ -38,7 +34,7 @@ const UrlPickerInput = ({ initialValuesAddUrl }) => {
               )
               }
             </FieldArray>
-            <Text onPress={handleSubmit}>Add All</Text>
+            {/* <Text onPress={handleSubmit}>Add All</Text> */}
           </>
         }}
       </Formik>

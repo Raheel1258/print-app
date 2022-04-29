@@ -55,7 +55,8 @@ const SingleProductScreen = ({
   setSelectedUpload,
   result,
   setResult,
-  initialValuesAddUrl
+  initialValuesAddUrl,
+  handleAddUrl
 }) => {
   const { t } = useTranslation();
   return (
@@ -186,7 +187,7 @@ const SingleProductScreen = ({
         <BottomSheetComponent
           title={t('sheet_upload_url')}
           refRBSheet={urlRBSheet}
-          childern={<UrlPickerInput initialValuesAddUrl={initialValuesAddUrl}/>}
+          childern={<UrlPickerInput initialValuesAddUrl={initialValuesAddUrl} handleAddUrl={handleAddUrl}/>}
         />
         <VerificationModal
           title={t('sent_text')}

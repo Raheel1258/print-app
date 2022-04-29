@@ -11,9 +11,7 @@ const UrlPickerInput = ({ initialValuesAddUrl }) => {
 
   const handleAdd = (values) => {
     console.log("xyz", values)
-
   }
-
   return (
     <View style={styles.container}>
       <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAdd(values)}>
@@ -38,7 +36,7 @@ const UrlPickerInput = ({ initialValuesAddUrl }) => {
               )
               }
             </FieldArray>
-            <Text onPress={handleSubmit}>Add All</Text>
+            {/* <Text onPress={handleSubmit}>Add All</Text> */}
           </>
         }}
       </Formik>

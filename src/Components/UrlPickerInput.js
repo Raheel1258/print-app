@@ -1,35 +1,47 @@
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import { Formik, FieldArray } from 'formik';
+import { colors, fonts } from '../Utils/theme';
 
-import {colors,fonts} from '../Utils/theme';
 
-const UrlPickerInput = ({addUrl , setAddUrl, setAddUrlArray, addUrlArray}) => {
-  const {t} = useTranslation();
-  
-  const handleChange = (e) =>{
-    setAddUrl(e);
-    
+const UrlPickerInput = ({ initialValuesAddUrl }) => {
+  const { t } = useTranslation();
+
+  const handleAdd = (values) => {
+    console.log("xyz", values)
+
   }
 
-  const handleAdd = () => {
-    console.log("add" , addUrl )
-    addUrlArray?.push(addUrl); 
-  }
-  
   return (
     <View style={styles.container}>
-      <Text style={styles.fileUrl}>{t('file_url')}</Text>
-      {/* {addUrlArray && addUrlArray?.map((item)=> {
-        return <TextInput onChangeText={(e)=>handleChange(e)} value={item}
-        style={styles.textInput}
-      />
-      })}  */}
-      <TextInput style={styles.textInput}
-      />
-      
-     <TouchableOpacity onPress={handleAdd}><Text style={styles.addMore}>{t('add_more')}</Text></TouchableOpacity>
+      <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAdd(values)}>
+        {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
+          return <>
+            <FieldArray name='url'>
+              {({ remove, push }) => (
+                <>
+                  <Text style={styles.fileUrl}>{t('file_url')}</Text>
+                  {values.url.length > 0 && values.url.map((single_url, i) => <>
+                    <TextInput
+                      style={styles.textInput}
+                      value={single_url.url_link}
+                      keyboardType="default"
+                      secureTextEntry={false}
+                      onChangeText={handleChange(`url.${i}.url_link`)}
+                    />
+                    {i !== 0 && <TouchableOpacity onPress={() => remove(i)}><Text style={styles.addMore}>Remove</Text></TouchableOpacity>}
+                  </>)}
+                  <TouchableOpacity onPress={() => push({ url_link: '' })}><Text style={styles.addMore}>{t('add_more')}</Text></TouchableOpacity>
+                </>
+              )
+              }
+            </FieldArray>
+            <Text onPress={handleSubmit}>Add All</Text>
+          </>
+        }}
+      </Formik>
     </View>
   );
 };
@@ -43,9 +55,11 @@ const styles = ScaledSheet.create({
     borderColor: colors.inputBorderColor,
     color: colors.lightBlackColor,
     paddingLeft: 0,
+    marginTop: '30@s',
+    paddingBottom:'8@s'
   },
   fileUrl: {
-   fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '800',
@@ -55,7 +69,7 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
   },
   addMore: {
-   fontFamily:fonts.avenir_light,
+    fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '400',

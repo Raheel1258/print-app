@@ -331,339 +331,339 @@ import { ShortenedIcon } from '../Assests/Svgs';
 
 //sticker
 
-export const productListStickerData = [
-  {
-    id: 444,
-    heading: 'Round sticker',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Durable and tear-proof material',
-    feature2: 'Ideal for logos, branding and packaging',
-    description: 'All stickers are printed on durable and tear-proof material. Ideal for logos, branding and packaging',
-    paper_type: 'glossy/Clear',
-    lead_time: '3-5 business days',
-    colour: 'CYMK',
-    sizes: '4 sizes',
-    choose_size: [
-      { size_name: 'Tiny', height: '25mm', width: '25mm', image:squareImage , },
-      { size_name: 'Small', height: '65mm', width: '65mm', image:squareImage,  },
-      { size_name: 'Standard', height: '100mm', width: '100mm', image:squareImage ,  },
-      { size_name: 'Large', height: '125mm', width: '125mm', image:squareImage ,  },
-    ],
-    choose_paper_type : [
-      {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
-    ],
-    choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
-    {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
-  ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
+// export const productListStickerData = [
+//   {
+//     id: 444,
+//     heading: 'Round sticker',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Durable and tear-proof material',
+//     feature2: 'Ideal for logos, branding and packaging',
+//     description: 'All stickers are printed on durable and tear-proof material. Ideal for logos, branding and packaging',
+//     paper_type: 'glossy/Clear',
+//     lead_time: '3-5 business days',
+//     colour: 'CYMK',
+//     sizes: '4 sizes',
+//     choose_size: [
+//       { size_name: 'Tiny', height: '25mm', width: '25mm', image:squareImage , },
+//       { size_name: 'Small', height: '65mm', width: '65mm', image:squareImage,  },
+//       { size_name: 'Standard', height: '100mm', width: '100mm', image:squareImage ,  },
+//       { size_name: 'Large', height: '125mm', width: '125mm', image:squareImage ,  },
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
+//     ],
+//     choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
+//     {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
+//   ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
 
-  {
-    id: 445,
-    heading: 'Rectangular sticker',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Durable and tear-proof material',
-    feature2: 'Ideal for packaging, products and labels',
-    description: 'All stickers are printed on durable and tear-proof material. Perfect for packaging, products and labels.',
-    paper_type: 'glossy/Clear',
-    lead_time: '3-5 business days',
-    colour: 'CYMK',
-    sizes: '4 sizes',
-    choose_size: [
-      { size_name: 'Tiny', height: '50mm', width: '25mm',  image:squareImage },
-      { size_name: 'Small', height: '75mm', width: '50mm',  image:squareImage },
-      { size_name: 'Standard', height: '100mm', width: '50mm',  image:squareImage },
-      { size_name: 'Large', height: '125mm', width: '50mm',  image:squareImage },
-    ],
-    choose_paper_type : [
-      {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
-    ],
-    choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
-    {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
-  ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
+//   {
+//     id: 445,
+//     heading: 'Rectangular sticker',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Durable and tear-proof material',
+//     feature2: 'Ideal for packaging, products and labels',
+//     description: 'All stickers are printed on durable and tear-proof material. Perfect for packaging, products and labels.',
+//     paper_type: 'glossy/Clear',
+//     lead_time: '3-5 business days',
+//     colour: 'CYMK',
+//     sizes: '4 sizes',
+//     choose_size: [
+//       { size_name: 'Tiny', height: '50mm', width: '25mm',  image:squareImage },
+//       { size_name: 'Small', height: '75mm', width: '50mm',  image:squareImage },
+//       { size_name: 'Standard', height: '100mm', width: '50mm',  image:squareImage },
+//       { size_name: 'Large', height: '125mm', width: '50mm',  image:squareImage },
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
+//     ],
+//     choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
+//     {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
+//   ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
 
-  {
-    id: 446,
-    heading: 'Square sticker',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Durable and tear-proof material',
-    feature2: 'Ideal for events, branding and packaging',
-    description: 'All stickers are printed on durable and tear-proof material. Perfect for events, branding and packaging.',
-    paper_type: 'glossy/Clear',
-    lead_time: '3-5 business days',
-    colour: 'CYMK',
-    sizes: '4 sizes',
-    choose_size: [
-      { size_name: 'Tiny', height: '50mm', width: '50mm',  image:squareImage },
-      { size_name: 'Small', height: '75mm', width: '75mm',  image:squareImage },
-      { size_name: 'Standard', height: '100mm', width: '100mm',  image:squareImage },
-      { size_name: 'Large', height: '125mm', width: '125mm',  image:squareImage },
-    ],
-    choose_paper_type : [
-      {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
-    ],
-    choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
-    {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
-  ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
-]
+//   {
+//     id: 446,
+//     heading: 'Square sticker',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Durable and tear-proof material',
+//     feature2: 'Ideal for events, branding and packaging',
+//     description: 'All stickers are printed on durable and tear-proof material. Perfect for events, branding and packaging.',
+//     paper_type: 'glossy/Clear',
+//     lead_time: '3-5 business days',
+//     colour: 'CYMK',
+//     sizes: '4 sizes',
+//     choose_size: [
+//       { size_name: 'Tiny', height: '50mm', width: '50mm',  image:squareImage },
+//       { size_name: 'Small', height: '75mm', width: '75mm',  image:squareImage },
+//       { size_name: 'Standard', height: '100mm', width: '100mm',  image:squareImage },
+//       { size_name: 'Large', height: '125mm', width: '125mm',  image:squareImage },
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
+//     ],
+//     choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
+//     {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
+//   ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
+// ]
 
 //Flyer
 
-export const productListFlyerData = [
-  {
-    id: 555,
-    heading: 'Rectangular Flyer',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Durable and tear-proof material',
-    feature2: 'Ideal for logos, branding and packaging',
-    description: 'All stickers are printed on durable and tear-proof material. Ideal for logos, branding and packaging',
-    paper_type: 'glossy/Clear',
-    lead_time: '3-5 business days',
-    colour: 'CYMK',
-    sizes: '4 sizes',
-    choose_size: [
-      { size_name: 'Tiny', height: '25mm', width: '25mm', image:squareImage , },
-      { size_name: 'Small', height: '65mm', width: '65mm', image:squareImage,  },
-      { size_name: 'Standard', height: '100mm', width: '100mm', image:squareImage ,  },
-      { size_name: 'Large', height: '125mm', width: '125mm', image:squareImage ,  },
-    ],
-    choose_paper_type : [
-      {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
-    ],
-    choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
-    {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
-  ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
+// export const productListFlyerData = [
+//   {
+//     id: 555,
+//     heading: 'Rectangular Flyer',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Durable and tear-proof material',
+//     feature2: 'Ideal for logos, branding and packaging',
+//     description: 'All stickers are printed on durable and tear-proof material. Ideal for logos, branding and packaging',
+//     paper_type: 'glossy/Clear',
+//     lead_time: '3-5 business days',
+//     colour: 'CYMK',
+//     sizes: '4 sizes',
+//     choose_size: [
+//       { size_name: 'Tiny', height: '25mm', width: '25mm', image:squareImage , },
+//       { size_name: 'Small', height: '65mm', width: '65mm', image:squareImage,  },
+//       { size_name: 'Standard', height: '100mm', width: '100mm', image:squareImage ,  },
+//       { size_name: 'Large', height: '125mm', width: '125mm', image:squareImage ,  },
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
+//     ],
+//     choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
+//     {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
+//   ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
 
-  {
-    id: 556,
-    heading: 'Square Flyer',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Durable and tear-proof material',
-    feature2: 'Ideal for packaging, products and labels',
-    description: 'All stickers are printed on durable and tear-proof material. Perfect for packaging, products and labels.',
-    paper_type: 'glossy/Clear',
-    lead_time: '3-5 business days',
-    colour: 'CYMK',
-    sizes: '4 sizes',
-    choose_size: [
-      { size_name: 'Tiny', height: '50mm', width: '25mm',  image:squareImage },
-      { size_name: 'Small', height: '75mm', width: '50mm',  image:squareImage },
-      { size_name: 'Standard', height: '100mm', width: '50mm',  image:squareImage },
-      { size_name: 'Large', height: '125mm', width: '50mm',  image:squareImage },
-    ],
-    choose_paper_type : [
-      {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
-    ],
-    choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
-    {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
-  ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
+//   {
+//     id: 556,
+//     heading: 'Square Flyer',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Durable and tear-proof material',
+//     feature2: 'Ideal for packaging, products and labels',
+//     description: 'All stickers are printed on durable and tear-proof material. Perfect for packaging, products and labels.',
+//     paper_type: 'glossy/Clear',
+//     lead_time: '3-5 business days',
+//     colour: 'CYMK',
+//     sizes: '4 sizes',
+//     choose_size: [
+//       { size_name: 'Tiny', height: '50mm', width: '25mm',  image:squareImage },
+//       { size_name: 'Small', height: '75mm', width: '50mm',  image:squareImage },
+//       { size_name: 'Standard', height: '100mm', width: '50mm',  image:squareImage },
+//       { size_name: 'Large', height: '125mm', width: '50mm',  image:squareImage },
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
+//     ],
+//     choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
+//     {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
+//   ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
 
-  {
-    id: 557,
-    heading: 'Foldable Flyer',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Durable and tear-proof material',
-    feature2: 'Ideal for events, branding and packaging',
-    description: 'All stickers are printed on durable and tear-proof material. Perfect for events, branding and packaging.',
-    paper_type: 'glossy/Clear',
-    lead_time: '3-5 business days',
-    colour: 'CYMK',
-    sizes: '4 sizes',
-    choose_size: [
-      { size_name: 'Tiny', height: '50mm', width: '50mm',  image:squareImage },
-      { size_name: 'Small', height: '75mm', width: '75mm',  image:squareImage },
-      { size_name: 'Standard', height: '100mm', width: '100mm',  image:squareImage },
-      { size_name: 'Large', height: '125mm', width: '125mm',  image:squareImage },
-    ],
-    choose_paper_type : [
-      {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
-    ],
-    choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
-    {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
-  ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
-]
+//   {
+//     id: 557,
+//     heading: 'Foldable Flyer',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Durable and tear-proof material',
+//     feature2: 'Ideal for events, branding and packaging',
+//     description: 'All stickers are printed on durable and tear-proof material. Perfect for events, branding and packaging.',
+//     paper_type: 'glossy/Clear',
+//     lead_time: '3-5 business days',
+//     colour: 'CYMK',
+//     sizes: '4 sizes',
+//     choose_size: [
+//       { size_name: 'Tiny', height: '50mm', width: '50mm',  image:squareImage },
+//       { size_name: 'Small', height: '75mm', width: '75mm',  image:squareImage },
+//       { size_name: 'Standard', height: '100mm', width: '100mm',  image:squareImage },
+//       { size_name: 'Large', height: '125mm', width: '125mm',  image:squareImage },
+//     ],
+//     choose_paper_type : [
+//       {coverpages:['Glossy paper(157 gsm)' , 'Glossy card(400 gsm)']},
+//     ],
+//     choose_cut:[{indivial:'individual' , height:'65mm' , width:'65mm' , image:squareImage},
+//     {in_sheet:'In sheet' , height:'100mm' , width:'100mm' , imag:squareImage}
+//   ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
+// ]
 
 
-//Envelope
-export const productListEnvelopeData = [
-  {
-    id: 666,
-    heading: 'Horizontal Opening Envelope',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'High quality envelope perfect for branding',
-    feature2: 'With a choice of window or window-less',
-    description: 'High quality envelope perfect for branding.With a choice of window or window-less',
-    paper_type: 'Woodfree paper (100 gsm)',
-    lead_time: '4-6 business days',
-    colour: 'CYMK',
-    sizes: '4" x 9" (101.6mm x 228.6mm)',
-    choose_size: [
-      { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
-      { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
-    ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
+// //Envelope
+// export const productListEnvelopeData = [
+//   {
+//     id: 666,
+//     heading: 'Horizontal Opening Envelope',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'High quality envelope perfect for branding',
+//     feature2: 'With a choice of window or window-less',
+//     description: 'High quality envelope perfect for branding.With a choice of window or window-less',
+//     paper_type: 'Woodfree paper (100 gsm)',
+//     lead_time: '4-6 business days',
+//     colour: 'CYMK',
+//     sizes: '4" x 9" (101.6mm x 228.6mm)',
+//     choose_size: [
+//       { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
+//       { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
+//     ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
 
-  {
-    id: 667,
-    heading: 'Veritcal Opening Envelope',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Durable and tear-proof material',
-    feature2: 'Ideal for packaging, products and labels',
-    description: 'All stickers are printed on durable and tear-proof material. Perfect for packaging, products and labels.',
-    paper_type: 'Woodfree paper (100 gsm)',
-    lead_time: '4-6 business days',
-    colour: 'CYMK',
-    sizes: '4" x 9" (101.6mm x 228.6mm)',
-    choose_size: [
-      { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
-      { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
-    ],
+//   {
+//     id: 667,
+//     heading: 'Veritcal Opening Envelope',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Durable and tear-proof material',
+//     feature2: 'Ideal for packaging, products and labels',
+//     description: 'All stickers are printed on durable and tear-proof material. Perfect for packaging, products and labels.',
+//     paper_type: 'Woodfree paper (100 gsm)',
+//     lead_time: '4-6 business days',
+//     colour: 'CYMK',
+//     sizes: '4" x 9" (101.6mm x 228.6mm)',
+//     choose_size: [
+//       { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
+//       { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
+//     ],
   
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
-]
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
+// ]
 
 
 //Letter head
-export const productListLetterheadData = [
-  {
-    id: 777,
-    heading: 'Letterhead (A4)',
-    price: 68,
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water'],
-    feature1: 'Professional letterhead that carries your company brand',
-    feature2: 'Permium paper suitable for all major printers',
-    description: 'Professional letterhead that carries your company brand.Permium paper suitable for all major printers.',
-    paper_type: 'Woodfree paper (100 gsm)',
-    lead_time: '4-6 business days',
-    colour: 'CYMK',
-    sizes: 'A4(210mm x 297mm)',
-    // choose_size: [
-    //   { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
-    //   { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
-    // ],
-    quantity_table: [
-      { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
-      { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
-      { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
-      { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
-      { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
-      { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
-      { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
-      { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
-    ]
-  },
+// export const productListLetterheadData = [
+//   {
+//     id: 777,
+//     heading: 'Letterhead (A4)',
+//     price: 68,
+//     images: [
+//       'https://source.unsplash.com/1024x768/?nature',
+//       'https://source.unsplash.com/1024x768/?water'],
+//     feature1: 'Professional letterhead that carries your company brand',
+//     feature2: 'Permium paper suitable for all major printers',
+//     description: 'Professional letterhead that carries your company brand.Permium paper suitable for all major printers.',
+//     paper_type: 'Woodfree paper (100 gsm)',
+//     lead_time: '4-6 business days',
+//     colour: 'CYMK',
+//     sizes: 'A4(210mm x 297mm)',
+//     // choose_size: [
+//     //   { size_name: 'With window', height: '4"', width: '9"',  image:squareImage },
+//     //   { size_name: 'Without window', height: '4"', width: '9"',  image:squareImage },
+//     // ],
+//     quantity_table: [
+//       { id:1 , quantity: '100', price: 68, unit_price: 0.51 },
+//       { id:2 , quantity: '200', price: 108, unit_price: 0.51 },
+//       { id:3 , quantity: '300', price: 158, unit_price: 0.51 },
+//       { id:4 ,quantity: '400', price: 210, unit_price: 0.51 },
+//       { id:5 , quantity: '500', price: 358, unit_price: 0.51 },
+//       { id:6 , quantity: '600', price: 410, unit_price: 0.51 },
+//       { id:7 , quantity: '500', price: 558, unit_price: 0.51 },
+//       { id:8 , quantity: '600', price: 610, unit_price: 0.51 },
+//     ]
+//   },
 
-]
+// ]
 
 
 
@@ -1245,9 +1245,342 @@ export const productListPosterData =  [
   },
 ]
 
+export const productListFlyerData = [
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "FLYERS_LEAFLET",
+    "category": {
+      "productType": 'BizCard-Premium',
+      "name": "Rectangular Flyer",
+      "pricePerHunderd": "68",
+      "description": "Spread the word in a familiar way with this traditional flyer style. A choice of 3 high quality paper types.",
+      "paperType": "Woodfree paper (140 gsm) / Art card (157 gsm / 350 gsm)",
+      "leadTime": "3-4 business days",
+      "colour": "CYMK",
+      "Sizes": "A4 / A5 / A6"
+    },
+    "feature1":"Best for traditional marketing campaign",
+    "feature2":"Choice of 3 high quality paper types",
+    "size": [
+       { 
+         "name": "A6",
+         "height": "105",
+         "width":'148.5',
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "A5",
+         "height": "148.5",
+         "width":'210',
+         "image" : 'xyz'
+      },
+  
+      { 
+         "name": "A4",
+         "height": "210",
+         "width":'297',
+         "image": 'xyz'
+      },
+      
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "200",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "300",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "400",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "500",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "600",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "700",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  },
+]
 
-export const BusinessCard = [ShortenedIcon, ShortenedIcon, ShortenedIcon]
 
+
+export const productListEnvelopeData = [
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "ENVELOPE",
+    "category": {
+      "productType": 'BizCard-Premium',
+      "name": "Horizontal Opening Envelope",
+      "pricePerHunderd": "68",
+      "description": "High quality envelope perfect for corporate branding. With a choice of window and window-less.",
+      "paperType": "Woodfree paper (100 gsm)",
+      "leadTime": "4-6 business days",
+      "colour": "CYMK",
+      "Sizes": "4” x 9” (101.6mm x 228.6mm)"
+    },
+    "feature1":"High quality envelope perfect for branding",
+    "feature2":"With a choice of window or window-less",
+    "size": [
+       { 
+         "name": "4” x 9” (101.6mm x 228.6mm)",
+         "height": "25",
+         "width":'25',
+         "image": "xyz"
+       },
+
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "200",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "300",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "400",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "500",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "600",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "700",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  },
+]
+
+export const productListStickerData = [
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "STICKERS_LABEL",
+    "category": {
+      "productType": 'BizCard-Premium',
+      "name": "Round sticker",
+      "pricePerHunderd": "68",
+      "description": "All stickers are printed on durable and tear-proof material. Ideal for logos, branding and packaging.",
+      "paperType": "Glossy / Clear",
+      "leadTime": "3-5 business days",
+      "colour": "CYMK",
+      "Sizes": "4 sizes"
+    },
+    "feature1":"Durable and tear-proof material",
+    "feature2":"Ideal for logos, branding and packaging",
+    "size": [
+       { 
+         "name": "Tiny",
+         "height": "25",
+         "width":'25',
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "Small",
+         "height": "65",
+         "width":'65',
+         "image" : 'xyz'
+      },
+  
+      { 
+         "name": "Standard",
+         "height": "100",
+         "width":'100',
+         "image": 'xyz'
+      },
+      { 
+        "name": "Large",
+        "height": "125",
+        "width":'125',
+        "image": 'xyz'
+     }
+
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "200",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "300",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "400",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "500",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "600",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "700",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  },
+]
+
+
+export const productListLetterheadData = [
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "LETTERHEAD",
+    "category": {
+      "productType": 'BizCard-Premium',
+      "name": "Letterhead (A4)",
+      "pricePerHunderd": "68",
+      "description": "Professional letterhead that carries your company brand. Premium paper suitable for all major printers.",
+      "paperType": "Woodfree paper (100 gsm)",
+      "leadTime": "4-6 business days",
+      "colour": "CYMK",
+      "Sizes": "A4 (210mm x 297mm)"
+    },
+    "feature1":"Professional letterhead that carries your company brand",
+    "feature2":"Premium paper suitable for all major printers",
+    "size": [
+       { 
+         "name": "A4",
+         "height": "25",
+         "width":'25',
+         "image": "xyz"
+       },
+
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "200",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "300",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "400",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "500",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "600",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "700",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  },
+]
 
 
 

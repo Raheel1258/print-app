@@ -61,6 +61,7 @@ const styles = ScaledSheet.create({
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    width:'97%'
   },
   title: {
     fontFamily: fonts.avenir_regular,

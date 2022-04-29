@@ -51,14 +51,11 @@ const SingleProductScreen = ({
   spotUvRBSheet,
   selectSpotUv,
   setSelectSpotUv,
-  addUrl,
-  setAddUrl,
-  setAddUrlArray,
-  addUrlArray,
   selectedUpload,
   setSelectedUpload,
   result,
-  setResult
+  setResult,
+  initialValuesAddUrl
 }) => {
   const { t } = useTranslation();
   return (
@@ -70,7 +67,7 @@ const SingleProductScreen = ({
           <SingleCardDescription item={item} />
         </View>
         <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
-        <View style={styles.cardsContainer}>
+        <View style={!(category === "ENVELOPE" || category === "LETTERHEAD") ? styles.cardsContainer : ""}>
           {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item, index) => {
             return (
               <>
@@ -82,17 +79,14 @@ const SingleProductScreen = ({
                   cardDimensions={`${item?.height}mm x ${item?.width}mm`}
                   selectedSize={selectedSize}
                   onPress={() => setSelectedSize(item?.name)}
-
                 />
               </>
             )
           }) :
-            <>
-              <View style={{ width: '100%' }} >
+          <>
                 <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize ? selectedSize : ""} />
-              </View>
             </>}
-        </View>
+          </View>
         {((category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card") || category === "BOOKLET") &&
           <>
             <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
@@ -192,7 +186,7 @@ const SingleProductScreen = ({
         <BottomSheetComponent
           title={t('sheet_upload_url')}
           refRBSheet={urlRBSheet}
-          childern={<UrlPickerInput addUrl={addUrl} setAddUrl={setAddUrl} setAddUrlArray={setAddUrlArray} addUrlArray={addUrlArray} />}
+          childern={<UrlPickerInput initialValuesAddUrl={initialValuesAddUrl}/>}
         />
         <VerificationModal
           title={t('sent_text')}

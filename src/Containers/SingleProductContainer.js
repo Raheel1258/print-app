@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import SingleProductScreen from '../Screens/SingleProductScreen';
 import { colors } from '../Utils/theme';
 
+
 const SingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
@@ -20,6 +21,12 @@ const SingleProductContainer = ({ route }) => {
   const sizeRBSheet = useRef();
   const spotUvRBSheet = useRef();
 
+  const initialValuesAddUrl = {
+    url: [
+      {url_link: ''}
+    ]
+  }
+
   const [selectedUpload, setSelectedUpload] =useState (t('upload_file'));
   const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
   const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
@@ -28,11 +35,9 @@ const SingleProductContainer = ({ route }) => {
   const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
-  const [addUrl , setAddUrl] = useState('');
-  const [addUrlArray, setAddUrlArray] = useState([]);
   const [result, setResult] = useState(undefined);
 
-
+  console.log("intial" , initialValuesAddUrl)
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -99,14 +104,11 @@ const SingleProductContainer = ({ route }) => {
         spotUvRBSheet={spotUvRBSheet}
         selectSpotUv={selectSpotUv}
         setSelectSpotUv={setSelectSpotUv}
-        addUrl={addUrl}
-        setAddUrl = {setAddUrl}
-        setAddUrlArray={setAddUrlArray}
-        addUrlArray={addUrlArray}
         selectedUpload={selectedUpload}
         setSelectedUpload={setSelectedUpload}
         result={result}
         setResult={setResult}
+        initialValuesAddUrl={initialValuesAddUrl}
       />
     </View>
   );

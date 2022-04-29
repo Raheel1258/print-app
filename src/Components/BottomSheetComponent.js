@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
@@ -38,7 +38,8 @@ const BottomSheetComponent = ({
             padding: 20,
           },
         }}>
-        <View style={styles.headerContainer}>
+          <ScrollView>
+                    <View style={styles.headerContainer}>
           {title ? (
             <>
               <Text style={styles.headerTitle}>{title}</Text>
@@ -57,7 +58,9 @@ const BottomSheetComponent = ({
           <>
             <ArtworkGuidelines />
           </>
-        )}
+
+)}
+</ScrollView>
       </RBSheet>
     </View>
   );

@@ -25,14 +25,24 @@ export const setProductList = data => {
 
 export const getProductListByCategory = (category, setAnimation) => async dispatch => {
     setAnimation(true);
-    console.log("cccccc" , category)
     try {
       if(category === "BOOKLET"){
-        console.log("into book")
         dispatch(setProductList(productListBookletData))
       }
       else if(category === 'POSTER'){
         dispatch(setProductList(productListPosterData));
+      }
+      else if(category === 'STICKERS_LABEL'){
+        dispatch(setProductList(productListStickerData))
+      }
+      else if(category === 'FLYERS_LEAFLET'){
+        dispatch(setProductList(productListFlyerData));
+      }
+      else if(category === 'ENVELOPE'){
+        dispatch(setProductList(productListEnvelopeData))
+      }
+      else if(category === 'LETTERHEAD'){
+        dispatch(setProductList(productListLetterheadData))
       }
       else {
         dispatch(setProductList(BusinessCardData))

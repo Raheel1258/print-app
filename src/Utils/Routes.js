@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
-import {Text, View} from 'react-native';
+import {Text, View,Platform} from 'react-native';
 
 import {
   SigninContainer,
@@ -479,7 +479,7 @@ const styles = ScaledSheet.create({
     color: colors.whiteColor,
     fontSize: '8@s',
     fontStyle: 'normal',
-    lineHeight: '14@s',
+    lineHeight: Platform.OS === 'ios' ? '14@s' : '12@s',
     letterSpacing: '0.1@s',
     textAlign:'center',
     zIndex:1,

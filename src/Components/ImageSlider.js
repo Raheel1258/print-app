@@ -75,7 +75,7 @@ const styles = ScaledSheet.create({
     zIndex: 99999,
     top: 70,
     left: 30,
-    width: 230,
+    width: 260,
   },
 });
 

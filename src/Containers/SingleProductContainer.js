@@ -35,7 +35,7 @@ const SingleProductContainer = ({ route }) => {
   const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
-  const [result, setResult] = useState(undefined);
+  const [result, setResult] = useState([]);
 
   console.log("intial" , initialValuesAddUrl)
 

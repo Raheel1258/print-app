@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import DocumentPicker, {isInProgress} from 'react-native-document-picker';
+import DocumentPicker, {isInProgress, pick} from 'react-native-document-picker';
 import {useTranslation} from 'react-i18next';
 
 import {colors,fonts} from '../Utils/theme';
 
 const FilePickerInput = ({result,setResult}) => {
   const {t} = useTranslation();
-  useEffect(() => {
-    console.log(JSON.stringify(result, null, 2));
-  }, [result]);
+  // useEffect(() => {
+  //   console.log(JSON.stringify(result, null, 2));
+  // }, [result]);
 
+  console.log("ressss" , result)
   const handleError = err => {
     if (DocumentPicker.isCancel(err)) {
       console.warn('cancelled');
@@ -24,37 +25,53 @@ const FilePickerInput = ({result,setResult}) => {
       throw err;
     }
   };
-  const removeHandler = () => {
-    setResult(undefined);
+
+  const handleDocumentSelection = useCallback(async () => {
+    try {
+      const pickerResult = await DocumentPicker.pickSingle({
+        presentationStyle: 'fullScreen',
+        copyTo: 'cachesDirectory',
+      });
+      console.log("123",pickerResult)
+      setResult((prev)=>{
+        return [...prev, pickerResult]
+      });
+    } catch (e) {
+      handleError(e);
+    }
+  },[])
+
+
+
+  const removeHandler = (index) => {
+    setResult((prev)=>{
+      return prev.filter((x,i) => i!=index)
+    });
   };
   return (
     <View>
       {result?.length == undefined && (
         <Text style={styles.fileAdded}>{t('no_file_added')}</Text>
       )}
-      {result?.length !== undefined && (
-        <Text style={{color:colors.blackColor}} selectable>{JSON.stringify(result[0]?.name, null, 2)}</Text>
-      )}
-      {result?.length !== undefined && (
-        <TouchableOpacity onPress={removeHandler}>
+      {result && result.map((file, index) => (
+        <>
+        <Text
+        key={index.toString()}
+        style={styles.uri}
+        numberOfLines={1}
+        ellipsizeMode={'middle'}>
+        {file?.uri}
+
+        </Text>
+        <TouchableOpacity onPress={()=>removeHandler(index)}>
           <Text style={styles.browseText}>{t('remove_text')}</Text>
         </TouchableOpacity>
-      )}
+        </>
+      ))}
       <View style={styles.bottomBorder} />
       <TouchableOpacity
-        onPress={async () => {
-          try {
-            const pickerResult = await DocumentPicker.pickSingle({
-              presentationStyle: 'fullScreen',
-              copyTo: 'cachesDirectory',
-            });
-            setResult([pickerResult]);
-          } catch (e) {
-            handleError(e);
-          }
-        }}>
+        onPress={handleDocumentSelection}>
         <Text style={styles.browseText}>{t('browse_text')}</Text>
-        {/* <Text selectable>{JSON.stringify(result[0]?.name, null, 2)}</Text> */}
       </TouchableOpacity>
     </View>
   );

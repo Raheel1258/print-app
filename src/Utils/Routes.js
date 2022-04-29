@@ -479,7 +479,7 @@ const styles = ScaledSheet.create({
     color: colors.whiteColor,
     fontSize: '8@s',
     fontStyle: 'normal',
-    lineHeight: Platform.OS === 'ios' ? '14@s' : '12@s',
+    lineHeight: Platform.OS === 'ios' ? '14@s' : '10@s',
     letterSpacing: '0.1@s',
     textAlign:'center',
     zIndex:1,

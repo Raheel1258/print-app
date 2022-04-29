@@ -9,7 +9,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
       <Image style={styles.cardImage} source={image} />
       <View>
-        <Text style={{...styles.cardTitle,fontFamily:fontFamily}}>Premium business name card</Text>
+        <Text numberOfLines={1} style={{...styles.cardTitle,fontFamily:fontFamily}}>Premium business name card</Text>
         <Text style={styles.cardTitle}>HK$ 85</Text>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
@@ -21,7 +21,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
         </View>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Paper type:</Text>
-          <Text style={styles.quantityText} numberOfLines={1}>Glossy Art card 140 gsm</Text>
+          <Text style={styles.paperTypeDes} numberOfLines={1}>Glossy Art card 140 gsm</Text>
         </View>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Folding: </Text>
@@ -87,7 +87,17 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.5@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    marginRight:'5@s'
+    marginRight:'2@s',
+  },
+  paperTypeDes:{
+    fontFamily: fonts.avenir_light,
+    fontSize: '11.5@s',
+    fontStyle: 'normal',
+    lineHeight: '16@s',
+    letterSpacing: '0.5@s',
+    textAlign: 'left',
+    color: colors.lightBlackColor,
+    width:'145@s',
   },
   editText:{
     fontFamily: fonts.avenir_light,

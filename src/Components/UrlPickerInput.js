@@ -56,7 +56,8 @@ const styles = ScaledSheet.create({
     color: colors.lightBlackColor,
     paddingLeft: 0,
     marginTop: '30@s',
-    paddingBottom:'8@s'
+    paddingBottom:'8@s',
+    color:colors.blackColor,
   },
   fileUrl: {
     fontFamily: fonts.avenir_bold,

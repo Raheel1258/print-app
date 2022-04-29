@@ -165,7 +165,7 @@
     month_text: 'Month',
     year_text: 'Year',
     new_credit_card: '+ New credit card',
-    thankyou_text: 'Thankyou',
+    thankyou_text: 'Thank you!',
     order_refrence: 'Order ref: PP202203-10642',
     empty_cart: 'Cart is empty',
     full_name: 'Full Name',

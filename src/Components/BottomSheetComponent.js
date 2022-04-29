@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
 import {
@@ -9,7 +9,7 @@ import {
   PreferredLanguageBottomSheet,
 } from '../Components';
 import CloseIcon from '../Assests/Svgs/CloseIcon';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 const BottomSheetComponent = ({
   refRBSheet,
@@ -38,29 +38,29 @@ const BottomSheetComponent = ({
             padding: 20,
           },
         }}>
-          <ScrollView>
-                    <View style={styles.headerContainer}>
-          {title ? (
+        <ScrollView>
+          <View style={styles.headerContainer}>
+            {title ? (
+              <>
+                <Text style={styles.headerTitle}>{title}</Text>
+                <TouchableOpacity
+                  onPress={() => refRBSheet.current.close()}
+                  style={styles.iconWrapper}>
+                  <CloseIcon />
+                </TouchableOpacity>
+              </>
+            ) : (
+              <Text style={styles.titleText}>{languageTitle}</Text>
+            )}
+          </View>
+          {childern}
+          {note && (
             <>
-              <Text style={styles.headerTitle}>{title}</Text>
-              <TouchableOpacity
-                onPress={() => refRBSheet.current.close()}
-                style={styles.iconWrapper}>
-                <CloseIcon />
-              </TouchableOpacity>
+              <ArtworkGuidelines />
             </>
-          ) : (
-            <Text style={styles.titleText}>{languageTitle}</Text>
-          )}
-        </View>
-        {childern}
-        {note && (
-          <>
-            <ArtworkGuidelines />
-          </>
 
-)}
-</ScrollView>
+          )}
+        </ScrollView>
       </RBSheet>
     </View>
   );
@@ -86,17 +86,17 @@ const styles = ScaledSheet.create({
   iconWrapper: {
     padding: '7@s',
   },
-  titleText:{
+  titleText: {
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
     letterSpacing: '0.3@s',
     color: colors.blackColor,
-    textAlign:'center',
-    marginBottom:-25,
-    alignItems:'center',
-    width:'100%'
+    textAlign: 'center',
+    marginBottom: -25,
+    alignItems: 'center',
+    width: '100%'
   }
 });
 

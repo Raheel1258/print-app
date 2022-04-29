@@ -23,7 +23,7 @@ const styles = ScaledSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent:'center',
-    paddingHorizontal: '20@s',
+    paddingHorizontal: '10@s',
   },
   thankyouText: {
     fontFamily: fonts.avenir_next,
@@ -34,14 +34,14 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     color: colors.blackColor,
     textAlign: 'center',
-    marginBottom: '25@s',
+    marginBottom: '30@s',
   },
   orderRefrence: {
     fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '13@s',
-    letterSpacing: '0.6@s',
+    letterSpacing: '0.4@s',
     textAlign: 'center',
     color: colors.blackColor,
     marginVertical: '20@s',
@@ -51,9 +51,10 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-    letterSpacing: '0.6@s',
+    letterSpacing: '0.4@s',
     textAlign: 'center',
     color: colors.lightBlackColor,
+    width:'250@s'
   },
 });
 

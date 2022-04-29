@@ -46,7 +46,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.5@s',
     textAlign: 'left',
     color: colors.blackColor,
-    width:'120@s'
+    width:'112@s',
   },
   description: {
     fontFamily: fonts.avenir_light,
@@ -56,7 +56,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.5@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    width:'70%'
+    width:'200@s',
   },
 });
 

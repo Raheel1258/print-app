@@ -41,7 +41,7 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     // fontWeight: '800',
     lineHeight: '16@s',
-    letterSpacing: '0.6@s',
+  letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     marginTop: '12@s',
@@ -69,7 +69,7 @@ const styles = ScaledSheet.create({
     fontSize: '10.5@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-    letterSpacing: '0.6@s',
+  letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
     width:'135@s'

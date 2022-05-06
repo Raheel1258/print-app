@@ -192,7 +192,7 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     fontStyle: 'normal',
     lineHeight: '15@s',
-    letterSpacing: '0.5@s',
+    letterSpacing: '0.2@s',
     color: colors.greenColor,
     textTransform: 'capitalize',
   },

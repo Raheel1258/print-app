@@ -80,7 +80,7 @@ const styles = ScaledSheet.create({
     fontSize: '14@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-    letterSpacing: '0.3@s',
+  letterSpacing: '0.2@s',
     color: colors.blackColor,
   },
   iconWrapper: {
@@ -91,7 +91,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-    letterSpacing: '0.3@s',
+  letterSpacing: '0.2@s',
     color: colors.blackColor,
     textAlign: 'center',
     marginBottom: -25,

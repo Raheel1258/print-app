@@ -70,9 +70,8 @@ const SingleProductScreen = ({
         <View style={!(category === "ENVELOPE" || category === "LETTERHEAD") ? styles.cardsContainer : ""}>
           {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item, index) => {
             return (
-              <>
+              <View key={index}>
                 <CardSizeComponent
-                  key={index}
                   Childern={
                     <ShortenedIcon style={styles.squareimage} />}
                   cardStandard={item?.name}
@@ -80,12 +79,12 @@ const SingleProductScreen = ({
                   selectedSize={selectedSize}
                   onPress={() => setSelectedSize(item?.name)}
                 />
-              </>
+              </View>
             )
           }) :
-          <>
+          <View>
                 <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize ? selectedSize : ""} />
-            </>}
+            </View>}
           </View>
         {((category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card") || category === "BOOKLET") &&
           <>
@@ -96,7 +95,6 @@ const SingleProductScreen = ({
 
         {(category === "BUSINESS_CARD" && item?.category?.name === "Spot Gloss (UV) Business Card") &&
           <>
-            {console.log("xyzdsdfs")}
             <CategoriesTitleHeader title={t('choose_SpotUv')} Children={<InfoIcon />} />
             <UploadFileComponent onPress={() => spotUvRBSheet.current.open()} title={t('spotUv')} selection={selectSpotUv} />
           </>
@@ -108,6 +106,7 @@ const SingleProductScreen = ({
             <View style={styles.cardsContainer}>
               {item?.corner && item?.corner.map((item, index) => {
                 return (
+                  <View>
                   <CardSizeComponent
                     key={index}
                     selectedCorner={selectedCorner}
@@ -119,6 +118,7 @@ const SingleProductScreen = ({
                     cardStandard={item?.cornerName}
                     cardDimensions={item?.cornerDescription}
                   />
+                  </View>
                 )
               })
               }
@@ -267,8 +267,6 @@ const SingleProductScreen = ({
             })
           }
         />
-
-
       </ScrollView>
     </View>
   );

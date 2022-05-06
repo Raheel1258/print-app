@@ -28,7 +28,6 @@ const ProductsListingContainer = ({route}) => {
 
   useEffect(()=>{
     dispatch(getProductListByCategory(category,setAnimation))
-
   },[])
   return (
     <View style={styles.container}>

@@ -11,8 +11,6 @@ const FilePickerInput = ({result,setResult}) => {
   // useEffect(() => {
   //   console.log(JSON.stringify(result, null, 2));
   // }, [result]);
-
-  console.log("ressss" , result)
   const handleError = err => {
     if (DocumentPicker.isCancel(err)) {
       console.warn('cancelled');
@@ -32,7 +30,6 @@ const FilePickerInput = ({result,setResult}) => {
         presentationStyle: 'fullScreen',
         copyTo: 'cachesDirectory',
       });
-      console.log("123",pickerResult)
       setResult((prev)=>{
         return [...prev, pickerResult]
       });
@@ -54,9 +51,9 @@ const FilePickerInput = ({result,setResult}) => {
         <Text style={styles.fileAdded}>{t('no_file_added')}</Text>
       )}
       {result && result.map((file, index) => (
-        <>
+        <View key={index}>
         <Text
-        key={index.toString()}
+        key={index}
         style={styles.uri}
         numberOfLines={1}
         ellipsizeMode={'middle'}>
@@ -66,7 +63,7 @@ const FilePickerInput = ({result,setResult}) => {
         <TouchableOpacity onPress={()=>removeHandler(index)}>
           <Text style={styles.browseText}>{t('remove_text')}</Text>
         </TouchableOpacity>
-        </>
+        </View>
       ))}
       <View style={styles.bottomBorder} />
       <TouchableOpacity

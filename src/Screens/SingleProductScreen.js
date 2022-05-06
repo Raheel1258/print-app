@@ -66,6 +66,7 @@ const SingleProductScreen = ({
           <ImageSlider sliderImages={item?.image} />
           <SingleCardDescription item={item} />
         </View>
+        
         <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
         <View style={!(category === "ENVELOPE" || category === "LETTERHEAD") ? styles.cardsContainer : ""}>
           {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item, index) => {
@@ -107,6 +108,7 @@ const SingleProductScreen = ({
               {item?.corner && item?.corner.map((item, index) => {
                 return (
                   <View>
+                    {console.log("cotner" , item)}
                   <CardSizeComponent
                     key={index}
                     selectedCorner={selectedCorner}
@@ -114,7 +116,7 @@ const SingleProductScreen = ({
                     // Childern={
                     //   <Image style={styles.squareimage} source={item?.image} />}
                     Childern={
-                      <Image style={styles.squareimage} source={item?.image} />}
+                      <Image style={styles.squareimage} source={{uri: item?.image}} />}
                     cardStandard={item?.cornerName}
                     cardDimensions={item?.cornerDescription}
                   />

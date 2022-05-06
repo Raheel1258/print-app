@@ -69,6 +69,7 @@ const FilePickerInput = ({result,setResult}) => {
       <TouchableOpacity
         onPress={handleDocumentSelection}>
         <Text style={styles.browseText}>{t('browse_text')}</Text>
+       {/* {result?.length < 1  ? <Text style={styles.browseText}>{t('browse_text')}</Text> : <Text style={styles.browseText}>{'add more file'}</Text>} */}
       </TouchableOpacity>
     </View>
   );

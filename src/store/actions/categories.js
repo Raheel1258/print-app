@@ -23,7 +23,6 @@ export const setHomeSliderImages = data => {
 export const getCategories = (setAnimation) => {
   return async (dispatch) => {
     setAnimation(true);
-    console.log("network123");
     axios.get(`${Api}/category/findall`)
         .then(async (res) => {
           dispatch(setCategories(res?.data));

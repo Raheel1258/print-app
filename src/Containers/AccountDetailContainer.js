@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
@@ -26,6 +26,10 @@ const AccountDetailContainer = () => {
   const goBack = () => {
     navigation.goBack();
   };
+
+  useEffect(()=> {
+
+  },[])
 
   const handleUpdatedPersonalDetail = (values) => {
     console.log("updated deatil");

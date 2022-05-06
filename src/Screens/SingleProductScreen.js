@@ -66,15 +66,15 @@ const SingleProductScreen = ({
           <ImageSlider sliderImages={item?.image} />
           <SingleCardDescription item={item} />
         </View>
-        
+
         <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
         <View style={!(category === "ENVELOPE" || category === "LETTERHEAD") ? styles.cardsContainer : ""}>
           {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item, index) => {
             return (
               <View key={index}>
                 <CardSizeComponent
-                  Childern={
-                    <ShortenedIcon style={styles.squareimage} />}
+                 Childern={
+                     <Image style={styles.squareimage} source={{uri: item?.image}} />}
                   cardStandard={item?.name}
                   cardDimensions={`${item?.height}mm x ${item?.width}mm`}
                   selectedSize={selectedSize}
@@ -108,15 +108,13 @@ const SingleProductScreen = ({
               {item?.corner && item?.corner.map((item, index) => {
                 return (
                   <View>
-                    {console.log("cotner" , item)}
+                    {console.log("cotner" , item?.image)}
                   <CardSizeComponent
                     key={index}
                     selectedCorner={selectedCorner}
                     onPress={() => setSelectedCorner(item?.cornerName)}
-                    // Childern={
-                    //   <Image style={styles.squareimage} source={item?.image} />}
                     Childern={
-                      <Image style={styles.squareimage} source={{uri: item?.image}} />}
+                      <Image style={styles.squareimage} source={{uri:item?.image}} />}
                     cardStandard={item?.cornerName}
                     cardDimensions={item?.cornerDescription}
                   />

@@ -7,7 +7,7 @@ import { colors,fonts } from '../Utils/theme';
 const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit, remove }) => {
   return (
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
-      <Image style={styles.cardImage} source={image} />
+      <Image  transition={false} style={styles.cardImage} source={image} />
       <View>
         <Text numberOfLines={1} style={{...styles.cardTitle,fontFamily:fontFamily}}>Premium business name card</Text>
         <Text style={styles.cardTitle}>HK$ 85</Text>

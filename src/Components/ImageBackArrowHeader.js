@@ -15,6 +15,7 @@ const ImageBackArrowHeader = ({goBack,title,description,Children, image, borderB
   return (
     <View style={{...styles.container,borderBottomWidth:borderBottomWidth}}>
     <ImageBackground
+     transition={false}
       resizeMode="cover"
       style={styles.headerImage}
       source={image ? {uri: image}: Children}>

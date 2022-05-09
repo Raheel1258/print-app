@@ -74,7 +74,7 @@ const SingleProductScreen = ({
               <View key={index}>
                 <CardSizeComponent
                  Childern={
-                     <Image style={styles.squareimage} source={{uri: item?.image}} />}
+                     <Image resizeMode='contain' style={styles.squareImage} source={{uri: item?.image}} />}
                   cardStandard={item?.name}
                   cardDimensions={`${item?.height}mm x ${item?.width}mm`}
                   selectedSize={selectedSize}
@@ -114,7 +114,7 @@ const SingleProductScreen = ({
                     selectedCorner={selectedCorner}
                     onPress={() => setSelectedCorner(item?.cornerName)}
                     Childern={
-                      <Image style={styles.squareimage} source={{uri:item?.image}} />}
+                      <Image resiseMode="contain" style={styles.cornerImage} source={{uri:item?.image}} />}
                     cardStandard={item?.cornerName}
                     cardDimensions={item?.cornerDescription}
                   />
@@ -288,9 +288,15 @@ const styles = ScaledSheet.create({
   sliderWrapper: {
     marginBottom: '15@s',
   },
-  squareimage: {
-    width: '50@s',
+  squareImage: {
+    width: '80@s',
     height: '50@s',
+    alignSelf: 'center',
+    marginTop: '30@s',
+  },
+  cornerImage:{
+    width: '55@s',
+    height: '55@s',
     alignSelf: 'center',
     marginTop: '30@s',
   },

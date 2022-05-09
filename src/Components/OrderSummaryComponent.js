@@ -45,7 +45,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-    letterSpacing: '0.5@s',
+    letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
   },
   totalText:{
@@ -53,7 +53,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '13@s',
-    letterSpacing: '0.5@s',
+    letterSpacing: '0.2@s',
     color: colors.blackColor, 
   }
 });

@@ -79,7 +79,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-    letterSpacing: '0.3@s',
+    letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
   },
 });

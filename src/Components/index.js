@@ -30,6 +30,7 @@ import OrdersComponent from './OrdersComponent';
 import OrderDetailsComponent from './OrderDetailsComponent';
 import NotificationComponent from './NotificationComponent';
 import NotificationActivity from './NotificationActivity';
+import ImageSwiper from './ImageSwiper';
 
 export {
   BackArrowHeader,
@@ -63,5 +64,6 @@ export {
   OrdersComponent,
   OrderDetailsComponent,
   NotificationComponent,
-  NotificationActivity
+  NotificationActivity,
+  ImageSwiper
 };

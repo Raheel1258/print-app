@@ -68,7 +68,7 @@ const styles = ScaledSheet.create({
     fontSize: '22@s',
     fontStyle: 'normal',
     lineHeight: '25@s',
-    letterSpacing: '0.4@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.whiteColor,
     position: 'absolute',

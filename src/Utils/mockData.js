@@ -1246,7 +1246,7 @@ export const productListPosterData =  [
      {
        "cornerName" : "Round",
        "cornerDescription" : "Smooth",
-       "image": roundImage,
+       "image": "https://print-print-app.s3.amazonaws.com/round-image.png",
      },
       
     ],

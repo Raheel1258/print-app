@@ -677,7 +677,7 @@ export const BusinessCardData = [
     ],
     "title": "BUSINESS_CARD",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": "BizCard-Premium",
       "name": "Premium (Thick) Business Card",
       "pricePerHunderd": "68",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
@@ -692,22 +692,22 @@ export const BusinessCardData = [
        { 
          "name": "Standard",
          "height": "90",
-         "width":'54',
-         "image": "xyz"
+         "width":"54",
+         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
        },
   
       { 
          "name": "Shortened",
          "height": "84",
-         "width":'55',
-         "image" : 'xyz'
+         "width":"55",
+         "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
       },
   
       { 
          "name": "Square",
          "height": "56",
-         "width":'56',
-         "image": 'xyz'
+         "width":"56",
+         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
       }
     ],
   
@@ -756,12 +756,12 @@ export const BusinessCardData = [
      {
        "cornerName" : "Square",
        "cornerDescription" : "Traditional",
-       "image": squareImage,
+       "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
      },
      {
        "cornerName" : "Round",
        "cornerDescription" : "Smooth",
-       "image": roundImage,
+       "image": "https://print-print-app.s3.amazonaws.com/round-image.png",
      },
       
     ],
@@ -788,24 +788,27 @@ export const BusinessCardData = [
     "feature1":"Additional layer for extra thickness",
     "feature2":"Extraordinary rigidness and impressively strong",
     "size": [
-       { 
-         "name": "Standard",
-         "height": "90",
-         "width":'54'
-       },
-  
       { 
-         "name": "Shortened",
-         "height": "84",
-         "width":'55'
+        "name": "Standard",
+        "height": "90",
+        "width":"54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
-  
-      { 
-         "name": "Square",
-         "height": "56",
-         "width":'56'
-      }
-    ],
+ 
+     { 
+        "name": "Shortened",
+        "height": "84",
+        "width":"55",
+        "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
+     },
+ 
+     { 
+        "name": "Square",
+        "height": "56",
+        "width":"56",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
+     }
+   ],
   
     "priceChart": [
       {
@@ -852,13 +855,13 @@ export const BusinessCardData = [
       {
         "cornerName" : "Square",
         "cornerDescription" : "Traditional",
-        "image": squareImage,
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
       },
       {
         "cornerName" : "Round",
         "cornerDescription" : "Smooth",
-        "image": roundImage,
-      },
+        "image": "https://print-print-app.s3.amazonaws.com/round-image.png",
+      }
     ]
     
   },
@@ -882,24 +885,27 @@ export const BusinessCardData = [
     "feature1":"High quality matte and glossy finish",
     "feature2":"Perfect combination of vibrancy and durability",
     "size": [
-       { 
-         "name": "Standard",
-         "height": "90",
-         "width":'54'
-       },
-  
       { 
-         "name": "Shortened",
-         "height": "84",
-         "width":'55'
+        "name": "Standard",
+        "height": "90",
+        "width":"54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
-  
-      { 
-         "name": "Square",
-         "height": "56",
-         "width":'56'
-      }
-    ],
+ 
+     { 
+        "name": "Shortened",
+        "height": "84",
+        "width":"55",
+        "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
+     },
+ 
+     { 
+        "name": "Square",
+        "height": "56",
+        "width":"56",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
+     }
+   ],
   
     "priceChart": [
       {
@@ -946,12 +952,12 @@ export const BusinessCardData = [
       {
         "cornerName" : "Square",
         "cornerDescription" : "Traditional",
-        "image": squareImage,
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
       },
       {
         "cornerName" : "Round",
         "cornerDescription" : "Smooth",
-        "image": roundImage,
+        "image": "https://print-print-app.s3.amazonaws.com/round-image.png",
       },
     ],
     "finishing": ['Matte' , 'Glossy'] 
@@ -977,24 +983,27 @@ export const BusinessCardData = [
     "feature1":"Glossy coating to highlight a specific area",
     "feature2":"Print on top of a high quality matte art card",
     "size": [
-       { 
-         "name": "Standard",
-         "height": "90",
-         "width":'54'
-       },
-  
       { 
-         "name": "Shortened",
-         "height": "84",
-         "width":'55'
+        "name": "Standard",
+        "height": "90",
+        "width":"54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
-  
-      { 
-         "name": "Square",
-         "height": "56",
-         "width":'56'
-      }
-    ],
+ 
+     { 
+        "name": "Shortened",
+        "height": "84",
+        "width":"55",
+        "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
+     },
+ 
+     { 
+        "name": "Square",
+        "height": "56",
+        "width":"56",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
+     }
+   ],
   
     "priceChart": [
       {
@@ -1041,12 +1050,12 @@ export const BusinessCardData = [
       {
         "cornerName" : "Square",
         "cornerDescription" : "Traditional",
-        "image": squareImage,
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
       },
       {
         "cornerName" : "Round",
         "cornerDescription" : "Smooth",
-        "image": roundImage,
+        "image": "https://print-print-app.s3.amazonaws.com/round-image.png",
       },
     ],
     "spotUv": ['1 side' , '2 side']  
@@ -1232,7 +1241,7 @@ export const productListPosterData =  [
      {
        "cornerName" : "Square",
        "cornerDescription" : "Traditional",
-       "image": squareImage,
+       "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
      },
      {
        "cornerName" : "Round",

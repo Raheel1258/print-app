@@ -71,7 +71,6 @@ const CartContainer = () => {
   }, [isFocused])
 
   useEffect(() => {
-    console.log('this is all the hell', authRBSheet);
   }, [authRBSheet]);
 
   const navigate = (routeName, data = {}) => {

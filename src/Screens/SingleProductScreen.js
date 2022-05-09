@@ -259,7 +259,7 @@ const SingleProductScreen = ({
           note={false}
           height={300}
           childern={
-            item?.spotVu?.map((item, index) => {
+            item?.spotUv?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setSelectSpotUv(item);
                 spotUvRBSheet.current.close()

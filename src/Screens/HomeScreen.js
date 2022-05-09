@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator,ScrollView } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -10,13 +10,6 @@ import { colors, fonts } from '../Utils/theme';
 
 const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) => {
 
-  const [text, setText] = useState([
-    'Order your next print in just a few taps',
-    'Order your next print in just a few taps',
-    'Order your next print in just a few taps',
-  ]);
-  // console.log("images" ,homeSliderImages[0]?.images );
-  // const sliderImages = homeSliderImages[0]?.images; 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
     <AllCategoriesCard title={item.title} deliveryTime={item.deliveryTime} image={item.image} priceDescription={item.priceDescription} category={item.category} />
@@ -26,8 +19,8 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
       {
         categories?.length !== undefined ?
           <>
-           {/* <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions} autoPlaySlider={true}/> */}
-           <ImageSwiper/>
+            {/* <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions} autoPlaySlider={true}/> */}
+            <ImageSwiper sliderImages={homeSliderImages}  />
             <View style={styles.container}>
               <Text style={styles.printText}>{t('lets_print')}</Text>
               <FlatList
@@ -42,7 +35,7 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
           <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View>
-          
+
       }
     </>
   );

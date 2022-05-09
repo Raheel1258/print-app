@@ -34,7 +34,7 @@ const HomeContainer = () => {
 
   return (
     <View style={styles.container}>
-      <HomeScreen categories={categoriesData} homeSliderImages={homeSliderImages} homeSliderImagesCaptions={homeSliderImagesCaptions} navigate={navigate}/>
+      <HomeScreen categories={categoriesData} homeSliderImages={homeSliderImagesData} homeSliderImagesCaptions={homeSliderImagesCaptions} navigate={navigate}/>
     </View>
   );
 };

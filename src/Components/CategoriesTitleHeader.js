@@ -24,7 +24,7 @@ const styles = ScaledSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between',
-paddingHorizontal:'17@s',
+paddingHorizontal:'15@s',
   },
   headerText: {
     fontFamily:fonts.avenir_bold,

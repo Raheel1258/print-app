@@ -47,7 +47,7 @@ const MyAddresses = ({title,description,address}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    marginHorizontal: '20@s',
+    marginHorizontal: '15@s',
     marginTop:'20@s',
   },
   header: {

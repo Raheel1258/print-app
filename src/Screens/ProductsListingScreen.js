@@ -4,7 +4,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
 import HeaderImage from '../Assests/Images/businesscard-header-image.png';
-import {ImageBackArrowHeader, ImageSlider} from '../Components';
+import {ImageBackArrowHeader, ImageSlider, ImageSwiper} from '../Components';
 import {colors,fonts} from '../Utils/theme';
 
 const DATA = [
@@ -37,7 +37,8 @@ const DATA = [
 const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, categoryImage, animation, category }) => {
   const renderItem = ({ item }) => (
     <>
-      <ImageSlider sliderImages={item?.image} title={item.title} />
+      {/* <ImageSlider sliderImages={item?.image} title={item.title} /> */}
+      <ImageSwiper sliderImages={item?.image} autoPlaySlider={false}/>
       <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer} >
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
         <Text style={styles.cardPrice}>From HK$ {item?.category?.pricePerHunderd} / 100pcs</Text>
@@ -91,7 +92,7 @@ const styles = ScaledSheet.create({
     // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '14@s',
-    letterSpacing: '0.4@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
   },
@@ -102,7 +103,7 @@ const styles = ScaledSheet.create({
     // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '12@s',
-    letterSpacing: '0.4@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.greenColor,
     marginVertical: '9@s',
@@ -127,7 +128,7 @@ const styles = ScaledSheet.create({
     // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '12@s',
-    letterSpacing: '0.3@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
   },

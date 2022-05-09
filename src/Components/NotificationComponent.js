@@ -42,7 +42,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-    letterSpacing: '0.4@s',
+      letterSpacing: '0.2@s',
     color: colors.blackColor,
     marginLeft:'10@s'
   },
@@ -54,7 +54,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-    letterSpacing: '0.4@s',
+      letterSpacing: '0.2@s',
     color: colors.pearlColor,
     marginLeft:'10@s',
     marginVertical:'4@s',
@@ -64,7 +64,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-    letterSpacing: '0.4@s',
+      letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
     marginLeft:'10@s'
   },

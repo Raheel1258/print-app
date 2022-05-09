@@ -30,7 +30,7 @@ const styles = ScaledSheet.create({
     // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '22@s',
-    letterSpacing: '0.5@s',
+    letterSpacing: '0.2@s',
     color: colors.whiteColor,
   },
 });

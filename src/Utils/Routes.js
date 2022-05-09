@@ -444,7 +444,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-    letterSpacing: '0.6@s',
+      letterSpacing: '0.2@s',
     textAlign: 'center',
     marginTop:'4@s'
   },
@@ -454,7 +454,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-    letterSpacing: '0.6@s',
+      letterSpacing: '0.2@s',
     textAlign: 'center',
     marginTop:'4@s'
   },

@@ -252,7 +252,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-    letterSpacing: '0.5@s',
+     letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
     marginBottom: '25@s',
     marginTop: '5@s',
@@ -262,7 +262,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-    letterSpacing: '0.5@s',
+     letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
   },
   fullRefundText: {

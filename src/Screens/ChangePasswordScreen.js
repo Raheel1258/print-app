@@ -83,7 +83,7 @@ const styles = ScaledSheet.create({
     fontSize: '14@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-    letterSpacing: '0.5@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     marginVertical: '17@s',

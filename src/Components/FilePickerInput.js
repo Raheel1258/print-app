@@ -57,7 +57,7 @@ const FilePickerInput = ({result,setResult}) => {
         style={styles.fileAdded}
         numberOfLines={1}
         ellipsizeMode={'middle'}>
-        {file?.uri}
+        {file?.name}
         </Text>
         <TouchableOpacity onPress={()=>removeHandler(index)}>
           <Text style={styles.browseText}>{t('remove_text')}</Text>
@@ -81,8 +81,8 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-     letterSpacing: '0.2@s',
-    textAlign: 'center',
+    letterSpacing: '0.2@s',
+    // textAlign: 'center',
     color: colors.blackColor,
     marginBottom: '0@s',
     marginTop:'15@s',

@@ -56,7 +56,8 @@ const SingleProductScreen = ({
   setSelectedUpload,
   result,
   setResult,
-  initialValuesAddUrl
+  initialValuesAddUrl,
+  handleAddFileUrl
 }) => {
   const { t } = useTranslation();
   return (
@@ -75,8 +76,8 @@ const SingleProductScreen = ({
             return (
               <View key={index}>
                 <CardSizeComponent
-                 Childern={
-                     <Image  transition={false} resizeMode='contain' style={styles.squareImage} source={{uri: item?.image}} />}
+                  Childern={
+                    <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
                   cardStandard={item?.name}
                   cardDimensions={`${item?.height}mm x ${item?.width}mm`}
                   selectedSize={selectedSize}
@@ -85,10 +86,10 @@ const SingleProductScreen = ({
               </View>
             )
           }) :
-          <View>
-                <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize ? selectedSize : ""} />
+            <View>
+              <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize ? selectedSize : ""} />
             </View>}
-          </View>
+        </View>
         {((category === "BUSINESS_CARD" && item?.category?.name === "Matte / Glossy Business Card") || category === "BOOKLET") &&
           <>
             <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
@@ -109,17 +110,17 @@ const SingleProductScreen = ({
             <View style={styles.cardsContainer}>
               {item?.corner && item?.corner.map((item, index) => {
                 return (
-                  <View>
-                    {console.log("cotner" , item?.image)}
-                  <CardSizeComponent
-                    key={index}
-                    selectedCorner={selectedCorner}
-                    onPress={() => setSelectedCorner(item?.cornerName)}
-                    Childern={
-                      <Image  transition={false} resiseMode="contain" style={styles.cornerImage} source={{uri:item?.image}} />}
-                    cardStandard={item?.cornerName}
-                    cardDimensions={item?.cornerDescription}
-                  />
+                  <View key={index}>
+
+                    <CardSizeComponent
+                      key={index}
+                      selectedCorner={selectedCorner}
+                      onPress={() => setSelectedCorner(item?.cornerName)}
+                      Childern={
+                        <Image transition={false} resiseMode="contain" style={styles.cornerImage} source={{ uri: item?.image }} />}
+                      cardStandard={item?.cornerName}
+                      cardDimensions={item?.cornerDescription}
+                    />
                   </View>
                 )
               })
@@ -163,18 +164,18 @@ const SingleProductScreen = ({
           description={t('artwork_guidelines')}
         />
         <UploadFileComponent
-          onPress={() => {refRBSheet.current.open(), setSelectedUpload(t('upload_file')) }}
+          onPress={() => { refRBSheet.current.open(), setSelectedUpload(t('upload_file')) }}
           title={t('upload_file')}
           isSelected={selectedUpload == t('upload_file') ? true : false}
         />
         <UploadFileComponent
-          onPress={() => {urlRBSheet.current.open(), setSelectedUpload(t('upload_url'))}}
+          onPress={() => { urlRBSheet.current.open(), setSelectedUpload(t('upload_url')) }}
           title={t('upload_url')}
           isSelected={selectedUpload == t('upload_url') ? true : false}
 
         />
         <UploadFileComponent
-          onPress={() => {toggleModal() , setSelectedUpload(t('upload_mail'))}}
+          onPress={() => { toggleModal(), setSelectedUpload(t('upload_mail')) }}
           title={t('upload_mail')}
           isSelected={selectedUpload == t('upload_mail') ? true : false}
         />
@@ -183,12 +184,11 @@ const SingleProductScreen = ({
         <BottomSheetComponent
           title={t('sheet_upload_file')}
           refRBSheet={refRBSheet}
-          childern={<FilePickerInput result={result} setResult={setResult}/>}
+          childern={<FilePickerInput result={result} setResult={setResult} />}
         />
         <BottomSheetComponent
-          title={t('sheet_upload_url')}
           refRBSheet={urlRBSheet}
-          childern={<UrlPickerInput initialValuesAddUrl={initialValuesAddUrl}/>}
+          childern={<UrlPickerInput refRBSheet={urlRBSheet} title={t('sheet_upload_url')} initialValuesAddUrl={initialValuesAddUrl} handleAddFileUrl={handleAddFileUrl} />}
         />
         <VerificationModal
           title={t('sent_text')}
@@ -296,7 +296,7 @@ const styles = ScaledSheet.create({
     alignSelf: 'center',
     marginTop: '10@s',
   },
-  cornerImage:{
+  cornerImage: {
     width: '60@s',
     height: '60@s',
     alignSelf: 'center',
@@ -307,7 +307,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '18@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
     paddingHorizontal: '10@s',
     marginLeft: '6@s',
@@ -331,7 +331,7 @@ const styles = ScaledSheet.create({
     // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
     paddingHorizontal: '15@s',
     marginVertical: '17@s',

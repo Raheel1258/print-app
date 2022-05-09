@@ -5,18 +5,25 @@ import { useTranslation } from 'react-i18next';
 import { Formik, FieldArray } from 'formik';
 import { colors, fonts } from '../Utils/theme';
 
+import CloseIcon from '../Assests/Svgs/CloseIcon';
 
-const UrlPickerInput = ({ initialValuesAddUrl }) => {
+
+const UrlPickerInput = ({ initialValuesAddUrl, title, refRBSheet, handleAddFileUrl }) => {
   const { t } = useTranslation();
 
-  const handleAdd = (values) => {
-    console.log("xyz", values)
-  }
   return (
     <View style={styles.container}>
-      <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAdd(values)}>
+      <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAddFileUrl(values)}>
         {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
           return <>
+            <View style={styles.headerContainer}>
+              <Text style={styles.headerTitle}>{title}</Text>
+              <TouchableOpacity
+                onPress={() => { refRBSheet.current.close(), handleSubmit() }}
+                style={styles.iconWrapper}>
+                <CloseIcon />
+              </TouchableOpacity>
+            </View>
             <FieldArray name='url'>
               {({ remove, push }) => (
                 <>
@@ -36,6 +43,7 @@ const UrlPickerInput = ({ initialValuesAddUrl }) => {
               )
               }
             </FieldArray>
+
             {/* <Text onPress={handleSubmit}>Add All</Text> */}
           </>
         }}
@@ -54,8 +62,8 @@ const styles = ScaledSheet.create({
     color: colors.lightBlackColor,
     paddingLeft: 0,
     marginTop: '30@s',
-    paddingBottom:'8@s',
-    color:colors.blackColor,
+    paddingBottom: '8@s',
+    color: colors.blackColor,
   },
   fileUrl: {
     fontFamily: fonts.avenir_bold,
@@ -78,6 +86,26 @@ const styles = ScaledSheet.create({
     color: colors.greenColor,
     paddingVertical: '8@s',
     width: '40%',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: '2@s',
+    marginBottom: '35@s',
+    marginTop: '-30@s',
+  },
+  headerTitle: {
+    fontFamily: fonts.avenir_bold,
+    fontSize: '14@s',
+    fontStyle: 'normal',
+    lineHeight: '14@s',
+    letterSpacing: '0.2@s',
+    color: colors.blackColor,
+    marginLeft: '-3@s',
+  },
+  iconWrapper: {
+    padding: '7@s',
   },
 });
 

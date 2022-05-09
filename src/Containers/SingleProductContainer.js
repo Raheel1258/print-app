@@ -21,11 +21,12 @@ const SingleProductContainer = ({ route }) => {
   const sizeRBSheet = useRef();
   const spotUvRBSheet = useRef();
 
-  const initialValuesAddUrl = {
-    url: [
-      {url_link: ''}
-    ]
-  }
+  // const initialValuesAddUrl = {
+  //   url: [
+  //     {url_link: ''}
+  //   ]
+  // }
+  const [initialValuesAddUrl, setIitialValuesAddUrl] = useState({url:[{url_link:''}]})
 
   const [selectedUpload, setSelectedUpload] =useState (t('upload_file'));
   const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
@@ -36,8 +37,6 @@ const SingleProductContainer = ({ route }) => {
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
-
-  console.log("intial" , initialValuesAddUrl)
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -55,6 +54,10 @@ const SingleProductContainer = ({ route }) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const handleAddFileUrl = (values) => {
+    setIitialValuesAddUrl(values);
+  }
 
   const handleAddToCart = () => {
     const obj = {
@@ -109,6 +112,7 @@ const SingleProductContainer = ({ route }) => {
         result={result}
         setResult={setResult}
         initialValuesAddUrl={initialValuesAddUrl}
+        handleAddFileUrl={handleAddFileUrl}
       />
     </View>
   );

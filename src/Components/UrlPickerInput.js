@@ -7,18 +7,13 @@ import { colors, fonts } from '../Utils/theme';
 
 import CloseIcon from '../Assests/Svgs/CloseIcon';
 
-const initialValues = {
-  url: [
-    {url_link: ''}
-  ]
-}
 
-const UrlPickerInput = ({ title, refRBSheet, handleAddFileUrl }) => {
+const UrlPickerInput = ({ title, refRBSheet, handleAddFileUrl, initialValuesAddUrl }) => {
   const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
-      <Formik initialValues={initialValues} onSubmit={(values) => handleAddFileUrl(values)}>
+      <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAddFileUrl(values)}>
         {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
           return <>
             <View style={styles.headerContainer}>
@@ -48,8 +43,6 @@ const UrlPickerInput = ({ title, refRBSheet, handleAddFileUrl }) => {
               )
               }
             </FieldArray>
-
-            {/* <Text onPress={handleSubmit}>Add All</Text> */}
           </>
         }}
       </Formik>

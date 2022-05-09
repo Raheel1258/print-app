@@ -17,7 +17,9 @@ const ImageSwiper = ({ sliderImages, autoPlaySlider = true }) => {
             {item?.image ?
               <ImageBackground
                 imageStyle={styles.image}
-                source={{ uri: item?.image }}>
+                source={{ uri: item?.image }}
+                transition={false}
+                >
                 <Text style={styles.text}>{item?.caption ? item?.caption : item?.caption}</Text>
               </ImageBackground> : <ImageBackground
                 imageStyle={styles.image}

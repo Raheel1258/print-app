@@ -76,7 +76,7 @@ const SingleProductScreen = ({
               <View key={index}>
                 <CardSizeComponent
                  Childern={
-                     <Image resizeMode='contain' style={styles.squareImage} source={{uri: item?.image}} />}
+                     <Image  transition={false} resizeMode='contain' style={styles.squareImage} source={{uri: item?.image}} />}
                   cardStandard={item?.name}
                   cardDimensions={`${item?.height}mm x ${item?.width}mm`}
                   selectedSize={selectedSize}
@@ -116,7 +116,7 @@ const SingleProductScreen = ({
                     selectedCorner={selectedCorner}
                     onPress={() => setSelectedCorner(item?.cornerName)}
                     Childern={
-                      <Image resiseMode="contain" style={styles.cornerImage} source={{uri:item?.image}} />}
+                      <Image  transition={false} resiseMode="contain" style={styles.cornerImage} source={{uri:item?.image}} />}
                     cardStandard={item?.cornerName}
                     cardDimensions={item?.cornerDescription}
                   />

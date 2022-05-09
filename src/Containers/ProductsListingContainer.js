@@ -27,8 +27,8 @@ const ProductsListingContainer = ({route}) => {
   };
 
   useEffect(()=>{
-    //dispatch(getProductListByCategory(category,setAnimation))
-    dispatch(getCategoriesProduct(category,setAnimation));
+    dispatch(getProductListByCategory(category,setAnimation))
+    //dispatch(getCategoriesProduct(category,setAnimation));
   },[])
   return (
     <View style={styles.container}>

@@ -8,6 +8,7 @@ import { ShortenedIcon } from '../Assests/Svgs'
 import {
   BackArrowHeader,
   ImageSlider,
+  ImageSwiper,
   CategoriesTitleHeader,
   CardSizeComponent,
   SingleCardDescription,
@@ -63,7 +64,8 @@ const SingleProductScreen = ({
       <BackArrowHeader goBack={goBack} title={categoryTitle} arrow={false} />
       <ScrollView style={styles.marginContainer}>
         <View style={styles.sliderWrapper}>
-          <ImageSlider sliderImages={item?.image} />
+          {/* <ImageSlider sliderImages={item?.image} /> */}
+          <ImageSwiper sliderImages={item?.image} autoPlaySlider={false} />
           <SingleCardDescription item={item} />
         </View>
 

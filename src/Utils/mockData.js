@@ -1175,25 +1175,18 @@ export const productListPosterData =  [
     "feature2":"High quality paper to make your design stand out",
     "size": [
        { 
-         "name": "A3",
-         "height": "90",
-         "width":'54',
+         "name": "A4",
+         "height": "210",
+         "width":'297',
          "image": "xyz"
        },
   
       { 
-         "name": "A4",
-         "height": "84",
-         "width":'55',
+         "name": "A3",
+         "height": "297",
+         "width":'420',
          "image" : 'xyz'
       },
-  
-      { 
-         "name": "Square",
-         "height": "56",
-         "width":'56',
-         "image": 'xyz'
-      }
     ],
   
     "priceChart": [

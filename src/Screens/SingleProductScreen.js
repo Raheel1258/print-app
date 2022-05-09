@@ -289,16 +289,16 @@ const styles = ScaledSheet.create({
     marginBottom: '15@s',
   },
   squareImage: {
-    width: '80@s',
-    height: '50@s',
+    width: '120@s',
+    height: '65@s',
     alignSelf: 'center',
-    marginTop: '30@s',
+    marginTop: '10@s',
   },
   cornerImage:{
-    width: '55@s',
-    height: '55@s',
+    width: '60@s',
+    height: '60@s',
     alignSelf: 'center',
-    marginTop: '30@s',
+    marginTop: '20@s',
   },
   previewDescription: {
     fontFamily: fonts.avenir_regular,

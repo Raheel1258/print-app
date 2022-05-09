@@ -32,7 +32,7 @@ const ImageSwiper = ({ sliderImages, autoPlaySlider = true }) => {
 
 const styles = ScaledSheet.create({
   container: {
-    height: 230,
+    height: 210,
     justifyContent: 'center',
     marginTop: '10@s',
   },
@@ -44,7 +44,7 @@ const styles = ScaledSheet.create({
     borderRadius: '4@s',
     marginLeft: '3@s',
     marginRight: '3@s',
-    marginBottom: '2@s',
+    marginBottom: '-18@s',
     backgroundColor: 'transparent',
   },
   activeDotStyling: {
@@ -54,7 +54,7 @@ const styles = ScaledSheet.create({
     borderRadius: '4@s',
     marginLeft: '3@s',
     marginRight: '3@s',
-    marginBottom: '2@s',
+    marginBottom: '-18@s',
   },
   image: {
     height: 210,

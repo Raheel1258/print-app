@@ -47,29 +47,29 @@ const FilePickerInput = ({result,setResult}) => {
   };
   return (
     <View>
-      {result?.length == undefined && (
-        <Text style={styles.fileAdded}>{t('no_file_added')}</Text>
+      {result?.length == 0 && (
+        <Text style={styles.noFileAdded}>{t('no_file_added')}</Text>
       )}
       {result && result.map((file, index) => (
         <View key={index}>
         <Text
         key={index}
-        style={styles.uri}
+        style={styles.fileAdded}
         numberOfLines={1}
         ellipsizeMode={'middle'}>
         {file?.uri}
-
         </Text>
         <TouchableOpacity onPress={()=>removeHandler(index)}>
           <Text style={styles.browseText}>{t('remove_text')}</Text>
         </TouchableOpacity>
+        <View style={styles.bottomBorder} />
         </View>
       ))}
-      <View style={styles.bottomBorder} />
+      {result?.length == 0 && <View style={styles.bottomBorder} />}
       <TouchableOpacity
         onPress={handleDocumentSelection}>
-        <Text style={styles.browseText}>{t('browse_text')}</Text>
-       {/* {result?.length < 1  ? <Text style={styles.browseText}>{t('browse_text')}</Text> : <Text style={styles.browseText}>{'add more file'}</Text>} */}
+        {/* <Text style={styles.browseText}>{t('browse_text')}</Text> */}
+       {result?.length < 1  ? <Text style={styles.browseText}>{t('browse_text')}</Text> : <Text style={styles.browseText}>{t('add_more')}</Text>}
       </TouchableOpacity>
     </View>
   );
@@ -80,12 +80,23 @@ const styles = ScaledSheet.create({
     fontFamily:fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
+    lineHeight: '16@s',
+     letterSpacing: '0.2@s',
+    textAlign: 'center',
+    color: colors.blackColor,
+    marginBottom: '0@s',
+    marginTop:'15@s',
+  },
+  noFileAdded:{
+    fontFamily:fonts.avenir_light,
+    fontSize: '12@s',
+    fontStyle: 'normal',
     lineHeight: '16@s',
      letterSpacing: '0.2@s',
     textAlign: 'center',
     color: colors.lightBlackColor,
-    marginBottom: '35@s',
+    marginBottom: '15@s',
+    marginTop:'10@s',
   },
   bottomBorder: {
     borderBottomWidth: 1,
@@ -101,7 +112,7 @@ const styles = ScaledSheet.create({
     textAlign: 'left',
     color: colors.greenColor,
     padding: '8@s',
-    width: '25%',
+    width: '40%',
     paddingLeft:'0@s'
   },
 });

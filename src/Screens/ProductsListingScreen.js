@@ -38,8 +38,9 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
   const renderItem = ({ item }) => (
     <>
       {/* <ImageSlider sliderImages={item?.image} title={item.title} /> */}
+      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})}>
       <ImageSwiper sliderImages={item?.image} autoPlaySlider={false}/>
-      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})} style={styles.paddingContainer} >
+        <View style={styles.paddingContainer}>
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
         <Text style={styles.cardPrice}>From HK$ {item?.category?.pricePerHunderd} / 100pcs</Text>
         <View style={styles.descriptionContainer}>
@@ -49,6 +50,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
         <View style={styles.descriptionContainer}>
           <View style={styles.dotContainer} />
           <Text style={styles.cardDescription}>{item?.feature2}</Text>
+        </View>
         </View>
       </TouchableOpacity>
     </>

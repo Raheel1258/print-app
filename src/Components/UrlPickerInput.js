@@ -7,13 +7,18 @@ import { colors, fonts } from '../Utils/theme';
 
 import CloseIcon from '../Assests/Svgs/CloseIcon';
 
+const initialValues = {
+  url: [
+    {url_link: ''}
+  ]
+}
 
-const UrlPickerInput = ({ initialValuesAddUrl, title, refRBSheet, handleAddFileUrl }) => {
+const UrlPickerInput = ({ title, refRBSheet, handleAddFileUrl }) => {
   const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
-      <Formik initialValues={initialValuesAddUrl} onSubmit={(values) => handleAddFileUrl(values)}>
+      <Formik initialValues={initialValues} onSubmit={(values) => handleAddFileUrl(values)}>
         {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
           return <>
             <View style={styles.headerContainer}>
@@ -36,7 +41,7 @@ const UrlPickerInput = ({ initialValuesAddUrl, title, refRBSheet, handleAddFileU
                       secureTextEntry={false}
                       onChangeText={handleChange(`url.${i}.url_link`)}
                     />
-                    {i !== 0 && <TouchableOpacity onPress={() => remove(i)}><Text style={styles.addMore}>Remove</Text></TouchableOpacity>}
+                    {values.url.length > 1 && <TouchableOpacity onPress={() => remove(i)}><Text style={styles.addMore}>Remove</Text></TouchableOpacity>}
                   </>)}
                   <TouchableOpacity onPress={() => push({ url_link: '' })}><Text style={styles.addMore}>{t('add_more')}</Text></TouchableOpacity>
                 </>

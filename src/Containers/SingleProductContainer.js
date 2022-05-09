@@ -21,11 +21,7 @@ const SingleProductContainer = ({ route }) => {
   const sizeRBSheet = useRef();
   const spotUvRBSheet = useRef();
 
-  // const initialValuesAddUrl = {
-  //   url: [
-  //     {url_link: ''}
-  //   ]
-  // }
+  
   const [initialValuesAddUrl, setIitialValuesAddUrl] = useState({url:[{url_link:''}]})
 
   const [selectedUpload, setSelectedUpload] =useState (t('upload_file'));
@@ -56,6 +52,7 @@ const SingleProductContainer = ({ route }) => {
   };
 
   const handleAddFileUrl = (values) => {
+    console.log("val" , values)
     setIitialValuesAddUrl(values);
   }
 
@@ -113,6 +110,7 @@ const SingleProductContainer = ({ route }) => {
         setResult={setResult}
         initialValuesAddUrl={initialValuesAddUrl}
         handleAddFileUrl={handleAddFileUrl}
+        
       />
     </View>
   );

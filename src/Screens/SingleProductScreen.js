@@ -188,7 +188,7 @@ const SingleProductScreen = ({
         />
         <BottomSheetComponent
           refRBSheet={urlRBSheet}
-          childern={<UrlPickerInput refRBSheet={urlRBSheet} title={t('sheet_upload_url')} initialValuesAddUrl={initialValuesAddUrl} handleAddFileUrl={handleAddFileUrl} />}
+          childern={<UrlPickerInput  refRBSheet={urlRBSheet} title={t('sheet_upload_url')} initialValuesAddUrl={initialValuesAddUrl} handleAddFileUrl={handleAddFileUrl} />}
         />
         <VerificationModal
           title={t('sent_text')}

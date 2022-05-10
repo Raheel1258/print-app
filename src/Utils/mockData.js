@@ -778,6 +778,7 @@ export const BusinessCardData = [
     "title": "BUSINESS_CARD",
     "category": {
       "name": "Bold (Extra Thick) Business Card",
+      "productType": "BizCard-Bold",
       "pricePerHunderd": "258",
       "description": "Additional layer for extra thickness Extraordinary rigidness and impressively strong.",
       "paperType": "Woodfree Card(350g)",
@@ -876,6 +877,7 @@ export const BusinessCardData = [
     "category": {
       "name": "Matte / Glossy Business Card",
       "pricePerHunderd": "68",
+      "productType": "BizCard-Matte Glossy",
       "description": "A ‘velvety’ or glass-like look and feel, our matte and glossy finishing business card combines vibrancy and durability.",
       "paperType": "Art card (400 gsm)",
       "leadTime": "3-5 business days",
@@ -973,6 +975,7 @@ export const BusinessCardData = [
     "title": "BUSINESS_CARD",
     "category": {
       "name": "Spot Gloss (UV) Business Card",
+      "productType": "BizCard-Spot UV",
       "pricePerHunderd": "78",
       "description": "Add a glossy coating to highlight a specific area in your card to draw additional attention.",
       "paperType": "Matte art card (400 gsm)",
@@ -1075,6 +1078,7 @@ export const productListBookletData = [
     "category": {
       "name": "Stapled Binding Booklet",
       "pricePerHunderd": "68",
+      "productType": "Booklet-Stapled",
       "description": "Beautiful booklets with pages binded by staple, ideal for multi-page promotional products, magazines, etc.",
       "paperType": "Art Card (157gsm) / Woodree paper (140gsm)",
       "leadTime": "4-7 business days",
@@ -1144,7 +1148,10 @@ export const productListBookletData = [
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
-    "finishing": ['Matte' , 'Glossy']
+    "paperType": ['Art Card (250 gsm)', 'Woodfree paper (140 gsm)'],
+    "numberOfPages":['8 pages', '12 pages' , '16 pages' , '20 pages' , '24 pages' , '28 pages' , '32 pages' , '36 pages' ,
+    '40 pages' , '44 pages' , '48 pages' ,'52 pages' ,'56 pages' , '60 pages'],
+    "finishing": ['Matte' , 'Matte-Silk','Glossy']
     
   },
 
@@ -1243,11 +1250,14 @@ export const productListPosterData =  [
      },
       
     ],
+    "paperType" : ['Glossy paper (157 gsm)'],
+    "numberOfSides": ['Single side', 'Double side']
     
   },
 ]
 
 export const productListFlyerData = [
+  
   {
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
@@ -1333,6 +1343,93 @@ export const productListFlyerData = [
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
+    "paperType" : ['Glossy paper (157 gsm)']
+  },
+
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
+  
+    ],
+    "title": "FLYERS_LEAFLET",
+    "category": {
+      "productType": 'Flyers-Foldable',
+      "name": "Foldable Leaflet",
+      "pricePerHunderd": "68",
+      "description": "Organise your content into foldable pages. Ideal for informational and educational pamphlet.",
+      "paperType": "Woodfree paper (140 gsm) / Art card (157 gsm / 350 gsm)",
+      "leadTime": "3-4 business days",
+      "colour": "CYMK",
+      "Sizes": "A4 / A5 "
+    },
+    "feature1":"Organise your content in foldable pages",
+    "feature2":"Perfect for informational and educational pamphlet",
+    "size": [
+       { 
+         "name": "A6",
+         "height": "210",
+         "width":'148.5',
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "A5",
+         "height": "297",
+         "width":'210',
+         "image" : 'xyz'
+      },
+  
+      
+    ],
+  
+    "priceChart": [
+      {
+        "_id":"1",
+        "quantity": "100",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"2",
+        "quantity": "200",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"3",
+        "quantity": "300",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"4",
+        "quantity": "400",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"5",
+        "quantity": "500",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"6",
+        "quantity": "600",
+        "unitPrice": "0.5"
+      },
+      {
+        "_id":"7",
+        "quantity": "700",
+        "unitPrice": "0.5"
+      },
+  
+    ],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "paperType" : ['Glossy paper (157 gsm)'],
+    "folding": [
+      {"name": 'Half fold' , "height": '65' , "width":'65' , "image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"name": 'According fold' , "height": '100' , "width":'100', "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+    ]
   },
 ]
 
@@ -1348,7 +1445,7 @@ export const productListEnvelopeData = [
     ],
     "title": "ENVELOPE",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": 'Envelope',
       "name": "Horizontal Opening Envelope",
       "pricePerHunderd": "68",
       "description": "High quality envelope perfect for corporate branding. With a choice of window and window-less.",
@@ -1410,7 +1507,13 @@ export const productListEnvelopeData = [
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
+    "paperType" : ['Glossy paper (157 gsm)'],
+    "window" : [
+      {"name": 'With window' , "height": '4"', "width":'9"' , "image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"name": 'Without window' , "height": '4"' , "width": '9"' , "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+    ]
   },
+  
 ]
 
 export const productListStickerData = [
@@ -1505,6 +1608,11 @@ export const productListStickerData = [
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
+    "paperType" : ['Woodfree paper (100 gsm)'],
+    "cut" : [
+      {"name": 'Individual' , "height": '65' , "width":"65" ,"image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"name": 'In sheet' , "height": '100' , "width":"100" , "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+    ]
   },
 ]
 
@@ -1581,6 +1689,7 @@ export const productListLetterheadData = [
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
+    "paperType" : ['Woodfree paper (100 gsm)']
   },
 ]
 

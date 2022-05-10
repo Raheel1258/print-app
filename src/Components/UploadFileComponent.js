@@ -71,6 +71,7 @@ const styles = ScaledSheet.create({
     lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
+    width: '90@s',
     color: colors.blackColor,
   },
   rightArrow: {
@@ -91,7 +92,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    marginLeft: '20@s'
+    marginLeft: '10@s'
   }
 });
 

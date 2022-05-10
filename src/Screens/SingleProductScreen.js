@@ -289,17 +289,20 @@ const SingleProductScreen = ({
           description={t('artwork_guidelines')}
         />
         <UploadFileComponent
+        width={320}
           onPress={() => { refRBSheet.current.open(), setSelectedUpload(t('upload_file')) }}
           title={t('upload_file')}
           isSelected={selectedUpload == t('upload_file') ? true : false}
         />
         <UploadFileComponent
+          width={320}
           onPress={() => { urlRBSheet.current.open(), setSelectedUpload(t('upload_url')) }}
           title={t('upload_url')}
           isSelected={selectedUpload == t('upload_url') ? true : false}
 
         />
         <UploadFileComponent
+          width={320}
           onPress={() => { toggleModal(), setSelectedUpload(t('upload_mail')) }}
           title={t('upload_mail')}
           isSelected={selectedUpload == t('upload_mail') ? true : false}

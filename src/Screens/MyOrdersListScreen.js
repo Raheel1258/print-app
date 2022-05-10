@@ -71,8 +71,8 @@ const MyOrdersListScreen = ({ goBack }) => {
           payment="Credit Card / Debit Card"
         />
         <CategoriesTitleHeader title={t('order_support')} />
-        <UploadFileComponent title={t('email_receipt')} />
-        <UploadFileComponent title={t('contact_support')} />
+        <UploadFileComponent width={300} title={t('email_receipt')} />
+        <UploadFileComponent width={300} title={t('contact_support')} />
         <View style={styles.borderBottom} />
       </ScrollView>
     </View>

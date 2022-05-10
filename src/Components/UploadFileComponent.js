@@ -5,7 +5,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import { colors, fonts } from '../Utils/theme';
 
-const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false }) => {
+const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false , width=90}) => {
   const borderStyle = { 
     borderBottomWidth: isSelected ? 2 : 1 ,
     borderBottomColor: isSelected ? null : colors.inputBorderColor,
@@ -23,7 +23,7 @@ const UploadFileComponent = ({ title, onPress, Children, selection, isSelected =
           {Children}
         </View>
         <View style={styles.infoConatiner}>
-          <Text style={styles.title} numberOfLines={1}>
+          <Text style={{...styles.title,width:width}} numberOfLines={1}>
             {title}
           </Text>
           <Text style={styles.desText}>{selection}</Text>
@@ -71,7 +71,6 @@ const styles = ScaledSheet.create({
     lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
-    width: '90@s',
     color: colors.blackColor,
   },
   rightArrow: {

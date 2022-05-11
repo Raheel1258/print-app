@@ -3,6 +3,8 @@ import { View, Text, ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
+
+
 import {
   ImageBackArrowHeader,
   UploadFileComponent,
@@ -18,8 +20,9 @@ import LanguageIcon from '../Assests/Svgs/LanguageIcon';
 import ShuffleIcon from '../Assests/Svgs/ShuffleIcon';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountScreen = ({ navigate, goBack, refRBSheet, logoutHandler, accountRBSheet, focused, setFocused, isModalVisible, toggleModal }) => {
+const AccountScreen = ({ navigate, goBack, refRBSheet, logoutHandler, accountRBSheet, focused, setFocused, isModalVisible, toggleModal, changeLanguageHandler,languageToggle,setLanguageToggle }) => {
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <ImageBackArrowHeader
@@ -49,9 +52,22 @@ const AccountScreen = ({ navigate, goBack, refRBSheet, logoutHandler, accountRBS
             languageTitle={t('select_language')}
             childern={
               <>
-                <GreenButton title={t('english_text')} />
+                <GreenButton 
+                 backgroundColor={
+                  languageToggle ? colors.greenColor : colors.smokeWhiteColor
+                }
+                color={languageToggle ? colors.whiteColor : colors.greenColor}
+                onPress={()=> {changeLanguageHandler('en'), setLanguageToggle(true)}} 
+                title={'English'} />
                 <View style={styles.buttonWrapper}>
-                  <GreenButton borderWidth={2} backgroundColor={colors.whiteColor} color={colors.greenColor} title={t('chinese_text')} />
+                  <GreenButton 
+                  onPress={()=> {changeLanguageHandler('chi'), setLanguageToggle(false)}} 
+                  borderWidth={2} 
+                  backgroundColor={
+                    languageToggle? colors.smokeWhiteColor : colors.greenColor
+                  }
+                  color={languageToggle ? colors.greenColor : colors.whiteColor} 
+                  title={t('chinese_text')} />
                 </View>
               </>}
           />

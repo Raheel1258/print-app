@@ -60,7 +60,8 @@ const CartScreen = ({
   authRBSheet,
   focused,
   setFocused,
-  goBack
+  goBack,
+  handlePayment
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -126,7 +127,8 @@ const CartScreen = ({
             {t('before_production')}
           </Text>
           <GreenButton
-            onPress={() => navigate('orderReceived')}
+            // onPress={() => navigate('orderReceived')}
+            onPress={() => handlePayment()}
             backgroundColor={colors.blackColor}
             buttonHeight={57}
             title={t('place_order')}

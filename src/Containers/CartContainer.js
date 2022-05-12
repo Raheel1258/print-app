@@ -3,6 +3,7 @@ import { View, BackHandler } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
+import Stripe from 'react-native-stripe-api';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
@@ -84,6 +85,30 @@ const CartContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+   const handlePayment = () => {
+    genToken();
+   }
+
+   const genToken = async () => {
+    const apiKey =
+      'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
+    const client = new Stripe(apiKey);
+
+    const token = await client.createToken({
+      number: 4242424242424242,
+      exp_month: 4,
+      exp_year: 2024,
+      cvc: 1234,
+    });
+
+    console.log("tttttoken" , token);
+
+    if (token.id) {
+     console.log("token" , token.id)
+    } else {
+      console.log("no token")
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -110,6 +135,7 @@ const CartContainer = () => {
         focused={focused}
         setFocused={setFocused}
         goBack={goBack}
+        handlePayment={handlePayment}
       />
     </View>
   );

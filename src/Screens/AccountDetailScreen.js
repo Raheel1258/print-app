@@ -19,6 +19,7 @@ import { colors, fonts } from '../Utils/theme';
 
 const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses }) => {
   const { t } = useTranslation();
+  console.log("address" ,userAddresses);
   return (
     <>
     {!animation ? <View style={styles.container}>
@@ -27,8 +28,8 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
         title={t('my_details')}
         borderBottomWidth={0}
       />
-      <CategoriesTitleHeader title={t('personal_detail')} />
       <ScrollView>
+      <CategoriesTitleHeader title={t('personal_detail')} />
 
         <View style={styles.paddingContainer}>
           <Formik initialValues={personalDetail} validationSchema={() => updatePersonalDetailSchema(t)} onSubmit={(values) => handleUpdatedPersonalDetail(values)}>
@@ -110,18 +111,20 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
             onPress={() => addAddressRBSheet.current.open()}
           />
         </View>
-        <MyAddresses address title="Peter Park" description="Primary" />
-        <View style={styles.borderBottom} />
-        <MyAddresses address title="peter park" />
+        
+        <MyAddresses address={userAddresses} title="Peter Park" description="Primary"  />
+        {/* <View style={styles.borderBottom} /> */}
+
+        {/* <MyAddresses address title="peter park" /> */}
         <View style={styles.categoriesWrapper}>
           <CategoriesTitleHeader
             title={t('my_payment')}
             description={t('new_card')}
             onPress={() => addCardetCardRBSheet.current.open()}
           />
-          <MyAddresses title="Peter Park" description="Primary" />
+          <MyAddresses card title="Peter Park" description="Primary" />
         </View>
-        <View style={styles.screenBorderBottom} />
+        {/* <View style={styles.screenBorderBottom} /> */}
       </ScrollView>
       <BottomSheetComponent
         childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet}/>}

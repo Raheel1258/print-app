@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import {addAddress} from '../store/actions/auth'
+import {addAddress} from '../store/actions/userPersonalDetailAction'
 import { Formik } from 'formik';
 import { addAddressSchema } from '../Utils/validationSchema';
 
@@ -24,7 +24,7 @@ const AddNewAddressForm = ({addAddressRBSheet}) => {
     contactNumber:'',
   })
 
-  const handleAddress = (values) => {
+  const handleAddNewAddress = (values) => {
     console.log("done address" , values);
     dispatch(addAddress(setAnimation, values, addAddressRBSheet))
     //!animation && addAddressRBSheet.current.close();
@@ -33,7 +33,7 @@ const AddNewAddressForm = ({addAddressRBSheet}) => {
   const {t} = useTranslation();
   return (
     <ScrollView>
-      <Formik initialValues={addressState} validationSchema={() => addAddressSchema(t)} onSubmit={(values) => handleAddress(values)}>
+      <Formik initialValues={addressState} validationSchema={() => addAddressSchema(t)} onSubmit={(values) => handleAddNewAddress(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { fullName, companyName, addressLine1, addressLine2, area, district, cityCountry, contactNumber } = values;
               return <>

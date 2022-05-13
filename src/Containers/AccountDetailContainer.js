@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCurrentUserDetail} from "../store/actions/auth"
+import {getCurrentUserDetail} from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
@@ -15,7 +15,7 @@ const AccountDetailContainer = () => {
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
-  const userAddresses = useSelector(state => state?.auth?.userAddress);
+  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
   const [personalDetail, setPersonalDetail] = useState({
     firstName: 'Peter', 
     lastName: 'Park',
@@ -38,10 +38,8 @@ const AccountDetailContainer = () => {
   },[])
 
   const handleUpdatedPersonalDetail = (values) => {
-    console.log("updated deatil");
+    console.log("updated deatil" , values);
   }
-
-  
 
   return (
     <View style={styles.container}>

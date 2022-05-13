@@ -11,7 +11,6 @@ const MyAddresses = ({ title, description, address, card }) => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{title}</Text>
         <Text style={styles.headerPrimary}>{description}</Text>
-
       </View>
       {address ?
         <>

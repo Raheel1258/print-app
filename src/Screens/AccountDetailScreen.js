@@ -21,130 +21,130 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
   const { t } = useTranslation();
   return (
     <>
-    {!animation ? <View style={styles.container}>
-      <BackArrowHeader
-        goBack={goBack}
-        title={t('my_details')}
-        borderBottomWidth={0}
-      />
-      <ScrollView>
-      <CategoriesTitleHeader title={t('personal_detail')} />
+      {!animation ? <View style={styles.container}>
+        <BackArrowHeader
+          goBack={goBack}
+          title={t('my_details')}
+          borderBottomWidth={0}
+        />
+        <ScrollView>
+          <CategoriesTitleHeader title={t('personal_detail')} />
 
-        <View style={styles.paddingContainer}>
-          <Formik initialValues={personalDetail} validationSchema={() => updatePersonalDetailSchema(t)} onSubmit={(values) => handleUpdatedPersonalDetail(values)}>
-            {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
-              const { firstName, lastName, mobile, email } = values;
-              return <>
-                <InputTextField
-                  value={firstName}
-                  error={touched.firstName && errors.firstName}
-                  title={t('first_name')}
-                  placeholder={firstName}
-                  keyboardType="default"
-                  name="firstName"
-                  secureTextEntry={false}
-                  onChangeText={handleChange('firstName')}
-                  onBlur={handleBlur('firstName')}
-                />
-
-                <InputTextField
-                  value={lastName}
-                  error={touched.lastName && errors.lastName}
-                  title={t('last_name')}
-                  placeholder={lastName}
-                  keyboardType="default"
-                  name="lastName"
-                  secureTextEntry={false}
-                  onChangeText={handleChange('lastName')}
-                  onBlur={handleBlur('lastName')}
-                />
-
-                <InputTextField
-                  value={mobile}
-                  error={touched.mobile && errors.mobile}
-                  title={t('mobile_number')}
-                  placeholder={mobile}
-                  keyboardType="phone-pad"
-                  name="mobile"
-                  secureTextEntry={false}
-                  onChangeText={handleChange('mobile')}
-                  onBlur={handleBlur('mobile')}
-                />
-
-                <InputTextField
-                  value={email}
-                  error={touched.email && errors.email}
-                  title={t('e_mail')}
-                  placeholder={email}
-                  keyboardType="email-address"
-                  name="email"
-                  secureTextEntry={false}
-                  onChangeText={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                />
-
-                <TouchableOpacity
-                  onPress={() => navigate('changePassword')}
-                  style={styles.passwordWrapper}>
-                  <Text style={styles.changePassword}>Change password</Text>
-                </TouchableOpacity>
-
-                <View style={styles.buttonWrapper}>
-                  <GreenButton
-                    backgroundColor={colors.blackColor}
-                    color={colors.whiteColor}
-                    title={t('update_text')}
-                    animation={animation}
-                    onPress={handleSubmit}
+          <View style={styles.paddingContainer}>
+            <Formik initialValues={personalDetail} validationSchema={() => updatePersonalDetailSchema(t)} onSubmit={(values) => handleUpdatedPersonalDetail(values)}>
+              {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
+                const { firstName, lastName, mobile, email } = values;
+                return <>
+                  <InputTextField
+                    value={firstName}
+                    error={touched.firstName && errors.firstName}
+                    title={t('first_name')}
+                    placeholder={firstName}
+                    keyboardType="default"
+                    name="firstName"
+                    secureTextEntry={false}
+                    onChangeText={handleChange('firstName')}
+                    onBlur={handleBlur('firstName')}
                   />
-                </View>
-              </>
-            }}
-          </Formik>
-        </View>
 
-        <View style={styles.categoriesWrapper}>
-          <CategoriesTitleHeader
-            title={t('my_address')}
-            description={t('new_address')}
-            onPress={() => addAddressRBSheet.current.open()}
-          />
-        </View>
-        {userAddresses && userAddresses.map((item,index)=> {
-          return <>
-           <MyAddresses address={item} title= {item?.fullName} description="Primary" />
-            {index != userAddresses.length-1 && <View style={styles.borderBottom} />}
-          </>
-        })}
-       
-        {/* <MyAddresses address title="peter park" /> */}
-        <View style={styles.categoriesWrapper}>
-          <CategoriesTitleHeader
-            title={t('my_payment')}
-            description={t('new_card')}
-            onPress={() => addCardetCardRBSheet.current.open()}
-          />
-          <MyAddresses card title="Peter Park" description="Primary" />
-        </View>
-        <View style={styles.screenBorderBottom} />
-      </ScrollView>
-      <BottomSheetComponent
-        childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet}/>}
-        title={t('add_new_address')}
-        note={false}
-        refRBSheet={addAddressRBSheet}
-      />
-      <BottomSheetComponent
-        childern={<AddNewCreditCardForm />}
-        title={t('add_new_cardet_card')}
-        note={false}
-        refRBSheet={addCardetCardRBSheet}
-      />
-    </View>:  <View style={styles.loaderContainer}>
-            <ActivityIndicator size="small" color="#000" animating={true} />
-          </View> }
+                  <InputTextField
+                    value={lastName}
+                    error={touched.lastName && errors.lastName}
+                    title={t('last_name')}
+                    placeholder={lastName}
+                    keyboardType="default"
+                    name="lastName"
+                    secureTextEntry={false}
+                    onChangeText={handleChange('lastName')}
+                    onBlur={handleBlur('lastName')}
+                  />
+
+                  <InputTextField
+                    value={mobile}
+                    error={touched.mobile && errors.mobile}
+                    title={t('mobile_number')}
+                    placeholder={mobile}
+                    keyboardType="phone-pad"
+                    name="mobile"
+                    secureTextEntry={false}
+                    onChangeText={handleChange('mobile')}
+                    onBlur={handleBlur('mobile')}
+                  />
+
+                  <InputTextField
+                    value={email}
+                    error={touched.email && errors.email}
+                    title={t('e_mail')}
+                    placeholder={email}
+                    keyboardType="email-address"
+                    name="email"
+                    secureTextEntry={false}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                  />
+
+                  <TouchableOpacity
+                    onPress={() => navigate('changePassword')}
+                    style={styles.passwordWrapper}>
+                    <Text style={styles.changePassword}>Change password</Text>
+                  </TouchableOpacity>
+                  
+                  <View style={styles.buttonWrapper}>
+                    <GreenButton
+                      backgroundColor={colors.blackColor}
+                      color={colors.whiteColor}
+                      title={t('update_text')}
+                      animation={animation}
+                      onPress={handleSubmit}
+                    />
+                  </View>
+                </>
+              }}
+            </Formik>
+          </View>
+
+          <View style={styles.categoriesWrapper}>
+            <CategoriesTitleHeader
+              title={t('my_address')}
+              description={t('new_address')}
+              onPress={() => addAddressRBSheet.current.open()}
+            />
+          </View>
+          {userAddresses && userAddresses.map((item, index) => {
+            return <>
+              <MyAddresses address={item} title={item?.fullName} description="Primary" />
+              {index != userAddresses.length - 1 && <View style={styles.borderBottom} />}
+            </>
+          })}
+
+          {/* <MyAddresses address title="peter park" /> */}
+          <View style={styles.categoriesWrapper}>
+            <CategoriesTitleHeader
+              title={t('my_payment')}
+              description={t('new_card')}
+              onPress={() => addCardetCardRBSheet.current.open()}
+            />
+            <MyAddresses card title="Peter Park" description="Primary" />
+          </View>
+          <View style={styles.screenBorderBottom} />
+        </ScrollView>
+        <BottomSheetComponent
+          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} />}
+          title={t('add_new_address')}
+          note={false}
+          refRBSheet={addAddressRBSheet}
+        />
+        <BottomSheetComponent
+          childern={<AddNewCreditCardForm />}
+          title={t('add_new_cardet_card')}
+          note={false}
+          refRBSheet={addCardetCardRBSheet}
+        />
+      </View> : <View style={styles.loaderContainer}>
+        <ActivityIndicator size="small" color="#000" animating={true} />
+      </View>}
     </>
-    
+
   );
 };
 

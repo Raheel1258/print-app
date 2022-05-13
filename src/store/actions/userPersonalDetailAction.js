@@ -13,6 +13,14 @@ function setUserAddress(userAddress) {
     };
 }
 
+function setUserDetail(user) {
+
+    return {
+        type: types.USER_DETAIL,
+        user,
+    }
+}
+
 //Add Address
 export const addAddress = (setAnimation, data,addAddressRBSheet) => {
     return async (dispatch) => {
@@ -48,15 +56,38 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
         setAnimation(true);
         axios.get(`${Api}/user/find`,{ headers: {"Authorization" : `Bearer ${accessToken}`} })
             .then(async (res) => {
-                console.log("personal detail", res);
+                console.log("res" , res);
                 setPersonalDetail({
                     firstName: res?.data?.firstName, 
                     lastName: res?.data?.lastName,
-                    mobile: res?.data?.phone,
+                    phone: res?.data?.phone,
                     email: res?.data?.email
                   })
                 setAnimation(false);
-                dispatch(setUserAddress(res?.data?.addresses));   
+                dispatch(setUserDetail(res?.data));   
+            })
+            .catch((err) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message,
+                });
+            });
+
+    }
+}
+
+//Update User Detail
+export const updateCurrentUserDetail = (setAnimation, userData) => {
+    console.log("user from upload" , userData);
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setAnimation(true);
+        axios.patch(`${Api}/user/update`, userData, { headers: {"Authorization" : `Bearer ${accessToken}`} })
+            .then(async (res) => {
+                console.log("update", res);
+                setAnimation(false);
+                dispatch(setUserDetail(res?.data));   
             })
             .catch((err) => {
                 setAnimation(false);

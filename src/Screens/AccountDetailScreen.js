@@ -17,7 +17,7 @@ import {
 } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses }) => {
+const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses, animationUpdateUser }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -33,7 +33,7 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
           <View style={styles.paddingContainer}>
             <Formik initialValues={personalDetail} validationSchema={() => updatePersonalDetailSchema(t)} onSubmit={(values) => handleUpdatedPersonalDetail(values)}>
               {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
-                const { firstName, lastName, mobile, email } = values;
+                const { firstName, lastName, phone, email } = values;
                 return <>
                   <InputTextField
                     value={firstName}
@@ -60,15 +60,15 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
                   />
 
                   <InputTextField
-                    value={mobile}
-                    error={touched.mobile && errors.mobile}
+                    value={phone}
+                    error={touched.phone && errors.phone}
                     title={t('mobile_number')}
-                    placeholder={mobile}
+                    placeholder={phone}
                     keyboardType="phone-pad"
-                    name="mobile"
+                    name="phone"
                     secureTextEntry={false}
-                    onChangeText={handleChange('mobile')}
-                    onBlur={handleBlur('mobile')}
+                    onChangeText={handleChange('phone')}
+                    onBlur={handleBlur('phone')}
                   />
 
                   <InputTextField
@@ -88,13 +88,13 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
                     style={styles.passwordWrapper}>
                     <Text style={styles.changePassword}>Change password</Text>
                   </TouchableOpacity>
-                  
+
                   <View style={styles.buttonWrapper}>
                     <GreenButton
                       backgroundColor={colors.blackColor}
                       color={colors.whiteColor}
                       title={t('update_text')}
-                      animation={animation}
+                      animation={animationUpdateUser}
                       onPress={handleSubmit}
                     />
                   </View>
@@ -110,12 +110,12 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
               onPress={() => addAddressRBSheet.current.open()}
             />
           </View>
-          {userAddresses && userAddresses.map((item, index) => {
+          {userAddresses?.length > 0 ? userAddresses?.map((item, index) => {
             return <>
               <MyAddresses address={item} title={item?.fullName} description="Primary" />
               {index != userAddresses.length - 1 && <View style={styles.borderBottom} />}
             </>
-          })}
+          }) : <Text style={styles.emptyBox}>No address added</Text>}
 
           {/* <MyAddresses address title="peter park" /> */}
           <View style={styles.categoriesWrapper}>
@@ -163,7 +163,7 @@ const styles = ScaledSheet.create({
   borderBottom: {
     borderBottomWidth: 1,
     borderBottomColor: colors.inputBorderColor,
-    marginHorizontal: '20@s',
+    marginHorizontal: '17@s',
     marginTop: '20@s',
   },
   categoriesWrapper: {
@@ -191,6 +191,17 @@ const styles = ScaledSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  emptyBox: {
+    textAlign: 'center',
+    marginVertical: '40@s',
+    paddingTop: '20@s',
+    fontFamily: fonts.avenir_light,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    lineHeight: '16@s',
+    letterSpacing: '0.2@s',
+    color: colors.lightBlackColor,
   }
 });
 

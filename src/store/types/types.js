@@ -1,7 +1,10 @@
 //Auth_Types
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_SIGNUP = 'USER_SIGNUP';
-export const USER_ADDRESS= "USER_ADDRESS"
+
+//UserPersonalDetail
+export const USER_ADDRESS = "USER_ADDRESS";
+export const USER_DETAIL = "USER_DETAIL"
 
 //Categories_Types
 export const GET_CATEGORIES = 'GET_CATEGORIES';

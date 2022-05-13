@@ -44,6 +44,8 @@ const MyAddresses = ({ title, description, address, card }) => {
         <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
       </View>
     </View>
+
+    
   );
 };
 

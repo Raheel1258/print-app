@@ -9,5 +9,11 @@ const userPersonalDetailReducer = createReducer({}, {
 			userAddress: action.userAddress,
 		};
 	},
+    [types.USER_DETAIL](state, action) {
+        console.log("first time" , state)
+		return {
+			user: action.user,
+		};
+	},
 });
 export default userPersonalDetailReducer;

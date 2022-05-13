@@ -3,10 +3,11 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCurrentUserDetail} from "../store/actions/userPersonalDetailAction"
+import {getCurrentUserDetail, updateCurrentUserDetail} from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
+
 
 const AccountDetailContainer = () => {
   const addAddressRBSheet = useRef();
@@ -15,12 +16,16 @@ const AccountDetailContainer = () => {
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
-  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
+  const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
+  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.user?.addresses);
+  const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
+
+  console.log("userAddresses",userDetails)
   const [personalDetail, setPersonalDetail] = useState({
-    firstName: 'Peter', 
-    lastName: 'Park',
-    mobile: '93542554',
-    email: 'peterchung@gmail.com'
+    firstName: userDetails?.firstName ? userDetails?.firstName : 'Peter', 
+    lastName: userDetails?.lastName ? userDetails?.lastName : 'Peter',
+    phone: userDetails?.phone ? userDetails?.phone : '23234234' ,
+    email: userDetails?.email ? userDetails?.email : 'peter@gmail.com'
   });
 
 
@@ -32,12 +37,25 @@ const AccountDetailContainer = () => {
     navigation.goBack();
   };
 
+
+  
   useEffect(()=> {
     dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
-
+    
   },[])
+  
+  // useEffect(()=> {
+  //   console.log("inside use effect" , userDetails);
+  //   setPersonalDetail({
+  //   firstName: userDetails?.firstName, 
+  //   lastName: userDetails?.lastName,
+  //   phone: userDetails?.phone,
+  //   email: userDetails?.email
+  //   })
+  // },[userDetails])
 
   const handleUpdatedPersonalDetail = (values) => {
+    // dispatch(updateCurrentUserDetail(setAnimation, values ))
     console.log("updated deatil" , values);
   }
 
@@ -52,6 +70,7 @@ const AccountDetailContainer = () => {
         personalDetail={personalDetail}
         handleUpdatedPersonalDetail={handleUpdatedPersonalDetail}
         userAddresses={userAddresses}
+        animationUpdateUser={animationUpdateUser}
       />
     </View>
   );

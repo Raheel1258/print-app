@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
@@ -17,10 +17,11 @@ import {
 } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail }) => {
+const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses }) => {
   const { t } = useTranslation();
   return (
-    <View style={styles.container}>
+    <>
+    {!animation ? <View style={styles.container}>
       <BackArrowHeader
         goBack={goBack}
         title={t('my_details')}
@@ -134,7 +135,11 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
         note={false}
         refRBSheet={addCardetCardRBSheet}
       />
-    </View>
+    </View>:  <View style={styles.loaderContainer}>
+            <ActivityIndicator size="small" color="#000" animating={true} />
+          </View> }
+    </>
+    
   );
 };
 
@@ -176,6 +181,11 @@ const styles = ScaledSheet.create({
     borderBottomWidth: '25@s',
     marginTop: '10@s',
     marginBottom: '55@s'
+  },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 

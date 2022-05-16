@@ -31,14 +31,13 @@ const SingleProductContainer = ({ route }) => {
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
 
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
-  const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
-  const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
+  const [selectedSize, setSelectedSize] = useState( item?.size[0] && item?.size[0]);
+  const [selectedCorner, setSelectedCorner] = useState((item?.corner?.cornerName && item?.corner?.cornerName[0]) ??undefined);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing ? item?.finishing[0] : undefined);
   const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUv ? item?.spotUv[0] : undefined);
   const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
   const [paperTypeCoverPages , setPaperTypeCoverPages] = useState(item?.paperType ? item?.paperType[0]: undefined);
   const [paperTypeInnerPages , setPaperTypeInnerPages] = useState((category == 'BOOKLET' && item?.paperType) ? item?.paperType[1]: undefined);
-
   const [noOfPagesCoverPages , setNoOfPagesCoverPages] = useState("4 pages");
   const [noOfPagesInnerPages , setNoOfPagesInnerPages] = useState(item?.numberOfPages ? item?.numberOfPages[0]: undefined);
 
@@ -64,6 +63,8 @@ const SingleProductContainer = ({ route }) => {
   const handleChange = (value) => {
     setRemarks(value);
   };
+
+  
 
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {

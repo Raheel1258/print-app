@@ -22,20 +22,20 @@ function setUserDetail(user) {
 }
 
 //Add Address
-export const addAddress = (setAnimation, data,addAddressRBSheet) => {
+export const addAddress = (setAnimation, data, addAddressRBSheet) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        axios.patch(`${Api}/user/address/add`, data, { headers: {"Authorization" : `Bearer ${accessToken}`} })
+        axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("address api response", res);
+                console.log("address add", res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'
                 })
                 setAnimation(false);
-                // dispatch(setUserAddress(res?.data));
-                addAddressRBSheet.current.close();       
+                dispatch(setUserAddress(res?.data?.addresses));
+                addAddressRBSheet.current.close();
             })
             .catch((err) => {
                 setAnimation(false);
@@ -54,17 +54,18 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        axios.get(`${Api}/user/find`,{ headers: {"Authorization" : `Bearer ${accessToken}`} })
+        axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res" , res);
+                console.log("res", res);
                 setPersonalDetail({
-                    firstName: res?.data?.firstName, 
+                    firstName: res?.data?.firstName,
                     lastName: res?.data?.lastName,
                     phone: res?.data?.phone,
                     email: res?.data?.email
-                  })
+                })
                 setAnimation(false);
-                dispatch(setUserDetail(res?.data));   
+                dispatch(setUserDetail(res?.data));
+                dispatch(setUserAddress(res?.data?.addresses))
             })
             .catch((err) => {
                 setAnimation(false);
@@ -78,19 +79,24 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
 }
 
 //Update User Detail
-export const updateCurrentUserDetail = (setAnimation, userData) => {
-    console.log("user from upload" , userData);
+export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
+    console.log("user from upload", userData);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        setAnimation(true);
-        axios.patch(`${Api}/user/update`, userData, { headers: {"Authorization" : `Bearer ${accessToken}`} })
+        setAnimationUpdateUser(true);
+        axios.patch(`${Api}/user/update`, userData, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 console.log("update", res);
-                setAnimation(false);
-                dispatch(setUserDetail(res?.data));   
+                setAnimationUpdateUser(false);
+                dispatch(setUserDetail(res?.data));
+                dispatch(setUserAddress(res?.data?.addresses))
+                Toast.show({
+                    type: 'success',
+                    text1: 'user updated successfully',
+                });
             })
             .catch((err) => {
-                setAnimation(false);
+                setAnimationUpdateUser(false);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message,

@@ -17,15 +17,17 @@ const AccountDetailContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
-  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.user?.addresses);
+  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
   const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
+  // const userAddresses1 = userAddresses?.splice(0, 2);
+  console.log("user add" , userAddresses);
 
-  console.log("userAddresses",userDetails)
+  // console.log("userAllAddresses",userAddresses1)
   const [personalDetail, setPersonalDetail] = useState({
-    firstName: userDetails?.firstName ? userDetails?.firstName : 'Peter', 
-    lastName: userDetails?.lastName ? userDetails?.lastName : 'Peter',
-    phone: userDetails?.phone ? userDetails?.phone : '23234234' ,
-    email: userDetails?.email ? userDetails?.email : 'peter@gmail.com'
+    firstName: 'Peter', 
+    lastName: 'Peter',
+    phone: '23234234' ,
+    email: 'peter@gmail.com'
   });
 
 
@@ -37,26 +39,13 @@ const AccountDetailContainer = () => {
     navigation.goBack();
   };
 
-
-  
   useEffect(()=> {
-    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
-    
+    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail)); 
   },[])
-  
-  // useEffect(()=> {
-  //   console.log("inside use effect" , userDetails);
-  //   setPersonalDetail({
-  //   firstName: userDetails?.firstName, 
-  //   lastName: userDetails?.lastName,
-  //   phone: userDetails?.phone,
-  //   email: userDetails?.email
-  //   })
-  // },[userDetails])
+
 
   const handleUpdatedPersonalDetail = (values) => {
-    // dispatch(updateCurrentUserDetail(setAnimation, values ))
-    console.log("updated deatil" , values);
+    dispatch(updateCurrentUserDetail(setAnimationUpdateUser, values));
   }
 
   return (

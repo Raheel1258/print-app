@@ -12,6 +12,7 @@ const userPersonalDetailReducer = createReducer({}, {
     [types.USER_DETAIL](state, action) {
         console.log("first time" , state)
 		return {
+            ...state,
 			user: action.user,
 		};
 	},

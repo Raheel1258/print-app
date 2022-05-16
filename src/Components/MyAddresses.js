@@ -18,8 +18,15 @@ const MyAddresses = ({ title, description, address, card }) => {
             <Text style={styles.addressText}>{address.addressLine1}</Text>
             <Text style={styles.addressText}>{address?.addressLine2}</Text>
           </View>
+          <View style={styles.editableContainer}>
+        <TouchableOpacity onPress={() => console.log("edited address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
+        {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+        <TouchableOpacity  onPress={() => console.log("Remove address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
+      </View>
+          
         </>
         :
+        <>
         <View>
           <View style={styles.cardPrivacyContainer}>
             <Text style={styles.cardNumText}>Card number:</Text>
@@ -35,14 +42,19 @@ const MyAddresses = ({ title, description, address, card }) => {
             <Text style={styles.cardNumText}>***</Text>
           </View>
         </View>
-
+        <View style={styles.editableContainer}>
+        <TouchableOpacity onPress={() => console.log("edited address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
+        {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+        <TouchableOpacity onPress={()=>console.log("Remove address")} style={styles.paddingWrapper} ><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
+      </View>
+        </>
       }
-
-      <View style={styles.editableContainer}>
+      
+      {/* <View style={styles.editableContainer}>
         <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
         {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
         <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
-      </View>
+      </View> */}
     </View>
 
     

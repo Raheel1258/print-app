@@ -104,14 +104,14 @@ const SingleProductScreen = ({
                     <Image transition={false} resizeMode='contain' style={item?.name == "Square" ? styles.squareStyling : styles.squareImage} source={{ uri: item?.image }} />}
                   cardStandard={item?.name}
                   cardDimensions={`${item?.height}mm x ${item?.width}mm`}
-                  selectedSize={selectedSize}
-                  onPress={() => setSelectedSize(item?.name)}
+                  selectedSize={selectedSize?.name}
+                  onPress={() => setSelectedSize(item)}
                 />
               </View>
             )
           }) :
             <View>
-              <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize ? selectedSize : ""} />
+              <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize?.name ? selectedSize?.name : ""} />
             </View>}
         </View>
 
@@ -369,7 +369,7 @@ const SingleProductScreen = ({
           childern={
             item?.size?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
-                setSelectedSize(item?.name);
+                setSelectedSize(item);
                 sizeRBSheet.current.close()
               }} style={styles.listContainer}>
                 <Text style={styles.listStyle}>{item?.name}</Text>
@@ -633,6 +633,7 @@ const styles = ScaledSheet.create({
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
     paddingVertical: '10@s',
+    color: colors.blackColor,
   },
   listContainer: {
     borderBottomColor: colors.innerBorderColor,

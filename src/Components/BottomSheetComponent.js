@@ -38,7 +38,6 @@ const BottomSheetComponent = ({
             padding: 20,
           },
         }}>
-        <ScrollView>
           <View style={styles.headerContainer}>
             {title ? (
               <>
@@ -53,6 +52,7 @@ const BottomSheetComponent = ({
               <Text style={styles.titleText}>{languageTitle}</Text>
             )}
           </View>
+          <ScrollView>
           {childern}
           {note && (
             <>
@@ -73,7 +73,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-between',
     marginTop: '2@s',
     marginHorizontal: '5@s',
-    marginBottom: '35@s',
+    marginBottom: '25@s',
   },
   headerTitle: {
     fontFamily: fonts.avenir_bold,

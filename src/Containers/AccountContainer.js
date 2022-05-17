@@ -4,6 +4,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import Storage from '../Utils/Storage';
+import i18n from 'i18next';
 
 import { logout } from '../store/actions/auth';
 import AccountScreen from '../Screens/AccountScreen';
@@ -18,6 +19,7 @@ const AccountContainer = () => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
+  const [languageToggle, setLanguageToggle] = useState(true);
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data);
@@ -25,6 +27,12 @@ const AccountContainer = () => {
   const goBack = () => {
     navigation.goBack();
   };
+
+  const changeLanguageHandler = (lang) =>
+  {
+    i18n.changeLanguage(lang)
+    refRBSheet.current.close();
+  }
 
   const logoutHandler = () => {
     dispatch(logout(navigation, setAnimation));
@@ -55,6 +63,10 @@ const AccountContainer = () => {
         setFocused={setFocused}
         toggleModal={toggleModal}
         isModalVisible={isModalVisible}
+        changeLanguageHandler={changeLanguageHandler}
+        languageToggle={languageToggle}
+        setLanguageToggle={setLanguageToggle}
+
       />
     </View>
   );

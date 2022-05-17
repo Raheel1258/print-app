@@ -52,7 +52,7 @@
     finishing:'Finishing',
     business_card: 'Business Card',
     choose_size: 'Choose size',
-    choose_book_size:'Choose size(when book is folded)',
+    choose_book_size:'Choose size (when book is folded)',
     standard_text: 'Standard',
     shortened_text: 'Shortened',
     square_text: 'Square',
@@ -211,5 +211,15 @@
     show_more: 'Show more quantity',
     pay_bank_transfer: 'Pay by bank transfer / cheque',
     bank_transfer_description: "We will show you our bank account information after you've placed your order.",
+    paper_type:'Choose paper type',
+    cover_pages: 'Cover pages:',
+    inner_pages: 'Inner pages:',
+    number_pages: 'Choose number of pages',
+    side_number: 'Choose number of sides',
+    side : 'side:',
+    choose_cut: 'Choose cut',
+    choose_folding: 'Choose Folding',
+    choose_window: 'Choose Window'
+
   },
 };

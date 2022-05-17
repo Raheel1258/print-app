@@ -20,16 +20,36 @@ const SingleProductContainer = ({ route }) => {
   const finishingRBSheet = useRef();
   const sizeRBSheet = useRef();
   const spotUvRBSheet = useRef();
+  const paperTypeCoverPagesRBSheet = useRef();
+  const paperTypeInnerPagesRBSheet = useRef();
+  const noOfPagesCoverPagesRBSheet = useRef();
+  const noOfPagesInnerPagesRBSheet = useRef();
+  const allCardsPaperTypeRBSheet = useRef();
+  const numberOfSidesRBSheet = useRef();
 
   
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
 
-  const [selectedUpload, setSelectedUpload] =useState (t('upload_file'));
-  const [selectedSize, setSelectedSize] = useState(item?.size[0] ? item?.size[0]?.name : undefined);
-  const [selectedCorner, setSelectedCorner] = useState(category == 'BUSINESS_CARD' ? item?.corner[0]?.cornerName : undefined);
+  console.log("console" , item)
+
+  const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
+  const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);
+  const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing ? item?.finishing[0] : undefined);
   const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUv ? item?.spotUv[0] : undefined);
-  const [quantityId, setQuantityId] = useState(item?.priceChart[0]?._id);
+  const [selectedPriceChart, setSelectedPriceChart] = useState(item?.priceChart[0] && item?.priceChart[0]);
+  const [paperTypeCoverPages , setPaperTypeCoverPages] = useState(item?.paperType ? item?.paperType[0]: undefined);
+  const [paperTypeInnerPages , setPaperTypeInnerPages] = useState((category == 'BOOKLET' && item?.paperType) ? item?.paperType[1]: undefined);
+  const [noOfPagesCoverPages , setNoOfPagesCoverPages] = useState("4 pages");
+  const [noOfPagesInnerPages , setNoOfPagesInnerPages] = useState(item?.numberOfPages ? item?.numberOfPages[0]: undefined);
+
+  const [allCardsPaperType , setAllCardsPaperType ] = useState(item?.paperType ? item?.paperType[0]: undefined);
+  const [numberOfSides, setNumberOfSides] = useState(item?.numberOfSides ? item?.numberOfSides[0]: undefined);
+
+  const [selectedCut, setSelectedCut] = useState(item?.cut && item?.cut[0]);
+  const [selectedFolding, setSelectedFolding] = useState(item?.folding && item?.folding[0]);
+
+  const [selectedWindow , setSelectedWindow] = useState(item?.window && item?.window[0]);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
@@ -46,6 +66,8 @@ const SingleProductContainer = ({ route }) => {
     setRemarks(value);
   };
 
+  
+
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -58,20 +80,35 @@ const SingleProductContainer = ({ route }) => {
 
   const handleAddToCart = () => {
     const obj = {
+      image: item?.image,
+      title: item?.title,
+      category: item?.category,
       selectedSize: selectedSize,
       selectedCorner: selectedCorner,
       selectedFinishing: selectFinishing,
-      quantityId: quantityId,
       preview: preview,
-      remarks: remarks
+      remarks: remarks,
+      cut: selectedCut,
+      paperType: allCardsPaperType,
+      priceChart: selectedPriceChart,
+      folding: selectedFolding,
+      window: selectedWindow,
+      cut: selectedCut
     }
+    
     console.log("selected size", selectedSize);
     console.log("selected corner", selectedCorner);
-    console.log('quantityId', quantityId);
     console.log('review', preview);
     console.log('remarks', remarks);
     console.log("new obj", obj);
     console.log("choose-finishing", selectFinishing);
+    console.log('choose cut' , selectedCut)
+    console.log("choose paper Type" , allCardsPaperType);
+    console.log('choose quantity Table' , selectedPriceChart)
+    console.log("folding" , selectedFolding);
+    console.log("choose window" , selectedWindow);
+    console.log("chooose cut" , selectedCut);
+    console.log("categor" , category);
   }
 
   return (
@@ -89,8 +126,8 @@ const SingleProductContainer = ({ route }) => {
         setSelectedSize={setSelectedSize}
         selectedCorner={selectedCorner && selectedCorner}
         setSelectedCorner={setSelectedCorner}
-        quantityId={quantityId}
-        setQuantityId={setQuantityId}
+        selectedPriceChart={selectedPriceChart}
+        setSelectedPriceChart={setSelectedPriceChart}
         preview={preview}
         setPreview={setPreview}
         remarks={remarks}
@@ -110,7 +147,30 @@ const SingleProductContainer = ({ route }) => {
         setResult={setResult}
         initialValuesAddUrl={initialValuesAddUrl}
         handleAddFileUrl={handleAddFileUrl}
-        
+        paperTypeCoverPagesRBSheet={paperTypeCoverPagesRBSheet}
+        paperTypeCoverPages = {paperTypeCoverPages}
+        setPaperTypeCoverPages = {setPaperTypeCoverPages}
+        paperTypeInnerPagesRBSheet={paperTypeInnerPagesRBSheet}
+        paperTypeInnerPages={paperTypeInnerPages}
+        setPaperTypeInnerPages={setPaperTypeInnerPages}
+        noOfPagesCoverPagesRBSheet={noOfPagesCoverPagesRBSheet}
+        noOfPagesCoverPages={noOfPagesCoverPages}
+        setNoOfPagesCoverPages={setNoOfPagesCoverPages}
+        noOfPagesInnerPagesRBSheet={noOfPagesInnerPagesRBSheet}
+        noOfPagesInnerPages={noOfPagesInnerPages}
+        setNoOfPagesInnerPages={setNoOfPagesInnerPages}
+        allCardsPaperTypeRBSheet = {allCardsPaperTypeRBSheet}
+        allCardsPaperType= {allCardsPaperType}
+        setAllCardsPaperType={setAllCardsPaperType}
+        numberOfSidesRBSheet={numberOfSidesRBSheet}
+        numberOfSides={numberOfSides}
+        setNumberOfSides={setNumberOfSides}
+        selectedCut={selectedCut}
+        setSelectedCut={setSelectedCut}
+        selectedFolding={selectedFolding}
+        setSelectedFolding={setSelectedFolding}
+        selectedWindow={selectedWindow}
+        setSelectedWindow={setSelectedWindow}
       />
     </View>
   );

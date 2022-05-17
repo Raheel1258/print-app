@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity, ActivityIndicator,ScrollView} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, ActivityIndicator,ScrollView, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -7,40 +7,15 @@ import HeaderImage from '../Assests/Images/businesscard-header-image.png';
 import {ImageBackArrowHeader, ImageSlider, ImageSwiper} from '../Components';
 import {colors,fonts} from '../Utils/theme';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water',
-      'https://source.unsplash.com/1024x768/?girl',
-    ]
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-    ]
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-    images: [
-      'https://source.unsplash.com/1024x768/?nature',
-      'https://source.unsplash.com/1024x768/?water',
-    ]
-  },
-];
+
 
 const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, categoryImage, animation, category }) => {
   const renderItem = ({ item }) => (
     <>
-      {/* <ImageSlider sliderImages={item?.image} title={item.title} /> */}
       <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})}>
-      <ImageSwiper sliderImages={item?.image} autoPlaySlider={false}/>
+      {/* <ImageSwiper sliderImages={item?.image} autoPlaySlider={false}/> */}
         <View style={styles.paddingContainer}>
+      <Image style={styles.cardImage}   source={{uri: item?.image[0]}} />
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
         <Text style={styles.cardPrice}>From HK$ {item?.category?.pricePerHunderd} / 100pcs</Text>
         <View style={styles.descriptionContainer}>
@@ -136,12 +111,18 @@ const styles = ScaledSheet.create({
   },
   paddingContainer: {
     paddingHorizontal: '17@s',
-    marginTop: '16@s',
+    marginTop: '20@s',
   },
   loaderContainer:{
     flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+  },
+  cardImage:{
+    width:'100%',
+    height:210,
+    borderRadius:'5@s',
+    marginBottom:'15@s'
   }
 });
 

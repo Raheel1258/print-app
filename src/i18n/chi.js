@@ -103,7 +103,7 @@ export const chi = {
     new_address: '+ 新地址',
     my_payment: '我的支付卡',
     new_card: '+ 新卡',
-    english_text: '英语',
+    // english_text: '英语',
     chinese_text: '中文',
     select_language: '选择您的首选语言',
     //<=Cart Screen=>

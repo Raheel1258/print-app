@@ -46,7 +46,7 @@ export const updatePersonalDetailSchema = (t) => {
     return (Yup.object({
         firstName: Yup.string().required(t('firstName_required')),
         lastName: Yup.string().required(t('lastName_required')),
-        mobile: Yup.string().matches(phoneRegExp, t('invalid_phone')).required(t('phone_required')),
+        phone: Yup.string().matches(phoneRegExp, t('invalid_phone')).required(t('phone_required')),
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
     }))
 }

@@ -7,7 +7,7 @@ import {colors,fonts} from '../Utils/theme';
 
 
 
-const QuantityTable = ({setQuantityId, quantityId, quantityTable }) => {
+const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, quantityTable }) => {
   const { t } = useTranslation();
   const [sliceArray, setSliceArray] = useState(quantityTable?.slice(0,6));
   const [flag , setflag] = useState(true)
@@ -19,9 +19,9 @@ const QuantityTable = ({setQuantityId, quantityId, quantityTable }) => {
   }
 
   const renderItem = ({item}) => {
-    const quantityStyle = quantityId == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
+    const quantityStyle = selectedPriceChart._id == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
     return (
-      <TouchableOpacity activeOpacity={1} onPress = { () => setQuantityId(item?._id)} style={{...styles.tableItems, ...quantityStyle}}>
+      <TouchableOpacity activeOpacity={1} onPress = { () => setSelectedPriceChart(item)} style={{...styles.tableItems, ...quantityStyle}}>
         <Text style={styles.priceText}>{item?.quantity}</Text>
         <Text style={styles.dollerPrice}>${item?.quantity * item?.unitPrice}</Text>
         <Text style={styles.priceText}>${item?.unitPrice}</Text>

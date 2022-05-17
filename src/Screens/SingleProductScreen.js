@@ -38,8 +38,8 @@ const SingleProductScreen = ({
   setSelectedSize,
   selectedCorner,
   setSelectedCorner,
-  setQuantityId,
-  quantityId,
+  setSelectedPriceChart,
+  selectedPriceChart,
   preview,
   setPreview,
   handleAddToCart,
@@ -161,8 +161,8 @@ const SingleProductScreen = ({
                   <View key={index}>
                     <CardSizeComponent
                       key={index}
-                      selectedCorner={selectedCorner}
-                      onPress={() => setSelectedCorner(item?.cornerName)}
+                      selectedCorner={selectedCorner?.cornerName}
+                      onPress={() => setSelectedCorner(item)}
                       Childern={
                         <Image transition={false} resiseMode="contain" style={styles.cornerImage} source={{ uri: item?.image }} />}
                       cardStandard={item?.cornerName}
@@ -193,10 +193,10 @@ const SingleProductScreen = ({
                     <CardSizeComponent
                       Childern={
                         <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
-                      cardStandard={item?.name}
-                      cardDimensions={`${item?.height}mm x ${item?.width}mm`}
-                      selectedSize={selectedCut}
-                      onPress={() => setSelectedCut(item?.name)}
+                      cardStandard={item?.cutName}
+                      cardDimensions={`${item?.cutHeight}mm x ${item?.cutWidth}mm`}
+                      selectedSize={selectedCut?.cutName}
+                      onPress={() => setSelectedCut(item)}
                     />
                   </View>
                 )
@@ -216,10 +216,10 @@ const SingleProductScreen = ({
                     <CardSizeComponent
                       Childern={
                         <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
-                      cardStandard={item?.name}
-                      cardDimensions={`${item?.height}mm x ${item?.width}mm`}
-                      selectedSize={selectedFolding}
-                      onPress={() => setSelectedFolding(item?.name)}
+                      cardStandard={item?.foldingName}
+                      cardDimensions={`${item?.foldingHeight}mm x ${item?.foldingWidth}mm`}
+                      selectedSize={selectedFolding?.foldingName}
+                      onPress={() => setSelectedFolding(item)}
                     />
                   </View>
                 )
@@ -239,10 +239,10 @@ const SingleProductScreen = ({
                     <CardSizeComponent
                       Childern={
                         <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
-                      cardStandard={item?.name}
-                      cardDimensions={`${item?.height} x ${item?.width}`}
-                      selectedSize={selectedWindow}
-                      onPress={() => setSelectedWindow(item?.name)}
+                      cardStandard={item?.windowName}
+                      cardDimensions={`${item?.windowHeight} x ${item?.windowWidth}`}
+                      selectedSize={selectedWindow?.windowName}
+                      onPress={() => setSelectedWindow(item)}
                     />
                   </View>
                 )
@@ -254,7 +254,7 @@ const SingleProductScreen = ({
 
 
         <CategoriesTitleHeader title={t('choose_quantity')} />
-        <QuantityTable quantityTable={item?.priceChart} quantityId={quantityId} setQuantityId={setQuantityId} />
+        <QuantityTable quantityTable={item?.priceChart} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
         <CategoriesTitleHeader title={t('send_preview')} />
         <Text style={styles.previewDescription}>
           After you’ve placed the order, we will send you a preview in e-mail

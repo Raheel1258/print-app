@@ -1427,8 +1427,8 @@ export const productListFlyerData = [
     "remarks": "string",
     "paperType" : ['Glossy paper (157 gsm)'],
     "folding": [
-      {"name": 'Half fold' , "height": '65' , "width":'65' , "image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
-      {"name": 'According fold' , "height": '100' , "width":'100', "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"foldingName": 'Half fold' , "foldingHeight": '65' , "foldingWidth":'65' , "image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"foldingName": 'According fold' , "foldingHeight": '100' , "foldingWidth":'100', "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
     ]
   },
 ]
@@ -1509,8 +1509,8 @@ export const productListEnvelopeData = [
     "remarks": "string",
     "paperType" : ['Glossy paper (157 gsm)'],
     "window" : [
-      {"name": 'With window' , "height": '4"', "width":'9"' , "image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
-      {"name": 'Without window' , "height": '4"' , "width": '9"' , "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"windowName": 'With window' , "windowHeight": '4"', "windowWidth":'9"' , "image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"windowName": 'Without window' , "windowHeight": '4"' , "windowWidth": '9"' , "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
     ]
   },
   
@@ -1610,8 +1610,8 @@ export const productListStickerData = [
     "remarks": "string",
     "paperType" : ['Woodfree paper (100 gsm)'],
     "cut" : [
-      {"name": 'Individual' , "height": '65' , "width":"65" ,"image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
-      {"name": 'In sheet' , "height": '100' , "width":"100" , "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"cutName": 'Individual' , "cutHeight": '65' , "cutWidth":"65" ,"image":'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
+      {"cutName": 'In sheet' , "cutHeight": '100' , "cutWidth":"100" , "image": 'https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png'},
     ]
   },
 ]

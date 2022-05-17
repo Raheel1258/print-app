@@ -19,10 +19,7 @@ const AccountDetailContainer = () => {
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
   const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
   const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
-  // const userAddresses1 = userAddresses?.splice(0, 2);
-  console.log("user add" , userAddresses);
 
-  // console.log("userAllAddresses",userAddresses1)
   const [personalDetail, setPersonalDetail] = useState({
     firstName: 'Peter', 
     lastName: 'Peter',

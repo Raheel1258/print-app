@@ -23,12 +23,12 @@ function setUserDetail(user) {
 
 //Add Address
 export const addAddress = (setAnimation, data, addAddressRBSheet) => {
+    console.log("cccc" , data)
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
         axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("address add", res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'
@@ -41,7 +41,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message,
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
 
@@ -56,7 +56,6 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
         setAnimation(true);
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res", res);
                 setPersonalDetail({
                     firstName: res?.data?.firstName,
                     lastName: res?.data?.lastName,
@@ -71,7 +70,7 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message,
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
 
@@ -86,7 +85,6 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
         setAnimationUpdateUser(true);
         axios.patch(`${Api}/user/update`, userData, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("update", res);
                 setAnimationUpdateUser(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
@@ -99,7 +97,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 setAnimationUpdateUser(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message,
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
 

@@ -121,29 +121,25 @@ const AddNewAddressForm = ({ addAddressRBSheet }) => {
               onBlur={handleBlur('district')}
             // childern={<RightArrow />}
             />
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
 
               <View>
                 <Text style={styles.titleText}>{t('city_country')}</Text>
-                <TouchableOpacity style={styles.countryPicker}>
+                <TouchableOpacity onPress={()=>setIsCountryPickerVisible(true)} style={styles.countryPicker}>
                   <CountryPicker
                     visible={isCountryPickerVisible}
-                    placeholder={country?.name ?? 'Hong Kong'}
+                    placeholder={country?.name ?? <Text style={styles.countryPlaceholder}>Hong kong</Text>}
+                    placeholderStyling={{color:'red',backgroundColor:'green'}}
                     // placeholderStyle={{backgroundColor:'red'}}
                     isCountryPickerVisible
                     onSelect={setCountry}
+                    onClose={()=>setIsCountryPickerVisible(false)}
                     withAlphaFilter
-                    withFlag
                     withFilter
-                    translation
-                    
-                    styles={{backgroundColor:'red'}}
-                  />
-                </TouchableOpacity>
-              </View>
+                                      />
               <RightArrow style={styles.iconWrapper} />
-            </View>
-            <View style={styles.borderBottom} />
+                </TouchableOpacity>
+              <View style={styles.borderBottom} />
+              </View>
 
 
             {/* <AddressTextField
@@ -191,7 +187,7 @@ const styles = ScaledSheet.create({
   },
   iconWrapper: {
     transform: [{ rotate: '180deg' }],
-    padding: '7@s',
+    marginBottom:'10@s'
   },
   borderBottom: {
     borderBottomWidth: 1,
@@ -203,7 +199,18 @@ const styles = ScaledSheet.create({
   countryPicker: {
     marginTop: '4@s',
     fontSize: '1@s',
-
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between'
+  },
+  countryPlaceholder:{
+    fontFamily: fonts.avenir_light,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    lineHeight: '13@s',
+    letterSpacing: '0.2@s',
+    textAlign: 'left',
+    color: colors.lightBlackColor,
   }
 })
 

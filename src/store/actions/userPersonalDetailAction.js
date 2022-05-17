@@ -29,6 +29,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
         setAnimation(true);
         axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                console.log("add new add" , res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'

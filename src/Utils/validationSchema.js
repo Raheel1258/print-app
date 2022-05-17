@@ -67,7 +67,7 @@ export const addAddressSchema = (t) => {
         addressLine2: Yup.string().required('*'),
         area: Yup.string().required('*'),
         district: Yup.string().required('*'),
-        cityCountry: Yup.string().required('*'),
+        cityCountry: Yup.string(),
         contactNumber: Yup.string().matches(phoneRegExp, ('*')).required('*'),
     }))
 }

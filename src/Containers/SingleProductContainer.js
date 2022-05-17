@@ -30,8 +30,6 @@ const SingleProductContainer = ({ route }) => {
   
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
 
-  console.log("console" , item)
-
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
   const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);
   const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);

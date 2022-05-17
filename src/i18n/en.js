@@ -219,7 +219,8 @@
     side : 'side:',
     choose_cut: 'Choose cut',
     choose_folding: 'Choose Folding',
-    choose_window: 'Choose Window'
+    choose_window: 'Choose Window',
+    update_address: 'Update Address'
 
   },
 };

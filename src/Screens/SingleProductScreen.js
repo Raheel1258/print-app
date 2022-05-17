@@ -89,7 +89,6 @@ const SingleProductScreen = ({
       <BackArrowHeader goBack={goBack} title={categoryTitle} arrow={false} />
       <ScrollView style={styles.marginContainer}>
         <View style={styles.sliderWrapper}>
-          {/* <ImageSlider sliderImages={item?.image} /> */}
           <ImageSwiper sliderImages={item?.image} autoPlaySlider={false} />
           <SingleCardDescription item={item} />
         </View>
@@ -437,13 +436,21 @@ const SingleProductScreen = ({
           note={false}
           height={300}
           childern={
-            <TouchableOpacity onPress={() => {
-              setNoOfPagesCoverPages(noOfPagesCoverPages);
-              noOfPagesCoverPagesRBSheet.current.close()
-            }}
-              style={styles.listContainer}>
-              <Text style={styles.listStyle}>{noOfPagesCoverPages}</Text>
-            </TouchableOpacity>
+            // <TouchableOpacity onPress={() => {
+            //   setNoOfPagesCoverPages(noOfPagesCoverPages);
+            //   noOfPagesCoverPagesRBSheet.current.close()
+            // }}
+            //   style={styles.listContainer}>
+            //   <Text style={styles.listStyle}>{noOfPagesCoverPages}</Text>
+            // </TouchableOpacity>
+            item?.numberOfPages && item?.numberOfPages[0]?.number?.map((item, index) => {
+              return <TouchableOpacity key={index} onPress={() => {
+                setNoOfPagesCoverPages(item);
+                noOfPagesCoverPagesRBSheet.current.close()
+              }} style={styles.listContainer}>
+                <Text style={styles.listStyle}>{item}</Text>
+              </TouchableOpacity>
+            })
           }
         />
 
@@ -454,7 +461,7 @@ const SingleProductScreen = ({
           note={false}
           height={430}
           childern={
-            item?.numberOfPages?.map((item, index) => {
+            item?.numberOfPages && item?.numberOfPages[1]?.number?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setNoOfPagesInnerPages(item);
                 noOfPagesInnerPagesRBSheet.current.close()

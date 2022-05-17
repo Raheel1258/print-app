@@ -1149,8 +1149,12 @@ export const productListBookletData = [
     "designUrl": "string",
     "remarks": "string",
     "paperType": ['Art Card (250 gsm)', 'Woodfree paper (140 gsm)'],
-    "numberOfPages":['8 pages', '12 pages' , '16 pages' , '20 pages' , '24 pages' , '28 pages' , '32 pages' , '36 pages' ,
-    '40 pages' , '44 pages' , '48 pages' ,'52 pages' ,'56 pages' , '60 pages'],
+    "numberOfPages": [
+      {"pageName":"Cover pages" , "number":['4 pages']},
+      {"pageName":"Inner pages" , "number":['8 pages', '12 pages' , '16 pages' , '20 pages' , '24 pages' , '28 pages' , '32 pages' , '36 pages' ,
+       '40 pages' , '44 pages' , '48 pages' ,'52 pages' ,'56 pages' , '60 pages']}
+    ],
+   
     "finishing": ['Matte' , 'Matte-Silk','Glossy']
     
   },

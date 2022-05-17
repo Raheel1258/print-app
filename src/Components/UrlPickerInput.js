@@ -89,9 +89,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: '2@s',
     marginBottom: '35@s',
-    marginTop: '-30@s',
   },
   headerTitle: {
     fontFamily: fonts.avenir_bold,

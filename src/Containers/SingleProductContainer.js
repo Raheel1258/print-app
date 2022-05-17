@@ -35,16 +35,16 @@ const SingleProductContainer = ({ route }) => {
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
   const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);
   const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
-  const [selectFinishing, setSelectFinishing] = useState(item?.finishing ? item?.finishing[0] : undefined);
-  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUv ? item?.spotUv[0] : undefined);
+  const [selectFinishing, setSelectFinishing] = useState(item?.finishing && item?.finishing[0]);
+  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUv && item?.spotUv[0]);
   const [selectedPriceChart, setSelectedPriceChart] = useState(item?.priceChart[0] && item?.priceChart[0]);
-  const [paperTypeCoverPages , setPaperTypeCoverPages] = useState(item?.paperType ? item?.paperType[0]: undefined);
-  const [paperTypeInnerPages , setPaperTypeInnerPages] = useState((category == 'BOOKLET' && item?.paperType) ? item?.paperType[1]: undefined);
-  const [noOfPagesCoverPages , setNoOfPagesCoverPages] = useState("4 pages");
-  const [noOfPagesInnerPages , setNoOfPagesInnerPages] = useState(item?.numberOfPages ? item?.numberOfPages[0]: undefined);
+  const [paperTypeCoverPages , setPaperTypeCoverPages] = useState(item?.paperType && item?.paperType[0]);
+  const [paperTypeInnerPages , setPaperTypeInnerPages] = useState(item?.paperType && item?.paperType[1]);
+  const [noOfPagesCoverPages , setNoOfPagesCoverPages] = useState(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
+  const [noOfPagesInnerPages , setNoOfPagesInnerPages] = useState(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
 
-  const [allCardsPaperType , setAllCardsPaperType ] = useState(item?.paperType ? item?.paperType[0]: undefined);
-  const [numberOfSides, setNumberOfSides] = useState(item?.numberOfSides ? item?.numberOfSides[0]: undefined);
+  const [allCardsPaperType , setAllCardsPaperType ] = useState(item?.paperType && item?.paperType[0]);
+  const [numberOfSides, setNumberOfSides] = useState(item?.numberOfSides && item?.numberOfSides[0]);
 
   const [selectedCut, setSelectedCut] = useState(item?.cut && item?.cut[0]);
   const [selectedFolding, setSelectedFolding] = useState(item?.folding && item?.folding[0]);
@@ -84,16 +84,19 @@ const SingleProductContainer = ({ route }) => {
       title: item?.title,
       category: item?.category,
       selectedSize: selectedSize,
+      priceChart: selectedPriceChart,
+      designUrl:"",
+      preview: preview,
+      numberofPages: item?.numberOfPages ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
+      cut: selectedCut,
+      window: selectedWindow,
+      folding: selectedFolding,
+      paperType: allCardsPaperType,
+      spotUV:selectSpotUv,
       selectedCorner: selectedCorner,
       selectedFinishing: selectFinishing,
-      preview: preview,
       remarks: remarks,
       cut: selectedCut,
-      paperType: allCardsPaperType,
-      priceChart: selectedPriceChart,
-      folding: selectedFolding,
-      window: selectedWindow,
-      cut: selectedCut
     }
     
     console.log("selected size", selectedSize);
@@ -109,6 +112,8 @@ const SingleProductContainer = ({ route }) => {
     console.log("choose window" , selectedWindow);
     console.log("chooose cut" , selectedCut);
     console.log("categor" , category);
+    console.log("coverpage number of pages" , noOfPagesCoverPages);
+    console.log("innerpages number of pages" , noOfPagesInnerPages);
   }
 
   return (

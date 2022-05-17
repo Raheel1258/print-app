@@ -72,7 +72,7 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: '2@s',
-    marginHorizontal: '5@s',
+    marginHorizontal: '2@s',
     marginBottom: '25@s',
   },
   headerTitle: {

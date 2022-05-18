@@ -65,8 +65,6 @@ const SingleProductContainer = ({ route }) => {
     setRemarks(value);
   };
 
-  
-
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);

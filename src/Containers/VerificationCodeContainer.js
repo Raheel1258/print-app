@@ -39,26 +39,6 @@ const VerificationCodeContainer = () => {
   const handleVerificationCode = (values) => {
     console.log("verification code from handler" , values);
     dispatch(verificationOptCode(values, navigation, setAnimation));
-    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    // if (
-    //   forgotPasswordData?.email.length <=0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Email cannot be empty',
-    //   });
-    // } else if (reg.test(forgotPasswordData.email) === false) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Please Provide a valid email',
-    //   });
-    // } else {
-    //   const forgotPassowrdData = {
-    //     email: forgotPasswordData?.email.toLocaleLowerCase(),
-    //   };
-    //   dispatch(forgotPassword(forgotPassowrdData, navigation, setAnimation));
-    //   toggleModal();
-    // }
   };
   
   return (

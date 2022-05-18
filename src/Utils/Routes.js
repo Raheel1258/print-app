@@ -25,6 +25,7 @@ import {
   ResetPasswordContainer,
   ChangePasswordContainer,
   ActivityContainer,
+  PaymentContainer,
 } from '../Containers';
 import {colors, fonts} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -114,6 +115,11 @@ const App = () => {
       <Stack.Screen
         name="activity"
         component={ActivityContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="paymentScreen"
+        component={PaymentContainer}
         options={{headerShown: false}}
       />
       <Stack.Screen

@@ -4,6 +4,8 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
 import Stripe from 'react-native-stripe-api';
+import { useDispatch } from 'react-redux';
+import {getCartData} from '../store/actions/cartAction'
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
@@ -22,6 +24,7 @@ const CartContainer = () => {
   const [paymentMethod, setPaymentMethod] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
   const [userToken, setUserToken] = useState(null);
+  const [animation, setAnimation] = useState(false);
 
   const [data, setData] = useState([
     {
@@ -61,10 +64,13 @@ const CartContainer = () => {
   ]);
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+  const dispatch = useDispatch();
 
+  useEffect(()=> {
+    // dispatch(getCartData(setAnimation))
+  })
 
   useEffect(() => {
-
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && authRBSheet.current.open()

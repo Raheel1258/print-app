@@ -118,7 +118,7 @@ const SingleProductScreen = ({
         {!(category == "BOOKLET" || category == 'BUSINESS_CARD') &&
           <>
             <CategoriesTitleHeader title={t('paper_type')} />
-            <UploadFileComponent onPress={() => allCardsPaperTypeRBSheet.current.open()} title={t('cover_pages')} selection={allCardsPaperType} />
+            <UploadFileComponent onPress={() => allCardsPaperTypeRBSheet.current.open()} title={t('paper')} selection={allCardsPaperType} />
           </>
         }
 
@@ -250,9 +250,6 @@ const SingleProductScreen = ({
             </View>
           </>
         }
-
-
-
         <CategoriesTitleHeader title={t('choose_quantity')} />
         <QuantityTable quantityTable={item?.priceChart} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
         <CategoriesTitleHeader title={t('send_preview')} />

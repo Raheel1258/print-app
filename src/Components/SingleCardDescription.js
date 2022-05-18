@@ -5,6 +5,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors,fonts} from '../Utils/theme';
 
 const SingleCardDescription = ({item}) => {
+  const flag = (item?.title == "BUSINESS_CARD" || item?.title == "BOOKLET" || item?.title == "STICKERS_LABEL") ? true:false;
   return (
     <View style={styles.paddingContainer}>
       <Text style={styles.productTitle} numberOfLines={1}>
@@ -17,7 +18,7 @@ const SingleCardDescription = ({item}) => {
         {item?.category?.description}
       </Text>
       <View style={styles.categoryContainer}>
-        <Text style={styles.categoryType}>Paper type:</Text>
+        <Text style={styles.categoryType}>{flag ? "Paper type:" : "Paper:"}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
           {item?.category?.paperType}
         </Text>

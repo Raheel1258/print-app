@@ -119,7 +119,7 @@ const styles = ScaledSheet.create({
     marginRight: '5@s'
   },
   paddingWrapper: {
-    padding: '4@s'
+    padding: '3@s'
   },
   cardPrivacyContainer: {
     flexDirection: 'row',

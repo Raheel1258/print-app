@@ -157,7 +157,7 @@
     phone_pad: '95746232',
     add_address: 'Add Address',
     add_new_address: 'Add New Address',
-    add_new_cardet_card: 'Add New Cardet Card',
+    add_new_cardet_card: 'Add New Cardit Card',
     card_number: 'Card Number',
     name_on_card: 'Name on Card',
     expiry_month: 'Expiry Month',

@@ -15,7 +15,7 @@ const SingleProductContainer = ({ route }) => {
  
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
-  const priceChartParameter = "";
+  let priceChartParameter = "";
   
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -58,39 +58,46 @@ const SingleProductContainer = ({ route }) => {
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
 
+  console.log("coooooorner" , selectedCorner);
   const getPriceChartApiParameter = () => {
+    console.log("into params fun");
     if(category == "BUSINESS_CARD" && item?.category?.productType != "BizCard-spot UV"){
-      priceChartParameter = `businesscard?product=${item?.category?.productType}?size=${selectedSize}?corner?${selectedCorner}`;
+      priceChartParameter = `businesscard?product=${item?.category?.productType}?size=${selectedSize?.width}x${selectedSize?.height}?corner=${selectedCorner?.cornerName} Corner`;
     }
     else if(category == "BUSINESS_CARD" && item?.category?.productType == "BizCard-spot UV"){
-      priceChartParameter = `businesscard?product=${item?.category?.productType}?size=${selectedSize}?corner?${selectedCorner}?spotuvside=${selectSpotUv}`;
+      priceChartParameter = `businesscard?product=${item?.category?.productType}?size=${selectedSize?.width}x${selectedSize?.height}?spotuvside=${selectSpotUv}`;
     }
     else if(category == "BOOKLET"){
-      priceChartParameter = `booklet?product=${item?.category?.productType}?size=${selectedSize}?innerpage?${noOfPagesInnerPages}`;
+      priceChartParameter = `booklet?product=${item?.category?.productType}?size=${selectedSize?.name}?innerpage=${noOfPagesInnerPages}`;
     }
     else if(category == "POSTER"){
-      priceChartParameter = `poster?product=${item?.category?.productType}?size=${selectedSize}?papertype?${allCardsPaperType}?sides=${numberOfSides}`;
+      priceChartParameter = `poster?product=${item?.category?.productType}?size=${selectedSize?.name}?papertype=${allCardsPaperType}?sides=${numberOfSides}`;
     }
     else if(category == "FLYERS_LEAFLET" && item?.category?.productType != "Flyer-Foldable"){
-      priceChartParameter = `flyer?product=${item?.category?.productType}?size=${selectedSize}?papertype?${allCardsPaperType}`;
+      priceChartParameter = `flyer?product=${item?.category?.productType}?size=${selectedSize?.name}?papertype=${allCardsPaperType}`;
     }
     else if(category == "FLYERS_LEAFLET" && item?.category?.productType == "Flyer-Foldable"){
-      priceChartParameter = `flyer?product=${item?.category?.productType}?size=${selectedSize}?papertype?${allCardsPaperType}?folding=${selectedFolding}`;
+      priceChartParameter = `flyer?product=${item?.category?.productType}?size=${selectedSize?.name}?papertype=${allCardsPaperType}?folding=${selectedFolding}`;
     }
     else if(category == "ENVELOPE"){
-      priceChartParameter = `envelop?product=${item?.category?.productType}?window=${selectedWindow}`;
+      priceChartParameter = `envelop?product=${item?.category?.productType}?window=${selectedWindow?.windowName}`;
     }
     else if(category == "LETTERHEAD"){
       priceChartParameter = `letterhead?product=${item?.category?.productType}`;
     }
     else {
-      priceChartParameter = `sticker?product=${item?.category?.productType}?size=${selectedSize}?shape=${shape}`;
+      priceChartParameter = `sticker?product=${item?.category?.productType}?size=${selectedSize?.width}x${selectedSize?.height}?shape=${shape}`;
     }
+    console.log("value" , priceChartParameter);
   }
-
+  
   useEffect(()=>{
+    console.log("into useeffect");
+    getPriceChartApiParameter();
+    
     // dispatch(getPriceChart(setPriceChartAnimation, priceChartParameter));
   },[]);
+  console.log("paramers" , priceChartParameter);
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)

@@ -4,7 +4,8 @@ export const USER_SIGNUP = 'USER_SIGNUP';
 
 //UserPersonalDetail
 export const USER_ADDRESS = "USER_ADDRESS";
-export const USER_DETAIL = "USER_DETAIL"
+export const USER_DETAIL = "USER_DETAIL";
+export const USER_CARD = "USER_CARD";
 
 //Categories_Types
 export const GET_CATEGORIES = 'GET_CATEGORIES';

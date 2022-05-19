@@ -220,7 +220,8 @@
     choose_cut: 'Choose cut',
     choose_folding: 'Choose Folding',
     choose_window: 'Choose Window',
-    paper:"Paper type:"
+    paper:"Paper type:",
+    update_address: 'Update Address'
 
   },
 };

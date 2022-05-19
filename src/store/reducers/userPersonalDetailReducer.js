@@ -10,10 +10,15 @@ const userPersonalDetailReducer = createReducer({}, {
 		};
 	},
     [types.USER_DETAIL](state, action) {
-        console.log("first time" , state)
 		return {
             ...state,
 			user: action.user,
+		};
+	},
+	[types.USER_CARD](state, action) {
+		return {
+            ...state,
+			userCard: action.userCard,
 		};
 	},
 });

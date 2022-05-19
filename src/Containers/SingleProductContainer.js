@@ -34,7 +34,6 @@ const SingleProductContainer = ({ route }) => {
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
-  
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
   const [shape, setShape] = useState(item?.category == 'STICKERS_LABEL' ?? item?.category?.productType);
   const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);

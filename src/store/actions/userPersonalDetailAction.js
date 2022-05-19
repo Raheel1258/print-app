@@ -35,7 +35,6 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
         setAnimation(true);
         axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("add new add", res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'
@@ -56,13 +55,10 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
 
 //Remove address
 export const deleteAddress = (addressid) => {
-    console.log("user id", addressid);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        console.log("tttttt", accessToken);
-        axios.patch(`https://9bf0-2400-adc5-1b2-9700-5465-2a6e-5410-4027.ngrok.io/api/v1/user/address/delete/6283a03f07bdc0debd78cdaa`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.patch(`${Api}/user/address/delete/${addressid}`,{} ,{ headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from delete", res);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
                 dispatch(setUserCard(res?.data?.cards))
@@ -72,7 +68,6 @@ export const deleteAddress = (addressid) => {
                 });
             })
             .catch((err) => {
-                console.log("ca", err?.response)
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
@@ -82,33 +77,30 @@ export const deleteAddress = (addressid) => {
 }
 
 //update address
-export const updateUserAddress = (setAnimation, data, addAddressRBSheet) => {
-    console.log("updated user data", data)
+export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         addAddressRBSheet.current.close();
         setAnimation(true);
-        // axios.patch(`${Api}/user/address/update/${data?.id}`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
-        //     .then(async (res) => {
-        //         console.log("add new add", res);
-        //         Toast.show({
-        //             type: 'success',
-        //             text1: 'You are successfully added your address'
-        //         })
-        //         setAnimation(false);
-        //         dispatch(setUserAddress(res?.data?.addresses));
-        //         addAddressRBSheet.current.close();
-        //     })
-        //     .catch((err) => {
-        //         setAnimation(false);
-        //         Toast.show({
-        //             type: 'error',
-        //             text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
-        //         });
-        //     });
+        axios.patch(`${Api}/user/address/update/${_id}`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                Toast.show({
+                    type: 'success',
+                    text1: 'You are successfully added your address'
+                })
+                setAnimation(false);
+                dispatch(setUserAddress(res?.data?.addresses));
+                addAddressRBSheet.current.close();
+            })
+            .catch((err) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
     }
 }
-
 
 //Get Current UserPersonal detail
 export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
@@ -141,7 +133,6 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
 
 //Update User Detail
 export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
-    console.log("user from upload", userData);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimationUpdateUser(true);

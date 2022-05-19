@@ -46,7 +46,6 @@ const AccountDetailContainer = () => {
   }
 
   const handleUserAddressRemove = (addressId) => {
-    console.log("asdasda" , addressId);
     dispatch(deleteAddress(addressId));
   }
 

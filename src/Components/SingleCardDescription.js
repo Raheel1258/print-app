@@ -19,7 +19,7 @@ const SingleCardDescription = ({item}) => {
       </Text>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>{flag ? "Paper type:" : "Paper:"}</Text>
-        <Text style={styles.categoryDescription} numberOfLines={1}>
+        <Text style={styles.categoryDescription} >
           {item?.category?.paperType}
         </Text>
       </View>
@@ -91,6 +91,7 @@ const styles = ScaledSheet.create({
   },
   categoryDescription: {
     fontFamily:fonts.avenir_regular,
+    width:'230@s',
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '14@s',

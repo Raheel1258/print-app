@@ -16,7 +16,9 @@ const ProductsListingContainer = ({route}) => {
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
-  const productList = useSelector(state => state.productList.productList);
+  const productList = useSelector(state => state?.productList?.categoryProductList);
+
+  console.log("productList" , productList);
  
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -30,7 +32,7 @@ const ProductsListingContainer = ({route}) => {
     //Mock Data
     dispatch(getProductListByCategory(category,setAnimation))
     //Api Data
-    //dispatch(getCategoriesProduct(category,setAnimation));
+    // dispatch(getCategoriesProduct(category,setAnimation));
   },[])
   return (
     <View style={styles.container}>

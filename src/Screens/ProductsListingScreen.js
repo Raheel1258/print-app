@@ -33,21 +33,22 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
 
   return (
     <>
-      {productList?.length !== undefined ?
         <View style={styles.container}>
           <ScrollView nestedScrollEnabled={true}>
           <ImageBackArrowHeader  title={categoryTitle} image={categoryImage} goBack={goBack} />
+          {!animation ? 
           <FlatList
-            data={productList}
+            data={productList && productList}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             contentContainerStyle={styles.flatlistContainer}
           />
+          : <View style={styles.loaderContainerProductList}>
+          <ActivityIndicator size="small" color="#000" animating={true} />
+        </View>}
           </ScrollView>
-        </View> : <View style={styles.loaderContainer}>
-            <ActivityIndicator size="small" color="#000" animating={true} />
-          </View>
-      }
+        </View> 
+      
     </>
   );
 };
@@ -113,8 +114,8 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '17@s',
     marginTop: '20@s',
   },
-  loaderContainer:{
-    flex: 1,
+  loaderContainerProductList:{
+    height:'200%',
 		justifyContent: 'center',
 		alignItems: 'center',
   },

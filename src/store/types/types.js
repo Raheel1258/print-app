@@ -13,6 +13,7 @@ export const HOME_SLIDER_IMAGES = 'HOME_SLIDER_IMAGES';
 
 //ProductList_Types
 export const PRODUCT_LIST = 'PRODUCT_LIST';
+export const PRODUCT_PRICE_CHART = "PRODUCT_PRICE_CHART";
 
 //Cart_Types
 export const CART_DETAIL = "CART_DETAIL";

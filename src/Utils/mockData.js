@@ -691,22 +691,22 @@ export const BusinessCardData = [
     "size": [
        { 
          "name": "Standard",
-         "height": "90",
-         "width":"54",
+         "width": "90",
+         "height":"54",
          "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
        },
   
       { 
          "name": "Shortened",
-         "height": "84",
-         "width":"55",
+         "width": "84",
+         "height":"55",
          "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
       },
   
       { 
          "name": "Square",
-         "height": "56",
-         "width":"56",
+         "width": "56",
+         "height":"56",
          "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
       }
     ],
@@ -791,22 +791,22 @@ export const BusinessCardData = [
     "size": [
       { 
         "name": "Standard",
-        "height": "90",
-        "width":"54",
+        "width": "90",
+        "height":"54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
  
      { 
         "name": "Shortened",
-        "height": "84",
-        "width":"55",
+        "width": "84",
+        "height":"55",
         "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
      },
  
      { 
         "name": "Square",
-        "height": "56",
-        "width":"56",
+        "width": "56",
+        "height":"56",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
      }
    ],
@@ -889,22 +889,22 @@ export const BusinessCardData = [
     "size": [
       { 
         "name": "Standard",
-        "height": "90",
-        "width":"54",
+        "width": "90",
+        "height":"54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
  
      { 
         "name": "Shortened",
-        "height": "84",
-        "width":"55",
+        "width": "84",
+        "height":"55",
         "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
      },
  
      { 
         "name": "Square",
-        "height": "56",
-        "width":"56",
+        "width": "56",
+        "height":"56",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
      }
    ],
@@ -988,22 +988,22 @@ export const BusinessCardData = [
     "size": [
       { 
         "name": "Standard",
-        "height": "90",
-        "width":"54",
+        "width": "90",
+        "height":"54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
  
      { 
         "name": "Shortened",
-        "height": "84",
-        "width":"55",
+        "width": "84",
+        "height":"55",
         "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
      },
  
      { 
         "name": "Square",
-        "height": "56",
-        "width":"56",
+        "width": "56",
+        "height":"56",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
      }
    ],
@@ -1090,20 +1090,20 @@ export const productListBookletData = [
     "size": [
        { 
          "name": "A6",
-         "height": "90",
-         "width":'54'
+         "width": "105",
+         "height":"148"
        },
   
       { 
          "name": "A5",
-         "height": "84",
-         "width":'55'
+         "width": "148",
+         "height":"210"
       },
   
       { 
          "name": "A4",
-         "height": "56",
-         "width":'56'
+         "width": "210",
+         "height":"297"
       }
     ],
   
@@ -1173,7 +1173,7 @@ export const productListPosterData =  [
     ],
     "title": "POSTER",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": 'Rectangular',
       "name": "Rectangular Poster",
       "pricePerHunderd": "68",
       "description": "Create impactful posters in either A3 or A4. Choose between two high quality paper to make your design stand out.",
@@ -1187,15 +1187,15 @@ export const productListPosterData =  [
     "size": [
        { 
          "name": "A4",
-         "height": "210",
-         "width":'297',
+         "width": "210",
+         "height":"297",
          "image": "xyz"
        },
   
       { 
          "name": "A3",
-         "height": "297",
-         "width":'420',
+         "width": "297",
+         "height":"420",
          "image" : 'xyz'
       },
     ],
@@ -1271,7 +1271,7 @@ export const productListFlyerData = [
     ],
     "title": "FLYERS_LEAFLET",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": 'Flyer-Rectangle',
       "name": "Rectangular Flyer",
       "pricePerHunderd": "68",
       "description": "Spread the word in a familiar way with this traditional flyer style. A choice of 3 high quality paper types.",
@@ -1285,22 +1285,22 @@ export const productListFlyerData = [
     "size": [
        { 
          "name": "A6",
-         "height": "105",
-         "width":'148.5',
+         "width": "105",
+         "height":"148.5",
          "image": "xyz"
        },
   
       { 
          "name": "A5",
-         "height": "148.5",
-         "width":'210',
+         "width": "148.5",
+         "height":"210",
          "image" : 'xyz'
       },
   
       { 
          "name": "A4",
-         "height": "210",
-         "width":'297',
+         "width": "210",
+         "height":"297",
          "image": 'xyz'
       },
       
@@ -1373,15 +1373,15 @@ export const productListFlyerData = [
     "size": [
        { 
          "name": "A6",
-         "height": "210",
-         "width":'148.5',
+         "width": "148.5",
+         "height":"210",
          "image": "xyz"
        },
   
       { 
          "name": "A5",
-         "height": "297",
-         "width":'210',
+         "width": "210",
+         "height":'297',
          "image" : 'xyz'
       },
   
@@ -1463,8 +1463,8 @@ export const productListEnvelopeData = [
     "size": [
        { 
          "name": "4” x 9” (101.6mm x 228.6mm)",
-         "height": "25",
-         "width":'25',
+         "width": "25",
+         "height":'25',
          "image": "xyz"
        },
 
@@ -1530,7 +1530,7 @@ export const productListStickerData = [
     ],
     "title": "STICKERS_LABEL",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": "Square",
       "name": "Round sticker",
       "pricePerHunderd": "68",
       "description": "All stickers are printed on durable and tear-proof material. Ideal for logos, branding and packaging.",
@@ -1544,28 +1544,28 @@ export const productListStickerData = [
     "size": [
        { 
          "name": "Tiny",
-         "height": "25",
-         "width":'25',
+         "width": "25",
+         "height":"25",
          "image": "xyz"
        },
   
       { 
          "name": "Small",
-         "height": "65",
-         "width":'65',
+         "width": "65",
+         "height":'65',
          "image" : 'xyz'
       },
   
       { 
          "name": "Standard",
-         "height": "100",
-         "width":'100',
+         "width": "100",
+         "height":'100',
          "image": 'xyz'
       },
       { 
         "name": "Large",
-        "height": "125",
-        "width":'125',
+        "width": "125",
+        "height":'125',
         "image": 'xyz'
      }
 
@@ -1631,7 +1631,7 @@ export const productListLetterheadData = [
     ],
     "title": "LETTERHEAD",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": 'letterhead',
       "name": "Letterhead (A4)",
       "pricePerHunderd": "68",
       "description": "Professional letterhead that carries your company brand. Premium paper suitable for all major printers.",
@@ -1645,8 +1645,8 @@ export const productListLetterheadData = [
     "size": [
        { 
          "name": "A4",
-         "height": "25",
-         "width":'25',
+         "width": "25",
+         "height":"25",
          "image": "xyz"
        },
 

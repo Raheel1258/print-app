@@ -16,19 +16,55 @@ import { colors, fonts } from '../Utils/theme';
 
 const DATA = [
   {
-    id: '1',
-    image: PremiumBusinessCard,
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "productType": "BizCard-Premium",
+      "name": "Premium (Thick) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+
+    "size": 
+      {
+        "name": "Standard",
+        "height": "90",
+        "width": "54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+      },
+    
+    "priceChart": {
+      "quantity": "100",
+      "unitPrice": "0.5"
+    },
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+    "corner":
+    {
+      "cornerName": "Square",
+      "cornerDescription": "Traditional",
+      "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
+    },
   },
-  {
-    id: '2',
-    image: SecondBusinessCard,
-  },
+  // {
+  //   id: '2',
+  //   image: SecondBusinessCard,
+  // },
 ];
 
 const MyOrdersListScreen = ({ goBack }) => {
   const { t } = useTranslation();
   const renderItem = ({ item, index }) => (
-    <MyCartComponent fontFamily={fonts.avenir_regular} image={item.image} index={index} length={DATA?.length} />
+    <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image[0]} index={index} length={DATA?.length} item={item} />
   );
   return (
     <View style={styles.container}>

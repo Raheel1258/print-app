@@ -1,6 +1,9 @@
 import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
+import {
+    cartItem
+  } from "../../Utils/mockData"
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
@@ -27,6 +30,7 @@ export const getCartData = (setAnimation) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
+        dispatch(setCartDetail(cartItem));
         // axios.post(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
         //     .then(async (res) => {
         //         console.log("cart responsed" , res);

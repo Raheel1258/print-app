@@ -618,7 +618,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
     textAlign: 'center',
-    marginTop: '15@s',
+    marginTop: '20@s',
   },
   mailText: {
     fontFamily: fonts.avenir_regular,

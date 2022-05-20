@@ -30,10 +30,10 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
         </View>} 
      
         {edit && remove && <View style={styles.quantityContainer}>
-          <TouchableOpacity style={styles.paddingWrapper}>
+          <TouchableOpacity onPress={()=> console.log("edit product")} style={styles.paddingWrapper}>
           <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.paddingWrapper}>
+          <TouchableOpacity onPress={()=> console.log("remove product")} style={styles.paddingWrapper}>
           <Text style={styles.editText}>Remove</Text>
           </TouchableOpacity>
         </View>}

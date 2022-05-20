@@ -31,10 +31,6 @@ const AddNewAddressForm = ({ addAddressRBSheet }) => {
     contactNumber: '',
   })
 
-  const fun1 = () => {
-    return
-  }
-
   const handleAddNewAddress = (values) => {
     setAddressState({ ...values, cityCountry: country?.name })
     dispatch(addAddress(setAnimation, { ...values, cityCountry: country?.name }, addAddressRBSheet))

@@ -9,24 +9,25 @@ const DeliverAddressComponent = ({ onPress, data, addNew, setData , }) => {
   console.log("data inside the deliver component" , data);
   const [selected, setSelected] = useState(false);
 
-  const handleData = (id) => {
-    console.log("id" , id);
-    setData((prev) => {
-      return prev.map((x) => {
-        if (x?.id == id) {
-          setSelected(true)
-          // return { ...x, selected: true }
-        } else {
-          setSelected(false);
-          // return { ...x, selected: false }
-        }
-      })
-    })
-  }
+  // const handleData = (id) => {
+  //   console.log("id" , id);
+
+  //   setData((prev) => {
+  //     return prev.map((x) => {
+  //       if (x?.id == id) {
+  //         setSelected(true)
+  //         // return { ...x, selected: true }
+  //       } else {
+  //         setSelected(false);
+  //         // return { ...x, selected: false }
+  //       }
+  //     })
+  //   })
+  // }
 
   const renderItem = ({ item }) => {
     return( <>
-    <DeliverAndCreditCard onPress={() => handleData(item?._id)}
+    <DeliverAndCreditCard onPress={() => setSelected(true)}
       title={"asdasd"}
       addressLineOne={item?.addressLine1}
       addressLineTwo={item?.addressLine2}

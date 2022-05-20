@@ -81,6 +81,7 @@ const SingleProductScreen = ({
   setSelectedFolding,
   selectedWindow,
   setSelectedWindow,
+  addToCartAnimation
 
 }) => {
   const { t } = useTranslation();
@@ -335,6 +336,7 @@ const SingleProductScreen = ({
           <GreenButton
             backgroundColor={colors.blackColor}
             title={t('add_to_cart_text')}
+            animation={addToCartAnimation}
             onPress={() => handleAddToCart()}
           />
           <Text style={styles.questionText}>{t('send_us_mail')}</Text>

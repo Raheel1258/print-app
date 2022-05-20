@@ -4,38 +4,39 @@ import {ScaledSheet} from 'react-native-size-matters';
 import { colors,fonts } from '../Utils/theme';
 
 
-const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit, remove }) => {
+const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit=false, remove=false, item, navigate }) => {
   return (
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
-      <Image  transition={false} style={styles.cardImage} source={image} />
+      <Image  transition={false} style={styles.cardImage} source={{uri:image}} />
       <View>
-        <Text numberOfLines={1} style={{...styles.cardTitle,fontFamily:fontFamily}}>Premium business name card</Text>
-        <Text style={styles.cardTitle}>HK$ 85</Text>
+        <Text numberOfLines={1} style={{...styles.cardTitle,fontFamily:fontFamily}}>{item?.category?.name}</Text>
+        <Text style={styles.cardTitle}>HK$ {item?.category?.pricePerHunderd}</Text>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
-          <Text style={styles.quantityText} numberOfLines={1}>100</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.quantity}</Text>
         </View>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Size:</Text>
-          <Text style={styles.quantityText} numberOfLines={1}>A4</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.size?.name}</Text>
         </View>
-        <View style={styles.quantityContainer}>
+        {item?.paperType && <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Paper type:</Text>
-          <Text style={styles.paperTypeDes} numberOfLines={1}>Glossy Art card 140 gsm</Text>
-        </View>
-        <View style={styles.quantityContainer}>
+          <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.paperType}</Text>
+        </View>}
+
+        {item?.folding && <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Folding: </Text>
           <Text style={styles.quantityText} numberOfLines={1}>Half fold</Text>
-        </View>
+        </View>} 
      
-        <View style={styles.quantityContainer}>
-          <TouchableOpacity style={styles.paddingWrapper}>
-          <Text style={styles.editText}>{edit}</Text>
+        {edit && remove && <View style={styles.quantityContainer}>
+          <TouchableOpacity onPress={()=> console.log("edit product")} style={styles.paddingWrapper}>
+          <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.paddingWrapper}>
-          <Text style={styles.editText}>{remove}</Text>
+          <TouchableOpacity onPress={()=> console.log("remove product")} style={styles.paddingWrapper}>
+          <Text style={styles.editText}>Remove</Text>
           </TouchableOpacity>
-        </View>
+        </View>}
     
       </View>
     </View>

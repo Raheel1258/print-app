@@ -14,3 +14,7 @@ export const HOME_SLIDER_IMAGES = 'HOME_SLIDER_IMAGES';
 
 //ProductList_Types
 export const PRODUCT_LIST = 'PRODUCT_LIST';
+
+//Cart_Types
+export const CART_DETAIL = "CART_DETAIL";
+export const ADD_TO_CART = "ADD_TO_CART";

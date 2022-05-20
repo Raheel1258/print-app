@@ -61,12 +61,13 @@ const CartScreen = ({
   focused,
   setFocused,
   goBack,
-  handlePayment
+  handlePayment,
+  cartItem,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (
-    <MyCartComponent image={item.image} edit={item.edit} remove={item.remove} index={index} length={DATA?.length} />
+    <MyCartComponent image={item?.image[0]} edit={true} remove={true} index={index} length={cartItem?.length} item={item} navigate={navigate}/>
   );
   return (
     <View style={styles.container}>
@@ -79,7 +80,7 @@ const CartScreen = ({
         />
         <CategoriesTitleHeader title={t('my_cart')} />
         <FlatList
-          data={DATA}
+          data={cartItem && cartItem}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           contentContainerStyle={{ paddingBottom: 0 }}

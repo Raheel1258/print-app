@@ -4,6 +4,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import {addToCart} from "../store/actions/cartAction"
 
 import SingleProductScreen from '../Screens/SingleProductScreen';
 import { colors } from '../Utils/theme';
@@ -27,7 +28,7 @@ const SingleProductContainer = ({ route }) => {
   const allCardsPaperTypeRBSheet = useRef();
   const numberOfSidesRBSheet = useRef();
 
-  
+  const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
 
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
@@ -64,8 +65,6 @@ const SingleProductContainer = ({ route }) => {
     setRemarks(value);
   };
 
-  
-
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -81,9 +80,9 @@ const SingleProductContainer = ({ route }) => {
       image: item?.image,
       title: item?.title,
       category: item?.category,
-      selectedSize: selectedSize,
+      size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl:"",
+      designUrl:"https://www.google.com",
       preview: preview,
       numberofPages: item?.numberOfPages ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
       cut: selectedCut,
@@ -91,11 +90,12 @@ const SingleProductContainer = ({ route }) => {
       folding: selectedFolding,
       paperType: allCardsPaperType,
       spotUV:selectSpotUv,
-      selectedCorner: selectedCorner,
-      selectedFinishing: selectFinishing,
+      corner: selectedCorner,
+      finishing: selectFinishing,
       remarks: remarks,
       cut: selectedCut,
     }
+    dispatch(addToCart(setAddToCartAnimation, obj));
     
     console.log("selected size", selectedSize);
     console.log("selected corner", selectedCorner);
@@ -174,6 +174,7 @@ const SingleProductContainer = ({ route }) => {
         setSelectedFolding={setSelectedFolding}
         selectedWindow={selectedWindow}
         setSelectedWindow={setSelectedWindow}
+        addToCartAnimation={addToCartAnimation}
       />
     </View>
   );

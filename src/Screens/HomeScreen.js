@@ -8,7 +8,7 @@ import { colors, fonts } from '../Utils/theme';
 
 
 
-const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) => {
+const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions, animation }) => {
 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
@@ -17,24 +17,23 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions }) 
   return (
     <>
       {
-        categories?.length !== undefined ?
+        animation  ?
+        <View style={styles.loaderContainer}>
+            <ActivityIndicator size="small" color="#000" animating={true} />
+          </View> : 
           <>
-            {/* <ImageSlider sliderImages={homeSliderImages} captions={homeSliderImagesCaptions} autoPlaySlider={true}/> */}
             <ImageSwiper sliderImages={homeSliderImages}  />
             <View style={styles.container}>
-              <Text style={styles.printText}>{t('lets_print')}</Text>
+            {categories && <Text style={styles.printText}>{t('lets_print')}</Text>}
               <FlatList
                 numColumns={2}
-                data={categories}
+                data={categories && categories}
                 renderItem={renderItem}
                 keyExtractor={item => item._id}
                 contentContainerStyle={styles.flatlistContainer}
               />
             </View>
-          </> :
-          <View style={styles.loaderContainer}>
-            <ActivityIndicator size="small" color="#000" animating={true} />
-          </View>
+          </>
 
       }
     </>

@@ -3,7 +3,6 @@ import * as types from "../types/types"
 
 
 const categories = createReducer({
-  categories: {},
   homeSliderImages:[]
 }, 
 {

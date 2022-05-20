@@ -30,9 +30,9 @@ const ProductsListingContainer = ({route}) => {
 
   useEffect(()=>{
     //Mock Data
-    dispatch(getProductListByCategory(category,setAnimation))
+    // dispatch(getProductListByCategory(category,setAnimation))
     //Api Data
-    // dispatch(getCategoriesProduct(category,setAnimation));
+    dispatch(getCategoriesProduct(category,setAnimation));
   },[])
   return (
     <View style={styles.container}>

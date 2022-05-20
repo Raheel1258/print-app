@@ -10,7 +10,7 @@ const MyAddresses = ({ title, description, address, card , handleUserAddressRemo
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{title}</Text>
-       {index !=1 && <Text style={styles.headerPrimary}>{description}</Text>}
+       {index == 0 && <Text style={styles.headerPrimary}>{description}</Text>}
       </View>
       {address ?
         <>
@@ -20,7 +20,7 @@ const MyAddresses = ({ title, description, address, card , handleUserAddressRemo
           </View>
           <View style={styles.editableContainer}>
         <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(address)}} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        {index == 1 && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+        {index != 0 && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
         <TouchableOpacity  onPress={() => handleUserAddressRemove(id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
       </View>
           

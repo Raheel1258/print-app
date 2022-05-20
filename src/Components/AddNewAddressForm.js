@@ -33,9 +33,11 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
   const handleAddNewAddress = (values) => {
     if(updateAddress == undefined)
     {
+      console.log("into add address")
       dispatch(addAddress(setAnimation, { ...values, cityCountry: country?.name ?? 'Hong kong'}, addAddressRBSheet))
     }
     else {
+      console.log("into update address");
       setAddressState({ ...values, cityCountry: country?.name })
       dispatch(updateUserAddress(setAnimation , updateAddress?._id , { ...values, cityCountry: country?.name ?? updateAddress?.cityCountry}, addAddressRBSheet))
       

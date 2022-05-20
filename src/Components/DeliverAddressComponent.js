@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 
@@ -7,15 +7,18 @@ import DeliverAndCreditCard from './DeliverAndCreditCard';
 
 const DeliverAddressComponent = ({ onPress, data, addNew, setData , }) => {
   console.log("data inside the deliver component" , data);
+  const [selected, setSelected] = useState(false);
 
   const handleData = (id) => {
     console.log("id" , id);
     setData((prev) => {
       return prev.map((x) => {
         if (x?.id == id) {
-          return { ...x, selected: true }
+          setSelected(true)
+          // return { ...x, selected: true }
         } else {
-          return { ...x, selected: false }
+          setSelected(false);
+          // return { ...x, selected: false }
         }
       })
     })
@@ -28,7 +31,7 @@ const DeliverAddressComponent = ({ onPress, data, addNew, setData , }) => {
       addressLineOne={item?.addressLine1}
       addressLineTwo={item?.addressLine2}
       // children={item?.children}
-      // selected={item?.selected} 
+      selected={selected} 
       />
       </>)
   }

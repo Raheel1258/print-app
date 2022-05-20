@@ -12,7 +12,7 @@ const DeliverAndCreditCard = ({
     companyName,
     addressLineOne,
     addressLineTwo = '',
-    // selected,
+    selected,
     onPress
 }) => {
   return (
@@ -36,7 +36,7 @@ const DeliverAndCreditCard = ({
             {addressLineTwo}
             </Text>
           </View>
-          {/* {selected ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />} */}
+          {selected ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </View>
       </View>
     </TouchableOpacity>

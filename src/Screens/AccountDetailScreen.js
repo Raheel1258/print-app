@@ -114,7 +114,7 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
           </View>
           {userAddresses?.length > 0 ? userAddresses?.map((item, index) => {
             return <>
-              <MyAddresses setUpdatedAddress={setUpdatedAddress} refRBSheet={addAddressRBSheet} id={item?._id} handleUserAddressRemove={handleUserAddressRemove} address={item} title={item?.fullName} description="Primary"/>
+              <MyAddresses index={index} setUpdatedAddress={setUpdatedAddress} refRBSheet={addAddressRBSheet} id={item?._id} handleUserAddressRemove={handleUserAddressRemove} address={item} title={item?.fullName} description="Primary"/>
               {index != userAddresses.length - 1 && <View style={styles.borderBottom} />}
             </>
           }) : <Text style={styles.emptyBox}>No address added</Text>}

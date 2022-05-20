@@ -5,12 +5,12 @@ import { ScaledSheet } from 'react-native-size-matters';
 import MasterCard from '../Assests/Svgs/MasterCard';
 import { colors, fonts } from '../Utils/theme';
 
-const MyAddresses = ({ title, description, address, card , handleUserAddressRemove, id , refRBSheet, setUpdatedAddress}) => {
+const MyAddresses = ({ title, description, address, card , handleUserAddressRemove, id , refRBSheet, setUpdatedAddress, index}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{title}</Text>
-        <Text style={styles.headerPrimary}>{description}</Text>
+       {index !=1 && <Text style={styles.headerPrimary}>{description}</Text>}
       </View>
       {address ?
         <>
@@ -20,7 +20,7 @@ const MyAddresses = ({ title, description, address, card , handleUserAddressRemo
           </View>
           <View style={styles.editableContainer}>
         <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(address)}} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+        {index == 1 && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
         <TouchableOpacity  onPress={() => handleUserAddressRemove(id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
       </View>
           

@@ -73,7 +73,7 @@ const CartContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(()=> {
-    dispatch(getCartData(setAnimation))
+    dispatch(getCartData(setAnimation, navigate));
   })
 
   useEffect(() => {

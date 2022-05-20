@@ -26,11 +26,17 @@ function setAddToCart(item){
 
 
 //Get Cart Data
-export const getCartData = (setAnimation) => {
+export const getCartData = (setAnimation, navigate) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        dispatch(setCartDetail(cartItem));
+        if(cartItem.length > 0){
+
+            dispatch(setCartDetail(cartItem));
+        }
+        else{
+            navigate("emptyCart");
+        }
         // axios.post(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
         //     .then(async (res) => {
         //         console.log("cart responsed" , res);

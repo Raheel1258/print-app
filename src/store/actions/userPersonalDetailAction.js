@@ -7,6 +7,7 @@ import * as types from '../types/types';
 
 
 function setUserAddress(userAddress) {
+    console.log("address" , userAddress)
     return {
         type: types.USER_ADDRESS,
         userAddress,
@@ -14,7 +15,7 @@ function setUserAddress(userAddress) {
 }
 
 function setUserDetail(user) {
-
+    console.log("user detail" , user);
     return {
         type: types.USER_DETAIL,
         user,
@@ -103,12 +104,12 @@ export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) =
 }
 
 //Get Current UserPersonal detail
-export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
+export const getCurrentUserDetail = (setAnimation=()=>{}, setPersonalDetail=()=>{}) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
-            .then(async (res) => {
+            .then((res) => {
                 setPersonalDetail({
                     firstName: res?.data?.firstName,
                     lastName: res?.data?.lastName,
@@ -117,8 +118,8 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                 })
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
-                dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
+                dispatch(setUserAddress(res?.data?.addresses));
+                dispatch(setUserCard(res?.data?.cards));
             })
             .catch((err) => {
                 setAnimation(false);

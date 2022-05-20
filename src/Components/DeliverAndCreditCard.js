@@ -8,11 +8,11 @@ import CheckedBlueIcon from '../Assests/Svgs/CheckedBlueIcon';
 
 const DeliverAndCreditCard = ({
     title,
-    children,
+    // children,
     companyName,
     addressLineOne,
     addressLineTwo = '',
-    selected,
+    // selected,
     onPress
 }) => {
   return (
@@ -22,7 +22,7 @@ const DeliverAndCreditCard = ({
           <Text style={styles.titleText} numberOfLines={1}>
             {title}
           </Text>
-         {children}
+         {/* {children} */}
         </View>
         <Text style={companyName? styles.companyText : styles.companyStyle} numberOfLines={1}>
            {companyName}
@@ -36,7 +36,7 @@ const DeliverAndCreditCard = ({
             {addressLineTwo}
             </Text>
           </View>
-          {selected ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
+          {/* {selected ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />} */}
         </View>
       </View>
     </TouchableOpacity>

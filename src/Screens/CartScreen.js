@@ -63,6 +63,8 @@ const CartScreen = ({
   goBack,
   handlePayment,
   cartItem,
+  userAddresses,
+  setUserStateAddress
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -146,10 +148,11 @@ const CartScreen = ({
       <BottomSheetComponent
         refRBSheet={refRBSheet}
         childern={
-          <DeliverAddressComponent
+          <DeliverAddressComponent 
             addNew={t('new_address')}
             setData={setData}
-            data={data}
+            setUserStateAddress={setUserStateAddress}
+            data={userAddresses}
             onPress={() => {
               refRBSheet.current.close();
               addAddressRBSheet.current.open();

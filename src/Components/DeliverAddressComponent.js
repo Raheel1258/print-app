@@ -1,25 +1,37 @@
 import React from 'react';
-import {Text, TouchableOpacity, FlatList, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
 
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 import DeliverAndCreditCard from './DeliverAndCreditCard';
 
-const DeliverAddressComponent = ({onPress, data, addNew, setData}) => {
+const DeliverAddressComponent = ({ onPress, data, addNew, setData , }) => {
+  console.log("data inside the deliver component" , data);
 
   const handleData = (id) => {
-    setData((prev)=> {
-      return prev.map((x)=>{
-        if(x?.id == id){
-        return {...x, selected: true}
-        }else{
-          return {...x, selected: false}
+    console.log("id" , id);
+    setData((prev) => {
+      return prev.map((x) => {
+        if (x?.id == id) {
+          return { ...x, selected: true }
+        } else {
+          return { ...x, selected: false }
         }
       })
     })
   }
 
-const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(item?.id)} title={item?.title} companyName = {item?.companyName} addressLineOne={item.addressLineOne} addressLineTwo={item.addressLineTwo} children={item?.children} selected={item?.selected}/>;
+  const renderItem = ({ item }) => {
+    return( <>
+    <DeliverAndCreditCard onPress={() => handleData(item?._id)}
+      title={"asdasd"}
+      addressLineOne={item?.addressLine1}
+      addressLineTwo={item?.addressLine2}
+      // children={item?.children}
+      // selected={item?.selected} 
+      />
+      </>)
+  }
 
   return (
     <ScrollView>
@@ -28,7 +40,7 @@ const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(i
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-      <TouchableOpacity style={styles.touchableText} onPress = {onPress}>
+      <TouchableOpacity style={styles.touchableText} onPress={onPress}>
         <Text style={styles.newAddressText}>{addNew}</Text>
       </TouchableOpacity>
     </ScrollView>

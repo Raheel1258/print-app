@@ -5,7 +5,8 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
 import Stripe from 'react-native-stripe-api';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCartData} from '../store/actions/cartAction'
+import {getCartData} from '../store/actions/cartAction';
+import {getCurrentUserDetail} from "../store/actions/userPersonalDetailAction";
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
@@ -28,8 +29,8 @@ const CartContainer = () => {
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
-
-  console.log("cart item" , cartItem)
+  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
+  const [userStateAddress , setUserStateAddress] = useState("");
 
   const [data, setData] = useState([
     {
@@ -74,7 +75,8 @@ const CartContainer = () => {
 
   useEffect(()=> {
     dispatch(getCartData(setAnimation, navigate));
-  })
+    dispatch(getCurrentUserDetail());
+  },[])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
@@ -149,6 +151,8 @@ const CartContainer = () => {
         goBack={goBack}
         handlePayment={handlePayment}
         cartItem={cartItem}
+        userAddresses={userAddresses}
+        setUserStateAddress={setUserStateAddress}
       />
     </View>
   );

@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PrintTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PrintTests.m */; };
 		090CC076280E8EA4005A8248 /* libreact-native-splash-screen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 090CC075280E8EA4005A8248 /* libreact-native-splash-screen.a */; };
+		09A8D1E8283B608C00DB95F0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A8D1E7283B608C00DB95F0 /* StoreKit.framework */; };
+		09A8D201283B635600DB95F0 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A8D200283B635600DB95F0 /* NotificationService.m */; };
+		09A8D205283B635600DB95F0 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 09A8D1FD283B635600DB95F0 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		09E13F70280EA9050048169A /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E13F6F280EA9050048169A /* LaunchScreen.png */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		16F39C269244923B3B9EDA7E /* libPods-Print-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3DADF7132211F76A2DC00C /* libPods-Print-OneSignalNotificationServiceExtension.a */; };
 		2818BF5404CD4616BAE071D6 /* AvenirLTStd-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 118F40B9232049D1883F786E /* AvenirLTStd-Roman.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		90BC3EF9B7BF4BDFB80E43FD /* AvenirLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 163144A27C5D4F34B7C0CA71 /* AvenirLTStd-Book.otf */; };
@@ -30,7 +34,28 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Print;
 		};
+		09A8D203283B635600DB95F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09A8D1FC283B635600DB95F0;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		09A8D1F8283B61C300DB95F0 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				09A8D205283B635600DB95F0 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* PrintTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrintTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +63,15 @@
 		00E356F21AD99517003FC87E /* PrintTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrintTests.m; sourceTree = "<group>"; };
 		028DA8F91790B1108E214692 /* Pods-Print.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Print.debug.xcconfig"; path = "Target Support Files/Pods-Print/Pods-Print.debug.xcconfig"; sourceTree = "<group>"; };
 		090CC075280E8EA4005A8248 /* libreact-native-splash-screen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-splash-screen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A8D1E6283B607900DB95F0 /* Print.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Print.entitlements; path = Print/Print.entitlements; sourceTree = "<group>"; };
+		09A8D1E7283B608C00DB95F0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		09A8D1EF283B61C300DB95F0 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		09A8D1F1283B61C300DB95F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09A8D1FD283B635600DB95F0 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A8D1FF283B635600DB95F0 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		09A8D200283B635600DB95F0 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		09A8D202283B635600DB95F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09A8D209283B658500DB95F0 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		09E13F6F280EA9050048169A /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen.png; path = ../../../Downloads/LaunchScreen.png; sourceTree = "<group>"; };
 		118F40B9232049D1883F786E /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Roman.otf"; path = "../src/Assests/Fonts/AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Print.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Print.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,11 +87,14 @@
 		584B1076CF99E237A1C077DF /* libPods-Print.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Print.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6797B70E55794F9AB43A0D17 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Book.otf"; path = "../android/app/src/main/assets/fonts/AvenirLTStd-Book.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Print/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		969E90333561E8DCA94A4DDF /* Pods-Print-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Print-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-Print-OneSignalNotificationServiceExtension/Pods-Print-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		AD9CCB4D3090496BA916A3B7 /* AvenirNextLTPro-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirNextLTPro-Heavy.otf"; path = "../android/app/src/main/assets/fonts/AvenirNextLTPro-Heavy.otf"; sourceTree = "<group>"; };
 		B11C553417AA45C9892CB532 /* AvenirLTStd-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Black.otf"; path = "../src/Assests/Fonts/AvenirLTStd-Black.otf"; sourceTree = "<group>"; };
 		C0F7546AFF8A4544B885D06C /* AvenirLTStd-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Black.otf"; path = "../android/app/src/main/assets/fonts/AvenirLTStd-Black.otf"; sourceTree = "<group>"; };
+		CE3DADF7132211F76A2DC00C /* libPods-Print-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Print-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D71E14BD0DBB4CCE80D9BD40 /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Roman.otf"; path = "../android/app/src/main/assets/fonts/AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
 		E2D810681B1B4BD066799A77 /* Pods-Print.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Print.release.xcconfig"; path = "Target Support Files/Pods-Print/Pods-Print.release.xcconfig"; sourceTree = "<group>"; };
+		EC8E8A127BB952652D884C12 /* Pods-Print-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Print-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-Print-OneSignalNotificationServiceExtension/Pods-Print-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FF2811F72CF947148D3D94C0 /* AvenirNextLTPro-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirNextLTPro-Heavy.otf"; path = "../src/Assests/Fonts/AvenirNextLTPro-Heavy.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,10 +108,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		09A8D1FA283B635600DB95F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16F39C269244923B3B9EDA7E /* libPods-Print-OneSignalNotificationServiceExtension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A8D1E8283B608C00DB95F0 /* StoreKit.framework in Frameworks */,
 				090CC076280E8EA4005A8248 /* libreact-native-splash-screen.a in Frameworks */,
 				E9A59047C72C4E8AEFE1E0A6 /* libPods-Print.a in Frameworks */,
 			);
@@ -100,9 +146,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		09A8D1EE283B61C300DB95F0 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				09A8D209283B658500DB95F0 /* OneSignalNotificationServiceExtension.entitlements */,
+				09A8D1EF283B61C300DB95F0 /* NotificationService.swift */,
+				09A8D1F1283B61C300DB95F0 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		09A8D1FE283B635600DB95F0 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				09A8D1FF283B635600DB95F0 /* NotificationService.h */,
+				09A8D200283B635600DB95F0 /* NotificationService.m */,
+				09A8D202283B635600DB95F0 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* Print */ = {
 			isa = PBXGroup;
 			children = (
+				09A8D1E6283B607900DB95F0 /* Print.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -117,10 +184,12 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09A8D1E7283B608C00DB95F0 /* StoreKit.framework */,
 				090CC075280E8EA4005A8248 /* libreact-native-splash-screen.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				584B1076CF99E237A1C077DF /* libPods-Print.a */,
 				55EA04F7DF9BF99F643BDC95 /* libPods-Print-PrintTests.a */,
+				CE3DADF7132211F76A2DC00C /* libPods-Print-OneSignalNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -138,6 +207,8 @@
 				13B07FAE1A68108700A75B9A /* Print */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PrintTests */,
+				09A8D1EE283B61C300DB95F0 /* OneSignalNotificationServiceExtension */,
+				09A8D1FE283B635600DB95F0 /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				943535EEAA54550970BC31A9 /* Pods */,
@@ -153,6 +224,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Print.app */,
 				00E356EE1AD99517003FC87E /* PrintTests.xctest */,
+				09A8D1FD283B635600DB95F0 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +236,8 @@
 				E2D810681B1B4BD066799A77 /* Pods-Print.release.xcconfig */,
 				5337375D6759C5C1EDD92BF0 /* Pods-Print-PrintTests.debug.xcconfig */,
 				2DEEC484E214E6E8C452D9EA /* Pods-Print-PrintTests.release.xcconfig */,
+				969E90333561E8DCA94A4DDF /* Pods-Print-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				EC8E8A127BB952652D884C12 /* Pods-Print-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -207,6 +281,25 @@
 			productReference = 00E356EE1AD99517003FC87E /* PrintTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		09A8D1FC283B635600DB95F0 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09A8D206283B635600DB95F0 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				02F63647AA6D34F4657CAFD9 /* [CP] Check Pods Manifest.lock */,
+				09A8D1F9283B635600DB95F0 /* Sources */,
+				09A8D1FA283B635600DB95F0 /* Frameworks */,
+				09A8D1FB283B635600DB95F0 /* Resources */,
+				661728108F0EE280B1491E5B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 09A8D1FD283B635600DB95F0 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		13B07F861A680F5B00A75B9A /* Print */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Print" */;
@@ -219,10 +312,12 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				C2EF8DC68BD8F4A04A90A50E /* [CP] Embed Pods Frameworks */,
 				2A3669CCF6AAEB1ECA38586F /* [CP] Copy Pods Resources */,
+				09A8D1F8283B61C300DB95F0 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				09A8D204283B635600DB95F0 /* PBXTargetDependency */,
 			);
 			name = Print;
 			productName = Print;
@@ -235,11 +330,15 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					09A8D1FC283B635600DB95F0 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
@@ -261,12 +360,20 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* Print */,
 				00E356ED1AD99517003FC87E /* PrintTests */,
+				09A8D1FC283B635600DB95F0 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A8D1FB283B635600DB95F0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,6 +410,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		02F63647AA6D34F4657CAFD9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Print-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		0D4809A9B9FF7566E7FB8441 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -363,6 +492,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		661728108F0EE280B1491E5B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Print-OneSignalNotificationServiceExtension/Pods-Print-OneSignalNotificationServiceExtension-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Print-OneSignalNotificationServiceExtension/Pods-Print-OneSignalNotificationServiceExtension-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Print-OneSignalNotificationServiceExtension/Pods-Print-OneSignalNotificationServiceExtension-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6BE18B3FABB0030A25EBF2C5 /* [CP] Embed Pods Frameworks */ = {
@@ -446,6 +592,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		09A8D1F9283B635600DB95F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A8D201283B635600DB95F0 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,6 +616,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* Print */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		09A8D204283B635600DB95F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09A8D1FC283B635600DB95F0 /* OneSignalNotificationServiceExtension */;
+			targetProxy = 09A8D203283B635600DB95F0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -517,13 +676,90 @@
 			};
 			name = Release;
 		};
+		09A8D207283B635600DB95F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 969E90333561E8DCA94A4DDF /* Pods-Print-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RLTZVSCH33;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.print.print-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		09A8D208283B635600DB95F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC8E8A127BB952652D884C12 /* Pods-Print-OneSignalNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RLTZVSCH33;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.print.print-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 028DA8F91790B1108E214692 /* Pods-Print.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Print/Print.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RLTZVSCH33;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Print/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -535,7 +771,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.print.printapp;
 				PRODUCT_NAME = Print;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -547,9 +783,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E2D810681B1B4BD066799A77 /* Pods-Print.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Print/Print.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RLTZVSCH33;
 				INFOPLIST_FILE = Print/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -560,7 +799,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.print.printapp;
 				PRODUCT_NAME = Print;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -698,6 +937,15 @@
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
 				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09A8D206283B635600DB95F0 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A8D207283B635600DB95F0 /* Debug */,
+				09A8D208283B635600DB95F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

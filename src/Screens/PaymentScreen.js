@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { CardField, useStripe } from '@stripe/stripe-react-native';
+import { Button } from 'react-native';
 import {
     BackArrowHeader,
     GreenButton,
   } from '../Components';
 
 
-const PaymentScreen = ({goBack}) => {
+const PaymentScreen = ({goBack, handlePayPress, loading}) => {
     const { confirmPayment } = useStripe();
 
     return (
         <>
         <BackArrowHeader goBack={goBack} title={"Payment"}/>
         <CardField
-            postalCodeEnabled={true}
+            postalCodeEnabled={false}
             placeholders={{
                 number: '4242 4242 4242 4242',
             }}
@@ -35,7 +36,7 @@ const PaymentScreen = ({goBack}) => {
                 console.log('focusField', focusedField);
             }}
             />
-            <GreenButton title={"Pay"}/>
+            <Button title={"Pay"} onPress={handlePayPress} disabled={loading}/>
             </>
     );
 }

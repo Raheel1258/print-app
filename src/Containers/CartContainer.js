@@ -97,14 +97,14 @@ const CartContainer = () => {
 
    const genToken = async () => {
     const apiKey =
-      'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
+      'pk_test_51L0nUUSAHkYCWlWj1WXbi7ZG6HfdEdIGF1RUM64humgxDgIhLQsWBT0zdlmCy9K4o1FmdBhs2qbbdIsNuxsMQq4G00zlV9KrBf';
     const client = new Stripe(apiKey);
 
     const token = await client.createToken({
-      number: 4242424242424242,
-      exp_month: 4,
-      exp_year: 2024,
-      cvc: 1234,
+      number: "4242424242424242",
+      exp_month: "04",
+      exp_year: "2024",
+      cvc: "1234",
     });
 
     console.log("tttttoken" , token);

@@ -15,6 +15,7 @@ import VerificationCodeScreen from './VerificationCodeScreen';
 import ResetPasswordScreen from './ResetPasswordScreen';
 import ChangePasswordScreen from './ChangePasswordScreen';
 import ActivityScreen from './ActivityScreen';
+import PaymentScreen from './PaymentScreen';
 
 export {
   SigninScreen,
@@ -33,5 +34,6 @@ export {
   VerificationCodeScreen,
   ResetPasswordScreen,
   ChangePasswordScreen,
-  ActivityScreen
+  ActivityScreen, 
+  PaymentScreen
 };

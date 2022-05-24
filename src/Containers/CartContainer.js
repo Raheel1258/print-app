@@ -92,7 +92,8 @@ const CartContainer = () => {
     setModalVisible(!isModalVisible);
   };
    const handlePayment = () => {
-    genToken();
+     navigate('paymentScreen');
+    // genToken();
    }
 
    const genToken = async () => {

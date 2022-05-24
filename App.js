@@ -10,16 +10,20 @@ import OneSignal from 'react-native-onesignal';
 
 import Routes from './src/Utils/Routes';
 
+
+
 const App = () => {
 
   useEffect(() => {
     SplashScreen.hide();
   }, []);
-  
+
   const OneSignalComponent = () => {
+
     //OneSignal Init Code
     OneSignal.setLogLevel(6, 0);
-    //Android id ----  -----
+    
+    //Android id ---- fe2ee0f0-84e5-4650-b18b-1ad055d48339 -----
     //Ios ID ---- 041fb0c4-d5be-4a35-bcde-68e3be50d503 ----
     OneSignal.setAppId('fe2ee0f0-84e5-4650-b18b-1ad055d48339');
     //END OneSignal Init Code
@@ -28,7 +32,7 @@ const App = () => {
     OneSignal.promptForPushNotificationsWithUserResponse(response => {
       console.log('Prompt response:', response);
     });
-  
+    
     //Method for handling notifications received while app in foreground
     OneSignal.setNotificationWillShowInForegroundHandler(
       notificationReceivedEvent => {
@@ -57,7 +61,7 @@ const App = () => {
     });
     return <></>;
   };
-  
+
   
 
   return (

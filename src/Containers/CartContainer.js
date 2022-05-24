@@ -92,29 +92,30 @@ const CartContainer = () => {
     setModalVisible(!isModalVisible);
   };
    const handlePayment = () => {
-    genToken();
+    // genToken();
+    navigate('payment');
    }
 
-   const genToken = async () => {
-    const apiKey =
-      'pk_test_51L0nUUSAHkYCWlWj1WXbi7ZG6HfdEdIGF1RUM64humgxDgIhLQsWBT0zdlmCy9K4o1FmdBhs2qbbdIsNuxsMQq4G00zlV9KrBf';
-    const client = new Stripe(apiKey);
+  //  const genToken = async () => {
+  //   const apiKey =
+  //     'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
+  //   const client = new Stripe(apiKey);
 
-    const token = await client.createToken({
-      number: "4242424242424242",
-      exp_month: "04",
-      exp_year: "2024",
-      cvc: "1234",
-    });
+  //   const token = await client.createToken({
+  //     number: "4242424242424242",
+  //     exp_month: "04",
+  //     exp_year: "2024",
+  //     cvc: "1234",
+  //   });
 
-    console.log("tttttoken" , token);
+  //   console.log("tttttoken" , token);
 
-    if (token.id) {
-     console.log("token" , token.id)
-    } else {
-      console.log("no token")
-    }
-  };
+  //   if (token.id) {
+  //    console.log("token" , token.id)
+  //   } else {
+  //     console.log("no token")
+  //   }
+  // };
 
   return (
     <View style={styles.container}>

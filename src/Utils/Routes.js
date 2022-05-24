@@ -25,6 +25,7 @@ import {
   ResetPasswordContainer,
   ChangePasswordContainer,
   ActivityContainer,
+  PaymentContainer,
 } from '../Containers';
 import {colors, fonts} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -96,6 +97,12 @@ const App = () => {
         component={EmptyCartContainer}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name="payment"
+        component={PaymentContainer}
+        options={{headerShown: false}}
+      />
+
       <Stack.Screen
         name="myOrder"
         component={MyOrderContainer}

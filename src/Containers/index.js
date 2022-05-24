@@ -16,6 +16,7 @@ import VerificationCodeContainer from './VerificationCodeContainer';
 import ResetPasswordContainer from './ResetPasswordContainer';
 import ChangePasswordContainer from './ChangePasswordContainer';
 import ActivityContainer from './ActivityContainer';
+import PaymentContainer from './PaymentContainer';
 
 export {
   SigninContainer,
@@ -35,5 +36,6 @@ export {
   VerificationCodeContainer,
   ResetPasswordContainer,
   ChangePasswordContainer,
-  ActivityContainer
+  ActivityContainer,
+  PaymentContainer
 };

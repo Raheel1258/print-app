@@ -211,6 +211,11 @@ export const chi = {
     choose_cut: '选择剪裁',
     choose_folding: '选择折叠',
     choose_window: '选择窗口',
-    paper:"纸张类型:"
+    paper:"纸张类型:",
+
+    //lastest 
+    Cvc:'氯乙烯',
+    cvc_number: '一百二十三',
+    payment:'支付'
   },
 };

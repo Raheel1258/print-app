@@ -76,7 +76,7 @@ export const addCreditCardSchema = (t) => {
     return (Yup.object({
         cardNumber: Yup.string().min(16, "Minimun 16-digits required").max(16, "Max 16-digits required").required('Card-Number is required'),
         cardName:Yup.string(),
-        expiryMonth: Yup.string().min(2, "Min 2-digit").max(2, 'Max 2-digits required').required('Expiry Month is required'),
+        expiryMonth: Yup.string().min(1, "Min 1-digit").max(2, 'Max 2-digits required').required('Expiry Month is required'),
         expiryYear: Yup.string().min(4, "Min 4-digit").max(4, 'Max 4-digits required').required('Expiry Year is required'),
         cvc: Yup.string().min(3, 'Min 3-digit required').max(4, 'Max 4-digit required').required('Cvc is required'),
     }))

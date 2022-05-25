@@ -65,9 +65,9 @@ const AddNewCreditCardForm = ({creditCardState, handleCreditCard, animation}) =>
                 <AddressTextField
                   value={cvc}
                   error={touched.cvc && errors.cvc}
-                  title={t('cvc')}
+                  title={t('Cvc')}
                   keyboardType="phone-pad"
-                  placeholder={t('cvc-number')}
+                  // placeholder={t('cvc_number')}
                   placeholderTextColor={colors.blackColor}
                   name="cvc"
                   secureTextEntry={false}

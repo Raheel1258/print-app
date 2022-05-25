@@ -226,7 +226,8 @@
     //Latest changing
     Cvc:'Cvc',
     cvc_number: '123',
-    payment:'Payment'
+    payment:'Payment',
+    pay:'Pay',
 
   },
 };

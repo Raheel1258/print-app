@@ -4,11 +4,14 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../Utils/theme';
 import { PaymentScreen } from "../Screens";
-import Stripe from 'react-native-stripe-api';
+import {genToken} from "../store/actions/paymentAction"
+import { useDispatch } from "react-redux";
+
 
 
 const PaymentContainer = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const [animation, setAnimation] = useState(false);
     const [creditCardState, setCreditCardState] = useState({
         cardNumber: '',
@@ -18,31 +21,12 @@ const PaymentContainer = () => {
         cvc:'',
     })
 
-    const genToken = async (values) => {
-        const apiKey =
-            'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
-        const client = new Stripe(apiKey);
-
-        const token = await client.createToken({
-            number: values?.cardNumber,
-            name: values?.cardName ?? "",
-            exp_month: values?.expiryMonth,
-            exp_year: values?.expiryYear,
-            cvc: values?.cvc,
-        });
-
-        console.log("tttttoken", token);
-
-        if (token.id) {
-            console.log("token", token.id)
-        } else {
-            console.log("no token")
-        }
-    };
+    
 
     const handleCreditCard = (values) => {
-        console.log("values from creditCard", values);
-        genToken(values);
+        dispatch(genToken(values));
+        navigate("home");
+        // console.log("result" , result);
 
     }
 

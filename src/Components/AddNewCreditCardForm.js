@@ -75,7 +75,7 @@ const AddNewCreditCardForm = ({creditCardState, handleCreditCard, animation}) =>
                   onBlur={handleBlur('cvc')}
                   // childern={<RightArrow/>}
                 />
-                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={animation} title={t('add_card')}/>
+                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={animation} title={t('pay')}/>
                 </View>
               </>
             }}

@@ -13,11 +13,16 @@ import CartScreen from '../Screens/CartScreen';
 import { colors } from '../Utils/theme';
 
 const CartContainer = () => {
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
+  const dispatch = useDispatch();
+
   const addAddressRBSheet = useRef();
   const addCardetCardRBSheet = useRef();
   const creditCardRBSheet = useRef();
   const authRBSheet = useRef();
   const refRBSheet = useRef();
+  
   const [textValue, setTextValue] = useState('');
   const [delivery, setDelivery] = useState(true);
   const [focused, setFocused] = useState(true);
@@ -62,12 +67,10 @@ const CartContainer = () => {
       selected: false
     },
   ]);
-  const navigation = useNavigation();
-  const isFocused = useIsFocused();
-  const dispatch = useDispatch();
+ 
 
   useEffect(()=> {
-    // dispatch(getCartData(setAnimation))
+    //dispatch(getCartData(setAnimation))
   })
 
   useEffect(() => {

@@ -2,7 +2,7 @@
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_SIGNUP = 'USER_SIGNUP';
 
-//UserPersonalDetail
+//UserPersonalDetail_Types
 export const USER_ADDRESS = "USER_ADDRESS";
 export const USER_DETAIL = "USER_DETAIL";
 export const USER_CARD = "USER_CARD";
@@ -19,3 +19,6 @@ export const PRODUCT_PRICE_CHART = "PRODUCT_PRICE_CHART";
 //Cart_Types
 export const CART_DETAIL = "CART_DETAIL";
 export const ADD_TO_CART = "ADD_TO_CART";
+
+//Activity_Types
+export const ACTIVITY_DETAIL = "ACTIVITY_DETAIL";

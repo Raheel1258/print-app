@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import {View} from 'react-native';
 import { types } from '@babel/core';
-import OneSignal from 'react-native-onesignal';
 import Storage from '../Utils/Storage';
 
 import { ScaledSheet } from 'react-native-size-matters';
@@ -23,13 +22,13 @@ const HomeContainer = () => {
 
   const homeSliderImages =  homeSliderImagesData?.map(item => (item.image));
   const homeSliderImagesCaptions = homeSliderImagesData?.map(item => (item.caption));
-  const [deviceId, setDeviceId] = useState(null);
+  
 
-  useEffect(() => {
-    Storage.retrieveData('token').then((token) => {
-      token != null && getUserDeviceId();
-    });
-  }, []);
+  // useEffect(() => {
+  //   Storage.retrieveData('token').then((token) => {
+  //     token != null && getUserDeviceId();
+  //   });
+  // }, []);
   
   
   const navigate = (routeName, data = {}) => {
@@ -41,12 +40,6 @@ const HomeContainer = () => {
     dispatch(getHomeSliderImages());
   },[])
 
-  const getUserDeviceId = async () => {
-    await OneSignal.getDeviceState().then(res => {
-      console.log("console" , res);
-      setDeviceId(`${res?.userId}`);
-    });
-  };
 
   return (
     <View style={styles.container}>

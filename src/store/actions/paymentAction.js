@@ -7,7 +7,7 @@ import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
 
 
-export const genToken = (values) => {
+export const genToken = (values,navigate) => {
     return async(dispatch) => {
         const apiKey =
             'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
@@ -31,6 +31,7 @@ export const genToken = (values) => {
         			type: 'success',
         			text1: 'Payment is successfully completed'
         		})
+                navigate("orderReceived");
         	})
         	.catch((err) => {
                 console.log("res for payment error" , err?.response);

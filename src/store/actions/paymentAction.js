@@ -21,6 +21,7 @@ export const genToken = (values,navigate) => {
         });
 
         if (stripeToken?.id) {
+            //Valid Token Hit BE Api's for payment
             console.log("stripe_Token" , stripeToken?.id);
             const accessToken = await Storage.retrieveData('token')
             axios
@@ -37,7 +38,7 @@ export const genToken = (values,navigate) => {
                 console.log("res for payment error" , err?.response);
         		Toast.show({
         			type: 'error',
-        			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
+        			text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
         		});
         	});
             // stripeToken?.id

@@ -1154,9 +1154,7 @@ export const productListBookletData = [
       {"pageName":"Inner pages" , "number":['8 pages', '12 pages' , '16 pages' , '20 pages' , '24 pages' , '28 pages' , '32 pages' , '36 pages' ,
        '40 pages' , '44 pages' , '48 pages' ,'52 pages' ,'56 pages' , '60 pages']}
     ],
-   
     "finishing": ['Matte' , 'Matte-Silk','Glossy']
-    
   },
 
 ]
@@ -1626,7 +1624,6 @@ export const productListLetterheadData = [
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
   "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
-  
   
     ],
     "title": "LETTERHEAD",

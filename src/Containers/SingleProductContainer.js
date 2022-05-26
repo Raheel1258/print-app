@@ -16,7 +16,7 @@ const SingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
   const priceChartParameter = "";
-  
+
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const refRBSheet = useRef();
@@ -127,7 +127,7 @@ const SingleProductContainer = ({ route }) => {
       priceChart: selectedPriceChart,
       designUrl:designUrl,
       preview: preview,
-      numberofPages: item?.numberOfPages ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
+      numberofPages: item?.numberOfPages[0] ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
       cut: selectedCut,
       window: selectedWindow,
       folding: selectedFolding,
@@ -138,7 +138,7 @@ const SingleProductContainer = ({ route }) => {
       remarks: remarks,
       cut: selectedCut,
     }
-    // dispatch(addToCart(setAddToCartAnimation, obj));
+    //dispatch(addToCart(setAddToCartAnimation, obj));
     
     console.log("selected size", selectedSize);
     console.log("selected corner", selectedCorner);

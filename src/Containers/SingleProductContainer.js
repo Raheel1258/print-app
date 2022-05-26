@@ -31,9 +31,10 @@ const SingleProductContainer = ({ route }) => {
   const allCardsPaperTypeRBSheet = useRef();
   const numberOfSidesRBSheet = useRef();
   
+  const [designUrl,setDesignUrl] = useState([]);
+  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
-  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
   const [shape, setShape] = useState(item?.category == 'STICKERS_LABEL' ?? item?.category?.productType);
   const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);
@@ -111,7 +112,11 @@ const SingleProductContainer = ({ route }) => {
   const handleAddFileUrl = (values) => {
     console.log("val" , values)
     setInitialValuesAddUrl(values);
+    const retrieveArray = values?.url?.map(item => item.url_link);
+    setDesignUrl(retrieveArray);
   }
+
+  
 
   const handleAddToCart = () => {
     const obj = {
@@ -120,7 +125,7 @@ const SingleProductContainer = ({ route }) => {
       category: item?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl:"https://www.google.com",
+      designUrl:designUrl,
       preview: preview,
       numberofPages: item?.numberOfPages ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
       cut: selectedCut,
@@ -133,7 +138,7 @@ const SingleProductContainer = ({ route }) => {
       remarks: remarks,
       cut: selectedCut,
     }
-    dispatch(addToCart(setAddToCartAnimation, obj));
+    // dispatch(addToCart(setAddToCartAnimation, obj));
     
     console.log("selected size", selectedSize);
     console.log("selected corner", selectedCorner);
@@ -150,6 +155,7 @@ const SingleProductContainer = ({ route }) => {
     console.log("categor" , category);
     console.log("coverpage number of pages" , noOfPagesCoverPages);
     console.log("innerpages number of pages" , noOfPagesInnerPages);
+    console.log("designUrl", designUrl);
   }
 
   return (

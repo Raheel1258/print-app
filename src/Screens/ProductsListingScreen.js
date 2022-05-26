@@ -46,6 +46,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
           : <View style={styles.loaderContainerProductList}>
           <ActivityIndicator size="small" color="#000" animating={true} />
         </View>}
+        {productList?.length == 0 && <View style={styles.noProduct}><Text>{"No Products are available"}</Text></View>}
           </ScrollView>
         </View> 
       
@@ -116,6 +117,15 @@ const styles = ScaledSheet.create({
   },
   loaderContainerProductList:{
     height:'200%',
+		justifyContent: 'center',
+		alignItems: 'center',
+  },
+  noProduct:{
+    fontFamily:fonts.avenir_light,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    height:'130%',
 		justifyContent: 'center',
 		alignItems: 'center',
   },

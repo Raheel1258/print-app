@@ -216,6 +216,7 @@ export const chi = {
     //lastest 
     Cvc:'氯乙烯',
     cvc_number: '一百二十三',
-    payment:'支付'
+    payment:'支付',
+    invalid_promocode: "促销代码无效"
   },
 };

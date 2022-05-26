@@ -61,7 +61,12 @@ const CartScreen = ({
   focused,
   setFocused,
   goBack,
-  handlePayment
+  handlePayment,
+  isPromoCodeModaVidible,
+  promoCodeToggleModal,
+  handlePromoCodeValidation,
+  promoCodeAnimation,
+  validPromoCode,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -85,14 +90,16 @@ const CartScreen = ({
           contentContainerStyle={{ paddingBottom: 0 }}
         />
         <CategoriesTitleHeader title={t('promo_code')} />
-        <PromoCodeInput textValue={textValue} setTextValue={setTextValue} />
+        <PromoCodeInput textValue={textValue} setTextValue={setTextValue} validPromoCode={validPromoCode} />
         <View style={styles.buttonWrapper}>
           <GreenButton
-            onPress={() => navigate('emptyCart')}
+            onPress={() => handlePromoCodeValidation()}
             backgroundColor={colors.inputBorderColor}
             color={colors.lightBlackColor}
             title={t('apply_code')}
             buttonHeight={50}
+            animation={promoCodeAnimation}
+            
           />
         </View>
         <CategoriesTitleHeader title={t('delivery_pickup_option')} />
@@ -113,7 +120,7 @@ const CartScreen = ({
           title={t('cradit_card_text')}
           description="Select card"
           secondTitle={t('bank_transfer')}
-          secondDescription="Pick up yourself at:"
+          second Description="Pick up yourself at:"
           radioButtonStatus={paymentMethod}
           setRadioButtonStatus={setPaymentMethod}
         />
@@ -132,12 +139,20 @@ const CartScreen = ({
             backgroundColor={colors.blackColor}
             buttonHeight={57}
             title={t('place_order')}
+            
           />
           <VerificationModal
             title={t('pay_bank_transfer')}
             description={t('bank_transfer_description')}
             isModalVisible={isModalVisible}
             toggleModal={toggleModal}
+          />
+
+          <VerificationModal
+            title={t('invalid_promocode')}
+            description={t('bank_transfer_description')}
+            isModalVisible={isPromoCodeModaVidible}
+            toggleModal={promoCodeToggleModal}
           />
         </View>
       </ScrollView>

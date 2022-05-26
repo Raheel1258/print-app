@@ -19,6 +19,7 @@ export const PRODUCT_PRICE_CHART = "PRODUCT_PRICE_CHART";
 //Cart_Types
 export const CART_DETAIL = "CART_DETAIL";
 export const ADD_TO_CART = "ADD_TO_CART";
+export const PROMO_CODE = "PROMO_CODE";
 
 //Activity_Types
 export const ACTIVITY_DETAIL = "ACTIVITY_DETAIL";

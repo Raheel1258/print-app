@@ -21,6 +21,13 @@ function setAddToCart(item){
     }
 }
 
+function setPromoCodeDetail(data){
+    return{
+        type: types.PROMO_CODE,
+        data
+    }
+}
+
 
 //Get Cart Data
 export const getCartData = (setAnimation) => {
@@ -54,7 +61,7 @@ export const addToCart = (setAddToCartAnimation, data) => {
             .then(async (res) => {
                 console.log("item added response" , res);
                 setAddToCartAnimation(false);
-                // dispatch(setAddToCart(res?.data?.cart));
+                //dispatch(setAddToCart(res?.data?.cart));
             })
             .catch((err) => {
                 console.log("err" , err.response);
@@ -67,6 +74,29 @@ export const addToCart = (setAddToCartAnimation, data) => {
 
     }
 }
+
+//Promo Code
+export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode ) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setPromoCodeAnimation(true);
+        axios.get(`${Api}/promocode/find/${'628b6ef529b7754e3498bd6d'}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("PromoCode res" , res);
+                //dispatch(setPromoCodeDetail(res?.data));
+                setPromoCodeAnimation(false);
+                setValidPromoCode(true);
+
+            })
+            .catch((err) => {
+                promoCodeToggleModal();
+                console.log("promo code err" , err.response);
+                setPromoCodeAnimation(false);
+                setValidPromoCode(false);
+            });
+    }
+}
+
 
 
 

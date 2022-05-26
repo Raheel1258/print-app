@@ -17,7 +17,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
         <View style={styles.paddingContainer}>
       <Image style={styles.cardImage}   source={{uri: item?.image[0]}} />
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
-        <Text style={styles.cardPrice}>From HK$ {item?.category?.pricePerHunderd} / 100pcs</Text>
+        <Text style={styles.cardPrice}>{item?.category?.pricePerHunderd}</Text>
         <View style={styles.descriptionContainer}>
           <View style={styles.dotContainer} />
           <Text style={styles.cardDescription}>{item?.feature1}</Text>

@@ -12,7 +12,7 @@ const SingleCardDescription = ({item}) => {
         {item?.category?.name}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-        From HK$ {item?.category?.pricePerHunderd} / 100 pc
+       {item?.category?.pricePerHunderd}
       </Text>
       <Text style={styles.productDescription}>
         {item?.category?.description}

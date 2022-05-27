@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCurrentUserDetail, updateCurrentUserDetail} from "../store/actions/userPersonalDetailAction"
+import {getCurrentUserDetail, updateCurrentUserDetail, deleteAddress} from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
@@ -45,6 +45,10 @@ const AccountDetailContainer = () => {
     dispatch(updateCurrentUserDetail(setAnimationUpdateUser, values));
   }
 
+  const handleUserAddressRemove = (addressId) => {
+    dispatch(deleteAddress(addressId));
+  }
+
   return (
     <View style={styles.container}>
       <AccountDetailScreen
@@ -57,6 +61,7 @@ const AccountDetailContainer = () => {
         handleUpdatedPersonalDetail={handleUpdatedPersonalDetail}
         userAddresses={userAddresses}
         animationUpdateUser={animationUpdateUser}
+        handleUserAddressRemove={handleUserAddressRemove}
       />
     </View>
   );

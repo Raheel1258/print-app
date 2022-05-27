@@ -103,7 +103,7 @@ const SingleProductScreen = ({
                   Childern={
                     <Image transition={false} resizeMode='contain' style={item?.name == "Square" ? styles.squareStyling : styles.squareImage} source={{ uri: item?.image }} />}
                   cardStandard={item?.name}
-                  cardDimensions={`${item?.height}mm x ${item?.width}mm`}
+                  cardDimensions={`${item?.width}mm x ${item?.height}mm`}
                   selectedSize={selectedSize?.name}
                   onPress={() => setSelectedSize(item)}
                 />
@@ -118,7 +118,7 @@ const SingleProductScreen = ({
         {!(category == "BOOKLET" || category == 'BUSINESS_CARD') &&
           <>
             <CategoriesTitleHeader title={t('paper_type')} />
-            <UploadFileComponent onPress={() => allCardsPaperTypeRBSheet.current.open()} title={t('cover_pages')} selection={allCardsPaperType} />
+            <UploadFileComponent onPress={() => allCardsPaperTypeRBSheet.current.open()} title={t('paper')} selection={allCardsPaperType} />
           </>
         }
 
@@ -194,7 +194,7 @@ const SingleProductScreen = ({
                       Childern={
                         <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
                       cardStandard={item?.cutName}
-                      cardDimensions={`${item?.cutHeight}mm x ${item?.cutWidth}mm`}
+                      cardDimensions={`${item?.cutWidth}mm x ${item?.cutHeight}mm`}
                       selectedSize={selectedCut?.cutName}
                       onPress={() => setSelectedCut(item)}
                     />
@@ -217,7 +217,7 @@ const SingleProductScreen = ({
                       Childern={
                         <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
                       cardStandard={item?.foldingName}
-                      cardDimensions={`${item?.foldingHeight}mm x ${item?.foldingWidth}mm`}
+                      cardDimensions={`${item?.foldingWidth}mm x ${item?.foldingHeight}mm`}
                       selectedSize={selectedFolding?.foldingName}
                       onPress={() => setSelectedFolding(item)}
                     />
@@ -240,7 +240,7 @@ const SingleProductScreen = ({
                       Childern={
                         <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
                       cardStandard={item?.windowName}
-                      cardDimensions={`${item?.windowHeight} x ${item?.windowWidth}`}
+                      cardDimensions={`${item?.windowWidth} x ${item?.windowHeight}`}
                       selectedSize={selectedWindow?.windowName}
                       onPress={() => setSelectedWindow(item)}
                     />
@@ -250,9 +250,6 @@ const SingleProductScreen = ({
             </View>
           </>
         }
-
-
-
         <CategoriesTitleHeader title={t('choose_quantity')} />
         <QuantityTable quantityTable={item?.priceChart} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
         <CategoriesTitleHeader title={t('send_preview')} />
@@ -621,7 +618,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
     textAlign: 'center',
-    marginTop: '15@s',
+    marginTop: '20@s',
   },
   mailText: {
     fontFamily: fonts.avenir_regular,

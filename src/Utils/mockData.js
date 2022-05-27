@@ -32,25 +32,25 @@ export const BusinessCardData = [
     "feature1": "Thick, smooth and premium",
     "feature2": "Perfect for professionals",
     "size": [
-      {
-        "name": "Standard",
-        "height": "90",
-        "width": "54",
-        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+       { 
+         "name": "Standard",
+         "width": "90",
+         "height":"54",
+         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+       },
+  
+      { 
+         "name": "Shortened",
+         "width": "84",
+         "height":"55",
+         "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
       },
-
-      {
-        "name": "Shortened",
-        "height": "84",
-        "width": "55",
-        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
-      },
-
-      {
-        "name": "Square",
-        "height": "56",
-        "width": "56",
-        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
+  
+      { 
+         "name": "Square",
+         "width": "56",
+         "height":"56",
+         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
       }
     ],
 
@@ -134,22 +134,22 @@ export const BusinessCardData = [
     "size": [
       {
         "name": "Standard",
-        "height": "90",
-        "width": "54",
+        "width": "90",
+        "height":"54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
 
       {
         "name": "Shortened",
-        "height": "84",
-        "width": "55",
-        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
-      },
-
-      {
+        "width": "84",
+        "height":"55",
+        "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
+     },
+ 
+     { 
         "name": "Square",
-        "height": "56",
         "width": "56",
+        "height":"56",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
       }
     ],
@@ -232,22 +232,22 @@ export const BusinessCardData = [
     "size": [
       {
         "name": "Standard",
-        "height": "90",
-        "width": "54",
+        "width": "90",
+        "height":"54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
 
       {
         "name": "Shortened",
-        "height": "84",
-        "width": "55",
-        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
-      },
-
-      {
+        "width": "84",
+        "height":"55",
+        "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
+     },
+ 
+     { 
         "name": "Square",
-        "height": "56",
         "width": "56",
+        "height":"56",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
       }
     ],
@@ -331,22 +331,22 @@ export const BusinessCardData = [
     "size": [
       {
         "name": "Standard",
-        "height": "90",
-        "width": "54",
+        "width": "90",
+        "height":"54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
       },
 
       {
         "name": "Shortened",
-        "height": "84",
-        "width": "55",
-        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
-      },
-
-      {
+        "width": "84",
+        "height":"55",
+        "image" : "https://print-print-app.s3.ap-south-1.amazonaws.com/shortened.png"
+     },
+ 
+     { 
         "name": "Square",
-        "height": "56",
         "width": "56",
+        "height":"56",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/Square.png"
       }
     ],
@@ -431,22 +431,22 @@ export const productListBookletData = [
     "feature1": "Pages are binded together using staple",
     "feature2": "Ideal for brochures, magazines, price lists, etc",
     "size": [
-      {
-        "name": "A6",
-        "height": "90",
-        "width": '54'
+       { 
+         "name": "A6",
+         "width": "105",
+         "height":"148"
+       },
+  
+      { 
+         "name": "A5",
+         "width": "148",
+         "height":"210"
       },
-
-      {
-        "name": "A5",
-        "height": "84",
-        "width": '55'
-      },
-
-      {
-        "name": "A4",
-        "height": "56",
-        "width": '56'
+  
+      { 
+         "name": "A4",
+         "width": "210",
+         "height":"297"
       }
     ],
 
@@ -518,7 +518,7 @@ export const productListPosterData = [
     ],
     "title": "POSTER",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": 'Rectangular',
       "name": "Rectangular Poster",
       "pricePerHunderd": "68",
       "description": "Create impactful posters in either A3 or A4. Choose between two high quality paper to make your design stand out.",
@@ -530,18 +530,18 @@ export const productListPosterData = [
     "feature1": "Create impacful poster in the size of A3 or A4",
     "feature2": "High quality paper to make your design stand out",
     "size": [
-      {
-        "name": "A4",
-        "height": "210",
-        "width": '297',
-        "image": "xyz"
-      },
-
-      {
-        "name": "A3",
-        "height": "297",
-        "width": '420',
-        "image": 'xyz'
+       { 
+         "name": "A4",
+         "width": "210",
+         "height":"297",
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "A3",
+         "width": "297",
+         "height":"420",
+         "image" : 'xyz'
       },
     ],
 
@@ -616,7 +616,7 @@ export const productListFlyerData = [
     ],
     "title": "FLYERS_LEAFLET",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": 'Flyer-Rectangle',
       "name": "Rectangular Flyer",
       "pricePerHunderd": "68",
       "description": "Spread the word in a familiar way with this traditional flyer style. A choice of 3 high quality paper types.",
@@ -628,27 +628,27 @@ export const productListFlyerData = [
     "feature1": "Best for traditional marketing campaign",
     "feature2": "Choice of 3 high quality paper types",
     "size": [
-      {
-        "name": "A6",
-        "height": "105",
-        "width": '148.5',
-        "image": "xyz"
+       { 
+         "name": "A6",
+         "width": "105",
+         "height":"148.5",
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "A5",
+         "width": "148.5",
+         "height":"210",
+         "image" : 'xyz'
       },
-
-      {
-        "name": "A5",
-        "height": "148.5",
-        "width": '210',
-        "image": 'xyz'
+  
+      { 
+         "name": "A4",
+         "width": "210",
+         "height":"297",
+         "image": 'xyz'
       },
-
-      {
-        "name": "A4",
-        "height": "210",
-        "width": '297',
-        "image": 'xyz'
-      },
-
+      
     ],
 
     "priceChart": [
@@ -716,21 +716,21 @@ export const productListFlyerData = [
     "feature1": "Organise your content in foldable pages",
     "feature2": "Perfect for informational and educational pamphlet",
     "size": [
-      {
-        "name": "A6",
-        "height": "210",
-        "width": '148.5',
-        "image": "xyz"
+       { 
+         "name": "A6",
+         "width": "148.5",
+         "height":"210",
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "A5",
+         "width": "210",
+         "height":'297',
+         "image" : 'xyz'
       },
-
-      {
-        "name": "A5",
-        "height": "297",
-        "width": '210',
-        "image": 'xyz'
-      },
-
-
+  
+      
     ],
 
     "priceChart": [
@@ -806,12 +806,12 @@ export const productListEnvelopeData = [
     "feature1": "High quality envelope perfect for branding",
     "feature2": "With a choice of window or window-less",
     "size": [
-      {
-        "name": "4” x 9” (101.6mm x 228.6mm)",
-        "height": "25",
-        "width": '25',
-        "image": "xyz"
-      },
+       { 
+         "name": "4” x 9” (101.6mm x 228.6mm)",
+         "width": "25",
+         "height":'25',
+         "image": "xyz"
+       },
 
     ],
 
@@ -875,7 +875,7 @@ export const productListStickerData = [
     ],
     "title": "STICKERS_LABEL",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": "Square",
       "name": "Round sticker",
       "pricePerHunderd": "68",
       "description": "All stickers are printed on durable and tear-proof material. Ideal for logos, branding and packaging.",
@@ -887,30 +887,30 @@ export const productListStickerData = [
     "feature1": "Durable and tear-proof material",
     "feature2": "Ideal for logos, branding and packaging",
     "size": [
-      {
-        "name": "Tiny",
-        "height": "25",
-        "width": '25',
-        "image": "xyz"
+       { 
+         "name": "Tiny",
+         "width": "25",
+         "height":"25",
+         "image": "xyz"
+       },
+  
+      { 
+         "name": "Small",
+         "width": "65",
+         "height":'65',
+         "image" : 'xyz'
       },
-
-      {
-        "name": "Small",
-        "height": "65",
-        "width": '65',
-        "image": 'xyz'
+  
+      { 
+         "name": "Standard",
+         "width": "100",
+         "height":'100',
+         "image": 'xyz'
       },
-
-      {
-        "name": "Standard",
-        "height": "100",
-        "width": '100',
-        "image": 'xyz'
-      },
-      {
+      { 
         "name": "Large",
-        "height": "125",
-        "width": '125',
+        "width": "125",
+        "height":'125',
         "image": 'xyz'
       }
 
@@ -976,7 +976,7 @@ export const productListLetterheadData = [
     ],
     "title": "LETTERHEAD",
     "category": {
-      "productType": 'BizCard-Premium',
+      "productType": 'letterhead',
       "name": "Letterhead (A4)",
       "pricePerHunderd": "68",
       "description": "Professional letterhead that carries your company brand. Premium paper suitable for all major printers.",
@@ -988,12 +988,12 @@ export const productListLetterheadData = [
     "feature1": "Professional letterhead that carries your company brand",
     "feature2": "Premium paper suitable for all major printers",
     "size": [
-      {
-        "name": "A4",
-        "height": "25",
-        "width": '25',
-        "image": "xyz"
-      },
+       { 
+         "name": "A4",
+         "width": "25",
+         "height":"25",
+         "image": "xyz"
+       },
 
     ],
 

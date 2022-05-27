@@ -21,15 +21,20 @@ function setUserDetail(user) {
     }
 }
 
+function setUserCard(userCard) {
+    return {
+        type: types.USER_CARD,
+        userCard,
+    };
+}
+
 //Add Address
 export const addAddress = (setAnimation, data, addAddressRBSheet) => {
-    console.log("cccc" , data)
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
         axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("add new add" , res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'
@@ -45,10 +50,57 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
-
     }
 }
 
+//Remove address
+export const deleteAddress = (addressid) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/user/address/delete/${addressid}`,{} ,{ headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                dispatch(setUserDetail(res?.data));
+                dispatch(setUserAddress(res?.data?.addresses))
+                dispatch(setUserCard(res?.data?.cards))
+                Toast.show({
+                    type: 'success',
+                    text1: 'Removed Address Successfully',
+                });
+            })
+            .catch((err) => {
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+    }
+}
+
+//update address
+export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        addAddressRBSheet.current.close();
+        setAnimation(true);
+        axios.patch(`${Api}/user/address/update/${_id}`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                Toast.show({
+                    type: 'success',
+                    text1: 'You are successfully added your address'
+                })
+                setAnimation(false);
+                dispatch(setUserAddress(res?.data?.addresses));
+                addAddressRBSheet.current.close();
+            })
+            .catch((err) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+    }
+}
 
 //Get Current UserPersonal detail
 export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
@@ -66,6 +118,7 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
+                dispatch(setUserCard(res?.data?.cards))
             })
             .catch((err) => {
                 setAnimation(false);
@@ -80,7 +133,6 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
 
 //Update User Detail
 export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
-    console.log("user from upload", userData);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimationUpdateUser(true);
@@ -89,6 +141,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 setAnimationUpdateUser(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
+                dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
                     text1: 'user updated successfully',

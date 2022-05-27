@@ -5,12 +5,12 @@ import { ScaledSheet } from 'react-native-size-matters';
 import MasterCard from '../Assests/Svgs/MasterCard';
 import { colors, fonts } from '../Utils/theme';
 
-const MyAddresses = ({ title, description, address, card }) => {
+const MyAddresses = ({ title, description, address, card , handleUserAddressRemove, id , refRBSheet, setUpdatedAddress, index}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{title}</Text>
-        <Text style={styles.headerPrimary}>{description}</Text>
+       {index == 0 && <Text style={styles.headerPrimary}>{description}</Text>}
       </View>
       {address ?
         <>
@@ -19,9 +19,9 @@ const MyAddresses = ({ title, description, address, card }) => {
             <Text style={styles.addressText}>{address?.addressLine2}</Text>
           </View>
           <View style={styles.editableContainer}>
-        <TouchableOpacity onPress={() => console.log("edited address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
-        <TouchableOpacity  onPress={() => console.log("Remove address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(address)}} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
+        {index != 0 && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+        <TouchableOpacity  onPress={() => handleUserAddressRemove(id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
       </View>
           
         </>
@@ -119,7 +119,7 @@ const styles = ScaledSheet.create({
     marginRight: '5@s'
   },
   paddingWrapper: {
-    padding: '4@s'
+    padding: '3@s'
   },
   cardPrivacyContainer: {
     flexDirection: 'row',

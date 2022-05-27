@@ -190,6 +190,27 @@ export const chi = {
     sheet_login_in: '登录',
     Signup_today: '立即注册下达打印订单',
     you_signed_out: '您现在已退出',
-    otp_required:"需要验证码"
+    otp_required:"需要验证码",
+
+    //new Changing
+    size:'尺寸:',
+    choose_SpotUv: '选择点UV',
+    spotUv:'点UV效果',
+    quantity_text: '数量',
+    price_HK:'价格 (港币)',
+    unit_text: '单价',
+    show_more: '显示更多数量',
+    pay_bank_transfer: '通过银行转帐/支票付款',
+    bank_transfer_description: "在您下订单后，我们将向您显示我们的银行账户信息.",
+    paper_type:'选择纸张类型',
+    cover_pages: '封面',
+    inner_pages: '内页:',
+    number_pages: '选择页数',
+    side_number: '选择边数',
+    side : '边:',
+    choose_cut: '选择剪裁',
+    choose_folding: '选择折叠',
+    choose_window: '选择窗口',
+    paper:"纸张类型:"
   },
 };

@@ -1,19 +1,22 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import {addToCart} from "../store/actions/cartAction"
+import {addToCart} from "../store/actions/cartAction";
+import {getPriceChart} from "../store/actions/productList";
 
 import SingleProductScreen from '../Screens/SingleProductScreen';
 import { colors } from '../Utils/theme';
 
 
 const SingleProductContainer = ({ route }) => {
+ 
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
-
+  const priceChartParameter = "";
+  
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const refRBSheet = useRef();
@@ -27,11 +30,12 @@ const SingleProductContainer = ({ route }) => {
   const noOfPagesInnerPagesRBSheet = useRef();
   const allCardsPaperTypeRBSheet = useRef();
   const numberOfSidesRBSheet = useRef();
-
+  
+  const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
-
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
+  const [shape, setShape] = useState(item?.category == 'STICKERS_LABEL' ?? item?.category?.productType);
   const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);
   const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing && item?.finishing[0]);
@@ -52,6 +56,40 @@ const SingleProductContainer = ({ route }) => {
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
+
+  const getPriceChartApiParameter = () => {
+    if(category == "BUSINESS_CARD" && item?.category?.productType != "BizCard-spot UV"){
+      priceChartParameter = `businesscard?product=${item?.category?.productType}?size=${selectedSize}?corner?${selectedCorner}`;
+    }
+    else if(category == "BUSINESS_CARD" && item?.category?.productType == "BizCard-spot UV"){
+      priceChartParameter = `businesscard?product=${item?.category?.productType}?size=${selectedSize}?corner?${selectedCorner}?spotuvside=${selectSpotUv}`;
+    }
+    else if(category == "BOOKLET"){
+      priceChartParameter = `booklet?product=${item?.category?.productType}?size=${selectedSize}?innerpage?${noOfPagesInnerPages}`;
+    }
+    else if(category == "POSTER"){
+      priceChartParameter = `poster?product=${item?.category?.productType}?size=${selectedSize}?papertype?${allCardsPaperType}?sides=${numberOfSides}`;
+    }
+    else if(category == "FLYERS_LEAFLET" && item?.category?.productType != "Flyer-Foldable"){
+      priceChartParameter = `flyer?product=${item?.category?.productType}?size=${selectedSize}?papertype?${allCardsPaperType}`;
+    }
+    else if(category == "FLYERS_LEAFLET" && item?.category?.productType == "Flyer-Foldable"){
+      priceChartParameter = `flyer?product=${item?.category?.productType}?size=${selectedSize}?papertype?${allCardsPaperType}?folding=${selectedFolding}`;
+    }
+    else if(category == "ENVELOPE"){
+      priceChartParameter = `envelop?product=${item?.category?.productType}?window=${selectedWindow}`;
+    }
+    else if(category == "LETTERHEAD"){
+      priceChartParameter = `letterhead?product=${item?.category?.productType}`;
+    }
+    else {
+      priceChartParameter = `sticker?product=${item?.category?.productType}?size=${selectedSize}?shape=${shape}`;
+    }
+  }
+
+  useEffect(()=>{
+    // dispatch(getPriceChart(setPriceChartAnimation, priceChartParameter));
+  },[]);
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)

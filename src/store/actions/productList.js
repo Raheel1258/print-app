@@ -1,4 +1,5 @@
 import Toast from 'react-native-toast-message';
+import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import {
   productListBusinessCardData,
@@ -15,16 +16,23 @@ import { Api } from '../../Utils/Api'
 import * as types from '../types/types'
 
 
-export const setProductList = data => {
+export const setProductList = (data) => {
   return {
     type: types.PRODUCT_LIST,
-    Payload: data,
+    data,
   };
+}
+
+export const setPriceChart = (priceChart) => {
+  return {
+    type: types.PRODUCT_PRICE_CHART,
+    priceChart
+  }
 }
 
 
 export const getProductListByCategory = (category, setAnimation) => async dispatch => {
-  setAnimation(true);
+  // setAnimation(true);
   try {
     if (category === "BOOKLET") {
       dispatch(setProductList(productListBookletData))
@@ -86,12 +94,11 @@ export const getCategoriesProduct = (category, setAnimation) => {
     axios.get(`${Api}/products/find/${category}`)
       .then(async (res) => {
         console.log("res from product category" , res)
-        dispatch(setProductList(res?.data));
         setAnimation(false);
+        dispatch(setProductList(res?.data));
       })
       .catch((err) => {
         setAnimation(false);
-        console.log("Error from product category", err?.response);
         Toast.show({
           type: 'error',
           text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
@@ -99,3 +106,24 @@ export const getCategoriesProduct = (category, setAnimation) => {
       });
   }
 };
+
+export const getPriceChart = (setPriceChartAnimation, priceChartParameter) => {
+  return async (dispatch) => {
+    setPriceChartAnimation(true);
+    const accessToken = await Storage.retrieveData('token')
+    axios.get(`${Api}/price-chart/${priceChartParameter}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+      .then(async (res) => {
+        console.log("price chart" , res)
+        // dispatch(setPriceChart(res?.data));
+        // setPriceChartAnimation(false);
+      })
+      .catch((err) => {
+        // setPriceChartAnimation;
+        console.log("error", err?.response);
+        Toast.show({
+          type: 'error',
+          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+        });
+      });
+  }
+}; 

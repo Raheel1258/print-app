@@ -49,7 +49,7 @@
     successfully_description: 'Your password has now been successfully updated. Sign in to your account using your new password.',
   //<=Single Product Screen=>
     choose_finishing: 'Choose finishing',
-    finishing:'Finishing',
+    finishing:'Finishing:',
     business_card: 'Business Card',
     choose_size: 'Choose size',
     choose_book_size:'Choose size (when book is folded)',
@@ -157,7 +157,7 @@
     phone_pad: '95746232',
     add_address: 'Add Address',
     add_new_address: 'Add New Address',
-    add_new_cardet_card: 'Add New Cardet Card',
+    add_new_cardet_card: 'Add New Cardit Card',
     card_number: 'Card Number',
     name_on_card: 'Name on Card',
     expiry_month: 'Expiry Month',
@@ -186,7 +186,7 @@
  //<=Change Password=>
     change_password: 'Change password',   
     current_password: 'Current Password',
-    password_changed: ' Password changed!',
+    password_changed: 'Password changed!',
     successfully_changed_password: 'Your password has been changed successfully',
     confirm_password_required:'Confirm password is also required',
  //<=Change Password=>  
@@ -202,7 +202,7 @@
     otp_required:"Verification code is required",
 
     //new changing
-    size:'Size',
+    size:'Size:',
     choose_SpotUv: 'Choose spot UV',
     spotUv:'Spot UV effect',
     quantity_text: 'Quantity',
@@ -219,7 +219,9 @@
     side : 'side:',
     choose_cut: 'Choose cut',
     choose_folding: 'Choose Folding',
-    choose_window: 'Choose Window'
+    choose_window: 'Choose Window',
+    paper:"Paper type:",
+    update_address: 'Update Address'
 
   },
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -17,8 +17,10 @@ import {
 } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses, animationUpdateUser }) => {
+const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses, animationUpdateUser, handleUserAddressRemove }) => {
   const { t } = useTranslation();
+  const [updateAddress , setUpdatedAddress] = useState(undefined);
+  console.log("updated" , updateAddress);
   return (
     <>
       {!animation ? <View style={styles.container}>
@@ -107,12 +109,12 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
             <CategoriesTitleHeader
               title={t('my_address')}
               description={t('new_address')}
-              onPress={() => addAddressRBSheet.current.open()}
+              onPress={() => {addAddressRBSheet.current.open(), setUpdatedAddress(undefined)}}
             />
           </View>
           {userAddresses?.length > 0 ? userAddresses?.map((item, index) => {
             return <>
-              <MyAddresses address={item} title={item?.fullName} description="Primary" />
+              <MyAddresses index={index} setUpdatedAddress={setUpdatedAddress} refRBSheet={addAddressRBSheet} id={item?._id} handleUserAddressRemove={handleUserAddressRemove} address={item} title={item?.fullName} description="Primary"/>
               {index != userAddresses.length - 1 && <View style={styles.borderBottom} />}
             </>
           }) : <Text style={styles.emptyBox}>No address added</Text>}
@@ -129,8 +131,8 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
           <View style={styles.screenBorderBottom} />
         </ScrollView>
         <BottomSheetComponent
-          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} />}
-          title={t('add_new_address')}
+          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet}  updateAddress={updateAddress} setUpdatedAddress={setUpdatedAddress}/>}
+          title={updateAddress == undefined ? t('add_new_address') : t('update_address')}
           note={false}
           refRBSheet={addAddressRBSheet}
         />

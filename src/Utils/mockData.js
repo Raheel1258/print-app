@@ -1167,7 +1167,6 @@ export const productListPosterData =  [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
   "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
   
-  
     ],
     "title": "POSTER",
     "category": {

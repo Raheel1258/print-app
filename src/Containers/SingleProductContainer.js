@@ -90,9 +90,9 @@ const SingleProductContainer = ({ route }) => {
     }
   }
 
-  useEffect(()=>{
-    dispatch(getPriceChart(setPriceChartAnimation, priceChartParameter));
-  },[]);
+  // useEffect(()=>{
+  //   dispatch(getPriceChart(setPriceChartAnimation, priceChartParameter));
+  // },[]);
 
   // useEffect(() => {
   //   if(state){
@@ -142,14 +142,14 @@ const SingleProductContainer = ({ route }) => {
 
   const handleAddToCart = () => {
     const obj = {
-      image: item?.image,
+      image: item?.image[0],
       title: item?.title,
       category: item?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl:designUrl,
+      designUrl:designUrl[0],
       preview: preview,
-      numberofPages: item?.numberOfPages[0] ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
+      numberOfPages: item?.numberOfPages[0] ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:[noOfPagesCoverPages]}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:[noOfPagesInnerPages]}] : undefined,
       cut: selectedCut,
       window: selectedWindow,
       folding: selectedFolding,
@@ -160,24 +160,30 @@ const SingleProductContainer = ({ route }) => {
       remarks: remarks,
       cut: selectedCut,
     }
+    Object.keys(obj).forEach(key => {
+      if (obj[key] === undefined) {
+        delete obj[key];
+      }
+    });
+    console.log("obj" , obj);
     dispatch(addToCart(setAddToCartAnimation, obj));
     
-    console.log("selected size", selectedSize);
-    console.log("selected corner", selectedCorner);
-    console.log('review', preview);
-    console.log('remarks', remarks);
-    console.log("new obj", obj);
-    console.log("choose-finishing", selectFinishing);
-    console.log('choose cut' , selectedCut)
-    console.log("choose paper Type" , allCardsPaperType);
-    console.log('choose quantity Table' , selectedPriceChart)
-    console.log("folding" , selectedFolding);
-    console.log("choose window" , selectedWindow);
-    console.log("chooose cut" , selectedCut);
-    console.log("categor" , category);
-    console.log("coverpage number of pages" , noOfPagesCoverPages);
-    console.log("innerpages number of pages" , noOfPagesInnerPages);
-    console.log("designUrl", designUrl);
+    // console.log("selected size", selectedSize);
+    // console.log("selected corner", selectedCorner);
+    // console.log('review', preview);
+    // console.log('remarks', remarks);
+    // console.log("new obj", obj);
+    // console.log("choose-finishing", selectFinishing);
+    // console.log('choose cut' , selectedCut)
+    // console.log("choose paper Type" , allCardsPaperType);
+    // console.log('choose quantity Table' , selectedPriceChart)
+    // console.log("folding" , selectedFolding);
+    // console.log("choose window" , selectedWindow);
+    // console.log("chooose cut" , selectedCut);
+    // console.log("categor" , category);
+    // console.log("coverpage number of pages" , noOfPagesCoverPages);
+    // console.log("innerpages number of pages" , noOfPagesInnerPages);
+    // console.log("designUrl", designUrl);
   }
 
   return (

@@ -34,35 +34,30 @@ function setPromoCodeDetail(data){
 
 //Get Cart Data
 export const getCartData = (setAnimation, navigate) => {
+    console.log("get  all data");
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        if(cartItem.length > 0){
-
-            dispatch(setCartDetail(cartItem));
-        }
-        else{
-            navigate("emptyCart");
-        }
-        // axios.post(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
-        //     .then(async (res) => {
-        //         console.log("cart responsed" , res);
-        //         setAnimation(false);
-        //         dispatch(setCartDetail(res?.data?.cart));
-        //     })
-        //     .catch((err) => {
-        //         setAnimation(false);
-        //         Toast.show({
-        //             type: 'error',
-        //             text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
-        //         });
-        //     });
+        axios.get(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("cart responsed gart" , res);
+                setAnimation(false);
+                dispatch(setCartDetail(res?.data?.products));
+            })
+            .catch((err) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
 
     }
 }
 
 //Add to cart
 export const addToCart = (setAddToCartAnimation, data) => {
+    
     console.log("item data from frontend" , data);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
@@ -71,11 +66,34 @@ export const addToCart = (setAddToCartAnimation, data) => {
             .then(async (res) => {
                 console.log("item added response" , res);
                 setAddToCartAnimation(false);
-                //dispatch(setAddToCart(res?.data?.cart));
+                dispatch(setCartDetail(res?.data?.products));
             })
             .catch((err) => {
                 console.log("err" , err.response);
                 setAddToCartAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+
+    }
+}
+
+
+export const deleteProduct = (setAnimation, _id) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setAnimation(true);
+        axios.patch(`${Api}/cart/item/delete/${_id}`,{}, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("delete res" , res);
+                setAnimation(false);
+                dispatch(setCartDetail(res?.data?.products));
+            })
+            .catch((err) => {
+                console.log("delete err" , err.response);
+                setAnimation(false);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',

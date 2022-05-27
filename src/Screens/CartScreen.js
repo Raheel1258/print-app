@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, ScrollView } from 'react-native';
+import { View, Text, FlatList, ScrollView, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -68,23 +68,28 @@ const CartScreen = ({
   handlePromoCodeValidation,
   promoCodeAnimation,
   validPromoCode,
-  handleEditProduct
+  handleEditProduct,
+  handleRemoveProduct,
+  animation
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (
-    <MyCartComponent  
-    image={item?.image[0]} 
-    edit={true} 
-    remove={true} 
-    index={index} 
-    length={cartItem?.length} 
-    item={item} 
-    navigate={navigate}
-    handleEditProduct={ handleEditProduct}
+    <MyCartComponent
+      image={item?.image}
+      edit={true}
+      remove={true}
+      index={index}
+      length={cartItem?.length}
+      item={item}
+      navigate={navigate}
+      handleEditProduct={handleEditProduct}
+      handleRemoveProduct={handleRemoveProduct}
     />
   );
   return (
+    <>
+    {!animation ?
     <View style={styles.container}>
       <ScrollView nestedScrollEnabled={true}>
         <BackArrowHeader
@@ -110,7 +115,6 @@ const CartScreen = ({
             title={t('apply_code')}
             buttonHeight={50}
             animation={promoCodeAnimation}
-            
           />
         </View>
         <CategoriesTitleHeader title={t('delivery_pickup_option')} />
@@ -150,7 +154,7 @@ const CartScreen = ({
             backgroundColor={colors.blackColor}
             buttonHeight={57}
             title={t('place_order')}
-            
+
           />
           <VerificationModal
             title={t('pay_bank_transfer')}
@@ -256,7 +260,10 @@ const CartScreen = ({
         height={420}
         onClose={false}
       />
-    </View>
+    </View>:<View style={styles.loaderContainer}>
+            <ActivityIndicator size="small" color="#000" animating={true} />
+          </View> }
+    </>
   );
 };
 
@@ -280,7 +287,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
     marginBottom: '25@s',
     marginTop: '5@s',
@@ -290,7 +297,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
   },
   fullRefundText: {
@@ -299,11 +306,16 @@ const styles = ScaledSheet.create({
   logoWrapper: {
     alignItems: 'center',
     marginVertical: '15@s',
-    marginBottom:'25@s'
+    marginBottom: '25@s'
   },
   signinButtonWrapper: {
     marginTop: '10@s',
   },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default CartScreen;

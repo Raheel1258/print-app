@@ -4,7 +4,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import { colors,fonts } from '../Utils/theme';
 
 
-const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit=false, remove=false, item, navigate }) => {
+const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit=false, remove=false, item, navigate, handleRemoveProduct }) => {
   return (
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
       <Image  transition={false} style={styles.cardImage} source={{uri:image}} />
@@ -13,16 +13,16 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
         <Text style={styles.cardTitle}>HK$ {item?.category?.pricePerHunderd}</Text>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
-          <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.quantity}</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart[0]?.quantity}</Text>
         </View>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Size:</Text>
-          <Text style={styles.quantityText} numberOfLines={1}>{item?.size?.name}</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.size[0]?.name}</Text>
         </View>
-        {item?.paperType && <View style={styles.quantityContainer}>
+       <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Paper type:</Text>
-          <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.paperType}</Text>
-        </View>}
+          <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.category?.paperType}</Text>
+        </View>
 
         {item?.folding && <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Folding: </Text>
@@ -33,7 +33,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
           <TouchableOpacity onPress={()=> console.log("edit product")} style={styles.paddingWrapper}>
           <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=> console.log("remove product")} style={styles.paddingWrapper}>
+          <TouchableOpacity onPress={()=> handleRemoveProduct(item?._id)} style={styles.paddingWrapper}>
           <Text style={styles.editText}>Remove</Text>
           </TouchableOpacity>
         </View>}

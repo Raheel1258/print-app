@@ -5,7 +5,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
 import Stripe from 'react-native-stripe-api';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData,PromoCodeVerifed } from '../store/actions/cartAction'
+import { getCartData,PromoCodeVerifed, deleteProduct } from '../store/actions/cartAction'
 import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
@@ -77,7 +77,7 @@ const CartContainer = () => {
 
   useEffect(()=> {
     dispatch(getCartData(setAnimation, navigate));
-  })
+  },[])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
@@ -122,6 +122,11 @@ const CartContainer = () => {
     console.log("id" , id);
   }
 
+  const handleRemoveProduct = (_id) => {
+    console.log("removed id", _id);
+    dispatch(deleteProduct(setAnimation, _id));
+  }
+
   const handlePayment = () => {
     // genToken();
     navigate('payment');
@@ -160,6 +165,8 @@ const CartContainer = () => {
         promoCodeAnimation={promoCodeAnimation}
         validPromoCode={validPromoCode}
         handleEditProduct={handleEditProduct}
+        handleRemoveProduct={handleRemoveProduct}
+        animation={animation}
       />
     </View>
   );

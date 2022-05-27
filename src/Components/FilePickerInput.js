@@ -38,8 +38,6 @@ const FilePickerInput = ({result,setResult}) => {
     }
   },[])
 
-
-
   const removeHandler = (index) => {
     setResult((prev)=>{
       return prev.filter((x,i) => i!=index)

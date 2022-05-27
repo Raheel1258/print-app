@@ -25,6 +25,7 @@ import {
   ResetPasswordContainer,
   ChangePasswordContainer,
   ActivityContainer,
+  PaymentContainer,
 } from '../Containers';
 import {colors, fonts} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -86,16 +87,22 @@ const App = () => {
         component={AccountDetailContainer}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="orderReceived"
         component={OrderReceivedContainer}
         options={{headerShown: false}}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name="emptyCart"
         component={EmptyCartContainer}
         options={{headerShown: false}}
+      /> */}
+      <Stack.Screen
+        name="payment"
+        component={PaymentContainer}
+        options={{headerShown: false}}
       />
+
       <Stack.Screen
         name="myOrder"
         component={MyOrderContainer}
@@ -249,7 +256,7 @@ const CartStack = () => {
         component={OrderReceivedContainer}
         options={{headerShown: false}}
       />
-            <Cart.Screen
+      <Cart.Screen
         name="emptyCart"
         component={EmptyCartScreen}
         options={{headerShown: false}}

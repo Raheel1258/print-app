@@ -5,7 +5,8 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
 import Stripe from 'react-native-stripe-api';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCartData} from '../store/actions/cartAction'
+import { getCartData,PromoCodeVerifed } from '../store/actions/cartAction'
+import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
@@ -13,18 +14,24 @@ import CartScreen from '../Screens/CartScreen';
 import { colors } from '../Utils/theme';
 
 const CartContainer = () => {
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
+  const dispatch = useDispatch();
+
   const addAddressRBSheet = useRef();
   const addCardetCardRBSheet = useRef();
   const creditCardRBSheet = useRef();
   const authRBSheet = useRef();
   const refRBSheet = useRef();
 
-
+  const [validPromoCode, setValidPromoCode]= useState(false);
+  const [promoCodeAnimation, setPromoCodeAnimation]= useState(false);
   const [textValue, setTextValue] = useState('');
   const [delivery, setDelivery] = useState(true);
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
@@ -68,10 +75,6 @@ const CartContainer = () => {
     },
   ]);
 
-  const navigation = useNavigation();
-  const isFocused = useIsFocused();
-  const dispatch = useDispatch();
-
   useEffect(()=> {
     dispatch(getCartData(setAnimation, navigate));
   })
@@ -97,30 +100,32 @@ const CartContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-   const handlePayment = () => {
-    genToken();
-   }
 
-   const genToken = async () => {
-    const apiKey =
-      'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
-    const client = new Stripe(apiKey);
+  const promoCodeToggleModal = () => {
+    setIsPromoCodeModaVidible(!isPromoCodeModaVidible);
+  }
 
-    const token = await client.createToken({
-      number: 4242424242424242,
-      exp_month: 4,
-      exp_year: 2024,
-      cvc: 1234,
-    });
-
-    console.log("tttttoken" , token);
-
-    if (token.id) {
-     console.log("token" , token.id)
-    } else {
-      console.log("no token")
+  const handlePromoCodeValidation = () => {
+    if (textValue.length == 0) {
+      Toast.show({
+        type: 'error',
+        text1: 'Enter Promo Code',
+      });
     }
-  };
+    else {
+      dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode));
+     
+    }
+  }
+  
+  const handleEditProduct = (id) => {
+    console.log("id" , id);
+  }
+
+  const handlePayment = () => {
+    // genToken();
+    navigate('payment');
+  }
 
   return (
     <View style={styles.container}>
@@ -133,6 +138,8 @@ const CartContainer = () => {
         setTextValue={setTextValue}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
+        isPromoCodeModaVidible={isPromoCodeModaVidible}
+        promoCodeToggleModal={promoCodeToggleModal}
         data={data}
         cardData={cardData}
         setCardData={setCardData}
@@ -149,6 +156,10 @@ const CartContainer = () => {
         goBack={goBack}
         handlePayment={handlePayment}
         cartItem={cartItem}
+        handlePromoCodeValidation={handlePromoCodeValidation}
+        promoCodeAnimation={promoCodeAnimation}
+        validPromoCode={validPromoCode}
+        handleEditProduct={handleEditProduct}
       />
     </View>
   );

@@ -11,7 +11,7 @@ const AddressTextField = (props) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.titleText}>{title}{error ? <Text style={styles.textError}>{error}</Text> : null }</Text>
+        <Text style={styles.titleText}>{title}</Text>
         <TextInput
           {...props}
           style={styles.textInput}
@@ -19,7 +19,8 @@ const AddressTextField = (props) => {
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}
           placeholderTextColor={placeholderTextColor}
-        />
+        /> 
+      {error ? <Text style={styles.textError}>{error}</Text> : null }
       </View>
       <TouchableOpacity style={styles.iconWrapper}>
         {childern}
@@ -33,8 +34,8 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.inputBorderColor,
+    // borderBottomWidth: 1,
+    // borderBottomColor: colors.inputBorderColor,
     marginBottom:'20@s'
   },
   titleText: {
@@ -47,12 +48,12 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
   },
   textError:  {
-    fontSize: '13@s',
+    fontSize: '10@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    fontWeight: '600',
     fontStyle: 'normal',
     lineHeight: '22@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: 'red',
     marginBottom:'7@s',
@@ -68,6 +69,8 @@ const styles = ScaledSheet.create({
     width: '290@s',
     marginBottom: '5@s',
     paddingLeft: '0@s',
+      borderBottomWidth: 1,
+    borderBottomColor: colors.inputBorderColor,
   },
   iconWrapper: {
     transform: [{rotate: '180deg'}],

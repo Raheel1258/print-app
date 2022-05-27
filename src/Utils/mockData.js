@@ -499,9 +499,7 @@ export const productListBookletData = [
           '40 pages', '44 pages', '48 pages', '52 pages', '56 pages', '60 pages']
       }
     ],
-
-    "finishing": ['Matte', 'Matte-Silk', 'Glossy']
-
+    "finishing": ['Matte' , 'Matte-Silk','Glossy']
   },
 
 ]
@@ -512,9 +510,8 @@ export const productListPosterData = [
   {
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
-      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
-
-
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
     ],
     "title": "POSTER",
     "category": {
@@ -970,9 +967,8 @@ export const productListLetterheadData = [
   {
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
-      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
-
-
+  "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+  
     ],
     "title": "LETTERHEAD",
     "category": {
@@ -1042,9 +1038,16 @@ export const productListLetterheadData = [
   },
 ]
 
+export default activity = [
+  {
+    
+  }
+] 
+
 
 export const cartItem = [
   {
+    "_id":"12345",
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
       "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
@@ -1085,6 +1088,7 @@ export const cartItem = [
     },
   },
   {
+    "_id":"123456",
     "image": [
       "https://print-print-app.s3.amazonaws.com/1.jpg",
       "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"

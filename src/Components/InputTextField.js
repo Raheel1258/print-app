@@ -57,9 +57,9 @@ const styles = ScaledSheet.create({
     marginBottom:'10@s',
   },
   textError:  {
-    fontSize: '13@s',
+    fontSize: '10@s',
     fontStyle: 'normal',
-    fontWeight: '400',
+    fontWeight: '600',
     fontStyle: 'normal',
     lineHeight: '22@s',
     letterSpacing: '0.2@s',

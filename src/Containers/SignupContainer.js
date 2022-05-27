@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { types } from '@babel/core';
 import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { signup } from '../store/actions/auth';
-import Toast from 'react-native-toast-message';
-
-import SignupScreen from '../Screens/SignupScreen';
 import {colors} from '../Utils/theme';
+
+import OneSignal from 'react-native-onesignal';
+import SignupScreen from '../Screens/SignupScreen';
 
 const SignupContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
+  const [deviceId, setDeviceId] = useState(null);
   const [signupState, setSignupState] = useState({
     firstName: '',
     lastName: '',
@@ -22,6 +23,16 @@ const SignupContainer = () => {
     email:'',
     password:''
   });
+
+  useEffect(()=> {
+    getUserDeviceId();
+  }, [])
+
+  const getUserDeviceId = async () => {
+    await OneSignal.getDeviceState().then(res => {
+      setDeviceId(`${res?.userId}`);
+    });
+  };
   
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -31,14 +42,13 @@ const SignupContainer = () => {
     navigation.goBack();
   };
 
-  const handleChange = (name, value) => {
-    console.log(name , value )
-    setSignupData({...signupData, [name]: value});
-  };
+  // const handleChange = (name, value) => {
+  //   console.log(name , value )
+  //   setSignupData({...signupData, [name]: value});
+  // };
 
   const handleSignup = (values) => {
-    console.log('sign up' , values);
-    dispatch(signup(values, navigation, setAnimation));
+    dispatch(signup({...values, deviceId:deviceId}, navigation, setAnimation));
     // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     // if (
     //   signupData?.email.length > 0 &&
@@ -140,7 +150,7 @@ const SignupContainer = () => {
   return (
     <View style={styles.container}>
       <SignupScreen 
-      handleChange={handleChange} 
+      // handleChange={handleChange} 
       navigate={navigate} 
       handleSignup={handleSignup} 
       animation={animation}

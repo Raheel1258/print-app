@@ -2,21 +2,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import {addToCart} from "../store/actions/cartAction";
 import {getPriceChart} from "../store/actions/productList";
-
 import SingleProductScreen from '../Screens/SingleProductScreen';
 import { colors } from '../Utils/theme';
-
 
 const SingleProductContainer = ({ route }) => {
  
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
   const priceChartParameter = "";
-  
+
+  // const state = useSelector(state => state)
+
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const refRBSheet = useRef();
@@ -31,20 +31,23 @@ const SingleProductContainer = ({ route }) => {
   const allCardsPaperTypeRBSheet = useRef();
   const numberOfSidesRBSheet = useRef();
   
+  const [designUrl,setDesignUrl] = useState([]);
+  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
-  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({url:[{url_link:''}]})
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
   const [shape, setShape] = useState(item?.category == 'STICKERS_LABEL' ?? item?.category?.productType);
-  const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);
+  const [selectedSize, setSelectedSize] = useState(item?.size && item?.size[0]);
   const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing && item?.finishing[0]);
-  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUv && item?.spotUv[0]);
+  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUV && item?.spotUV[0]);
   const [selectedPriceChart, setSelectedPriceChart] = useState(item?.priceChart[0] && item?.priceChart[0]);
   const [paperTypeCoverPages , setPaperTypeCoverPages] = useState(item?.paperType && item?.paperType[0]);
   const [paperTypeInnerPages , setPaperTypeInnerPages] = useState(item?.paperType && item?.paperType[1]);
   const [noOfPagesCoverPages , setNoOfPagesCoverPages] = useState(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
   const [noOfPagesInnerPages , setNoOfPagesInnerPages] = useState(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
+
+
 
   const [allCardsPaperType , setAllCardsPaperType ] = useState(item?.paperType && item?.paperType[0]);
   const [numberOfSides, setNumberOfSides] = useState(item?.numberOfSides && item?.numberOfSides[0]);
@@ -88,8 +91,28 @@ const SingleProductContainer = ({ route }) => {
   }
 
   useEffect(()=>{
-    // dispatch(getPriceChart(setPriceChartAnimation, priceChartParameter));
+    dispatch(getPriceChart(setPriceChartAnimation, priceChartParameter));
   },[]);
+
+  // useEffect(() => {
+  //   if(state){
+  //   const [shape, setShape] = useState(item?.category == 'STICKERS_LABEL' ?? item?.category?.productType);
+  // const [selectedSize, setSelectedSize] = useState(item?.size && item?.size[0]);
+  // const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
+  // const [selectFinishing, setSelectFinishing] = useState(item?.finishing && item?.finishing[0]);
+  // const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUV && item?.spotUV[0]);
+  // const [selectedPriceChart, setSelectedPriceChart] = useState(item?.priceChart[0] && item?.priceChart[0]);
+  // const [paperTypeCoverPages , setPaperTypeCoverPages] = useState(item?.paperType && item?.paperType[0]);
+  // const [paperTypeInnerPages , setPaperTypeInnerPages] = useState(item?.paperType && item?.paperType[1]);
+  // const [noOfPagesCoverPages , setNoOfPagesCoverPages] = useState(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
+  // const [noOfPagesInnerPages , setNoOfPagesInnerPages] = useState(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
+  // const [allCardsPaperType , setAllCardsPaperType ] = useState(item?.paperType && item?.paperType[0]);
+  // const [numberOfSides, setNumberOfSides] = useState(item?.numberOfSides && item?.numberOfSides[0]);
+  // const [selectedCut, setSelectedCut] = useState(item?.cut && item?.cut[0]);
+  // const [selectedFolding, setSelectedFolding] = useState(item?.folding && item?.folding[0]);
+  // const [selectedWindow , setSelectedWindow] = useState(item?.window && item?.window[0]);
+  //   }
+  // },[state])
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -111,7 +134,11 @@ const SingleProductContainer = ({ route }) => {
   const handleAddFileUrl = (values) => {
     console.log("val" , values)
     setInitialValuesAddUrl(values);
+    const retrieveArray = values?.url?.map(item => item.url_link);
+    setDesignUrl(retrieveArray);
   }
+
+  
 
   const handleAddToCart = () => {
     const obj = {
@@ -120,9 +147,9 @@ const SingleProductContainer = ({ route }) => {
       category: item?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl:"https://www.google.com",
+      designUrl:designUrl,
       preview: preview,
-      numberofPages: item?.numberOfPages ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
+      numberofPages: item?.numberOfPages[0] ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:noOfPagesCoverPages}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:noOfPagesInnerPages}] : undefined,
       cut: selectedCut,
       window: selectedWindow,
       folding: selectedFolding,
@@ -150,6 +177,7 @@ const SingleProductContainer = ({ route }) => {
     console.log("categor" , category);
     console.log("coverpage number of pages" , noOfPagesCoverPages);
     console.log("innerpages number of pages" , noOfPagesInnerPages);
+    console.log("designUrl", designUrl);
   }
 
   return (

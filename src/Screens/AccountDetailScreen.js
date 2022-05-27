@@ -124,7 +124,7 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
             <CategoriesTitleHeader
               title={t('my_payment')}
               description={t('new_card')}
-              onPress={() => addCardetCardRBSheet.current.open()}
+              // onPress={() => addCardetCardRBSheet.current.open()}
             />
             <MyAddresses card title="Peter Park" description="Primary" />
           </View>

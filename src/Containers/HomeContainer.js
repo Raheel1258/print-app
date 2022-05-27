@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import {View} from 'react-native';
 import { types } from '@babel/core';
+import Storage from '../Utils/Storage';
 
 import { ScaledSheet } from 'react-native-size-matters';
 import {getCategories,getHomeSliderImages, testSlider} from "../store/actions/categories";
@@ -22,6 +23,13 @@ const HomeContainer = () => {
   const homeSliderImages =  homeSliderImagesData?.map(item => (item.image));
   const homeSliderImagesCaptions = homeSliderImagesData?.map(item => (item.caption));
   
+
+  // useEffect(() => {
+  //   Storage.retrieveData('token').then((token) => {
+  //     token != null && getUserDeviceId();
+  //   });
+  // }, []);
+  
   
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -31,6 +39,7 @@ const HomeContainer = () => {
     dispatch(getCategories(setAnimation));
     dispatch(getHomeSliderImages());
   },[])
+
 
   return (
     <View style={styles.container}>

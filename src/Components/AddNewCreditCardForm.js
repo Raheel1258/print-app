@@ -1,33 +1,21 @@
 import React, {useState} from 'react';
-import { ScrollView} from 'react-native';
+import { ScrollView,View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-
 import RightArrow from '../Assests/Svgs/LeftArrow';
 import {AddressTextField, GreenButton} from '../Components';
 import { colors } from '../Utils/theme';
 import { Formik } from 'formik';
 import { addCreditCardSchema } from '../Utils/validationSchema';
 
-const AddNewCreditCardForm = () => {
-  const [animation, setAnimation] = useState(false);
-  const [creditCardState, setCreditCardState] = useState({
-    cardNumber:'',
-    cardName:'',
-    expiryMonth:'',
-    expiryYear:''
-  })
-
-  const handleCreditCard = (values) => {
-    console.log("values from creditCard" , values);
-
-  }
+const AddNewCreditCardForm = ({creditCardState, handleCreditCard, animation}) => {
   const {t} = useTranslation();
   return (
     <ScrollView>
       <Formik initialValues={creditCardState} validationSchema={() =>addCreditCardSchema(t)} onSubmit={(values) => handleCreditCard(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
-              const { cardNumber, cardName, expiryMonth, expiryYear } = values;
+              const { cardNumber, cardName, expiryMonth, expiryYear, cvc } = values;
               return <>
+              <View style={{marginHorizontal:15, paddingTop:20  }} >
                 <AddressTextField
                   value={cardNumber}
                   error={touched.cardNumber && errors.cardNumber}
@@ -52,29 +40,43 @@ const AddNewCreditCardForm = () => {
                   value={expiryMonth}
                   error={touched.expiryMonth && errors.expiryMonth}
                   title={t('expiry_month')}
-                  keyboardType="default"
+                  keyboardType="phone-pad"
                   placeholder={t('month_text')}
                   placeholderTextColor={colors.blackColor}
                   name="expiryMonth"
                   secureTextEntry={false}
                   onChangeText={handleChange('expiryMonth')}
                   onBlur={handleBlur('expiryMonth')}
-                  childern={<RightArrow/>}
+                  // childern={<RightArrow/>}
                 />
                  <AddressTextField
                   value={expiryYear}
                   error={touched.expiryYear && errors.expiryYear}
                   title={t('expiry_year')}
-                  keyboardType="default"
+                  keyboardType="phone-pad"
                   placeholder={t('year_text')}
                   placeholderTextColor={colors.blackColor}
                   name="expiryYear"
                   secureTextEntry={false}
                   onChangeText={handleChange('expiryYear')}
                   onBlur={handleBlur('expiryYear')}
-                  childern={<RightArrow/>}
+                  // childern={<RightArrow/>}
                 />
-                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={animation} title={t('add_card')}/>
+                <AddressTextField
+                  value={cvc}
+                  error={touched.cvc && errors.cvc}
+                  title={t('Cvc')}
+                  keyboardType="phone-pad"
+                  // placeholder={t('cvc_number')}
+                  placeholderTextColor={colors.blackColor}
+                  name="cvc"
+                  secureTextEntry={false}
+                  onChangeText={handleChange('cvc')}
+                  onBlur={handleBlur('cvc')}
+                  // childern={<RightArrow/>}
+                />
+                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={animation} title={t('pay')}/>
+                </View>
               </>
             }}
           </Formik>

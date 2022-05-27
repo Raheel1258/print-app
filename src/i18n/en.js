@@ -221,7 +221,14 @@
     choose_folding: 'Choose Folding',
     choose_window: 'Choose Window',
     paper:"Paper type:",
-    update_address: 'Update Address'
+    update_address: 'Update Address',
+
+    //Latest changing
+    Cvc:'Cvc',
+    cvc_number: '123',
+    payment:'Payment',
+    pay:'Pay',
+    invalid_promocode: "Invalid promo code"
 
   },
 };

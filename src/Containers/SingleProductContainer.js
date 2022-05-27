@@ -40,7 +40,7 @@ const SingleProductContainer = ({ route }) => {
   const [selectedSize, setSelectedSize] = useState( item?.size && item?.size[0]);
   const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing && item?.finishing[0]);
-  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUv && item?.spotUv[0]);
+  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUV && item?.spotUV[0]);
   const [selectedPriceChart, setSelectedPriceChart] = useState(item?.priceChart[0] && item?.priceChart[0]);
   const [paperTypeCoverPages , setPaperTypeCoverPages] = useState(item?.paperType && item?.paperType[0]);
   const [paperTypeInnerPages , setPaperTypeInnerPages] = useState(item?.paperType && item?.paperType[1]);

@@ -20,7 +20,6 @@ import { colors, fonts } from '../Utils/theme';
 const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses, animationUpdateUser, handleUserAddressRemove }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
-  console.log("updated" , updateAddress);
   return (
     <>
       {!animation ? <View style={styles.container}>

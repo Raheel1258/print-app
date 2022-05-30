@@ -1057,7 +1057,7 @@ export const cartItem = [
     "category": {
       "productType": "BizCard-Premium",
       "name": "Premium (Thick) Business Card",
-      "pricePerHunderd": "68",
+      "pricePerHunderd": "From HK$ 258 / 100pc",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
       "paperType": "Woodfree Card(350g)",
       "leadTime": "2-3 business days",
@@ -1098,7 +1098,7 @@ export const cartItem = [
     "category": {
       "productType": "BizCard-Premium",
       "name": "Premium (Thick) Business Card",
-      "pricePerHunderd": "68",
+      "pricePerHunderd": "From HK$ 258 / 100pc",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
       "paperType": "Woodfree Card(350g)",
       "leadTime": "2-3 business days",
@@ -1146,7 +1146,7 @@ export const orderData = [
     "category": {
       "productType": "BizCard-Premium",
       "name": "Premium (Thick) Business Card",
-      "pricePerHunderd": "68",
+      "pricePerHunderd": "From HK$ 258 / 100pc",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
       "paperType": "Woodfree Card(350g)",
       "leadTime": "2-3 business days",
@@ -1177,7 +1177,7 @@ export const orderData = [
     "category": {
       "productType": "BizCard-Premium",
       "name": "Premium (Thick) Business Card",
-      "pricePerHunderd": "68",
+      "pricePerHunderd": "From HK$ 258 / 100pc",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
       "paperType": "Woodfree Card(350g)",
       "leadTime": "2-3 business days",
@@ -1221,7 +1221,7 @@ export const orderData = [
     "category": {
       "productType": "BizCard-Premium",
       "name": "Premium (Thick) Business Card",
-      "pricePerHunderd": "68",
+      "pricePerHunderd": "From HK$ 258 / 100pc",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
       "paperType": "Woodfree Card(350g)",
       "leadTime": "2-3 business days",
@@ -1252,7 +1252,7 @@ export const orderData = [
     "category": {
       "productType": "BizCard-Premium",
       "name": "Premium (Thick) Business Card",
-      "pricePerHunderd": "68",
+      "pricePerHunderd": "From HK$ 258 / 100pc",
       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
       "paperType": "Woodfree Card(350g)",
       "leadTime": "2-3 business days",

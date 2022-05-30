@@ -10,7 +10,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
       <Image  transition={false} style={styles.cardImage} source={{uri:image}} />
       <View>
         <Text numberOfLines={1} style={{...styles.cardTitle,fontFamily:fontFamily}}>{item?.category?.name}</Text>
-        <Text style={styles.cardTitle}>HK$ {item?.category?.pricePerHunderd}</Text>
+        <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.quantity}</Text>

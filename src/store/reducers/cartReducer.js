@@ -4,6 +4,7 @@ import * as types from "../types/types"
 
 const cartReducer = createReducer({}, {
 	[types.CART_DETAIL](state, action) {
+		console.log('action', action.cart)
 		return {
 			...state,
 			cartDetail: action.cart,

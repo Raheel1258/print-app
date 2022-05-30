@@ -63,11 +63,6 @@ const App = () => {
         options={{headerShown: false}}
       /> */}
       <Stack.Screen
-        name="cart"
-        component={CartContainer}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
         name="productsListing"
         component={ProductsListingContainer}
         options={{headerShown: false}}

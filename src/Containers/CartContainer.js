@@ -76,8 +76,8 @@ const CartContainer = () => {
   ]);
 
   useEffect(()=> {
-    dispatch(getCartData(setAnimation, navigate));
-  },[])
+     dispatch(getCartData(setAnimation, navigate));
+  },[isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
@@ -124,7 +124,7 @@ const CartContainer = () => {
 
   const handleRemoveProduct = (_id) => {
     console.log("removed id", _id);
-    dispatch(deleteProduct(setAnimation, _id));
+    dispatch(deleteProduct(setAnimation, _id, navigate));
   }
 
   const handlePayment = () => {

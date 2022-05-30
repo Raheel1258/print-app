@@ -13,6 +13,7 @@ const SingleProductContainer = ({ route }) => {
  
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
+  console.log("item" , item?._id);
   const priceChartParameter = "";
 
   // const state = useSelector(state => state)
@@ -166,7 +167,7 @@ const SingleProductContainer = ({ route }) => {
       }
     });
     console.log("obj" , obj);
-    dispatch(addToCart(setAddToCartAnimation, obj));
+    dispatch(addToCart(setAddToCartAnimation, obj, navigate));
     
     // console.log("selected size", selectedSize);
     // console.log("selected corner", selectedCorner);

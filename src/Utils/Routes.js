@@ -303,10 +303,8 @@ const MyTabs = ({}) => {
           title: '',
           tabBarIcon: ({focused, color}) => (
             <View >
-             {cartItem ? <View style={styles.cartNumContainer}>
+             {cartItem && <View style={styles.cartNumContainer}>
                 <Text style={styles.cartNumText}>{cartItem?.length && cartItem?.length}</Text>
-              </View> : <View style={styles.cartNumContainer}>
-                <Text style={styles.cartNumText}>0</Text>
               </View> }
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>

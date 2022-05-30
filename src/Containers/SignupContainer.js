@@ -48,7 +48,12 @@ const SignupContainer = () => {
   // };
 
   const handleSignup = (values) => {
-    dispatch(signup({...values, deviceId:deviceId}, navigation, setAnimation));
+    var day = new Date().getDate();
+      var month = new Date().getMonth() + 1;
+      var year = new Date().getFullYear();
+      var date = day + '-' + month + '-' + year;
+      console.log("date1",date);
+      dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp"}, navigation, setAnimation));
     // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     // if (
     //   signupData?.email.length > 0 &&

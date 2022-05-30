@@ -163,7 +163,6 @@ export const resetPasswordAction = (data, navigation, setAnimation, toggleModal)
 
 //Logout API Action
 export const logout = (navigation, setAnimation) => {
-    console.log("logout")
     return async (dispatch) => {
         setAnimation(true);
         await Storage.removeData('token');

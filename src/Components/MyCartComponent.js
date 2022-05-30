@@ -13,11 +13,11 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
         <Text style={styles.cardTitle}>HK$ {item?.category?.pricePerHunderd}</Text>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
-          <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart[0]?.quantity}</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.quantity}</Text>
         </View>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Size:</Text>
-          <Text style={styles.quantityText} numberOfLines={1}>{item?.size[0]?.name}</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.size?.name}</Text>
         </View>
        <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Paper type:</Text>

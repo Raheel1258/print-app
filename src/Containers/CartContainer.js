@@ -36,8 +36,6 @@ const CartContainer = () => {
   const [animation, setAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
 
-  console.log("cart item" , cartItem)
-
   const [data, setData] = useState([
     {
       id: '1',

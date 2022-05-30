@@ -3,6 +3,7 @@ import { View, Text, FlatList, ScrollView, ActivityIndicator } from 'react-nativ
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
+import { EmptyCartContainer } from '../Containers';
 
 import {
   BackArrowHeader,
@@ -91,7 +92,7 @@ const CartScreen = ({
     <>
     {!animation ?
     <View style={styles.container}>
-      <ScrollView nestedScrollEnabled={true}>
+     {cartItem?.length > 0 ? <ScrollView nestedScrollEnabled={true}>
         <BackArrowHeader
           arrow={false}
           title={t('cart_text')}
@@ -170,7 +171,7 @@ const CartScreen = ({
             toggleModal={promoCodeToggleModal}
           />
         </View>
-      </ScrollView>
+      </ScrollView>  : <EmptyCartContainer/>}
 
       <BottomSheetComponent
         refRBSheet={refRBSheet}

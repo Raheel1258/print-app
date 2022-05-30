@@ -21,10 +21,10 @@ const EmptyCartContainer = () => {
     navigate("cart")
   }
 
-  useEffect(() => {
-    console.log('hello');
-    dispatch(getCartData(()=>{},navigate))
-  },[cartItem, isFocused])
+  // useEffect(() => {
+  //   console.log('hello');
+  //   dispatch(getCartData(()=>{},navigate))
+  // },[cartItem, isFocused])
 
   return (
     <View style={styles.container}>

@@ -5,6 +5,7 @@ import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import {Text, View,Platform} from 'react-native';
+import { useSelector } from 'react-redux';
 
 import {
   SigninContainer,
@@ -82,16 +83,6 @@ const App = () => {
         component={AccountDetailContainer}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
-        name="orderReceived"
-        component={OrderReceivedContainer}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-        name="emptyCart"
-        component={EmptyCartContainer}
-        options={{headerShown: false}}
-      /> */}
       <Stack.Screen
         name="payment"
         component={PaymentContainer}
@@ -251,11 +242,11 @@ const CartStack = () => {
         component={OrderReceivedContainer}
         options={{headerShown: false}}
       />
-      <Cart.Screen
+      {/* <Cart.Screen
         name="emptyCart"
         component={EmptyCartScreen}
         options={{headerShown: false}}
-      />
+      /> */}
       <Cart.Screen
         name="Home"
         component={App}
@@ -265,8 +256,9 @@ const CartStack = () => {
   );
 };
 
-const MyTabs = () => {
+const MyTabs = ({}) => {
   const {t} = useTranslation();
+  const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   return (
     <Tab.Navigator
       initialRouteName="homeStack"
@@ -312,7 +304,7 @@ const MyTabs = () => {
           tabBarIcon: ({focused, color}) => (
             <View >
               <View style={styles.cartNumContainer}>
-                <Text style={styles.cartNumText}>2</Text>
+                <Text style={styles.cartNumText}>{cartItem?.length && cartItem?.length}</Text>
               </View>
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>

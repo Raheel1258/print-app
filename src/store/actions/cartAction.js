@@ -10,9 +10,7 @@ import * as types from '../types/types';
 
 
 function setCartDetail(cart) {
-
-    console.log('cart coming', cart)
-
+    console.log("reducer fun",)
     return {
         type: types.CART_DETAIL,
         cart,
@@ -36,16 +34,12 @@ function setPromoCodeDetail(data){
 
 //Get Cart Data
 export const getCartData = (setAnimation, navigate) => {
-    console.log("get  all data");
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
         axios.get(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log('response cart', res)
                 dispatch(setCartDetail(res?.data?.products));
-                console.log("length", res?.data?.products?.length)
-                res?.data?.products?.length == 0 ? navigate("emptyCart") : navigate("cart"); 
                 setAnimation(false);
             })
             .catch((err) => {
@@ -67,9 +61,9 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
         setAddToCartAnimation(true);
         axios.patch(`${Api}/cart/item/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("item added response xxxxx" , res?.data?.products);
                 setAddToCartAnimation(false);
-                dispatch(setCartDetail(res?.data?.products));
+                console.log("item added to cart" , res?.data)
+                dispatch(setAddToCart(res?.data?.products));
                 Toast.show({
                     type: 'success',
                     text1: 'Item added to cart successfully',
@@ -77,7 +71,6 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
                 navigate("cart")
             })
             .catch((err) => {
-                console.log("err" , err.response);
                 setAddToCartAnimation(false);
                 Toast.show({
                     type: 'error',
@@ -95,13 +88,12 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
         setAnimation(true);
         axios.patch(`${Api}/cart/item/delete/${_id}`,{}, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("delete res" , res);
-                dispatch(setCartDetail(res?.data?.products));
-                res?.data?.products?.length == 0 && navigate("emptyCart"); 
+                console.log("cart delete" , res?.data )
+                // dispatch(setCartDetail(res?.data?.products)); 
+                dispatch(getCartData(setAnimation,navigate )); 
                 setAnimation(false);
             })
             .catch((err) => {
-                console.log("delete err" , err.response);
                 setAnimation(false);
                 Toast.show({
                     type: 'error',

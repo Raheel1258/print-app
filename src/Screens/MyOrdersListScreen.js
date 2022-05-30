@@ -77,7 +77,7 @@ const MyOrdersListScreen = ({ goBack, orderData }) => {
       <ScrollView nestedScrollEnabled={true}>
         <View style={styles.orderRefContainer}>
           <Text style={styles.orderRefText}>Order reference:</Text>
-          <Text style={styles.orderRefText}>RHF39284-23</Text>
+          <Text style={styles.orderRefText}>{orderData?._id}</Text>
         </View>
         <Text style={styles.orderCompleted}>Order Completed</Text>
         <FlatList

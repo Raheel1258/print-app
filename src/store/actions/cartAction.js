@@ -90,7 +90,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
             .then(async (res) => {
                 console.log("cart delete" , res?.data )
                 // dispatch(setCartDetail(res?.data?.products)); 
-                dispatch(getCartData(setAnimation,navigate )); 
+                dispatch(getCartData(setAnimation,navigate)); 
                 setAnimation(false);
             })
             .catch((err) => {

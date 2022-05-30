@@ -24,6 +24,7 @@ const CartContainer = () => {
   const authRBSheet = useRef();
   const refRBSheet = useRef();
 
+  const [subTotal, setSubTotal] = useState(0);
   const [validPromoCode, setValidPromoCode]= useState(false);
   const [promoCodeAnimation, setPromoCodeAnimation]= useState(false);
   const [textValue, setTextValue] = useState('');
@@ -35,6 +36,8 @@ const CartContainer = () => {
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
+
+  console.log("cart item for price", cartItem);
 
   const [data, setData] = useState([
     {
@@ -87,6 +90,10 @@ const CartContainer = () => {
   useEffect(() => {
   }, [authRBSheet]);
 
+  useEffect(()=>{
+    handleTotalAmount();
+  },[cartItem])
+
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -130,6 +137,15 @@ const CartContainer = () => {
     navigate('payment');
   }
 
+  const handleTotalAmount = () => {
+    cartItem && cartItem?.map((item)=>{
+      const quantity = parseInt(item?.priceChart?.quantity);
+      const unitPrice = parseFloat(item?.priceChart?.unitPrice);
+      let sub_total = (quantity*unitPrice) ;
+      setSubTotal(sub_total);
+    })
+  }
+
   return (
     <View style={styles.container}>
       <CartScreen
@@ -165,6 +181,7 @@ const CartContainer = () => {
         handleEditProduct={handleEditProduct}
         handleRemoveProduct={handleRemoveProduct}
         animation={animation}
+        subTotal={subTotal}
       />
     </View>
   );

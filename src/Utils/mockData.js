@@ -1154,16 +1154,16 @@ export const orderData = [
       "Sizes": "3 sizes"
     },
     "size":
-      [{
+      {
         "name": "Standard",
         "height": "90",
         "width": "54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
-      }],
-    "priceChart": [{
+      },
+    "priceChart": {
       "quantity": "100",
       "unitPrice": "0.5"
-    }],
+    },
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
@@ -1185,16 +1185,16 @@ export const orderData = [
       "Sizes": "3 sizes"
     },
     "size":
-      [{
+      {
         "name": "Standard",
         "height": "90",
         "width": "54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
-      }],
-    "priceChart": [{
+      },
+    "priceChart": {
       "quantity": "100",
       "unitPrice": "0.5"
-    }],
+    },
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
@@ -1229,16 +1229,16 @@ export const orderData = [
       "Sizes": "3 sizes"
     },
     "size":
-      [{
+      {
         "name": "Standard",
         "height": "90",
         "width": "54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
-      }],
-    "priceChart": [{
+      },
+    "priceChart": {
       "quantity": "100",
       "unitPrice": "0.5"
-    }],
+    },
     "preview": true,
     "designUrl": "string",
     "remarks": "string",
@@ -1260,16 +1260,16 @@ export const orderData = [
       "Sizes": "3 sizes"
     },
     "size":
-      [{
+      {
         "name": "Standard",
         "height": "90",
         "width": "54",
         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
-      }],
-    "priceChart": [{
+      },
+    "priceChart": {
       "quantity": "100",
       "unitPrice": "0.5"
-    }],
+    },
     "preview": true,
     "designUrl": "string",
     "remarks": "string",

@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 
 import {colors, fonts} from '../Utils/theme';
 
-const OrderSummaryComponent = () => {
+const OrderSummaryComponent = ({subTotal}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('sub_total')}</Text>
-        <Text style={styles.pricesText}>HK$ 280.00</Text>
+        <Text style={styles.pricesText}>HK$ {subTotal}</Text>
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('delivery_order_text')}</Text>

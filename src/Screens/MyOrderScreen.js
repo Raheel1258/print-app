@@ -8,73 +8,70 @@ import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { BackArrowHeader, OrdersComponent, BottomSheetComponent, GreenButton } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const activeOrderData = [
-  {
-    id: '1',
-    orderNotify: 'Order received',
-  },
-  {
-    id: '2',
-    orderNotify: 'Out for delivery',
-  },
-  {
-    id: '3',
-    orderNotify: 'Ready for pickup',
-  },
-  {
-    id: '4',
-    orderNotify: 'Cancelled',
-  },
-  {
-    id: '5',
-    orderNotify: 'Order received',
-  },
-  {
-    id: '6',
-    orderNotify: 'Printing in process',
-  },
-  {
-    id: '7',
-    orderNotify: 'Order completed',
-  },
-];
-const completedOrderData = [
-  {
-    id: '1',
-    orderNotify: 'Order completed',
-  },
-  {
-    id: '2',
-    orderNotify: 'Order completed',
-  },
-  {
-    id: '3',
-    orderNotify: 'Order completed',
-  },
-  {
-    id: '4',
-    orderNotify: 'Order completed',
-  },
-  {
-    id: '5',
-    orderNotify: 'Order completed',
-  },
-  {
-    id: '6',
-    orderNotify: 'Order completed',
-  },
-  {
-    id: '7',
-    orderNotify: 'Order completed',
-  },
-];
+// const activeOrderData = [
+//   {
+//     id: '1',
+//     orderNotify: 'Order received',
+//   },
+//   {
+//     id: '2',
+//     orderNotify: 'Out for delivery',
+//   },
+//   {
+//     id: '3',
+//     orderNotify: 'Ready for pickup',
+//   },
+//   {
+//     id: '4',
+//     orderNotify: 'Cancelled',
+//   },
+//   {
+//     id: '5',
+//     orderNotify: 'Order received',
+//   },
+//   {
+//     id: '6',
+//     orderNotify: 'Printing in process',
+//   },
+//   {
+//     id: '7',
+//     orderNotify: 'Order completed',
+//   },
+// ];
+// const completedOrderData = [
+//   {
+//     id: '1',
+//     orderNotify: 'Order completed',
+//   },
+//   {
+//     id: '2',
+//     orderNotify: 'Order completed',
+//   },
+//   {
+//     id: '3',
+//     orderNotify: 'Order completed',
+//   },
+//   {
+//     id: '4',
+//     orderNotify: 'Order completed',
+//   },
+//   {
+//     id: '5',
+//     orderNotify: 'Order completed',
+//   },
+//   {
+//     id: '6',
+//     orderNotify: 'Order completed',
+//   },
+//   {
+//     id: '7',
+//     orderNotify: 'Order completed',
+//   },
+// ];
 
 const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData }) => {
-  console.log("all orders", getAllOrderData);
   const completedOrder = getAllOrderData?.filter((item) => item?.status == "order completed");
   const activeOrder = getAllOrderData?.filter((item) => item?.status != "order completed");
-  console.log("completed", completedOrder);
-  console.log("active", activeOrder);
   const { t } = useTranslation();
   const layout = useWindowDimensions();
 

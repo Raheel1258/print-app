@@ -14,57 +14,57 @@ import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
 import SecondBusinessCard from '../Assests/Images/Premium-business-card-two.png';
 import { colors, fonts } from '../Utils/theme';
 
-const DATA = [
-  {
-    "image": [
-      "https://print-print-app.s3.amazonaws.com/1.jpg",
-      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+// const DATA = [
+//   {
+//     "image": [
+//       "https://print-print-app.s3.amazonaws.com/1.jpg",
+//       "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
 
-    ],
-    "title": "BUSINESS_CARD",
-    "category": {
-      "productType": "BizCard-Premium",
-      "name": "Premium (Thick) Business Card",
-      "pricePerHunderd": "68",
-      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
-      "paperType": "Woodfree Card(350g)",
-      "leadTime": "2-3 business days",
-      "colour": "CYMK",
-      "Sizes": "3 sizes"
-    },
+//     ],
+//     "title": "BUSINESS_CARD",
+//     "category": {
+//       "productType": "BizCard-Premium",
+//       "name": "Premium (Thick) Business Card",
+//       "pricePerHunderd": "68",
+//       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+//       "paperType": "Woodfree Card(350g)",
+//       "leadTime": "2-3 business days",
+//       "colour": "CYMK",
+//       "Sizes": "3 sizes"
+//     },
 
-    "size": 
-      {
-        "name": "Standard",
-        "height": "90",
-        "width": "54",
-        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
-      },
+//     "size": 
+//       {
+//         "name": "Standard",
+//         "height": "90",
+//         "width": "54",
+//         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+//       },
     
-    "priceChart": {
-      "quantity": "100",
-      "unitPrice": "0.5"
-    },
-    "preview": true,
-    "designUrl": "string",
-    "remarks": "string",
-    "corner":
-    {
-      "cornerName": "Square",
-      "cornerDescription": "Traditional",
-      "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
-    },
-  },
+//     "priceChart": {
+//       "quantity": "100",
+//       "unitPrice": "0.5"
+//     },
+//     "preview": true,
+//     "designUrl": "string",
+//     "remarks": "string",
+//     "corner":
+//     {
+//       "cornerName": "Square",
+//       "cornerDescription": "Traditional",
+//       "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
+//     },
+//   },
   // {
   //   id: '2',
   //   image: SecondBusinessCard,
   // },
-];
+//];
 
 const MyOrdersListScreen = ({ goBack, orderData }) => {
   const { t } = useTranslation();
   const renderItem = ({ item, index }) => (
-    <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image[0]} index={index} length={DATA?.length} item={item} />
+    <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image[0]} index={index} length={item?.length} item={item} />
   );
   return (
     <View style={styles.container}>

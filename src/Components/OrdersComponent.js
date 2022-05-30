@@ -9,11 +9,11 @@ import DollarIcon from '../Assests/Svgs/DollarIcon';
 import {colors, fonts} from '../Utils/theme';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const OrdersComponent = ({orderNotify,navigate}) => {
+const OrdersComponent = ({orderNotify,navigate, item}) => {
   const {t} = useTranslation();
   return (
-    <TouchableOpacity  onPress={() => navigate("myOrdersList")} style={styles.cardContainer}>
-      <Text style={styles.title}>PP202203-16428</Text>
+    <TouchableOpacity  onPress={() => navigate("myOrdersList" , {item:item})} style={styles.cardContainer}>
+      <Text style={styles.title}>{item?._id}</Text>
       <View style={styles.contentContainer}>
         <View>
           <View style={styles.ordersContainer}>
@@ -21,14 +21,14 @@ const OrdersComponent = ({orderNotify,navigate}) => {
               <CalendarIcon />
             </View>
             <Text style={styles.orderText}>{t('order_date')}</Text>
-            <Text style={styles.orderText}>22/4/2022</Text>
+            <Text style={styles.orderText}>{item?.orderDate}</Text>
           </View>
           <View style={styles.ordersContainer}>
             <View style={styles.iconWrapper}>
               <DollarIcon />
             </View>
             <Text style={styles.orderText}>{t('order_ammount')}</Text>
-            <Text style={styles.orderText}>HK$ 2,500</Text>
+            <Text style={styles.orderText}>HK$ {item?.total}</Text>
           </View>
         </View>
         <View style={styles.arrowIcon}>

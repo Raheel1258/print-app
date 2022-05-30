@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, useWindowDimensions } from 'react-native';
+import { View, FlatList, useWindowDimensions, ActivityIndicator, Text } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
@@ -8,7 +8,7 @@ import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { BackArrowHeader, OrdersComponent, BottomSheetComponent, GreenButton } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const activeOrder = [
+const activeOrderData = [
   {
     id: '1',
     orderNotify: 'Order received',
@@ -38,7 +38,7 @@ const activeOrder = [
     orderNotify: 'Order completed',
   },
 ];
-const completedOrder = [
+const completedOrderData = [
   {
     id: '1',
     orderNotify: 'Order completed',
@@ -69,35 +69,43 @@ const completedOrder = [
   },
 ];
 
-const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet }) => {
+const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData }) => {
+  console.log("all orders", getAllOrderData);
+  const completedOrder = getAllOrderData?.filter((item) => item?.status == "order completed");
+  const activeOrder = getAllOrderData?.filter((item) => item?.status != "order completed");
+  console.log("completed", completedOrder);
+  console.log("active", activeOrder);
   const { t } = useTranslation();
   const layout = useWindowDimensions();
 
   const renderItem = ({ item }) => (
-    <OrdersComponent navigate={navigate} orderNotify={item.orderNotify} />
+    <OrdersComponent navigate={navigate} orderNotify={item.status} item={item} />
   );
 
   const FirstRoute = () => (
-    <View style={styles.activeContainer}>
-      <FlatList
-        data={activeOrder}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.flatlistContainer}
-      />
-    </View>
+    <>
+      {completedOrder?.length > 0 ? <View style={styles.activeContainer}>
+        <FlatList
+          data={activeOrder}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.flatlistContainer}
+        />
+      </View> : <View style={styles.noProduct}><Text> No Data</Text></View>}
+    </>
   );
 
   const SecondRoute = () => (
-    <View style={styles.activeContainer}>
-      <FlatList
-        data={completedOrder}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.flatlistContainer}
-      />
-    </View>
-  );
+    <>
+      {completedOrder?.length > 0 ? <View style={styles.activeContainer}>
+        <FlatList
+          data={completedOrder}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.flatlistContainer}
+        />
+      </View> : <View style={styles.noProduct}><Text> No Data</Text></View>}
+    </>);
 
   const renderScene = SceneMap({
     first: FirstRoute,
@@ -124,15 +132,20 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet }) 
   );
 
   return (
-    <View style={styles.container}>
-      <BackArrowHeader arrow={false} goBack={goBack} title={t('my_orders')} borderBottomWidth={0} />
-      <TabView
-        renderTabBar={renderTabBar}
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-      />
+    <>
+      {!animation ?
+        <View style={styles.container}>
+          <BackArrowHeader arrow={false} goBack={goBack} title={t('my_orders')} borderBottomWidth={0} />
+          <TabView
+            renderTabBar={renderTabBar}
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            onIndexChange={setIndex}
+            initialLayout={{ width: layout.width }}
+          />
+        </View> : <View style={styles.loaderContainer}>
+          <ActivityIndicator size="small" color="#000" animating={true} />
+        </View>}
       <BottomSheetComponent
         childern={
           <>
@@ -173,7 +186,7 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet }) 
         height={420}
         onClose={false}
       />
-    </View>
+    </>
   );
 };
 
@@ -218,6 +231,20 @@ const styles = ScaledSheet.create({
   },
   signinButtonWrapper: {
     marginTop: '20@s'
+  },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noProduct: {
+    fontFamily: fonts.avenir_light,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    height: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

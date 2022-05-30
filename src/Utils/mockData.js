@@ -1131,5 +1131,163 @@ export const cartItem = [
 ]
 
 
+//order compeleted
+
+export const orderData = [
+  {
+    "_id": "PP202203",
+  "products": [
+    {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "productType": "BizCard-Premium",
+      "name": "Premium (Thick) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "size":
+      [{
+        "name": "Standard",
+        "height": "90",
+        "width": "54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+      }],
+    "priceChart": [{
+      "quantity": "100",
+      "unitPrice": "0.5"
+    }],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  },
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "productType": "BizCard-Premium",
+      "name": "Premium (Thick) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "size":
+      [{
+        "name": "Standard",
+        "height": "90",
+        "width": "54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+      }],
+    "priceChart": [{
+      "quantity": "100",
+      "unitPrice": "0.5"
+    }],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  }
+  ],
+  "orderDate": "22/4/2022",
+  "deliveryMethod": "Courier",
+  "deliveryAddress":  "lahore anarkali pakistan",
+  "paymentMethod": "credit card",
+  "subTotal": 1231,
+  "discount": 200,
+  "total": 1500,
+  "status": "order completed"
+},
+{
+  "_id": "PP202203",
+  "products": [
+    {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "productType": "BizCard-Premium",
+      "name": "Premium (Thick) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "size":
+      [{
+        "name": "Standard",
+        "height": "90",
+        "width": "54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+      }],
+    "priceChart": [{
+      "quantity": "100",
+      "unitPrice": "0.5"
+    }],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  },
+  {
+    "image": [
+      "https://print-print-app.s3.amazonaws.com/1.jpg",
+      "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
+    ],
+    "title": "BUSINESS_CARD",
+    "category": {
+      "productType": "BizCard-Premium",
+      "name": "Premium (Thick) Business Card",
+      "pricePerHunderd": "68",
+      "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
+      "paperType": "Woodfree Card(350g)",
+      "leadTime": "2-3 business days",
+      "colour": "CYMK",
+      "Sizes": "3 sizes"
+    },
+    "size":
+      [{
+        "name": "Standard",
+        "height": "90",
+        "width": "54",
+        "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
+      }],
+    "priceChart": [{
+      "quantity": "100",
+      "unitPrice": "0.5"
+    }],
+    "preview": true,
+    "designUrl": "string",
+    "remarks": "string",
+  }
+  ],
+  "orderDate": "22/4/2022",
+  "deliveryMethod": "Courier",
+  "deliveryAddress": "lahore anarkali pakistan",
+  "paymentMethod": "credit card",
+  "subTotal": 1231,
+  "discount": 200,
+  "total": 1500,
+  "status": "order recieved"
+},
+
+
+]
+
+
 
 

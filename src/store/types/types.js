@@ -23,3 +23,6 @@ export const PROMO_CODE = "PROMO_CODE";
 
 //Activity_Types
 export const ACTIVITY_DETAIL = "ACTIVITY_DETAIL";
+
+//Order_Types
+export const GET_ORDER= "GET_ORDER"

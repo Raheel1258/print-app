@@ -54,6 +54,7 @@ const styles = ScaledSheet.create({
   quantityContainer:{
     flexDirection:'row',
     alignItems:'center',
+    
   },
   cardImage:{
     width:'110@s',

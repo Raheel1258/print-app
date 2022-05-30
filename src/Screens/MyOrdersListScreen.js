@@ -61,7 +61,7 @@ const DATA = [
   // },
 ];
 
-const MyOrdersListScreen = ({ goBack }) => {
+const MyOrdersListScreen = ({ goBack, orderData }) => {
   const { t } = useTranslation();
   const renderItem = ({ item, index }) => (
     <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image[0]} index={index} length={DATA?.length} item={item} />
@@ -81,7 +81,7 @@ const MyOrdersListScreen = ({ goBack }) => {
         </View>
         <Text style={styles.orderCompleted}>Order Completed</Text>
         <FlatList
-          data={DATA}
+          data={orderData?.products && orderData?.products}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           contentContainerStyle={{ paddingBottom: 0 }}
@@ -91,9 +91,9 @@ const MyOrdersListScreen = ({ goBack }) => {
           orderDate={t('order_date')}
           deliveryMethod={t('delivery_method')}
           deliveryAddress={t('delivery_address')}
-          date="22/4/2022"
-          method="Courier"
-          address="[Full name], [Company Name][Address Line 1],[Address Line 2][Area], [District], [City / Country]"
+          date={orderData?.orderDate}
+          method={orderData?.deliveryMethod}
+          address={orderData?.deliveryAddress}
         />
         <CategoriesTitleHeader title={t('payment_details')} />
         <OrderDetailsComponent
@@ -101,10 +101,10 @@ const MyOrdersListScreen = ({ goBack }) => {
           deliveryMethod={t('delivery')}
           deliveryAddress={t('total')}
           paymentMethod={t('payment_method')}
-          date="HK$ 590"
-          method="HK$ 590"
-          address="HK$ 590"
-          payment="Credit Card / Debit Card"
+          date={`HK$ ${orderData?.subTotal}`}
+          method={`HK$ ${orderData?.subTotal}`}
+          address={`HK$ ${orderData?.total}`}
+          payment={orderData?.paymentMethod}
         />
         <CategoriesTitleHeader title={t('order_support')} />
         <UploadFileComponent width={300} title={t('email_receipt')} />

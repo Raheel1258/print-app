@@ -16,8 +16,8 @@ const SigninContainer = () => {
   const [animation, setAnimation] = useState(false);
   const [deviceId, setDeviceId] = useState(null);
   const [loginData, setLoginData] = useState({
-    email: 'test123@gmail.com',
-    password: '2123423',
+    email: '',
+    password: '',
   });
 
   useEffect(()=> {

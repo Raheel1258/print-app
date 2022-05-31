@@ -42,113 +42,13 @@ const SignupContainer = () => {
     navigation.goBack();
   };
 
-  // const handleChange = (name, value) => {
-  //   console.log(name , value )
-  //   setSignupData({...signupData, [name]: value});
-  // };
-
   const handleSignup = (values) => {
     var day = new Date().getDate();
       var month = new Date().getMonth() + 1;
       var year = new Date().getFullYear();
       var date = day + '-' + month + '-' + year;
       console.log("date1",date);
-      dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp"}, navigation, setAnimation));
-    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    // if (
-    //   signupData?.email.length > 0 &&
-    //   signupData?.firstName.length > 0 &&
-    //   signupData?.lastName.length > 0 &&
-    //   signupData.password.length <= 0 &&
-    //   signupData.phone.length > 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Password cannot be empty',
-    //   });
-    // } else if (
-    //   signupData?.email.length <= 0 ||
-    //   signupData?.firstName.length <= 0 ||
-    //   signupData?.lastName.length <= 0 ||
-    //   signupData.password.length <= 0 ||
-    //   signupData.phone.length <= 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Fields cannot be empty',
-    //   });
-    // }else if (
-    //   signupData?.email.length <= 0 &&
-    //   signupData?.firstName.length > 0 &&
-    //   signupData?.lastName.length > 0 &&
-    //   signupData.password.length > 0 &&
-    //   signupData.phone.length > 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Email cannot be empty',
-    //   });
-    // } else if (
-    //   signupData?.email.length > 0 &&
-    //   signupData?.firstName.length <= 0 &&
-    //   signupData?.lastName.length > 0 &&
-    //   signupData.password.length > 0 &&
-    //   signupData.phone.length > 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'First_Name cannot be empty',
-    //   });
-    // }
-    // else if (
-    //   signupData?.email.length > 0 &&
-    //   signupData?.firstName.length > 0 &&
-    //   signupData?.lastName.length <= 0 &&
-    //   signupData.password.length > 0 &&
-    //   signupData.phone.length > 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Last_Name cannot be empty',
-    //   });
-    // } else if (
-    //   signupData?.email.length > 0 &&
-    //   signupData?.firstName.length > 0 &&
-    //   signupData?.lastName.length > 0 &&
-    //   signupData.password.length > 0 &&
-    //   signupData.phone.length <= 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Phone Number cannot be empty',
-    //   });
-      
-    // } else if (
-    //   signupData?.email.length <= 0 &&
-    //   signupData?.firstName.length <= 0 &&
-    //   signupData?.lastName.length <= 0 &&
-    //   signupData.password.length <= 0 &&
-    //   signupData.phone.length <= 0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Fields cannot be empty',
-    //   });
-    // } else if (reg.test(signupData.email) === false) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Please Provide a valid email',
-    //   });
-    // } else {
-    //   const signDetail = {
-    //     firstName: signupData.firstName,
-    //     lastName:signupData.lastName,
-    //     phone: signupData.phone,
-    //     email: signupData?.email.toLocaleLowerCase(),
-    //     password: signupData.password,
-    //   };
-    //   dispatch(signup(signDetail, navigation, setAnimation));
-    // }
+      dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp"}, navigation, setAnimation));    
   };
 
 

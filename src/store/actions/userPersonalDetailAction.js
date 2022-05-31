@@ -160,3 +160,28 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
 
     }
 }
+
+
+//Change-Password
+export const changePassword = (setAnimationChangePassowrd, userData) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setAnimationChangePassowrd(true);
+        axios.patch(`${Api}/user/changepassword`, userData, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimationChangePassowrd(false);
+                Toast.show({
+                    type: 'success',
+                    text1: 'user updated successfully',
+                });
+            })
+            .catch((err) => {
+                setAnimationChangePassowrd(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+
+    }
+}

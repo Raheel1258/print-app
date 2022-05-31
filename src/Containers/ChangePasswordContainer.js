@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
+import {changePassword} from "../store/actions/userPersonalDetailAction"
+import { useDispatch} from 'react-redux';
+import Toast from 'react-native-toast-message';
 
 import ChangePasswordScreen from '../Screens/ChangePasswordScreen';
 import { colors } from '../Utils/theme';
 
 const ChangePasswordContainer = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
+  const [animationChangePassword,setAnimationChangePassowrd] = useState(false);
   const [changePasswordState, setChangePasswordState] = useState({
     currentPassword: '',
     newPassword: '',
@@ -26,13 +31,22 @@ const ChangePasswordContainer = () => {
   };
 
   const handleChangePassword = (values) => {
-    console.log("change Password", values);
+    if(values?.newPassword != values?.confirmPassword){
+      Toast.show({
+        type: 'error',
+        text1: 'New and confirm password must be equal',
+    });
+    }else{
+      dispatch(changePassword(setAnimationChangePassowrd , {currentPassword:values.currentPassword , newPassword:values.newPassword}))
+    }
+   
 
   }
 
   return (
     <View style={styles.container}>
       <ChangePasswordScreen
+        animationChangePassword={animationChangePassword}
         goBack={goBack}
         toggleModal={toggleModal}
         isModalVisible={isModalVisible}

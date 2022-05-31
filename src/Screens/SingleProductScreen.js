@@ -100,6 +100,8 @@ const SingleProductScreen = ({
       return `${selectedSize?.width} x ${selectedSize?.height}`
     }else if(category == 'POSTER'){
       return selectedSize?.name
+    }else if(category == "FLYERS_LEAFLET" && item?.category?.name == "Square Flyer"){
+      return `${selectedSize?.width} x ${selectedSize?.height}`
     }
 
   }
@@ -491,7 +493,7 @@ const SingleProductScreen = ({
           }
         />
 
-        {/* allCardsPaperTypeRBSheet */}
+        {/* x` */}
         <BottomSheetComponent
           title={t('paper_type')}
           refRBSheet={allCardsPaperTypeRBSheet}

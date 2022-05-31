@@ -82,8 +82,8 @@ const SingleProductContainer = ({ route }) => {
   } : category === "FLYERS_LEAFLET" ? {
     category : 'flyer',
     product : item?.category?.productType,
-    size : { width : selectedSize?.width, height : selectedSize?.height },
-    papertype : allCardsPaperType,
+    size : item?.category?.name == "Rectangular Flyer" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
+    papertype : allCardsPaperType.substr(14,7),
     folding : selectedFolding
   } : category === "ENVELOPE" ? {
     category : 'envelop',

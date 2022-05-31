@@ -91,6 +91,8 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject) => {
 
   if(values?.product !== "Spot UV Business Card"){
     delete values['spotuvside'];
+  }else if(values?.product !== "Flyer (A4)"){
+    delete values['folding'];
   }
   return async (dispatch) => {
     setPriceChartAnimation(true);

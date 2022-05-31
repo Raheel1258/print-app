@@ -109,7 +109,7 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setPromoCodeAnimation(true);
-        axios.get(`${Api}/promocode/find/${'628b6ef529b7754e3498bd6d'}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.get(`${Api}/promocode/find/${data}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 console.log("PromoCode res" , res);
                 //dispatch(setPromoCodeDetail(res?.data));

@@ -118,6 +118,7 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                     phone: res?.data?.phone,
                     email: res?.data?.email
                 })
+                console.log("id" , res?.data);
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))

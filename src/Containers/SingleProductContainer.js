@@ -197,7 +197,7 @@ const SingleProductContainer = ({ route }) => {
       category: item?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl:designUrl[0],
+      designUrl:designUrl,
       preview: preview,
       numberOfPages: item?.numberOfPages[0] ? [{name:item?.numberOfPages && item?.numberOfPages[0]?.pageName, number:[noOfPagesCoverPages]}, {name:item?.numberOfPages && item?.numberOfPages[1]?.pageName , number:[noOfPagesInnerPages]}] : undefined,
       cut: selectedCut,

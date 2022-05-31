@@ -59,7 +59,7 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAddToCartAnimation(true);
-        axios.patch(`${Api}/cart/item/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.patch(`${Api}/cart/item/add`, data, { headers: { "Authorization": `Bearer ${accessToken}`}})
             .then(async (res) => {
                 setAddToCartAnimation(false);
                 console.log("item added to cart" , res?.data)

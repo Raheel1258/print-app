@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -7,29 +7,23 @@ import {colors,fonts} from '../Utils/theme';
 
 
 
-const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, quantityTable }) => {
+const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, quantityTable, priceChartAnimation, sliceArray, sliceData, flag }) => {
   const { t } = useTranslation();
-  const [sliceArray, setSliceArray] = useState(quantityTable?.slice(0,6));
-  const [flag , setflag] = useState(true)
  
 
-  const sliceData = () => {
-    setSliceArray(quantityTable);
-    setflag(false);
-  }
-
   const renderItem = ({item}) => {
-    const quantityStyle = selectedPriceChart._id == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
+    const quantityStyle = selectedPriceChart?._id == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
     return (
       <TouchableOpacity activeOpacity={1} onPress = { () => setSelectedPriceChart(item)} style={{...styles.tableItems, ...quantityStyle}}>
-        <Text style={styles.priceText}>{item?.quantity}</Text>
-        <Text style={styles.dollerPrice}>${item?.quantity * item?.unitPrice}</Text>
-        <Text style={styles.priceText}>${item?.unitPrice}</Text>
+        <Text style={styles.priceText}>{item?.units}</Text>
+        <Text style={styles.dollerPrice}>${item?.units * item?. pricePerUnit}</Text>
+        <Text style={styles.priceText}>${item?.pricePerUnit}</Text>
       </TouchableOpacity>
     );
   };
   return (
-    <View style={styles.tableContainer}>
+    <>
+    {!priceChartAnimation ? <View style={styles.tableContainer}>
       <View style={styles.tableHeader}>
         <Text style={styles.headerTitle}>{t('quantity_text')}</Text>
         <Text style={styles.headerTitle}>{t('price_HK')}</Text>
@@ -39,11 +33,14 @@ const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, quantityTable
         data={sliceArray}
         renderItem={renderItem}
         keyExtractor={item => item?.id}
-      />
-      {flag && <TouchableOpacity  onPress={sliceData} style={styles.tableBottom}>
+        />
+      {flag && <TouchableOpacity  onPress={()=>sliceData()} style={styles.tableBottom}>
         <Text style={styles.showMore}>{t('show_more')}</Text>
       </TouchableOpacity>}
-    </View>
+    </View>: <View style={styles.loaderContainer}>
+            <ActivityIndicator size="small" color="#000" animating={true} />
+          </View>}
+        </>
   );
 };
 
@@ -131,6 +128,11 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
     width: '58@s',
   },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default QuantityTable;

@@ -56,28 +56,6 @@ export const getProductListByCategory = (category, setAnimation) => async dispat
       dispatch(setProductList(BusinessCardData))
     }
 
-    //const res = await axios.get(`${Api}/category=category`);
-    // setAnimation(false);
-    // if(category === 'BOOKLET')
-    // {
-    //   dispatch(setProductList(productListBookletData));
-    // }
-    // else if(category === 'POSTER'){
-    //   dispatch(setProductList(productListPosterData));
-    // }
-    // else if(category === 'FLYERS_LEAFLET'){
-    //   dispatch(setProductList(productListStickerData));
-    // }
-    // else if(category === 'STICKERS_LABEL'){
-    //   dispatch(setProductList(productListFlyerData))
-    // }
-    // else if(category === 'ENVELOPE'){
-    //   dispatch(setProductList(productListEnvelopeData))
-    // }
-    // else if(category === 'LETTERHEAD'){
-    //   dispatch(setProductList(productListLetterheadData))
-    // }
-    // else dispatch(setProductList(productListBusinessCardData));
 
   } catch (err) {
     setAnimation(false);
@@ -93,7 +71,6 @@ export const getCategoriesProduct = (category, setAnimation) => {
     setAnimation(true);
     axios.get(`${Api}/products/find/${category}`)
       .then(async (res) => {
-        console.log("res from product category" , res)
         setAnimation(false);
         dispatch(setProductList(res?.data));
       })
@@ -107,18 +84,32 @@ export const getCategoriesProduct = (category, setAnimation) => {
   }
 };
 
-export const getPriceChart = (setPriceChartAnimation, priceChartParameter) => {
+export const getPriceChart = (setPriceChartAnimation, defaultValuesObject) => {
+
+  let values = defaultValuesObject;
+  console.log('values', values)
+
+  if(values?.product !== "Spot UV Business Card"){
+    delete values['spotuvside'];
+  }
   return async (dispatch) => {
     setPriceChartAnimation(true);
     const accessToken = await Storage.retrieveData('token')
-    axios.get(`${Api}/price-chart/${priceChartParameter}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+    let query = "";
+    Object.keys(values).forEach(key => {
+      if(key !== "category"){
+        query = query + key + "=" + values[key] + "&"
+      }
+    })
+    console.log('query parameters', query)
+    axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then(async (res) => {
-        console.log("price chart" , res)
-        // dispatch(setPriceChart(res?.data));
-        // setPriceChartAnimation(false);
+        console.log("price chart api" , res)
+        dispatch(setPriceChart(res?.data?.slice(0,10)));
+        setPriceChartAnimation(false);
       })
       .catch((err) => {
-        // setPriceChartAnimation;
+        setPriceChartAnimation(false);
         console.log("error", err?.response);
         Toast.show({
           type: 'error',

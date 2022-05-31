@@ -22,10 +22,13 @@ import {
 } from '../Components';
 import InfoIcon from '../Assests/Svgs/InfoIcon';
 import { colors, fonts } from '../Utils/theme';
+import { GET_CATEGORIES } from '../store/types/types';
 // import roundImage from '../Assests/Images/round-image.png';
 // import squareImage from '../Assests/Images/square-image.png';
 
 const SingleProductScreen = ({
+  priceChart,
+  priceChartAnimation,
   categoryTitle,
   item,
   category,
@@ -81,10 +84,25 @@ const SingleProductScreen = ({
   setSelectedFolding,
   selectedWindow,
   setSelectedWindow,
-  addToCartAnimation
+  addToCartAnimation,
+  setValues,
+  defaultValuesObject,
+  sliceArray,
+  sliceData,
+  flag
 
 }) => {
   const { t } = useTranslation();
+  const getSize = () => {
+    if(category == 'BOOKLET'){
+      return selectedSize?.name
+    }else if(category == 'BUSINESS_CARD'){
+      return `${selectedSize?.width} x ${selectedSize?.height}`
+    }else if(category == 'POSTER'){
+      return selectedSize?.name
+    }
+
+  }
   return (
     <View style={styles.container}>
       <BackArrowHeader goBack={goBack} title={categoryTitle} arrow={false} />
@@ -105,7 +123,7 @@ const SingleProductScreen = ({
                   cardStandard={item?.name}
                   cardDimensions={`${item?.width}mm x ${item?.height}mm`}
                   selectedSize={selectedSize?.name}
-                  onPress={() => setSelectedSize(item)}
+                  onPress={() => {setSelectedSize(item), setValues({...defaultValuesObject , size: getSize()})}}
                 />
               </View>
             )
@@ -137,7 +155,7 @@ const SingleProductScreen = ({
           </>
         }
 
-        {((category == "BUSINESS_CARD" && item?.category?.productType == "BizCard-Matte Glossy") || category == "BOOKLET") &&
+        {((category == "BUSINESS_CARD" && item?.category?.productType == "Matte / Glossy Business Card") || category == "BOOKLET") &&
           <>
             <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
             <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
@@ -145,7 +163,7 @@ const SingleProductScreen = ({
         }
 
 
-        {(category === "BUSINESS_CARD" && item?.category?.productType === "BizCard-Spot UV") &&
+        {(category === "BUSINESS_CARD" && item?.category?.productType === "Spot UV Business Card") &&
           <>
             <CategoriesTitleHeader title={t('choose_SpotUv')} Children={<InfoIcon />} />
             <UploadFileComponent onPress={() => spotUvRBSheet.current.open()} title={t('spotUv')} selection={selectSpotUv} />
@@ -162,7 +180,7 @@ const SingleProductScreen = ({
                     <CardSizeComponent
                       key={index}
                       selectedCorner={selectedCorner?.cornerName}
-                      onPress={() => setSelectedCorner(item)}
+                      onPress={() => {setSelectedCorner(item),setValues({...defaultValuesObject , corner: `${item?.cornerName} Corner`} )}}
                       Childern={
                         <Image transition={false} resiseMode="contain" style={styles.cornerImage} source={{ uri: item?.image }} />}
                       cardStandard={item?.cornerName}
@@ -206,7 +224,7 @@ const SingleProductScreen = ({
         }
 
 
-        {(category == "FLYERS_LEAFLET" && item?.category?.productType === "Flyers-Foldable") &&
+        {(category == "FLYERS_LEAFLET" && item?.category?.productType === "Flyer (A4)") &&
           <>
             <CategoriesTitleHeader title={t('choose_folding')} />
             <View style={styles.cardsContainer}>
@@ -251,7 +269,7 @@ const SingleProductScreen = ({
           </>
         }
         <CategoriesTitleHeader title={t('choose_quantity')} />
-        <QuantityTable quantityTable={item?.priceChart} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
+        <QuantityTable sliceData={sliceData} flag={flag} sliceArray={sliceArray} priceChartAnimation={priceChartAnimation} quantityTable={priceChart} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
         <CategoriesTitleHeader title={t('send_preview')} />
         <Text style={styles.previewDescription}>
           After you’ve placed the order, we will send you a preview in e-mail
@@ -463,6 +481,7 @@ const SingleProductScreen = ({
             item?.numberOfPages && item?.numberOfPages[1]?.number?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setNoOfPagesInnerPages(item);
+                setValues({...defaultValuesObject, innerpage:item})
                 noOfPagesInnerPagesRBSheet.current.close()
               }} style={styles.listContainer}>
                 <Text style={styles.listStyle}>{item}</Text>
@@ -481,6 +500,7 @@ const SingleProductScreen = ({
             item?.paperType?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setAllCardsPaperType(item);
+                setValues({...defaultValuesObject, papertype:item.substr(14,7)})
                 allCardsPaperTypeRBSheet.current.close()
               }} style={styles.listContainer}>
                 <Text style={styles.listStyle}>{item}</Text>

@@ -88,7 +88,7 @@ const SingleProductContainer = ({ route }) => {
   } : category === "ENVELOPE" ? {
     category : 'envelop',
     product : item?.category?.productType,
-    window : selectedWindow
+    window : selectedWindow?.windowName
   } : category === "LETTERHEAD" ? {
     category : 'letterhead',
     product : item?.category?.productType,

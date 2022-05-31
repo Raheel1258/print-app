@@ -252,15 +252,16 @@ const SingleProductScreen = ({
             <CategoriesTitleHeader title={t('choose_window')} />
             <View style={styles.cardsContainer}>
               {item?.window?.map((item, index) => {
+                console.log("images" , item);
                 return (
                   <View key={index}>
                     <CardSizeComponent
                       Childern={
                         <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
                       cardStandard={item?.windowName}
-                      cardDimensions={`${item?.windowWidth} x ${item?.windowHeight}`}
+                      cardDimensions={`${item?.windowWidth}" x ${item?.windowHeight}"`}
                       selectedSize={selectedWindow?.windowName}
-                      onPress={() => setSelectedWindow(item)}
+                      onPress={() => {setSelectedWindow(item), setValues({...defaultValuesObject, window:item?.windowName})}}
                     />
                   </View>
                 )

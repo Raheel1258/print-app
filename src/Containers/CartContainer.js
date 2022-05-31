@@ -139,8 +139,9 @@ const CartContainer = () => {
 
   const handleTotalAmount = () => {
     cartItem && cartItem?.map((item)=>{
-      const quantity = parseInt(item?.priceChart?.quantity);
-      const unitPrice = parseFloat(item?.priceChart?.unitPrice);
+      console.log("prices" , item?.priceChart);
+      const quantity = item?.priceChart?.units;
+      const unitPrice = item?.priceChart?.pricePerUnit;
       let sub_total = (quantity*unitPrice) ;
       setSubTotal(sub_total);
     })

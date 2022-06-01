@@ -127,6 +127,25 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
     }
 }
 
+//Empty Cart 
+export const emptyCart = () => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        axios.post(`${Api}/cart/empty`,{}, { headers: { "Authorization": `Bearer ${accessToken}` }})
+            .then(async (res) => {
+                dispatch(setCartDetail([]));
+                console.log("empty res" , res);
+            })
+            .catch((err) => {
+                console.log("empty" , err?.response);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+    }
+}
+
 
 
 

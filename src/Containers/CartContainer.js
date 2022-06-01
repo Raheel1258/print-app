@@ -25,6 +25,7 @@ const CartContainer = () => {
   const refRBSheet = useRef();
 
   const [subTotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
   const [validPromoCode, setValidPromoCode]= useState(false);
   const [promoCodeAnimation, setPromoCodeAnimation]= useState(false);
   const [textValue, setTextValue] = useState('');
@@ -93,7 +94,7 @@ const CartContainer = () => {
 
   useEffect(()=>{
     handleTotalAmount();
-  },[cartItem])
+  },[cartItem, promocodeDiscount])
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -134,16 +135,23 @@ const CartContainer = () => {
 
   const handlePayment = () => {
     // genToken();
-    navigate('payment');
+    navigate('payment', {amount:total});
   }
 
   const handleTotalAmount = () => {
     cartItem && cartItem?.map((item)=>{
-      console.log("prices" , item?.priceChart);
       const quantity = item?.priceChart?.units;
       const unitPrice = item?.priceChart?.pricePerUnit;
-      let sub_total = (quantity*unitPrice) ;
+      let sub_total = parseInt(quantity*unitPrice);
+      let totalPrice = sub_total + 180;
+      if(promocodeDiscount && promocodeDiscount != ""){
+        totalPrice = sub_total - parseInt(promocodeDiscount);
+        setTotal(totalPrice);
+      }else{
+        setTotal(totalPrice);
+      }
       setSubTotal(sub_total);
+      
     })
   }
 
@@ -184,6 +192,7 @@ const CartContainer = () => {
         animation={animation}
         subTotal={subTotal}
         promocodeDiscount={promocodeDiscount}
+        total={total}
       />
     </View>
   );

@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 import {colors, fonts} from '../Utils/theme';
 
-const OrderSummaryComponent = ({subTotal, promocodeDiscount}) => {
-  console.log("newPromoCode" , promocodeDiscount);
+const OrderSummaryComponent = ({subTotal, promocodeDiscount, total}) => {
+  console.log("total" , total);
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
@@ -24,7 +24,7 @@ const OrderSummaryComponent = ({subTotal, promocodeDiscount}) => {
       </View>}
       <View style={styles.contentContainer}>
         <Text style={styles.totalText}>{t('total_pay')}</Text>
-        <Text style={styles.totalText}>HK$ 460.00</Text>
+        <Text style={styles.totalText}>HK$ {total}</Text>
       </View>
     </View>
   );

@@ -41,6 +41,7 @@ const DATA = [
 ];
 
 const CartScreen = ({
+  total,
   textValue,
   setTextValue,
   isModalVisible,
@@ -143,7 +144,7 @@ const CartScreen = ({
           setRadioButtonStatus={setPaymentMethod}
         />
         <CategoriesTitleHeader title={t('order_summary')} />
-        <OrderSummaryComponent subTotal={subTotal} promocodeDiscount={promocodeDiscount}/>
+        <OrderSummaryComponent subTotal={subTotal} promocodeDiscount={promocodeDiscount} total={total}/>
         <View style={styles.placeOrderContainer}>
           <Text style={styles.orderPlaceText}>
             <Text style={styles.confidenceText}>{t('order_confidence')} </Text>

@@ -10,10 +10,10 @@ import SingleProductScreen from '../Screens/SingleProductScreen';
 import { colors } from '../Utils/theme';
 
 const SingleProductContainer = ({ route }) => {
+  // const new="sds";
  
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
-  console.log("realitem" , item);
 
   const priceChart = useSelector(state => state?.productList?.priceChart);
   const [sliceArray, setSliceArray] = useState();

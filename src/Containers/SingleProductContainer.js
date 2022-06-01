@@ -13,6 +13,7 @@ const SingleProductContainer = ({ route }) => {
  
   const { t } = useTranslation();
   const { item, categoryTitle, category } = route.params;
+  console.log("realitem" , item);
 
   const priceChart = useSelector(state => state?.productList?.priceChart);
   const [sliceArray, setSliceArray] = useState();
@@ -39,7 +40,7 @@ const SingleProductContainer = ({ route }) => {
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState (t('upload_file'));
-  const [shape, setShape] = useState(item?.category == 'STICKERS_LABEL' ?? item?.category?.productType);
+  const [shape, setShape] = useState(item?.category?.productType);
   const [selectedSize, setSelectedSize] = useState(item?.size && item?.size[0]);
   const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
   const [selectFinishing, setSelectFinishing] = useState(item?.finishing && item?.finishing[0]);
@@ -49,7 +50,6 @@ const SingleProductContainer = ({ route }) => {
   const [paperTypeInnerPages , setPaperTypeInnerPages] = useState(item?.paperType && item?.paperType[1]);
   const [noOfPagesCoverPages , setNoOfPagesCoverPages] = useState(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
   const [noOfPagesInnerPages , setNoOfPagesInnerPages] = useState(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
-
 
 
   const [allCardsPaperType , setAllCardsPaperType ] = useState(item?.paperType && item?.paperType[0]);
@@ -62,6 +62,8 @@ const SingleProductContainer = ({ route }) => {
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
+
+console.log("shape1234" , item?.category?.productType);
   const defaultValuesObject = category == "BUSINESS_CARD" ? {
     category : 'businesscard',
     product : item?.category?.productType,
@@ -84,7 +86,7 @@ const SingleProductContainer = ({ route }) => {
     product : item?.category?.productType,
     size : item?.category?.name == "Rectangular Flyer" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
     papertype : allCardsPaperType.substr(14,7),
-    folding : selectedFolding
+    folding : selectedFolding?.foldingName
   } : category === "ENVELOPE" ? {
     category : 'envelop',
     product : item?.category?.productType,
@@ -94,8 +96,8 @@ const SingleProductContainer = ({ route }) => {
     product : item?.category?.productType,
   } : {
     category : 'sticker',
-    product : item?.category?.productType,
-    size : { width : selectedSize?.width, height : selectedSize?.height },
+    product : 'Sicker',
+    size : `${selectedSize?.width} x ${selectedSize?.height}`,
     shape : shape
   }
   const [values, setValues] = useState(defaultValuesObject)

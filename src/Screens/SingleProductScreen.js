@@ -22,9 +22,6 @@ import {
 } from '../Components';
 import InfoIcon from '../Assests/Svgs/InfoIcon';
 import { colors, fonts } from '../Utils/theme';
-import { GET_CATEGORIES } from '../store/types/types';
-// import roundImage from '../Assests/Images/round-image.png';
-// import squareImage from '../Assests/Images/square-image.png';
 
 const SingleProductScreen = ({
   priceChart,
@@ -89,9 +86,32 @@ const SingleProductScreen = ({
   defaultValuesObject,
   sliceArray,
   sliceData,
-  flag
-
+  flag,
 }) => {
+  let widthOne= 120;
+  let heightOne = 65;
+  let marginTop = 20;
+  const getIndex = (index) => {
+    if(category == "STICKERS_LABEL" && index == 0){
+      widthOne=27;
+      heightOne=27;
+      marginTop=50;
+    }
+    else if(category == "STICKERS_LABEL" && index == 1){
+      widthOne=35;
+      heightOne=35;
+      marginTop=45;
+    }
+    else if(category == "STICKERS_LABEL" && index == 2){
+      widthOne=50;
+      heightOne=50;
+      marginTop=35;
+    }else{
+      widthOne=65;
+      heightOne=65;
+      marginTop=30;
+    }
+  }
   const { t } = useTranslation();
   const getSize = () => {
     if(category == 'BOOKLET'){
@@ -103,7 +123,6 @@ const SingleProductScreen = ({
     }else if(category == "FLYERS_LEAFLET" && item?.category?.name == "Square Flyer"){
       return `${selectedSize?.width} x ${selectedSize?.height}`
     }
-
   }
   return (
     <View style={styles.container}>
@@ -117,11 +136,13 @@ const SingleProductScreen = ({
         <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
         <View style={!(category === "ENVELOPE" || category === "LETTERHEAD") ? styles.cardsContainer : ""}>
           {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item, index) => {
+            category == "STICKERS_LABEL"  && getIndex(index);
+            
             return (
               <View key={index}>
                 <CardSizeComponent
                   Childern={
-                    <Image transition={false} resizeMode='contain' style={item?.name == "Square" ? styles.squareStyling : styles.squareImage} source={{ uri: item?.image }} />}
+                    <Image transition={false}  resizeMode='contain' style={item?.name == "Square" ? styles.squareStyling : {...styles.squareImage,width:widthOne,height:heightOne,marginTop:marginTop}} source={{ uri: item?.image }} />}
                   cardStandard={item?.name}
                   cardDimensions={`${item?.width}mm x ${item?.height}mm`}
                   selectedSize={selectedSize?.name}
@@ -235,11 +256,11 @@ const SingleProductScreen = ({
                   <View key={index}>
                     <CardSizeComponent
                       Childern={
-                        <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
+                        <Image  transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
                       cardStandard={item?.foldingName}
                       cardDimensions={`${item?.foldingWidth}mm x ${item?.foldingHeight}mm`}
                       selectedSize={selectedFolding?.foldingName}
-                      onPress={() => setSelectedFolding(item)}
+                      onPress={() => {setSelectedFolding(item), setValues({...defaultValuesObject, folding:item?.foldingName})}}
                     />
                   </View>
                 )

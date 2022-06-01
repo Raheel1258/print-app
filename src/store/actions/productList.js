@@ -93,6 +93,8 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject) => {
     delete values['spotuvside'];
   }else if(values?.product !== "Flyer (A4)"){
     delete values['folding'];
+  }else if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
+    values['product'] = "Flyer (A5)"
   }
   return async (dispatch) => {
     setPriceChartAnimation(true);

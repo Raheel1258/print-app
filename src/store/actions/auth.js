@@ -82,25 +82,29 @@ export const signup = (data, navigation, setAnimation) => {
 //forgot Password
 export const forgotPassword = (data, navigation, setAnimation) => {
     return (dispatch) => {
-        navigation.navigate('verificationCode');
-        //setAnimation(true);
-        // axios
-        // 	.post(`${Api}/user/forgetPassword`, data)
-        // 	.then(async (res) => {
-        // 		Toast.show({
-        // 			type: 'success',
-        // 			text1: 'You are successfully sent email'
-        // 		})
-        //        dispatch(loading(false));
-        // 	})
-        // 	.catch((err) => {
-        // 		console.log('forgot password', err)
-        //      dispatch(loading(false))
-        // 		Toast.show({
-        // 			type: 'error',
-        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
-        // 		});
-        // 	});
+            //const accessToken = await Storage.retrieveData('token');
+        // navigation.navigate('verificationCode');
+        setAnimation(true);
+        axios
+        	.patch(`${Api}/user/forgetpassword`, data)
+        	.then(async (res) => {
+                console.log("res for forgot ", res);
+        		Toast.show({
+        			type: 'success',
+        			text1: res?.response?.data?.message
+        		})
+                setAnimation(false);
+               navigation.navigate('verificationCode');
+        	})
+        	.catch((err) => {
+        		console.log('forgot password', err?.response)
+                navigation.navigate('verificationCode');
+                setAnimation(false);
+        		Toast.show({
+        			type: 'error',
+        			text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+        		});
+        	});
 
     }
 }

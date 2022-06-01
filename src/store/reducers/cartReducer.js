@@ -16,6 +16,14 @@ const cartReducer = createReducer({}, {
 			addedCartItem: action.item,
 		};
 	},
+	[types.PROMO_CODE](state, action) {
+		console.log("into reducer promo" , action.data );
+		return {
+			...state,
+			promoCode: action.data,
+		};
+	},
+
 
 });
 export default cartReducer;

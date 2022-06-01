@@ -5,22 +5,23 @@ import { useTranslation } from 'react-i18next';
 
 import {colors, fonts} from '../Utils/theme';
 
-const OrderSummaryComponent = ({subTotal}) => {
+const OrderSummaryComponent = ({subTotal, promocodeDiscount}) => {
+  console.log("newPromoCode" , promocodeDiscount);
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('sub_total')}</Text>
-        <Text style={styles.pricesText}>HK$ {subTotal}</Text>
+        <Text style={styles.pricesText}>(HK$ {subTotal})</Text>
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('delivery_order_text')}</Text>
         <Text style={styles.pricesText}>HK$ 180.00</Text>
       </View>
-      <View style={styles.contentContainer}>
+     {promocodeDiscount && <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('discount_text')}</Text>
-        <Text style={styles.pricesText}>(HK$ 180.00)</Text>
-      </View>
+        <Text style={styles.pricesText}>(HK$ {promocodeDiscount})</Text>
+      </View>}
       <View style={styles.contentContainer}>
         <Text style={styles.totalText}>{t('total_pay')}</Text>
         <Text style={styles.totalText}>HK$ 460.00</Text>

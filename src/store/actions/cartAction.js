@@ -25,6 +25,7 @@ function setAddToCart(item){
 }
 
 function setPromoCodeDetail(data){
+    console.log("into reduction type promo" , data );
     return{
         type: types.PROMO_CODE,
         data
@@ -109,10 +110,10 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setPromoCodeAnimation(true);
-        axios.get(`${Api}/promocode/find/${data}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.get(`${Api}/promocode/findbyname/${data}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("PromoCode res" , res);
-                //dispatch(setPromoCodeDetail(res?.data));
+                console.log("PromoCode res" , res?.data[0]?.discount);
+                dispatch(setPromoCodeDetail(res?.data[0]?.discount));
                 setPromoCodeAnimation(false);
                 setValidPromoCode(true);
 

@@ -36,6 +36,7 @@ const CartContainer = () => {
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
+  const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode)
 
   console.log("cart item for price", cartItem);
 
@@ -119,7 +120,6 @@ const CartContainer = () => {
     }
     else {
       dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode));
-     
     }
   }
   
@@ -183,6 +183,7 @@ const CartContainer = () => {
         handleRemoveProduct={handleRemoveProduct}
         animation={animation}
         subTotal={subTotal}
+        promocodeDiscount={promocodeDiscount}
       />
     </View>
   );

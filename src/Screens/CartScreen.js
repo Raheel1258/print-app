@@ -72,7 +72,8 @@ const CartScreen = ({
   handleEditProduct,
   handleRemoveProduct,
   animation,
-  subTotal
+  subTotal,
+  promocodeDiscount
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -142,7 +143,7 @@ const CartScreen = ({
           setRadioButtonStatus={setPaymentMethod}
         />
         <CategoriesTitleHeader title={t('order_summary')} />
-        <OrderSummaryComponent subTotal={subTotal}/>
+        <OrderSummaryComponent subTotal={subTotal} promocodeDiscount={promocodeDiscount}/>
         <View style={styles.placeOrderContainer}>
           <Text style={styles.orderPlaceText}>
             <Text style={styles.confidenceText}>{t('order_confidence')} </Text>

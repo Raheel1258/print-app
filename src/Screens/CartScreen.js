@@ -132,6 +132,8 @@ const CartScreen = ({
           thirdDescription="11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
           radioButtonStatus={delivery}
           setRadioButtonStatus={setDelivery}
+          handleCheckedOne={()=> console.log("devilary1")}
+          handleCheckedTwo={() => console.log("deilvaryTwo")}
         />
         <CategoriesTitleHeader title={t('payment_method')} />
         <RadioButtonComponent
@@ -144,6 +146,8 @@ const CartScreen = ({
           radioButtonStatus={paymentMethod}
           setRadioButtonStatus={setPaymentMethod}
           paymentMethodName={setPaymentMethodName}
+          handleCheckedOne={()=> setPaymentMethodName('Credit Card')}
+          handleCheckedTwo={() => setPaymentMethodName('Bank Tarnsfer')}
         />
         <CategoriesTitleHeader title={t('order_summary')} />
         <OrderSummaryComponent subTotal={subTotal} promocodeDiscount={promocodeDiscount} total={total}/>

@@ -17,13 +17,14 @@ const RadioButtonComponent = ({
   radioButtonStatus,
   setRadioButtonStatus,
   toggleModal = ()=> {},
-  paymentMethodName
+  handleCheckedOne,
+  handleCheckedTwo,
 }) => {
   const {t} = useTranslation();
   return (
     <View>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => {setRadioButtonStatus(true); paymentMethodName(false)}}>
+        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => {setRadioButtonStatus(true); handleCheckedOne()}}>
           {radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <View>
@@ -36,7 +37,7 @@ const RadioButtonComponent = ({
       <View style={styles.borderBottom} />
       <View style={styles.container}>
         <TouchableOpacity style={secondTitle === 'Bank Transfer / Cheque' ? styles.radiostyling : styles.radioButtonWrapper} onPress={() =>{setRadioButtonStatus(false) 
-          toggleModal()}}>
+          toggleModal(); handleCheckedTwo()}}>
           {!radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <TouchableOpacity>

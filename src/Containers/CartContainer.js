@@ -32,13 +32,14 @@ const CartContainer = () => {
   const [delivery, setDelivery] = useState(true);
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
-  const [paymentMethodName, setPaymentMethodName] = useState(true);
+  const [paymentMethodName, setPaymentMethodName] = useState("Credit-Card");
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode)
+
 
   console.log("paymentment", paymentMethodName);
 

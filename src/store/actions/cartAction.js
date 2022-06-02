@@ -24,6 +24,13 @@ function setAddToCart(item){
     }
 }
 
+function setUserDetail(data){
+    return{
+        type: types.USER_DETAIL_ORDER,
+        data
+    }
+}
+
 function setPromoCodeDetail(data){
     console.log("into reduction type promo" , data );
     return{
@@ -87,7 +94,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        axios.patch(`${Api}/cart/item/delete/${_id}`,{}, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.delete(`${Api}/cart/item/delete/${_id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 console.log("cart delete" , res?.data )
                 // dispatch(setCartDetail(res?.data?.products)); 
@@ -129,18 +136,19 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
     }
 }
 //Edit Cart Item
-export const editCartItem = (setAddToCartAnimation,id,obj) => {
+export const editCartItem = (setAddToCartAnimation,id, productId, obj) => {
+    console.log("cart edit productId" , productId);
     return async (dispatch) => {
         setAddToCartAnimation(true);
         const accessToken = await Storage.retrieveData('token')
-        axios.delete(`${Api}/cart/item/update/${id}`,obj, { headers: { "Authorization": `Bearer ${accessToken}` }})
+        axios.patch(`${Api}/cart/item/update/${id}`,obj, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
-                setAddToCartAnimation(true);
+                setAddToCartAnimation(false);
                 console.log("edit cart res" , res);
                 //dispatch(setCartDetail([]));
             })
             .catch((err) => {
-                setAddToCartAnimation(true);
+                setAddToCartAnimation(false);
                 console.log("edited cart res" , err?.response);
                 Toast.show({
                     type: 'error',
@@ -169,6 +177,53 @@ export const emptyCart = () => {
             });
     }
 }
+
+//Place order api with bank transfer Method
+export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) => {
+    return async (dispatch) => {
+        setPlaceOrderAnimation(true);
+        const accessToken = await Storage.retrieveData('token');
+        console.log("xyz in order");
+        axios.post(`${Api}/order/add`,orderObj, { headers: { "Authorization": `Bearer ${accessToken}` }})
+            .then(async (res) => {
+                setPlaceOrderAnimation(false);
+                navigate("orderReceived");
+            })
+            .catch((err) => {
+                setPlaceOrderAnimation(false);
+                console.log("order place err" , err?.response);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+    }
+}
+
+
+//Get User Detail For Place order
+export const getUserDetailForPlacingOrder = () => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        // setAnimation(true);
+        axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("detail user" , res);
+                // setAnimation(false);
+                dispatch(setUserDetail(res?.data));
+            })
+            .catch((err) => {
+                // setAnimation(false);
+                console.log("deatil user err" , err?.response);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+
+    }
+}
+
 
 
 

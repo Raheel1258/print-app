@@ -37,7 +37,7 @@ const ChangePasswordContainer = () => {
         text1: 'New and confirm password must be equal',
     });
     }else{
-      dispatch(changePassword(setAnimationChangePassowrd , {currentPassword:values.currentPassword , newPassword:values.newPassword}))
+      dispatch(changePassword(setAnimationChangePassowrd , {currentPassword:values.currentPassword , newPassword:values.newPassword}, toggleModal))
     }
    
 

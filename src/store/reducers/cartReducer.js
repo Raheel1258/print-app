@@ -17,10 +17,15 @@ const cartReducer = createReducer({}, {
 		};
 	},
 	[types.PROMO_CODE](state, action) {
-		console.log("into reducer promo" , action.data );
 		return {
 			...state,
 			promoCode: action.data,
+		};
+	},
+	[types.USER_DETAIL_ORDER](state, action) {
+		return {
+			...state,
+			userDetail: action.data,
 		};
 	},
 

@@ -5,7 +5,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
 import Stripe from 'react-native-stripe-api';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData, PromoCodeVerifed, deleteProduct } from '../store/actions/cartAction'
+import { getCartData, PromoCodeVerifed, deleteProduct,placeOrderOffline,getUserDetailForPlacingOrder } from '../store/actions/cartAction';
 import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
@@ -32,17 +32,17 @@ const CartContainer = () => {
   const [delivery, setDelivery] = useState(true);
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
-  const [paymentMethodName, setPaymentMethodName] = useState("Credit-Card");
+  const [paymentMethodName, setPaymentMethodName] = useState("Credit Card");
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
+  const [placeOrderAnimation , setPlaceOrderAnimation]=useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
-  const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode)
+  const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
+  const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
 
-
-  console.log("paymentment", paymentMethodName);
-
+  console.log("personal Data", userDetailData);
   const [data, setData] = useState([
     {
       id: '1',
@@ -98,6 +98,11 @@ const CartContainer = () => {
     handleTotalAmount();
   }, [cartItem, promocodeDiscount])
 
+  useEffect(()=>{
+    dispatch(getUserDetailForPlacingOrder());
+
+  },[])
+
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -127,8 +132,8 @@ const CartContainer = () => {
     }
   }
 
-  const handleEditProduct = (productId, cartProductId , cartTitle) => {
-    navigate('editedSingleProduct', { productId: productId, cartProductId: cartProductId , productCategory:cartTitle })
+  const handleEditProduct = (item) => {
+    navigate('editedSingleProduct', { productId: item?.productId, cartProductId: item?._id , productCategory:item?.title, cartItem:item })
   }
 
   const handleRemoveProduct = (_id) => {
@@ -151,16 +156,21 @@ const CartContainer = () => {
         district: "string",
         cityCountry: "string",
         contactNumber: "string",
-        primary: true
+        primary: false
       },
-      paymentMethod: "credit card",
+      paymentMethod: paymentMethodName,
       subTotal: subTotal,
       discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
       total: total,
       status: "OUT_FOR_DELIVERY"
 
     }
-    navigate('payment', { amount: total , orderObj:orderObj});
+    if(paymentMethodName == "Credit Card"){
+      navigate('payment', { amount: total , orderObj:orderObj})
+
+    }else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
+
+    
   }
 
   const handleTotalAmount = () => {
@@ -219,6 +229,7 @@ const CartContainer = () => {
         promocodeDiscount={promocodeDiscount}
         total={total}
         setPaymentMethodName={setPaymentMethodName}
+        placeOrderAnimation={placeOrderAnimation}
       />
     </View>
   );

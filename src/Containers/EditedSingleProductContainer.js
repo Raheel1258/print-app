@@ -12,9 +12,9 @@ import { colors } from '../Utils/theme';
 const EditedSingleProductContainer = ({ route }) => {
 
   const { t } = useTranslation();
-  const { productCategory, productId, cartProductId } = route.params;
+  const { productCategory, productId, cartProductId, cartItem } = route.params;
 
-
+console.log("item edit remarks" , cartItem?.remarks);
   const priceChart = useSelector(state => state?.productList?.priceChart);
   const state = useSelector(state => state?.productList?.singleProduct);
   
@@ -60,7 +60,7 @@ const EditedSingleProductContainer = ({ route }) => {
 
   const [selectedWindow, setSelectedWindow] = useState("");
   const [preview, setPreview] = useState(true);
-  const [remarks, setRemarks] = useState('');
+  const [remarks, setRemarks] = useState(cartItem?.remarks);
   const [result, setResult] = useState([]);
 
   const defaultValuesObject =  productCategory == "BUSINESS_CARD" ? {
@@ -211,6 +211,7 @@ const EditedSingleProductContainer = ({ route }) => {
   };
 
   const handleChange = (value) => {
+    console.log("value in change" , value);
     setRemarks(value);
   };
 
@@ -233,7 +234,7 @@ const EditedSingleProductContainer = ({ route }) => {
       title: state?.title,
       category: state?.category,
       size: selectedSize,
-      priceChart: {quantity:selectedPriceChart?.units, unitPrice: selectedPriceChart?.pricePerUnit},
+      priceChart: selectedPriceChart,
       designUrl: designUrl,
       preview: preview,
       numberOfPages: state?.numberOfPages[0] ? [{ name: state?.numberOfPages && state?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: state?.numberOfPages && state?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
@@ -253,7 +254,7 @@ const EditedSingleProductContainer = ({ route }) => {
       }
     });
     console.log("new edit object" , obj);
-    dispatch(editCartItem(setAddToCartAnimation, obj, cartProductId)); 
+    dispatch(editCartItem(setAddToCartAnimation, cartProductId, cartItem?.productId, obj)); 
 
 
   }

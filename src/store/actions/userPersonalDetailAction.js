@@ -164,7 +164,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
 
 
 //Change-Password
-export const changePassword = (setAnimationChangePassowrd, userData) => {
+export const changePassword = (setAnimationChangePassowrd, userData, toggleModal) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimationChangePassowrd(true);
@@ -175,6 +175,7 @@ export const changePassword = (setAnimationChangePassowrd, userData) => {
                     type: 'success',
                     text1: 'user updated successfully',
                 });
+                toggleModal();
             })
             .catch((err) => {
                 setAnimationChangePassowrd(false);

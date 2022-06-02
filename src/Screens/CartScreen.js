@@ -75,7 +75,8 @@ const CartScreen = ({
   animation,
   subTotal,
   promocodeDiscount,
-  setPaymentMethodName
+  setPaymentMethodName,
+  placeOrderAnimation
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -164,6 +165,7 @@ const CartScreen = ({
             backgroundColor={colors.blackColor}
             buttonHeight={57}
             title={t('place_order')}
+            animation={placeOrderAnimation}
 
           />
           <VerificationModal

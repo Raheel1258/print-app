@@ -88,6 +88,7 @@ const EditedSingleProductScreen = ({
   sliceArray,
   sliceData,
   flag,
+  remarks
 }) => {
   let widthOne= 120;
   let heightOne = 65;
@@ -371,13 +372,15 @@ const EditedSingleProductScreen = ({
           textAlignVertical="top"
           multiline={true}
           numberOfLines={5}
+          value={remarks && remarks}
           style={styles.textAreaInput}
+          keyboardType="default"
         />
         <View style={styles.bottomContainer}>
           <Text style={styles.addCart}>{t('add_to_cart')}</Text>
           <GreenButton
             backgroundColor={colors.blackColor}
-            title={t('add_to_cart_text')}
+            title={'Update'}
             animation={addToCartAnimation}
             onPress={() => handleAddToCart()}
           />

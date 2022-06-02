@@ -15,7 +15,6 @@ const AccountDetailContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const [primaryAddressId ,setPrimaryAddressId] = useState('');
   const [animation, setAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
   const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
@@ -51,8 +50,7 @@ const AccountDetailContainer = () => {
   }
 
   const handleMakePrimary = (id) => {
-    // dispatch(makeAddressPrimary(id));
-    console.log("per primary address id", primaryAddressId);
+    dispatch(makeAddressPrimary(id));
     console.log("new primary address id", id);
   }
 
@@ -70,7 +68,6 @@ const AccountDetailContainer = () => {
         userAddresses={userAddresses}
         animationUpdateUser={animationUpdateUser}
         handleUserAddressRemove={handleUserAddressRemove}
-        setPrimaryAddressId={setPrimaryAddressId}
       />
     </View>
   );

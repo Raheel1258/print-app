@@ -29,7 +29,6 @@ const AccountDetailScreen = ({
   animationUpdateUser, 
   handleUserAddressRemove,
   makePrimary,
-  setPrimaryAddressId
  }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
@@ -125,7 +124,6 @@ const AccountDetailScreen = ({
             />
           </View>
           {userAddresses?.length > 0 ? userAddresses?.map((item, index) => {
-            {item?.primary == true && setPrimaryAddressId(item?._id)}
             return <>
               <MyAddresses 
               setUpdatedAddress={setUpdatedAddress} 

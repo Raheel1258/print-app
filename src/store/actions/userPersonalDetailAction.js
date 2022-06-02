@@ -191,10 +191,11 @@ export const changePassword = (setAnimationChangePassowrd, userData) => {
 export const makeAddressPrimary = (id) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        setAnimationChangePassowrd(true);
-        axios.patch(`${Api}/user/makePrmiary/${id}`, {primary:true}, {headers: { "Authorization": `Bearer ${accessToken}` } })
+        // setAnimationChangePassowrd(true);
+        axios.patch(`${Api}/user/address/${id}`, {}, {headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                setAnimationChangePassowrd(false);
+                // setAnimationChangePassowrd(false);
+                console.log("res from parmry" , res);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
                 Toast.show({
@@ -203,7 +204,8 @@ export const makeAddressPrimary = (id) => {
                 });
             })
             .catch((err) => {
-                setAnimationChangePassowrd(false);
+                console.log("err" , err?.response);
+                // setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',

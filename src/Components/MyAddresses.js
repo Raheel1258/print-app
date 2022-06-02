@@ -5,59 +5,56 @@ import { ScaledSheet } from 'react-native-size-matters';
 import MasterCard from '../Assests/Svgs/MasterCard';
 import { colors, fonts } from '../Utils/theme';
 
-const MyAddresses = ({ description, address, card , handleUserAddressRemove, refRBSheet, setUpdatedAddress, makePrimary, title}) => {
+const MyAddresses = ({ description, address, card, handleUserAddressRemove, refRBSheet, setUpdatedAddress, makePrimary, title }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>{title ?? address?.title}</Text>
-       {address?.primary == true  && <Text style={styles.headerPrimary}>Primary</Text>}
-      </View>
-      {address ?
+      {address &&
         <>
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>{title ?? address?.fullName}</Text>
+            {address?.primary == true && <Text style={styles.headerPrimary}>Primary</Text>}
+          </View>
           <View>
             <Text style={styles.addressText}>{address?.addressLine1}</Text>
             <Text style={styles.addressText}>{address?.addressLine2}</Text>
           </View>
           <View style={styles.editableContainer}>
-        <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(address)}} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        {address?.primary == false && <TouchableOpacity onPress={()=> makePrimary(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
-        <TouchableOpacity  onPress={() => handleUserAddressRemove(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
-      </View>
-          
-        </>
-        :
+            <TouchableOpacity onPress={() => { refRBSheet.current.open(), setUpdatedAddress(address) }} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
+            {address?.primary == false && <TouchableOpacity onPress={() => makePrimary(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+            <TouchableOpacity onPress={() => handleUserAddressRemove(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
+          </View>
+
+        </>}
+        {card &&
         <>
-        <View>
-          <View style={styles.cardPrivacyContainer}>
-            <Text style={styles.cardNumText}>Card number:</Text>
-            <Text style={styles.masterCardText}>Master (9881)</Text>
-            <MasterCard />
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>{title}</Text>
+            <Text style={styles.headerPrimary}>Primary</Text>
           </View>
-          <View style={styles.cardPrivacyContainer}>
-            <Text style={styles.cardNumText}>Expiry:</Text>
-            <Text style={styles.cardNumText}>12 / 25</Text>
+          <View>
+            <View style={styles.cardPrivacyContainer}>
+              <Text style={styles.cardNumText}>Card number:</Text>
+              <Text style={styles.masterCardText}>Master (9881)</Text>
+              <MasterCard />
+            </View>
+            <View style={styles.cardPrivacyContainer}>
+              <Text style={styles.cardNumText}>Expiry:</Text>
+              <Text style={styles.cardNumText}>12 / 25</Text>
+            </View>
+            <View style={styles.cardPrivacyContainer}>
+              <Text style={styles.cardNumText}>CVV:</Text>
+              <Text style={styles.cardNumText}>***</Text>
+            </View>
           </View>
-          <View style={styles.cardPrivacyContainer}>
-            <Text style={styles.cardNumText}>CVV:</Text>
-            <Text style={styles.cardNumText}>***</Text>
+          <View style={styles.editableContainer}>
+            <TouchableOpacity onPress={() => console.log("edited address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
+            {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+            <TouchableOpacity onPress={() => console.log("Remove address")} style={styles.paddingWrapper} ><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
           </View>
-        </View>
-        <View style={styles.editableContainer}>
-        <TouchableOpacity onPress={() => console.log("edited address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
-        <TouchableOpacity onPress={()=>console.log("Remove address")} style={styles.paddingWrapper} ><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
-      </View>
-        </>
-      }
-      
-      {/* <View style={styles.editableContainer}>
-        <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
-        <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
-      </View> */}
+        </>}
     </View>
 
-    
+
   );
 };
 

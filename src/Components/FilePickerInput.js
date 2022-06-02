@@ -1,12 +1,16 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {View, Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import DocumentPicker, {isInProgress, pick} from 'react-native-document-picker';
 import {useTranslation} from 'react-i18next';
+import {uploadFile} from "../store/actions/productList"
 
 import {colors,fonts} from '../Utils/theme';
+import { useDispatch } from 'react-redux';
 
 const FilePickerInput = ({result,setResult}) => {
+  const dispatch = useDispatch();
+  const [animation, setAnimation] = useState(false);
   const {t} = useTranslation();
   // useEffect(() => {
   //   console.log(JSON.stringify(result, null, 2));
@@ -30,7 +34,7 @@ const FilePickerInput = ({result,setResult}) => {
         presentationStyle: 'fullScreen',
         copyTo: 'cachesDirectory',
       });
-      
+      dispatch(uploadFile(pickerResult?.uri, setAnimation, setResult))
       setResult((prev)=>{
         return [...prev, pickerResult]
       });
@@ -45,6 +49,8 @@ const FilePickerInput = ({result,setResult}) => {
     });
   };
   return (
+    <>
+    {!animation ?
     <View>
       {result?.length == 0 && (
         <Text style={styles.noFileAdded}>{t('no_file_added')}</Text>
@@ -70,7 +76,10 @@ const FilePickerInput = ({result,setResult}) => {
         {/* <Text style={styles.browseText}>{t('browse_text')}</Text> */}
        {result?.length < 1  ? <Text style={styles.browseText}>{t('browse_text')}</Text> : <Text style={styles.browseText}>{t('add_more')}</Text>}
       </TouchableOpacity>
-    </View>
+    </View>:<View style={styles.loaderContainer}>
+            <ActivityIndicator size="small" color="#000" animating={true} />
+          </View> }
+    </>
   );
 };
 
@@ -114,6 +123,11 @@ const styles = ScaledSheet.create({
     width: '40%',
     paddingLeft:'0@s'
   },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default FilePickerInput;

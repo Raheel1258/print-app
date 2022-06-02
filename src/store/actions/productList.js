@@ -151,13 +151,15 @@ export const getProductById = (id,setAnimation) => {
 
 
 //Upload file
-export const uploadFile = (uploadImage, setAnimation) => {
+export const uploadFile = (uploadImage, setAnimation, setResult) => {
   return async (dispatch) => {
     setAnimation(true);
     axios.get(`${Api}/products/upload-file/image`,{uploadImage} )
       .then(async (res) => {
         setAnimation(false);
-        dispatch(setProductList(res?.data));
+        setResult((prev)=>{
+          return [...prev, res?.data?.Location];
+        });
       })
       .catch((err) => {
         setAnimation(false);

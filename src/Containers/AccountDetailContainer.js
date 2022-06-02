@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCurrentUserDetail, updateCurrentUserDetail, deleteAddress} from "../store/actions/userPersonalDetailAction"
+import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary } from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
@@ -15,15 +15,16 @@ const AccountDetailContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const [primaryAddressId ,setPrimaryAddressId] = useState('');
   const [animation, setAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
   const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
   const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
 
   const [personalDetail, setPersonalDetail] = useState({
-    firstName: 'Peter', 
+    firstName: 'Peter',
     lastName: 'Peter',
-    phone: '23234234' ,
+    phone: '23234234',
     email: 'peter@gmail.com'
   });
 
@@ -36,9 +37,9 @@ const AccountDetailContainer = () => {
     navigation.goBack();
   };
 
-  useEffect(()=> {
-    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail)); 
-  },[])
+  useEffect(() => {
+    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
+  }, [])
 
 
   const handleUpdatedPersonalDetail = (values) => {
@@ -49,9 +50,16 @@ const AccountDetailContainer = () => {
     dispatch(deleteAddress(addressId));
   }
 
+  const handleMakePrimary = (id) => {
+    // dispatch(makeAddressPrimary(id));
+    console.log("per primary address id", primaryAddressId);
+    console.log("new primary address id", id);
+  }
+
   return (
     <View style={styles.container}>
       <AccountDetailScreen
+        makePrimary={handleMakePrimary}
         navigate={navigate}
         goBack={goBack}
         addAddressRBSheet={addAddressRBSheet}
@@ -62,6 +70,7 @@ const AccountDetailContainer = () => {
         userAddresses={userAddresses}
         animationUpdateUser={animationUpdateUser}
         handleUserAddressRemove={handleUserAddressRemove}
+        setPrimaryAddressId={setPrimaryAddressId}
       />
     </View>
   );

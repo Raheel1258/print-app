@@ -35,7 +35,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
         setAnimation(true);
         axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from address api" , res);
+                console.log("res from added address api" , res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'
@@ -118,7 +118,7 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                     phone: res?.data?.phone,
                     email: res?.data?.email
                 })
-                console.log("id" , res?.data);
+                console.log("address " , res?.data);
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
@@ -171,6 +171,32 @@ export const changePassword = (setAnimationChangePassowrd, userData) => {
         axios.patch(`${Api}/user/changepassword`, userData, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 setAnimationChangePassowrd(false);
+                Toast.show({
+                    type: 'success',
+                    text1: 'user updated successfully',
+                });
+            })
+            .catch((err) => {
+                setAnimationChangePassowrd(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+
+    }
+}
+
+//makeAddressPrimary
+export const makeAddressPrimary = (id) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setAnimationChangePassowrd(true);
+        axios.patch(`${Api}/user/makePrmiary/${id}`, {primary:true}, {headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimationChangePassowrd(false);
+                dispatch(setUserDetail(res?.data));
+                dispatch(setUserAddress(res?.data?.addresses))
                 Toast.show({
                     type: 'success',
                     text1: 'user updated successfully',

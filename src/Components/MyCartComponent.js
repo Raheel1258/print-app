@@ -4,7 +4,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import { colors,fonts } from '../Utils/theme';
 
 
-const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit=false, remove=false, item, navigate, handleRemoveProduct }) => {
+const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit=false, remove=false, item, navigate, handleRemoveProduct, handleEditProduct }) => {
   return (
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
       <Image  transition={false} style={styles.cardImage} source={{uri:image}} />
@@ -30,7 +30,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
         </View>} 
      
         {edit && remove && <View style={styles.quantityContainer}>
-          <TouchableOpacity onPress={()=> console.log("edit product")} style={styles.paddingWrapper}>
+          <TouchableOpacity onPress={()=> handleEditProduct(item?.productId , item?._id , item?.title)} style={styles.paddingWrapper}>
           <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={()=> handleRemoveProduct(item?._id)} style={styles.paddingWrapper}>

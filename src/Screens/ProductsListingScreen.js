@@ -12,7 +12,7 @@ import {colors,fonts} from '../Utils/theme';
 const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, categoryImage, animation, category }) => {
   const renderItem = ({ item }) => (
     <>
-      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,category:category})}>
+      <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,productCategory:category})}>
       {/* <ImageSwiper sliderImages={item?.image} autoPlaySlider={false}/> */}
         <View style={styles.paddingContainer}>
       <Image style={styles.cardImage}   source={{uri: item?.image[0]}} />

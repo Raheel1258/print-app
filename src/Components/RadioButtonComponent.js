@@ -16,13 +16,14 @@ const RadioButtonComponent = ({
   onPress,
   radioButtonStatus,
   setRadioButtonStatus,
-  toggleModal = ()=> {}
+  toggleModal = ()=> {},
+  paymentMethodName
 }) => {
   const {t} = useTranslation();
   return (
     <View>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => setRadioButtonStatus(true)}>
+        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => {setRadioButtonStatus(true); paymentMethodName(false)}}>
           {radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <View>

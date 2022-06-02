@@ -5,7 +5,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Storage from '../Utils/Storage';
 import Stripe from 'react-native-stripe-api';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData,PromoCodeVerifed, deleteProduct } from '../store/actions/cartAction'
+import { getCartData, PromoCodeVerifed, deleteProduct } from '../store/actions/cartAction'
 import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
@@ -26,12 +26,13 @@ const CartContainer = () => {
 
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
-  const [validPromoCode, setValidPromoCode]= useState(false);
-  const [promoCodeAnimation, setPromoCodeAnimation]= useState(false);
+  const [validPromoCode, setValidPromoCode] = useState(false);
+  const [promoCodeAnimation, setPromoCodeAnimation] = useState(false);
   const [textValue, setTextValue] = useState('');
   const [delivery, setDelivery] = useState(true);
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
+  const [paymentMethodName, setPaymentMethodName] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
   const [userToken, setUserToken] = useState(null);
@@ -39,7 +40,7 @@ const CartContainer = () => {
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode)
 
-  console.log("cart item for price", cartItem);
+  console.log("paymentment", paymentMethodName);
 
   const [data, setData] = useState([
     {
@@ -78,9 +79,9 @@ const CartContainer = () => {
     },
   ]);
 
-  useEffect(()=> {
-     dispatch(getCartData(setAnimation, navigate));
-  },[isFocused])
+  useEffect(() => {
+    dispatch(getCartData(setAnimation, navigate));
+  }, [isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
@@ -92,9 +93,9 @@ const CartContainer = () => {
   useEffect(() => {
   }, [authRBSheet]);
 
-  useEffect(()=>{
+  useEffect(() => {
     handleTotalAmount();
-  },[cartItem, promocodeDiscount])
+  }, [cartItem, promocodeDiscount])
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -118,14 +119,15 @@ const CartContainer = () => {
         type: 'error',
         text1: 'Enter Promo Code',
       });
+      setValidPromoCode(false);
     }
     else {
       dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode));
     }
   }
-  
-  const handleEditProduct = (id) => {
-    console.log("id" , id);
+
+  const handleEditProduct = (productId, cartProductId , cartTitle) => {
+    navigate('editedSingleProduct', { productId: productId, cartProductId: cartProductId , productCategory:cartTitle })
   }
 
   const handleRemoveProduct = (_id) => {
@@ -135,23 +137,45 @@ const CartContainer = () => {
 
   const handlePayment = () => {
     // genToken();
-    navigate('payment', {amount:total});
+    const orderObj = {
+      products: cartItem,
+      orderDate: "string",
+      deliveryMethod: "string",
+      deliveryAddress: {
+        fullName: "string",
+        companyName: "string",
+        addressLine1: "Lahore anarkali",
+        addressLine2: "string",
+        area: "string",
+        district: "string",
+        cityCountry: "string",
+        contactNumber: "string",
+        primary: true
+      },
+      paymentMethod: "credit card",
+      subTotal: subTotal,
+      discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
+      total: total,
+      status: "OUT_FOR_DELIVERY"
+
+    }
+    navigate('payment', { amount: total , orderObj:orderObj});
   }
 
   const handleTotalAmount = () => {
-    cartItem && cartItem?.map((item)=>{
+    cartItem && cartItem?.map((item) => {
       const quantity = item?.priceChart?.units;
       const unitPrice = item?.priceChart?.pricePerUnit;
-      let sub_total = parseInt(quantity*unitPrice);
+      let sub_total = parseInt(quantity * unitPrice);
       let totalPrice = sub_total + 180;
-      if(promocodeDiscount && promocodeDiscount != ""){
-        totalPrice = sub_total - parseInt(promocodeDiscount);
+      if (promocodeDiscount && promocodeDiscount != "") {
+        totalPrice = totalPrice - parseInt(promocodeDiscount);
         setTotal(totalPrice);
-      }else{
+      } else {
         setTotal(totalPrice);
       }
       setSubTotal(sub_total);
-      
+
     })
   }
 
@@ -193,6 +217,7 @@ const CartContainer = () => {
         subTotal={subTotal}
         promocodeDiscount={promocodeDiscount}
         total={total}
+        setPaymentMethodName={setPaymentMethodName}
       />
     </View>
   );

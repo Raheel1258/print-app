@@ -25,4 +25,5 @@ export const PROMO_CODE = "PROMO_CODE";
 export const ACTIVITY_DETAIL = "ACTIVITY_DETAIL";
 
 //Order_Types
-export const GET_ORDER= "GET_ORDER"
+export const GET_ORDER= "GET_ORDER";
+export const SINGLE_PRODUCT = "SINGLE_PRODUCT";

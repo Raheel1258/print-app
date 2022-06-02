@@ -24,7 +24,7 @@ export const getAllOrder = (setAnimation) => {
     // setAnimation(true);
     // axios.get(`${Api}/order/findall`)
     //     .then(async (res) => {
-    //       dispatch(setCategories(res?.data));
+    //       dispatch(setOrder(orderData));
     //       setAnimation(false);
     //     })
     //     .catch((err) => {

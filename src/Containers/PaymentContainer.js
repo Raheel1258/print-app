@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 
 
 const PaymentContainer = ({route}) => {
-    const {amount} = route.params;
+    const {amount, orderObj} = route.params;
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const [animation, setAnimation] = useState(false);
@@ -25,7 +25,8 @@ const PaymentContainer = ({route}) => {
     
 
     const handleCreditCard = (values) => {
-        dispatch(genToken(values, navigate, amount, setAnimation));
+        console.log("object order" , orderObj);
+        dispatch(genToken(values, navigate,amount,setAnimation,orderObj));
         //navigate("orderReceived");
         // console.log("result" , result);
 

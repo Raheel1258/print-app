@@ -17,6 +17,7 @@ import ResetPasswordContainer from './ResetPasswordContainer';
 import ChangePasswordContainer from './ChangePasswordContainer';
 import ActivityContainer from './ActivityContainer';
 import PaymentContainer from './PaymentContainer';
+import EditedSingleProductContainer from './EditedSingleProductContainer';
 
 export {
   SigninContainer,
@@ -37,5 +38,6 @@ export {
   ResetPasswordContainer,
   ChangePasswordContainer,
   ActivityContainer,
-  PaymentContainer
+  PaymentContainer,
+  EditedSingleProductContainer,
 };

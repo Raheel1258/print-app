@@ -7,7 +7,7 @@ import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
 
 
-export const genToken = (values, navigate, amount, setAnimation) => {
+export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
     return async (dispatch) => {
         setAnimation(true);
         const apiKey =
@@ -22,20 +22,47 @@ export const genToken = (values, navigate, amount, setAnimation) => {
         });
 
         if (stripeToken?.id) {
+            console.log("into valid card");
             //Valid Token Hit BE Api's for payment
             const accessToken = await Storage.retrieveData('token')
             axios
                 .post(`${Api}/order/charge`, { amount: amount, paymentMethodId: stripeToken?.id }, { headers: { "Authorization": `Bearer ${accessToken}` } })
                 .then(async (res) => {
+                    console.log("into charge api stripe" , res);
                     setAnimation(false);
-
                     Toast.show({
                         type: 'success',
                         text1: 'Payment is successfully completed'
+                    });
+
+                    //Place order Now payment integrated
+                    axios
+                    .post(`${Api}/order/add`, orderObj, {headers: { "Authorization": `Bearer ${accessToken}`}})
+                    .then(async (res) => {
+                        console.log("res from order" , res);
+                        setAnimation(false);
+                        Toast.show({
+                            type: 'success',
+                            text1: 'Place Order is successfully completed'
+                        });
+                        
+                        //Place order Now payment integrated
+                        navigate("orderReceived");
+                     
                     })
-                    navigate("orderReceived");
+                    .catch((err) => {
+                        console.log("res from order err", err?.response);
+                        setAnimation(false);
+                        Toast.show({
+                            type: 'error',
+                            text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                        });
+                    });
+
+                    //Ended Place order api
                 })
                 .catch((err) => {
+                    console.log("error charge" , err?.response);
                     setAnimation(false);
                     Toast.show({
                         type: 'error',
@@ -45,6 +72,7 @@ export const genToken = (values, navigate, amount, setAnimation) => {
             // stripeToken?.id
         }
         else {
+            console.log("into stripe card error")
             Toast.show({
                 type: 'error',
                 text1: stripeToken?.error?.message ? stripeToken?.error?.message : 'Network Error',

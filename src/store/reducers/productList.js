@@ -16,5 +16,11 @@ const productList = createReducer({},
       priceChart: action.priceChart
     };
   },
+  [types.SINGLE_PRODUCT](state, action) {
+    return {
+      ...state,
+     singleProduct: action.data
+    };
+  },
 });
 export default productList;

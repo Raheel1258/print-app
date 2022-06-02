@@ -1,2 +1,2 @@
-export const Api = "https://print-print-app.herokuapp.com/api/v1";
-export const GOOGLE_API_KEY = "AIzaSyCrT7sQqzwkmVTWWlPDsq1-g2KGby3XTpM";
+export const Api = "https://print-backend-app.herokuapp.com/api/v1";
+

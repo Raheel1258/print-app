@@ -27,6 +27,7 @@ import {
   ChangePasswordContainer,
   ActivityContainer,
   PaymentContainer,
+  EditedSingleProductContainer
 } from '../Containers';
 import {colors, fonts} from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
@@ -40,6 +41,7 @@ import ActivityIcon from '../Assests/Svgs/ActivityIcon';
 import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
 import AccountIcon from '../Assests/Svgs/AccountIcon';
 import EmptyCartScreen from '../Screens/EmptyCartScreen';
+
 
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
@@ -247,6 +249,11 @@ const CartStack = () => {
         component={EmptyCartScreen}
         options={{headerShown: false}}
       /> */}
+      <Cart.Screen
+        name="editedSingleProduct"
+        component={EditedSingleProductContainer}
+        options={{headerShown: false}}
+      />
       <Cart.Screen
         name="Home"
         component={App}

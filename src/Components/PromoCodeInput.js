@@ -6,14 +6,14 @@ import { useTranslation } from 'react-i18next';
 import GreenCheckIcon from '../Assests/Svgs/GreenCheckIcon';
 import {colors,fonts} from '../Utils/theme';
 []
-const PromoCodeInput = ({textValue, setTextValue, validPromoCode}) => {
+const PromoCodeInput = ({textValue, setTextValue, validPromoCode, promocodeDiscount}) => {
     const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <Text style={styles.textInputTitle}>{t('add_promo_code')}</Text>
       <View style={styles.textInputContainer}>
       <TextInput style={styles.textInput} value={textValue} onChangeText={setTextValue} />
-      {(textValue !== '' && validPromoCode ==true ) && <GreenCheckIcon/> }
+      {(promocodeDiscount != "0" && textValue !== '' && validPromoCode ==true ) && <GreenCheckIcon/> }
       </View>
     </View>
   );

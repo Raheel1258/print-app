@@ -30,6 +30,13 @@ export const setPriceChart = (priceChart) => {
   }
 }
 
+export const setSingleProduct = (data) =>{
+  return {
+    type: types.SINGLE_PRODUCT,
+    data
+  }
+}
+
 
 export const getProductListByCategory = (category, setAnimation) => async dispatch => {
   // setAnimation(true);
@@ -122,3 +129,43 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject) => {
       });
   }
 }; 
+
+export const getProductById = (id,setAnimation) => {
+  return async (dispatch) => {
+    const accessToken = await Storage.retrieveData('token');
+    setAnimation(true);
+    axios.get(`${Api}/products/findById/${id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+      .then(async (res) => {
+        setAnimation(false);
+        dispatch(setSingleProduct(res?.data));
+      })
+      .catch((err) => {
+        setAnimation(false);
+        Toast.show({
+          type: 'error',
+          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+        });
+      });
+  }
+};
+
+
+//Upload file
+export const uploadFile = (uploadImage, setAnimation) => {
+  return async (dispatch) => {
+    setAnimation(true);
+    axios.get(`${Api}/products/upload-file/image`,{uploadImage} )
+      .then(async (res) => {
+        setAnimation(false);
+        dispatch(setProductList(res?.data));
+      })
+      .catch((err) => {
+        setAnimation(false);
+        Toast.show({
+          type: 'error',
+          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+        });
+      });
+  }
+};
+

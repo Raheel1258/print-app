@@ -5,23 +5,23 @@ import { ScaledSheet } from 'react-native-size-matters';
 import MasterCard from '../Assests/Svgs/MasterCard';
 import { colors, fonts } from '../Utils/theme';
 
-const MyAddresses = ({ title, description, address, card , handleUserAddressRemove, id , refRBSheet, setUpdatedAddress, index}) => {
+const MyAddresses = ({ description, address, card , handleUserAddressRemove, refRBSheet, setUpdatedAddress, makePrimary, title}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>{title}</Text>
-       {index == 0 && <Text style={styles.headerPrimary}>{description}</Text>}
+        <Text style={styles.headerTitle}>{title ?? address?.title}</Text>
+       {address?.primary == true  && <Text style={styles.headerPrimary}>Primary</Text>}
       </View>
       {address ?
         <>
           <View>
-            <Text style={styles.addressText}>{address.addressLine1}</Text>
+            <Text style={styles.addressText}>{address?.addressLine1}</Text>
             <Text style={styles.addressText}>{address?.addressLine2}</Text>
           </View>
           <View style={styles.editableContainer}>
         <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(address)}} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-        {index != 0 && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
-        <TouchableOpacity  onPress={() => handleUserAddressRemove(id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
+        {address?.primary == false && <TouchableOpacity onPress={()=> makePrimary(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
+        <TouchableOpacity  onPress={() => handleUserAddressRemove(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
       </View>
           
         </>

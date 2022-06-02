@@ -30,6 +30,7 @@ const FilePickerInput = ({result,setResult}) => {
         presentationStyle: 'fullScreen',
         copyTo: 'cachesDirectory',
       });
+      
       setResult((prev)=>{
         return [...prev, pickerResult]
       });

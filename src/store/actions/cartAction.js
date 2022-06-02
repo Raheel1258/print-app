@@ -112,20 +112,44 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
         setPromoCodeAnimation(true);
         axios.get(`${Api}/promocode/findbyname/${data}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("PromoCode res" , res?.data[0]?.discount);
-                dispatch(setPromoCodeDetail(res?.data[0]?.discount));
+                console.log("res from promocode" , res)
+                if(res?.data?.length > 0){
+                    dispatch(setPromoCodeDetail(res?.data[0]?.discount));
+                    setValidPromoCode(true);
+                }else {dispatch(setPromoCodeDetail("0")); promoCodeToggleModal(); setValidPromoCode(false);};
                 setPromoCodeAnimation(false);
-                setValidPromoCode(true);
 
             })
             .catch((err) => {
+                console.log("res from promocode err" , err?.response)
                 promoCodeToggleModal();
-                console.log("promo code err" , err.response);
                 setPromoCodeAnimation(false);
                 setValidPromoCode(false);
             });
     }
 }
+//Edit Cart Item
+export const editCartItem = (setAddToCartAnimation,id,obj) => {
+    return async (dispatch) => {
+        setAddToCartAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.delete(`${Api}/cart/item/update/${id}`,obj, { headers: { "Authorization": `Bearer ${accessToken}` }})
+            .then(async (res) => {
+                setAddToCartAnimation(true);
+                console.log("edit cart res" , res);
+                //dispatch(setCartDetail([]));
+            })
+            .catch((err) => {
+                setAddToCartAnimation(true);
+                console.log("edited cart res" , err?.response);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+    }
+}
+
 
 //Empty Cart 
 export const emptyCart = () => {

@@ -17,7 +17,20 @@ import {
 } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, addCardetCardRBSheet, personalDetail, handleUpdatedPersonalDetail, userAddresses, animationUpdateUser, handleUserAddressRemove }) => {
+const AccountDetailScreen = ({ 
+  goBack, 
+  navigate, 
+  animation, 
+  addAddressRBSheet, 
+  addCardetCardRBSheet, 
+  personalDetail, 
+  handleUpdatedPersonalDetail, 
+  userAddresses, 
+  animationUpdateUser, 
+  handleUserAddressRemove,
+  makePrimary,
+  setPrimaryAddressId
+ }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
   return (
@@ -112,8 +125,14 @@ const AccountDetailScreen = ({ goBack, navigate, animation, addAddressRBSheet, a
             />
           </View>
           {userAddresses?.length > 0 ? userAddresses?.map((item, index) => {
+            {item?.primary == true && setPrimaryAddressId(item?._id)}
             return <>
-              <MyAddresses index={index} setUpdatedAddress={setUpdatedAddress} refRBSheet={addAddressRBSheet} id={item?._id} handleUserAddressRemove={handleUserAddressRemove} address={item} title={item?.fullName} description="Primary"/>
+              <MyAddresses 
+              setUpdatedAddress={setUpdatedAddress} 
+              refRBSheet={addAddressRBSheet} 
+              handleUserAddressRemove={handleUserAddressRemove} 
+              address={item} 
+              makePrimary={makePrimary} />
               {index != userAddresses.length - 1 && <View style={styles.borderBottom} />}
             </>
           }) : <Text style={styles.emptyBox}>No address added</Text>}

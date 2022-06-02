@@ -23,7 +23,7 @@ import {
 import InfoIcon from '../Assests/Svgs/InfoIcon';
 import { colors, fonts } from '../Utils/theme';
 
-const SingleProductScreen = ({
+const EditedSingleProductScreen = ({
   animation,
   priceChart,
   priceChartAnimation,
@@ -127,7 +127,7 @@ const SingleProductScreen = ({
   }
   return (
     <>
-    {!animation  ?
+    {!animation && item !=undefined  ?
     <View style={styles.container}>
       <BackArrowHeader goBack={goBack} title={categoryTitle} arrow={false} />
       <ScrollView style={styles.marginContainer}>
@@ -703,4 +703,4 @@ const styles = ScaledSheet.create({
   }
 });
 
-export default SingleProductScreen;
+export default EditedSingleProductScreen;

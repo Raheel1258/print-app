@@ -228,7 +228,8 @@
     cvc_number: '123',
     payment:'Payment',
     pay:'Pay',
-    invalid_promocode: "Invalid promo code"
+    invalid_promocode: "Invalid promo code",
+    bank_detail:"Bank account info available after checkout",
 
   },
 };

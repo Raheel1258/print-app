@@ -74,7 +74,8 @@ const CartScreen = ({
   handleRemoveProduct,
   animation,
   subTotal,
-  promocodeDiscount
+  promocodeDiscount,
+  setPaymentMethodName
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -110,7 +111,7 @@ const CartScreen = ({
           contentContainerStyle={{ paddingBottom: 0 }}
         />
         <CategoriesTitleHeader title={t('promo_code')} />
-        <PromoCodeInput textValue={textValue} setTextValue={setTextValue} validPromoCode={validPromoCode} />
+        <PromoCodeInput promocodeDiscount={promocodeDiscount} textValue={textValue} setTextValue={setTextValue} validPromoCode={validPromoCode} />
         <View style={styles.buttonWrapper}>
           <GreenButton
             onPress={() => handlePromoCodeValidation()}
@@ -139,9 +140,10 @@ const CartScreen = ({
           title={t('cradit_card_text')}
           description="Select card"
           secondTitle={t('bank_transfer')}
-          second Description="Pick up yourself at:"
+          secondDescription={t("bank_detail")}
           radioButtonStatus={paymentMethod}
           setRadioButtonStatus={setPaymentMethod}
+          paymentMethodName={setPaymentMethodName}
         />
         <CategoriesTitleHeader title={t('order_summary')} />
         <OrderSummaryComponent subTotal={subTotal} promocodeDiscount={promocodeDiscount} total={total}/>

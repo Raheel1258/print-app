@@ -372,6 +372,7 @@ const SingleProductScreen = ({
           multiline={true}
           numberOfLines={5}
           style={styles.textAreaInput}
+          keyboardType="default"
         />
         <View style={styles.bottomContainer}>
           <Text style={styles.addCart}>{t('add_to_cart')}</Text>

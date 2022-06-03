@@ -177,6 +177,7 @@ const HomeStack = () => {
         component={SingleProductContainer}
         options={{headerShown: false}}
       />
+     
        <Home.Screen
         name="authTest"
         component={AuthStack}

@@ -91,7 +91,7 @@ export const getCategoriesProduct = (category, setAnimation) => {
   }
 };
 
-export const getPriceChart = (setPriceChartAnimation, defaultValuesObject) => {
+export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
   console.log('values', values)
@@ -118,6 +118,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject) => {
         console.log("price chart api" , res)
         dispatch(setPriceChart(res?.data?.slice(0,10)));
         setPriceChartAnimation(false);
+        setSelectedPriceChart(res?.data[0])
       })
       .catch((err) => {
         setPriceChartAnimation(false);

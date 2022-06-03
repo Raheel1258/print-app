@@ -13,7 +13,7 @@ const DeliverAndCreditCard = ({
     addressLineOne,
     addressLineTwo = '',
     selected,
-    onPress
+    onPress,
 }) => {
   return (
     <TouchableOpacity style={styles.borderContainer} onPress={onPress}>

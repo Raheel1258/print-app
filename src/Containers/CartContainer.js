@@ -30,6 +30,8 @@ const CartContainer = () => {
   const [promoCodeAnimation, setPromoCodeAnimation] = useState(false);
   const [textValue, setTextValue] = useState('');
   const [delivery, setDelivery] = useState(true);
+  const [deliveryAddress, setDeliveryAddress] = useState("Delivery");
+  const [deliveryUserAddress, setDeliveryUserAddress] = useState("Select delivery address");
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
   const [paymentMethodName, setPaymentMethodName] = useState("Credit Card");
@@ -37,30 +39,31 @@ const CartContainer = () => {
   const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
-  const [placeOrderAnimation , setPlaceOrderAnimation]=useState(false);
+  const [placeOrderAnimation , setPlaceOrderAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
 
-  console.log("personal Data", userDetailData);
-  const [data, setData] = useState([
-    {
-      id: '1',
-      title: 'Karen Chan',
-      addressLineOne: '23 Wings IIIB, 19 Tong Sun Street,',
-      addressLineTwo: 'Ma On Shan, New Territories, Hong Kong',
-      selected: true
-    },
-    {
-      id: '2',
-      title: '[Full Name]',
-      companyName: '[Company Name]',
-      addressLineOne: '[Address Line 1], [Address Line 2]',
-      addressLineTwo: '[Area], [District], [City/Country]',
-      selected: false
-    },
-  ]);
-
+console.log("address" ,userDetailData );
+  // const [data, setData] = useState([
+  //   {
+  //     id: '1',
+  //     title: 'Karen Chan',
+  //     addressLineOne: '23 Wings IIIB, 19 Tong Sun Street,',
+  //     addressLineTwo: 'Ma On Shan, New Territories, Hong Kong',
+  //     selected: true
+  //   },
+  //   {
+  //     id: '2',
+  //     title: '[Full Name]',
+  //     companyName: '[Company Name]',
+  //     addressLineOne: '[Address Line 1], [Address Line 2]',
+  //     addressLineTwo: '[Area], [District], [City/Country]',
+  //     selected: false
+  //   },
+  // ]);
+  const [data, setData] = useState(userDetailData?.addresses);
+console.log('data', userDetailData?.addresses);
   const [cardData, setCardData] = useState([
     {
       id: '1',
@@ -99,13 +102,18 @@ const CartContainer = () => {
   }, [cartItem, promocodeDiscount])
 
   useEffect(()=>{
-    dispatch(getUserDetailForPlacingOrder());
+    dispatch(getUserDetailForPlacingOrder(setData));
 
-  },[])
+  },[isFocused])
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
+
+  const handleChange = (value) => {
+    setTextValue(value);
+  };
+
 
   const goBack = () => {
     navigation.goBack();
@@ -137,7 +145,6 @@ const CartContainer = () => {
   }
 
   const handleRemoveProduct = (_id) => {
-    console.log("removed id", _id);
     dispatch(deleteProduct(setAnimation, _id, navigate));
   }
 
@@ -148,15 +155,7 @@ const CartContainer = () => {
       orderDate: "string",
       deliveryMethod: "string",
       deliveryAddress: {
-        fullName: "string",
-        companyName: "string",
-        addressLine1: "Lahore anarkali",
-        addressLine2: "string",
-        area: "string",
-        district: "string",
-        cityCountry: "string",
-        contactNumber: "string",
-        primary: false
+        addressLine1:   deliveryAddress == 'Delivery' ? deliveryUserAddress : deliveryAddress
       },
       paymentMethod: paymentMethodName,
       subTotal: subTotal,
@@ -165,6 +164,7 @@ const CartContainer = () => {
       status: "OUT_FOR_DELIVERY"
 
     }
+    console.log("order place data" , orderObj);
     if(paymentMethodName == "Credit Card"){
       navigate('payment', { amount: total , orderObj:orderObj})
 
@@ -193,12 +193,13 @@ const CartContainer = () => {
   return (
     <View style={styles.container}>
       <CartScreen
+        deliveryUserAddress={deliveryUserAddress}
+        setDeliveryUserAddress={setDeliveryUserAddress}
         refRBSheet={refRBSheet}
         creditCardRBSheet={creditCardRBSheet}
         addAddressRBSheet={addAddressRBSheet}
         addCardetCardRBSheet={addCardetCardRBSheet}
         textValue={textValue}
-        setTextValue={setTextValue}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
         isPromoCodeModaVidible={isPromoCodeModaVidible}
@@ -230,6 +231,8 @@ const CartContainer = () => {
         total={total}
         setPaymentMethodName={setPaymentMethodName}
         placeOrderAnimation={placeOrderAnimation}
+        setDeliveryAddress={setDeliveryAddress}
+        handleChange={handleChange}
       />
     </View>
   );

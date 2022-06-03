@@ -12,7 +12,7 @@ import { colors } from '../Utils/theme';
 const EditedSingleProductContainer = ({ route }) => {
 
   const { t } = useTranslation();
-  const { productCategory, productId, cartProductId, cartItem } = route.params;
+  const { productCategory, productId,cartItem } = route.params;
 
 console.log("item edit remarks" , cartItem?.remarks);
   const priceChart = useSelector(state => state?.productList?.priceChart);
@@ -41,8 +41,8 @@ console.log("item edit remarks" , cartItem?.remarks);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState(t('upload_file'));
   const [shape, setShape] = useState("");
-  const [selectedSize, setSelectedSize] = useState("");
-  const [selectedCorner, setSelectedCorner] = useState("");
+  const [selectedSize, setSelectedSize] = useState();
+  const [selectedCorner, setSelectedCorner] = useState();
   const [selectFinishing, setSelectFinishing] = useState("");
   const [selectSpotUv, setSelectSpotUv] = useState("");
   const [selectedPriceChart, setSelectedPriceChart] = useState(priceChart && priceChart[0]);
@@ -154,7 +154,7 @@ console.log("item edit remarks" , cartItem?.remarks);
   }, [])
 
   useEffect(() => {
-    dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject));
+    dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
   }, [values, state]);
 
   useEffect(() => {
@@ -254,7 +254,7 @@ console.log("item edit remarks" , cartItem?.remarks);
       }
     });
     console.log("new edit object" , obj);
-    dispatch(editCartItem(setAddToCartAnimation, cartProductId, cartItem?.productId, obj)); 
+    dispatch(editCartItem(setAddToCartAnimation, productId, obj, navigate)); 
 
 
   }

@@ -1,25 +1,25 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Text, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors, fonts} from '../Utils/theme';
 import DeliverAndCreditCard from './DeliverAndCreditCard';
 
-const DeliverAddressComponent = ({onPress, data, addNew, setData}) => {
-
+const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail}) => {
   const handleData = (id) => {
     setData((prev)=> {
-      return prev.map((x)=>{
-        if(x?.id == id){
-        return {...x, selected: true}
+      return prev?.map((x,i)=>{
+        if(x?._id == id){
+          setShowDetail(x?.addressLine1);
+        return {...prev[i], primary: true}
         }else{
-          return {...x, selected: false}
+          return {...prev[i], primary: false}
         }
       })
     })
   }
 
-const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(item?.id)} title={item?.title} companyName = {item?.companyName} addressLineOne={item.addressLineOne} addressLineTwo={item.addressLineTwo} children={item?.children} selected={item?.selected}/>;
+const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(item?._id)} title={item?.fullName} companyName = {item?.companyName} addressLineOne={item.addressLine1} addressLineTwo={item?.addressLine2} children={item?.children} selected={item?.primary} />;
 
   return (
     <ScrollView>

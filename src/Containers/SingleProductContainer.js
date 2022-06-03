@@ -14,9 +14,6 @@ const SingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { item, categoryTitle, productCategory} = route.params;
 
-  console.log("item fromhome" , item);
-
-
   const priceChart = useSelector(state => state?.productList?.priceChart);
   const [sliceArray, setSliceArray] = useState();
   const [flag, setflag] = useState(true)
@@ -153,7 +150,9 @@ const SingleProductContainer = ({ route }) => {
   // }, [])
 
   useEffect(() => {
-    dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject));
+  
+
+    dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart ));
   }, [values]);
 
   // useEffect(() => {

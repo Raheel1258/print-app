@@ -47,6 +47,7 @@ export const getCartData = (setAnimation, navigate) => {
         setAnimation(true);
         axios.get(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                console.log("res from get cart", res);
                 dispatch(setCartDetail(res?.data?.products));
                 setAnimation(false);
             })
@@ -63,11 +64,11 @@ export const getCartData = (setAnimation, navigate) => {
 
 //Add to cart
 export const addToCart = (setAddToCartAnimation, data, navigate) => {
-    
+    console.log("datattatatatatatatatat," ,data);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAddToCartAnimation(true);
-        axios.patch(`${Api}/cart/item/add`, data, { headers: { "Authorization": `Bearer ${accessToken}`}})
+        axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}`}})
             .then(async (res) => {
                 setAddToCartAnimation(false);
                 console.log("item added to cart" , res?.data)
@@ -76,7 +77,7 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
                     type: 'success',
                     text1: 'Item added to cart successfully',
                 });
-                navigate("cart")
+                navigate("cart");
             })
             .catch((err) => {
                 setAddToCartAnimation(false);
@@ -91,10 +92,11 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
 
 
 export const deleteProduct = (setAnimation, _id, navigate) => {
+    console.log("into cart delete");
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        axios.delete(`${Api}/cart/item/delete/${_id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.delete(`${Api}/cart/product/delete/${_id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 console.log("cart delete" , res?.data )
                 // dispatch(setCartDetail(res?.data?.products)); 
@@ -136,15 +138,17 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
     }
 }
 //Edit Cart Item
-export const editCartItem = (setAddToCartAnimation,id, productId, obj) => {
+export const editCartItem = (setAddToCartAnimation,productId, obj, navigate) => {
     console.log("cart edit productId" , productId);
+    console.log("edit project" , obj);
     return async (dispatch) => {
         setAddToCartAnimation(true);
         const accessToken = await Storage.retrieveData('token')
-        axios.patch(`${Api}/cart/item/update/${id}`,obj, { headers: { "Authorization": `Bearer ${accessToken}` }})
+        axios.patch(`${Api}/cart/product/update/${productId}`,obj, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
                 setAddToCartAnimation(false);
                 console.log("edit cart res" , res);
+                navigate("cart");
                 //dispatch(setCartDetail([]));
             })
             .catch((err) => {
@@ -202,19 +206,18 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
 
 
 //Get User Detail For Place order
-export const getUserDetailForPlacingOrder = () => {
+export const getUserDetailForPlacingOrder = (setData) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         // setAnimation(true);
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("detail user" , res);
                 // setAnimation(false);
                 dispatch(setUserDetail(res?.data));
+                setData(res?.data?.addresses)
             })
             .catch((err) => {
                 // setAnimation(false);
-                console.log("deatil user err" , err?.response);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',

@@ -41,9 +41,11 @@ const DATA = [
 ];
 
 const CartScreen = ({
+  deliveryUserAddress,
+  setDeliveryUserAddress,
+  handleChange,
   total,
   textValue,
-  setTextValue,
   isModalVisible,
   toggleModal,
   refRBSheet,
@@ -76,8 +78,10 @@ const CartScreen = ({
   subTotal,
   promocodeDiscount,
   setPaymentMethodName,
-  placeOrderAnimation
+  placeOrderAnimation,
+  setDeliveryAddress
 }) => {
+  console.log("datatat1233123123" , data);
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (
@@ -112,7 +116,7 @@ const CartScreen = ({
           contentContainerStyle={{ paddingBottom: 0 }}
         />
         <CategoriesTitleHeader title={t('promo_code')} />
-        <PromoCodeInput promocodeDiscount={promocodeDiscount} textValue={textValue} setTextValue={setTextValue} validPromoCode={validPromoCode} />
+        <PromoCodeInput promocodeDiscount={promocodeDiscount} textValue={textValue} validPromoCode={validPromoCode} handleChange={handleChange} />
         <View style={styles.buttonWrapper}>
           <GreenButton
             onPress={() => handlePromoCodeValidation()}
@@ -128,13 +132,13 @@ const CartScreen = ({
           onPress={() => refRBSheet?.current?.open()}
           title={t('delivery_text')}
           secondTitle={t('pick_up')}
-          description="Select delivery address"
+          description={deliveryUserAddress}
           secondDescription="Pick up yourself at:"
           thirdDescription="11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
           radioButtonStatus={delivery}
           setRadioButtonStatus={setDelivery}
-          handleCheckedOne={()=> console.log("devilary1")}
-          handleCheckedTwo={() => console.log("deilvaryTwo")}
+          handleCheckedOne={()=> setDeliveryAddress('Delivery')}
+          handleCheckedTwo={() => setDeliveryAddress('11/F, 52 Hung To Road, Kwun Tong, Hong Kong')}
         />
         <CategoriesTitleHeader title={t('payment_method')} />
         <RadioButtonComponent
@@ -191,6 +195,7 @@ const CartScreen = ({
             addNew={t('new_address')}
             setData={setData}
             data={data}
+            setShowDetail={setDeliveryUserAddress}
             onPress={() => {
               refRBSheet.current.close();
               addAddressRBSheet.current.open();
@@ -206,6 +211,7 @@ const CartScreen = ({
             addNew={t('new_credit_card')}
             data={cardData}
             setData={setCardData}
+            setShowDetail={setDeliveryUserAddress}
             onPress={() => {
               creditCardRBSheet.current.close();
               addCardetCardRBSheet.current.open();

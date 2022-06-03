@@ -15,6 +15,7 @@ const DeliverAndCreditCard = ({
     selected,
     onPress,
 }) => {
+  // const new="sdsdfs";
   return (
     <TouchableOpacity style={styles.borderContainer} onPress={onPress}>
       <View style={styles.marginContainer}>

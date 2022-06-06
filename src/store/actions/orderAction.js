@@ -1,4 +1,5 @@
 import Toast from 'react-native-toast-message';
+import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import {orderData} from "../../Utils/mockData"
 
@@ -17,23 +18,26 @@ export const setOrder = data => {
 export const getAllOrder = (setAnimation) => {
   return async (dispatch) => {
       setAnimation(true);
-      setTimeout(() => {
-          dispatch(setOrder(orderData));
+      const accessToken = await Storage.retrieveData('token');
+      // setTimeout(() => {
+      //     // dispatch(setOrder(orderData));
+      //     setAnimation(false);
+      // }, 1000);
+    setAnimation(true);
+    axios.get(`${Api}/order/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        .then(async (res) => {
+          console.log("all user orders" , res);
+         dispatch(setOrder(res?.data));
           setAnimation(false);
-      }, 1000);
-    // setAnimation(true);
-    // axios.get(`${Api}/order/findall`)
-    //     .then(async (res) => {
-    //       dispatch(setOrder(orderData));
-    //       setAnimation(false);
-    //     })
-    //     .catch((err) => {
-    //       setAnimation(false);
-    //         Toast.show({
-    //             type: 'error',
-    //             text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
-    //         });
-    //     });
+        })
+        .catch((err) => {
+          console.log("all order err" , err?.response);
+          setAnimation(false);
+            Toast.show({
+                type: 'error',
+                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+            });
+        });
 }
 };
 

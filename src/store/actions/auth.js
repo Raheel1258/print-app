@@ -80,25 +80,22 @@ export const signup = (data, navigation, setAnimation) => {
 }
 
 //forgot Password
-export const forgotPassword = (data, navigation, setAnimation) => {
+export const forgotPassword = (data, navigate, setAnimation) => {
     return (dispatch) => {
-            //const accessToken = await Storage.retrieveData('token');
-        // navigation.navigate('verificationCode');
         setAnimation(true);
         axios
         	.patch(`${Api}/user/forgetpassword`, data)
         	.then(async (res) => {
-                console.log("res for forgot ", res);
+                console.log("res from mail" , res);
         		Toast.show({
         			type: 'success',
-        			text1: res?.response?.data?.message
+        			text1: res?.data
         		})
                 setAnimation(false);
-               navigation.navigate('verificationCode');
+               navigate('verificationCode');
         	})
         	.catch((err) => {
-        		console.log('forgot password', err?.response)
-                navigation.navigate('verificationCode');
+                console.log("error from mail" , err?.response);
                 setAnimation(false);
         		Toast.show({
         			type: 'error',
@@ -110,57 +107,57 @@ export const forgotPassword = (data, navigation, setAnimation) => {
 }
 
 //VerificationOptCode
-export const verificationOptCode = (data, navigation, setAnimation) => {
+export const verificationOtpCode = (data,navigate, setAnimation) => {
+    console.log("code code" , data?.otpCode);
     return (dispatch) => {
-        console.log("optCode", data);
-        navigation.navigate('resetPassword');
-        //setAnimation(true);
-        // axios
-        // 	.post(`${Api}/user/forgetPassword`, data)
-        // 	.then(async (res) => {
-        // 		Toast.show({
-        // 			type: 'success',
-        // 			text1: 'You are successfully sent email'
-        // 		})
-        //        dispatch(loading(false));
-        // 	})
-        // 	.catch((err) => {
-        // 		console.log('forgot password', err)
-        //      dispatch(loading(false))
-        // 		Toast.show({
-        // 			type: 'error',
-        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
-        // 		});
-        // 	});
+        setAnimation(true);
+        axios
+        	.post(`${Api}/user/verifyotp`, {otp:data?.otpCode})
+        	.then(async (res) => {
+                console.log("otp " , res);
+        		Toast.show({
+        			type: 'success',
+        			text1: 'Otp verified successfully'
+        		})
+                setAnimation(false);
+                navigate('resetPassword', {userId:res?.data?._id});
+        	})
+        	.catch((err) => {
+        		console.log('forgot password', err?.response)
+                setAnimation(false);
+        		Toast.show({
+        			type: 'error',
+        			text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+        		});
+        	});
 
     }
 }
 
 //ResetPasswordAction
-export const resetPasswordAction = (data, navigation, setAnimation, toggleModal) => {
+export const resetPasswordAction = (data, navigate, setAnimation) => {
+    console.log("reset password data" , data);
     return (dispatch) => {
-        console.log("new password", data);
-        toggleModal();
-
-        //navigation.navigate('verificationCode');
-        //setAnimation(true);
-        // axios
-        // 	.post(`${Api}/user/forgetPassword`, data)
-        // 	.then(async (res) => {
-        // 		Toast.show({
-        // 			type: 'success',
-        // 			text1: 'You are successfully sent email'
-        // 		})
-        //        dispatch(loading(false));
-        // 	})
-        // 	.catch((err) => {
-        // 		console.log('forgot password', err)
-        //      dispatch(loading(false))
-        // 		Toast.show({
-        // 			type: 'error',
-        // 			text1: err?.response?.data?.errorMessage ? err?.response?.data?.errorMessage : 'Network Error',
-        // 		});
-        // 	});
+        setAnimation(true);
+        axios
+        	.patch(`${Api}/user/resetpassword`, data)
+        	.then(async (res) => {
+                console.log("reseting passsword res" , res);
+        		Toast.show({
+        			type: 'success',
+        			text1: 'Passowrd is reset successfully'
+        		})
+               setAnimation(false);
+               navigate("signin");
+        	})
+        	.catch((err) => {
+        		console.log('setting password password', err)
+                setAnimation(false);
+        		Toast.show({
+        			type: 'error',
+        			text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+        		});
+        	});
 
     }
 }

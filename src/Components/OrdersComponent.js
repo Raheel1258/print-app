@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
@@ -11,6 +11,31 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const OrdersComponent = ({orderNotify,navigate, item}) => {
   const {t} = useTranslation();
+
+  const handleStatus = (orderNotify) => {
+    if(orderNotify == "ORDER_RECIEVED"){
+      return "Order recieved"
+    }
+    else if(orderNotify=="COMPLETED"){
+      return "Order completed";
+    }
+    else if(orderNotify=="CANCELLED"){
+      return "Cancelled";
+    }
+    else if(orderNotify=="OUT_FOR_DELIVERY"){
+      return "Out for delivery";
+    }
+    else if(orderNotify=="READY_FOR_PICKUP"){
+      return "Ready for pickup";
+    }
+    else{
+      return "Printing in process" ;
+    }
+
+  }
+  
+
+  
   return (
     <TouchableOpacity  onPress={() => navigate("myOrdersList" , {item:item})} style={styles.cardContainer}>
       <Text style={styles.title}>{item?._id}</Text>
@@ -35,7 +60,7 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
         <LeftArrow />
         </View>
       </View>
-      <Text style={{...styles.orderNotify, color: orderNotify =='Order received' ? colors.pearlColor : orderNotify =='Out for delivery' ? colors.lightOrangeColor : colors.lightGreenColor }}>{orderNotify}</Text>
+      <Text style={{...styles.orderNotify, color: orderNotify =='ORDER_RECIEVED' ? colors.pearlColor : orderNotify =='OUT_FOR_DELIVERY' ? colors.lightOrangeColor : colors.lightGreenColor }}>{handleStatus(orderNotify)}</Text>
     </TouchableOpacity>
   );
 };

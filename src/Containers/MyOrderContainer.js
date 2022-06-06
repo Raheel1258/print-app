@@ -20,6 +20,8 @@ const MyOrderContainer = () => {
   const [userToken, setUserToken] = useState(null);
   const getAllOrderData = useSelector(state => state?.orderReducer?.orderDetail);
 
+  console.log("getall order" , getAllOrderData);
+
   
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -31,7 +33,7 @@ const MyOrderContainer = () => {
 
   useEffect(()=>{
     dispatch(getAllOrder(setAnimation))
-  },[])
+  },[isFocused])
 
   useEffect(()=>{
   isFocused && Storage.retrieveData('token').then((token)=>{

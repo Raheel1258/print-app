@@ -22,17 +22,17 @@ const ResetPasswordScreen = ({goBack, toggleModal, isModalVisible, modalButton, 
       <View style={styles.container}>
       <Formik initialValues={resetPassword} validationSchema={()=>resetPasswordSchema(t)} onSubmit={(values) => handleResetPassword(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
-              const { newPassword, confirmPassword } = values;
+              const { password, confirmPassword } = values;
               return <>
                 <InputTextField
-                  value={newPassword}
-                  error={touched.newPassword && errors.newPassword}
+                  value={password}
+                  error={touched.password && errors.password}
                   title={t('new_password')}
                   keyboardType="default"
                   secureTextEntry={true}
-                  name="newPassword"
-                  onChangeText={handleChange('newPassword')}
-                  onBlur={handleBlur('newPassword')}
+                  name="password"
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
                 />
 
                 <InputTextField

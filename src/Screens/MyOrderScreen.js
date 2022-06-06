@@ -72,6 +72,8 @@ import { colors, fonts } from '../Utils/theme';
 const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData }) => {
   const completedOrder = getAllOrderData?.filter((item) => item?.status == "order completed");
   const activeOrder = getAllOrderData?.filter((item) => item?.status != "order completed");
+  console.log("not complicated", activeOrder);
+  console.log("not complicated no nono", completedOrder);
   const { t } = useTranslation();
   const layout = useWindowDimensions();
 
@@ -81,7 +83,7 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
 
   const FirstRoute = () => (
     <>
-      {completedOrder?.length > 0 ? <View style={styles.activeContainer}>
+      {activeOrder?.length > 0 ? <View style={styles.activeContainer}>
         <FlatList
           data={activeOrder}
           renderItem={renderItem}

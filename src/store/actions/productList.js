@@ -155,7 +155,7 @@ export const getProductById = (id,setAnimation) => {
 export const uploadFile = (uploadImage, setAnimation, setResult) => {
   return async (dispatch) => {
     setAnimation(true);
-    axios.post(`${Api}/products/upload-file/image`,{uploadImage} )
+    axios.post(`${Api}/upload-file/image`,{uploadImage} )
       .then(async (res) => {
         setAnimation(false);
         setResult((prev)=>{

@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { verificationOptCode } from '../store/actions/auth';
+import { verificationOtpCode } from '../store/actions/auth';
 import Toast from 'react-native-toast-message';
 
 import VerificationCodeScreen from '../Screens/VerificationCodeScreen';
@@ -16,6 +16,8 @@ const VerificationCodeContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [useId , setUserId] = useState("");
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -38,27 +40,8 @@ const VerificationCodeContainer = () => {
 
   const handleVerificationCode = (values) => {
     console.log("verification code from handler" , values);
-    dispatch(verificationOptCode(values, navigation, setAnimation));
-    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    // if (
-    //   forgotPasswordData?.email.length <=0
-    // ) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Email cannot be empty',
-    //   });
-    // } else if (reg.test(forgotPasswordData.email) === false) {
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Please Provide a valid email',
-    //   });
-    // } else {
-    //   const forgotPassowrdData = {
-    //     email: forgotPasswordData?.email.toLocaleLowerCase(),
-    //   };
-    //   dispatch(forgotPassword(forgotPassowrdData, navigation, setAnimation));
-    //   toggleModal();
-    // }
+    dispatch(verificationOtpCode(values,navigate, setAnimation, setUserId));
+   
   };
   
   return (

@@ -36,7 +36,7 @@ export const verificationCodeSchema = (t) => {
 
 export const resetPasswordSchema = (t) => {
     return (Yup.object({
-        newPassword: Yup.string().min(5, t('min_required_5')).required(t('new_password_required')),
+        password: Yup.string().min(5, t('min_required_5')).required(t('new_password_required')),
         confirmPassword: Yup.string().required(t('confirm_password_required'))
     }))
 }

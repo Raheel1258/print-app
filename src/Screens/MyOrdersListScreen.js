@@ -64,7 +64,7 @@ import { colors, fonts } from '../Utils/theme';
 const MyOrdersListScreen = ({ goBack, orderData }) => {
   const { t } = useTranslation();
   const renderItem = ({ item, index }) => (
-    <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image[0]} index={index} length={item?.length} item={item} />
+    <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image} index={index} length={item?.length} item={item} />
   );
   return (
     <View style={styles.container}>
@@ -93,7 +93,7 @@ const MyOrdersListScreen = ({ goBack, orderData }) => {
           deliveryAddress={t('delivery_address')}
           date={orderData?.orderDate}
           method={orderData?.deliveryMethod}
-          address={orderData?.deliveryAddress}
+          address={orderData?.deliveryAddress?.addressLine1}
         />
         <CategoriesTitleHeader title={t('payment_details')} />
         <OrderDetailsComponent

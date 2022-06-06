@@ -12,7 +12,7 @@ import { colors } from '../Utils/theme';
 const EditedSingleProductContainer = ({ route }) => {
 
   const { t } = useTranslation();
-  const { productCategory, productId,cartItem } = route.params;
+  const { productCategory,productId,cartItem, cartProductId } = route.params;
 
 console.log("item edit remarks" , cartItem?.remarks);
   const priceChart = useSelector(state => state?.productList?.priceChart);
@@ -254,7 +254,7 @@ console.log("item edit remarks" , cartItem?.remarks);
       }
     });
     console.log("new edit object" , obj);
-    dispatch(editCartItem(setAddToCartAnimation, productId, obj, navigate)); 
+    dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate)); 
 
 
   }

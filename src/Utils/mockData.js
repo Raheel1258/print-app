@@ -1288,6 +1288,37 @@ export const orderData = [
 
 ]
 
+export const activityData = [
+  {"2 March 2022":[
+    {
+      "orderId": "#PP83232",
+      "message": "Order status has changed to cancell",
+      "time":"12:45PM",
+      "status":"Completed"
+  },
+  {
+    "orderId": "#PP83232",
+    "message": "Order status has changed to cancell",
+    "time":"12:45PM",
+    "status":"Cancelled"
+},
+  ]},
+  {"2 March 2022":[
+    {
+      "orderId": "#PP83232",
+      "message": "Order status has changed to cancell",
+      "time":"12:45PM",
+      "status":"Completed"
+  },
+  {
+    "orderId": "#PP83232",
+    "message": "Order status has changed to cancell",
+    "time":"12:45PM",
+    "status":"Cancelled"
+},
+  ]},
+] 
+
 
 
 

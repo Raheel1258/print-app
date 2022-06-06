@@ -10,9 +10,11 @@ import Toast from 'react-native-toast-message';
 import ResetPasswordScreen from '../Screens/ResetPasswordScreen';
 import {colors} from '../Utils/theme';
 
-const ResetPasswordContainer = () => {
+const ResetPasswordContainer = ({route}) => {
+  const {userId} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  console.log("userIdidididiidd" , userId);
 
   const [animation, setAnimation] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -23,7 +25,7 @@ const ResetPasswordContainer = () => {
   };
 
   const [resetPassword, setResetPassword] = useState({
-    newPassword: '',
+    password: '',
     confirmPassword:''
   });
 
@@ -39,17 +41,17 @@ const ResetPasswordContainer = () => {
     navigation.goBack();
   };
 
-  const handleResetPassword = (values) => {
-    if(values.newPassword !== values.confirmPassword){
-      Toast.show({
-            type: 'error',
-            text1: 'Password not match',
-          });
-    }
-    else{
+  const handleResetPassword = (values) => {    
       console.log("reset password" , values);
-      dispatch(resetPasswordAction(values, navigation, setAnimation,toggleModal));
-    }
+      if(values?.password != values?.confirmPassword){
+        Toast.show({
+          type: 'error',
+          text1: 'New and confirm password should be equal',
+      });
+      }else{
+        dispatch(resetPasswordAction({...values, userId:userId}, navigate, setAnimation));
+      }
+    
   };
   
   return (

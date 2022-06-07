@@ -16,6 +16,8 @@ const PromoCodeInput = ({textValue, validPromoCode, promocodeDiscount, handleCha
       style={styles.textInput} 
       value={textValue && textValue} 
       keyboardType="default" 
+      autoCapitalize="none"
+      secureTextEntry={true}
       onChangeText={handleChange} 
       />
       {(promocodeDiscount != "0" && textValue !== '' && validPromoCode ==true ) && <GreenCheckIcon/> }

@@ -19,7 +19,7 @@ const PromoCodeInput = ({textValue, validPromoCode, promocodeDiscount, handleCha
       autoCapitalize="none"
       onChangeText={handleChange} 
       />
-      {(promocodeDiscount != "0" && textValue !== '' && validPromoCode ==true ) && <GreenCheckIcon/> }
+      <View>{(promocodeDiscount != "0" && textValue !== '' && validPromoCode ==true ) && <GreenCheckIcon/> }</View>
       </View>
     </View>
   );

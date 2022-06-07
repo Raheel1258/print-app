@@ -35,10 +35,10 @@ const FilePickerInput = ({result,setResult}) => {
         presentationStyle: 'fullScreen',
         copyTo: 'cachesDirectory',
       });
-      // dispatch(uploadFile(pickerResult, setAnimation, setResult))
-      setResult((prev)=>{
-        return [...prev, pickerResult]
-      });
+      dispatch(uploadFile(pickerResult, setAnimation, setResult))
+      // setResult((prev)=>{
+      //   return [...prev, pickerResult]
+      // });
     } catch (e) {
       handleError(e);
     }

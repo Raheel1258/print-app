@@ -112,6 +112,7 @@ console.log('data', userDetailData?.addresses);
   }
 
   const handleChange = (value) => {
+    console.log("values of input filed" , value);
     setTextValue(value);
     setValidPromoCode(false)
 

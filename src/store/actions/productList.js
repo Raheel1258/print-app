@@ -78,8 +78,8 @@ export const getCategoriesProduct = (category, setAnimation) => {
     setAnimation(true);
     axios.get(`${Api}/products/find/${category}`)
       .then(async (res) => {
-        setAnimation(false);
         dispatch(setProductList(res?.data));
+        setAnimation(false);
       })
       .catch((err) => {
         setAnimation(false);

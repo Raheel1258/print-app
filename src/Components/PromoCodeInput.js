@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import GreenCheckIcon from '../Assests/Svgs/GreenCheckIcon';
 import {colors,fonts} from '../Utils/theme';
-[]
+
 const PromoCodeInput = ({textValue, validPromoCode, promocodeDiscount, handleChange}) => {
     const {t} = useTranslation();
   return (

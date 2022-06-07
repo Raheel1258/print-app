@@ -36,16 +36,17 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
         <View style={styles.container}>
           <ScrollView nestedScrollEnabled={true}>
           <ImageBackArrowHeader  title={categoryTitle} image={categoryImage} goBack={goBack} />
-          {!animation ? 
+          {animation ? 
+          <View style={styles.loaderContainerProductList}>
+          <ActivityIndicator size="small" color="#000" animating={true} />
+        </View>:
           <FlatList
             data={productList && productList}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             contentContainerStyle={styles.flatlistContainer}
           />
-          : <View style={styles.loaderContainerProductList}>
-          <ActivityIndicator size="small" color="#000" animating={true} />
-        </View>}
+          }
         {productList?.length == 0 && <View style={styles.noProduct}><Text>{"No Products are available"}</Text></View>}
           </ScrollView>
         </View> 

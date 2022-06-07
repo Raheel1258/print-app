@@ -169,7 +169,7 @@ console.log('data', userDetailData?.addresses);
       subTotal: subTotal,
       discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
       total: total,
-      status: "OUT_FOR_DELIVERY"
+      status: "ORDER_RECIEVED"
 
     }
     if(paymentMethodName == "Credit Card"){

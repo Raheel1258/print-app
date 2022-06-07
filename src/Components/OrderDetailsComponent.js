@@ -13,10 +13,10 @@ const OrderDetailsComponent = ({orderDate, deliveryMethod, deliveryAddress, paym
         <Text style={styles.title}>{orderDate}</Text>
         <Text style={styles.description}>{date}</Text>
       </View>
-      <View style={styles.contentContainer}>
+      {method && <View style={styles.contentContainer}>
         <Text style={styles.title}>{deliveryMethod}</Text>
         <Text style={styles.description}>{method}</Text>
-      </View>
+      </View>}
       <View style={styles.contentContainer}>
         <Text style={styles.title}>{deliveryAddress}</Text>
         <Text numberOfLines={3} style={styles.description}>{address}</Text>

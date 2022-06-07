@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { types } from '@babel/core';
+import { getDate } from '../Utils/helperFunctions';
 import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { signup } from '../store/actions/auth';
@@ -43,11 +43,7 @@ const SignupContainer = () => {
   };
 
   const handleSignup = (values) => {
-    var day = new Date().getDate();
-      var month = new Date().getMonth() + 1;
-      var year = new Date().getFullYear();
-      var date = day + '-' + month + '-' + year;
-      console.log("date1",date);
+      var date = getDate();
       dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp"}, navigation, setAnimation));    
   };
 

@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, BackHandler } from 'react-native';
+import { View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
-import Stripe from 'react-native-stripe-api';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartData, PromoCodeVerifed, deleteProduct,placeOrderOffline,getUserDetailForPlacingOrder } from '../store/actions/cartAction';
 import Toast from 'react-native-toast-message';
@@ -26,11 +26,12 @@ const CartContainer = () => {
 
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
+  const [deliveryCost , setDeliveryCost] = useState(0);
   const [validPromoCode, setValidPromoCode] = useState(false);
   const [promoCodeAnimation, setPromoCodeAnimation] = useState(false);
   const [textValue, setTextValue] = useState('');
   const [delivery, setDelivery] = useState(true);
-  const [deliveryAddress, setDeliveryAddress] = useState("Delivery");
+  const [deliveryMethod, setDeliveryMethod] = useState("Delivery");
   const [deliveryUserAddress, setDeliveryUserAddress] = useState("Select delivery address");
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
@@ -99,7 +100,7 @@ console.log('data', userDetailData?.addresses);
 
   useEffect(() => {
     handleTotalAmount();
-  }, [cartItem, promocodeDiscount])
+  }, [cartItem, promocodeDiscount, deliveryMethod])
 
   useEffect(()=>{
     dispatch(getUserDetailForPlacingOrder(setData));
@@ -112,6 +113,8 @@ console.log('data', userDetailData?.addresses);
 
   const handleChange = (value) => {
     setTextValue(value);
+    setValidPromoCode(false)
+
   };
 
 
@@ -150,12 +153,17 @@ console.log('data', userDetailData?.addresses);
 
   const handlePayment = () => {
     // genToken();
+    var date = getDate();
     const orderObj = {
       products: cartItem,
-      orderDate: "string",
-      deliveryMethod: "string",
+      orderDate: date,
+      deliveryMethod: deliveryMethod,
       deliveryAddress: {
-        addressLine1:   deliveryAddress == 'Delivery' ? deliveryUserAddress : deliveryAddress
+        firstName:userDetailData?.firstName,
+        lastName:userDetailData?.lastName,
+        phone:userDetailData?.phone,
+        email:userDetailData?.email,
+        addressLine1: deliveryMethod == 'Delivery' ? deliveryUserAddress : "11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
       },
       paymentMethod: paymentMethodName,
       subTotal: subTotal,
@@ -164,7 +172,6 @@ console.log('data', userDetailData?.addresses);
       status: "OUT_FOR_DELIVERY"
 
     }
-    console.log("order place data" , orderObj);
     if(paymentMethodName == "Credit Card"){
       navigate('payment', { amount: total , orderObj:orderObj})
 
@@ -174,20 +181,34 @@ console.log('data', userDetailData?.addresses);
   }
 
   const handleTotalAmount = () => {
+    let deliveryCost = 0;
+    let quantity = 0;
+    let unitPrice = 0;
+    let subTotal = 0;
+    let totalPrice = 0;
     cartItem && cartItem?.map((item) => {
-      const quantity = item?.priceChart?.units;
-      const unitPrice = item?.priceChart?.pricePerUnit;
-      let sub_total = parseInt(quantity * unitPrice);
-      let totalPrice = sub_total + 180;
-      if (promocodeDiscount && promocodeDiscount != "") {
-        totalPrice = totalPrice - parseInt(promocodeDiscount);
-        setTotal(totalPrice);
-      } else {
-        setTotal(totalPrice);
-      }
-      setSubTotal(sub_total);
+      quantity = item?.priceChart?.units;
+      unitPrice = item?.priceChart?.pricePerUnit;
+      deliveryCost = deliveryCost + item?.priceChart?.deliveryCost;
+      subTotal = parseInt(quantity * unitPrice);
+      totalPrice = subTotal;
+    });
 
-    })
+    if(deliveryMethod == "Delivery"){
+      totalPrice = totalPrice + deliveryCost;
+    }
+    else{
+      totalPrice = totalPrice;
+    }
+    if (promocodeDiscount && promocodeDiscount != "") {
+      totalPrice = totalPrice - parseInt(promocodeDiscount);
+      setTotal(totalPrice);
+    } else {
+      setTotal(totalPrice);
+    }
+    setSubTotal(subTotal);
+    setDeliveryCost(deliveryCost);
+
   }
 
   return (
@@ -231,8 +252,10 @@ console.log('data', userDetailData?.addresses);
         total={total}
         setPaymentMethodName={setPaymentMethodName}
         placeOrderAnimation={placeOrderAnimation}
-        setDeliveryAddress={setDeliveryAddress}
+        setDeliveryMethod={setDeliveryMethod}
         handleChange={handleChange}
+        deliveryMethod={deliveryMethod}
+        deliveryCost={deliveryCost}
       />
     </View>
   );

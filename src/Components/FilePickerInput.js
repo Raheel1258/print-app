@@ -31,13 +31,14 @@ const FilePickerInput = ({result,setResult}) => {
   const handleDocumentSelection = useCallback(async () => {
     try {
       const pickerResult = await DocumentPicker.pickSingle({
+        type:[DocumentPicker.types.images],
         presentationStyle: 'fullScreen',
         copyTo: 'cachesDirectory',
       });
-      dispatch(uploadFile(pickerResult?.uri, setAnimation, setResult))
-      setResult((prev)=>{
-        return [...prev, pickerResult]
-      });
+      dispatch(uploadFile(pickerResult, setAnimation, setResult))
+      // setResult((prev)=>{
+      //   return [...prev, pickerResult]
+      // });
     } catch (e) {
       handleError(e);
     }

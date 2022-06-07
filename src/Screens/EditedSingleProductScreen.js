@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, ScrollView, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Image, ScrollView, Text, TextInput, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -375,6 +375,8 @@ const EditedSingleProductScreen = ({
           value={remarks && remarks}
           style={styles.textAreaInput}
           keyboardType="default"
+          returnKeyType="done"
+          onSubmitEditing={()=>{Keyboard.dismiss()}}
         />
         <View style={styles.bottomContainer}>
           <Text style={styles.addCart}>{t('add_to_cart')}</Text>

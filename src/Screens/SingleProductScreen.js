@@ -373,8 +373,8 @@ const SingleProductScreen = ({
           numberOfLines={5}
           style={styles.textAreaInput}
           keyboardType="default"
+          returnKeyType="done"
           onSubmitEditing={()=>{Keyboard.dismiss()}}
-          // returnKeyType="done"
         />
         <View style={styles.bottomContainer}>
           <Text style={styles.addCart}>{t('add_to_cart')}</Text>

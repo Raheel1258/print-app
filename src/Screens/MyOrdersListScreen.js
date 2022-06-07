@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, FlatList, ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
+import { handleOrderStatus } from '../Utils/helperFunctions';
 
 import {
   BackArrowHeader,
@@ -79,7 +80,7 @@ const MyOrdersListScreen = ({ goBack, orderData }) => {
           <Text style={styles.orderRefText}>Order reference:</Text>
           <Text style={styles.orderRefText}>{orderData?._id}</Text>
         </View>
-        <Text style={styles.orderCompleted}>Order Completed</Text>
+        <Text style={styles.orderCompleted}>{handleOrderStatus(orderData?.status)}</Text>
         <FlatList
           data={orderData?.products && orderData?.products}
           renderItem={renderItem}
@@ -102,7 +103,7 @@ const MyOrdersListScreen = ({ goBack, orderData }) => {
           deliveryAddress={t('total')}
           paymentMethod={t('payment_method')}
           date={`HK$ ${orderData?.subTotal}`}
-          method={`HK$ ${180}`}
+          method={orderData?.deliveryMethod == "Delivery" ? `HK$ ${180}` : false}
           address={`HK$ ${orderData?.total}`}
           payment={orderData?.paymentMethod}
         />

@@ -79,7 +79,9 @@ const CartScreen = ({
   promocodeDiscount,
   setPaymentMethodName,
   placeOrderAnimation,
-  setDeliveryAddress
+  setDeliveryMethod,
+  deliveryMethod,
+  deliveryCost
 }) => {
   console.log("datatat1233123123" , data);
   const { t } = useTranslation();
@@ -137,8 +139,8 @@ const CartScreen = ({
           thirdDescription="11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
           radioButtonStatus={delivery}
           setRadioButtonStatus={setDelivery}
-          handleCheckedOne={()=> setDeliveryAddress('Delivery')}
-          handleCheckedTwo={() => setDeliveryAddress('11/F, 52 Hung To Road, Kwun Tong, Hong Kong')}
+          handleCheckedOne={()=>  setDeliveryMethod('Delivery')}
+          handleCheckedTwo={() =>  setDeliveryMethod('Pickup')}
         />
         <CategoriesTitleHeader title={t('payment_method')} />
         <RadioButtonComponent
@@ -155,7 +157,7 @@ const CartScreen = ({
           handleCheckedTwo={() => setPaymentMethodName('Bank Tarnsfer')}
         />
         <CategoriesTitleHeader title={t('order_summary')} />
-        <OrderSummaryComponent subTotal={subTotal} promocodeDiscount={promocodeDiscount} total={total}/>
+        <OrderSummaryComponent subTotal={subTotal} promocodeDiscount={promocodeDiscount} total={total} deliveryMethod={deliveryMethod} deliveryCost={deliveryCost}/>
         <View style={styles.placeOrderContainer}>
           <Text style={styles.orderPlaceText}>
             <Text style={styles.confidenceText}>{t('order_confidence')} </Text>
@@ -181,7 +183,7 @@ const CartScreen = ({
 
           <VerificationModal
             title={t('invalid_promocode')}
-            description={t('bank_transfer_description')}
+            description={t('invalid_promoCode_message')}
             isModalVisible={isPromoCodeModaVidible}
             toggleModal={promoCodeToggleModal}
           />

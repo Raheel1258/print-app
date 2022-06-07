@@ -12,7 +12,12 @@ const PromoCodeInput = ({textValue, validPromoCode, promocodeDiscount, handleCha
     <View style={styles.container}>
       <Text style={styles.textInputTitle}>{t('add_promo_code')}</Text>
       <View style={styles.textInputContainer}>
-      <TextInput style={styles.textInput} value={textValue} keyboardType="default" onChangeText={handleChange} />
+      <TextInput 
+      style={styles.textInput} 
+      value={textValue && textValue} 
+      keyboardType="default" 
+      onChangeText={handleChange} 
+      />
       {(promocodeDiscount != "0" && textValue !== '' && validPromoCode ==true ) && <GreenCheckIcon/> }
       </View>
     </View>

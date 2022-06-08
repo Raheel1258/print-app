@@ -548,6 +548,7 @@ const SingleProductScreen = ({
             item?.numberOfSides?.map((item, index) => {
               return <TouchableOpacity key={index} onPress={() => {
                 setNumberOfSides(item);
+                setValues({...defaultValuesObject, sides:item})
                 numberOfSidesRBSheet.current.close()
               }} style={styles.listContainer}>
                 <Text style={styles.listStyle}>{item}</Text>

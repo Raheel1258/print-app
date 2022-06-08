@@ -16,6 +16,12 @@ const productList = createReducer({},
       priceChart: action.priceChart
     };
   },
+  [types.PRODUCT_PRICE_CHART_EDIT](state, action) {
+    return {
+      ...state,
+      priceChartEdit: action.priceChart
+    };
+  },
   [types.SINGLE_PRODUCT](state, action) {
     return {
       ...state,

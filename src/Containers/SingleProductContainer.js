@@ -14,6 +14,8 @@ const SingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { item, categoryTitle, productCategory} = route.params;
 
+  
+
   const priceChart = useSelector(state => state?.productList?.priceChart);
   const [sliceArray, setSliceArray] = useState([]);
   const [flag, setflag] = useState(true)
@@ -243,6 +245,7 @@ const SingleProductContainer = ({ route }) => {
       finishing: selectFinishing,
       remarks: remarks,
       cut: selectedCut,
+      numberOfSides: numberOfSides
     }
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {

@@ -30,6 +30,13 @@ export const setPriceChart = (priceChart) => {
   }
 }
 
+export const setPriceChartOnEdit = (priceChart) => {
+  return {
+    type: types.PRODUCT_PRICE_CHART_EDIT,
+    priceChart
+  }
+}
+
 export const setSingleProduct = (data) =>{
   return {
     type: types.SINGLE_PRODUCT,
@@ -91,6 +98,8 @@ export const getCategoriesProduct = (category, setAnimation) => {
   }
 };
 
+//Selecting Product Price chart
+
 export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
@@ -133,6 +142,50 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
       });
   }
 }; 
+
+//Edit product
+export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObject) => {
+
+  let values = defaultValuesObject;
+  
+  if(values?.product !== "Spot UV Business Card"){
+    delete values['spotuvside'];
+  }
+  if(values?.product !== "Flyer (A4)"){
+    delete values['folding'];
+  }
+  if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
+    values['product'] = "Flyer (A5)"
+  }
+  console.log('values into single product', values)
+  return async (dispatch) => {
+    setPriceChartAnimation(true);
+    const accessToken = await Storage.retrieveData('token')
+    let query = "";
+    Object.keys(values).forEach(key => {
+      if(key !== "category"){
+        query = query + key + "=" + values[key] + "&"
+      }
+    })
+    console.log('query parameters', query)
+    axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+      .then(async (res) => {
+        console.log("price chart api" , res)
+        dispatch(setPriceChartOnEdit(res?.data));
+        // setSelectedPriceChart(res?.data[0]);
+        // // setPriceChart(res?.data);
+         setPriceChartAnimation(false);
+      })
+      .catch((err) => {
+        setPriceChartAnimation(false);
+        console.log("error 1232312", err?.response);
+        Toast.show({
+          type: 'error',
+          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+        });
+      });
+  }
+};
 
 export const getProductById = (id,setAnimation) => {
   return async (dispatch) => {

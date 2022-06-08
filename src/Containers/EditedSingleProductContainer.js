@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { addToCart, editCartItem } from "../store/actions/cartAction";
-import { getPriceChart, getProductById } from "../store/actions/productList";
+import { getProductById, getPriceChartOnEdited } from "../store/actions/productList";
 import EditedSingleProductScreen from '../Screens/EditedSingleProductScreen';
 import { colors } from '../Utils/theme';
 
@@ -14,8 +14,8 @@ const EditedSingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { productCategory,productId,cartItem, cartProductId } = route.params;
 
-console.log("item edit remarks" , cartItem?.remarks);
-  const priceChart = useSelector(state => state?.productList?.priceChart);
+console.log("item edit" , cartItem);
+  const priceChart = useSelector(state => state?.productList?.priceChartEdit);
   const state = useSelector(state => state?.productList?.singleProduct);
   
   const [sliceArray, setSliceArray] = useState([]);
@@ -41,7 +41,7 @@ console.log("item edit remarks" , cartItem?.remarks);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState(t('upload_file'));
   const [shape, setShape] = useState("");
-  const [selectedSize, setSelectedSize] = useState();
+  const [selectedSize, setSelectedSize] = useState(cartItem?.size);
   const [selectedCorner, setSelectedCorner] = useState();
   const [selectFinishing, setSelectFinishing] = useState("");
   const [selectSpotUv, setSelectSpotUv] = useState("");
@@ -50,6 +50,8 @@ console.log("item edit remarks" , cartItem?.remarks);
   const [paperTypeInnerPages, setPaperTypeInnerPages] = useState("");
   const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState("");
   const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState("");
+
+  
 
 
   const [allCardsPaperType, setAllCardsPaperType] = useState("");
@@ -130,7 +132,7 @@ console.log("item edit remarks" , cartItem?.remarks);
     } :  productCategory === "ENVELOPE" ? {
       category: 'envelop',
       product: state?.category?.productType,
-      window: state?.window[0] && item?.window[0].windowName
+      window: state?.window[0] && state?.window[0].windowName
     } :  productCategory === "LETTERHEAD" ? {
       category: 'letterhead',
       product: state?.category?.productType,
@@ -155,26 +157,26 @@ console.log("item edit remarks" , cartItem?.remarks);
 
   useEffect(() => {
     setflag(true);
-    dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
+    dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject));
   }, [values, state]);
 
   useEffect(() => {
     if (state && productId != undefined) {
-      setShape(state?.category?.productType);
-      setSelectedSize(state?.size && state?.size[0]);
-      setSelectedCorner(state?.corner && state?.corner[0]);
-      setSelectFinishing(state?.finishing && state?.finishing[0]);
-      setSelectSpotUv(state?.spotUV && state?.spotUV[0]);
-      setSelectedPriceChart(state?.priceChart[0] && state?.priceChart[0]);
-      setPaperTypeCoverPages(state?.paperType && state?.paperType[0]);
-      setPaperTypeInnerPages(state?.paperType && state?.paperType[1]);
-      setNoOfPagesCoverPages(state?.numberOfPages && state?.numberOfPages[0]?.number[0]);
-      setNoOfPagesInnerPages(state?.numberOfPages && state?.numberOfPages[1]?.number[0]);
-      setAllCardsPaperType(state?.paperType && state?.paperType[0]);
-      setNumberOfSides(state?.numberOfSides && state?.numberOfSides[0]);
-      setSelectedCut(state?.cut && state?.cut[0]);
-      setSelectedFolding(state?.folding && state?.folding[0]);
-      setSelectedWindow(state?.window && state?.window[0]);
+      setShape(cartItem?.category?.productType);
+      setSelectedSize(cartItem?.size);
+      setSelectedCorner(cartItem?.corner && cartItem?.corner);
+      setSelectFinishing(cartItem?.finishing && cartItem?.finishing);
+      setSelectSpotUv(cartItem?.spotUV && cartItem?.spotUV);
+      setSelectedPriceChart(cartItem?.priceChart && cartItem?.priceChart);
+      setPaperTypeCoverPages(cartItem?.paperType && cartItem?.paperType);
+      setPaperTypeInnerPages(cartItem?.paperType && "Woodfree paper (140 gsm)");
+      setNoOfPagesCoverPages(cartItem?.numberOfPages && cartItem?.numberOfPages[0]?.number[0]);
+      setNoOfPagesInnerPages(cartItem?.numberOfPages && cartItem?.numberOfPages[1]?.number[0]);
+      setAllCardsPaperType(cartItem?.paperType && cartItem?.paperType);
+      setNumberOfSides(cartItem?.numberOfSides && cartItem?.numberOfSides);
+      setSelectedCut(cartItem?.cut && cartItem?.cut);
+      setSelectedFolding(cartItem?.folding && cartItem?.folding);
+      setSelectedWindow(cartItem?.window && cartItem?.window);
     }
   }, [state])
 
@@ -204,6 +206,7 @@ console.log("item edit remarks" , cartItem?.remarks);
 
   const sliceData = () => {
     setSliceArray(priceChart);
+    // setSelectedPriceChart(cartItem?.priceChart && cartItem?.priceChart);
     setflag(false);
   }
 

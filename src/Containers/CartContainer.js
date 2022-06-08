@@ -45,7 +45,7 @@ const CartContainer = () => {
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
 
-console.log("address" ,userDetailData );
+
   // const [data, setData] = useState([
   //   {
   //     id: '1',
@@ -64,7 +64,6 @@ console.log("address" ,userDetailData );
   //   },
   // ]);
   const [data, setData] = useState(userDetailData?.addresses);
-console.log('data', userDetailData?.addresses);
   const [cardData, setCardData] = useState([
     {
       id: '1',

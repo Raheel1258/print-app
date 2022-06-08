@@ -32,7 +32,6 @@ function setUserDetail(data){
 }
 
 function setPromoCodeDetail(data){
-    console.log("into reduction type promo" , data );
     return{
         type: types.PROMO_CODE,
         data
@@ -71,7 +70,6 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
         axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}`}})
             .then(async (res) => {
                 setAddToCartAnimation(false);
-                console.log("item added to cart" , res?.data)
                 dispatch(setAddToCart(res?.data?.products));
                 Toast.show({
                     type: 'success',
@@ -92,13 +90,11 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
 
 
 export const deleteProduct = (setAnimation, _id, navigate) => {
-    console.log("into cart delete");
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
         axios.delete(`${Api}/cart/product/delete/${_id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("cart delete" , res?.data )
                 // dispatch(setCartDetail(res?.data?.products)); 
                 dispatch(getCartData(setAnimation,navigate)); 
                 setAnimation(false);
@@ -121,7 +117,6 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
         setPromoCodeAnimation(true);
         axios.get(`${Api}/promocode/findbyname/${data}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from promocode" , res)
                 if(res?.data?.length > 0){
                     dispatch(setPromoCodeDetail(res?.data[0]?.discount));
                     setValidPromoCode(true);
@@ -130,7 +125,6 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
 
             })
             .catch((err) => {
-                console.log("res from promocode err" , err?.response)
                 promoCodeToggleModal();
                 setPromoCodeAnimation(false);
                 setValidPromoCode(false);
@@ -139,21 +133,17 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
 }
 //Edit Cart Item
 export const editCartItem = (setAddToCartAnimation,productId, obj, navigate) => {
-    console.log("cart edit productId" , productId);
-    console.log("edit project" , obj);
     return async (dispatch) => {
         setAddToCartAnimation(true);
         const accessToken = await Storage.retrieveData('token')
         axios.patch(`${Api}/cart/product/update/${productId}`,obj, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
                 setAddToCartAnimation(false);
-                console.log("edit cart res" , res);
                 navigate("cart");
                 //dispatch(setCartDetail([]));
             })
             .catch((err) => {
                 setAddToCartAnimation(false);
-                console.log("edited cart res" , err?.response);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
@@ -169,11 +159,9 @@ export const emptyCart = () => {
         const accessToken = await Storage.retrieveData('token')
         axios.post(`${Api}/cart/empty`,{}, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
-                dispatch(setCartDetail([]));
-                console.log("empty res" , res);
+                dispatch(setCartDetail([]));     
             })
             .catch((err) => {
-                console.log("empty" , err?.response);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
@@ -187,7 +175,6 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
     return async (dispatch) => {
         setPlaceOrderAnimation(true);
         const accessToken = await Storage.retrieveData('token');
-        console.log("xyz in order");
         axios.post(`${Api}/order/add`,orderObj, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
                 setPlaceOrderAnimation(false);
@@ -195,7 +182,6 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
             })
             .catch((err) => {
                 setPlaceOrderAnimation(false);
-                console.log("order place err" , err?.response);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',

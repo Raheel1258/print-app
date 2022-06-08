@@ -94,15 +94,17 @@ export const getCategoriesProduct = (category, setAnimation) => {
 export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
-  console.log('values', values)
-
+  
   if(values?.product !== "Spot UV Business Card"){
     delete values['spotuvside'];
-  }else if(values?.product !== "Flyer (A4)"){
+  }
+  if(values?.product !== "Flyer (A4)"){
     delete values['folding'];
-  }else if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
+  }
+  if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
     values['product'] = "Flyer (A5)"
   }
+  console.log('values into single product', values)
   return async (dispatch) => {
     setPriceChartAnimation(true);
     const accessToken = await Storage.retrieveData('token')
@@ -116,13 +118,14 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
     axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then(async (res) => {
         console.log("price chart api" , res)
-        dispatch(setPriceChart(res?.data?.slice(0,10)));
-        setPriceChartAnimation(false);
-        setSelectedPriceChart(res?.data[0])
+        dispatch(setPriceChart(res?.data));
+        setSelectedPriceChart(res?.data[0]);
+        // // setPriceChart(res?.data);
+         setPriceChartAnimation(false);
       })
       .catch((err) => {
         setPriceChartAnimation(false);
-        console.log("error", err?.response);
+        console.log("error 1232312", err?.response);
         Toast.show({
           type: 'error',
           text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'

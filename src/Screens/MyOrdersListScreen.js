@@ -103,7 +103,7 @@ const MyOrdersListScreen = ({ goBack, orderData }) => {
           deliveryAddress={t('total')}
           paymentMethod={t('payment_method')}
           date={`HK$ ${orderData?.subTotal}`}
-          method={orderData?.deliveryMethod == "Delivery" ? `HK$ ${180}` : false}
+          method={`HK$ ${orderData?.deliveryCost}`}
           address={`HK$ ${orderData?.total}`}
           payment={orderData?.paymentMethod}
         />

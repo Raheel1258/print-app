@@ -7,9 +7,9 @@ import {colors,fonts} from '../Utils/theme';
 
 
 
-const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, quantityTable, priceChartAnimation, sliceArray, sliceData, flag }) => {
+const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, priceChartAnimation, sliceArray, sliceData, flag }) => {
   const { t } = useTranslation();
- 
+  console.log("sliceArray of price into quantity compoentent" , sliceArray);
 
   const renderItem = ({item}) => {
     const quantityStyle = selectedPriceChart?._id == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
@@ -30,7 +30,7 @@ const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, quantityTable
         <Text style={styles.headerTitle}>{t('unit_text')}</Text>
       </View>
       <FlatList
-        data={sliceArray}
+        data={sliceArray && sliceArray}
         renderItem={renderItem}
         keyExtractor={item => item?.id}
         />

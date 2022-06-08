@@ -18,7 +18,7 @@ console.log("item edit remarks" , cartItem?.remarks);
   const priceChart = useSelector(state => state?.productList?.priceChart);
   const state = useSelector(state => state?.productList?.singleProduct);
   
-  const [sliceArray, setSliceArray] = useState();
+  const [sliceArray, setSliceArray] = useState([]);
   const [flag, setflag] = useState(true)
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -154,6 +154,7 @@ console.log("item edit remarks" , cartItem?.remarks);
   }, [])
 
   useEffect(() => {
+    setflag(true);
     dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
   }, [values, state]);
 
@@ -267,7 +268,6 @@ console.log("item edit remarks" , cartItem?.remarks);
         flag={flag}
         sliceArray={sliceArray}
         priceChartAnimation={priceChartAnimation}
-        priceChart={priceChart}
         item={state}
         categoryTitle={"Updated Cart Item"}
         category={productCategory}

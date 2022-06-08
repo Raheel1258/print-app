@@ -131,7 +131,7 @@ const CartScreen = ({
         </View>
         <CategoriesTitleHeader title={t('delivery_pickup_option')} />
         <RadioButtonComponent
-          onPress={() => refRBSheet?.current?.open()}
+          onPress={() => {refRBSheet?.current?.open()}}
           title={t('delivery_text')}
           secondTitle={t('pick_up')}
           description={deliveryUserAddress}
@@ -140,7 +140,7 @@ const CartScreen = ({
           radioButtonStatus={delivery}
           setRadioButtonStatus={setDelivery}
           handleCheckedOne={()=>  setDeliveryMethod('Delivery')}
-          handleCheckedTwo={() =>  setDeliveryMethod('Pickup')}
+          handleCheckedTwo={() =>  setDeliveryMethod('Self pickup')}
         />
         <CategoriesTitleHeader title={t('payment_method')} />
         <RadioButtonComponent
@@ -188,10 +188,15 @@ const CartScreen = ({
             toggleModal={promoCodeToggleModal}
           />
         </View>
-      </ScrollView>  : <EmptyCartContainer/>}
+      </ScrollView>  : <>
+      
+      <EmptyCartContainer/>
+      
+      
+      </>
+      }
 
       <BottomSheetComponent
-        refRBSheet={refRBSheet}
         childern={
           <DeliverAddressComponent
             addNew={t('new_address')}
@@ -206,6 +211,7 @@ const CartScreen = ({
         }
         title={t('deviver_to')}
         note={false}
+        refRBSheet={refRBSheet}
       />
       <BottomSheetComponent
         childern={
@@ -216,7 +222,7 @@ const CartScreen = ({
             setShowDetail={setDeliveryUserAddress}
             onPress={() => {
               creditCardRBSheet.current.close();
-              addCardetCardRBSheet.current.open();
+              // addCardetCardRBSheet.current.open();
             }}
           />
         }
@@ -280,7 +286,9 @@ const CartScreen = ({
         height={420}
         onClose={false}
       />
-    </View>:<View style={styles.loaderContainer}>
+   
+    </View>
+    :<View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View> }
     </>

@@ -15,7 +15,7 @@ const SingleProductContainer = ({ route }) => {
   const { item, categoryTitle, productCategory} = route.params;
 
   const priceChart = useSelector(state => state?.productList?.priceChart);
-  const [sliceArray, setSliceArray] = useState();
+  const [sliceArray, setSliceArray] = useState([]);
   const [flag, setflag] = useState(true)
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -140,7 +140,7 @@ const SingleProductContainer = ({ route }) => {
   // }, [state])
 
   useEffect(() => {
-    setSliceArray(priceChart?.splice(0, 5));
+    setSliceArray(priceChart?.slice(0,5));
   }, [priceChart])
 
   // useEffect(() => {
@@ -150,9 +150,8 @@ const SingleProductContainer = ({ route }) => {
   // }, [])
 
   useEffect(() => {
-  
-
-    dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart ));
+    dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
+    setflag(true);
   }, [values]);
 
   // useEffect(() => {
@@ -264,7 +263,6 @@ const SingleProductContainer = ({ route }) => {
         flag={flag}
         sliceArray={sliceArray}
         priceChartAnimation={priceChartAnimation}
-        priceChart={priceChart}
         categoryTitle={categoryTitle}
         category={productCategory}
         goBack={goBack}

@@ -28,7 +28,7 @@ const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(i
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-      <TouchableOpacity style={styles.touchableText} onPress = {onPress}>
+      <TouchableOpacity style={styles.touchableText} onPress={onPress}>
         <Text style={styles.newAddressText}>{addNew}</Text>
       </TouchableOpacity>
     </ScrollView>

@@ -25,7 +25,6 @@ import { colors, fonts } from '../Utils/theme';
 
 const SingleProductScreen = ({
   animation,
-  priceChart,
   priceChartAnimation,
   categoryTitle,
   item,
@@ -296,7 +295,7 @@ const SingleProductScreen = ({
           </>
         }
         <CategoriesTitleHeader title={t('choose_quantity')} />
-        <QuantityTable sliceData={sliceData} flag={flag} sliceArray={sliceArray} priceChartAnimation={priceChartAnimation} quantityTable={priceChart} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
+        <QuantityTable sliceData={sliceData} flag={flag} sliceArray={sliceArray} priceChartAnimation={priceChartAnimation} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
         <CategoriesTitleHeader title={t('send_preview')} />
         <Text style={styles.previewDescription}>
           After you’ve placed the order, we will send you a preview in e-mail

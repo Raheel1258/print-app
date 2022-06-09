@@ -35,6 +35,8 @@ const FilePickerInput = ({result,setResult}) => {
         presentationStyle: 'fullScreen',
         copyTo: 'cachesDirectory',
       });
+      const formData = new FormData();
+      formData.append('image', pickerResult)
       dispatch(uploadFile(pickerResult, setAnimation, setResult))
       // setResult((prev)=>{
       //   return [...prev, pickerResult]

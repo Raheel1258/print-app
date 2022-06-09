@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ScrollView, ActivityIndicator, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -189,10 +189,7 @@ const CartScreen = ({
           />
         </View>
       </ScrollView>  : <>
-      
       <EmptyCartContainer/>
-      
-      
       </>
       }
 

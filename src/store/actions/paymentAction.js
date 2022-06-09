@@ -41,11 +41,12 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                     .then(async (res) => {
                         console.log("res from order" , res);
                         setAnimation(false);
-                        Toast.show({
-                            type: 'success',
-                            text1: 'Place Order is successfully completed'
-                        });
-                        
+                        setTimeout(() => {
+                            Toast.show({
+                                type: 'success',
+                                text1: 'Place Order is successfully completed'
+                            });
+                          }, "1000")
                         //Place order Now payment integrated
                         navigate("orderReceived");
                      

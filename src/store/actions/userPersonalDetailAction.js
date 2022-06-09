@@ -89,7 +89,7 @@ export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) =
             .then(async (res) => {
                 Toast.show({
                     type: 'success',
-                    text1: 'You are successfully added your address'
+                    text1: 'You are successfully updated your address'
                 })
                 setAnimation(false);
                 dispatch(setUserAddress(res?.data?.addresses));
@@ -118,7 +118,6 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                     phone: res?.data?.phone,
                     email: res?.data?.email
                 })
-                console.log("address " , res?.data);
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
@@ -148,7 +147,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
-                    text1: 'user updated successfully',
+                    text1: 'User updated successfully',
                 });
             })
             .catch((err) => {
@@ -173,7 +172,7 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
                 setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'success',
-                    text1: 'user updated successfully',
+                    text1: 'Changed password successfully',
                 });
                 toggleModal();
             })
@@ -196,12 +195,11 @@ export const makeAddressPrimary = (id) => {
         axios.patch(`${Api}/user/address/${id}`, {}, {headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 // setAnimationChangePassowrd(false);
-                console.log("res from parmry" , res);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
                 Toast.show({
                     type: 'success',
-                    text1: 'user updated successfully',
+                    text1: 'Primary address updated successfully',
                 });
             })
             .catch((err) => {

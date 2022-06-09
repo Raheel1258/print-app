@@ -14,7 +14,7 @@ const PromoCodeInput = ({textValue, validPromoCode, promocodeDiscount, handleCha
       <View style={styles.textInputContainer}>
       <TextInput 
       style={styles.textInput} 
-      value={textValue && textValue} 
+      value={textValue} 
       keyboardType="default" 
       autoCapitalize="none"
       onChangeText={handleChange} 

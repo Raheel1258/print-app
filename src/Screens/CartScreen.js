@@ -222,7 +222,7 @@ const CartScreen = ({
             setShowDetail={setDeliveryUserAddress}
             onPress={() => {
               creditCardRBSheet.current.close();
-              // addCardetCardRBSheet.current.open();
+              addCardetCardRBSheet.current.open();
             }}
           />
         }

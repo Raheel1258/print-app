@@ -217,6 +217,8 @@ export const chi = {
     Cvc:'氯乙烯',
     cvc_number: '一百二十三',
     payment:'支付',
-    invalid_promocode: "促销代码无效"
+    invalid_promocode: "促销代码无效",
+    bank_detail:"结帐后可用的银行帐户信息",
+    invalid_promoCode_message: "您给定的促销代码无效"
   },
 };

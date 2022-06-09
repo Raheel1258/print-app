@@ -33,6 +33,7 @@ const CartContainer = () => {
   const [delivery, setDelivery] = useState(true);
   const [deliveryMethod, setDeliveryMethod] = useState("Delivery");
   const [deliveryUserAddress, setDeliveryUserAddress] = useState("Select delivery address");
+  const [animationForgettingAddress, setAnimationForgettingAddress] = useState(false)
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
   const [paymentMethodName, setPaymentMethodName] = useState("Credit Card");
@@ -101,10 +102,10 @@ const CartContainer = () => {
     handleTotalAmount();
   }, [cartItem, promocodeDiscount, deliveryMethod])
 
-  useEffect(()=>{
-    dispatch(getUserDetailForPlacingOrder(setData));
+  // useEffect(()=>{
+  //   dispatch(getUserDetailForPlacingOrder(setData));
 
-  },[isFocused])
+  // },[isFocused])
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -177,8 +178,11 @@ const CartContainer = () => {
       navigate('payment', { amount: total , orderObj:orderObj})
 
     }else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
+  }
 
-    
+  const handleAddressForBottomSheet = () => {
+    refRBSheet?.current?.open();
+    dispatch(getUserDetailForPlacingOrder(setData,setAnimationForgettingAddress));
   }
 
   const handleTotalAmount = () => {
@@ -215,6 +219,7 @@ const CartContainer = () => {
   return (
     <View style={styles.container}>
       <CartScreen
+      handleAddressForBottomSheet={handleAddressForBottomSheet}
         deliveryUserAddress={deliveryUserAddress}
         setDeliveryUserAddress={setDeliveryUserAddress}
         refRBSheet={refRBSheet}
@@ -257,6 +262,7 @@ const CartContainer = () => {
         handleChange={handleChange}
         deliveryMethod={deliveryMethod}
         deliveryCost={deliveryCost}
+        animationForgettingAddress={animationForgettingAddress}
       />
     </View>
   );

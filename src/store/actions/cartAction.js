@@ -192,18 +192,18 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
 
 
 //Get User Detail For Place order
-export const getUserDetailForPlacingOrder = (setData) => {
+export const getUserDetailForPlacingOrder = (setData,setAnimationForgettingAddress) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        // setAnimation(true);
+        setAnimationForgettingAddress(true);
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                // setAnimation(false);
+                setAnimationForgettingAddress(false);
                 dispatch(setUserDetail(res?.data));
                 setData(res?.data?.addresses)
             })
             .catch((err) => {
-                // setAnimation(false);
+                setAnimationForgettingAddress(false);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',

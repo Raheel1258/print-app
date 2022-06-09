@@ -81,7 +81,9 @@ const CartScreen = ({
   placeOrderAnimation,
   setDeliveryMethod,
   deliveryMethod,
-  deliveryCost
+  deliveryCost,
+  handleAddressForBottomSheet,
+  animationForgettingAddress
 }) => {
   console.log("datatat1233123123" , data);
   const { t } = useTranslation();
@@ -131,7 +133,7 @@ const CartScreen = ({
         </View>
         <CategoriesTitleHeader title={t('delivery_pickup_option')} />
         <RadioButtonComponent
-          onPress={() => {refRBSheet?.current?.open()}}
+          onPress={() => handleAddressForBottomSheet()}
           title={t('delivery_text')}
           secondTitle={t('pick_up')}
           description={deliveryUserAddress}
@@ -199,6 +201,7 @@ const CartScreen = ({
             addNew={t('new_address')}
             setData={setData}
             data={data}
+            animationForgettingAddress={animationForgettingAddress}
             setShowDetail={setDeliveryUserAddress}
             onPress={() => {
               refRBSheet.current.close();

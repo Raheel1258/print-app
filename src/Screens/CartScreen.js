@@ -131,7 +131,7 @@ const CartScreen = ({
                   value={textValue}
                   keyboardType="default"
                   autoCapitalize="none"
-                  onChangeText={handleChange}
+                  onChangeText={(text) => handleChange(text)}
                 />
                 <View>{(promocodeDiscount != "0" && textValue !== '' && validPromoCode == true) && <GreenCheckIcon />}</View>
               </View>

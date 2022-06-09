@@ -85,7 +85,7 @@ const CartContainer = () => {
   ]);
 
   useEffect(() => {
-    dispatch(getCartData(setAnimation, navigate));
+    dispatch(getCartData(setAnimation, setTextValue));
   }, [isFocused])
 
   useEffect(() => {

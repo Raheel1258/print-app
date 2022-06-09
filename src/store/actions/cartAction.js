@@ -40,7 +40,7 @@ function setPromoCodeDetail(data){
 
 
 //Get Cart Data
-export const getCartData = (setAnimation, navigate) => {
+export const getCartData = (setAnimation, setTextValue) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
@@ -48,7 +48,9 @@ export const getCartData = (setAnimation, navigate) => {
             .then(async (res) => {
                 console.log("res from get cart", res);
                 dispatch(setCartDetail(res?.data?.products));
+                dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
+                setTextValue('');
             })
             .catch((err) => {
                 setAnimation(false);
@@ -106,7 +108,6 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
-
     }
 }
 

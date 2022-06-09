@@ -18,7 +18,7 @@ const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMeth
         <Text style={styles.pricesText}>{t('delivery_order_text')}</Text>
         <Text style={styles.pricesText}>(HK$ {deliveryCost})</Text>
       </View>}
-     {promocodeDiscount && <View style={styles.contentContainer}>
+     {promocodeDiscount != "0" && <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('discount_text')}</Text>
         <Text style={styles.pricesText}>(HK$ {promocodeDiscount})</Text>
       </View>}

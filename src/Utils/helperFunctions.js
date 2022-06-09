@@ -2,7 +2,7 @@ export const getDate = () => {
     var day = new Date().getDate();
       var month = new Date().getMonth() + 1;
       var year = new Date().getFullYear();
-      var date = day + '-' + month + '-' + year;
+      var date = day + '/' + month + '/' + year;
       return date;
 }
 

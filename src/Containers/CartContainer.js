@@ -194,20 +194,22 @@ const CartContainer = () => {
     cartItem && cartItem?.map((item) => {
       quantity = item?.priceChart?.units;
       unitPrice = item?.priceChart?.pricePerUnit;
-      deliveryCost = deliveryCost + item?.priceChart?.deliveryCost;
-      subTotal = parseInt(quantity * unitPrice);
-      totalPrice = subTotal;
+      deliveryCost = parseFloat(deliveryCost + item?.priceChart?.deliveryCost);
+      subTotal = parseFloat(quantity * unitPrice);
+      totalPrice = parseFloat(subTotal);
     });
 
     if(deliveryMethod == "Delivery"){
-      totalPrice = totalPrice + deliveryCost;
+      totalPrice = parseFloat(totalPrice + deliveryCost);
+      setTotal(totalPrice)
     }
     else{
       totalPrice = totalPrice;
+      setTotal(totalPrice)
     }
     if (promocodeDiscount && promocodeDiscount != "") {
-      totalPrice = totalPrice - parseInt(promocodeDiscount);
-      setTotal(totalPrice);
+      subTotal = subTotal - parseFloat(promocodeDiscount);
+      setSubTotal(subTotal);
     } else {
       setTotal(totalPrice);
     }

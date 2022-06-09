@@ -1,12 +1,15 @@
 import React from 'react';
 import {View, Text, TextInput} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors, fonts} from '../Utils/theme';
 
-const NotificationComponent = ({orderCode, orderReceived, time,childern, border=true, seen
+const NotificationComponent = ({orderCode, orderReceived, time,childern, border=true, seen, onPress
 }) => {
+  console.log("seen of order" ,seen );
   return (
+    <TouchableOpacity onPress={onPress}>
     <View>
       <View style={styles.contentContainer}>
         <View  style={styles.orderCodeContainer}>
@@ -16,14 +19,15 @@ const NotificationComponent = ({orderCode, orderReceived, time,childern, border=
             Order <Text style={styles.orderCode}>{orderCode}</Text> status has
             changed to
           </Text>
-          <Text style={{...styles.orderReceived, color: orderReceived =='“Order received”' ? colors.pearlColor : orderReceived =='“Completed”' ? colors.greenColor : colors.lightRedColor}}>{orderReceived}</Text>
+          <Text style={{...styles.orderReceived, color: orderReceived =='Order received' ? colors.pearlColor : orderReceived =='Completed' ? colors.greenColor : colors.lightRedColor}}>{orderReceived}</Text>
           <Text style={styles.timeText}>{time}</Text>
         </View>
         </View>
-        {!seen && <View style={styles.activeDot} />}
+        {seen  && <View style={styles.activeDot} />}
       </View>
      {border && <View style={styles.borderBottom}/>}
       </View>
+      </TouchableOpacity>
   );
 };
 

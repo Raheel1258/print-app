@@ -23,14 +23,19 @@ const DATA = [
   },
 ];
 
-const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate }) => {
+const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData }) => {
   const { t } = useTranslation();
-  const renderItem = ({ item }) => <NotificationActivity date={item.date} readMark={item.readMark} />;
+  const renderItem = ({ item }) => {
+  const keys = Object.keys(item);
+  return ( <>
+  <NotificationActivity date={keys[0]} item={item} readMark={item.readMark} />
+  </>)
+};
   return (
     <View style={styles.container}>
       <BackArrowHeader arrow={false} goBack={goBack} title={t('activity_text')} borderBottomWidth={0} />
       <FlatList
-        data={DATA}
+        data={activityData}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         contentContainerStyle={styles.flatlistContainer}
@@ -40,7 +45,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
           <>
             <View style={styles.logoWrapper}>
               <AuthenticationLogo />
-            </View>
+            {/* </View>
             <View style={styles.signinButtonWrapper}>
               <GreenButton
                 backgroundColor={focused ? colors.greenColor : colors.whiteColor}
@@ -54,8 +59,8 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
                 }}
               />
             </View>
-            <View style={styles.signinButtonWrapper}>
-              <GreenButton
+            <View style={styles.signinButtonWrapper}> */}
+              {/* <GreenButton
                 title={t('sheet_login_in')}
                 backgroundColor={focused ? colors.whiteColor : colors.greenColor}
                 color={focused ? colors.greenColor : colors.whiteColor}
@@ -65,7 +70,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
                   navigate('auth', { next: 'signin' });
                   setFocused(false);
                 }}
-              />
+              /> */}
             </View>
           </>
         }

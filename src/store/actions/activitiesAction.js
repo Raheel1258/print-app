@@ -20,6 +20,7 @@ function setActivityDetail(data) {
 export const getAllActivity = (setAnimation) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token');
+        console.log("activity from storage" , activityData );
         dispatch(setActivityDetail(activityData))
         setAnimation(true);
         //Post to get reminder

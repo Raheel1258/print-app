@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
@@ -34,26 +34,51 @@ const DATA = [
   },
 ];
 
-const NotificationActivity = ({date,readMark}) => {
+const NotificationActivity = ({date,item,readMark}) => {
+
+  const [data,setData] = useState(item[date]);
+  const lengthItem = item[date].length; 
+  const lastItemId = item[date][lengthItem-1].orderId;
   const {t} = useTranslation();
-  const renderItem = ({item}, index) => (
-    <NotificationComponent
-      orderCode={item.orderCode}
-      orderReceived={item.orderReceived}
-      time={item.time}
-      childern={item.childern}
-      border = {item?.id == DATA?.length ? false : true}
+
+  const handleData = (id) => {
+    setData((prev)=> {
+      return prev?.map((x,i)=>{
+       
+        if(x?.orderId == id){
+          console.log("into map id of sele" ,id);
+          console.log("into map id of big" ,x?.orderId);
+          
+        return {...prev[i], seen: false}
+        }else{
+          return {...prev[i], seen: true}
+        }
+      })
+    })
+  }
+
+  console.log("data of activity" , data)
+
+  const renderItem = ({item}, index) => {
+
+    return(
+    <NotificationComponent onPress={() => handleData(item?.orderId)}
+      orderCode={item?.orderId}
+      orderReceived={item?.status}
+      time={item?.time}
+      // childern={item.childern}
+      border = {item?.orderId == lastItemId? false : true}
       seen={item?.seen}
     />
-  );
+  )};
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>{date}</Text>
-        <Text style={styles.headerText}>{readMark}</Text>
+        <Text style={styles.headerText}>{"Mark as all read"}</Text>
       </View>
       <FlatList
-        data={DATA}
+        data={item[date] && item[date]}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

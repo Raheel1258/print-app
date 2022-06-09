@@ -51,7 +51,6 @@ const AccountDetailContainer = () => {
 
   const handleMakePrimary = (id) => {
     dispatch(makeAddressPrimary(id));
-    console.log("new primary address id", id);
   }
 
   return (

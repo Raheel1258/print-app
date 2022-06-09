@@ -3,7 +3,7 @@ import { types } from '@babel/core';
 import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivity } from '../store/actions/activitiesAction';
 import Storage from '../Utils/Storage';
 
@@ -19,6 +19,7 @@ const ActivityContainer = () => {
   const [animation, setAnimation] = useState(false);
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
+  const activityData = useSelector(state =>  state?.activitiesReducer?.activitiesDetail)
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data);
@@ -29,15 +30,16 @@ const ActivityContainer = () => {
   };
 
   useEffect(() => {
+    console.log("into use effect");
     dispatch(getAllActivity(setAnimation));
   },[])
 
-  useEffect(() => {
-    isFocused && Storage.retrieveData('token').then((token) => {
-      setUserToken(token);
-      !token && activityRBSheet.current.open()
-    });
-  }, [isFocused])
+  // useEffect(() => {
+  //   isFocused && Storage.retrieveData('token').then((token) => {
+  //     setUserToken(token);
+  //     !token && activityRBSheet.current.open()
+  //   });
+  // }, [isFocused])
 
   return (
     <View style={styles.container}>
@@ -47,6 +49,7 @@ const ActivityContainer = () => {
       focused={focused} 
       setFocused={setFocused} 
       navigate={navigate} 
+      activityData={activityData}
       animation={animation} />
     </View>
   );

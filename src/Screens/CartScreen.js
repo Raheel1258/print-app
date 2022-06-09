@@ -128,7 +128,7 @@ const CartScreen = ({
               <View style={styles.textInputContainer}>
                 <TextInput
                   style={styles.textInput}
-                  value={textValue}
+                  // value={textValue}
                   keyboardType="default"
                   autoCapitalize="none"
                   onChangeText={(text) => handleChange(text)}

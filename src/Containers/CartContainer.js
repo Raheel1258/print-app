@@ -152,6 +152,11 @@ const CartContainer = () => {
     dispatch(deleteProduct(setAnimation, _id, navigate));
   }
 
+  const handleAddressForBottomSheet = () => {
+    refRBSheet?.current?.open();
+    dispatch(getUserDetailForPlacingOrder(setData,setAnimationForgettingAddress));
+  }
+
   const handlePayment = () => {
     // genToken();
     var date = getDate();
@@ -178,11 +183,6 @@ const CartContainer = () => {
       navigate('payment', { amount: total , orderObj:orderObj})
 
     }else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
-  }
-
-  const handleAddressForBottomSheet = () => {
-    refRBSheet?.current?.open();
-    dispatch(getUserDetailForPlacingOrder(setData,setAnimationForgettingAddress));
   }
 
   const handleTotalAmount = () => {

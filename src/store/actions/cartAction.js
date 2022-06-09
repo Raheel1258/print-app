@@ -57,7 +57,6 @@ export const getCartData = (setAnimation, navigate) => {
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
-
     }
 }
 
@@ -97,6 +96,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
             .then(async (res) => {
                 // dispatch(setCartDetail(res?.data?.products)); 
                 dispatch(getCartData(setAnimation,navigate)); 
+                dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
             })
             .catch((err) => {

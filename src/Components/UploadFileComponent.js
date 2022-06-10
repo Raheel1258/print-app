@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 
+
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import { colors, fonts } from '../Utils/theme';
 
-const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false , width=90}) => {
+const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false , width=90, faqsFlaq}) => {
   const borderStyle = { 
     borderBottomWidth: isSelected ? 2 : 1 ,
     borderBottomColor: isSelected ? null : colors.inputBorderColor,
@@ -32,6 +33,7 @@ const UploadFileComponent = ({ title, onPress, Children, selection, isSelected =
       <View style={styles.rightArrow}>
         <LeftArrow />
       </View>
+      
     </TouchableOpacity>
   );
 };

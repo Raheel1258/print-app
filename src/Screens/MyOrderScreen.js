@@ -72,8 +72,6 @@ import { colors, fonts } from '../Utils/theme';
 const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData }) => {
   const completedOrder = getAllOrderData?.filter((item) => item?.status == "COMPLETED");
   const activeOrder = getAllOrderData?.filter((item) => item?.status != "COMPLETED");
-  console.log("not complicated", activeOrder);
-  console.log("not complicated no nono", completedOrder);
   const { t } = useTranslation();
   const layout = useWindowDimensions();
 

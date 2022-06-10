@@ -84,7 +84,6 @@ const AccountContainer = () => {
       uri: 'https://pri.cxstaging.com/faqs/'}}
       
 />}
-      
     </View>
   );
 };

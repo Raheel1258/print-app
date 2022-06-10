@@ -19,9 +19,6 @@ const MyOrderContainer = () => {
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const getAllOrderData = useSelector(state => state?.orderReducer?.orderDetail);
-
-  console.log("getall order" , getAllOrderData);
-
   
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)

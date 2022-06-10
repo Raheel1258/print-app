@@ -6,7 +6,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import { colors, fonts } from '../Utils/theme';
 
-const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false , width=90, faqsFlaq}) => {
+const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false , width=90}) => {
   const borderStyle = { 
     borderBottomWidth: isSelected ? 2 : 1 ,
     borderBottomColor: isSelected ? null : colors.inputBorderColor,

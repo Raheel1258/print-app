@@ -42,3 +42,23 @@ export const getAllOrder = (setAnimation) => {
 };
 
 
+export const handleEmailing = (id,flag) => {
+  return async (dispatch) => {
+    const accessToken = await Storage.retrieveData('token');
+    axios.post(`${Api}/order/support/${id}/${flag}`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        .then(async (res) => {
+          Toast.show({
+            type: 'success',
+            text1: res?.data ? res?.data : 'Network error'
+        });
+        })
+        .catch((err) => {
+            Toast.show({
+                type: 'error',
+                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+            });
+        });
+}
+};
+
+

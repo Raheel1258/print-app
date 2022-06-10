@@ -62,7 +62,7 @@ import { colors, fonts } from '../Utils/theme';
   // },
 //];
 
-const MyOrdersListScreen = ({ goBack, orderData }) => {
+const MyOrdersListScreen = ({ goBack, orderData,setSupportEmail,handleReceiptEmail, handlerSupportEmail }) => {
   const { t } = useTranslation();
   const renderItem = ({ item, index }) => (
     <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image} index={index} length={item?.length} item={item} />
@@ -108,8 +108,8 @@ const MyOrdersListScreen = ({ goBack, orderData }) => {
           payment={orderData?.paymentMethod}
         />
         <CategoriesTitleHeader title={t('order_support')} />
-        <UploadFileComponent width={300} title={t('email_receipt')} />
-        <UploadFileComponent width={300} title={t('contact_support')} />
+        <UploadFileComponent onPress={()=>handleReceiptEmail(orderData?._id)} width={300} title={t('email_receipt')} />
+        <UploadFileComponent onPress={()=>handlerSupportEmail(orderData?._id)} width={300} title={t('contact_support')} />
         <View style={styles.borderBottom} />
       </ScrollView>
     </View>

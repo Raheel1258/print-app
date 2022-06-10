@@ -175,7 +175,6 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
         const accessToken = await Storage.retrieveData('token');
         axios.post(`${Api}/order/add`,orderObj, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
-                console.log("order res", res);
                 setPlaceOrderAnimation(false);
                 navigate("orderReceived");
             })

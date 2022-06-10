@@ -246,7 +246,8 @@ const SingleProductContainer = ({ route }) => {
       finishing: selectFinishing,
       remarks: remarks,
       cut: selectedCut,
-      numberOfSides: numberOfSides
+      numberOfSides: numberOfSides,
+      sendByMail: selectedUpload == "email" ? true: false   
     }
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {

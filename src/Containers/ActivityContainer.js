@@ -34,6 +34,8 @@ const ActivityContainer = () => {
     dispatch(getAllActivity(setAnimation));
   },[])
 
+  console.log("activity data" ,activityData);
+
   // useEffect(() => {
   //   isFocused && Storage.retrieveData('token').then((token) => {
   //     setUserToken(token);

@@ -1,7 +1,7 @@
 import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
-import {activityData} from "../../Utils/mockData"
+import {activityData, newActivityStructure} from "../../Utils/mockData"
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
@@ -20,8 +20,8 @@ function setActivityDetail(data) {
 export const getAllActivity = (setAnimation) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token');
-        console.log("activity from storage" , activityData );
-        dispatch(setActivityDetail(activityData))
+        console.log("activity from storage" , newActivityStructure );
+        dispatch(setActivityDetail(newActivityStructure))
         setAnimation(true);
         //Post to get reminder
         // axios.post(`${Api}/activity/findall`,{},{ headers: { "Authorization": `Bearer ${accessToken}` } })

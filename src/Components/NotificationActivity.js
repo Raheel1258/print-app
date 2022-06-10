@@ -37,8 +37,8 @@ const DATA = [
 const NotificationActivity = ({date,item,readMark}) => {
 
   const [data,setData] = useState(item[date]);
-  const lengthItem = item[date].length; 
-  const lastItemId = item[date][lengthItem-1].orderId;
+  const lengthItem = item?.notifications.length; 
+  const lastItemId = item?.notifications[lengthItem-1]._id;
   const {t} = useTranslation();
 
   const handleData = (id) => {
@@ -62,23 +62,23 @@ const NotificationActivity = ({date,item,readMark}) => {
   const renderItem = ({item}, index) => {
 
     return(
-    <NotificationComponent onPress={() => handleData(item?.orderId)}
-      orderCode={item?.orderId}
-      orderReceived={item?.status}
-      time={item?.time}
-      // childern={item.childern}
-      border = {item?.orderId == lastItemId? false : true}
-      seen={item?.seen}
+    <NotificationComponent onPress={() => handleData(item?._id)}
+      orderCode={item?._id}
+      orderReceived={"Completed"}
+      time={item?.updatedAt}
+      childern={<OrderCancelledIcon/>}
+      border = {item?._id == lastItemId? false : true}
+      seen={item?.isRead}
     />
   )};
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>{date}</Text>
+        <Text style={styles.headerText}>{(item?._id).substring(0, 10)}</Text>
         <Text style={styles.headerText}>{"Mark as all read"}</Text>
       </View>
       <FlatList
-        data={item[date] && item[date]}
+        data={item?.notifications && item?.notifications}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

@@ -59,7 +59,7 @@ const FilePickerInput = ({ result, setResult }) => {
           return;
         } else {
           console.log('response', response)
-          formData.append('image', response?.assets[0]);
+          formData.append('image', response);
           dispatch(uploadFile(formData, setAnimation, setResult));
         }
       });

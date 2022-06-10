@@ -239,7 +239,7 @@ export const uploadFile = (formData, setAnimation, setResult) => {
     setAnimation(true);
     const accessToken = await Storage.retrieveData('token');
     console.log('formData', formData)
-    axios.post(`https://5ab2-116-58-9-130.ngrok.io/api/v1/upload-file/image`,formData, {headers: { Accept: 'application/json',
+    axios.post(`${Api}/upload-file/image`,formData, {headers: { Accept: 'application/json',
     'Content-Type': 'multipart/form-data; boundary=testing',}}
     )
       .then(async (res) => {

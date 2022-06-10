@@ -14,7 +14,6 @@ const EditedSingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { productCategory,productId,cartItem, cartProductId } = route.params;
 
-console.log("item edit" , cartItem);
   const priceChart = useSelector(state => state?.productList?.priceChartEdit);
   const state = useSelector(state => state?.productList?.singleProduct);
   
@@ -39,7 +38,7 @@ console.log("item edit" , cartItem);
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({ url: [{ url_link: '' }] })
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
-  const [selectedUpload, setSelectedUpload] = useState(t('upload_file'));
+  const [selectedUpload, setSelectedUpload] = useState('uploadFile');
   const [shape, setShape] = useState("");
   const [selectedSize, setSelectedSize] = useState(cartItem?.size);
   const [selectedCorner, setSelectedCorner] = useState();
@@ -157,7 +156,11 @@ console.log("item edit" , cartItem);
 
   useEffect(() => {
     setflag(true);
-    dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject));
+    Object.keys(defaultValuesObject).map((k)=> {
+      if (defaultValuesObject[k] === "" || defaultValuesObject[k]===undefined || defaultValuesObject[k]===null) {
+        dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject));
+      }
+    });
   }, [values, state]);
 
   useEffect(() => {
@@ -215,7 +218,6 @@ console.log("item edit" , cartItem);
   };
 
   const handleChange = (value) => {
-    console.log("value in change" , value);
     setRemarks(value);
   };
 

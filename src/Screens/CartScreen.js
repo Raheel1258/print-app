@@ -86,7 +86,7 @@ const CartScreen = ({
   handleAddressForBottomSheet,
   animationForgettingAddress
 }) => {
-  console.log("datatat1233123123", data);
+
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (

@@ -46,24 +46,6 @@ const CartContainer = () => {
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
 
-
-  // const [data, setData] = useState([
-  //   {
-  //     id: '1',
-  //     title: 'Karen Chan',
-  //     addressLineOne: '23 Wings IIIB, 19 Tong Sun Street,',
-  //     addressLineTwo: 'Ma On Shan, New Territories, Hong Kong',
-  //     selected: true
-  //   },
-  //   {
-  //     id: '2',
-  //     title: '[Full Name]',
-  //     companyName: '[Company Name]',
-  //     addressLineOne: '[Address Line 1], [Address Line 2]',
-  //     addressLineTwo: '[Area], [District], [City/Country]',
-  //     selected: false
-  //   },
-  // ]);
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState([
     {
@@ -102,21 +84,13 @@ const CartContainer = () => {
     handleTotalAmount();
   }, [cartItem, promocodeDiscount, deliveryMethod])
 
-  // useEffect(()=>{
-  //   dispatch(getUserDetailForPlacingOrder(setData));
-
-  // },[isFocused])
-
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
 
   const handleChange = (value) => {
-    console.log("values of input filed" , value);
     setTextValue(value);
-    
     setValidPromoCode(false)
-
   };
 
   const goBack = () => {
@@ -177,7 +151,6 @@ const CartContainer = () => {
       discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
       total: total,
       status: "ORDER_RECIEVED"
-
     }
     if(paymentMethodName == "Credit Card"){
       navigate('payment', { amount: total , orderObj:orderObj})

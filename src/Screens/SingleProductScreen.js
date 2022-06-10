@@ -331,22 +331,22 @@ const SingleProductScreen = ({
         />
         <UploadFileComponent
         width={320}
-          onPress={() => { refRBSheet.current.open(), setSelectedUpload(t('upload_file')) }}
+          onPress={() => { refRBSheet.current.open(), setSelectedUpload('uploadFile') }}
           title={t('upload_file')}
-          isSelected={selectedUpload == t('upload_file') ? true : false}
+          isSelected={selectedUpload == 'uploadFile' ? true : false}
         />
         <UploadFileComponent
           width={320}
-          onPress={() => { urlRBSheet.current.open(), setSelectedUpload(t('upload_url')) }}
+          onPress={() => { urlRBSheet.current.open(), setSelectedUpload('urlLink') }}
           title={t('upload_url')}
-          isSelected={selectedUpload == t('upload_url') ? true : false}
+          isSelected={selectedUpload == 'urlLink' ? true : false}
 
         />
         <UploadFileComponent
           width={320}
-          onPress={() => { toggleModal(), setSelectedUpload(t('upload_mail')) }}
+          onPress={() => { toggleModal(), setSelectedUpload('email') }}
           title={t('upload_mail')}
-          isSelected={selectedUpload == t('upload_mail') ? true : false}
+          isSelected={selectedUpload == 'email' ? true : false}
         />
         <BottomSheetComponent
           title={t('sheet_upload_file')}

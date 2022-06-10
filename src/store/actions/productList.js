@@ -90,6 +90,7 @@ export const getCategoriesProduct = (category, setAnimation) => {
       })
       .catch((err) => {
         setAnimation(false);
+        
         Toast.show({
           type: 'error',
           text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
@@ -103,16 +104,34 @@ export const getCategoriesProduct = (category, setAnimation) => {
 export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
+  console.log("sdsdsd obj" , defaultValuesObject);
   
   if(values?.product !== "Spot UV Business Card"){
     delete values['spotuvside'];
   }
+
   if(values?.product !== "Flyer (A4)"){
     delete values['folding'];
   }
+
   if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
     values['product'] = "Flyer (A5)"
   }
+  
+  if(values?.product == "Spot UV Business Card" && values?.corner == "Round Corner"){
+    values['product'] = "Spot UV Business Card ";
+  }
+
+  if(values?.product == "Matte / Glossy Business Card" && values?.corner == "Round Corner"){
+    values['product'] = "Matte / Glossy Business Card "
+  }
+
+  if(values?.product == "Classy Pearl (Textured Paper) Business Card" && values?.corner == "Round Corner"){
+    values['product'] = "Classy Pearl (Textured Paper) Business Card "
+  }
+
+  
+
   console.log('values into single product', values)
   return async (dispatch) => {
     setPriceChartAnimation(true);
@@ -154,10 +173,17 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
   if(values?.product !== "Flyer (A4)"){
     delete values['folding'];
   }
+
   if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
     values['product'] = "Flyer (A5)"
   }
-  console.log('values into single product', values)
+
+  if(values?.product == "Spot UV Business Card" && values?.corner == "Round Corner"){
+    console.log("into vuasdasdasdas")
+    values['product'] = "Spot UV Business Card ";
+  }
+  
+  console.log('values into single Edit product', values)
   return async (dispatch) => {
     setPriceChartAnimation(true);
     const accessToken = await Storage.retrieveData('token')
@@ -170,7 +196,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
     console.log('query parameters', query)
     axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then(async (res) => {
-        console.log("price chart api" , res)
+        console.log("price chart api from edited" , res)
         dispatch(setPriceChartOnEdit(res?.data));
         // setSelectedPriceChart(res?.data[0]);
         // // setPriceChart(res?.data);
@@ -178,7 +204,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
       })
       .catch((err) => {
         setPriceChartAnimation(false);
-        console.log("error 1232312", err?.response);
+        console.log("error from edited single product api 1232312", err?.response);
         Toast.show({
           type: 'error',
           text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
@@ -208,17 +234,23 @@ export const getProductById = (id,setAnimation) => {
 
 
 //Upload file
-export const uploadFile = (uploadImage, setAnimation, setResult) => {
+export const uploadFile = (formData, setAnimation, setResult) => {
   return async (dispatch) => {
     setAnimation(true);
-    axios.post(`${Api}/upload-file/image`,uploadImage)
+    const accessToken = await Storage.retrieveData('token');
+    console.log('formData', formData)
+    axios.post(`https://5ab2-116-58-9-130.ngrok.io/api/v1/upload-file/image`,formData, {headers: { Accept: 'application/json',
+    'Content-Type': 'multipart/form-data; boundary=testing',}}
+    )
       .then(async (res) => {
+        console.log("res from file", res);
         setAnimation(false);
         setResult((prev)=>{
           return [...prev, res?.data?.Location];
         });
       })
       .catch((err) => {
+        console.log("errror from file uploader" , err?.response);
         setAnimation(false);
         Toast.show({
           type: 'error',

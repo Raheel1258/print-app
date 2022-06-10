@@ -32,7 +32,7 @@ export const getCategories = (setAnimation) => {
           setAnimation(false);
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error'
             });
         });
 }

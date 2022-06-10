@@ -118,8 +118,7 @@ const styles = ScaledSheet.create({
     marginTop: '20@s',
   },
   loaderContainerProductList:{
-    // height:'200%',
-    flex:1,
+    height:'400@s',
 		justifyContent: 'center',
 		alignItems: 'center',
   },

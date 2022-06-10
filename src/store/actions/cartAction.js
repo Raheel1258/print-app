@@ -10,7 +10,6 @@ import * as types from '../types/types';
 
 
 function setCartDetail(cart) {
-    console.log("reducer fun",)
     return {
         type: types.CART_DETAIL,
         cart,
@@ -46,7 +45,6 @@ export const getCartData = (setAnimation, setTextValue) => {
         setAnimation(true);
         axios.get(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from get cart", res);
                 dispatch(setCartDetail(res?.data?.products));
                 dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
@@ -64,7 +62,6 @@ export const getCartData = (setAnimation, setTextValue) => {
 
 //Add to cart
 export const addToCart = (setAddToCartAnimation, data, navigate) => {
-    console.log("datattatatatatatatatat," ,data);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAddToCartAnimation(true);

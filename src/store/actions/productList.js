@@ -154,6 +154,13 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
       .catch((err) => {
         setPriceChartAnimation(false);
         console.log("error 1232312", err?.response);
+        console.log("errrrrrrrr");
+        if(err?.response?.status == 401){
+          Toast.show({
+            type: 'error',
+            text1: "User is not logged in"
+          });
+        }else
         Toast.show({
           type: 'error',
           text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
@@ -170,6 +177,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
   if(values?.product !== "Spot UV Business Card"){
     delete values['spotuvside'];
   }
+
   if(values?.product !== "Flyer (A4)"){
     delete values['folding'];
   }
@@ -177,10 +185,17 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
   if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
     values['product'] = "Flyer (A5)"
   }
-
+  
   if(values?.product == "Spot UV Business Card" && values?.corner == "Round Corner"){
-    console.log("into vuasdasdasdas")
     values['product'] = "Spot UV Business Card ";
+  }
+
+  if(values?.product == "Matte / Glossy Business Card" && values?.corner == "Round Corner"){
+    values['product'] = "Matte / Glossy Business Card "
+  }
+
+  if(values?.product == "Classy Pearl (Textured Paper) Business Card" && values?.corner == "Round Corner"){
+    values['product'] = "Classy Pearl (Textured Paper) Business Card "
   }
   
   console.log('values into single Edit product', values)

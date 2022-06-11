@@ -52,6 +52,11 @@ export const getCartData = (setAnimation, setTextValue) => {
             })
             .catch((err) => {
                 setAnimation(false);
+                if(err?.response?.status == 401){
+                    Toast.show({
+                      type: 'error',
+                      text1: "User is not logged in"
+                    });}else
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
@@ -77,6 +82,12 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
             })
             .catch((err) => {
                 setAddToCartAnimation(false);
+                if(err?.response?.status == 401){
+                    Toast.show({
+                      type: 'error',
+                      text1: "User is not logged in"
+                    });
+                  }else
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
@@ -175,7 +186,6 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
         const accessToken = await Storage.retrieveData('token');
         axios.post(`${Api}/order/add`,orderObj, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
-                console.log("order res", res);
                 setPlaceOrderAnimation(false);
                 navigate("orderReceived");
             })

@@ -59,8 +59,11 @@ const FilePickerInput = ({ result, setResult }) => {
           return;
         } else {
           console.log('response', response)
+          setResult((prev)=>{
+             return [...prev, response.fileName]
+           });
           formData.append('image', response);
-          dispatch(uploadFile(formData, setAnimation, setResult));
+          // dispatch(uploadFile(formData, setAnimation, setResult));
         }
       });
       
@@ -96,7 +99,7 @@ const FilePickerInput = ({ result, setResult }) => {
                 style={styles.fileAdded}
                 numberOfLines={1}
                 ellipsizeMode={'middle'}>
-                {file?.name}
+                {file}
               </Text>
               <TouchableOpacity onPress={() => removeHandler(index)}>
                 <Text style={styles.browseText}>{t('remove_text')}</Text>

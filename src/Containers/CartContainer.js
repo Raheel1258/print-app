@@ -67,7 +67,11 @@ const CartContainer = () => {
   ]);
 
   useEffect(() => {
-    dispatch(getCartData(setAnimation, setTextValue));
+    Storage.retrieveData('token').then((token) => {
+      setUserToken(token);
+      token && dispatch(getCartData(setAnimation, setTextValue));
+    })
+    
   }, [isFocused])
 
   useEffect(() => {

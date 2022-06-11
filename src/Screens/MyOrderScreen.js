@@ -244,6 +244,7 @@ const styles = ScaledSheet.create({
     height: '80%',
     justifyContent: 'center',
     alignItems: 'center',
+    color:colors.blackColor
   },
 });
 

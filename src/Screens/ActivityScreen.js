@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList,ActivityIndicator } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -23,64 +23,76 @@ const DATA = [
   },
 ];
 
-const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData }) => {
+const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation }) => {
   const { t } = useTranslation();
   const renderItem = ({ item }) => {
-  const keys = Object.keys(item);
-  return ( <>
-  <NotificationActivity date={keys[0]} item={item} readMark={item.readMark} />
-  </>)
-};
+    const keys = Object.keys(item);
+    return (<>
+      <NotificationActivity date={keys[0]} item={item} readMark={item.readMark} />
+    </>)
+  };
   return (
-    <View style={styles.container}>
-      <BackArrowHeader arrow={false} goBack={goBack} title={t('activity_text')} borderBottomWidth={0} />
-      <FlatList
-        data={activityData}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.flatlistContainer}
-      />
-      <BottomSheetComponent
-        childern={
-          <>
-            <View style={styles.logoWrapper}>
-              <AuthenticationLogo />
+    <>
+
+      <View style={styles.container}>
+        {
+          animation ?
+          <View style={styles.loaderContainer}>
+              <ActivityIndicator size="small" color="#000" animating={true} />
             </View>
-            <View style={styles.signinButtonWrapper}>
-              <GreenButton
-                backgroundColor={focused ? colors.greenColor : colors.whiteColor}
-                color={focused ? colors.whiteColor : colors.greenColor}
-                borderWidth={2}
-                title={t('signup_text')}
-                onPress={() => {
-                  activityRBSheet.current.close();
-                  navigate('auth', { next: 'signup' });
-                  setFocused(true);
-                }}
-              />
-            </View>
-            <View style={styles.signinButtonWrapper}>
-              <GreenButton
-                title={t('sheet_login_in')}
-                backgroundColor={focused ? colors.whiteColor : colors.greenColor}
-                color={focused ? colors.greenColor : colors.whiteColor}
-                borderWidth={2}
-                onPress={() => {
-                  activityRBSheet.current.close();
-                  navigate('auth', { next: 'signin' });
-                  setFocused(false);
-                }}
-              />
-            </View>
-          </>
+            :<>
+              <BackArrowHeader arrow={false} goBack={goBack} title={t('activity_text')} borderBottomWidth={0} />
+             {activityData?.length > 0 ? <FlatList
+                data={activityData}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                contentContainerStyle={styles.flatlistContainer}
+              />: <View style={styles.message}><Text>No Data</Text></View>}
+            </>
+             
         }
-        languageTitle={t('Signup_today')}
-        note={false}
-        refRBSheet={activityRBSheet}
-        height={420}
-        onClose={false}
-      />
-    </View>
+        <BottomSheetComponent
+          childern={
+            <>
+              <View style={styles.logoWrapper}>
+                <AuthenticationLogo />
+              </View>
+              <View style={styles.signinButtonWrapper}>
+                <GreenButton
+                  backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+                  color={focused ? colors.whiteColor : colors.greenColor}
+                  borderWidth={2}
+                  title={t('signup_text')}
+                  onPress={() => {
+                    activityRBSheet.current.close();
+                    navigate('auth', { next: 'signup' });
+                    setFocused(true);
+                  }}
+                />
+              </View>
+              <View style={styles.signinButtonWrapper}>
+                <GreenButton
+                  title={t('sheet_login_in')}
+                  backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+                  color={focused ? colors.greenColor : colors.whiteColor}
+                  borderWidth={2}
+                  onPress={() => {
+                    activityRBSheet.current.close();
+                    navigate('auth', { next: 'signin' });
+                    setFocused(false);
+                  }}
+                />
+              </View>
+            </>
+          }
+          languageTitle={t('Signup_today')}
+          note={false}
+          refRBSheet={activityRBSheet}
+          height={420}
+          onClose={false}
+        />
+      </View>
+    </>
   );
 };
 
@@ -99,6 +111,18 @@ const styles = ScaledSheet.create({
   signinButtonWrapper: {
     marginTop: '20@s'
   },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  message:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color:colors.blackColor
+  }
+
 
 });
 

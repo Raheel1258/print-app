@@ -29,19 +29,20 @@ const ActivityContainer = () => {
     navigation.goBack();
   };
 
-  useEffect(() => {
-    console.log("into use effect");
-    dispatch(getAllActivity(setAnimation));
-  },[])
+  // useEffect(() => {
+  //   console.log("into use effect");
+  //   dispatch(getAllActivity(setAnimation));
+  // },[])
 
   console.log("activity data" ,activityData);
 
-  // useEffect(() => {
-  //   isFocused && Storage.retrieveData('token').then((token) => {
-  //     setUserToken(token);
-  //     !token && activityRBSheet.current.open()
-  //   });
-  // }, [isFocused])
+  useEffect(() => {
+    isFocused && Storage.retrieveData('token').then((token) => {
+      setUserToken(token);
+      token &&  dispatch(getAllActivity(setAnimation));
+      !token && activityRBSheet.current.open()
+    });
+  }, [isFocused])
 
   return (
     <View style={styles.container}>

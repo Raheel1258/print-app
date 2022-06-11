@@ -52,6 +52,11 @@ export const getCartData = (setAnimation, setTextValue) => {
             })
             .catch((err) => {
                 setAnimation(false);
+                if(err?.response?.status == 401){
+                    Toast.show({
+                      type: 'error',
+                      text1: "User is not logged in"
+                    });}else
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
@@ -77,6 +82,12 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
             })
             .catch((err) => {
                 setAddToCartAnimation(false);
+                if(err?.response?.status == 401){
+                    Toast.show({
+                      type: 'error',
+                      text1: "User is not logged in"
+                    });
+                  }else
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',

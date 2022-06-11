@@ -29,7 +29,10 @@ const MyOrderContainer = () => {
   };
 
   useEffect(()=>{
-    dispatch(getAllOrder(setAnimation))
+    Storage.retrieveData('token').then((token) => {
+      setUserToken(token);
+      token && dispatch(getAllOrder(setAnimation))
+    })
   },[isFocused])
 
   useEffect(()=>{

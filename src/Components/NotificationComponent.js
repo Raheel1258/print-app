@@ -23,7 +23,7 @@ const NotificationComponent = ({orderCode, orderReceived, time,childern, border=
           <Text style={styles.timeText}>{time}</Text>
         </View>
         </View>
-        {seen  && <View style={styles.activeDot} />}
+        {seen == true && <View style={styles.activeDot} />}
       </View>
      {border && <View style={styles.borderBottom}/>}
       </View>

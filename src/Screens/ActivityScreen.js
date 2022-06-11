@@ -45,7 +45,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
           <>
             <View style={styles.logoWrapper}>
               <AuthenticationLogo />
-            {/* </View>
+            </View>
             <View style={styles.signinButtonWrapper}>
               <GreenButton
                 backgroundColor={focused ? colors.greenColor : colors.whiteColor}
@@ -59,8 +59,8 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
                 }}
               />
             </View>
-            <View style={styles.signinButtonWrapper}> */}
-              {/* <GreenButton
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
                 title={t('sheet_login_in')}
                 backgroundColor={focused ? colors.whiteColor : colors.greenColor}
                 color={focused ? colors.greenColor : colors.whiteColor}
@@ -70,7 +70,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
                   navigate('auth', { next: 'signin' });
                   setFocused(false);
                 }}
-              /> */}
+              />
             </View>
           </>
         }

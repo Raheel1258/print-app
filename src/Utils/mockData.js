@@ -1330,7 +1330,7 @@ export const newActivityStructure = [
           {
               "_id": "62a36fc2504041cc283963b0",
               "userId": "62a371d9295b0548579296a2",
-              "isRead": false,
+              "isRead": true,
               "message": "TEST",
               "createdAt": "2022-06-10T16:22:26.828Z",
               "updatedAt": "2022-06-10T16:22:26.828Z",

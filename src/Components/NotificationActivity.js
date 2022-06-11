@@ -36,7 +36,7 @@ const DATA = [
 
 const NotificationActivity = ({date,item,readMark}) => {
 
-  const [data,setData] = useState(item[date]);
+  const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
   const lastItemId = item?.notifications[lengthItem-1]._id;
   const {t} = useTranslation();
@@ -44,14 +44,13 @@ const NotificationActivity = ({date,item,readMark}) => {
   const handleData = (id) => {
     setData((prev)=> {
       return prev?.map((x,i)=>{
-       
         if(x?.orderId == id){
           console.log("into map id of sele" ,id);
           console.log("into map id of big" ,x?.orderId);
           
-        return {...prev[i], seen: false}
+        return {...prev[i], isRead: false}
         }else{
-          return {...prev[i], seen: true}
+          return {...prev[i], isRead: true}
         }
       })
     })

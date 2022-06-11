@@ -19,7 +19,14 @@ const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail,
     })
   }
 
-const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(item?._id)} title={item?.fullName} companyName = {item?.companyName} addressLineOne={item.addressLine1} addressLineTwo={item?.addressLine2} children={item?.children} selected={item?.primary} />;
+const renderItem = ({item}) => <DeliverAndCreditCard 
+  onPress={() => handleData(item?._id)} 
+  title={item?.fullName} 
+  companyName = {item?.companyName} 
+  addressLineOne={item.addressLine1} 
+  addressLineTwo={item?.addressLine2} 
+  // children={item?.children} 
+  selected={item?.primary} />;
 
   return (
     

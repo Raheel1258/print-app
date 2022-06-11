@@ -14,7 +14,6 @@ const ResetPasswordContainer = ({route}) => {
   const {userId} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  console.log("userIdidididiidd" , userId);
 
   const [animation, setAnimation] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -42,7 +41,6 @@ const ResetPasswordContainer = ({route}) => {
   };
 
   const handleResetPassword = (values) => {    
-      console.log("reset password" , values);
       if(values?.password != values?.confirmPassword){
         Toast.show({
           type: 'error',

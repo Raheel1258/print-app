@@ -4,6 +4,7 @@ import Toast from 'react-native-toast-message';
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
+import Stripe from 'react-native-stripe-api';
 
 
 function setUserAddress(userAddress) {
@@ -28,6 +29,7 @@ function setUserCard(userCard) {
     };
 }
 
+
 //Add Address
 export const addAddress = (setAnimation, data, addAddressRBSheet) => {
     return async (dispatch) => {
@@ -35,7 +37,6 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
         setAnimation(true);
         axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from added address api" , res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'
@@ -45,7 +46,6 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                 addAddressRBSheet.current.close();
             })
             .catch((err) => {
-                console.log("res from address api err" , res);
                 setAnimation(false);
                 addAddressRBSheet.current.close();
                 Toast.show({
@@ -64,7 +64,6 @@ export const deleteAddress = (addressid) => {
             .then(async (res) => {
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
                     text1: 'Removed Address Successfully',
@@ -121,7 +120,6 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
             })
             .catch((err) => {
                 setAnimation(false);
@@ -144,7 +142,6 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 setAnimationUpdateUser(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
                     text1: 'User updated successfully',
@@ -203,13 +200,57 @@ export const makeAddressPrimary = (id) => {
                 });
             })
             .catch((err) => {
-                console.log("err" , err?.response);
+
                 // setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
+
+    }
+}
+
+//getAllCard
+export const  getAllCards = () => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, {headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("res from back end for data", res?.data?.data);
+                dispatch(setUserCard(res?.data?.data))
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+
+    }
+}
+
+export const  addCards = (values) => {
+    return async (dispatch) => {
+        const apiKey =
+            'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
+        const client = new Stripe(apiKey);
+        const stripeToken = await client.createToken({
+            number: values?.cardNumber,
+            name: values?.cardName ?? "",
+            exp_month: values?.expiryMonth,
+            exp_year: values?.expiryYear,
+            cvc: values?.cvc,
+        });
+        if (stripeToken?.id){
+            console.log("stripe token" , stripeToken?.id);
+            dispatch(getAllCards())
+            Toast.show({
+                type: 'success',
+                text1: 'Card is added successfully',
+            });
+        }
 
     }
 }

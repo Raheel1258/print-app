@@ -20,6 +20,7 @@ const BottomSheetComponent = ({
   note = true,
   onClose = true
 }) => {
+
   return (
     <View>
       <RBSheet

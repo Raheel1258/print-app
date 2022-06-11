@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary } from "../store/actions/userPersonalDetailAction"
+import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards } from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
@@ -19,6 +19,8 @@ const AccountDetailContainer = () => {
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
   const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
   const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
+  const userCardsDetails = useSelector(state => state?.userPersonalDetailReducer?.userCard);
+
 
   const [personalDetail, setPersonalDetail] = useState({
     firstName: 'Peter',
@@ -26,6 +28,10 @@ const AccountDetailContainer = () => {
     phone: '23234234',
     email: 'peter@gmail.com'
   });
+
+ 
+
+  console.log("usercards3232" ,userCardsDetails);
 
 
   const navigate = (routeName, data = {}) => {
@@ -38,6 +44,7 @@ const AccountDetailContainer = () => {
 
   useEffect(() => {
     dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
+    dispatch(getAllCards()) 
   }, [])
 
 
@@ -53,6 +60,8 @@ const AccountDetailContainer = () => {
     dispatch(makeAddressPrimary(id));
   }
 
+ 
+
   return (
     <View style={styles.container}>
       <AccountDetailScreen
@@ -67,6 +76,7 @@ const AccountDetailContainer = () => {
         userAddresses={userAddresses}
         animationUpdateUser={animationUpdateUser}
         handleUserAddressRemove={handleUserAddressRemove}
+        userCardsDetails={userCardsDetails}
       />
     </View>
   );

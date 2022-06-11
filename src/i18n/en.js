@@ -230,7 +230,7 @@
     pay:'Pay',
     invalid_promocode: "Invalid promo code",
     bank_detail:"Bank account info available after checkout",
-    invalid_promoCode_message: "Your given promo code is invalid"
-
+    invalid_promoCode_message: "Your given promo code is invalid",
+    add_card: "Add Card"
   },
 };

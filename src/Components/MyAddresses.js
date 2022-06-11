@@ -28,18 +28,18 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
         {card &&
         <>
           <View style={styles.header}>
-            <Text style={styles.headerTitle}>{title}</Text>
-            <Text style={styles.headerPrimary}>Primary</Text>
+            <Text style={styles.headerTitle}>{card?.name}</Text>
+            {description && <Text style={styles.headerPrimary}>Primary</Text>}
           </View>
           <View>
             <View style={styles.cardPrivacyContainer}>
               <Text style={styles.cardNumText}>Card number:</Text>
-              <Text style={styles.masterCardText}>Master (9881)</Text>
-              <MasterCard />
+              <Text style={styles.masterCardText}>{card?.brand}</Text>
+             {card?.brand != "Visa" && <MasterCard /> }
             </View>
             <View style={styles.cardPrivacyContainer}>
               <Text style={styles.cardNumText}>Expiry:</Text>
-              <Text style={styles.cardNumText}>12 / 25</Text>
+              <Text style={styles.cardNumText}>{card?.exp_month} / {card?.exp_year}</Text>
             </View>
             <View style={styles.cardPrivacyContainer}>
               <Text style={styles.cardNumText}>CVV:</Text>

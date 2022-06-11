@@ -18,7 +18,7 @@ import {
   BottomSheetComponent,
   DeliverAddressComponent,
   AddNewAddressForm,
-  AddNewCreditCardForm,
+  AddNewCreditCardSheet,
 } from '../Components';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
@@ -164,7 +164,7 @@ const CartScreen = ({
             />
             <CategoriesTitleHeader title={t('payment_method')} />
             <RadioButtonComponent
-              // onPress={() => creditCardRBSheet.current.open()}
+              onPress={() => creditCardRBSheet.current.open()}
               toggleModal={toggleModal}
               title={t('cradit_card_text')}
               description="Select card"
@@ -255,7 +255,7 @@ const CartScreen = ({
             refRBSheet={addAddressRBSheet}
           />
           <BottomSheetComponent
-            childern={<AddNewCreditCardForm />}
+            childern={<AddNewCreditCardSheet />}
             title={t('add_new_cardet_card')}
             note={false}
             refRBSheet={addCardetCardRBSheet}

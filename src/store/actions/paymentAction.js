@@ -22,11 +22,13 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
         });
 
         if (stripeToken?.id) {
+            console.log("into valid token", stripeToken?.id);
             //Valid Token Hit BE Api's for payment
             const accessToken = await Storage.retrieveData('token')
             axios
                 .post(`${Api}/order/charge`, { amount: amount, paymentMethodId: stripeToken?.id }, { headers: { "Authorization": `Bearer ${accessToken}` } })
                 .then(async (res) => {
+                    console.log("res from charge", res);
                     setAnimation(false);
                     Toast.show({
                         type: 'success',
@@ -37,6 +39,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                     axios
                     .post(`${Api}/order/add`, orderObj, {headers: { "Authorization": `Bearer ${accessToken}`}})
                     .then(async (res) => {
+                        console.log("res from order after payment", res);
                         setAnimation(false);
                         setTimeout(() => {
                             Toast.show({
@@ -49,6 +52,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                      
                     })
                     .catch((err) => {
+                        console.log("err from order api", err?.response);
                         setAnimation(false);
                         Toast.show({
                             type: 'error',
@@ -59,6 +63,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                     //Ended Place order api
                 })
                 .catch((err) => {
+                    console.log("err from charge api", err?.response);
                     setAnimation(false);
                     Toast.show({
                         type: 'error',

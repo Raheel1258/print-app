@@ -81,7 +81,7 @@ const AccountContainer = () => {
         setFaqsFlag={setFaqsFlag}
       />:<WebView
       source={{
-      uri: 'https://pri.cxstaging.com/faqs/'}}
+      uri: 'https://pri.cxstaging.com/en/faqs/'}}
       
 />}
     </View>

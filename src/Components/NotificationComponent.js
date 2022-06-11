@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TextInput} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {ScaledSheet} from 'react-native-size-matters';
+import {handleOrderStatus} from "../Utils/helperFunctions"
 
 import {colors, fonts} from '../Utils/theme';
 
@@ -17,7 +18,7 @@ const NotificationComponent = ({orderCode, orderReceived, time,childern, border=
           <Text style={styles.orderStatus}>
             Order <Text style={styles.orderCode}>{orderCode}</Text> {orderMessage}
           </Text>
-          {/* <Text style={{...styles.orderReceived, color: orderReceived =='Order received' ? colors.pearlColor : orderReceived =='Completed' ? colors.greenColor : colors.lightRedColor}}>{orderReceived}</Text> */}
+          <Text style={{...styles.orderReceived, color: orderReceived =='ORDER_RECIEVED' ? colors.pearlColor : orderReceived =='OUT_FOR_DELIVERY' ? colors.greenColor : colors.lightRedColor}}>{handleOrderStatus(orderReceived)}</Text>
           <Text style={styles.timeText}>{time.substring(12, 19)}</Text>
         </View>
         </View>

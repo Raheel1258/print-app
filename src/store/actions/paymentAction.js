@@ -5,6 +5,7 @@ import Stripe from 'react-native-stripe-api';
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
+import { t } from 'i18next';
 
 
 export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
@@ -28,10 +29,10 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                 .post(`${Api}/order/charge`, { amount: amount, paymentMethodId: stripeToken?.id }, { headers: { "Authorization": `Bearer ${accessToken}` } })
                 .then(async (res) => {
                     setAnimation(false);
-                    Toast.show({
-                        type: 'success',
-                        text1: 'Payment is successfully completed'
-                    });
+                    // Toast.show({
+                    //     type: 'success',
+                    //     text1: 'Payment is successfully completed'
+                    // });
 
                     //Place order Now payment integrated
                     axios
@@ -41,7 +42,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                         setTimeout(() => {
                             Toast.show({
                                 type: 'success',
-                                text1: 'Place Order is successfully completed'
+                                text1: t('order_message_payment')
                             });
                           }, 1000)
                         //Place order Now payment integrated
@@ -52,7 +53,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                         setAnimation(false);
                         Toast.show({
                             type: 'error',
-                            text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                            text1: err?.response?.data?.message ? err?.response?.data?.message : t('network_error'),
                         });
                     });
 
@@ -62,7 +63,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                     setAnimation(false);
                     Toast.show({
                         type: 'error',
-                        text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                        text1: err?.response?.data?.message ? err?.response?.data?.message : t('network_error'),
                     });
                 });
             // stripeToken?.id
@@ -70,7 +71,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
         else {
             Toast.show({
                 type: 'error',
-                text1: stripeToken?.error?.message ? stripeToken?.error?.message : 'Network Error',
+                text1: stripeToken?.error?.message ? stripeToken?.error?.message : t('network_error'),
             });
         }
 

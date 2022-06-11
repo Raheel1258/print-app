@@ -29,16 +29,16 @@ const ActivityContainer = () => {
     navigation.goBack();
   };
 
-  // useEffect(() => {
-  //   console.log("into use effect");
-  //   dispatch(getAllActivity(setAnimation));
-  // },[])
+  useEffect(() => {
+    console.log("into use effect");
+    dispatch(getAllActivity(setAnimation));
+  },[])
 
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
-      token &&  dispatch(getAllActivity(setAnimation));
+      // token &&  dispatch(getAllActivity(setAnimation));
       !token && activityRBSheet.current.open()
     });
   }, [isFocused])

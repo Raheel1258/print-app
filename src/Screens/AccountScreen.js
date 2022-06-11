@@ -38,7 +38,6 @@ const AccountScreen = ({
   setFaqsFlag, 
 }) => {
   const { t } = useTranslation();
-  console.log("flag" , faqsFlaq);
 
   return (
     <View style={styles.container}>

@@ -12,6 +12,7 @@ import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
 import CartScreen from '../Screens/CartScreen';
 import { colors } from '../Utils/theme';
+import { t } from 'i18next';
 
 const CartContainer = () => {
   const navigation = useNavigation();
@@ -156,10 +157,16 @@ const CartContainer = () => {
       total: total,
       status: "ORDER_RECIEVED"
     }
-    if(paymentMethodName == "Credit Card"){
-      navigate('payment', { amount: total , orderObj:orderObj})
-
-    }else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
+    if(deliveryUserAddress == "Select delivery address"){
+      Toast.show({
+        type: 'error',
+        text1: t('select_address'),
+      });
+    }else {
+      if(paymentMethodName == "Credit Card"){
+        navigate('payment', { amount: total , orderObj:orderObj})
+      }else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
+    }
   }
 
   const handleTotalAmount = () => {

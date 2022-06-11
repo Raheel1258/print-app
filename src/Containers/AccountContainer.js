@@ -10,8 +10,10 @@ import { WebView } from 'react-native-webview';
 import { logout } from '../store/actions/auth';
 import AccountScreen from '../Screens/AccountScreen';
 import { colors } from '../Utils/theme';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const AccountContainer = () => {
+  const webViewRef = useRef();
   const refRBSheet = useRef();
   const accountRBSheet = useRef();
   const [focused, setFocused] = useState(true);
@@ -22,6 +24,8 @@ const AccountContainer = () => {
   const [animation, setAnimation] = useState(false);
   const [languageToggle, setLanguageToggle] = useState(true);
   const [faqsFlaq, setFaqsFlag] = useState(false);
+  const [canGoBack, setCanGoBack] = useState(false)
+
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data);
@@ -44,6 +48,10 @@ const AccountContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  // const goBackWeb = () => {
+  //   webViewRef.current.goBack()
+  // }
 
   // const handleFaq = () => {
   //   console.log("into faq");
@@ -79,11 +87,21 @@ const AccountContainer = () => {
         setLanguageToggle={setLanguageToggle}
         faqsFlaq={faqsFlaq} 
         setFaqsFlag={setFaqsFlag}
-      />:<WebView
-      source={{
-      uri: 'https://pri.cxstaging.com/en/faqs/'}}
+      />:
+      <>
+      {/* <TouchableOpacity onPress={()=>setCanGoBack(true)}><View><Text>Gobaack</Text></View></TouchableOpacity> */}
+      {languageToggle ? 
+      <WebView ref={webViewRef} source={{uri: 'https://pri.cxstaging.com/en/faqs/'}} 
+      startInLoadingState 
+      // onNavigationStateChange={(state)=>{
+      //   setCanGoBack(state.canGoBack)
+      // }}
+      /> :
+        <WebView source={{ uri: 'https://pri.cxstaging.com/faqs/'}} startInLoadingState/>
+      }
+      </>
       
-/>}
+}
     </View>
   );
 };

@@ -1332,6 +1332,7 @@ export const newActivityStructure = [
               "userId": "62a371d9295b0548579296a2",
               "isRead": true,
               "message": "TEST",
+              "orderStatus" :"ORDER_RECIEVED",
               "createdAt": "2022-06-10T16:22:26.828Z",
               "updatedAt": "2022-06-10T16:22:26.828Z",
               "__v": 0
@@ -1341,6 +1342,7 @@ export const newActivityStructure = [
             "userId": "62a371d9295b0548579296a2",
             "isRead": false,
             "message": "TEST",
+            "orderStatus" :"CANCELLED",
             "createdAt": "2022-06-10T16:22:26.828Z",
             "updatedAt": "2022-06-10T16:22:26.828Z",
             "__v": 0
@@ -1355,6 +1357,7 @@ export const newActivityStructure = [
             "userId": "62a371d9295b0548579296a2",
             "isRead": false,
             "message": "TEST",
+            "orderStatus" :"ORDER_RECIEVED",
             "createdAt": "2022-06-10T16:22:26.828Z",
             "updatedAt": "2022-06-10T16:22:26.828Z",
             "__v": 0
@@ -1364,6 +1367,7 @@ export const newActivityStructure = [
           "userId": "62a371d9295b0548579296a2",
           "isRead": false,
           "message": "TEST",
+          "orderStatus" :"COMPLETED",
           "createdAt": "2022-06-10T16:22:26.828Z",
           "updatedAt": "2022-06-10T16:22:26.828Z",
           "__v": 0

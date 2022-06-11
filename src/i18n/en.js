@@ -230,7 +230,10 @@
     pay:'Pay',
     invalid_promocode: "Invalid promo code",
     bank_detail:"Bank account info available after checkout",
-    invalid_promoCode_message: "Your given promo code is invalid"
+    invalid_promoCode_message: "The prom code you've entered is not valid, please enter again",
+    select_address:'Please select the address',
+    order_message_payment:'Order placed with payment successfully',
+    network_error: 'Network Error'
 
   },
 };

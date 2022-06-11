@@ -219,6 +219,7 @@ export const chi = {
     payment:'支付',
     invalid_promocode: "促销代码无效",
     bank_detail:"结帐后可用的银行帐户信息",
-    invalid_promoCode_message: "您给定的促销代码无效"
+    invalid_promoCode_message: "您输入的促销代码无效，请重新输入",
+    select_address:'请选择地址'
   },
 };

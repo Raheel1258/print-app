@@ -7,6 +7,29 @@ import {OrderReceivedIcon,OrderCompletedIcon,DeliveryIcon,OrderCancelledIcon,Ord
 import NotificationComponent from '../Components/NotificationComponent';
 import {colors, fonts} from '../Utils/theme';
 
+
+const handleOrderStatusForActivity = (orderNotify) => {
+  if(orderNotify == "ORDER_RECIEVED"){
+    return <OrderReceivedIcon/>
+  }
+  else if(orderNotify=="COMPLETED"){
+    return <OrderCompletedIcon/>;
+  }
+  else if(orderNotify=="CANCELLED"){
+    return <OrderCancelledIcon/>;
+  }
+  else if(orderNotify=="OUT_FOR_DELIVERY"){
+    return <DeliveryIcon/>;
+  }
+  else if(orderNotify=="READY_FOR_PICKUP"){
+    return <OrderPicupIcon/>;
+  }
+  else{
+    return <PrintingIcon/> ;
+  }
+
+}
+
 const DATA = [
   {
     id: '1',
@@ -58,10 +81,10 @@ const NotificationActivity = ({item,readMark}) => {
     return(
     <NotificationComponent onPress={() => handleData(item?._id)}
       orderCode={item?._id}
-      orderReceived={"Completed"}
+      orderReceived={item?.orderStatus}
       orderMessage={item?.message}
       time={item?.updatedAt}
-      childern={<OrderCancelledIcon/>}
+      childern={handleOrderStatusForActivity(item?.orderStatus)}
       border = {item?._id == lastItemId? false : true}
       seen={item?.isRead}
     />

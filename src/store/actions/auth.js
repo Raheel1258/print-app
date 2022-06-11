@@ -70,7 +70,6 @@ export const signup = (data, navigation, setAnimation) => {
             })
             .catch((err) => {
                 setAnimation(false);
-                console.log('signup err', err.response)
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
@@ -86,7 +85,6 @@ export const forgotPassword = (data, navigate, setAnimation) => {
         axios
         	.patch(`${Api}/user/forgetpassword`, data)
         	.then(async (res) => {
-                console.log("res from mail" , res);
         		Toast.show({
         			type: 'success',
         			text1: res?.data
@@ -95,7 +93,6 @@ export const forgotPassword = (data, navigate, setAnimation) => {
                navigate('verificationCode');
         	})
         	.catch((err) => {
-                console.log("error from mail" , err?.response);
                 setAnimation(false);
         		Toast.show({
         			type: 'error',
@@ -108,13 +105,11 @@ export const forgotPassword = (data, navigate, setAnimation) => {
 
 //VerificationOptCode
 export const verificationOtpCode = (data,navigate, setAnimation) => {
-    console.log("code code" , data?.otpCode);
     return (dispatch) => {
         setAnimation(true);
         axios
         	.post(`${Api}/user/verifyotp`, {otp:data?.otpCode})
         	.then(async (res) => {
-                console.log("otp " , res);
         		Toast.show({
         			type: 'success',
         			text1: 'Otp verified successfully'
@@ -123,7 +118,6 @@ export const verificationOtpCode = (data,navigate, setAnimation) => {
                 navigate('resetPassword', {userId:res?.data?._id});
         	})
         	.catch((err) => {
-        		console.log('forgot password', err?.response)
                 setAnimation(false);
         		Toast.show({
         			type: 'error',
@@ -136,13 +130,11 @@ export const verificationOtpCode = (data,navigate, setAnimation) => {
 
 //ResetPasswordAction
 export const resetPasswordAction = (data, navigate, setAnimation) => {
-    console.log("reset password data" , data);
     return (dispatch) => {
         setAnimation(true);
         axios
         	.patch(`${Api}/user/resetpassword`, data)
         	.then(async (res) => {
-                console.log("reseting passsword res" , res);
         		Toast.show({
         			type: 'success',
         			text1: 'Passowrd is reset successfully'
@@ -151,7 +143,6 @@ export const resetPasswordAction = (data, navigate, setAnimation) => {
                navigate("signin");
         	})
         	.catch((err) => {
-        		console.log('setting password password', err)
                 setAnimation(false);
         		Toast.show({
         			type: 'error',

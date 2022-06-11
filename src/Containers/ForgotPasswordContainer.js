@@ -37,7 +37,6 @@ const ForgotPasswordContainer = () => {
   };
 
   const handleForgotPassword = (values) => {
-    console.log("forgot password", values);
     dispatch(forgotPassword(values, navigate, setAnimation));
     toggleModal();
   };

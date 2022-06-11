@@ -25,13 +25,11 @@ export const getAllOrder = (setAnimation) => {
       // }, 1000);
     setAnimation(true);
     axios.get(`${Api}/order/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
-        .then(async (res) => {
-          console.log("all user orders" , res);
+        .then(async (res) => { 
          dispatch(setOrder(res?.data));
           setAnimation(false);
         })
         .catch((err) => {
-          console.log("all order err" , err?.response);
           setAnimation(false);
             Toast.show({
                 type: 'error',

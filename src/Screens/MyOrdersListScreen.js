@@ -78,7 +78,7 @@ const MyOrdersListScreen = ({ goBack, orderData,setSupportEmail,handleReceiptEma
       <ScrollView nestedScrollEnabled={true}>
         <View style={styles.orderRefContainer}>
           <Text style={styles.orderRefText}>Order reference:</Text>
-          <Text style={styles.orderRefText}>{orderData?._id}</Text>
+          <Text style={styles.orderRefText}>#{orderData?._id}</Text>
         </View>
         <Text style={styles.orderCompleted}>{handleOrderStatus(orderData?.status)}</Text>
         <FlatList

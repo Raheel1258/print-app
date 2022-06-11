@@ -5,9 +5,8 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors, fonts} from '../Utils/theme';
 
-const NotificationComponent = ({orderCode, orderReceived, time,childern, border=true, seen, onPress
+const NotificationComponent = ({orderCode, orderReceived, time,childern, border=true, seen, onPress,orderMessage
 }) => {
-  console.log("seen of order" ,seen );
   return (
     <TouchableOpacity onPress={onPress}>
     <View>
@@ -16,11 +15,10 @@ const NotificationComponent = ({orderCode, orderReceived, time,childern, border=
        {childern}
         <View>
           <Text style={styles.orderStatus}>
-            Order <Text style={styles.orderCode}>{orderCode}</Text> status has
-            changed to
+            Order <Text style={styles.orderCode}>{orderCode}</Text> {orderMessage}
           </Text>
-          <Text style={{...styles.orderReceived, color: orderReceived =='Order received' ? colors.pearlColor : orderReceived =='Completed' ? colors.greenColor : colors.lightRedColor}}>{orderReceived}</Text>
-          <Text style={styles.timeText}>{time}</Text>
+          {/* <Text style={{...styles.orderReceived, color: orderReceived =='Order received' ? colors.pearlColor : orderReceived =='Completed' ? colors.greenColor : colors.lightRedColor}}>{orderReceived}</Text> */}
+          <Text style={styles.timeText}>{time.substring(12, 19)}</Text>
         </View>
         </View>
         {seen == true && <View style={styles.activeDot} />}

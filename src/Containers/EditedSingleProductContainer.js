@@ -104,7 +104,6 @@ const EditedSingleProductContainer = ({ route }) => {
  //usefffff
   useEffect(()=> {
     if(state && productId){
-      console.log("into price chart for state" , state);
     setValues( productCategory == "BUSINESS_CARD" ? {
       category: 'businesscard',
       product: state?.category?.productType,
@@ -259,7 +258,6 @@ const EditedSingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
-    console.log("new edit object" , obj);
     dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate)); 
 
 

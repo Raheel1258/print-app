@@ -28,7 +28,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
   const renderItem = ({ item }) => {
     const keys = Object.keys(item);
     return (<>
-      <NotificationActivity date={keys[0]} item={item} readMark={item.readMark} />
+      <NotificationActivity item={item} readMark={item.readMark} />
     </>)
   };
   return (

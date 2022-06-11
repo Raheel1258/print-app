@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import {colors, fonts} from '../Utils/theme';
 
 const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMethod, deliveryCost}) => {
-  console.log("total" , total);
   const {t} = useTranslation();
   return (
     <View style={styles.container}>

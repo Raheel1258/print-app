@@ -34,7 +34,7 @@ const DATA = [
   },
 ];
 
-const NotificationActivity = ({date,item,readMark}) => {
+const NotificationActivity = ({item,readMark}) => {
 
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
@@ -44,10 +44,7 @@ const NotificationActivity = ({date,item,readMark}) => {
   const handleData = (id) => {
     setData((prev)=> {
       return prev?.map((x,i)=>{
-        if(x?.orderId == id){
-          console.log("into map id of sele" ,id);
-          console.log("into map id of big" ,x?.orderId);
-          
+        if(x?.orderId == id){  
         return {...prev[i], isRead: false}
         }else{
           return {...prev[i], isRead: true}
@@ -56,14 +53,13 @@ const NotificationActivity = ({date,item,readMark}) => {
     })
   }
 
-  console.log("data of activity" , data)
-
   const renderItem = ({item}, index) => {
 
     return(
     <NotificationComponent onPress={() => handleData(item?._id)}
       orderCode={item?._id}
       orderReceived={"Completed"}
+      orderMessage={item?.message}
       time={item?.updatedAt}
       childern={<OrderCancelledIcon/>}
       border = {item?._id == lastItemId? false : true}

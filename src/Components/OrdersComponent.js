@@ -39,7 +39,7 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
   
   return (
     <TouchableOpacity  onPress={() => navigate("myOrdersList" , {item:item})} style={styles.cardContainer}>
-      <Text style={styles.title}>{item?._id}</Text>
+      <Text style={styles.title}>#{item?._id}</Text>
       <View style={styles.contentContainer}>
         <View>
           <View style={styles.ordersContainer}>

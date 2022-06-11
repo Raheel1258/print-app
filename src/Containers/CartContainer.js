@@ -33,6 +33,7 @@ const CartContainer = () => {
   const [delivery, setDelivery] = useState(true);
   const [deliveryMethod, setDeliveryMethod] = useState("Delivery");
   const [deliveryUserAddress, setDeliveryUserAddress] = useState("Select delivery address");
+  const [animationForgettingAddress, setAnimationForgettingAddress] = useState(false)
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
   const [paymentMethodName, setPaymentMethodName] = useState("Credit Card");
@@ -45,24 +46,6 @@ const CartContainer = () => {
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
 
-
-  // const [data, setData] = useState([
-  //   {
-  //     id: '1',
-  //     title: 'Karen Chan',
-  //     addressLineOne: '23 Wings IIIB, 19 Tong Sun Street,',
-  //     addressLineTwo: 'Ma On Shan, New Territories, Hong Kong',
-  //     selected: true
-  //   },
-  //   {
-  //     id: '2',
-  //     title: '[Full Name]',
-  //     companyName: '[Company Name]',
-  //     addressLineOne: '[Address Line 1], [Address Line 2]',
-  //     addressLineTwo: '[Area], [District], [City/Country]',
-  //     selected: false
-  //   },
-  // ]);
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState([
     {
@@ -84,7 +67,7 @@ const CartContainer = () => {
   ]);
 
   useEffect(() => {
-    dispatch(getCartData(setAnimation, navigate));
+    dispatch(getCartData(setAnimation, setTextValue));
   }, [isFocused])
 
   useEffect(() => {
@@ -101,22 +84,14 @@ const CartContainer = () => {
     handleTotalAmount();
   }, [cartItem, promocodeDiscount, deliveryMethod])
 
-  useEffect(()=>{
-    dispatch(getUserDetailForPlacingOrder(setData));
-
-  },[isFocused])
-
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
 
   const handleChange = (value) => {
-    console.log("values of input filed" , value);
     setTextValue(value);
     setValidPromoCode(false)
-
   };
-
 
   const goBack = () => {
     navigation.goBack();
@@ -151,6 +126,11 @@ const CartContainer = () => {
     dispatch(deleteProduct(setAnimation, _id, navigate));
   }
 
+  const handleAddressForBottomSheet = () => {
+    refRBSheet?.current?.open();
+    dispatch(getUserDetailForPlacingOrder(setData,setAnimationForgettingAddress));
+  }
+
   const handlePayment = () => {
     // genToken();
     var date = getDate();
@@ -171,14 +151,11 @@ const CartContainer = () => {
       discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
       total: total,
       status: "ORDER_RECIEVED"
-
     }
     if(paymentMethodName == "Credit Card"){
       navigate('payment', { amount: total , orderObj:orderObj})
 
     }else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
-
-    
   }
 
   const handleTotalAmount = () => {
@@ -190,20 +167,22 @@ const CartContainer = () => {
     cartItem && cartItem?.map((item) => {
       quantity = item?.priceChart?.units;
       unitPrice = item?.priceChart?.pricePerUnit;
-      deliveryCost = deliveryCost + item?.priceChart?.deliveryCost;
-      subTotal = parseInt(quantity * unitPrice);
-      totalPrice = subTotal;
+      deliveryCost = parseFloat(deliveryCost + item?.priceChart?.deliveryCost);
+      subTotal = parseFloat(quantity * unitPrice);
+      totalPrice = parseFloat(subTotal);
     });
 
     if(deliveryMethod == "Delivery"){
-      totalPrice = totalPrice + deliveryCost;
+      totalPrice = parseFloat(totalPrice + deliveryCost);
+      setTotal(totalPrice)
     }
     else{
       totalPrice = totalPrice;
+      setTotal(totalPrice)
     }
     if (promocodeDiscount && promocodeDiscount != "") {
-      totalPrice = totalPrice - parseInt(promocodeDiscount);
-      setTotal(totalPrice);
+      subTotal = subTotal - parseFloat(promocodeDiscount);
+      setSubTotal(subTotal);
     } else {
       setTotal(totalPrice);
     }
@@ -215,6 +194,7 @@ const CartContainer = () => {
   return (
     <View style={styles.container}>
       <CartScreen
+      handleAddressForBottomSheet={handleAddressForBottomSheet}
         deliveryUserAddress={deliveryUserAddress}
         setDeliveryUserAddress={setDeliveryUserAddress}
         refRBSheet={refRBSheet}
@@ -257,6 +237,7 @@ const CartContainer = () => {
         handleChange={handleChange}
         deliveryMethod={deliveryMethod}
         deliveryCost={deliveryCost}
+        animationForgettingAddress={animationForgettingAddress}
       />
     </View>
   );

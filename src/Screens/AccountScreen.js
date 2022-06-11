@@ -21,8 +21,24 @@ import LanguageIcon from '../Assests/Svgs/LanguageIcon';
 import ShuffleIcon from '../Assests/Svgs/ShuffleIcon';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountScreen = ({ navigate, goBack, refRBSheet, logoutHandler, accountRBSheet, focused, setFocused, isModalVisible, toggleModal, changeLanguageHandler,languageToggle,setLanguageToggle }) => {
+const AccountScreen = ({ 
+  navigate, 
+  goBack, 
+  refRBSheet, 
+  logoutHandler, 
+  accountRBSheet, 
+  focused, 
+  setFocused, 
+  isModalVisible, 
+  toggleModal, 
+  changeLanguageHandler,
+  languageToggle,
+  setLanguageToggle,
+  faqsFlaq, 
+  setFaqsFlag, 
+}) => {
   const { t } = useTranslation();
+  console.log("flag" , faqsFlaq);
 
   return (
     <View style={styles.container}>
@@ -41,6 +57,7 @@ const AccountScreen = ({ navigate, goBack, refRBSheet, logoutHandler, accountRBS
             Children={<AccountIcon />}
           />
           <UploadFileComponent
+          onPress={()=> setFaqsFlag(true)}
             title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}

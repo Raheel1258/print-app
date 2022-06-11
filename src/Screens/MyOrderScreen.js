@@ -70,10 +70,8 @@ import { colors, fonts } from '../Utils/theme';
 // ];
 
 const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData }) => {
-  const completedOrder = getAllOrderData?.filter((item) => item?.status == "order completed");
-  const activeOrder = getAllOrderData?.filter((item) => item?.status != "order completed");
-  console.log("not complicated", activeOrder);
-  console.log("not complicated no nono", completedOrder);
+  const completedOrder = getAllOrderData?.filter((item) => item?.status == "COMPLETED");
+  const activeOrder = getAllOrderData?.filter((item) => item?.status != "COMPLETED");
   const { t } = useTranslation();
   const layout = useWindowDimensions();
 

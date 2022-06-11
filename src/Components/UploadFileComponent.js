@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 
+
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import { colors, fonts } from '../Utils/theme';
 
@@ -32,6 +33,7 @@ const UploadFileComponent = ({ title, onPress, Children, selection, isSelected =
       <View style={styles.rightArrow}>
         <LeftArrow />
       </View>
+      
     </TouchableOpacity>
   );
 };

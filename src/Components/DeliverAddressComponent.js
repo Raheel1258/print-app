@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
-import {Text, TouchableOpacity, FlatList, ScrollView} from 'react-native';
+import {Text, TouchableOpacity, FlatList, ScrollView, View, ActivityIndicator} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors, fonts} from '../Utils/theme';
 import DeliverAndCreditCard from './DeliverAndCreditCard';
 
-const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail}) => {
+const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail, animationForgettingAddress}) => {
   const handleData = (id) => {
     setData((prev)=> {
       return prev?.map((x,i)=>{
@@ -22,7 +22,13 @@ const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail}
 const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(item?._id)} title={item?.fullName} companyName = {item?.companyName} addressLineOne={item.addressLine1} addressLineTwo={item?.addressLine2} children={item?.children} selected={item?.primary} />;
 
   return (
-    <ScrollView>
+    
+      <>
+    {animationForgettingAddress ?
+    <View style={styles.loaderContainer}>
+    <ActivityIndicator size="small" color="#000" animating={true} />
+  </View>
+    : <ScrollView>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -31,7 +37,8 @@ const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(i
       <TouchableOpacity style={styles.touchableText} onPress={onPress}>
         <Text style={styles.newAddressText}>{addNew}</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </ScrollView> }
+    </>
   );
 };
 
@@ -51,6 +58,11 @@ const styles = ScaledSheet.create({
     marginTop: '2@s',
     marginLeft: '5@s',
   },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default DeliverAddressComponent;

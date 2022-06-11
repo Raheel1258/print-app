@@ -10,7 +10,6 @@ import * as types from '../types/types';
 
 
 function setCartDetail(cart) {
-    console.log("reducer fun",)
     return {
         type: types.CART_DETAIL,
         cart,
@@ -40,15 +39,16 @@ function setPromoCodeDetail(data){
 
 
 //Get Cart Data
-export const getCartData = (setAnimation, navigate) => {
+export const getCartData = (setAnimation, setTextValue) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
         axios.get(`${Api}/cart`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from get cart", res);
                 dispatch(setCartDetail(res?.data?.products));
+                dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
+                setTextValue('');
             })
             .catch((err) => {
                 setAnimation(false);
@@ -57,13 +57,11 @@ export const getCartData = (setAnimation, navigate) => {
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
-
     }
 }
 
 //Add to cart
 export const addToCart = (setAddToCartAnimation, data, navigate) => {
-    console.log("datattatatatatatatatat," ,data);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAddToCartAnimation(true);
@@ -97,6 +95,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
             .then(async (res) => {
                 // dispatch(setCartDetail(res?.data?.products)); 
                 dispatch(getCartData(setAnimation,navigate)); 
+                dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
             })
             .catch((err) => {
@@ -106,7 +105,6 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
-
     }
 }
 
@@ -177,6 +175,7 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
         const accessToken = await Storage.retrieveData('token');
         axios.post(`${Api}/order/add`,orderObj, { headers: { "Authorization": `Bearer ${accessToken}` }})
             .then(async (res) => {
+                console.log("order res", res);
                 setPlaceOrderAnimation(false);
                 navigate("orderReceived");
             })
@@ -192,18 +191,18 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
 
 
 //Get User Detail For Place order
-export const getUserDetailForPlacingOrder = (setData) => {
+export const getUserDetailForPlacingOrder = (setData,setAnimationForgettingAddress) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        // setAnimation(true);
+        setAnimationForgettingAddress(true);
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                // setAnimation(false);
+                setAnimationForgettingAddress(false);
                 dispatch(setUserDetail(res?.data));
                 setData(res?.data?.addresses)
             })
             .catch((err) => {
-                // setAnimation(false);
+                setAnimationForgettingAddress(false);
                 Toast.show({
                     type: 'error',
                     text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',

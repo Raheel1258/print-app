@@ -38,7 +38,7 @@ const SingleProductContainer = ({ route }) => {
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({ url: [{ url_link: '' }] })
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
-  const [selectedUpload, setSelectedUpload] = useState(t('upload_file'));
+  const [selectedUpload, setSelectedUpload] = useState('uploadFile');
   const [shape, setShape] = useState(item?.category?.productType);
   const [selectedSize, setSelectedSize] = useState(item?.size && item?.size[0]);
   const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
@@ -195,6 +195,7 @@ const SingleProductContainer = ({ route }) => {
   //     setSelectedWindow(item?.window && item?.window[0]);
   //   }
   // }, [item])
+
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)

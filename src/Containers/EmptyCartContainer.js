@@ -12,7 +12,6 @@ const EmptyCartContainer = () => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
-  console.log("ccc in emtpy" , cartItem);
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)

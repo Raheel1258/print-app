@@ -9,15 +9,14 @@ import {colors,fonts} from '../Utils/theme';
 
 const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, priceChartAnimation, sliceArray, sliceData, flag }) => {
   const { t } = useTranslation();
-  console.log("sliceArray of price into quantity compoentent" , sliceArray);
 
   const renderItem = ({item}) => {
     const quantityStyle = selectedPriceChart?._id == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
     return (
       <TouchableOpacity activeOpacity={1} onPress = { () => setSelectedPriceChart(item)} style={{...styles.tableItems, ...quantityStyle}}>
         <Text style={styles.priceText}>{item?.units}</Text>
-        <Text style={styles.dollerPrice}>${(item?.units * item?. pricePerUnit).toFixed(2)}</Text>
-        <Text style={styles.priceText}>${(item?.pricePerUnit).toFixed(2)}</Text>
+        <Text style={styles.dollerPrice}>${Number(item?.units * item?. pricePerUnit).toFixed(2)}</Text>
+        <Text style={styles.priceText}>${Number(item?.pricePerUnit).toFixed(2)}</Text>
       </TouchableOpacity>
     );
   };

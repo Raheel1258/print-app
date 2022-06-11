@@ -46,7 +46,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                                 type: 'success',
                                 text1: 'Place Order is successfully completed'
                             });
-                          }, "1000")
+                          }, 1000)
                         //Place order Now payment integrated
                         navigate("orderReceived");
                      

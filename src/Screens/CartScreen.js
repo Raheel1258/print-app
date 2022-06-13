@@ -10,7 +10,6 @@ import {
   BackArrowHeader,
   CategoriesTitleHeader,
   MyCartComponent,
-  PromoCodeInput,
   GreenButton,
   RadioButtonComponent,
   OrderSummaryComponent,
@@ -137,8 +136,6 @@ const CartScreen = ({
               </View>
 
             </View>
-            {/* EndPromoCode */}
-            {/* <PromoCodeInput promocodeDiscount={promocodeDiscount} textValue={textValue} validPromoCode={validPromoCode} handleChange={handleChange} /> */}
             <View style={styles.buttonWrapper}>
               <GreenButton
                 onPress={() => handlePromoCodeValidation()}
@@ -391,9 +388,9 @@ const styles = ScaledSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.inputBorderColor,
   },
-  promoCode:{
+  promoCode: {
     marginTop: '10@s',
-    marginHorizontal:'12@s'
+    marginHorizontal: '12@s'
   }
 });
 

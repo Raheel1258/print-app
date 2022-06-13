@@ -1,9 +1,9 @@
-import React,{useRef,useState, useEffect} from 'react';
-import {View} from 'react-native';
+import React, { useRef, useState, useEffect } from 'react';
+import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllOrder} from '../store/actions/orderAction'
+import { getAllOrder } from '../store/actions/orderAction'
 import Storage from '../Utils/Storage';
 
 import MyOrderScreen from '../Screens/MyOrderScreen';
@@ -19,7 +19,7 @@ const MyOrderContainer = () => {
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const getAllOrderData = useSelector(state => state?.orderReducer?.orderDetail);
-  
+
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -28,37 +28,37 @@ const MyOrderContainer = () => {
     navigation.goBack();
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       token && dispatch(getAllOrder(setAnimation))
     })
-  },[isFocused])
+  }, [isFocused])
 
-  useEffect(()=>{
-  isFocused && Storage.retrieveData('token').then((token)=>{
-    setUserToken(token);
-    !token && orderRBSheet.current.open()
-  });
-  },[isFocused])
+  useEffect(() => {
+    isFocused && Storage.retrieveData('token').then((token) => {
+      setUserToken(token);
+      !token && orderRBSheet.current.open()
+    });
+  }, [isFocused])
 
 
 
   return (
     <View style={styles.container}>
-        <MyOrderScreen navigate={navigate} goBack={goBack} 
-        orderRBSheet={orderRBSheet}   
+      <MyOrderScreen navigate={navigate} goBack={goBack}
+        orderRBSheet={orderRBSheet}
         focused={focused}
         getAllOrderData={getAllOrderData}
         animation={animation}
-        setFocused={setFocused}/>
+        setFocused={setFocused} />
     </View>
   );
 };
 
-const styles = ScaledSheet.create ({
-  container:{
-    flex:1,
+const styles = ScaledSheet.create({
+  container: {
+    flex: 1,
     backgroundColor: colors.whiteColor,
   },
 });

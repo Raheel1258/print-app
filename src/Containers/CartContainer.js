@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View} from 'react-native';
+import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData, PromoCodeVerifed, deleteProduct,placeOrderOffline,getUserDetailForPlacingOrder } from '../store/actions/cartAction';
+import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder } from '../store/actions/cartAction';
 import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
@@ -27,7 +27,7 @@ const CartContainer = () => {
 
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
-  const [deliveryCost , setDeliveryCost] = useState(0);
+  const [deliveryCost, setDeliveryCost] = useState(0);
   const [validPromoCode, setValidPromoCode] = useState(false);
   const [promoCodeAnimation, setPromoCodeAnimation] = useState(false);
   const [textValue, setTextValue] = useState('');
@@ -42,7 +42,7 @@ const CartContainer = () => {
   const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
-  const [placeOrderAnimation , setPlaceOrderAnimation] = useState(false);
+  const [placeOrderAnimation, setPlaceOrderAnimation] = useState(false);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
@@ -72,7 +72,7 @@ const CartContainer = () => {
       setUserToken(token);
       token && dispatch(getCartData(setAnimation, setTextValue));
     })
-    
+
   }, [isFocused])
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const CartContainer = () => {
   }
 
   const handleEditProduct = (item) => {
-    navigate('editedSingleProduct', { productId: item?.productId, cartProductId: item?._id , productCategory:item?.title, cartItem:item })
+    navigate('editedSingleProduct', { productId: item?.productId, cartProductId: item?._id, productCategory: item?.title, cartItem: item })
   }
 
   const handleRemoveProduct = (_id) => {
@@ -133,7 +133,7 @@ const CartContainer = () => {
 
   const handleAddressForBottomSheet = () => {
     refRBSheet?.current?.open();
-    dispatch(getUserDetailForPlacingOrder(setData,setAnimationForgettingAddress));
+    dispatch(getUserDetailForPlacingOrder(setData, setAnimationForgettingAddress));
   }
 
   const handlePayment = () => {
@@ -144,28 +144,28 @@ const CartContainer = () => {
       orderDate: date,
       deliveryMethod: deliveryMethod,
       deliveryAddress: {
-        firstName:userDetailData?.firstName,
-        lastName:userDetailData?.lastName,
-        phone:userDetailData?.phone,
-        email:userDetailData?.email,
+        firstName: userDetailData?.firstName,
+        lastName: userDetailData?.lastName,
+        phone: userDetailData?.phone,
+        email: userDetailData?.email,
         addressLine1: deliveryMethod == 'Delivery' ? deliveryUserAddress : "11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
       },
-      deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0, 
+      deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,
       subTotal: subTotal,
       discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
       total: total,
       status: "ORDER_RECIEVED"
     }
-    if(deliveryMethod == 'Delivery' && deliveryUserAddress == "Select delivery address"){
+    if (deliveryMethod == 'Delivery' && deliveryUserAddress == "Select delivery address") {
       Toast.show({
         type: 'error',
         text1: t('select_address'),
       });
-    }else {
-      if(paymentMethodName == "Credit Card"){
-        navigate('payment', { amount: total , orderObj:orderObj})
-      }else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
+    } else {
+      if (paymentMethodName == "Credit Card") {
+        navigate('payment', { amount: total, orderObj: orderObj })
+      } else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
     }
   }
 
@@ -183,11 +183,11 @@ const CartContainer = () => {
       totalPrice = parseFloat(subTotal);
     });
 
-    if(deliveryMethod == "Delivery"){
+    if (deliveryMethod == "Delivery") {
       totalPrice = parseFloat(totalPrice + deliveryCost);
       setTotal(totalPrice)
     }
-    else{
+    else {
       totalPrice = totalPrice;
       setTotal(totalPrice)
     }
@@ -205,7 +205,7 @@ const CartContainer = () => {
   return (
     <View style={styles.container}>
       <CartScreen
-      handleAddressForBottomSheet={handleAddressForBottomSheet}
+        handleAddressForBottomSheet={handleAddressForBottomSheet}
         deliveryUserAddress={deliveryUserAddress}
         setDeliveryUserAddress={setDeliveryUserAddress}
         refRBSheet={refRBSheet}

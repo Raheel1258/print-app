@@ -1,16 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text} from 'react-native';
+import { View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import Storage from '../Utils/Storage';
 import i18n from 'i18next';
-import { WebView } from 'react-native-webview';
 
 import { logout } from '../store/actions/auth';
 import AccountScreen from '../Screens/AccountScreen';
 import { colors } from '../Utils/theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const AccountContainer = () => {
   const webViewRef = useRef();
@@ -33,8 +31,7 @@ const AccountContainer = () => {
     navigation.goBack();
   };
 
-  const changeLanguageHandler = (lang) =>
-  {
+  const changeLanguageHandler = (lang) => {
     i18n.changeLanguage(lang)
     refRBSheet.current.close();
   }
@@ -47,19 +44,6 @@ const AccountContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
-  // const goBackWeb = () => {
-  //   webViewRef.current.goBack()
-  // }
-
-  // const handleFaq = () => {
-  //   console.log("into faq");
-  //   <WebView
-  //   source={{
-  //     uri: 'https://pri.cxstaging.com/faqs/'
-  //   }}
-  // />
-  // }
 
   useEffect(() => {
     isFocused &&

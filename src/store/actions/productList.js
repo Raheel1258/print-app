@@ -1,20 +1,10 @@
 import Toast from 'react-native-toast-message';
 import Storage from '../../Utils/Storage';
 import axios from 'axios';
-import {
-  productListBusinessCardData,
-  productListBookletData,
-  productListPosterData,
-  productListStickerData,
-  productListFlyerData,
-  productListEnvelopeData,
-  productListLetterheadData,
-  BusinessCardData
-} from "../../Utils/mockData"
-import { t } from 'i18next';
-
-import { Api } from '../../Utils/Api'
 import * as types from '../types/types'
+
+import { t } from 'i18next';
+import { Api } from '../../Utils/Api'
 
 
 export const setProductList = (data) => {
@@ -38,48 +28,13 @@ export const setPriceChartOnEdit = (priceChart) => {
   }
 }
 
-export const setSingleProduct = (data) =>{
+export const setSingleProduct = (data) => {
   return {
     type: types.SINGLE_PRODUCT,
     data
   }
 }
 
-
-export const getProductListByCategory = (category, setAnimation) => async dispatch => {
-  // setAnimation(true);
-  try {
-    if (category === "BOOKLET") {
-      dispatch(setProductList(productListBookletData))
-    }
-    else if (category === 'POSTER') {
-      dispatch(setProductList(productListPosterData));
-    }
-    else if (category === 'STICKERS_LABEL') {
-      dispatch(setProductList(productListStickerData))
-    }
-    else if (category === 'FLYERS_LEAFLET') {
-      dispatch(setProductList(productListFlyerData));
-    }
-    else if (category === 'ENVELOPE') {
-      dispatch(setProductList(productListEnvelopeData))
-    }
-    else if (category === 'LETTERHEAD') {
-      dispatch(setProductList(productListLetterheadData))
-    }
-    else {
-      dispatch(setProductList(BusinessCardData))
-    }
-
-
-  } catch (err) {
-    setAnimation(false);
-    Toast.show({
-      type: 'error',
-      text1: "Not found",
-    });
-  }
-};
 
 export const getCategoriesProduct = (category, setAnimation) => {
   return async (dispatch) => {
@@ -91,7 +46,7 @@ export const getCategoriesProduct = (category, setAnimation) => {
       })
       .catch((err) => {
         setAnimation(false);
-        
+
         Toast.show({
           type: 'error',
           text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
@@ -101,42 +56,41 @@ export const getCategoriesProduct = (category, setAnimation) => {
 };
 
 //Selecting Product Price chart
-
 export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
-  
-  if(values?.product !== "Spot UV Business Card"){
+
+  if (values?.product !== "Spot UV Business Card") {
     delete values['spotuvside'];
   }
 
-  if(values?.product !== "Flyer (A4)"){
+  if (values?.product !== "Flyer (A4)") {
     delete values['folding'];
   }
 
-  if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
+  if (values?.product == "Flyer (A4)" && values?.size == "210 x 148") {
     values['product'] = "Flyer (A5)"
   }
-  
-  if(values?.product == "Spot UV Business Card" && values?.corner == "Round Corner"){
+
+  if (values?.product == "Spot UV Business Card" && values?.corner == "Round Corner") {
     values['product'] = "Spot UV Business Card ";
   }
 
-  if(values?.product == "Matte / Glossy Business Card" && values?.corner == "Round Corner"){
+  if (values?.product == "Matte / Glossy Business Card" && values?.corner == "Round Corner") {
     values['product'] = "Matte / Glossy Business Card "
   }
 
-  if(values?.product == "Classy Pearl (Textured Paper) Business Card" && values?.corner == "Round Corner"){
+  if (values?.product == "Classy Pearl (Textured Paper) Business Card" && values?.corner == "Round Corner") {
     values['product'] = "Classy Pearl (Textured Paper) Business Card "
   }
 
-  
+
   return async (dispatch) => {
     setPriceChartAnimation(true);
     const accessToken = await Storage.retrieveData('token')
     let query = "";
     Object.keys(values).forEach(key => {
-      if(key !== "category"){
+      if (key !== "category") {
         query = query + key + "=" + values[key] + "&"
       }
     })
@@ -145,59 +99,59 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         dispatch(setPriceChart(res?.data));
         setSelectedPriceChart(res?.data[0]);
         // // setPriceChart(res?.data);
-         setPriceChartAnimation(false);
+        setPriceChartAnimation(false);
       })
       .catch((err) => {
         setPriceChartAnimation(false);
-        if(err?.response?.status == 401){
+        if (err?.response?.status == 401) {
           Toast.show({
             type: 'error',
             text1: t("user_not_logged")
           });
-        }else
-        Toast.show({
-          type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
-        });
+        } else
+          Toast.show({
+            type: 'error',
+            text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+          });
       });
   }
-}; 
+};
 
 //Edit product
 export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
-  
-  if(values?.product !== "Spot UV Business Card"){
+
+  if (values?.product !== "Spot UV Business Card") {
     delete values['spotuvside'];
   }
 
-  if(values?.product !== "Flyer (A4)"){
+  if (values?.product !== "Flyer (A4)") {
     delete values['folding'];
   }
 
-  if(values?.product == "Flyer (A4)" && values?.size == "210 x 148"){
+  if (values?.product == "Flyer (A4)" && values?.size == "210 x 148") {
     values['product'] = "Flyer (A5)"
   }
-  
-  if(values?.product == "Spot UV Business Card" && values?.corner == "Round Corner"){
+
+  if (values?.product == "Spot UV Business Card" && values?.corner == "Round Corner") {
     values['product'] = "Spot UV Business Card ";
   }
 
-  if(values?.product == "Matte / Glossy Business Card" && values?.corner == "Round Corner"){
+  if (values?.product == "Matte / Glossy Business Card" && values?.corner == "Round Corner") {
     values['product'] = "Matte / Glossy Business Card "
   }
 
-  if(values?.product == "Classy Pearl (Textured Paper) Business Card" && values?.corner == "Round Corner"){
+  if (values?.product == "Classy Pearl (Textured Paper) Business Card" && values?.corner == "Round Corner") {
     values['product'] = "Classy Pearl (Textured Paper) Business Card "
   }
-  
+
   return async (dispatch) => {
     setPriceChartAnimation(true);
     const accessToken = await Storage.retrieveData('token')
     let query = "";
     Object.keys(values).forEach(key => {
-      if(key !== "category"){
+      if (key !== "category") {
         query = query + key + "=" + values[key] + "&"
       }
     })
@@ -206,7 +160,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
         dispatch(setPriceChartOnEdit(res?.data));
         setSelectedPriceChart(res?.data[0]);
         // // setPriceChart(res?.data);
-         setPriceChartAnimation(false);
+        setPriceChartAnimation(false);
       })
       .catch((err) => {
         setPriceChartAnimation(false);
@@ -218,7 +172,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
   }
 };
 
-export const getProductById = (id,setAnimation) => {
+export const getProductById = (id, setAnimation) => {
   return async (dispatch) => {
     const accessToken = await Storage.retrieveData('token');
     setAnimation(true);
@@ -243,12 +197,16 @@ export const uploadFile = (formData, setAnimation, setResult) => {
   return async (dispatch) => {
     setAnimation(true);
     const accessToken = await Storage.retrieveData('token');
-    axios.post(`${Api}/upload-file/image`,formData, {headers: { Accept: 'application/json',
-    'Content-Type': 'multipart/form-data; boundary=testing',}}
+    axios.post(`${Api}/upload-file/image`, formData, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data; boundary=testing',
+      }
+    }
     )
       .then(async (res) => {
         setAnimation(false);
-        setResult((prev)=>{
+        setResult((prev) => {
           return [...prev, res?.data?.Location];
         });
       })

@@ -1,9 +1,8 @@
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
-import {CategoriesData, sliderImagesHome} from "../../Utils/mockData"
+import * as types from '../types/types'
 
 import {Api} from '../../Utils/Api'
-import * as types from '../types/types'
 import { t } from 'i18next';
 
 

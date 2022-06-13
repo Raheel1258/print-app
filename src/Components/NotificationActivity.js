@@ -62,8 +62,6 @@ const NotificationActivity = ({item,readMark}) => {
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
   const lastItemId = item?.notifications[lengthItem-1]._id;
-  console.log("length of notification" , lengthItem );
-  console.log("length of notification" , lastItemId);
   const {t} = useTranslation();
 
   const handleData = (id) => {

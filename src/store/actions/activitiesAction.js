@@ -19,10 +19,9 @@ function setActivityDetail(data) {
 
 //Get All Activity 
 export const getActivityOfUser = (setAnimation,id) => {
-    console.log("into getuser" , id);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token');
-        // dispatch(setActivityDetail(newActivityStructure))
+        dispatch(setActivityDetail(newActivityStructure))
         // setAnimation(true);
         // axios.get(`${Api}/notifications/${id}`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
         //     .then(async (res) => {

@@ -36,7 +36,6 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
         setAnimation(true);
         axios.patch(`${Api}/user/address/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from added address api" , res);
                 Toast.show({
                     type: 'success',
                     text1: 'You are successfully added your address'
@@ -46,7 +45,6 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                 addAddressRBSheet.current.close();
             })
             .catch((err) => {
-                console.log("res from address api err" , res);
                 setAnimation(false);
                 addAddressRBSheet.current.close();
                 Toast.show({
@@ -204,7 +202,6 @@ export const makeAddressPrimary = (id) => {
                 });
             })
             .catch((err) => {
-                console.log("err" , err?.response);
                 // setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',

@@ -142,7 +142,8 @@ const SingleProductContainer = ({ route }) => {
   // }, [state])
 
   useEffect(() => {
-    setSliceArray(priceChart?.slice(0,5));
+    let newPriceChartArray = priceChart
+    setSliceArray(newPriceChartArray?.slice(0,5));
   }, [priceChart])
 
   // useEffect(() => {

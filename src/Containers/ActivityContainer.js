@@ -30,7 +30,6 @@ const ActivityContainer = () => {
   };
 
   useEffect(() => {
-    console.log("into use effect");
     dispatch(getAllActivity(setAnimation));
   },[])
 

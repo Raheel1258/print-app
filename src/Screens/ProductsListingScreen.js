@@ -10,7 +10,6 @@ import {colors,fonts} from '../Utils/theme';
 
 
 const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, categoryImage, animation, category }) => {
-  console.log("animation into listing" , animation);
   const renderItem = ({ item }) => (
     <>
       <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,productCategory:category})}>

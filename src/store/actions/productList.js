@@ -105,7 +105,6 @@ export const getCategoriesProduct = (category, setAnimation) => {
 export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
-  console.log("sdsdsd obj" , defaultValuesObject);
   
   if(values?.product !== "Spot UV Business Card"){
     delete values['spotuvside'];
@@ -132,8 +131,6 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
   }
 
   
-
-  console.log('values into single product', values)
   return async (dispatch) => {
     setPriceChartAnimation(true);
     const accessToken = await Storage.retrieveData('token')
@@ -143,10 +140,8 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         query = query + key + "=" + values[key] + "&"
       }
     })
-    console.log('query parameters', query)
     axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then(async (res) => {
-        console.log("price chart api" , res)
         dispatch(setPriceChart(res?.data));
         setSelectedPriceChart(res?.data[0]);
         // // setPriceChart(res?.data);
@@ -154,8 +149,6 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
       })
       .catch((err) => {
         setPriceChartAnimation(false);
-        console.log("error 1232312", err?.response);
-        console.log("errrrrrrrr");
         if(err?.response?.status == 401){
           Toast.show({
             type: 'error',
@@ -171,7 +164,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
 }; 
 
 //Edit product
-export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObject) => {
+export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
 
   let values = defaultValuesObject;
   
@@ -199,7 +192,6 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
     values['product'] = "Classy Pearl (Textured Paper) Business Card "
   }
   
-  console.log('values into single Edit product', values)
   return async (dispatch) => {
     setPriceChartAnimation(true);
     const accessToken = await Storage.retrieveData('token')
@@ -209,18 +201,15 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
         query = query + key + "=" + values[key] + "&"
       }
     })
-    console.log('query parameters', query)
     axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then(async (res) => {
-        console.log("price chart api from edited" , res)
         dispatch(setPriceChartOnEdit(res?.data));
-        // setSelectedPriceChart(res?.data[0]);
+        setSelectedPriceChart(res?.data[0]);
         // // setPriceChart(res?.data);
          setPriceChartAnimation(false);
       })
       .catch((err) => {
         setPriceChartAnimation(false);
-        console.log("error from edited single product api 1232312", err?.response);
         Toast.show({
           type: 'error',
           text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
@@ -254,19 +243,16 @@ export const uploadFile = (formData, setAnimation, setResult) => {
   return async (dispatch) => {
     setAnimation(true);
     const accessToken = await Storage.retrieveData('token');
-    console.log('formData', formData)
     axios.post(`${Api}/upload-file/image`,formData, {headers: { Accept: 'application/json',
     'Content-Type': 'multipart/form-data; boundary=testing',}}
     )
       .then(async (res) => {
-        console.log("res from file", res);
         setAnimation(false);
         setResult((prev)=>{
           return [...prev, res?.data?.Location];
         });
       })
       .catch((err) => {
-        console.log("errror from file uploader" , err?.response);
         setAnimation(false);
         Toast.show({
           type: 'error',

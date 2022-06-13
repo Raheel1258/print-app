@@ -27,7 +27,6 @@ const SigninContainer = () => {
   const getUserDeviceId = async () => {
     await OneSignal.getDeviceState().then(res => {
       setDeviceId(`${res?.userId}`);
-      console.log("id device" , res?.userId)
     });
   };
 
@@ -40,7 +39,6 @@ const SigninContainer = () => {
   }
  
   const handleLogin = (values) => {
-    console.log("id device" , deviceId)
     dispatch(login({...values, deviceId:deviceId},navigation,setAnimation));
   };
 

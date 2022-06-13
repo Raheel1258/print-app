@@ -39,7 +39,6 @@ const VerificationCodeContainer = () => {
   };
 
   const handleVerificationCode = (values) => {
-    console.log("verification code from handler" , values);
     dispatch(verificationOtpCode(values,navigate, setAnimation, setUserId));
    
   };

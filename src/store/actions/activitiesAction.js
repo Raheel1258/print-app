@@ -20,8 +20,10 @@ function setActivityDetail(data) {
 //Get All Activity 
 export const getActivityOfUser = (setAnimation,id) => {
     return async (dispatch) => {
+        setAnimation(true);
         const accessToken = await Storage.retrieveData('token');
         dispatch(setActivityDetail(newActivityStructure))
+        setAnimation(false);
         // setAnimation(true);
         // axios.get(`${Api}/notifications/${id}`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
         //     .then(async (res) => {
@@ -41,7 +43,6 @@ export const getActivityOfUser = (setAnimation,id) => {
 
 
 export const getAllActivity = (setAnimation) => {
-    console.log("activty into action");
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })

@@ -61,7 +61,15 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
         <LeftArrow />
         </View>
       </View>
-      <Text style={{...styles.orderNotify, color: orderNotify =='ORDER_RECIEVED' ? colors.pearlColor : orderNotify =='OUT_FOR_DELIVERY' ? colors.lightOrangeColor : colors.lightGreenColor }}>{handleOrderStatus(orderNotify)}</Text>
+      <Text style={{...styles.orderNotify, 
+        color: orderNotify =='ORDER_RECIEVED' ? colors.pearlColor : 
+        orderNotify =='OUT_FOR_DELIVERY' ? colors.lightOrangeColor : 
+        orderNotify =='COMPLETED' ? colors.actvityGreenColor : 
+        orderNotify =='READY_FOR_PICKUP' ? colors.lightGreenColor : 
+        orderNotify =='PRINTING' ? colors.printingColor : colors.lightRedColor 
+        }}>
+          {handleOrderStatus(orderNotify)}
+          </Text>
     </TouchableOpacity>
   );
 };

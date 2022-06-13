@@ -58,7 +58,6 @@ const DATA = [
 ];
 
 const NotificationActivity = ({item,readMark}) => {
-
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
   const lastItemId = item?.notifications[lengthItem-1]._id;
@@ -93,7 +92,7 @@ const NotificationActivity = ({item,readMark}) => {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>{(item?._id).substring(0, 10)}</Text>
-       {item?.notifications[0] && <Text style={styles.headerText}>{"Mark as all read"}</Text>}
+       {item?._id == readMark && <Text style={styles.headerText}>{"Mark as all read"}</Text>}
       </View>
       <FlatList
         data={item?.notifications && item?.notifications}

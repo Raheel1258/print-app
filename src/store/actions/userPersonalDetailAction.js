@@ -124,9 +124,15 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
             })
             .catch((err) => {
                 setAnimation(false);
+                if(err?.response?.data?.statusCode === 400){
+                    Toast.show({
+                        type: 'error',
+                        text1: t('invalid_login_message'),
+                    });
+                }else
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
 
@@ -153,7 +159,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 setAnimationUpdateUser(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
 

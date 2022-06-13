@@ -56,11 +56,11 @@ export const getCartData = (setAnimation, setTextValue) => {
                 if(err?.response?.status == 401){
                     Toast.show({
                       type: 'error',
-                      text1: "User is not logged in"
+                      text1: t('user_not_logged')
                     });}else
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -91,7 +91,7 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
                   }else
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
 
@@ -114,7 +114,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -156,7 +156,7 @@ export const editCartItem = (setAddToCartAnimation,productId, obj, navigate) => 
                 setAddToCartAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -174,7 +174,7 @@ export const emptyCart = () => {
             .catch((err) => {
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -194,7 +194,7 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
                 setPlaceOrderAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -216,7 +216,7 @@ export const getUserDetailForPlacingOrder = (setData,setAnimationForgettingAddre
                 setAnimationForgettingAddress(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
 

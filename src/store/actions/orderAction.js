@@ -34,7 +34,7 @@ export const getAllOrder = (setAnimation) => {
           setAnimation(false);
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+                text1: t('general_message')
             });
         });
 }
@@ -48,13 +48,13 @@ export const handleEmailing = (id,flag) => {
         .then(async (res) => {
           Toast.show({
             type: 'success',
-            text1: res?.data ? res?.data : t('general_message')
+            text1: t('email_send')
         });
         })
         .catch((err) => {
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+                text1: t('general_message')
             });
         });
 }

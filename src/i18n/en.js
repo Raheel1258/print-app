@@ -238,7 +238,19 @@
     login:'You are successfully signed up',
     reset_password: 'Passowrd is reset successfully',
     otp_message:'Otp verified successfully',
-    logout:'You are logged out'
+    logout:'You are logged out',
+    email_send: 'Email Sent to the Admin',
+    address_add: 'You are successfully added your address',
+    address_remove: 'Removed Address Successfully',
+    address_update: 'You are successfully updated your address',
+    user_update:'User updated successfully',
+    change_password:'Changed password successfully',
+    address_primary: 'Primary address updated successfully',
+    user_not_logged: 'User is not logged in',
+    login_correct:'You are successfully logged in',
+    otp_send: 'Otp send to the given email',
+    invalid_otp: 'Invalid pin or pin expired!',
+    invalid_login_message: 'Invalid Credentials'
 
   },
 };

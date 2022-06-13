@@ -30,7 +30,7 @@ export const login = (data, navigation, setAnimation) => {
             .then(async (res) => {
                 Toast.show({
                     type: 'success',
-                    text1: 'You are successfully logged in',
+                    text1: t('login_correct'),
                 });
                 setAnimation(false);
                 await Storage.storeData('token', res?.data?.accessToken);
@@ -43,10 +43,17 @@ export const login = (data, navigation, setAnimation) => {
                 dispatch(setUserLogin(res));
             })
             .catch((err) => {
+                console.log("invalid login" , err?.response);
                 setAnimation(false);
+                if(err?.response?.data?.statusCode === 400){
+                    Toast.show({
+                        type: 'error',
+                        text1: t('invalid_login_message'),
+                    });
+                }else
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -73,7 +80,7 @@ export const signup = (data, navigation, setAnimation) => {
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -88,7 +95,7 @@ export const forgotPassword = (data, navigate, setAnimation) => {
         	.then(async (res) => {
         		Toast.show({
         			type: 'success',
-        			text1: res?.data
+        			text1: t('otp_send')
         		})
                 setAnimation(false);
                navigate('verificationCode');
@@ -97,7 +104,7 @@ export const forgotPassword = (data, navigate, setAnimation) => {
                 setAnimation(false);
         		Toast.show({
         			type: 'error',
-        			text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+        			text1: t('general_message'),
         		});
         	});
 
@@ -119,10 +126,17 @@ export const verificationOtpCode = (data,navigate, setAnimation) => {
                 navigate('resetPassword', {userId:res?.data?._id});
         	})
         	.catch((err) => {
+                console.log("opt msg" , err?.response?.data?.statusCode);
                 setAnimation(false);
+                if(err?.response?.data?.statusCode === 400){
+                    Toast.show({
+                        type: 'error',
+                        text1: t('invalid_otp'),
+                    });
+                }else
         		Toast.show({
         			type: 'error',
-        			text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+        			text1: t('general_message'),
         		});
         	});
 
@@ -147,7 +161,7 @@ export const resetPasswordAction = (data, navigate, setAnimation) => {
                 setAnimation(false);
         		Toast.show({
         			type: 'error',
-        			text1: err?.response?.data?.message ? err?.response?.data?.message : t('network_error'),
+        			text1: t('network_error'),
         		});
         	});
 

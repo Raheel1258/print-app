@@ -152,7 +152,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         if(err?.response?.status == 401){
           Toast.show({
             type: 'error',
-            text1: "User is not logged in"
+            text1: t("user_not_logged")
           });
         }else
         Toast.show({
@@ -212,7 +212,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
         setPriceChartAnimation(false);
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+          text1: t('general_message')
         });
       });
   }
@@ -231,7 +231,7 @@ export const getProductById = (id,setAnimation) => {
         setAnimation(false);
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+          text1: t('general_message')
         });
       });
   }
@@ -256,7 +256,7 @@ export const uploadFile = (formData, setAnimation, setResult) => {
         setAnimation(false);
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+          text1: t('general_message')
         });
       });
   }

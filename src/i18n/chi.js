@@ -220,6 +220,27 @@ export const chi = {
     invalid_promocode: "促销代码无效",
     bank_detail:"结帐后可用的银行帐户信息",
     invalid_promoCode_message: "您输入的促销代码无效，请重新输入",
-    select_address:'请选择地址'
+    select_address:'请选择地址',
+
+    order_message_payment:'下单付款成功',
+    network_error: '网络错误',
+    general_message: '出了点问题，请重试',
+    login:'您已成功注册',
+    reset_password: '密码重置成功',
+    otp_message:'otp验证成功',
+    logout:'您已登出',
+    email_send: '发送给管理员的电子邮件',
+    address_add: '您已成功添加您的地址',
+    address_remove: '成功删除地址',
+    address_update: '您已成功更新您的地址',
+    user_update:'用户更新成功',
+    change_password:'修改密码成功',
+    address_primary: '主地址更新成功',
+    user_not_logged: '用户未登录',
+    login_correct:'您已成功登录',
+    otp_send: 'Otp 发送到给定的电子邮件',
+    invalid_otp: '密码无效或密码过期!',
+    invalid_login_message: '无效证件'
+
   },
 };

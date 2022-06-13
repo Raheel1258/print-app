@@ -38,7 +38,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
             .then(async (res) => {
                 Toast.show({
                     type: 'success',
-                    text1: 'You are successfully added your address'
+                    text1: t('address_add')
                 })
                 setAnimation(false);
                 dispatch(setUserAddress(res?.data?.addresses));
@@ -49,7 +49,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                 addAddressRBSheet.current.close();
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -66,13 +66,13 @@ export const deleteAddress = (addressid) => {
                 dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
-                    text1: 'Removed Address Successfully',
+                    text1: t('address_remove'),
                 });
             })
             .catch((err) => {
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -88,7 +88,7 @@ export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) =
             .then(async (res) => {
                 Toast.show({
                     type: 'success',
-                    text1: 'You are successfully updated your address'
+                    text1: t('address_update')
                 })
                 setAnimation(false);
                 dispatch(setUserAddress(res?.data?.addresses));
@@ -98,7 +98,7 @@ export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) =
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
     }
@@ -146,7 +146,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
-                    text1: 'User updated successfully',
+                    text1: t('user_update'),
                 });
             })
             .catch((err) => {
@@ -171,7 +171,7 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
                 setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'success',
-                    text1: 'Changed password successfully',
+                    text1: t('change_password'),
                 });
                 toggleModal();
             })
@@ -179,7 +179,7 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
                 setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
 
@@ -198,14 +198,14 @@ export const makeAddressPrimary = (id) => {
                 dispatch(setUserAddress(res?.data?.addresses))
                 Toast.show({
                     type: 'success',
-                    text1: 'Primary address updated successfully',
+                    text1: t('address_primary'),
                 });
             })
             .catch((err) => {
                 // setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
+                    text1: t('general_message'),
                 });
             });
 

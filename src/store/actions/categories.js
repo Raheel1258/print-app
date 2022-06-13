@@ -33,7 +33,7 @@ export const getCategories = (setAnimation) => {
           setAnimation(false);
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+                text1: t('general_message')
             });
         });
 }
@@ -49,7 +49,7 @@ export const getHomeSliderImages  = () => {
           .catch((err) => {
               Toast.show({
                   type: 'error',
-                  text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+                  text1: t('general_message')
               });
           });
   }

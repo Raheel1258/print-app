@@ -26,9 +26,8 @@ const DATA = [
 const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation }) => {
   const { t } = useTranslation();
   const renderItem = ({ item }) => {
-    const keys = Object.keys(item);
     return (<>
-      <NotificationActivity item={item} readMark={item.readMark} />
+      <NotificationActivity item={item} readMark={item.readMark}  />
     </>)
   };
   return (

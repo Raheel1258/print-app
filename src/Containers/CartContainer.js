@@ -157,7 +157,7 @@ const CartContainer = () => {
       total: total,
       status: "ORDER_RECIEVED"
     }
-    if(deliveryUserAddress == "Select delivery address"){
+    if(deliveryMethod == 'Delivery' && deliveryUserAddress == "Select delivery address"){
       Toast.show({
         type: 'error',
         text1: t('select_address'),

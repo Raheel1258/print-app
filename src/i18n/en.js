@@ -233,7 +233,12 @@
     invalid_promoCode_message: "The prom code you've entered is not valid, please enter again",
     select_address:'Please select the address',
     order_message_payment:'Order placed with payment successfully',
-    network_error: 'Network Error'
+    network_error: 'Network Error',
+    general_message: 'Something Went Wrong, Please Try Again',
+    login:'You are successfully signed up',
+    reset_password: 'Passowrd is reset successfully',
+    otp_message:'Otp verified successfully',
+    logout:'You are logged out'
 
   },
 };

@@ -2,6 +2,7 @@ import Toast from 'react-native-toast-message';
 import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import {orderData} from "../../Utils/mockData"
+import { t } from 'i18next';
 
 import {Api} from '../../Utils/Api'
 import * as types from '../types/types'
@@ -33,7 +34,7 @@ export const getAllOrder = (setAnimation) => {
           setAnimation(false);
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+                text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
             });
         });
 }
@@ -47,13 +48,13 @@ export const handleEmailing = (id,flag) => {
         .then(async (res) => {
           Toast.show({
             type: 'success',
-            text1: res?.data ? res?.data : 'Network error'
+            text1: res?.data ? res?.data : t('general_message')
         });
         })
         .catch((err) => {
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+                text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
             });
         });
 }

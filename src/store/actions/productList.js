@@ -11,6 +11,7 @@ import {
   productListLetterheadData,
   BusinessCardData
 } from "../../Utils/mockData"
+import { t } from 'i18next';
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types'
@@ -93,7 +94,7 @@ export const getCategoriesProduct = (category, setAnimation) => {
         
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
         });
       });
   }
@@ -163,7 +164,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         }else
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
         });
       });
   }
@@ -222,7 +223,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
         console.log("error from edited single product api 1232312", err?.response);
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
         });
       });
   }
@@ -241,7 +242,7 @@ export const getProductById = (id,setAnimation) => {
         setAnimation(false);
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
         });
       });
   }
@@ -269,7 +270,7 @@ export const uploadFile = (formData, setAnimation, setResult) => {
         setAnimation(false);
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
         });
       });
   }

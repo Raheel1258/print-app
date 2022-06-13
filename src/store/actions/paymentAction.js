@@ -53,7 +53,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                         setAnimation(false);
                         Toast.show({
                             type: 'error',
-                            text1: err?.response?.data?.message ? err?.response?.data?.message : t('network_error'),
+                            text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                         });
                     });
 
@@ -63,7 +63,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                     setAnimation(false);
                     Toast.show({
                         type: 'error',
-                        text1: err?.response?.data?.message ? err?.response?.data?.message : t('network_error'),
+                        text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                     });
                 });
             // stripeToken?.id
@@ -71,7 +71,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
         else {
             Toast.show({
                 type: 'error',
-                text1: stripeToken?.error?.message ? stripeToken?.error?.message : t('network_error'),
+                text1: stripeToken?.error?.message ? stripeToken?.error?.message : t('general_message'),
             });
         }
 

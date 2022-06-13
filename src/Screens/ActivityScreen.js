@@ -121,6 +121,10 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color:colors.blackColor,
+    fontFamily:fonts.avenir_bold,
+    fontSize: '14@s',
+    fontStyle: 'normal',
+    lineHeight: '22@s',
   }
 
 

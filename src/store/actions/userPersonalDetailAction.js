@@ -4,6 +4,7 @@ import Toast from 'react-native-toast-message';
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
+import { t } from 'i18next';
 
 
 function setUserAddress(userAddress) {
@@ -50,7 +51,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                 addAddressRBSheet.current.close();
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                 });
             });
     }
@@ -73,7 +74,7 @@ export const deleteAddress = (addressid) => {
             .catch((err) => {
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                 });
             });
     }
@@ -99,7 +100,7 @@ export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) =
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                 });
             });
     }
@@ -127,7 +128,7 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                 setAnimation(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                 });
             });
 
@@ -154,7 +155,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 setAnimationUpdateUser(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                 });
             });
 
@@ -180,7 +181,7 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
                 setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                 });
             });
 
@@ -207,7 +208,7 @@ export const makeAddressPrimary = (id) => {
                 // setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
                 });
             });
 

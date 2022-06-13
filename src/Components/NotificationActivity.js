@@ -62,6 +62,8 @@ const NotificationActivity = ({item,readMark}) => {
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
   const lastItemId = item?.notifications[lengthItem-1]._id;
+  console.log("length of notification" , lengthItem );
+  console.log("length of notification" , lastItemId);
   const {t} = useTranslation();
 
   const handleData = (id) => {
@@ -93,7 +95,7 @@ const NotificationActivity = ({item,readMark}) => {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>{(item?._id).substring(0, 10)}</Text>
-        <Text style={styles.headerText}>{"Mark as all read"}</Text>
+       {item?.notifications[0] && <Text style={styles.headerText}>{"Mark as all read"}</Text>}
       </View>
       <FlatList
         data={item?.notifications && item?.notifications}

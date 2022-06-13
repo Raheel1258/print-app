@@ -46,10 +46,11 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
 const styles = ScaledSheet.create({
   container:{
     flexDirection:'row',
-    marginHorizontal:'10@s',
+    marginHorizontal:'14@s',
     borderBottomColor:colors.innerBorderColor,
     borderBottomWidth:1,
     marginTop:'20@s',
+    paddingBottom:'14@s'
   },
   quantityContainer:{
     flexDirection:'row',

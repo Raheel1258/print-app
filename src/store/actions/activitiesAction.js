@@ -5,6 +5,7 @@ import {activityData, newActivityStructure} from "../../Utils/mockData"
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
+import { t } from 'i18next';
 
 
 function setActivityDetail(data) {
@@ -21,7 +22,7 @@ export const getActivityOfUser = (setAnimation,id) => {
     console.log("into getuser" , id);
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token');
-        dispatch(setActivityDetail(newActivityStructure))
+        // dispatch(setActivityDetail(newActivityStructure))
         // setAnimation(true);
         // axios.get(`${Api}/notifications/${id}`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
         //     .then(async (res) => {
@@ -33,7 +34,7 @@ export const getActivityOfUser = (setAnimation,id) => {
         //         setAnimation(false);
         //         Toast.show({
         //             type: 'error',
-        //             text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+        //             text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message'),
         //         });
         //     });
     }

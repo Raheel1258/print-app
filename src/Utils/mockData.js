@@ -1328,7 +1328,7 @@ export const newActivityStructure = [
       "_id": "2022-06-10T16:22:26.828Z",
       "notifications": [
           {
-              "_id": "62a36fc2504041cc283963b0",
+              "_id": "62a36fc2504041cc283963b01",
               "userId": "62a371d9295b0548579296a2",
               "isRead": true,
               "message": "TEST",
@@ -1338,7 +1338,7 @@ export const newActivityStructure = [
               "__v": 0
           },
           {
-            "_id": "62a36fc2504041cc283963b0",
+            "_id": "62a36fc2504041cc283963b02",
             "userId": "62a371d9295b0548579296a2",
             "isRead": false,
             "message": "TEST",
@@ -1353,7 +1353,7 @@ export const newActivityStructure = [
     "_id": "2022-06-10T16:22:29.828Z",
     "notifications": [
         {
-            "_id": "62a36fc2504041cc283963b0",
+            "_id": "62a36fc2504041cc283963b03",
             "userId": "62a371d9295b0548579296a2",
             "isRead": false,
             "message": "TEST",
@@ -1363,7 +1363,7 @@ export const newActivityStructure = [
             "__v": 0
         },
         {
-          "_id": "62a36fc2504041cc283963b0",
+          "_id": "62a36fc2504041cc283963b04",
           "userId": "62a371d9295b0548579296a2",
           "isRead": false,
           "message": "TEST",
@@ -1371,7 +1371,38 @@ export const newActivityStructure = [
           "createdAt": "2022-06-10T16:22:26.828Z",
           "updatedAt": "2022-06-10T16:22:26.828Z",
           "__v": 0
-      }
+      },
+      {
+        "_id": "62a36fc2504041cc283963b05",
+        "userId": "62a371d9295b0548579296a2",
+        "isRead": false,
+        "message": "TEST",
+        "orderStatus" :"PRINTING",
+        "createdAt": "2022-06-10T16:22:26.828Z",
+        "updatedAt": "2022-06-10T16:22:26.828Z",
+        "__v": 0
+    },
+    {
+      "_id": "62a36fc2504041cc283963b07",
+      "userId": "62a371d9295b0548579296a2",
+      "isRead": false,
+      "message": "TEST",
+      "orderStatus" :"READY_FOR_PICKUP",
+      "createdAt": "2022-06-10T16:22:26.828Z",
+      "updatedAt": "2022-06-10T16:22:26.828Z",
+      "__v": 0
+  },
+  {
+    "_id": "62a36fc2504041cc283963b08",
+    "userId": "62a371d9295b0548579296a2",
+    "isRead": false,
+    "message": "TEST",
+    "orderStatus" :"OUT_FOR_DELIVERY",
+    "createdAt": "2022-06-10T16:22:26.828Z",
+    "updatedAt": "2022-06-10T16:22:26.828Z",
+    "__v": 0
+},
+
     ]
 }
 ]

@@ -15,11 +15,13 @@ export const colors = {
   lightBlueColor: '#6086F0',
   gradientBlueColor: 'rgba(96, 134, 240, 0.3)',
   orangeColor: '#FFB075',
-  lightOrangeColor: '#FBDBC3',
+  // lightOrangeColor: '#FBDBC3',
   pearlColor: '#37B3CB',
   lightRedColor: '#CB3769',
   lightOrangeColor: '#F5924C',
   lightGreenColor: '#2E9C96',
+  actvityGreenColor: '#37CB99',
+  printingColor: '#5DA7CE',
 };
 
 export const fonts = {

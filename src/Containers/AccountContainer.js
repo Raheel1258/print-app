@@ -23,7 +23,6 @@ const AccountContainer = () => {
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
   const [languageToggle, setLanguageToggle] = useState(true);
-  const [faqsFlaq, setFaqsFlag] = useState(false);
   const [canGoBack, setCanGoBack] = useState(false)
 
 
@@ -72,7 +71,7 @@ const AccountContainer = () => {
 
   return (
     <View style={styles.container}>
-      {!faqsFlaq ? <AccountScreen
+      <AccountScreen
         navigate={navigate}
         goBack={goBack}
         refRBSheet={refRBSheet}
@@ -85,23 +84,7 @@ const AccountContainer = () => {
         changeLanguageHandler={changeLanguageHandler}
         languageToggle={languageToggle}
         setLanguageToggle={setLanguageToggle}
-        faqsFlaq={faqsFlaq} 
-        setFaqsFlag={setFaqsFlag}
-      />:
-      <>
-      {/* <TouchableOpacity onPress={()=>setCanGoBack(true)}><View><Text>Gobaack</Text></View></TouchableOpacity> */}
-      {languageToggle ? 
-      <WebView ref={webViewRef} source={{uri: 'https://pri.cxstaging.com/en/faqs/'}} 
-      startInLoadingState 
-      // onNavigationStateChange={(state)=>{
-      //   setCanGoBack(state.canGoBack)
-      // }}
-      /> :
-        <WebView source={{ uri: 'https://pri.cxstaging.com/faqs/'}} startInLoadingState/>
-      }
-      </>
-      
-}
+      />
     </View>
   );
 };

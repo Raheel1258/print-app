@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Linking } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -34,8 +34,6 @@ const AccountScreen = ({
   changeLanguageHandler,
   languageToggle,
   setLanguageToggle,
-  faqsFlaq, 
-  setFaqsFlag, 
 }) => {
   const { t } = useTranslation();
 
@@ -56,7 +54,7 @@ const AccountScreen = ({
             Children={<AccountIcon />}
           />
           <UploadFileComponent
-          onPress={()=> setFaqsFlag(true)}
+          onPress={()=> languageToggle ? Linking.openURL('https://pri.cxstaging.com/en/faqs/'): Linking.openURL('https://pri.cxstaging.com/faqs/')}
             title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}

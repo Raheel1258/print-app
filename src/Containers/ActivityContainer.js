@@ -4,6 +4,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivity, changeActivityStatus, allMarkToReadActivity } from '../store/actions/activitiesAction';
+import { getAllOrder } from '../store/actions/orderAction'
 import { colors } from '../Utils/theme';
 
 import Storage from '../Utils/Storage';
@@ -19,6 +20,7 @@ const ActivityContainer = () => {
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const activityData = useSelector(state => state?.activitiesReducer?.activitiesDetail)
+  const getAllOrderData = useSelector(state => state?.orderReducer?.orderDetail);
 
   // useEffect(() => {
   //   dispatch(getAllActivity(setAnimation));
@@ -28,7 +30,9 @@ const ActivityContainer = () => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && activityRBSheet.current.open()
-      token && dispatch(getAllActivity(setAnimation));
+      token && 
+      dispatch(getAllActivity(setAnimation));
+      
     });
   }, [isFocused])
 
@@ -40,8 +44,14 @@ const ActivityContainer = () => {
     navigation.goBack();
   };
 
+  console.log("activityData" , activityData);
+
   const handleActivityIsRead = (id) => {
-    dispatch(changeActivityStatus(id,setAnimation))
+    console.log("from redux" , getAllOrderData);
+    console.log("order id" , id);
+   const item = getAllOrderData?.filter((item, index) => item?._id == '62a7413b5459bbd63d623c78')
+    // console.log("single item" , item);
+    dispatch(changeActivityStatus(id, navigate , item[0]))
   }
 
   const handleAllActivityRead = () => {

@@ -20,15 +20,15 @@ const ActivityContainer = () => {
   const [userToken, setUserToken] = useState(null);
   const activityData = useSelector(state => state?.activitiesReducer?.activitiesDetail)
 
-  useEffect(() => {
-    dispatch(getAllActivity(setAnimation));
-  }, [isFocused])
+  // useEffect(() => {
+  //   dispatch(getAllActivity(setAnimation));
+  // }, [isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
-      // token &&  dispatch(getAllActivity(setAnimation));
       !token && activityRBSheet.current.open()
+      token && dispatch(getAllActivity(setAnimation));
     });
   }, [isFocused])
 

@@ -67,18 +67,19 @@ const CartContainer = () => {
     },
   ]);
 
-  useEffect(() => {
-    Storage.retrieveData('token').then((token) => {
-      setUserToken(token);
-      token && dispatch(getCartData(setAnimation, setTextValue));
-    })
+  // useEffect(() => {
+  //   Storage.retrieveData('token').then((token) => {
+  //     setUserToken(token);
+      
+  //   })
 
-  }, [isFocused])
+  // }, [isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && authRBSheet.current.open()
+      token && dispatch(getCartData(setAnimation, setTextValue));
     });
   }, [isFocused])
 

@@ -28,17 +28,18 @@ const MyOrderContainer = () => {
     navigation.goBack();
   };
 
-  useEffect(() => {
-    Storage.retrieveData('token').then((token) => {
-      setUserToken(token);
-      token && dispatch(getAllOrder(setAnimation))
-    })
-  }, [isFocused])
+  // useEffect(() => {
+  //   Storage.retrieveData('token').then((token) => {
+  //     setUserToken(token);
+      
+  //   })
+  // }, [isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && orderRBSheet.current.open()
+      token && dispatch(getAllOrder(setAnimation))
     });
   }, [isFocused])
 

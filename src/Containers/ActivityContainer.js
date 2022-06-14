@@ -47,8 +47,6 @@ const ActivityContainer = () => {
   console.log("activityData" , activityData);
 
   const handleActivityIsRead = (id, orderId) => {
-    console.log("from redux" , getAllOrderData);
-    console.log("order id" , id);
    const item = getAllOrderData?.filter((item, index) => item?._id == orderId)
     dispatch(changeActivityStatus(id, navigate , item[0]))
   }

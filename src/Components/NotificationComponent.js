@@ -3,6 +3,7 @@ import {View, Text, TextInput} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {ScaledSheet} from 'react-native-size-matters';
 import {handleOrderStatus} from "../Utils/helperFunctions"
+import {getTimeFormat} from '../Utils/helperFunctions'
 
 import {colors, fonts} from '../Utils/theme';
 
@@ -15,16 +16,15 @@ const NotificationComponent = ({orderCode, orderReceived, time,childern, border=
         <View  style={styles.orderCodeContainer}>
        {childern}
         <View>
-          <Text style={styles.orderStatus}>
-            Order <Text style={styles.orderCode}>{orderCode}</Text> {orderMessage}
-          </Text>
+          <Text style={styles.orderStatus}>{orderMessage}
+          </Text> 
           <Text style={{...styles.orderReceived, 
             color: orderReceived =='ORDER_RECIEVED' ? colors.pearlColor : 
             orderReceived =='OUT_FOR_DELIVERY' ? colors.lightOrangeColor : 
             orderReceived =='COMPLETED' ? colors.actvityGreenColor : 
             orderReceived =='READY_FOR_PICKUP' ? colors.lightGreenColor : 
             orderReceived =='PRINTING' ? colors.printingColor : colors.lightRedColor  }}>{handleOrderStatus(orderReceived)}</Text>
-          <Text style={styles.timeText}>{time.substring(12, 19)}</Text>
+          <Text style={styles.timeText}>{getTimeFormat(time)}</Text>
         </View>
         </View>
         {seen == false && <View style={styles.activeDot} />}
@@ -51,9 +51,10 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.blackColor,
-    marginLeft:'10@s'
+    marginLeft:'10@s',
+    width:'265@s'
   },
   orderCode: {
     fontFamily: fonts.avenir_bold,

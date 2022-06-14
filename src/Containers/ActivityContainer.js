@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { types } from '@babel/core';
-import { View } from 'react-native';
+import { View,Text } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,18 +21,9 @@ const ActivityContainer = () => {
   const [userToken, setUserToken] = useState(null);
   const activityData = useSelector(state =>  state?.activitiesReducer?.activitiesDetail)
 
-  const navigate = (routeName, data = {}) => {
-    navigation.navigate(routeName, data);
-  };
-
-  const goBack = () => {
-    navigation.goBack();
-  };
-
   useEffect(() => {
     dispatch(getAllActivity(setAnimation));
-  },[])
-
+  },[isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
@@ -41,6 +32,18 @@ const ActivityContainer = () => {
       !token && activityRBSheet.current.open()
     });
   }, [isFocused])
+
+  const navigate = (routeName, data = {}) => {
+    navigation.navigate(routeName, data);
+  };
+
+  const goBack = () => {
+    navigation.goBack();
+  };
+
+  const handleActivityIsRead = (id) => {
+      console.log("id of activity" , id);
+  }
 
   return (
     <View style={styles.container}>
@@ -51,7 +54,9 @@ const ActivityContainer = () => {
       setFocused={setFocused} 
       navigate={navigate} 
       activityData={activityData}
-      animation={animation} />
+      animation={animation} 
+      handleActivityIsRead={handleActivityIsRead}
+      />
     </View>
   );
 };

@@ -6,7 +6,7 @@ import {useTranslation} from 'react-i18next';
 import {OrderReceivedIcon,OrderCompletedIcon,DeliveryIcon,OrderCancelledIcon,OrderPicupIcon,PrintingIcon} from '../Assests/Svgs';
 import NotificationComponent from '../Components/NotificationComponent';
 import {colors, fonts} from '../Utils/theme';
-
+import { getCurrentDate,getDateFormat} from '../Utils/helperFunctions';
 
 const handleOrderStatusForActivity = (orderNotify) => {
   if(orderNotify == "ORDER_RECIEVED"){
@@ -57,28 +57,28 @@ const DATA = [
   },
 ];
 
-const NotificationActivity = ({item,readMark}) => {
+const NotificationActivity = ({item,readMark, handleActivityIsRead}) => {
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
   const lastItemId = item?.notifications[lengthItem-1]._id;
   const {t} = useTranslation();
 
-  const handleData = (id) => {
-    setData((prev)=> {
-      return prev?.map((x,i)=>{
-        if(x?.orderId == id){  
-        return {...prev[i], isRead: false}
-        }else{
-          return {...prev[i], isRead: true}
-        }
-      })
-    })
-  }
+  // const handleData = (id) => {
+  //   setData((prev)=> {
+  //     return prev?.map((x,i)=>{
+  //       if(x?.orderId == id){  
+  //       return {...prev[i], isRead: false}
+  //       }else{
+  //         return {...prev[i], isRead: true}
+  //       }
+  //     })
+  //   })
+  // }
 
   const renderItem = ({item}, index) => {
 
     return(
-    <NotificationComponent onPress={() => handleData(item?._id)}
+    <NotificationComponent onPress={() => handleActivityIsRead(item?._id)}
       orderCode={item?._id}
       orderReceived={item?.orderStatus}
       orderMessage={item?.message}
@@ -88,10 +88,14 @@ const NotificationActivity = ({item,readMark}) => {
       seen={item?.isRead}
     />
   )};
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>{(item?._id).substring(0, 10)}</Text>
+        <Text style={styles.headerText}>
+          {item?._id == getCurrentDate() ? 'Today' : getDateFormat(item?._id)}
+          
+          </Text>
        {item?._id == readMark && <Text style={styles.headerText}>{"Mark as all read"}</Text>}
       </View>
       <FlatList

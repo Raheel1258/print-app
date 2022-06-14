@@ -23,13 +23,13 @@ const DATA = [
   },
 ];
 
-const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation }) => {
+const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation,handleActivityIsRead }) => {
   const { t } = useTranslation();
   // const keys = Object.keys(activityData);
   const renderItem = ({ item }) => {
     
     return (<>
-      <NotificationActivity item={item} readMark={activityData[0]._id} />
+      <NotificationActivity item={item} readMark={activityData[0]._id} handleActivityIsRead={handleActivityIsRead} />
     </>)
   };
   return (

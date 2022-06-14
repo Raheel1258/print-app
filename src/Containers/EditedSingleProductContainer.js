@@ -261,7 +261,7 @@ const EditedSingleProductContainer = ({ route }) => {
       }
     });
     console.log("updated obj" ,obj);
-    // dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate));
+    dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate));
 
 
   }

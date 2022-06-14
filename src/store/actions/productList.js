@@ -49,7 +49,7 @@ export const getCategoriesProduct = (category, setAnimation) => {
 
         Toast.show({
           type: 'error',
-          text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+          text1: t('general_message')
         });
       });
   }
@@ -111,7 +111,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         } else
           Toast.show({
             type: 'error',
-            text1: err?.response?.data?.message ? err?.response?.data?.message : t('general_message')
+            text1: t('general_message')
           });
       });
   }

@@ -64,6 +64,7 @@ import { colors, fonts } from '../Utils/theme';
 
 const MyOrdersListScreen = ({ goBack, orderData,setSupportEmail,handleReceiptEmail, handlerSupportEmail }) => {
   const { t } = useTranslation();
+
   const renderItem = ({ item, index }) => (
     <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image} index={index} length={item?.length} item={item} />
   );

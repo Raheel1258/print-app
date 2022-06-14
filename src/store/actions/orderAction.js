@@ -8,7 +8,7 @@ import {Api} from '../../Utils/Api'
 import * as types from '../types/types'
 
 
-export const setOrder = data => {
+ const setOrder = data => {
   return {
     type: types.GET_ORDER,
     data,

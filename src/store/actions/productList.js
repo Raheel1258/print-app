@@ -94,7 +94,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         query = query + key + "=" + values[key] + "&"
       }
     })
-    axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+    axios.get(`${Api}/price-chart/${values.category}?${query}`)
       .then(async (res) => {
         dispatch(setPriceChart(res?.data));
         setSelectedPriceChart(res?.data[0]);
@@ -155,7 +155,7 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
         query = query + key + "=" + values[key] + "&"
       }
     })
-    axios.get(`${Api}/price-chart/${values.category}?${query}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+    axios.get(`${Api}/price-chart/${values.category}?${query}`)
       .then(async (res) => {
         dispatch(setPriceChartOnEdit(res?.data));
         setSelectedPriceChart(res?.data[0]);

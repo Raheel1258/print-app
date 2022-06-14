@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
@@ -110,17 +110,8 @@ const CartContainer = () => {
     setIsPromoCodeModaVidible(!isPromoCodeModaVidible);
   }
 
-  const handlePromoCodeValidation = () => {
-    if (textValue.length == 0) {
-      Toast.show({
-        type: 'error',
-        text1: 'Enter Promo Code',
-      });
-      setValidPromoCode(false);
-    }
-    else {
-      dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode));
-    }
+  const handlePromoCodeValidation =() =>{
+    dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode));
   }
 
   const handleEditProduct = (item) => {
@@ -173,32 +164,36 @@ const CartContainer = () => {
     let deliveryCost = 0;
     let quantity = 0;
     let unitPrice = 0;
-    let subTotal = 0;
+    let subTotal1 = 0;
     let totalPrice = 0;
     cartItem && cartItem?.map((item) => {
       quantity = item?.priceChart?.units;
       unitPrice = item?.priceChart?.pricePerUnit;
       deliveryCost = parseFloat(deliveryCost + item?.priceChart?.deliveryCost);
-      subTotal = parseFloat(quantity * unitPrice);
-      totalPrice = parseFloat(subTotal);
+      subTotal1 = parseFloat(quantity * unitPrice);
+      totalPrice = parseFloat(subTotal1);
     });
-
-    if (deliveryMethod == "Delivery") {
+console.log(promocodeDiscount);
+    if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery"){
+      console.log(1);
       totalPrice = parseFloat(totalPrice + deliveryCost);
+      totalPrice = totalPrice - parseFloat(promocodeDiscount);
+      setTotal(totalPrice);
+    }else if(deliveryMethod == "Delivery" && promocodeDiscount && promocodeDiscount == "0"){
+      console.log(2);
+      totalPrice = parseFloat(totalPrice + deliveryCost);
+      setTotal(totalPrice)
+    }else if(promocodeDiscount && promocodeDiscount != "0" && deliveryMethod !== "Delivery"){
+      console.log(3);
+      totalPrice = totalPrice - parseFloat(promocodeDiscount);
       setTotal(totalPrice)
     }
     else {
-      totalPrice = totalPrice;
-      setTotal(totalPrice)
-    }
-    if (promocodeDiscount && promocodeDiscount != "") {
-      subTotal = subTotal - parseFloat(promocodeDiscount);
-      setSubTotal(subTotal);
-    } else {
+      console.log(4);
       setTotal(totalPrice);
     }
-    setSubTotal(subTotal);
     setDeliveryCost(deliveryCost);
+    setSubTotal(subTotal1)
 
   }
 

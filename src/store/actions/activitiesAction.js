@@ -23,7 +23,7 @@ export const getAllActivity = (setAnimation) => {
         setAnimation(true);
         const accessToken = await Storage.retrieveData('token');
         // dispatch(setActivityDetail(newActivityStructure))
-        axios.get(`${Api}/notifications/user_test`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.get(`${Api}/notifications/`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 console.log("into res of notifications" , res);
                 setAnimation(false);
@@ -41,33 +41,34 @@ export const getAllActivity = (setAnimation) => {
 
 
 //Change activity status  
-export const changeActivityStatus = (setAnimation) => {
+export const changeActivityStatus = (id, setAnimation) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        // axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
-        //     .then(async (res) => {
-        //         console.log("user response" , res);
-        //         dispatch(setActivityDetail(res?.data));
-
-        //     })
-        //     .catch((err) => {
-        //     });
+        axios.get(`${Api}/notifications/change/status/${id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("user response for single activity change" , res);
+                dispatch(getAllActivity(setAnimation))
+            })
+            .catch((err) => {
+                console.log("err single activity" , err?.response);
+            });
 
     }
 }
 
 
 //All mark to read
-export const allMarkToReadActivity = (setAnimation) => {
+export const allMarkToReadActivity = ( setAnimation) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        // axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
-        //     .then(async (res) => {
-        //         console.log("user response" , res);
-        //         dispatch(setActivityDetail(res?.data));
-        //     })
-        //     .catch((err) => {
-        //     });
+        axios.get(`${Api}/notifications/change/status/all`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("user response activity all" , res);
+                dispatch(getAllActivity(setAnimation))
+            })
+            .catch((err) => {
+                console.log("err all" , err?.response);
+            });
 
     }
 }

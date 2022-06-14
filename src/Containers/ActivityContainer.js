@@ -41,13 +41,11 @@ const ActivityContainer = () => {
   };
 
   const handleActivityIsRead = (id) => {
-    console.log("id of activity", id);
-    // dispatch(changeActivityStatus(id))
+    dispatch(changeActivityStatus(id,setAnimation))
   }
 
   const handleAllActivityRead = () => {
-    console.log("all read");
-    // dispatch(allMarkToReadActivity())
+    dispatch(allMarkToReadActivity(setAnimation))
   }
 
   return (

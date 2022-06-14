@@ -125,6 +125,7 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
         setPromoCodeAnimation(true);
         axios.get(`${Api}/promocode/findbyname/${data}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                console.log("res fromm promo code" , res);
                 if (res?.data?.length > 0) {
                     dispatch(setPromoCodeDetail(res?.data[0]?.discount));
                     setValidPromoCode(true);

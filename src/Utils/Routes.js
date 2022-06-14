@@ -49,6 +49,7 @@ const Home = createStackNavigator();
 const Account = createStackNavigator();
 const Order = createStackNavigator();
 const Cart = createStackNavigator();
+const Activity = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -207,6 +208,24 @@ const OrderStack = () => {
         options={{headerShown: false}}
       />
     </Order.Navigator>
+  );
+};
+
+
+const ActivityStack = () => {
+  return (
+    <Activity.Navigator initialRouteName="activity">
+      <Activity.Screen
+        name="activity"
+        component={ActivityContainer}
+        options={{headerShown: false}}
+      />
+      <Activity.Screen
+        name="myOrdersList"
+        component={MyOrdersListContainer}
+        options={{headerShown: false}}
+      />
+    </Activity.Navigator>
   );
 };
 
@@ -392,8 +411,8 @@ const MyTabs = ({}) => {
             </View>
           ),
         }}
-        name="activity"
-        component={ActivityContainer}
+        name="activityStack"
+        component={ActivityStack}
       />
 
       <Tab.Screen

@@ -46,11 +46,10 @@ const ActivityContainer = () => {
 
   console.log("activityData" , activityData);
 
-  const handleActivityIsRead = (id) => {
+  const handleActivityIsRead = (id, orderId) => {
     console.log("from redux" , getAllOrderData);
     console.log("order id" , id);
-   const item = getAllOrderData?.filter((item, index) => item?._id == '62a7413b5459bbd63d623c78')
-    // console.log("single item" , item);
+   const item = getAllOrderData?.filter((item, index) => item?._id == orderId)
     dispatch(changeActivityStatus(id, navigate , item[0]))
   }
 

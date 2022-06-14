@@ -78,7 +78,7 @@ const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllAct
   const renderItem = ({item}, index) => {
 
     return(
-    <NotificationComponent onPress={() => handleActivityIsRead(item?._id)}
+    <NotificationComponent onPress={() => handleActivityIsRead(item?._id, item?.orderId)}
       orderCode={item?._id}
       orderReceived={item?.orderStatus}
       orderMessage={item?.message}

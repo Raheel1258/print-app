@@ -7,7 +7,7 @@ import {getTimeFormat} from '../Utils/helperFunctions'
 
 import {colors, fonts} from '../Utils/theme';
 
-const NotificationComponent = ({orderCode, orderReceived, time,childern, border=true, seen, onPress,orderMessage
+const NotificationComponent = ({orderReceived, time,childern, border=true, seen, onPress,orderMessage
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>

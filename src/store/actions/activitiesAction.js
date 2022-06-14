@@ -47,7 +47,8 @@ export const changeActivityStatus = (setAnimation) => {
         // axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
         //     .then(async (res) => {
         //         console.log("user response" , res);
-        //         dispatch(getActivityOfUser(setAnimation,res?.data?._id))
+        //         dispatch(setActivityDetail(res?.data));
+
         //     })
         //     .catch((err) => {
         //     });
@@ -56,14 +57,14 @@ export const changeActivityStatus = (setAnimation) => {
 }
 
 
-//All mark toready
+//All mark to read
 export const allMarkToReadActivity = (setAnimation) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         // axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
         //     .then(async (res) => {
         //         console.log("user response" , res);
-        //         dispatch(getActivityOfUser(setAnimation,res?.data?._id))
+        //         dispatch(setActivityDetail(res?.data));
         //     })
         //     .catch((err) => {
         //     });

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList,TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 
@@ -57,7 +57,7 @@ const DATA = [
   },
 ];
 
-const NotificationActivity = ({item,readMark, handleActivityIsRead}) => {
+const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllActivityRead}) => {
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
   const lastItemId = item?.notifications[lengthItem-1]._id;
@@ -94,9 +94,8 @@ const NotificationActivity = ({item,readMark, handleActivityIsRead}) => {
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
           {item?._id == getCurrentDate() ? 'Today' : getDateFormat(item?._id)}
-          
           </Text>
-       {item?._id == readMark && <Text style={styles.headerText}>{"Mark as all read"}</Text>}
+       {item?._id == readMark && <TouchableOpacity onPress={()=>handleAllActivityRead()}><Text style={styles.headerText}>{"Mark as all read"}</Text></TouchableOpacity> }
       </View>
       <FlatList
         data={item?.notifications && item?.notifications}

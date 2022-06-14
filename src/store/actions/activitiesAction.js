@@ -50,7 +50,7 @@ export const changeActivityStatus = (id, navigate , item) => {
         axios.get(`${Api}/notifications/change/status/${id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 console.log("user response for single activity change" , res);
-                navigate('orderStack' , {item:item, initialRoute:'myOrdersList'})
+                navigate('myOrdersList' , {item:item})
             })
             .catch((err) => {
                 console.log("err single activity" , err?.response);

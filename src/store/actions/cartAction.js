@@ -119,13 +119,14 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
 }
 
 //Promo Code
-export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode) => {
+export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus,setPromoCodeAppliedId) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setPromoCodeAnimation(true);
         axios.get(`${Api}/promocode/findbyname/${data}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res fromm promo code" , res);
+                setPromoCodeAppliedId(res?.data[0]?._id);
+                setPromoCodeAppliedStatus(true);
                 if (res?.data?.length > 0) {
                     dispatch(setPromoCodeDetail(res?.data[0]?.discount));
                     setValidPromoCode(true);

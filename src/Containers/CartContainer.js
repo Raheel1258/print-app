@@ -43,9 +43,12 @@ const CartContainer = () => {
   const [userToken, setUserToken] = useState(null);
   const [animation, setAnimation] = useState(false);
   const [placeOrderAnimation, setPlaceOrderAnimation] = useState(false);
+  const [promoCodeAppliedStatus , setPromoCodeAppliedStatus] = useState(false);
+  const [promoCodeAppliedId , setPromoCodeAppliedId] = useState("");
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
+
 
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState([
@@ -112,7 +115,7 @@ const CartContainer = () => {
   }
 
   const handlePromoCodeValidation =() =>{
-    dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode));
+    dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus, setPromoCodeAppliedId));
   }
 
   const handleEditProduct = (item) => {
@@ -147,7 +150,9 @@ const CartContainer = () => {
       subTotal: subTotal,
       discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
       total: total,
-      status: "ORDER_RECIEVED"
+      status: "ORDER_RECIEVED",
+      promoCodeApplied:promoCodeAppliedStatus,
+      promoCodeId: promoCodeAppliedId
     }
     if (deliveryMethod == 'Delivery' && deliveryUserAddress == "Select delivery address") {
       Toast.show({
@@ -174,7 +179,6 @@ const CartContainer = () => {
       subTotal1 = parseFloat(quantity * unitPrice);
       totalPrice = parseFloat(subTotal1);
     });
-console.log(promocodeDiscount);
     if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery"){
       console.log(1);
       totalPrice = parseFloat(totalPrice + deliveryCost);

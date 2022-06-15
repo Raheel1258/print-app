@@ -226,7 +226,7 @@ export const chi = {
     network_error: '网络错误',
     general_message: '出了点问题，请重试',
     login:'您已成功注册',
-    reset_password: '密码重置成功',
+    reset_password_message: '密码重置成功',
     otp_message:'otp验证成功',
     logout:'您已登出',
     email_send: '发送给管理员的电子邮件',

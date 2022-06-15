@@ -160,7 +160,7 @@ export const resetPasswordAction = (data, navigate, setAnimation) => {
         	.then(async (res) => {
         		Toast.show({
         			type: 'success',
-        			text1:  t('reset_password')
+        			text1:  t('reset_password_message')
         		})
                setAnimation(false);
                navigate("signin");

@@ -44,7 +44,7 @@ const ResetPasswordContainer = ({route}) => {
       if(values?.password != values?.confirmPassword){
         Toast.show({
           type: 'error',
-          text1: 'New and confirm password should be equal',
+          text1: t('new_confirm_password_message'),
       });
       }else{
         dispatch(resetPasswordAction({...values, userId:userId}, navigate, setAnimation));

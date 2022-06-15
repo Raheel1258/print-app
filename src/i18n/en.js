@@ -236,7 +236,7 @@
     network_error: 'Network Error',
     general_message: 'Something Went Wrong, Please Try Again',
     login:'You are successfully signed up',
-    reset_password: 'Passowrd is reset successfully',
+    reset_password_message: 'Passowrd is reset successfully',
     otp_message:'Otp verified successfully',
     logout:'You are logged out',
     email_send: 'Email Sent to the Admin',

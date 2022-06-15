@@ -196,14 +196,10 @@ export const getProductById = (id, setAnimation) => {
 export const uploadFile = (formData, setAnimation, setResult) => {
   return async (dispatch) => {
     setAnimation(true);
-    const accessToken = await Storage.retrieveData('token');
-    axios.post(`${Api}/upload-file/image`, formData, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data; boundary=testing',
-      }
-    }
-    )
+    axios.post(`${Api}/upload-file/image`, formData, {headers:{
+      accept: 'application/json',
+      'Content-Type':'multipart/form-data; boundary=testing'
+    }})
       .then(async (res) => {
         setAnimation(false);
         setResult((prev) => {
@@ -219,4 +215,30 @@ export const uploadFile = (formData, setAnimation, setResult) => {
       });
   }
 };
+
+
+// export const uploadFile = (formData, setAnimation, setResult) => {
+//   return async (dispatch) => {
+//     setAnimation(true);
+//     axios({
+//       method: 'post',
+//       url: 'https://print-backend-app.herokuapp.com/api/v1/upload-file/image',
+//       data:formData
+
+//     })
+//       .then(async (res) => {
+//         setAnimation(false);
+//         setResult((prev) => {
+//           return [...prev, res?.data?.Location];
+//         });
+//       })
+//       .catch((err) => {
+//         setAnimation(false);
+//         Toast.show({
+//           type: 'error',
+//           text1: t('general_message')
+//         });
+//       });
+//   }
+// };
 

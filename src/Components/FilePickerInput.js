@@ -58,23 +58,16 @@ const FilePickerInput = ({ result, setResult }) => {
           alert(response.errorMessage);
           return;
         } else {
-          console.log('response', response)
-          setResult((prev)=>{
-             return [...prev, response.fileName]
-           });
-          formData.append('image', response);
-          // dispatch(uploadFile(formData, setAnimation, setResult));
+          const image = {
+            uri: response.uri,
+            name: response.fileName,
+            type: response.type,
+          }
+          formData.append('image', image);
+          dispatch(uploadFile(formData, setAnimation, setResult));
         }
       });
       
-      // console.log('????', pickerResult)
-      // formData.append('image', pickerResult)
-
-      // console.log('aasss',formData);
-      // dispatch(uploadFile(formData, setAnimation, setResult))
-      // setResult((prev)=>{
-      //   return [...prev, pickerResult]
-      // });
     } catch (e) {
       handleError(e);
     }

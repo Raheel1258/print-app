@@ -41,7 +41,9 @@ export const getCategoriesProduct = (category, setAnimation) => {
     setAnimation(true);
     axios.get(`${Api}/products/find/${category}`)
       .then(async (res) => {
-        dispatch(setProductList(res?.data));
+        console.log("products against category" , res?.data);
+        const filterProducts = res?.data?.filter((item, index) => item?.isActive == true)
+        dispatch(setProductList(filterProducts));
         setAnimation(false);
       })
       .catch((err) => {

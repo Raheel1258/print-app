@@ -250,7 +250,8 @@
     otp_send: 'Otp send to the given email',
     invalid_otp: 'Invalid pin or pin expired!',
     invalid_login_message: 'Invalid Credentials',
-    new_confirm_password_message:'New and confirm password must be same'
+    new_confirm_password_message:'New and confirm password must be same',
+    user_already_exit_message: 'User already exists!'
 
   },
 };

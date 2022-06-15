@@ -56,7 +56,7 @@ const styles = ScaledSheet.create({
     textAlign: 'left',
     color: colors.blackColor,
     marginTop: '7@s',
-    marginBottom: '7@s',
+    marginBottom: '10@s',
   },
   flatlistContainer: {
     paddingBottom: '70@s',

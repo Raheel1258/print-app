@@ -240,7 +240,8 @@ export const chi = {
     otp_send: 'Otp 发送到给定的电子邮件',
     invalid_otp: '密码无效或密码过期!',
     invalid_login_message: '无效证件',
-    new_confirm_password_message:'新密码和确认密码必须相同'
+    new_confirm_password_message:'新密码和确认密码必须相同',
+    user_already_exit_message: '用户已存在!'
 
   },
 };

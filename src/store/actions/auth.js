@@ -78,10 +78,18 @@ export const signup = (data, navigation, setAnimation) => {
             })
             .catch((err) => {
                 setAnimation(false);
-                Toast.show({
-                    type: 'error',
-                    text1: t('general_message'),
-                });
+                if(err?.response?.data?.statusCode == 400){
+                    Toast.show({
+                        type: 'error',
+                        text1: t('user_already_exit_message'),
+                    });
+                }else {     
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+                }
+               
             });
     }
 }

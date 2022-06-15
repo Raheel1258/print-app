@@ -27,7 +27,7 @@ export const getAllOrder = (setAnimation) => {
     setAnimation(true);
     axios.get(`${Api}/order/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
         .then(async (res) => { 
-         dispatch(setOrder(res?.data));
+         dispatch(setOrder(res?.data?.reverse()));
           setAnimation(false);
         })
         .catch((err) => {

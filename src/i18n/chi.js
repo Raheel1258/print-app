@@ -234,13 +234,13 @@ export const chi = {
     address_remove: '成功删除地址',
     address_update: '您已成功更新您的地址',
     user_update:'用户更新成功',
-    change_password:'修改密码成功',
     address_primary: '主地址更新成功',
     user_not_logged: '用户未登录',
     login_correct:'您已成功登录',
     otp_send: 'Otp 发送到给定的电子邮件',
     invalid_otp: '密码无效或密码过期!',
-    invalid_login_message: '无效证件'
+    invalid_login_message: '无效证件',
+    new_confirm_password_message:'新密码和确认密码必须相同'
 
   },
 };

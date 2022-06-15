@@ -244,13 +244,13 @@
     address_remove: 'Removed Address Successfully',
     address_update: 'You are successfully updated your address',
     user_update:'User updated successfully',
-    change_password:'Changed password successfully',
     address_primary: 'Primary address updated successfully',
     user_not_logged: 'User is not logged in',
     login_correct:'You are successfully logged in',
     otp_send: 'Otp send to the given email',
     invalid_otp: 'Invalid pin or pin expired!',
-    invalid_login_message: 'Invalid Credentials'
+    invalid_login_message: 'Invalid Credentials',
+    new_confirm_password_message:'New and confirm password must be same'
 
   },
 };

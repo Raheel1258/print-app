@@ -8,6 +8,7 @@ import Toast from 'react-native-toast-message';
 
 import ChangePasswordScreen from '../Screens/ChangePasswordScreen';
 import { colors } from '../Utils/theme';
+import { t } from 'i18next';
 
 const ChangePasswordContainer = () => {
   const navigation = useNavigation();
@@ -34,13 +35,12 @@ const ChangePasswordContainer = () => {
     if(values?.newPassword != values?.confirmPassword){
       Toast.show({
         type: 'error',
-        text1: 'New and confirm password must be equal',
+        text1: t('new_confirm_password_message'),
     });
     }else{
       dispatch(changePassword(setAnimationChangePassowrd , {currentPassword:values.currentPassword , newPassword:values.newPassword}, toggleModal))
     }
    
-
   }
 
   return (

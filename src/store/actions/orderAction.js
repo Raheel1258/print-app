@@ -2,12 +2,13 @@ import Toast from 'react-native-toast-message';
 import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import {orderData} from "../../Utils/mockData"
+import { t } from 'i18next';
 
 import {Api} from '../../Utils/Api'
 import * as types from '../types/types'
 
 
-export const setOrder = data => {
+ const setOrder = data => {
   return {
     type: types.GET_ORDER,
     data,
@@ -26,14 +27,14 @@ export const getAllOrder = (setAnimation) => {
     setAnimation(true);
     axios.get(`${Api}/order/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
         .then(async (res) => { 
-         dispatch(setOrder(res?.data));
+         dispatch(setOrder(res?.data?.reverse()));
           setAnimation(false);
         })
         .catch((err) => {
           setAnimation(false);
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+                text1: t('general_message')
             });
         });
 }
@@ -47,13 +48,13 @@ export const handleEmailing = (id,flag) => {
         .then(async (res) => {
           Toast.show({
             type: 'success',
-            text1: res?.data ? res?.data : 'Network error'
+            text1: t('email_send')
         });
         })
         .catch((err) => {
             Toast.show({
                 type: 'error',
-                text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network error'
+                text1: t('general_message')
             });
         });
 }

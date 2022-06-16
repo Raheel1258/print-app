@@ -23,12 +23,13 @@ const DATA = [
   },
 ];
 
-const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation }) => {
+const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation,handleActivityIsRead,handleAllActivityRead }) => {
   const { t } = useTranslation();
+  // const keys = Object.keys(activityData);
   const renderItem = ({ item }) => {
-    const keys = Object.keys(item);
+    
     return (<>
-      <NotificationActivity item={item} readMark={item.readMark} />
+      <NotificationActivity item={item} readMark={activityData[0]._id} handleActivityIsRead={handleActivityIsRead} handleAllActivityRead={handleAllActivityRead} />
     </>)
   };
   return (
@@ -120,7 +121,11 @@ const styles = ScaledSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    color:colors.blackColor
+    color:colors.blackColor,
+    fontFamily:fonts.avenir_bold,
+    fontSize: '14@s',
+    fontStyle: 'normal',
+    lineHeight: '22@s',
   }
 
 

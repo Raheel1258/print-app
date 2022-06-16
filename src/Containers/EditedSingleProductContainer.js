@@ -12,11 +12,11 @@ import { colors } from '../Utils/theme';
 const EditedSingleProductContainer = ({ route }) => {
 
   const { t } = useTranslation();
-  const { productCategory,productId,cartItem, cartProductId } = route.params;
+  const { productCategory, productId, cartItem, cartProductId } = route.params;
 
   const priceChart = useSelector(state => state?.productList?.priceChartEdit);
   const state = useSelector(state => state?.productList?.singleProduct);
-  
+
   const [sliceArray, setSliceArray] = useState([]);
   const [flag, setflag] = useState(true)
   const navigation = useNavigation();
@@ -41,110 +41,112 @@ const EditedSingleProductContainer = ({ route }) => {
   const [selectedUpload, setSelectedUpload] = useState('uploadFile');
   const [shape, setShape] = useState("");
   const [selectedSize, setSelectedSize] = useState(cartItem?.size);
-  const [selectedCorner, setSelectedCorner] = useState();
-  const [selectFinishing, setSelectFinishing] = useState("");
-  const [selectSpotUv, setSelectSpotUv] = useState("");
-  const [selectedPriceChart, setSelectedPriceChart] = useState(priceChart && priceChart[0]);
-  const [paperTypeCoverPages, setPaperTypeCoverPages] = useState("");
-  const [paperTypeInnerPages, setPaperTypeInnerPages] = useState("");
-  const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState("");
-  const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState("");
-
-  
+  const [selectedCorner, setSelectedCorner] = useState(cartItem?.corner && cartItem?.corner);
+  const [selectFinishing, setSelectFinishing] = useState(cartItem?.finishing && cartItem?.finishing);
+  const [selectSpotUv, setSelectSpotUv] = useState(cartItem?.spotUV);
+  const [selectedPriceChart, setSelectedPriceChart] = useState(cartItem?.priceChart && cartItem?.priceChart);
+  const [paperTypeCoverPages, setPaperTypeCoverPages] = useState(cartItem?.paperType && cartItem?.paperType);
+  const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(cartItem?.paperType && "Woodfree paper (140 gsm)");
+  const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState(cartItem?.numberOfPages && cartItem?.numberOfPages[0]?.number[0]);
+  const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState(cartItem?.numberOfPages && cartItem?.numberOfPages[1]?.number[0]);
 
 
-  const [allCardsPaperType, setAllCardsPaperType] = useState("");
-  const [numberOfSides, setNumberOfSides] = useState("");
 
-  const [selectedCut, setSelectedCut] = useState("");
-  const [selectedFolding, setSelectedFolding] = useState("");
 
-  const [selectedWindow, setSelectedWindow] = useState("");
+  const [allCardsPaperType, setAllCardsPaperType] = useState(cartItem?.paperType && cartItem?.paperType);
+  const [numberOfSides, setNumberOfSides] = useState(cartItem?.numberOfSides && cartItem?.numberOfSides);
+
+  const [selectedCut, setSelectedCut] = useState(cartItem?.cut && cartItem?.cut);
+  const [selectedFolding, setSelectedFolding] = useState(cartItem?.folding && cartItem?.folding);
+
+  const [selectedWindow, setSelectedWindow] = useState(cartItem?.window && cartItem?.window);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState(cartItem?.remarks);
   const [result, setResult] = useState([]);
 
-  const defaultValuesObject =  productCategory == "BUSINESS_CARD" ? {
+  const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
-    product: state?.category?.productType,
+    product: cartItem?.category?.productType,
     size: `${selectedSize?.width} x ${selectedSize?.height}`,
     corner: `${selectedCorner?.cornerName} Corner`,
     spotuvside: selectSpotUv
   } : productCategory == "BOOKLET" ? {
     category: 'booklet',
-    product: state?.category?.productType,
+    product: cartItem?.category?.productType,
     size: selectedSize?.name,
     innerpage: noOfPagesInnerPages
   } : productCategory === "POSTER" ? {
     category: 'poster',
-    product: state?.category?.productType,
+    product: cartItem?.category?.productType,
     size: selectedSize?.name,
     papertype: allCardsPaperType?.substr(14, 7),
     sides: numberOfSides
-  } :  productCategory === "FLYERS_LEAFLET" ? {
+  } : productCategory === "FLYERS_LEAFLET" ? {
     category: 'flyer',
-    product: state?.category?.productType,
-    size: state?.category?.name == "Rectangular Flyer" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
+    product: cartItem?.category?.productType,
+    size: cartItem?.category?.name == "Rectangular Flyer" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
     papertype: allCardsPaperType?.substr(14, 7),
     folding: selectedFolding?.foldingName
-  } :  productCategory === "ENVELOPE" ? {
+  } : productCategory === "ENVELOPE" ? {
     category: 'envelop',
-    product: state?.category?.productType,
+    product: cartItem?.category?.productType,
     window: selectedWindow?.windowName
-  } :  productCategory === "LETTERHEAD" ? {
+  } : productCategory === "LETTERHEAD" ? {
     category: 'letterhead',
-    product: state?.category?.productType,
+    product: cartItem?.category?.productType,
   } : {
     category: 'sticker',
     product: 'Sicker',
     size: `${selectedSize?.width} x ${selectedSize?.height}`,
-    shape: state?.category?.productType
+    shape: cartItem?.category?.productType
   }
   const [values, setValues] = useState(defaultValuesObject)
- //usefffff
-  useEffect(()=> {
-    if(state && productId){
-    setValues( productCategory == "BUSINESS_CARD" ? {
-      category: 'businesscard',
-      product: state?.category?.productType,
-      size: `${state?.size[0]?.width} x ${state?.size[0]?.height}`,
-      corner: `${state?.corner[0] && state?.corner[0].cornerName} Corner`,
-      spotuvside: state?.spotUV[0] && state?.spotUV[0]
-    } : productCategory == "BOOKLET" ? {
-      category: 'booklet',
-      product: state?.category?.productType,
-      size: state?.size?.name,
-      innerpage: state?.numberOfPages[0] && state?.numberOfPages[1]?.number[0]
-    } : productCategory === "POSTER" ? {
-      category: 'poster',
-      product: state?.category?.productType,
-      size: state?.size?.name,
-      papertype: state?.paperType[0] && state?.paperType[0].substr(14, 7),
-      sides: state?.numberOfSides[0] && state?.numberOfSides[0]
-    } :  productCategory === "FLYERS_LEAFLET" ? {
-      category: 'flyer',
-      product: state?.category?.productType,
-      size: state?.category?.name == "Rectangular Flyer" ? state?.size?.name : `${state?.size?.width} x ${state?.size?.height}`,
-      papertype: state?.paperType[0] && state?.paperType[0].substr(14, 7),
-      folding: state?.folding[0] && state?.folding[0]?.foldingName
-    } :  productCategory === "ENVELOPE" ? {
-      category: 'envelop',
-      product: state?.category?.productType,
-      window: state?.window[0] && state?.window[0].windowName
-    } :  productCategory === "LETTERHEAD" ? {
-      category: 'letterhead',
-      product: state?.category?.productType,
-    } : {
-      category: 'sticker',
-      product: 'Sicker',
-      size: `${state?.size?.width} x ${state?.size?.height}`,
-      shape: shape
-    })}
+  //usefffff
+  useEffect(() => {
+    if (state && productId) {
+      setValues(productCategory == "BUSINESS_CARD" ? {
+        category: 'businesscard',
+        product: state?.category?.productType,
+        size: `${state?.size[0]?.width} x ${state?.size[0]?.height}`,
+        corner: `${state?.corner[0] && state?.corner[0].cornerName} Corner`,
+        spotuvside: state?.spotUV[0] && state?.spotUV[0]
+      } : productCategory == "BOOKLET" ? {
+        category: 'booklet',
+        product: state?.category?.productType,
+        size: state?.size?.name,
+        innerpage: state?.numberOfPages[0] && state?.numberOfPages[1]?.number[0]
+      } : productCategory === "POSTER" ? {
+        category: 'poster',
+        product: state?.category?.productType,
+        size: state?.size?.name,
+        papertype: state?.paperType[0] && state?.paperType[0].substr(14, 7),
+        sides: state?.numberOfSides[0] && state?.numberOfSides[0]
+      } : productCategory === "FLYERS_LEAFLET" ? {
+        category: 'flyer',
+        product: state?.category?.productType,
+        size: state?.category?.name == "Rectangular Flyer" ? state?.size?.name : `${state?.size?.width} x ${state?.size?.height}`,
+        papertype: state?.paperType[0] && state?.paperType[0].substr(14, 7),
+        folding: state?.folding[0] && state?.folding[0]?.foldingName
+      } : productCategory === "ENVELOPE" ? {
+        category: 'envelop',
+        product: state?.category?.productType,
+        window: state?.window[0] && state?.window[0].windowName
+      } : productCategory === "LETTERHEAD" ? {
+        category: 'letterhead',
+        product: state?.category?.productType,
+      } : {
+        category: 'sticker',
+        product: 'Sicker',
+        size: `${state?.size?.width} x ${state?.size?.height}`,
+        shape: shape
+      })
+    }
 
   }, [state])
 
   useEffect(() => {
-    setSliceArray(priceChart?.splice(0, 5));
+    let newPriceChartArray = priceChart;
+    setSliceArray(newPriceChartArray?.slice(0, 5));
   }, [priceChart])
 
   useEffect(() => {
@@ -155,11 +157,7 @@ const EditedSingleProductContainer = ({ route }) => {
 
   useEffect(() => {
     setflag(true);
-    Object.keys(defaultValuesObject).map((k)=> {
-      if (defaultValuesObject[k] === "" || defaultValuesObject[k]===undefined || defaultValuesObject[k]===null) {
-        dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject));
-      }
-    });
+    dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
   }, [values, state]);
 
   useEffect(() => {
@@ -207,7 +205,10 @@ const EditedSingleProductContainer = ({ route }) => {
   }
 
   const sliceData = () => {
-    setSliceArray(priceChart);
+    // setSliceArray(priceChart);
+    setSliceArray((prev) => {
+      return priceChart
+    })
     // setSelectedPriceChart(cartItem?.priceChart && cartItem?.priceChart);
     setflag(false);
   }
@@ -240,7 +241,7 @@ const EditedSingleProductContainer = ({ route }) => {
       category: state?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl: designUrl,
+      designUrl: selectedUpload == "urlLink" ? designUrl : result,
       preview: preview,
       numberOfPages: state?.numberOfPages[0] ? [{ name: state?.numberOfPages && state?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: state?.numberOfPages && state?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
       cut: selectedCut,
@@ -252,13 +253,15 @@ const EditedSingleProductContainer = ({ route }) => {
       finishing: selectFinishing,
       remarks: remarks,
       cut: selectedCut,
+      sendByMail: selectedUpload == "email" ? true: false
     }
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {
         delete obj[key];
       }
     });
-    dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate)); 
+    console.log("updated obj" ,obj);
+    dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate));
 
 
   }

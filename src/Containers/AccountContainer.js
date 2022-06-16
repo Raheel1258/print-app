@@ -1,17 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text} from 'react-native';
+import { View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import Storage from '../Utils/Storage';
 import i18n from 'i18next';
-import { WebView } from 'react-native-webview';
 
 import { logout } from '../store/actions/auth';
 import AccountScreen from '../Screens/AccountScreen';
 import { colors } from '../Utils/theme';
 
 const AccountContainer = () => {
+  const webViewRef = useRef();
   const refRBSheet = useRef();
   const accountRBSheet = useRef();
   const [focused, setFocused] = useState(true);
@@ -21,7 +21,8 @@ const AccountContainer = () => {
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
   const [languageToggle, setLanguageToggle] = useState(true);
-  const [faqsFlaq, setFaqsFlag] = useState(false);
+  const [canGoBack, setCanGoBack] = useState(false)
+
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data);
@@ -30,8 +31,7 @@ const AccountContainer = () => {
     navigation.goBack();
   };
 
-  const changeLanguageHandler = (lang) =>
-  {
+  const changeLanguageHandler = (lang) => {
     i18n.changeLanguage(lang)
     refRBSheet.current.close();
   }
@@ -45,15 +45,6 @@ const AccountContainer = () => {
     setModalVisible(!isModalVisible);
   };
 
-  // const handleFaq = () => {
-  //   console.log("into faq");
-  //   <WebView
-  //   source={{
-  //     uri: 'https://pri.cxstaging.com/faqs/'
-  //   }}
-  // />
-  // }
-
   useEffect(() => {
     isFocused &&
       Storage.retrieveData('token').then(token => {
@@ -64,7 +55,7 @@ const AccountContainer = () => {
 
   return (
     <View style={styles.container}>
-      {!faqsFlaq ? <AccountScreen
+      <AccountScreen
         navigate={navigate}
         goBack={goBack}
         refRBSheet={refRBSheet}
@@ -77,13 +68,7 @@ const AccountContainer = () => {
         changeLanguageHandler={changeLanguageHandler}
         languageToggle={languageToggle}
         setLanguageToggle={setLanguageToggle}
-        faqsFlaq={faqsFlaq} 
-        setFaqsFlag={setFaqsFlag}
-      />:<WebView
-      source={{
-      uri: 'https://pri.cxstaging.com/en/faqs/'}}
-      
-/>}
+      />
     </View>
   );
 };

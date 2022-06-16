@@ -11,15 +11,15 @@ const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMeth
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('sub_total')}</Text>
-        <Text style={styles.pricesText}>(HK$ {(subTotal)})</Text>
+        <Text style={styles.pricesText}>(HK$ {(subTotal).toFixed(2)})</Text>
       </View>
       {deliveryMethod == "Delivery" && <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('delivery_order_text')}</Text>
-        <Text style={styles.pricesText}>(HK$ {(deliveryCost) })</Text>
+        <Text style={styles.pricesText}>(HK$ {(deliveryCost).toFixed(2) })</Text>
       </View>}
-     {promocodeDiscount != "0" && <View style={styles.contentContainer}>
+     {promocodeDiscount != "0" && promocodeDiscount != "" && <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('discount_text')}</Text>
-        <Text style={styles.pricesText}>(HK$ {(promocodeDiscount)})</Text>
+        <Text style={styles.pricesText}>(HK$ {parseFloat(promocodeDiscount).toFixed(2)})</Text>
       </View>}
       <View style={styles.contentContainer}>
         <Text style={styles.totalText}>{t('total_pay')}</Text>

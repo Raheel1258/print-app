@@ -3,12 +3,12 @@ import { View, Text, FlatList, ActivityIndicator, ScrollView } from 'react-nativ
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
-import { ImageSlider, AllCategoriesCard, ImageSwiper } from '../Components';
+import { AllCategoriesCard, ImageSwiper } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
 
 
-const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions, animation }) => {
+const HomeScreen = ({ categories, homeSliderImages, animation }) => {
 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
@@ -17,14 +17,14 @@ const HomeScreen = ({ categories, homeSliderImages, homeSliderImagesCaptions, an
   return (
     <>
       {
-        animation  ?
-        <View style={styles.loaderContainer}>
+        animation ?
+          <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
-          </View> : 
+          </View> :
           <>
-            <ImageSwiper sliderImages={homeSliderImages}  />
+            <ImageSwiper sliderImages={homeSliderImages} />
             <View style={styles.container}>
-            {categories && <Text style={styles.printText}>{t('lets_print')}</Text>}
+              {categories && <Text style={styles.printText}>{t('lets_print')}</Text>}
               <FlatList
                 numColumns={2}
                 data={categories && categories}
@@ -56,7 +56,7 @@ const styles = ScaledSheet.create({
     textAlign: 'left',
     color: colors.blackColor,
     marginTop: '7@s',
-    marginBottom:'7@s',
+    marginBottom: '10@s',
   },
   flatlistContainer: {
     paddingBottom: '70@s',

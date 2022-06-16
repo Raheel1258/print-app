@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScaledSheet } from 'react-native-size-matters';
 
-import {getProductListByCategory, getCategoriesProduct} from '../store/actions/productList';
+import {getCategoriesProduct} from '../store/actions/productList';
 
 import ProductsListingScreen from '../Screens/ProductsListingScreen';
 import {colors} from '../Utils/theme';
@@ -27,9 +27,6 @@ const ProductsListingContainer = ({route}) => {
   };
 
   useEffect(()=>{
-    //Mock Data
-    // dispatch(getProductListByCategory(category,setAnimation))
-    //Api Data
     dispatch(getCategoriesProduct(category,setAnimation));
   },[])
   return (

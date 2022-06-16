@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Linking } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -21,21 +21,19 @@ import LanguageIcon from '../Assests/Svgs/LanguageIcon';
 import ShuffleIcon from '../Assests/Svgs/ShuffleIcon';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountScreen = ({ 
-  navigate, 
-  goBack, 
-  refRBSheet, 
-  logoutHandler, 
-  accountRBSheet, 
-  focused, 
-  setFocused, 
-  isModalVisible, 
-  toggleModal, 
+const AccountScreen = ({
+  navigate,
+  goBack,
+  refRBSheet,
+  logoutHandler,
+  accountRBSheet,
+  focused,
+  setFocused,
+  isModalVisible,
+  toggleModal,
   changeLanguageHandler,
   languageToggle,
   setLanguageToggle,
-  faqsFlaq, 
-  setFaqsFlag, 
 }) => {
   const { t } = useTranslation();
 
@@ -56,7 +54,7 @@ const AccountScreen = ({
             Children={<AccountIcon />}
           />
           <UploadFileComponent
-          onPress={()=> setFaqsFlag(true)}
+            onPress={() => languageToggle ? Linking.openURL('https://pri.cxstaging.com/en/faqs/') : Linking.openURL('https://pri.cxstaging.com/faqs/')}
             title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}
@@ -69,22 +67,22 @@ const AccountScreen = ({
             languageTitle={t('select_language')}
             childern={
               <>
-                <GreenButton 
-                 backgroundColor={
-                  languageToggle ? colors.greenColor : colors.smokeWhiteColor
-                }
-                color={languageToggle ? colors.whiteColor : colors.greenColor}
-                onPress={()=> {changeLanguageHandler('en'), setLanguageToggle(true)}} 
-                title={'English'} />
-                <View style={styles.buttonWrapper}>
-                  <GreenButton 
-                  onPress={()=> {changeLanguageHandler('chi'), setLanguageToggle(false)}} 
-                  borderWidth={2} 
+                <GreenButton
                   backgroundColor={
-                    languageToggle? colors.smokeWhiteColor : colors.greenColor
+                    languageToggle ? colors.greenColor : colors.smokeWhiteColor
                   }
-                  color={languageToggle ? colors.greenColor : colors.whiteColor} 
-                  title={t('chinese_text')} />
+                  color={languageToggle ? colors.whiteColor : colors.greenColor}
+                  onPress={() => { changeLanguageHandler('en'), setLanguageToggle(true) }}
+                  title={'English'} />
+                <View style={styles.buttonWrapper}>
+                  <GreenButton
+                    onPress={() => { changeLanguageHandler('chi'), setLanguageToggle(false) }}
+                    borderWidth={2}
+                    backgroundColor={
+                      languageToggle ? colors.smokeWhiteColor : colors.greenColor
+                    }
+                    color={languageToggle ? colors.greenColor : colors.whiteColor}
+                    title={t('chinese_text')} />
                 </View>
               </>}
           />

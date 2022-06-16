@@ -4,6 +4,7 @@ import Toast from 'react-native-toast-message';
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
+import { t } from 'i18next';
 
 
 function setUserLogin(loginData) {
@@ -29,7 +30,7 @@ export const login = (data, navigation, setAnimation) => {
             .then(async (res) => {
                 Toast.show({
                     type: 'success',
-                    text1: 'You are successfully logged in',
+                    text1: t('login_correct'),
                 });
                 setAnimation(false);
                 await Storage.storeData('token', res?.data?.accessToken);
@@ -42,10 +43,17 @@ export const login = (data, navigation, setAnimation) => {
                 dispatch(setUserLogin(res));
             })
             .catch((err) => {
+                console.log("invalid login" , err?.response);
                 setAnimation(false);
+                if(err?.response?.data?.statusCode === 400){
+                    Toast.show({
+                        type: 'error',
+                        text1: t('invalid_login_message'),
+                    });
+                }else
                 Toast.show({
                     type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                    text1: t('general_message'),
                 });
             });
     }
@@ -62,7 +70,7 @@ export const signup = (data, navigation, setAnimation) => {
             .then(async (res) => {
                 Toast.show({
                     type: 'success',
-                    text1: 'You are successfully signed up'
+                    text1: t('login')
                 })
                 navigation.navigate('home')
                 dispatch(setUserSignup(res));
@@ -70,10 +78,18 @@ export const signup = (data, navigation, setAnimation) => {
             })
             .catch((err) => {
                 setAnimation(false);
-                Toast.show({
-                    type: 'error',
-                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
-                });
+                if(err?.response?.data?.statusCode == 400){
+                    Toast.show({
+                        type: 'error',
+                        text1: t('user_already_exit_message'),
+                    });
+                }else {     
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+                }
+               
             });
     }
 }
@@ -87,7 +103,7 @@ export const forgotPassword = (data, navigate, setAnimation) => {
         	.then(async (res) => {
         		Toast.show({
         			type: 'success',
-        			text1: res?.data
+        			text1: t('otp_send')
         		})
                 setAnimation(false);
                navigate('verificationCode');
@@ -96,7 +112,7 @@ export const forgotPassword = (data, navigate, setAnimation) => {
                 setAnimation(false);
         		Toast.show({
         			type: 'error',
-        			text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+        			text1: t('general_message'),
         		});
         	});
 
@@ -112,16 +128,23 @@ export const verificationOtpCode = (data,navigate, setAnimation) => {
         	.then(async (res) => {
         		Toast.show({
         			type: 'success',
-        			text1: 'Otp verified successfully'
+        			text1: t('otp_message')
         		})
                 setAnimation(false);
                 navigate('resetPassword', {userId:res?.data?._id});
         	})
         	.catch((err) => {
+                console.log("opt msg" , err?.response?.data?.statusCode);
                 setAnimation(false);
+                if(err?.response?.data?.statusCode === 400){
+                    Toast.show({
+                        type: 'error',
+                        text1: t('invalid_otp'),
+                    });
+                }else
         		Toast.show({
         			type: 'error',
-        			text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+        			text1: t('general_message'),
         		});
         	});
 
@@ -137,7 +160,7 @@ export const resetPasswordAction = (data, navigate, setAnimation) => {
         	.then(async (res) => {
         		Toast.show({
         			type: 'success',
-        			text1: 'Passowrd is reset successfully'
+        			text1:  t('reset_password_message')
         		})
                setAnimation(false);
                navigate("signin");
@@ -146,7 +169,7 @@ export const resetPasswordAction = (data, navigate, setAnimation) => {
                 setAnimation(false);
         		Toast.show({
         			type: 'error',
-        			text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+        			text1: t('network_error'),
         		});
         	});
 
@@ -160,7 +183,7 @@ export const logout = (navigation, setAnimation) => {
         await Storage.removeData('token');
         Toast.show({
             type: 'success',
-            text1: 'You are logged out',
+            text1: t('logout'),
         });
         navigation.navigate('auth', { next: 'signin' });
         setAnimation(false);

@@ -128,6 +128,7 @@ const styles = ScaledSheet.create({
     fontWeight: '600',
     height:'130%',
 		justifyContent: 'center',
+    color:colors.blackColor,
 		alignItems: 'center',
   },
   cardImage:{

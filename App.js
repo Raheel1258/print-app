@@ -9,7 +9,7 @@ import SplashScreen from 'react-native-splash-screen';
 import OneSignal from 'react-native-onesignal';
 
 import Routes from './src/Utils/Routes';
-
+import linking from './src/Utils/linking';
 
 
 const App = () => {
@@ -56,7 +56,7 @@ const App = () => {
         notification.notification?.additionalData?.route,
       );
       // Linking.openURL(
-      //   `demo://${notification.notification?.additionalData?.route}`,
+      //   ''
       // );
     });
     return <></>;
@@ -68,7 +68,7 @@ const App = () => {
     <Provider store={store}>
     <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={"white"} barStyle={"dark-content"} />
-        <NavigationContainer>
+        <NavigationContainer linking={linking}>
           <Routes />
         </NavigationContainer>
         <Toast/>

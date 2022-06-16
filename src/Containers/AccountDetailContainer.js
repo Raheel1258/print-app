@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards } from "../store/actions/userPersonalDetailAction"
@@ -14,6 +14,7 @@ const AccountDetailContainer = () => {
   const addCardetCardRBSheet = useRef();
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
   const [animation, setAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
@@ -45,7 +46,7 @@ const AccountDetailContainer = () => {
   useEffect(() => {
     dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
     dispatch(getAllCards()) 
-  }, [])
+  }, [isFocused])
 
 
   const handleUpdatedPersonalDetail = (values) => {

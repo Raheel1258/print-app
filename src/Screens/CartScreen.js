@@ -83,7 +83,10 @@ const CartScreen = ({
   deliveryMethod,
   deliveryCost,
   handleAddressForBottomSheet,
-  animationForgettingAddress
+  animationForgettingAddress,
+  handleCardsForBottomSheet,
+  userCardData, 
+  setUserCardData
 }) => {
 
   const { t } = useTranslation();
@@ -161,10 +164,10 @@ const CartScreen = ({
             />
             <CategoriesTitleHeader title={t('payment_method')} />
             <RadioButtonComponent
-              onPress={() => creditCardRBSheet.current.open()}
+              onPress={() => handleCardsForBottomSheet()}
               toggleModal={toggleModal}
               title={t('cradit_card_text')}
-              description="Select card"
+              description={userCardData}
               secondTitle={t('bank_transfer')}
               secondDescription={t("bank_detail")}
               radioButtonStatus={paymentMethod}
@@ -234,7 +237,8 @@ const CartScreen = ({
                 addNew={t('new_credit_card')}
                 data={cardData}
                 setData={setCardData}
-                setShowDetail={setDeliveryUserAddress}
+                setShowDetail={setUserCardData}
+                animationForgettingAddress={animationForgettingAddress}
                 onPress={() => {
                   creditCardRBSheet.current.close();
                   addCardetCardRBSheet.current.open();

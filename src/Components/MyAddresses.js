@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
+import VisaCard from '../Assests/Svgs/VisaCard';
 import { colors, fonts } from '../Utils/theme';
 
 const MyAddresses = ({ description, address, card, handleUserAddressRemove, refRBSheet, setUpdatedAddress, makePrimary, title }) => {
@@ -35,7 +36,7 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
             <View style={styles.cardPrivacyContainer}>
               <Text style={styles.cardNumText}>Card number:</Text>
               <Text style={styles.masterCardText}>{card?.brand}</Text>
-             {card?.brand != "Visa" && <MasterCard /> }
+             {card?.brand == "Visa" ? <VisaCard/>:<MasterCard /> }
             </View>
             <View style={styles.cardPrivacyContainer}>
               <Text style={styles.cardNumText}>Expiry:</Text>

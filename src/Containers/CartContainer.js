@@ -5,7 +5,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder } from '../store/actions/cartAction';
+import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder, getAllCards } from '../store/actions/cartAction';
 import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
@@ -34,6 +34,7 @@ const CartContainer = () => {
   const [delivery, setDelivery] = useState(true);
   const [deliveryMethod, setDeliveryMethod] = useState("Delivery");
   const [deliveryUserAddress, setDeliveryUserAddress] = useState("Select delivery address");
+  const [userCardData, setUserCardData] = useState("Select card");
   const [animationForgettingAddress, setAnimationForgettingAddress] = useState(false)
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
@@ -48,27 +49,32 @@ const CartContainer = () => {
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
+  const userCardsDetails = useSelector(state => state?.cartReducer?.userCardsData);
 
 
   const [data, setData] = useState(userDetailData?.addresses);
-  const [cardData, setCardData] = useState([
-    {
-      id: '1',
-      title: 'Mastercard (9238)',
-      addressLineOne: 'Peter Leung',
-      addressLineTwo: 'Exp: 09/23',
-      children: <MasterCard />,
-      selected: true
-    },
-    {
-      id: '2',
-      title: 'Visa (1628)',
-      addressLineOne: 'Peter Leung',
-      addressLineTwo: 'Exp: 09/23',
-      children: <VisaCard />,
-      selected: false
-    },
-  ]);
+  const [cardData, setCardData] = useState(userCardsDetails);
+
+  console.log("data into card  container" , userCardsDetails);
+  console.log("data into card satet state state container" , cardData);
+  // const [cardData, setCardData] = useState([
+  //   {
+  //     id: '1',
+  //     title: 'Mastercard (9238)',
+  //     addressLineOne: 'Peter Leung',
+  //     addressLineTwo: 'Exp: 09/23',
+  //     children: <MasterCard />,
+  //     selected: true
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'Visa (1628)',
+  //     addressLineOne: 'Peter Leung',
+  //     addressLineTwo: 'Exp: 09/23',
+  //     children: <VisaCard />,
+  //     selected: false
+  //   },
+  // ]);
 
   // useEffect(() => {
   //   Storage.retrieveData('token').then((token) => {
@@ -129,6 +135,11 @@ const CartContainer = () => {
   const handleAddressForBottomSheet = () => {
     refRBSheet?.current?.open();
     dispatch(getUserDetailForPlacingOrder(setData, setAnimationForgettingAddress));
+  }
+
+  const handleCardsForBottomSheet = () => {
+    creditCardRBSheet?.current?.open();
+    dispatch(getAllCards(setAnimationForgettingAddress, setCardData)) 
   }
 
   const handlePayment = () => {
@@ -249,6 +260,9 @@ const CartContainer = () => {
         deliveryMethod={deliveryMethod}
         deliveryCost={deliveryCost}
         animationForgettingAddress={animationForgettingAddress}
+        handleCardsForBottomSheet={handleCardsForBottomSheet}
+        userCardData={userCardData} 
+        setUserCardData={setUserCardData}
       />
     </View>
   );

@@ -11,22 +11,32 @@ const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail,
       return prev?.map((x,i)=>{
         if(x?._id == id){
           setShowDetail(x?.addressLine1);
-        return {...prev[i], primary: true}
+        return {...prev[i], status1: true}
         }else{
-          return {...prev[i], primary: false}
+          return {...prev[i], status1: false}
+        }
+      })
+    })
+  }
+
+  const handleCardData = (id) => {
+    setData((prev)=> {
+      return prev?.map((x,i)=>{
+        if(x?.id == id){
+          setShowDetail(x?.name);
+        return {...prev[i], status1: true}
+        }else{
+          return {...prev[i], status1: false}
         }
       })
     })
   }
 
 const renderItem = ({item}) => <DeliverAndCreditCard 
-  onPress={() => handleData(item?._id)} 
-  title={item?.fullName} 
-  companyName = {item?.companyName} 
-  addressLineOne={item.addressLine1} 
-  addressLineTwo={item?.addressLine2} 
+  onPress={item?._id ? () => handleData(item?._id): () => handleCardData(item?.id)} 
+  item={item} 
   // children={item?.children} 
-  selected={item?.primary} />;
+  selected={item?.status1} />;
 
   return (
     

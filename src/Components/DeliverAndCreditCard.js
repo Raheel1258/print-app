@@ -5,13 +5,12 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors,fonts} from '../Utils/theme';
 import UnCheckedCircleIcon from '../Assests/Svgs/UnCheckedCircleIcon';
 import CheckedBlueIcon from '../Assests/Svgs/CheckedBlueIcon';
+import MasterCard from '../Assests/Svgs/MasterCard';
+import VisaCard from '../Assests/Svgs/VisaCard';
 
 const DeliverAndCreditCard = ({
-    title,
+  item,
     children,
-    companyName,
-    addressLineOne,
-    addressLineTwo = '',
     selected,
     onPress,
 }) => {
@@ -20,20 +19,23 @@ const DeliverAndCreditCard = ({
       <View style={styles.marginContainer}>
         <View style={styles.titleHeader}>
           <Text style={styles.titleText} numberOfLines={1}>
-            {title}
+            {item?.fullName ? item?.fullName : item?.brand}
           </Text>
-         {children}
+         {item?.brand && (item?.brand == 'Visa' ? <VisaCard/> : <MasterCard/>)}
         </View>
-        <Text style={companyName? styles.companyText : styles.companyStyle} numberOfLines={1}>
-           {companyName}
+        <Text style={item?.companyName? styles.companyText : styles.companyStyle} numberOfLines={1}>
+           {item?.companyName ? item?.companyName : item?.name}
         </Text>
+        <Text style={styles.addressText} numberOfLines={2}>
+            {item?.exp_month}
+            </Text>
         <View style={styles.contentContainer}>
           <View>
             <Text style={styles.addressText} numberOfLines={2}>
-            {addressLineOne}
+            {item.addressLine1}
             </Text>
             <Text style={styles.addressText} numberOfLines={2}>
-            {addressLineTwo}
+            {item?.addressLine2}
             </Text>
           </View>
           {selected ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}

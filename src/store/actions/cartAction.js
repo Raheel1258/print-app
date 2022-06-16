@@ -35,6 +35,13 @@ function setPromoCodeDetail(data) {
     }
 }
 
+function setUserCardData(data) {
+    return {
+        type: types.USER_CARDS_DATA,
+        data
+    }
+}
+
 
 //Get Cart Data
 export const getCartData = (setAnimation, setTextValue) => {
@@ -217,6 +224,30 @@ export const getUserDetailForPlacingOrder = (setData, setAnimationForgettingAddr
                 Toast.show({
                     type: 'error',
                     text1: t('general_message'),
+                });
+            });
+
+    }
+}
+
+//get all cards
+export const  getAllCards = (setAnimation, setCardData) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, {headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("res from back end for data", res?.data?.data);
+                setAnimation(false);
+                setCardData(res?.data?.data)
+                dispatch(setUserCardData(res?.data?.data))
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false)
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
                 });
             });
 

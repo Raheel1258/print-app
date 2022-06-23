@@ -613,6 +613,7 @@
 			baseConfigurationReference = 5337375D6759C5C1EDD92BF0 /* Pods-Print-PrintTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEVELOPMENT_TEAM = RLTZVSCH33;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -641,6 +642,7 @@
 			baseConfigurationReference = 2DEEC484E214E6E8C452D9EA /* Pods-Print-PrintTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = RLTZVSCH33;
 				INFOPLIST_FILE = PrintTests/Info.plist;
@@ -690,7 +692,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -727,7 +729,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -739,6 +741,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 028DA8F91790B1108E214692 /* Pods-Print.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Print/Print.entitlements;
@@ -750,6 +753,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -757,6 +761,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp;
 				PRODUCT_NAME = Print;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -767,6 +772,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E2D810681B1B4BD066799A77 /* Pods-Print.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Print/Print.entitlements;
@@ -777,6 +783,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -784,6 +791,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp;
 				PRODUCT_NAME = Print;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

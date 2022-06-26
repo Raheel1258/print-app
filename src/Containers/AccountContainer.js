@@ -11,7 +11,6 @@ import AccountScreen from '../Screens/AccountScreen';
 import { colors } from '../Utils/theme';
 
 const AccountContainer = () => {
-  const webViewRef = useRef();
   const refRBSheet = useRef();
   const accountRBSheet = useRef();
   const [focused, setFocused] = useState(true);
@@ -21,7 +20,6 @@ const AccountContainer = () => {
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
   const [languageToggle, setLanguageToggle] = useState(true);
-  const [canGoBack, setCanGoBack] = useState(false)
 
 
   const navigate = (routeName, data = {}) => {
@@ -37,7 +35,7 @@ const AccountContainer = () => {
   }
 
   const logoutHandler = () => {
-    dispatch(logout(navigation, setAnimation));
+    userToken && dispatch(logout(navigation, setAnimation));
   };
 
   const [isModalVisible, setModalVisible] = useState(false);
@@ -68,6 +66,7 @@ const AccountContainer = () => {
         changeLanguageHandler={changeLanguageHandler}
         languageToggle={languageToggle}
         setLanguageToggle={setLanguageToggle}
+        userToken={userToken}
       />
     </View>
   );

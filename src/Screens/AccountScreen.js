@@ -34,6 +34,7 @@ const AccountScreen = ({
   changeLanguageHandler,
   languageToggle,
   setLanguageToggle,
+  userToken
 }) => {
   const { t } = useTranslation();
 
@@ -49,7 +50,7 @@ const AccountScreen = ({
       <ScrollView>
         <View style={styles.paddingContainer}>
           <UploadFileComponent
-            onPress={() => navigate('accountDetail')}
+            onPress={() => {userToken ? navigate('accountDetail') : accountRBSheet.current.open()}}
             title={t('my_details')}
             Children={<AccountIcon />}
           />
@@ -67,13 +68,15 @@ const AccountScreen = ({
             languageTitle={t('select_language')}
             childern={
               <>
-                <GreenButton
+               <View style={{marginTop:10}}>
+               <GreenButton
                   backgroundColor={
                     languageToggle ? colors.greenColor : colors.smokeWhiteColor
                   }
                   color={languageToggle ? colors.whiteColor : colors.greenColor}
                   onPress={() => { changeLanguageHandler('en'), setLanguageToggle(true) }}
                   title={'English'} />
+               </View>
                 <View style={styles.buttonWrapper}>
                   <GreenButton
                     onPress={() => { changeLanguageHandler('chi'), setLanguageToggle(false) }}
@@ -87,7 +90,7 @@ const AccountScreen = ({
               </>}
           />
           <UploadFileComponent
-            onPress={toggleModal}
+            onPress={()=> {userToken ? toggleModal(): accountRBSheet.current.open()}}
             title={t('sign_out')}
             Children={<ShuffleIcon />}
           />
@@ -132,10 +135,10 @@ const AccountScreen = ({
           </>
         }
         languageTitle={t('Signup_today')}
-        note={false}
+        // note={false}
         refRBSheet={accountRBSheet}
         height={420}
-        onClose={false}
+        // onClose={false}
       />
       <VerificationModal
         title={t('you_signed_out')}

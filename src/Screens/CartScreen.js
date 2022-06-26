@@ -83,7 +83,8 @@ const CartScreen = ({
   deliveryMethod,
   deliveryCost,
   handleAddressForBottomSheet,
-  animationForgettingAddress
+  animationForgettingAddress,
+  userToken
 }) => {
 
   const { t } = useTranslation();
@@ -103,9 +104,9 @@ const CartScreen = ({
   );
   return (
     <>
-      {!animation ?
+      {!animation ? 
         <View style={styles.container}>
-          {cartItem?.length > 0 ? <ScrollView nestedScrollEnabled={true}>
+          {(cartItem?.length > 0) ? <ScrollView nestedScrollEnabled={true}>
             <BackArrowHeader
               arrow={false}
               title={t('cart_text')}
@@ -296,10 +297,10 @@ const CartScreen = ({
               </>
             }
             languageTitle={t('Signup_today')}
-            note={false}
+            // note={false}
             refRBSheet={authRBSheet}
             height={420}
-            onClose={false}
+            // onClose={false}
           />
 
         </View>

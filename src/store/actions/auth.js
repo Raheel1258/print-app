@@ -185,7 +185,7 @@ export const logout = (navigation, setAnimation) => {
             type: 'success',
             text1: t('logout'),
         });
-        navigation.navigate('auth', { next: 'signin' });
+        navigation.navigate('homeStack');
         setAnimation(false);
         dispatch(setUserSignup(data));
 

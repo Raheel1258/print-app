@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 
 import {colors, fonts} from '../Utils/theme';
 
-const OrderDetailsComponent = ({orderDate, deliveryMethod, deliveryAddress, paymentMethod, date, method, address, payment }) => {
+const OrderDetailsComponent = ({orderDate, deliveryMethod, deliveryAddress, paymentMethod, date, method, address, payment, discount, discountAmount }) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
@@ -17,6 +17,12 @@ const OrderDetailsComponent = ({orderDate, deliveryMethod, deliveryAddress, paym
         <Text style={styles.title}>{deliveryMethod}</Text>
         <Text style={styles.description}>{method}</Text>
       </View>}
+      {discount &&
+       <View style={styles.contentContainer}>
+       <Text style={styles.title}>{discount}</Text>
+       <Text style={styles.description}>{discountAmount}</Text>
+     </View>
+      }
       <View style={styles.contentContainer}>
         <Text style={styles.title}>{deliveryAddress}</Text>
         <Text numberOfLines={3} style={styles.description}>{address}</Text>

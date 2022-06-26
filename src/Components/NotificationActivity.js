@@ -60,7 +60,7 @@ const DATA = [
 const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllActivityRead}) => {
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
-  const lastItemId = item?.notifications[lengthItem-1]._id;
+  const lastItemId = item?.notifications[0]._id;
   const {t} = useTranslation();
 
   // const handleData = (id) => {
@@ -98,7 +98,7 @@ const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllAct
        {item?._id == readMark && <TouchableOpacity onPress={()=>handleAllActivityRead()}><Text style={styles.headerText}>{"Mark as all read"}</Text></TouchableOpacity> }
       </View>
       <FlatList
-        data={item?.notifications && item?.notifications}
+        data={item?.notifications && item?.notifications.reverse()}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

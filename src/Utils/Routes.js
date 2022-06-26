@@ -1,4 +1,5 @@
 import React from 'react';
+import Storage from '../Utils/Storage';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
@@ -6,6 +7,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import {Text, View,Platform} from 'react-native';
 import { useSelector } from 'react-redux';
+
 
 import {
   SigninContainer,
@@ -42,7 +44,10 @@ import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
 import AccountIcon from '../Assests/Svgs/AccountIcon';
 import EmptyCartScreen from '../Screens/EmptyCartScreen';
 
-
+let cartLength = 0;
+const fun1 = async() => {
+  cartLength = await Storage.retrieveData('lengthCart')
+}
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
 const Home = createStackNavigator();
@@ -285,7 +290,9 @@ const CartStack = () => {
 
 const MyTabs = ({}) => {
   const {t} = useTranslation();
-  const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
+  fun1();
+  // console.log("length", fun1());
+  // const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   return (
     <Tab.Navigator
       initialRouteName="homeStack"
@@ -330,9 +337,9 @@ const MyTabs = ({}) => {
           title: '',
           tabBarIcon: ({focused, color}) => (
             <View >
-             {cartItem && <View style={styles.cartNumContainer}>
-                <Text style={styles.cartNumText}>{cartItem?.length && cartItem?.length}</Text>
-              </View> }
+              <View style={styles.cartNumContainer}>
+                <Text style={styles.cartNumText}>{cartLength !== 0 ? cartLength : ""}</Text>
+              </View>       
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <CartActiveIcon />

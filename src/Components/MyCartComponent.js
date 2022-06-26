@@ -10,7 +10,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
       <Image  transition={false} style={styles.cardImage} source={{uri:image}} />
       <View>
         <Text numberOfLines={1} style={{...styles.cardTitle,fontFamily:fontFamily}}>{item?.category?.name}</Text>
-        <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text>
+        {/* <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text> */}
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.units}</Text>
@@ -23,6 +23,10 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
           <Text style={styles.quantityText}>Paper type:</Text>
           <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.category?.paperType}</Text>
         </View>
+        {item?.corner && <View style={styles.quantityContainer}>
+          <Text style={styles.quantityText}>Corner: </Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.corner?.cornerName && item?.corner?.cornerName }</Text>
+        </View>} 
 
         {item?.folding && <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Folding: </Text>

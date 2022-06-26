@@ -54,7 +54,7 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
               <DollarIcon />
             </View>
             <Text style={styles.orderText}>{t('order_ammount')}</Text>
-            <Text style={styles.orderText}>HK$ {item?.total}</Text>
+            <Text style={styles.orderText}>HK$ {Math.round(item?.total)}</Text>
           </View>
         </View>
         <View style={styles.arrowIcon}>

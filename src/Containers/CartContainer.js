@@ -86,8 +86,9 @@ const CartContainer = () => {
     });
   }, [isFocused])
 
-  useEffect(() => {
-  }, [authRBSheet]);
+  // useEffect(() => {
+  // }, [authRBSheet]);
+
 
   useEffect(() => {
     handleTotalAmount();
@@ -148,7 +149,7 @@ const CartContainer = () => {
       deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,
       subTotal: subTotal,
-      discount: promocodeDiscount != undefined ? parseInt(promocodeDiscount) : 0,
+      discount: promocodeDiscount != undefined ? Math.round(promocodeDiscount) : 0,
       total: total,
       status: "ORDER_RECIEVED",
       promoCodeApplied:promoCodeAppliedStatus,
@@ -227,7 +228,7 @@ const CartContainer = () => {
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
         authRBSheet={authRBSheet}
-        userToken={userToken}
+        // userToken={userToken}
         focused={focused}
         setFocused={setFocused}
         goBack={goBack}

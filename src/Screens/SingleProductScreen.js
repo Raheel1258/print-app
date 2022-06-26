@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Image, ScrollView, Text, TextInput, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
+import { View, Image, ScrollView, Text, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Linking } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
+import  i18n  from 'i18next';
 
 
 import {
@@ -325,6 +326,10 @@ const SingleProductScreen = ({
             <CategoriesTitleHeader
               title={t('upload_design')}
               description={t('artwork_guidelines')}
+              onPress = {()=>{
+                i18n.language === 'en' ? Linking.openURL('https://printprint.com.hk/en/artwork-guidelines/'):
+                Linking.openURL('https://printprint.com.hk/artwork-guidelines/')
+              }}
             />
             <UploadFileComponent
               width={320}

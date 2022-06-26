@@ -30,9 +30,7 @@ const ActivityContainer = () => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && activityRBSheet.current.open()
-      token && 
-      dispatch(getAllActivity(setAnimation));
-      
+      token && dispatch(getAllActivity(setAnimation));
     });
   }, [isFocused])
 
@@ -43,8 +41,6 @@ const ActivityContainer = () => {
   const goBack = () => {
     navigation.goBack();
   };
-
-  console.log("activityData" , activityData);
 
   const handleActivityIsRead = (id, orderId) => {
    const item = getAllOrderData?.filter((item, index) => item?._id == orderId)
@@ -67,6 +63,7 @@ const ActivityContainer = () => {
         animation={animation}
         handleActivityIsRead={handleActivityIsRead}
         handleAllActivityRead={handleAllActivityRead}
+        userToken={userToken}
       />
     </View>
   );

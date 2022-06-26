@@ -62,14 +62,17 @@ import { colors, fonts } from '../Utils/theme';
   // },
 //];
 
-const MyOrdersListScreen = ({ goBack, orderData,setSupportEmail,handleReceiptEmail, handlerSupportEmail }) => {
+const MyOrdersListScreen = ({ goBack, orderData,handleReceiptEmail, handlerSupportEmail, userToken }) => {
   const { t } = useTranslation();
 
   const renderItem = ({ item, index }) => (
     <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image} index={index} length={item?.length} item={item} />
   );
   return (
-    <View style={styles.container}>
+    <>
+    {userToken ?
+    <>
+     <View style={styles.container}>
       <BackArrowHeader
         goBack={goBack}
         title={t('my_orders')}
@@ -95,25 +98,32 @@ const MyOrdersListScreen = ({ goBack, orderData,setSupportEmail,handleReceiptEma
           deliveryAddress={t('delivery_address')}
           date={orderData?.orderDate}
           method={orderData?.deliveryMethod}
-          address={orderData?.deliveryAddress?.addressLine1}
+          address={orderData?.deliverMethod == "Delivery" ? orderData?.deliveryAddress?.addressLine1 : "NA" }
         />
         <CategoriesTitleHeader title={t('payment_details')} />
         <OrderDetailsComponent
           orderDate={t('order_sub_total')}
           deliveryMethod={t('delivery')}
+          discount={'Discount'}
           deliveryAddress={t('total')}
           paymentMethod={t('payment_method')}
-          date={`HK$ ${orderData?.subTotal}`}
-          method={`HK$ ${orderData?.deliveryCost}`}
-          address={`HK$ ${orderData?.total}`}
+          date={`HK$ ${Math.round(orderData?.subTotal)}`}
+          method={`HK$ ${Math.round(orderData?.deliveryCost)}`}
+          address={`HK$ ${Math.round(orderData?.total)}`}
           payment={orderData?.paymentMethod}
+          discountAmount = {`HK$ ${Math.round(orderData?.discount)}`}
         />
         <CategoriesTitleHeader title={t('order_support')} />
         <UploadFileComponent onPress={()=>handleReceiptEmail(orderData?._id)} width={300} title={t('email_receipt')} />
         <UploadFileComponent onPress={()=>handlerSupportEmail(orderData?._id)} width={300} title={t('contact_support')} />
         <View style={styles.borderBottom} />
       </ScrollView>
-    </View>
+    </View>   
+    </>:<View style={styles.noProduct}><Text>No order Detail</Text></View>
+    }
+    
+    </>
+   
   );
 };
 
@@ -153,7 +163,17 @@ const styles = ScaledSheet.create({
     borderTopWidth: 30,
     borderTopColor: colors.offWhiteColor,
     paddingBottom: '50@s'
-  }
+  },
+  noProduct: {
+    fontFamily: fonts.avenir_light,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    height: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: colors.blackColor
+  },
 });
 
 export default MyOrdersListScreen;

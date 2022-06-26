@@ -14,6 +14,8 @@ const EditedSingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { productCategory, productId, cartItem, cartProductId } = route.params;
 
+  console.log("cartItem" , cartItem);
+
   const priceChart = useSelector(state => state?.productList?.priceChartEdit);
   const state = useSelector(state => state?.productList?.singleProduct);
 
@@ -35,7 +37,16 @@ const EditedSingleProductContainer = ({ route }) => {
 
   const [animation, setAnimation] = useState(false);
   const [designUrl, setDesignUrl] = useState([]);
-  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({ url: [{ url_link: '' }] })
+  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState(
+    // { url: [
+    //   { url_link: '12' },
+    //   { url_link: '123' }
+    // ]},
+    {
+      url: cartItem ? cartItem?.designUrl?.map((item)=>{return {url_link: item}}) : ''
+    }
+  
+    )
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState('uploadFile');
@@ -62,7 +73,7 @@ const EditedSingleProductContainer = ({ route }) => {
   const [selectedWindow, setSelectedWindow] = useState(cartItem?.window && cartItem?.window);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState(cartItem?.remarks);
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(cartItem?.designUrl ? cartItem?.designUrl :[]);
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',

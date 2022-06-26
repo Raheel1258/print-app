@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View} from 'react-native';
+import { View, Text} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import { colors } from '../Utils/theme';
 
 const SingleProductContainer = ({ route }) => {
 
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const { item, categoryTitle, productCategory } = route.params;
 
 

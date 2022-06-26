@@ -46,10 +46,18 @@ export const handleEmailing = (id,flag) => {
     const accessToken = await Storage.retrieveData('token');
     axios.post(`${Api}/order/support/${id}/${flag}`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
         .then(async (res) => {
-          Toast.show({
-            type: 'success',
-            text1: t('email_send')
-        });
+          if(flag){
+            Toast.show({
+              type: 'success',
+              text1: t('email_send'),
+          });
+          }else{
+            Toast.show({
+              type: 'success',
+              text1: t('support_email_send')
+          });
+          }
+         
         })
         .catch((err) => {
             Toast.show({

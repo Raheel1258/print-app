@@ -41,8 +41,9 @@ export const getCartData = (setAnimation, setTextValue) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        axios.get(`${Api}/cart`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            axios.get(`${Api}/cart`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
                 dispatch(setCartDetail(res?.data?.products));
                 dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
@@ -77,7 +78,7 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
                     type: 'success',
                     text1: 'Item added to cart successfully',
                 });
-                navigate("cart");
+                navigate("cartStack");
             })
             .catch((err) => {
                 setAddToCartAnimation(false);

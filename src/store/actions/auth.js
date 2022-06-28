@@ -43,7 +43,6 @@ export const login = (data, navigation, setAnimation) => {
                 dispatch(setUserLogin(res));
             })
             .catch((err) => {
-                console.log("invalid login" , err?.response);
                 setAnimation(false);
                 if(err?.response?.data?.statusCode === 400){
                     Toast.show({
@@ -134,7 +133,6 @@ export const verificationOtpCode = (data,navigate, setAnimation) => {
                 navigate('resetPassword', {userId:res?.data?._id});
         	})
         	.catch((err) => {
-                console.log("opt msg" , err?.response?.data?.statusCode);
                 setAnimation(false);
                 if(err?.response?.data?.statusCode === 400){
                     Toast.show({
@@ -181,6 +179,8 @@ export const logout = (navigation, setAnimation) => {
     return async (dispatch) => {
         setAnimation(true);
         await Storage.removeData('token');
+        await Storage.removeData('lengthActivity');
+        await Storage.removeData('lengthCart');
         Toast.show({
             type: 'success',
             text1: t('logout'),

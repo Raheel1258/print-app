@@ -7,19 +7,30 @@ import ThankyouIcon from '../Assests/Svgs/ThankyouIcon';
 import {CartNotifyComponent} from '../Components';
 import {colors, fonts} from '../Utils/theme';
 
-const OrderReceivedScreen = () => {
+const OrderReceivedScreen = ({welcome}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.orderReceived}>Order Received</Text>
       </View>
-      <CartNotifyComponent
+      {welcome ? <CartNotifyComponent
+        emptyScreen={false}
         title={t('thankyou_text')}
         order={t('order_refrence')}
-        description="Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta."
+        description=" Order received! We will send you an order confirmation e-mail shortly with our bank information. We’ll begin processing your order as soon as the payment is received."
+        description1="If you haven’t uploaded your artwork file, you can now e-mail it to us to order@printprint.com.hk (please quote your order reference)" 
+        description2="Thank you for using PrintPrint :)"
         childern={<ThankyouIcon/>}
-        />
+        /> : <CartNotifyComponent
+        emptyScreen={false}
+        title={t('thankyou_text')}
+        order={t('order_refrence')}
+        description="Order received! We will begin processing your order shortly and let you know as soon as it is ready."
+        description1="If you haven’t uploaded your artwork file, you can now e-mail it to us to order@printprint.com.hk (please quote your order reference)" 
+        description2="Thank you for using PrintPrint :)"
+        childern={<ThankyouIcon/>}
+        />}
     </View>
   );
 };

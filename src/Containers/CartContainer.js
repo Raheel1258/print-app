@@ -45,10 +45,11 @@ const CartContainer = () => {
   const [placeOrderAnimation, setPlaceOrderAnimation] = useState(false);
   const [promoCodeAppliedStatus , setPromoCodeAppliedStatus] = useState(false);
   const [promoCodeAppliedId , setPromoCodeAppliedId] = useState("");
+  const [promoCodeType , setPromoCodeType] = useState("");
+  const [discountInPercentage, setDiscountInPercentage] = useState(0);
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
-
 
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState([
@@ -116,7 +117,7 @@ const CartContainer = () => {
   }
 
   const handlePromoCodeValidation =() =>{
-    dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus, setPromoCodeAppliedId));
+    dispatch(PromoCodeVerifed(setPromoCodeAnimation, textValue, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus, setPromoCodeAppliedId, setPromoCodeType, setDiscountInPercentage));
   }
 
   const handleEditProduct = (item) => {
@@ -149,8 +150,8 @@ const CartContainer = () => {
       deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,
       subTotal: subTotal,
-      discount: promocodeDiscount != undefined ? Math.round(promocodeDiscount) : 0,
-      total: total,
+      discount: (promocodeDiscount != undefined && promoCodeType == "PERCENTAGE") ? Math.round(discountInPercentage) : (promocodeDiscount != undefined) ? Math.round(promocodeDiscount) : 0,
+      total: total >= 0 ? total: 0,
       status: "ORDER_RECIEVED",
       promoCodeApplied:promoCodeAppliedStatus,
       promoCodeId: promoCodeAppliedId
@@ -173,6 +174,7 @@ const CartContainer = () => {
     let unitPrice = 0;
     let subTotal1 = 0;
     let totalPrice = 0;
+    let amountInPercent = 0;
     cartItem && cartItem?.map((item) => {
       quantity = item?.priceChart?.units;
       unitPrice = item?.priceChart?.pricePerUnit;
@@ -180,22 +182,35 @@ const CartContainer = () => {
       subTotal1 = parseFloat(quantity * unitPrice);
       totalPrice = parseFloat(subTotal1);
     });
-    if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery"){
-      console.log(1);
-      totalPrice = parseFloat(totalPrice + deliveryCost);
-      totalPrice = totalPrice - parseFloat(promocodeDiscount);
-      setTotal(totalPrice);
+    if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !==""){
+      if(promoCodeType == "PERCENTAGE"){
+        totalPrice = parseFloat(totalPrice + deliveryCost);
+        amountInPercent = (parseFloat(promocodeDiscount/100)*totalPrice);
+        totalPrice = totalPrice - amountInPercent;
+        setTotal(totalPrice);
+        setDiscountInPercentage(amountInPercent)
+      }else{
+        totalPrice = parseFloat(totalPrice + deliveryCost);
+        totalPrice = totalPrice - parseFloat(promocodeDiscount);
+        setTotal(totalPrice);
+        setDiscountInPercentage(amountInPercent)
+      }
     }else if(deliveryMethod == "Delivery" && promocodeDiscount && promocodeDiscount == "0"){
-      console.log(2);
       totalPrice = parseFloat(totalPrice + deliveryCost);
       setTotal(totalPrice)
-    }else if(promocodeDiscount && promocodeDiscount != "0" && deliveryMethod !== "Delivery"){
-      console.log(3);
-      totalPrice = totalPrice - parseFloat(promocodeDiscount);
+    }else if(promocodeDiscount && promocodeDiscount != "0" && deliveryMethod !== "Delivery" && promoCodeType !==""){
+      if(promoCodeType == "PERCENTAGE"){
+        amountInPercent = (parseFloat(promocodeDiscount/100)*totalPrice);
+        totalPrice = totalPrice - amountInPercent;
+        setTotal(totalPrice);
+        setDiscountInPercentage(amountInPercent);
+      }else{
+        totalPrice = totalPrice - parseFloat(promocodeDiscount);
       setTotal(totalPrice)
+      }
+      
     }
     else {
-      console.log(4);
       setTotal(totalPrice);
     }
     setDeliveryCost(deliveryCost);
@@ -228,7 +243,7 @@ const CartContainer = () => {
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
         authRBSheet={authRBSheet}
-        // userToken={userToken}
+        userToken={userToken}
         focused={focused}
         setFocused={setFocused}
         goBack={goBack}
@@ -250,6 +265,7 @@ const CartContainer = () => {
         deliveryMethod={deliveryMethod}
         deliveryCost={deliveryCost}
         animationForgettingAddress={animationForgettingAddress}
+        promoCodeType={promoCodeType}
       />
     </View>
   );

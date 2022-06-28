@@ -46,7 +46,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                             });
                           }, 1000)
                         //Place order Now payment integrated
-                        navigate("orderReceived");
+                        navigate("orderReceived", {welcome:false});
                      
                     })
                     .catch((err) => {

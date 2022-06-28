@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import {colors, fonts} from '../Utils/theme';
 
-const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMethod, deliveryCost}) => {
+const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMethod, deliveryCost, promoCodeType, discountInPercentage}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
@@ -19,11 +19,11 @@ const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMeth
       </View>}
      {promocodeDiscount != "0" && promocodeDiscount != "" && <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('discount_text')}</Text>
-        <Text style={styles.pricesText}>(HK$ {Math.round(Number(promocodeDiscount))})</Text>
+        {promoCodeType == "PERCENTAGE" ?<Text style={styles.pricesText}>(HK$ {promocodeDiscount}%)</Text>:<Text style={styles.pricesText}>(HK$ {Math.round(Number(promocodeDiscount))})</Text>}
       </View>}
       <View style={styles.contentContainer}>
         <Text style={styles.totalText}>{t('total_pay')}</Text>
-        <Text style={styles.totalText}>HK$ {Math.round(total)}</Text>
+        {total > 0 ? <Text style={styles.totalText}>HK$ {Math.round(total)}</Text>: <Text style={styles.totalText}>HK$ 0</Text>}
       </View>
     </View>
   );

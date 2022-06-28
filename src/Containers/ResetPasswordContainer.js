@@ -44,7 +44,6 @@ const ResetPasswordContainer = ({route}) => {
 
   const handleResetPassword = (values) => {    
       if(values?.password != values?.confirmPassword){
-        console.log("into if");
         Toast.show({
           type: 'error',
           text1: t('new_confirm_password_message'),

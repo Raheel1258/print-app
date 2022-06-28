@@ -20,6 +20,7 @@ import {
   VerificationModal,
 } from '../Components';
 import InfoIcon from '../Assests/Svgs/InfoIcon';
+import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { colors, fonts } from '../Utils/theme';
 
 const SingleProductScreen = ({
@@ -86,6 +87,12 @@ const SingleProductScreen = ({
   sliceArray,
   sliceData,
   flag,
+  accountRBSheet,
+  focused,
+  setFocused,
+  navigate,
+  handleAnotherDesign,
+  remarks
 }) => {
   let widthOne = 120;
   let heightOne = 65;
@@ -372,13 +379,16 @@ const SingleProductScreen = ({
               textAlignVertical="top"
               multiline={true}
               numberOfLines={5}
+              value={remarks}
               style={styles.textAreaInput}
               keyboardType="default"
               returnKeyType="done"
               onSubmitEditing={() => { Keyboard.dismiss() }}
             />
             <View style={styles.bottomContainer}>
-              <Text style={styles.addCart}>{t('add_to_cart')}</Text>
+              <TouchableOpacity onPress={()=> handleAnotherDesign()}>
+                <Text style={styles.addCart}>{t('add_to_cart')}</Text>
+              </TouchableOpacity>
               <GreenButton
                 backgroundColor={colors.blackColor}
                 title={t('add_to_cart_text')}
@@ -558,6 +568,46 @@ const SingleProductScreen = ({
                 })
               }
             />
+           <BottomSheetComponent
+        childern={
+          <>
+            <View style={styles.logoWrapper}>
+              <AuthenticationLogo />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+                color={focused ? colors.whiteColor : colors.greenColor}
+                borderWidth={2}
+                title={t('signup_text')}
+                onPress={() => {
+                  accountRBSheet.current.close();
+                  navigate('auth', { next: 'signup' });
+                  setFocused(true);
+                }}
+              />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                title={t('sheet_login_in')}
+                backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+                color={focused ? colors.greenColor : colors.whiteColor}
+                borderWidth={2}
+                onPress={() => {
+                  accountRBSheet.current.close();
+                  navigate('auth', { next: 'signin' });
+                  setFocused(false);
+                }}
+              />
+            </View>
+          </>
+        }
+        languageTitle={t('Signup_today')}
+        // note={false}
+        refRBSheet={accountRBSheet}
+        height={420}
+        // onClose={false}
+      />
 
           </ScrollView>
         </View> : <View style={styles.loaderContainer}>
@@ -705,6 +755,13 @@ const styles = ScaledSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  logoWrapper: {
+    alignItems: 'center',
+    marginVertical: '15@s'
+  },
+  signinButtonWrapper: {
+    marginTop: '20@s'
   }
 });
 

@@ -15,8 +15,9 @@ const EmptyCartScreen = () => {
         <Text style={styles.orderReceived}>{t('cart_text')}</Text>
       </View>
       <CartNotifyComponent
+         emptyScreen={true}
         title={t('empty_cart')}
-        description='Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta.'
+        description='It seems like you haven’t added any items to your cart yet.'
         childern={<EmptyIcon />}
       />
     </View>

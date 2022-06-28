@@ -25,7 +25,6 @@ const DATA = [
 
 const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation, handleActivityIsRead, handleAllActivityRead, userToken }) => {
   var sortedArray = activityData?.sort((a,b) => Date.parse(new Date(a._id)) - Date.parse(new Date(b._id)));
-  console.log("sorting activity" ,sortedArray);
   const { t } = useTranslation();
   const renderItem = ({ item }) => {
 

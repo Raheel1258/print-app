@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux';
 
 const MyOrdersListContainer = ({route}) => {
   const {item} = route.params;
-  console.log("item is is si", item);
   const dispater = useDispatch()
   const navigation = useNavigation();
   const isFocused = useIsFocused();

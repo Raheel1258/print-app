@@ -9,7 +9,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
       <Image  transition={false} style={styles.cardImage} source={{uri:image}} />
       <View>
-        <Text numberOfLines={1} style={{...styles.cardTitle,fontFamily:fontFamily}}>{item?.category?.name}</Text>
+        <Text numberOfLines={2} style={{...styles.cardTitle,fontFamily:fontFamily}}>{item?.category?.name}</Text>
         {/* <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text> */}
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Quantity:</Text>
@@ -74,8 +74,8 @@ const styles = ScaledSheet.create({
     lineHeight: '20@s',
       letterSpacing: '0.2@s',
     textAlign: 'left',
-    color: colors.blackColor,
-    width:'240@s'
+    color: colors.red,
+    width:'200@s',
   },
   OrderCardTitle:{
     fontFamily: fonts.avenir_regular,

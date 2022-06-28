@@ -14,8 +14,6 @@ const EditedSingleProductContainer = ({ route }) => {
   const { t } = useTranslation();
   const { productCategory, productId, cartItem, cartProductId } = route.params;
 
-  console.log("cartItem" , cartItem);
-
   const priceChart = useSelector(state => state?.productList?.priceChartEdit);
   const state = useSelector(state => state?.productList?.singleProduct);
 
@@ -271,7 +269,6 @@ const EditedSingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
-    console.log("updated obj" ,obj);
     dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate));
 
 

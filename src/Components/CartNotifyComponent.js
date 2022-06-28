@@ -13,8 +13,8 @@ const CartNotifyComponent = ({title, order, description, childern, emptyScreen, 
       {childern}
       <Text style={styles.orderRefrence}>{order}</Text>
       <Text style={styles.description}>{description}</Text>
-      {!emptyScreen && <Text style={styles.description}>{description1}</Text>}
-      {!emptyScreen && <Text style={styles.description}>{description2}</Text>}
+      {!emptyScreen && <Text style={styles.thankyouDescription}>{description1}</Text>}
+      {!emptyScreen && <Text style={styles.thankyouDescription}>{description2}</Text>}
     </View>
     
   );
@@ -31,7 +31,6 @@ const styles = ScaledSheet.create({
     flex: 1,
     paddingHorizontal: '10@s',
     alignItems:'center',
-    justifyContent:'center'
   },
   thankyouText: {
     fontFamily: fonts.avenir_next,
@@ -43,6 +42,8 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
     textAlign: 'center',
     marginBottom: '30@s',
+    marginTop:'40@s'
+
   },
   emptyText:{
     fontFamily: fonts.avenir_next,
@@ -53,8 +54,7 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     color: colors.blackColor,
     textAlign: 'center',
-    marginBottom: '30@s',
-    marginTop:'40@s'
+    marginBottom: '60@s',
 
   },
   orderRefrence: {
@@ -75,8 +75,19 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     textAlign: 'center',
     color: colors.lightBlackColor,
-    width:'250@s'
+    width:'240@s',
   },
+  thankyouDescription:{
+    fontFamily: fonts.avenir_regular,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    lineHeight: '16@s',
+    letterSpacing: '0.2@s',
+    textAlign: 'center',
+    color: colors.lightBlackColor,
+    width:'260@s',
+    marginTop:'20@s'
+  }
 });
 
 export default CartNotifyComponent;

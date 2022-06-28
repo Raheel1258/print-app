@@ -18,17 +18,17 @@ const OrderReceivedScreen = ({welcome}) => {
         emptyScreen={false}
         title={t('thankyou_text')}
         order={t('order_refrence')}
-        description=" Order received! We will send you an order confirmation e-mail shortly with our bank information. We’ll begin processing your order as soon as the payment is received."
-        description1="If you haven’t uploaded your artwork file, you can now e-mail it to us to order@printprint.com.hk (please quote your order reference)" 
-        description2="Thank you for using PrintPrint :)"
+        description={t('description_with_offline_orderPlace')}
+        description1={t('description1_for_upload_artwork')} 
+        description2={t('description2_for_thankyou')}
         childern={<ThankyouIcon/>}
         /> : <CartNotifyComponent
         emptyScreen={false}
         title={t('thankyou_text')}
         order={t('order_refrence')}
-        description="Order received! We will begin processing your order shortly and let you know as soon as it is ready."
-        description1="If you haven’t uploaded your artwork file, you can now e-mail it to us to order@printprint.com.hk (please quote your order reference)" 
-        description2="Thank you for using PrintPrint :)"
+        description={t('description_with_online_orderPlace')}
+        description1={t('description1_for_upload_artwork')} 
+        description2={t('description2_for_thankyou')}
         childern={<ThankyouIcon/>}
         />}
     </View>

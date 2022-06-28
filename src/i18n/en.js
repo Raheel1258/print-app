@@ -252,7 +252,13 @@
     invalid_login_message: 'Invalid Credentials',
     new_confirm_password_message:'New and confirm password must be same',
     user_already_exit_message: 'User already exists!',
-    support_email_send: 'We will be in touch via e-mail within the next 24 hours'
+    support_email_send: 'We will be in touch via e-mail within the next 24 hours',
+    description_with_offline_orderPlace:"Order received! We will send you an order confirmation e-mail shortly with our bank information. We’ll begin processing your order as soon as the payment is received.",
+    description_with_online_orderPlace:"Order received! We will begin processing your order shortly and let you know as soon as it is ready.",
+    description1_for_upload_artwork:"If you haven’t uploaded your artwork file, you can now e-mail it to us to order@printprint.com.hk (please quote your order reference)",
+    description2_for_thankyou:"Thank you for using PrintPrint :)"
+
+
 
   },
 };

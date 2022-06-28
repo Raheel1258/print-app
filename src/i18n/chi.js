@@ -242,7 +242,10 @@ export const chi = {
     invalid_login_message: '无效证件',
     new_confirm_password_message:'新密码和确认密码必须相同',
     user_already_exit_message: '用户已存在!',
-    support_email_send: '我们将在接下来的 24 小时内通过电子邮件与您联系'
-
+    support_email_send: '我们将在接下来的 24 小时内通过电子邮件与您联系',
+    description_with_offline_orderPlace:"收到订单！我们将尽快向您发送一封包含我们银行信息的订单确认电子邮件。我们将在收到付款后立即开始处理您的订单.",
+    description_with_online_orderPlace:"收到订单！我们将很快开始处理您的订单，并在准备好后立即通知您.",
+    description1_for_upload_artwork:"如果您还没有上传您的作品文件，您现在可以通过电子邮件将其发送至 order@printprint.com.hk（请提供您的订单参考）",
+    description2_for_thankyou:"感谢您使用 PrintPrint :)"
   },
 };

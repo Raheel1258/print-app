@@ -312,7 +312,8 @@ const MyTabs = ({}) => {
   // console.log("length", fun1());
 
   const cartItem = useSelector(state => state?.cartReducer?.cartLength);
-  const activityLength = useSelector(state => state?.activitiesReducer?.activityLength)
+  const activityLength = useSelector(state => state?.activitiesReducer?.activityLength);
+  console.log("new length of activity" , activityLength);
 
   return (
     <Tab.Navigator

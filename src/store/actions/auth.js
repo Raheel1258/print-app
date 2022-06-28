@@ -5,6 +5,8 @@ import Toast from 'react-native-toast-message';
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
 import { t } from 'i18next';
+import {setCartLength} from '../actions/cartAction'
+import {setActivityLength} from '../actions/activitiesAction'
 
 
 function setUserLogin(loginData) {
@@ -185,6 +187,8 @@ export const logout = (navigation, setAnimation) => {
             type: 'success',
             text1: t('logout'),
         });
+        dispatch(setCartLength(0));
+        dispatch(setActivityLength(0))
         navigation.navigate('homeStack');
         setAnimation(false);
         dispatch(setUserSignup(data));

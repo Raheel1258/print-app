@@ -6,6 +6,7 @@ import Stripe from 'react-native-stripe-api';
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
 import { t } from 'i18next';
+import {setActivityLength} from '../actions/activitiesAction'
 
 
 export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
@@ -35,6 +36,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                     // });
 
                     //Place order Now payment integrated
+                    let activityLength = await Storage.retrieveData('lengthActivity');
                     axios
                     .post(`${Api}/order/add`, orderObj, {headers: { "Authorization": `Bearer ${accessToken}`}})
                     .then(async (res) => {
@@ -46,6 +48,9 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                             });
                           }, 1000)
                         //Place order Now payment integrated
+                        activityLength =activityLength+1
+                        dispatch(setActivityLength(activityLength))
+                        await Storage.storeData('lengthActivity', activityLength);
                         navigate("orderReceived", {welcome:false});
                      
                     })

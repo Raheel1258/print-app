@@ -238,9 +238,9 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
             .then(async (res) => {
                 setPlaceOrderAnimation(false);
                 console.log("leeeeeght" , activityLength);
-                activityLength = activityLength +1 ;
+                activityLength = activityLength + 1 ;
                 await Storage.storeData('lengthActivity', activityLength);
-                setActivityLength(activityLength)
+                dispatch(setActivityLength(activityLength))
                 navigate("orderReceived" , {welcome: true} );
             })
             .catch((err) => {

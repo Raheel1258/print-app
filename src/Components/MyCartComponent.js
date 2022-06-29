@@ -32,6 +32,16 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
           <Text style={styles.quantityText}>Folding: </Text>
           <Text style={styles.quantityText} numberOfLines={1}>Half fold</Text>
         </View>} 
+
+        {item?.priceChart?.coverPageNumber  && <View style={styles.quantityContainer}>
+          <Text style={styles.quantityText}>coverPageNumber:</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.coverPageNumber}</Text>
+        </View>}
+
+        {item?.priceChart?.innerPageNumber && <View style={styles.quantityContainer}>
+          <Text style={styles.quantityText}>innerPageNumber:</Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.innerPageNumber}</Text>
+        </View>}
      
         {edit && remove && <View style={styles.quantityContainer}>
           <TouchableOpacity onPress={()=> handleEditProduct(item)} style={styles.paddingWrapper}>

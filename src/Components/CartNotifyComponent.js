@@ -11,7 +11,7 @@ const CartNotifyComponent = ({title, order, description, childern, emptyScreen, 
     <View style={emptyScreen ? styles.emptyContainer : styles.container}>
       <Text style={emptyScreen ? styles.emptyText : styles.thankyouText }>{title}</Text>
       {childern}
-      <Text style={styles.orderRefrence}>{order}</Text>
+      <Text style={styles.orderRefrence}>{`#${order}`}</Text>
       <Text style={styles.description}>{description}</Text>
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description1}</Text>}
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description2}</Text>}

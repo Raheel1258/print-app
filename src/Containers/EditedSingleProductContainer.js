@@ -41,7 +41,7 @@ const EditedSingleProductContainer = ({ route }) => {
     //   { url_link: '123' }
     // ]},
     {
-      url: cartItem ? cartItem?.designUrl?.map((item)=>{return {url_link: item}}) : ''
+      url: cartItem?.designUrl?.length > 0 ? cartItem?.designUrl?.map((item)=>{return {url_link: item}}) : [{url_link: ''}]
     }
   
     )
@@ -71,7 +71,7 @@ const EditedSingleProductContainer = ({ route }) => {
   const [selectedWindow, setSelectedWindow] = useState(cartItem?.window && cartItem?.window);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState(cartItem?.remarks);
-  const [result, setResult] = useState(cartItem?.designUrl ? cartItem?.designUrl :[]);
+  const [result, setResult] = useState(cartItem?.designFileUrl?.length > 0 ? cartItem?.designFileUrl :[]);
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
@@ -250,7 +250,8 @@ const EditedSingleProductContainer = ({ route }) => {
       category: state?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl: selectedUpload == "urlLink" ? designUrl : result,
+      designUrl: designUrl,
+      designFileUrl: result,
       preview: preview,
       numberOfPages: state?.numberOfPages[0] ? [{ name: state?.numberOfPages && state?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: state?.numberOfPages && state?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
       cut: selectedCut,

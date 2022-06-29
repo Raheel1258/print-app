@@ -11,7 +11,6 @@ const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail,
       return prev?.map((x,i)=>{
         if(x?._id == id){
           setShowDetail(x);
-          console.log("xxxxxxxx" , x);
         return {...prev[i], primary: true}
         }else{
           return {...prev[i], primary: false}

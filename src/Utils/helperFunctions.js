@@ -21,8 +21,6 @@ export const getTimeFormat = (dateTime) => {
   return time;
 }
 
-
-
 export const handleOrderStatus = (orderNotify) => {
   if(orderNotify == "ORDER_RECIEVED"){
     return "Order recieved"

@@ -237,11 +237,10 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
         axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 setPlaceOrderAnimation(false);
-                console.log("leeeeeght" , activityLength);
                 activityLength = activityLength + 1 ;
                 await Storage.storeData('lengthActivity', activityLength);
                 dispatch(setActivityLength(activityLength))
-                navigate("orderReceived" , {welcome: true} );
+                navigate("orderReceived" , {welcome: true, orderId:res?.data?._id} );
             })
             .catch((err) => {
                 setPlaceOrderAnimation(false);

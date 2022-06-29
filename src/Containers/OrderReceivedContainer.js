@@ -10,13 +10,13 @@ import { colors } from '../Utils/theme';
 
 const OrderReceivedContainer = ({route}) => {
   const dispatch = useDispatch();
-  const {welcome} = route.params;
+  const {welcome, orderId} = route.params;
   useEffect (()=> {
     dispatch(emptyCart());
   },[])
   return (
     <View style={styles.container}>
-        <OrderReceivedScreen welcome={welcome}/>
+        <OrderReceivedScreen welcome={welcome} orderId={orderId}/>
     </View>
   );
 };

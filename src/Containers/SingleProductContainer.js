@@ -18,6 +18,7 @@ const SingleProductContainer = ({ route }) => {
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const { item, categoryTitle, productCategory } = route.params;
+  const [finalObjCart , setFinalObjCart] = useState({});
 
 
   const priceChart = useSelector(state => state?.productList?.priceChart);
@@ -154,7 +155,7 @@ const SingleProductContainer = ({ route }) => {
 
 
   const handleAddToCart = () => {
-    const obj = {
+     const obj = {
       productId: item?._id,
       image: item?.image[0],
       title: item?.title,
@@ -182,6 +183,7 @@ const SingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
+    setFinalObjCart(obj);
     if(userToken){
       dispatch(addToCart(setAddToCartAnimation, obj, navigate));
     }
@@ -332,6 +334,7 @@ const SingleProductContainer = ({ route }) => {
         setFocused={setFocused}
         navigate={navigate}
         handleAnotherDesign={handleAnotherDesign}
+        productData={finalObjCart}
       />
     </View>
   );

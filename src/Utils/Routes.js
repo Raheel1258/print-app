@@ -153,11 +153,13 @@ const AuthStack = (props) => {
         name="signin"
         component={SigninContainer}
         options={{headerShown: false}}
+        initialParams={{ obj: props?.route?.params?.obj ? props?.route?.params?.obj : "false"}}
       />
       <Auth.Screen
         name="signup"
         component={SignupContainer}
         options={{headerShown: false}}
+        initialParams={{ obj: props?.route?.params?.obj ? props?.route?.params?.obj : "false"}}
       />
       <Auth.Screen
         name="forgotPassword"

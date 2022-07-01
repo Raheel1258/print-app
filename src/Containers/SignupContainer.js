@@ -10,10 +10,11 @@ import {colors} from '../Utils/theme';
 import OneSignal from 'react-native-onesignal';
 import SignupScreen from '../Screens/SignupScreen';
 
-const SignupContainer = () => {
+const SignupContainer = ({route}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const {obj} = route.params;
   const [animation, setAnimation] = useState(false);
   const [deviceId, setDeviceId] = useState(null);
   const [signupState, setSignupState] = useState({
@@ -44,7 +45,7 @@ const SignupContainer = () => {
 
   const handleSignup = (values) => {
       var date = getDate();
-      dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp"}, navigation, setAnimation));    
+      dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp"}, navigation, setAnimation, obj));    
   };
 
 

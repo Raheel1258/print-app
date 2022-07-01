@@ -5,8 +5,8 @@ import Toast from 'react-native-toast-message';
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
 import { t } from 'i18next';
-import {setCartLength} from '../actions/cartAction'
 import {setActivityLength} from '../actions/activitiesAction'
+import {setCartLength} from '../actions/cartAction'
 
 
 function setUserLogin(loginData) {
@@ -23,9 +23,16 @@ function setUserSignup(signupData) {
     };
 }
 
+function setAddToCart(item) {
+    return {
+        type: types.ADD_TO_CART,
+        item,
+    }
+}
+
 
 //Login Api Action
-export const login = (data, navigation, setAnimation) => {
+export const login = (data, navigation, setAnimation, obj) => {
     return async (dispatch) => {
         setAnimation(true);
         axios.post(`${Api}/user/login`, data)
@@ -36,15 +43,24 @@ export const login = (data, navigation, setAnimation) => {
                 });
                 setAnimation(false);
                 await Storage.storeData('token', res?.data?.accessToken);
-                navigation.reset({
-                    index: 0,
-                    routes: [{
-                        name: 'home'
-                    }],
-                });
                 dispatch(setUserLogin(res));
+                if(obj !== "false"){
+                    dispatch(addToCartWithToken(obj))
+                    console.log("iiiii" , obj);
+                    navigation.navigate('cartStack', {next:'cart'});
+                }
+                else{
+                    navigation.reset({
+                        index: 0,
+                        routes: [{
+                            name: 'home'
+                        }],
+                    });
+
+                }
             })
             .catch((err) => {
+                console.log("log in error" , err);
                 setAnimation(false);
                 if(err?.response?.data?.statusCode === 400){
                     Toast.show({
@@ -63,19 +79,33 @@ export const login = (data, navigation, setAnimation) => {
 
 
 //SignUp Api Action
-export const signup = (data, navigation, setAnimation) => {
+export const signup = (data, navigation, setAnimation, obj) => {
     return async (dispatch) => {
         const newData = { ...data, role: 'USER' }
         setAnimation(true);
         axios.post(`${Api}/user/signup`, newData)
             .then(async (res) => {
+                dispatch(setUserSignup(res));
+                await Storage.storeData('token', res?.data?.accessToken);
                 Toast.show({
                     type: 'success',
                     text1: t('login')
                 })
-                navigation.navigate('home')
-                dispatch(setUserSignup(res));
-                await Storage.storeData('token', res?.data?.accessToken);
+                if(obj !== "false"){
+                    dispatch(addToCartWithToken(obj))
+                    console.log("iiiii" , obj);
+                    navigation.navigate('cartStack', {next:'cart'});
+                }else{
+                    navigation.reset({
+                        index: 0,
+                        routes: [{
+                            name: 'home'
+                        }],
+                    });
+
+                }
+                
+                // navigation.navigate('home')
             })
             .catch((err) => {
                 setAnimation(false);
@@ -189,9 +219,46 @@ export const logout = (navigation, setAnimation) => {
         });
         dispatch(setCartLength(0));
         dispatch(setActivityLength(0))
-        navigation.navigate('homeStack');
+        navigation.reset({
+            index: 0,
+            routes: [{
+                name: 'homeStack'
+            }],
+        });
         setAnimation(false);
         dispatch(setUserSignup(data));
+
+    }
+}
+
+
+export const addToCartWithToken = (data) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
+                dispatch(setCartLength(res?.data?.products?.length)) 
+                dispatch(setAddToCart(res?.data?.products));
+                // Toast.show({
+                //     type: 'success',
+                //     text1: 'Item added to cart successfully',
+                // });
+                // navigate("cartStack");
+            })
+            .catch((err) => {
+                console.log("Error data cart Api call" , err);
+                if (err?.response?.status == 401) {
+                    Toast.show({
+                        type: 'error',
+                        text1: "User is not logged in"
+                    });
+                } else
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+            });
 
     }
 }

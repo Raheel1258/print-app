@@ -92,7 +92,8 @@ const SingleProductScreen = ({
   setFocused,
   navigate,
   handleAnotherDesign,
-  remarks
+  remarks,
+  productData
 }) => {
   let widthOne = 120;
   let heightOne = 65;
@@ -582,7 +583,7 @@ const SingleProductScreen = ({
                 title={t('signup_text')}
                 onPress={() => {
                   accountRBSheet.current.close();
-                  navigate('auth', { next: 'signup' });
+                  navigate('auth', { next: 'signup' , obj: productData});
                   setFocused(true);
                 }}
               />
@@ -595,7 +596,7 @@ const SingleProductScreen = ({
                 borderWidth={2}
                 onPress={() => {
                   accountRBSheet.current.close();
-                  navigate('auth', { next: 'signin' });
+                  navigate('auth', { next: 'signin', obj: productData});
                   setFocused(false);
                 }}
               />

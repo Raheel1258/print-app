@@ -16,7 +16,7 @@ function setCartDetail(cart) {
     }
 }
 
-function setAddToCart(item) {
+export function setAddToCart(item) {
     return {
         type: types.ADD_TO_CART,
         item,

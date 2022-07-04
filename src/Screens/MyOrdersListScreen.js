@@ -64,6 +64,7 @@ import { colors, fonts } from '../Utils/theme';
 
 const MyOrdersListScreen = ({ goBack, orderData,handleReceiptEmail, handlerSupportEmail, userToken }) => {
   const { t } = useTranslation();
+  console.log("data of order", orderData)
   const renderItem = ({ item, index }) => (
     <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image} index={index} length={item?.length} item={item} />
   );
@@ -81,7 +82,7 @@ const MyOrdersListScreen = ({ goBack, orderData,handleReceiptEmail, handlerSuppo
       <ScrollView nestedScrollEnabled={true}>
         <View style={styles.orderRefContainer}>
           <Text style={styles.orderRefText}>Order reference:</Text>
-          <Text style={styles.orderRefText}>#{orderData?._id}</Text>
+          <Text style={styles.orderRefText}>{orderData?.orderRefrence && orderData?.orderRefrence}</Text>
         </View>
         <Text style={styles.orderCompleted}>{handleOrderStatus(orderData?.status)}</Text>
         <FlatList

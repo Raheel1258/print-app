@@ -51,7 +51,7 @@ export const genToken = (values, navigate, amount, setAnimation, orderObj) => {
                         activityLength =activityLength+1
                         dispatch(setActivityLength(activityLength))
                         await Storage.storeData('lengthActivity', activityLength);
-                        navigate("orderReceived", {welcome:false, orderId:res?.data?._id});
+                        navigate("orderReceived", {welcome:false, orderId:res?.data?.orderRefrence});
                      
                     })
                     .catch((err) => {

@@ -11,7 +11,7 @@ const CartNotifyComponent = ({title, order, description, childern, emptyScreen, 
     <View style={emptyScreen ? styles.emptyContainer : styles.container}>
       <Text style={emptyScreen ? styles.emptyText : styles.thankyouText }>{title}</Text>
       {childern}
-      <Text style={styles.orderRefrence}>{`#${order}`}</Text>
+      {!emptyScreen && <Text style={styles.orderRefrence}>{`Order ref: ${order}`}</Text>}
       <Text style={styles.description}>{description}</Text>
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description1}</Text>}
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description2}</Text>}
@@ -65,7 +65,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     textAlign: 'center',
     color: colors.blackColor,
-    marginVertical: '20@s',
+    marginTop: '20@s',
   },
   description: {
     fontFamily: fonts.avenir_regular,
@@ -76,6 +76,7 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     color: colors.lightBlackColor,
     width:'240@s',
+    marginTop: '20@s'
   },
   thankyouDescription:{
     fontFamily: fonts.avenir_regular,

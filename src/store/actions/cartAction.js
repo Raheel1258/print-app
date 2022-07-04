@@ -240,7 +240,7 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
                 activityLength = activityLength + 1 ;
                 await Storage.storeData('lengthActivity', activityLength);
                 dispatch(setActivityLength(activityLength))
-                navigate("orderReceived" , {welcome: true, orderId:res?.data?._id} );
+                navigate("orderReceived" , {welcome: true, orderId:res?.data?.orderRefrence} );
             })
             .catch((err) => {
                 setPlaceOrderAnimation(false);

@@ -19,10 +19,15 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
           <Text style={styles.quantityText}>Size:</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.size?.name}</Text>
         </View>
-       <View style={styles.quantityContainer}>
+       {item?.paperType ? <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Paper type:</Text>
-          <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.category?.paperType}</Text>
-        </View>
+          <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.paperType}</Text>
+        </View>:
+        item?.category?.paperType && <View style={styles.quantityContainer}>
+        <Text style={styles.quantityText}>Paper type:</Text>
+        <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.category?.paperType}</Text>
+      </View>
+        }
         {item?.corner && <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>Corner: </Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.corner?.cornerName && item?.corner?.cornerName }</Text>

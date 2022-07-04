@@ -89,6 +89,7 @@ const CartScreen = ({
   discountInPercentage
 }) => {
 
+  console.log('lOdwre',animation);
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (
@@ -108,7 +109,7 @@ const CartScreen = ({
     <>
       {!animation ? 
         <View style={styles.container}>
-          {(cartItem?.length > 0 && userToken ) ? <ScrollView nestedScrollEnabled={true}>
+          {(!animation && cartItem?.length > 0 && userToken ) ? <ScrollView nestedScrollEnabled={true}>
             <BackArrowHeader
               arrow={false}
               title={t('cart_text')}

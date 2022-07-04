@@ -41,7 +41,7 @@ const CartContainer = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
   const [userToken, setUserToken] = useState(null);
-  const [animation, setAnimation] = useState(false);
+  const [animation, setAnimation] = useState(true);
   const [placeOrderAnimation, setPlaceOrderAnimation] = useState(false);
   const [promoCodeAppliedStatus , setPromoCodeAppliedStatus] = useState(false);
   const [promoCodeAppliedId , setPromoCodeAppliedId] = useState("");
@@ -83,7 +83,7 @@ const CartContainer = () => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && authRBSheet.current.open()
-      token && dispatch(getCartData(setAnimation, setTextValue));
+      token ? dispatch(getCartData(setAnimation, setTextValue)) : setAnimation(false);
     });
   }, [isFocused])
 

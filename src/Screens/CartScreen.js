@@ -86,10 +86,10 @@ const CartScreen = ({
   animationForgettingAddress,
   userToken,
   promoCodeType,
-  discountInPercentage
+  discountInPercentage,
+  handleSelectedPrimary
 }) => {
 
-  console.log('lOdwre',animation);
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (
@@ -223,6 +223,7 @@ const CartScreen = ({
                 addNew={t('new_address')}
                 setData={setData}
                 data={data}
+                handleSelectedPrimary={handleSelectedPrimary}
                 animationForgettingAddress={animationForgettingAddress}
                 setShowDetail={setDeliveryUserAddress}
                 onPress={() => {

@@ -114,8 +114,8 @@ const MyOrdersListScreen = ({ goBack, orderData,handleReceiptEmail, handlerSuppo
           discountAmount = {`HK$ ${Math.round(orderData?.discount)}`}
         />
         <CategoriesTitleHeader title={t('order_support')} />
-        <UploadFileComponent onPress={()=>handleReceiptEmail(orderData?._id)} width={300} title={t('email_receipt')} />
-        <UploadFileComponent onPress={()=>handlerSupportEmail(orderData?._id)} width={300} title={t('contact_support')} />
+        <UploadFileComponent onPress={()=>handleReceiptEmail(orderData?.orderRefrence)} width={300} title={t('email_receipt')} />
+        <UploadFileComponent onPress={()=>handlerSupportEmail(orderData?.orderRefrence)} width={300} title={t('contact_support')} />
         <View style={styles.borderBottom} />
       </ScrollView>
     </View>   

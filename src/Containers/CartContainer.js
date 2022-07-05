@@ -6,6 +6,7 @@ import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder } from '../store/actions/cartAction';
+import {makeAddressPrimary} from '../store/actions/userPersonalDetailAction'
 import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
@@ -131,6 +132,10 @@ const CartContainer = () => {
   const handleAddressForBottomSheet = () => {
     refRBSheet?.current?.open();
     dispatch(getUserDetailForPlacingOrder(setData, setAnimationForgettingAddress));
+  }
+
+  const handleSelectedPrimary = (id) => {
+    dispatch(makeAddressPrimary(id,true));
   }
 
   const handlePayment = () => {
@@ -266,6 +271,7 @@ const CartContainer = () => {
         deliveryCost={deliveryCost}
         animationForgettingAddress={animationForgettingAddress}
         promoCodeType={promoCodeType}
+        handleSelectedPrimary={handleSelectedPrimary}
       />
     </View>
   );

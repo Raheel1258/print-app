@@ -128,8 +128,8 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
                 <TouchableOpacity onPress={()=>setIsCountryPickerVisible(true)} style={styles.countryPicker}>
                   <CountryPicker
                     visible={isCountryPickerVisible}
-                    placeholder={ country?.name ?? updateAddress?.cityCountry ?? ""}
-                    placeholderStyling={{color:'red',backgroundColor:'green'}}
+                    placeholder={ country?.name ?? updateAddress?.cityCountry ?? <Text style={styles.countryPlaceholder}>Select Country</Text>}
+                    // placeholderStyling={{color:'red',backgroundColor:'green'}}
                     // placeholderStyle={{backgroundColor:'red'}}
                     isCountryPickerVisible
                     onSelect={setCountry}

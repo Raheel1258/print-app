@@ -193,7 +193,7 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
 }
 
 //makeAddressPrimary
-export const makeAddressPrimary = (id) => {
+export const makeAddressPrimary = (id, flag) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         // setAnimationChangePassowrd(true);
@@ -202,10 +202,12 @@ export const makeAddressPrimary = (id) => {
                 // setAnimationChangePassowrd(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                Toast.show({
-                    type: 'success',
-                    text1: t('address_primary'),
-                });
+                if(!flag){
+                    Toast.show({
+                        type: 'success',
+                        text1: t('address_primary'),
+                    });
+                }   
             })
             .catch((err) => {
                 // setAnimationChangePassowrd(false);

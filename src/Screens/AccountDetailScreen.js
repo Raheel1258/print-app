@@ -147,7 +147,7 @@ const AccountDetailScreen = ({
           <View style={styles.screenBorderBottom} />
         </ScrollView>
         <BottomSheetComponent
-          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet}  updateAddress={updateAddress} setUpdatedAddress={setUpdatedAddress}/>}
+          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} updateAddress={updateAddress} setUpdatedAddress={setUpdatedAddress}/>}
           title={updateAddress == undefined ? t('add_new_address') : t('update_address')}
           note={false}
           refRBSheet={addAddressRBSheet}

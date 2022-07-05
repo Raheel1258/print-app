@@ -90,6 +90,12 @@
     browse_text: 'Browse',
     email_us: 'E-mail us your file',
     you_can_send: 'You can send us your design file to files@printprint.com.hk after you have placed the order in the app.',
+    lead_time_product:"Lead time:",
+    colour_product:'Colour:',
+    size_product:'Sizes:',
+    paper_type_product: 'Paper type:',
+    paper_product:'Paper:',
+    preview_Descriptions:'After you’ve placed the order, we will send you a preview in e-mail before production',
   //<=Account Screen=>
     my_details: 'My Details',
     faqs_text: 'FAQs',
@@ -169,6 +175,22 @@
     order_refrence: 'Order ref: PP202203-10642',
     empty_cart: 'Cart is empty',
     full_name: 'Full Name',
+    added_item_message:'Item added to cart successfully',
+    folding_product:'Folding:',
+    corner_product: 'Corner:',
+    coverPageNumber_product: 'coverPageNumber:',
+    innerPageNumber_product: 'innerPageNumber:',
+    halffold_product:'Half fold',
+    edit_product:'Edit',
+    remove_product:'Remove',
+    select_address_state:'Select delivery address',
+    select_delivery_state:'Delivery',
+    company_address_delivery_heading:"Pick up yourself at:",
+    company_address_delivery:"11/F, 52 Hung To Road, Kwun Tong, Hong Kong",
+    empty_screen_description:'It seems like you haven’t added any items to your cart yet.',
+
+    
+
  //<=Cart Screen=>
     my_orders: 'My Orders',
     order_date: 'Order date:',
@@ -200,12 +222,13 @@
     new_password_required: 'New password is required',
     //<=Verification screen, validation Messages=>
     otp_required:"Verification code is required",
+    order_received_screen_title: 'Order Received',
 
     //new changing
     size:'Size:',
     choose_SpotUv: 'Choose spot UV',
     spotUv:'Spot UV effect',
-    quantity_text: 'Quantity',
+    quantity_text: 'Quantity:',
     price_HK:'Price (HK$)',
     unit_text: 'Unit price',
     show_more: 'Show more quantity',
@@ -256,7 +279,11 @@
     description_with_offline_orderPlace:"Order received! We will send you an order confirmation e-mail shortly with our bank information. We’ll begin processing your order as soon as the payment is received.",
     description_with_online_orderPlace:"Order received! We will begin processing your order shortly and let you know as soon as it is ready.",
     description1_for_upload_artwork:"If you haven’t uploaded your artwork file, you can now e-mail it to us to order@printprint.com.hk (please quote your order reference)",
-    description2_for_thankyou:"Thank you for using PrintPrint :)"
+    description2_for_thankyou:"Thank you for using PrintPrint :)",
+   
+
+
+
 
 
 

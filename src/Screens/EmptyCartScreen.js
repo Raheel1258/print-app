@@ -17,7 +17,7 @@ const EmptyCartScreen = () => {
       <CartNotifyComponent
          emptyScreen={true}
         title={t('empty_cart')}
-        description='It seems like you haven’t added any items to your cart yet.'
+        description={t('empty_screen_description')}
         childern={<EmptyIcon />}
       />
     </View>

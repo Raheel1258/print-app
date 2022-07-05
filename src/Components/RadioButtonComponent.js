@@ -20,7 +20,7 @@ const RadioButtonComponent = ({
   toggleModal = () => { },
   handleCheckedOne,
   handleCheckedTwo,
-  openfun,
+  openfun = ()=>{},
   addressRadio
 }) => {
   const { t } = useTranslation();
@@ -41,7 +41,7 @@ const RadioButtonComponent = ({
         {(description === "No") && <View>
           <TouchableOpacity onPress={onPress}>
             <Text style={styles.deliveryText}>{title}</Text>
-            <Text style={styles.deliveryDescription}>{"Select delivery address"}</Text> 
+            <Text style={styles.deliveryDescription}>{t("select_address_state")}</Text> 
            
           </TouchableOpacity>
         </View> }

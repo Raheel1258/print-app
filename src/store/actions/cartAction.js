@@ -88,7 +88,7 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
                 dispatch(setAddToCart(res?.data?.products));
                 Toast.show({
                     type: 'success',
-                    text1: 'Item added to cart successfully',
+                    text1: t('added_item_message')
                 });
                 navigate("cartStack");
             })
@@ -120,7 +120,7 @@ export const addToCartAnotherDesign = (data) => {
                 dispatch(setAddToCart(res?.data?.products));
                 Toast.show({
                     type: 'success',
-                    text1: 'Item added to cart successfully',
+                    text1: t('added_item_message'),
                 });
             })
             .catch((err) => {

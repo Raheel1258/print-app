@@ -158,8 +158,8 @@ const CartScreen = ({
               description={deliveryUserAddress?.addressLine1 == undefined ? "No" : deliveryUserAddress}
               addressRadio = {true}
               openfun = {()=>handleAddressForBottomSheet()}
-              secondDescription="Pick up yourself at:"
-              thirdDescription="11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
+              secondDescription={t('company_address_delivery_heading')}
+              thirdDescription={t('company_address_delivery')}
               radioButtonStatus={delivery}
               setRadioButtonStatus={setDelivery}
               handleCheckedOne={() => setDeliveryMethod('Delivery')}

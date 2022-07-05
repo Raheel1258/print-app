@@ -12,7 +12,7 @@ const OrderReceivedScreen = ({welcome, orderId}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.orderReceived}>Order Received</Text>
+        <Text style={styles.orderReceived}>{t('order_received_screen_title')}</Text>
       </View>
       {welcome ? <CartNotifyComponent
         emptyScreen={false}

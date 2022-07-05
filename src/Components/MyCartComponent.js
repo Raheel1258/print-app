@@ -2,9 +2,11 @@ import React from 'react';
 import {View, Text, Image,TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import { colors,fonts } from '../Utils/theme';
+import { useTranslation } from 'react-i18next';
 
 
 const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, edit=false, remove=false, item, navigate, handleRemoveProduct, handleEditProduct }) => {
+  const { t } = useTranslation();
   return (
     <View style={{...styles.container, borderBottomWidth : index + 1 === length ? 0 : 1 }}>
       <Image  transition={false} style={styles.cardImage} source={{uri:image}} />
@@ -12,48 +14,48 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
         <Text numberOfLines={2} style={{...styles.cardTitle,fontFamily:fontFamily}}>{item?.category?.name}</Text>
         {/* <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text> */}
         <View style={styles.quantityContainer}>
-          <Text style={styles.quantityText}>Quantity:</Text>
+          <Text style={styles.quantityText}>{t('quantity_text')}</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.units}</Text>
         </View>
         <View style={styles.quantityContainer}>
-          <Text style={styles.quantityText}>Size:</Text>
+          <Text style={styles.quantityText}>{t('size')}</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.size?.name}</Text>
         </View>
        {item?.paperType ? <View style={styles.quantityContainer}>
-          <Text style={styles.quantityText}>Paper type:</Text>
+          <Text style={styles.quantityText}>{t('paper_type_product')}</Text>
           <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.paperType}</Text>
         </View>:
         item?.category?.paperType && <View style={styles.quantityContainer}>
-        <Text style={styles.quantityText}>Paper type:</Text>
+        <Text style={styles.quantityText}>{t('paper_type_product')}</Text>
         <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.category?.paperType}</Text>
       </View>
         }
         {item?.corner && <View style={styles.quantityContainer}>
-          <Text style={styles.quantityText}>Corner: </Text>
+          <Text style={styles.quantityText}>{t('corner_product')} </Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.corner?.cornerName && item?.corner?.cornerName }</Text>
         </View>} 
 
         {item?.folding && <View style={styles.quantityContainer}>
-          <Text style={styles.quantityText}>Folding: </Text>
-          <Text style={styles.quantityText} numberOfLines={1}>Half fold</Text>
+          <Text style={styles.quantityText}>{t('folding_product')} </Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{t('halffold_product')}</Text>
         </View>} 
 
         {item?.priceChart?.coverPageNumber  && <View style={styles.quantityContainer}>
-          <Text style={styles.quantityText}>coverPageNumber:</Text>
+          <Text style={styles.quantityText}>{t('coverPageNumber_product')}</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.coverPageNumber}</Text>
         </View>}
 
         {item?.priceChart?.innerPageNumber && <View style={styles.quantityContainer}>
-          <Text style={styles.quantityText}>innerPageNumber:</Text>
+          <Text style={styles.quantityText}>{t('innerPageNumber_product')}</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.innerPageNumber}</Text>
         </View>}
      
         {edit && remove && <View style={styles.quantityContainer}>
           <TouchableOpacity onPress={()=> handleEditProduct(item)} style={styles.paddingWrapper}>
-          <Text style={styles.editText}>Edit</Text>
+          <Text style={styles.editText}>{t('edit_product')}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={()=> handleRemoveProduct(item?._id)} style={styles.paddingWrapper}>
-          <Text style={styles.editText}>Remove</Text>
+          <Text style={styles.editText}>{t('edit_product')}</Text>
           </TouchableOpacity>
         </View>}
     

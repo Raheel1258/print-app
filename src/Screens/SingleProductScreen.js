@@ -304,8 +304,7 @@ const SingleProductScreen = ({
             <QuantityTable sliceData={sliceData} flag={flag} sliceArray={sliceArray} priceChartAnimation={priceChartAnimation} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
             <CategoriesTitleHeader title={t('send_preview')} />
             <Text style={styles.previewDescription}>
-              After you’ve placed the order, we will send you a preview in e-mail
-              before production
+              {t('preview_Descriptions')}
             </Text>
             <View style={styles.buttonsContainer}>
               <View style={styles.buttonWrapper}>

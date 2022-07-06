@@ -49,12 +49,12 @@ export const handleEmailing = (id,flag) => {
           if(flag){
             Toast.show({
               type: 'success',
-              text2: t('email_send'),
+              text1: t('email_send'),
           });
           }else{
             Toast.show({
               type: 'success',
-              text2: t('support_email_send')
+              text1: t('support_email_send')
           });
           }
          

@@ -144,7 +144,7 @@
     full_refund: 'full refund',
     before_production: 'at any point before production.',
     place_order: 'Place Order',
-    curabitur_aliquet: 'Curabitur aliquet quam id dui posuere blandit.',
+    signed_out_description: 'Sign in to your account to place new orders or check the status of your past orders.',
     deviver_to: 'Deliver to:',
     credit_cards: 'Credit Cards',
     company_name: 'Company Name (Optional)',
@@ -172,7 +172,6 @@
     year_text: 'Year',
     new_credit_card: '+ New credit card',
     thankyou_text: 'Thank you!',
-    order_refrence: 'Order ref: PP202203-10642',
     empty_cart: 'Cart is empty',
     full_name: 'Full Name',
     added_item_message:'Item added to cart successfully',
@@ -188,6 +187,14 @@
     company_address_delivery_heading:"Pick up yourself at:",
     company_address_delivery:"11/F, 52 Hung To Road, Kwun Tong, Hong Kong",
     empty_screen_description:'It seems like you haven’t added any items to your cart yet.',
+    order_ref:'Order ref:',
+    active_tab: 'Active',
+    completed_tab: 'Completed',
+    order_reference:'Order reference:',
+    today:'Today',
+    mark_as_all_read: 'Mark as all read',
+    spread_the_word:'Spread the word',
+    account: 'Account',
 
     
 
@@ -211,6 +218,10 @@
     password_changed: 'Password changed!',
     successfully_changed_password: 'Your password has been changed successfully',
     confirm_password_required:'Confirm password is also required',
+    change_password_text:'Change password',
+    no_address_added:'No address added',
+    change_password_button:'Change password',
+    change_password_screen_title:'Change Password',
  //<=Change Password=>  
     activity_text: 'Activity',
     order_text: 'Orders',
@@ -259,7 +270,7 @@
     network_error: 'Network Error',
     general_message: 'Something Went Wrong, Please Try Again',
     login:'Welcome to PrintPrint :)',
-    reset_password_message: 'Password updated successfully’',
+    reset_password_message: 'Password updated successfully',
     otp_message:'Verification successful',
     logout:'You are logged out',
     email_send: 'Receipt will be emailed to you within the next 24 hours',
@@ -280,7 +291,18 @@
     description_with_online_orderPlace:"Order received! We will begin processing your order shortly and let you know as soon as it is ready.",
     description1_for_upload_artwork:"If you haven’t uploaded your artwork file, you can now e-mail it to us to order@printprint.com.hk (please quote your order reference)",
     description2_for_thankyou:"Thank you for using PrintPrint :)",
-   
+    make_address_primary:'Make Primary',
+    show_address_primary:'Primary',
+    no_active_order:'No active order',
+    no_completed_order:'No completed order',
+
+    order_received_status:'Order recieved',
+    order_completed_status:'Order completed',
+    order_cancelled_status:'Cancelled',
+    order_out_for_delivery_status:'Out for delivery',
+    order_ready_for_pickup_status:'Ready for pickup',
+    order_printing_in_process_status:'Printing in process',
+
 
 
 

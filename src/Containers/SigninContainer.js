@@ -14,6 +14,7 @@ const SigninContainer = ({route}) => {
   const dispatch = useDispatch();
 
   const {obj} = route.params;
+  console.log("new user" , obj);
   const [animation, setAnimation] = useState(false);
   const [deviceId, setDeviceId] = useState(null);
   const [loginData, setLoginData] = useState({

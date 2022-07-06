@@ -42,8 +42,8 @@ const AccountScreen = ({
     <View style={styles.container}>
       <ImageBackArrowHeader
         Children={HeaderImage}
-        title="Account"
-        description="Spread the word"
+        title={t("account")}
+        description={t("spread_the_word")}
         goBack={goBack}
         borderBottomWidth={0}
       />
@@ -142,7 +142,7 @@ const AccountScreen = ({
       />
       <VerificationModal
         title={t('you_signed_out')}
-        description={t('curabitur_aliquet')}
+        description={t('signed_out_description')}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
         aditionalAction={() => logoutHandler()}

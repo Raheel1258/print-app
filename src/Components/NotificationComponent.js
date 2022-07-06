@@ -4,11 +4,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import {ScaledSheet} from 'react-native-size-matters';
 import {handleOrderStatus} from "../Utils/helperFunctions"
 import {getTimeFormat} from '../Utils/helperFunctions'
-
+import { useTranslation } from 'react-i18next';
 import {colors, fonts} from '../Utils/theme';
 
 const NotificationComponent = ({orderReceived, time,childern, border=true, seen, onPress,orderMessage
 }) => {
+  const { t } = useTranslation();
   return (
     <TouchableOpacity onPress={onPress}>
     <View>
@@ -23,7 +24,7 @@ const NotificationComponent = ({orderReceived, time,childern, border=true, seen,
             orderReceived =='OUT_FOR_DELIVERY' ? colors.lightOrangeColor : 
             orderReceived =='COMPLETED' ? colors.actvityGreenColor : 
             orderReceived =='READY_FOR_PICKUP' ? colors.lightGreenColor : 
-            orderReceived =='PRINTING' ? colors.printingColor : colors.lightRedColor  }}>{handleOrderStatus(orderReceived)}</Text>
+            orderReceived =='PRINTING' ? colors.printingColor : colors.lightRedColor  }}>{handleOrderStatus(orderReceived,t)}</Text>
           <Text style={styles.timeText}>{getTimeFormat(time)}</Text>
         </View>
         </View>

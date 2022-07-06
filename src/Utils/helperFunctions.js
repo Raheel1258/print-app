@@ -1,4 +1,4 @@
-import momet from 'moment'
+import momet from 'moment';
 export const getDate = () => {
     var day = new Date().getDate();
       var month = new Date().getMonth() + 1;
@@ -21,24 +21,24 @@ export const getTimeFormat = (dateTime) => {
   return time;
 }
 
-export const handleOrderStatus = (orderNotify) => {
+export const handleOrderStatus = (orderNotify, t) => {
   if(orderNotify == "ORDER_RECIEVED"){
-    return "Order recieved"
+    return t('order_received_status')
   }
   else if(orderNotify=="COMPLETED"){
-    return "Order completed";
+    return t('order_completed_status')
   }
   else if(orderNotify=="CANCELLED"){
-    return "Cancelled";
+    return t('order_cancelled_status') 
   }
   else if(orderNotify=="OUT_FOR_DELIVERY"){
-    return "Out for delivery";
+    return t('order_out_for_delivery_status')
   }
   else if(orderNotify=="READY_FOR_PICKUP"){
-    return "Ready for pickup";
+    return t('order_ready_for_pickup_status')
   }
   else{
-    return "Printing in process" ;
+    return t('order_printing_in_process_status')
   }
 
 }

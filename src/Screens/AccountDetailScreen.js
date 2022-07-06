@@ -99,7 +99,7 @@ const AccountDetailScreen = ({
                   <TouchableOpacity
                     onPress={() => navigate('changePassword')}
                     style={styles.passwordWrapper}>
-                    <Text style={styles.changePassword}>Change password</Text>
+                    <Text style={styles.changePassword}>{t('change_password_text')}</Text>
                   </TouchableOpacity>
 
                   <View style={styles.buttonWrapper}>
@@ -133,7 +133,7 @@ const AccountDetailScreen = ({
               makePrimary={makePrimary} />
               {index != userAddresses.length - 1 && <View style={styles.borderBottom} />}
             </>
-          }) : <Text style={styles.emptyBox}>No address added</Text>}
+          }) : <Text style={styles.emptyBox}>{t('no_address_added')}</Text>}
 
           {/* <MyAddresses address title="peter park" /> */}
           <View style={styles.categoriesWrapper}>

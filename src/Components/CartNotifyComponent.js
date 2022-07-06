@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
@@ -5,13 +6,15 @@ import {ScaledSheet} from 'react-native-size-matters';
 import OrderReceivedScreen from '../Screens/OrderReceivedScreen';
 import {colors} from '../Utils/theme';
 import {fonts} from '../Utils/theme';
+import { useTranslation } from 'react-i18next';
 
 const CartNotifyComponent = ({title, order, description, childern, emptyScreen, description1, description2}) => {
+  const {t} = useTranslation();
   return (
     <View style={emptyScreen ? styles.emptyContainer : styles.container}>
       <Text style={emptyScreen ? styles.emptyText : styles.thankyouText }>{title}</Text>
       {childern}
-      {!emptyScreen && <Text style={styles.orderRefrence}>{`Order ref: ${order}`}</Text>}
+      {!emptyScreen && <Text style={styles.orderRefrence}>{t('order_ref')}{` ${order}`}</Text>}
       <Text style={styles.description}>{description}</Text>
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description1}</Text>}
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description2}</Text>}

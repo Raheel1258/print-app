@@ -68,7 +68,7 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
         orderNotify =='READY_FOR_PICKUP' ? colors.lightGreenColor : 
         orderNotify =='PRINTING' ? colors.printingColor : colors.lightRedColor 
         }}>
-          {handleOrderStatus(orderNotify)}
+          {handleOrderStatus(orderNotify,t)}
           </Text>
     </TouchableOpacity>
   );

@@ -7,22 +7,6 @@ import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { BackArrowHeader, NotificationActivity, BottomSheetComponent, GreenButton } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const DATA = [
-  {
-    id: '1',
-    date: 'Today',
-    readMark: 'Mark as all read',
-  },
-  {
-    id: '2',
-    date: '2 March 2022',
-  },
-  {
-    id: '3',
-    date: '1 March 2022',
-  },
-];
-
 const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation, handleActivityIsRead, handleAllActivityRead, userToken }) => {
   var sortedArray = activityData?.sort((a,b) => Date.parse(new Date(a._id)) - Date.parse(new Date(b._id)));
   const { t } = useTranslation();

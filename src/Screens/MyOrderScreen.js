@@ -28,7 +28,7 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
           keyExtractor={item => item.id}
           contentContainerStyle={styles.flatlistContainer}
         />
-      </View> : <View style={styles.noProduct}><Text>No active order</Text></View>}
+      </View> : <View style={styles.noProduct}><Text>{t('no_active_order')}</Text></View>}
     </>
   );
 
@@ -41,7 +41,7 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
           keyExtractor={item => item.id}
           contentContainerStyle={styles.flatlistContainer}
         />
-      </View> : <View style={styles.noProduct}><Text>No completed order</Text></View>}
+      </View> : <View style={styles.noProduct}><Text>{t('no_completed_order')}</Text></View>}
     </>);
 
   const renderScene = SceneMap({
@@ -51,8 +51,8 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
 
   const [index, setIndex] = React.useState(1);
   const [routes] = React.useState([
-    { key: 'first', title: 'Active' },
-    { key: 'second', title: 'Completed' },
+    { key: 'first', title: t('active_tab') },
+    { key: 'second', title: t('completed_tab') },
   ]);
 
   const renderTabBar = props => (

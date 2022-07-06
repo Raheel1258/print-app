@@ -11,34 +11,36 @@ import OneSignal from 'react-native-onesignal';
 import Routes from './src/Utils/Routes';
 import linking from './src/Utils/linking';
 
-const toastConfig = {
-  error: props => (
-    <ErrorToast
-      {...props}
-      text1NumberOfLines={2}
-      text1Style={{
-        color: 'white',
-        fontSize: 14,
-        fontFamily: fonts.poppins_regular,
-        paddingTop: 15,
-      }}
-      text2Style={{
-        color: 'white',
-        fontSize: 14,
-        fontFamily: fonts.poppins_regular,
-      }}
-      text2NumberOfLines={2}
-      style={{
-        // backgroundColor: '#f56342',
-        borderRadius: 8,
-        width: '100%',
-        height: 'auto',
-        paddingBottom: 15,
-      }}
+// const toastConfig = {
+//   error: props => (
+//     <ErrorToast
+//       {...props}
+//       text1NumberOfLines={2}
+//       text1Style={{
+//         color: 'black',
+//         fontSize: 14,
+//         fontFamily: fonts.poppins_regular,
+//         paddingTop: 15,
+//       }}
+//       text2Style={{
+//         color: 'black',
+//         fontSize: 14,
+//         fontFamily: fonts.poppins_regular,
+//       }}
+//       text2NumberOfLines={2}
+//       style={{
+//         backgroundColor: 'white',
+//         borderRadius: 8,
+//         width: '100%',
+//         height: 'auto',
+//         paddingBottom: 15,
+//         borderLeftColor:'red',
+//         borderLeftWidth:3
+//       }}
       
-    />
-  ),
-};
+//     />
+//   ),
+// };
 
 
 const App = () => {
@@ -100,7 +102,7 @@ const App = () => {
         <NavigationContainer linking={linking}>
           <Routes />
         </NavigationContainer>
-        <Toast config={toastConfig}/>
+        <Toast/>
         <OneSignalComponent />
       </SafeAreaView>
     </Provider>

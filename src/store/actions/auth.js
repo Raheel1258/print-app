@@ -46,7 +46,6 @@ export const login = (data, navigation, setAnimation, obj) => {
                 dispatch(setUserLogin(res));
                 if(obj !== "false"){
                     dispatch(addToCartWithToken(obj))
-                    console.log("iiiii" , obj);
                     navigation.navigate('cartStack', {next:'cart'});
                 }
                 else{
@@ -60,18 +59,20 @@ export const login = (data, navigation, setAnimation, obj) => {
                 }
             })
             .catch((err) => {
-                console.log("log in error" , err);
+                console.log("log in error" , err.response);
                 setAnimation(false);
                 if(err?.response?.data?.statusCode === 400){
                     Toast.show({
                         type: 'error',
                         text1: t('invalid_login_message'),
                     });
-                }else
-                Toast.show({
-                    type: 'error',
-                    text1: t('general_message'),
-                });
+                }else{
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+                }
+               
             });
     }
 };

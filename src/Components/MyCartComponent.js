@@ -30,7 +30,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
         <Text style={styles.paperTypeDes} numberOfLines={1}>{item?.category?.paperType}</Text>
       </View>
         }
-        {item?.corner && <View style={styles.quantityContainer}>
+        {item?.corner?.cornerName && <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>{t('corner_product')} </Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.corner?.cornerName && item?.corner?.cornerName }</Text>
         </View>} 

@@ -65,7 +65,7 @@ import { colors, fonts } from '../Utils/theme';
 const MyOrdersListScreen = ({ goBack, orderData,handleReceiptEmail, handlerSupportEmail, userToken }) => {
   const { t } = useTranslation();
   const renderItem = ({ item, index }) => (
-    <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image} index={index} length={item?.length} item={item} />
+    <MyCartComponent fontFamily={fonts.avenir_regular} image={item?.image ? item?.image : 'https://jubilantconsumer.com/wp-content/themes/jubilant/assets/img/product.png'} index={index} length={item?.length} item={item} />
   );
   return (
     <>

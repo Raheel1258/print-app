@@ -137,7 +137,7 @@
     payment_method: 'Payment Method:',
     sub_total: 'Sub-total',
     delivery_order_text: 'Delivery',
-    discount_text: 'Discount',
+    discount_text: 'Discount:',
     total_pay: 'Total to pay',
     order_confidence: 'Order with confidence:',
     all_orders: 'All orders you place with PrintPrint are entitled a',
@@ -201,7 +201,7 @@
  //<=Cart Screen=>
     my_orders: 'My Orders',
     order_date: 'Order date:',
-    order_ammount: 'Order ammount:',
+    order_ammount: 'Order amount:',
     order_details: 'Order Details',
     delivery_method: 'Delivery method:',
     delivery_address: 'Delivery address:',

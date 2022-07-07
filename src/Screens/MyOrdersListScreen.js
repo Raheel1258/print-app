@@ -103,7 +103,7 @@ const MyOrdersListScreen = ({ goBack, orderData,handleReceiptEmail, handlerSuppo
         <OrderDetailsComponent
           orderDate={t('order_sub_total')}
           deliveryMethod={t('delivery')}
-          discount={'Discount'}
+          discount={t('discount_text')}
           deliveryAddress={t('total')}
           paymentMethod={t('payment_method')}
           date={`HK$ ${Math.round(orderData?.subTotal)}`}

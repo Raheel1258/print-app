@@ -44,8 +44,6 @@ const MyOrderContainer = () => {
     });
   }, [isFocused])
 
-
-
   return (
     <View style={styles.container}>
       <MyOrderScreen navigate={navigate} goBack={goBack}

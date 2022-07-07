@@ -387,7 +387,7 @@ export const chi = {
     payment_method: '付款方式:',
     sub_total: '小計',
     delivery_order_text: '運費',
-    discount_text: '折扣',
+    discount_text: '折扣:',
     total_pay: '總計',
     order_confidence: '放心訂購:',
     all_orders: '所有PrintPrint的訂單',

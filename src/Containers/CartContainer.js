@@ -53,6 +53,7 @@ const CartContainer = () => {
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
 
   const [data, setData] = useState(userDetailData?.addresses);
+  const primaryAddress = userDetailData?.addresses?.filter((item) => item.primary == true);
   const [cardData, setCardData] = useState([
     {
       id: '1',
@@ -91,6 +92,7 @@ const CartContainer = () => {
   // useEffect(() => {
   // }, [authRBSheet]);
 
+  console.log("Primary", primaryAddress);
 
   useEffect(() => {
     handleTotalAmount();
@@ -146,11 +148,19 @@ const CartContainer = () => {
       orderDate: date,
       deliveryMethod: deliveryMethod,
       deliveryAddress: {
-        firstName: userDetailData?.firstName,
-        lastName: userDetailData?.lastName,
-        phone: userDetailData?.phone,
-        email: userDetailData?.email,
-        addressLine1: deliveryMethod == 'Delivery' ? deliveryUserAddress : "11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
+        fullName: deliveryUserAddress?.fullName,
+        companyName: deliveryUserAddress?.companyName,
+        area: deliveryUserAddress?.area,
+        district: deliveryUserAddress?.district,
+        contactNumber: deliveryUserAddress?.contactNumber,
+        addressLine1: deliveryUserAddress?.addressLine1,
+        addressLine2: deliveryUserAddress?.addressLine2,
+        cityCountry: deliveryUserAddress?.cityCountry,
+        // firstName: userDetailData?.firstName,
+        // lastName: userDetailData?.lastName,
+        // phone: userDetailData?.phone,
+        // email: userDetailData?.email,
+        // addressLine1: deliveryMethod == 'Delivery' ? deliveryUserAddress : "11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
       },
       deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,

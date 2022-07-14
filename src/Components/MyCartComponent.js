@@ -55,7 +55,7 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
           <Text style={styles.editText}>{t('edit_product')}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={()=> handleRemoveProduct(item?._id)} style={styles.paddingWrapper}>
-          <Text style={styles.editText}>{t('edit_product')}</Text>
+          <Text style={styles.editText}>{t('remove_product')}</Text>
           </TouchableOpacity>
         </View>}
     

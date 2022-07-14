@@ -17,6 +17,13 @@ function setActivityDetail(data) {
     }
 }
 
+export function setActivityLength(data){
+    return {
+        type: types.ACTIVITY_LENGTH,
+        data
+    }
+}
+
 
 
 //Get All Activity 
@@ -27,10 +34,19 @@ export const getAllActivity = (setAnimation) => {
         // dispatch(setActivityDetail(newActivityStructure))
         axios.get(`${Api}/notifications/`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("into res of notifications" , res);
-                // setAnimation(false);
+                let unRead = 0;
+                const dataArray = res?.data?.map((item=> {
+                 item?.notifications?.map((item1)=>{
+                    if (item1.isRead === false){
+                        unRead = unRead+1;
+                    }
+                    })
+                }))
+                await Storage.storeData('lengthActivity', unRead);
+                dispatch(setActivityLength(unRead));
                 dispatch(getAllOrder(setAnimation))
                 dispatch(setActivityDetail(res?.data));
+            
             })
             .catch((err) => {
                 setAnimation(false);
@@ -49,7 +65,6 @@ export const changeActivityStatus = (id, navigate , item) => {
         const accessToken = await Storage.retrieveData('token')
         axios.get(`${Api}/notifications/change/status/${id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("user response for single activity change" , res);
                 navigate('myOrdersList' , {item:item})
             })
             .catch((err) => {

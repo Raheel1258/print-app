@@ -7,19 +7,30 @@ import ThankyouIcon from '../Assests/Svgs/ThankyouIcon';
 import {CartNotifyComponent} from '../Components';
 import {colors, fonts} from '../Utils/theme';
 
-const OrderReceivedScreen = () => {
+const OrderReceivedScreen = ({welcome, orderId}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.orderReceived}>Order Received</Text>
+        <Text style={styles.orderReceived}>{t('order_received_screen_title')}</Text>
       </View>
-      <CartNotifyComponent
+      {welcome ? <CartNotifyComponent
+        emptyScreen={false}
         title={t('thankyou_text')}
-        order={t('order_refrence')}
-        description="Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta."
+        order={orderId}
+        description={t('description_with_offline_orderPlace')}
+        description1={t('description1_for_upload_artwork')} 
+        description2={t('description2_for_thankyou')}
         childern={<ThankyouIcon/>}
-        />
+        /> : <CartNotifyComponent
+        emptyScreen={false}
+        title={t('thankyou_text')}
+        order={orderId}
+        description={t('description_with_online_orderPlace')}
+        description1={t('description1_for_upload_artwork')} 
+        description2={t('description2_for_thankyou')}
+        childern={<ThankyouIcon/>}
+        />}
     </View>
   );
 };

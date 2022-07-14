@@ -50,7 +50,7 @@ const AccountDetailContainer = () => {
   }
 
   const handleMakePrimary = (id) => {
-    dispatch(makeAddressPrimary(id));
+    dispatch(makeAddressPrimary(id, false));
   }
 
   return (

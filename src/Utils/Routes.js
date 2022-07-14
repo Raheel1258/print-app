@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import Storage from '../Utils/Storage';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {ScaledSheet} from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import {Text, View,Platform} from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCartLength } from '../store/actions/cartAction';
+import {setActivityLength} from '../store/actions/activitiesAction'
+
 
 import {
   SigninContainer,
@@ -42,7 +46,10 @@ import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
 import AccountIcon from '../Assests/Svgs/AccountIcon';
 import EmptyCartScreen from '../Screens/EmptyCartScreen';
 
-
+// let cartLength = 0;
+// const fun1 = async() => {
+//   cartLength = await Storage.retrieveData('lengthCart')
+// }
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
 const Home = createStackNavigator();
@@ -54,6 +61,18 @@ const Activity = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    Storage.retrieveData('lengthCart').then(length => {
+      dispatch(setCartLength(length))
+    })
+  }, []);
+
+  useEffect(() => {
+    Storage.retrieveData('lengthActivity').then(length => {
+      dispatch(setActivityLength(length))
+    })
+  }, []);
   return (
     <Stack.Navigator initialRouteName="tab">
       <Stack.Screen
@@ -134,11 +153,13 @@ const AuthStack = (props) => {
         name="signin"
         component={SigninContainer}
         options={{headerShown: false}}
+        initialParams={{ obj: props?.route?.params?.obj ? props?.route?.params?.obj : "false"}}
       />
       <Auth.Screen
         name="signup"
         component={SignupContainer}
         options={{headerShown: false}}
+        initialParams={{ obj: props?.route?.params?.obj ? props?.route?.params?.obj : "false"}}
       />
       <Auth.Screen
         name="forgotPassword"
@@ -285,7 +306,16 @@ const CartStack = () => {
 
 const MyTabs = ({}) => {
   const {t} = useTranslation();
-  const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
+  // fun1();
+  // useEffect(()=>{
+  //   console.log("useEffect of tab");
+  //   fun1();
+  // },[])
+  // console.log("length", fun1());
+
+  const cartItem = useSelector(state => state?.cartReducer?.cartLength);
+  const activityLength = useSelector(state => state?.activitiesReducer?.activityLength);
+
   return (
     <Tab.Navigator
       initialRouteName="homeStack"
@@ -327,12 +357,13 @@ const MyTabs = ({}) => {
 
       <Tab.Screen
         options={{
+          unmountOnBlur:true,
           title: '',
           tabBarIcon: ({focused, color}) => (
             <View >
-             {cartItem && <View style={styles.cartNumContainer}>
-                <Text style={styles.cartNumText}>{cartItem?.length && cartItem?.length}</Text>
-              </View> }
+             {cartItem > 0 && <View style={styles.cartNumContainer}>
+                <Text style={styles.cartNumText}>{cartItem && cartItem}</Text>
+              </View>  }     
               {focused ? (
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
                   <CartActiveIcon />
@@ -389,6 +420,9 @@ const MyTabs = ({}) => {
           title: '',
           tabBarIcon: ({focused, color}) => (
             <View>
+              {activityLength > 0 && <View style={styles.notifyNumContainer}>
+                <Text style={styles.cartNumText}>{activityLength && activityLength}</Text>
+              </View>  } 
               {focused ? (
                 <View
                   style={{
@@ -492,6 +526,18 @@ const styles = ScaledSheet.create({
     alignItems:'center',
     position:'absolute',
   right:-2,
+  bottom:34,
+    zIndex:1,
+  },
+  notifyNumContainer:{
+    backgroundColor:colors.greenColor,
+    width:'12.5@s',
+    height:'12.5@s',
+    borderRadius:'50@s',
+    justifyContent:'center',
+    alignItems:'center',
+    position:'absolute',
+  right:6,
   bottom:34,
     zIndex:1,
   },

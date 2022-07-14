@@ -14,7 +14,7 @@ const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePassw
     <>
       <BackArrowHeader goBack={goBack} title={t('my_details')} />
       <View style={styles.container}>
-        <Text style={styles.changePassword}>{t('change_password')}</Text>
+        <Text style={styles.changePassword}>{t('change_password_screen_title')}</Text>
         <ScrollView>
           <View style={styles.inputFieldsContainer}>
             <Formik initialValues={changePasswordState} validationSchema={() => changePasswordSchema(t)} onSubmit={(values) => handleChangePassword(values)}>
@@ -55,7 +55,7 @@ const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePassw
                   />
 
                   <View style={styles.buttonWrapper}>
-                    <GreenButton onPress={handleSubmit} backgroundColor={colors.blackColor} animation={animationChangePassword} title={t('change_password')} />
+                    <GreenButton onPress={handleSubmit} backgroundColor={colors.blackColor} animation={animationChangePassword} title={t('change_password_button')} />
                     <VerificationModal
                       title={t('password_changed')}
                       description={t('successfully_changed_password')}

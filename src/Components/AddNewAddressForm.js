@@ -55,7 +55,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
               error={touched.fullName && errors.fullName}
               title={t('full_name')}
               keyboardType="default"
-              placeholder={t('peter_leung')}
+              // placeholder={t('peter_leung')}
               name="fullName"
               secureTextEntry={false}
               onChangeText={handleChange('fullName')}
@@ -78,7 +78,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
               error={touched.addressLine1 && errors.addressLine1}
               title={t('address_line_1')}
               keyboardType="default"
-              placeholder={t('park_text')}
+              // placeholder={t('park_text')}
               name="addressLine1"
               secureTextEntry={false}
               onChangeText={handleChange('addressLine1')}
@@ -90,7 +90,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
               error={touched.addressLine2 && errors.addressLine2}
               title={t('address_line_2')}
               keyboardType="default"
-              placeholder={t('peter_mail')}
+              // placeholder={t('peter_mail')}
               name="addressLine2"
               secureTextEntry={false}
               onChangeText={handleChange('addressLine2')}
@@ -102,7 +102,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
               error={touched.area && errors.area}
               title={t('area_text')}
               keyboardType="default"
-              placeholder={t('kowloon_text')}
+              // placeholder={t('kowloon_text')}
               name="area"
               secureTextEntry={false}
               onChangeText={handleChange('area')}
@@ -115,7 +115,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
               error={touched.district && errors.district}
               title={t('district_text')}
               keyboardType="default"
-              placeholder={t('kwun_tong')}
+              // placeholder={t('kwun_tong')}
               name="district"
               secureTextEntry={false}
               onChangeText={handleChange('district')}
@@ -128,8 +128,8 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
                 <TouchableOpacity onPress={()=>setIsCountryPickerVisible(true)} style={styles.countryPicker}>
                   <CountryPicker
                     visible={isCountryPickerVisible}
-                    placeholder={ country?.name ?? updateAddress?.cityCountry ?? <Text style={styles.countryPlaceholder}>Hong kong</Text>}
-                    placeholderStyling={{color:'red',backgroundColor:'green'}}
+                    placeholder={ country?.name ?? updateAddress?.cityCountry ?? <Text style={styles.countryPlaceholder}>Select Country</Text>}
+                    // placeholderStyling={{color:'red',backgroundColor:'green'}}
                     // placeholderStyle={{backgroundColor:'red'}}
                     isCountryPickerVisible
                     onSelect={setCountry}
@@ -162,7 +162,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
               error={touched.contactNumber && errors.contactNumber}
               title={t('contact_no')}
               keyboardType="phone-pad"
-              placeholder={t('phone_pad')}
+              // placeholder={t('phone_pad')}
               name="contactNumber"
               secureTextEntry={false}
               onChangeText={handleChange('contactNumber')}

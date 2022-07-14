@@ -5,12 +5,12 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors, fonts} from '../Utils/theme';
 import DeliverAndCreditCard from './DeliverAndCreditCard';
 
-const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail, animationForgettingAddress}) => {
+const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail, animationForgettingAddress, handleSelectedPrimary}) => {
   const handleData = (id) => {
     setData((prev)=> {
       return prev?.map((x,i)=>{
         if(x?._id == id){
-          setShowDetail(x?.addressLine1);
+          setShowDetail(x);
         return {...prev[i], primary: true}
         }else{
           return {...prev[i], primary: false}
@@ -19,7 +19,7 @@ const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail,
     })
   }
 
-const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => handleData(item?._id)} title={item?.fullName} companyName = {item?.companyName} addressLineOne={item.addressLine1} addressLineTwo={item?.addressLine2} children={item?.children} selected={item?.primary} />;
+const renderItem = ({item}) => <DeliverAndCreditCard onPress={() => {handleData(item?._id), handleSelectedPrimary(item?._id)}} title={item?.fullName} companyName = {item?.companyName} addressLineOne={item.addressLine1} addressLineTwo={item?.addressLine2} children={item?.children} selected={item?.primary} />;
 
   return (
     

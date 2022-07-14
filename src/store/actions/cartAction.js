@@ -2,9 +2,11 @@ import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import * as types from '../types/types';
+import {setActivityLength} from '../actions/activitiesAction'
 
 import { Api } from '../../Utils/Api'
 import { t } from 'i18next';
+
 
 
 function setCartDetail(cart) {
@@ -14,7 +16,7 @@ function setCartDetail(cart) {
     }
 }
 
-function setAddToCart(item) {
+export function setAddToCart(item) {
     return {
         type: types.ADD_TO_CART,
         item,
@@ -35,14 +37,23 @@ function setPromoCodeDetail(data) {
     }
 }
 
+export function setCartLength(data){
+    return {
+        type: types.CART_LENGTH,
+        data
+    }
+}
+
 
 //Get Cart Data
 export const getCartData = (setAnimation, setTextValue) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-        axios.get(`${Api}/cart`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            axios.get(`${Api}/cart`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
+                dispatch(setCartLength(res?.data?.products?.length))
                 dispatch(setCartDetail(res?.data?.products));
                 dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
@@ -71,16 +82,48 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
         setAddToCartAnimation(true);
         axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
+                dispatch(setCartLength(res?.data?.products?.length))
                 setAddToCartAnimation(false);
                 dispatch(setAddToCart(res?.data?.products));
                 Toast.show({
                     type: 'success',
-                    text1: 'Item added to cart successfully',
+                    text1: t('added_item_message')
                 });
-                navigate("cart");
+                navigate("cartStack");
             })
             .catch((err) => {
                 setAddToCartAnimation(false);
+                if (err?.response?.status == 401) {
+                    Toast.show({
+                        type: 'error',
+                        text1: "User is not logged in"
+                    });
+                } else
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+            });
+
+    }
+}
+
+export const addToCartAnotherDesign = (data) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
+                dispatch(setCartLength(res?.data?.products?.length))
+               
+                dispatch(setAddToCart(res?.data?.products));
+                Toast.show({
+                    type: 'success',
+                    text1: t('added_item_message'),
+                });
+            })
+            .catch((err) => {
                 if (err?.response?.status == 401) {
                     Toast.show({
                         type: 'error',
@@ -119,7 +162,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
 }
 
 //Promo Code
-export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus,setPromoCodeAppliedId) => {
+export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus,setPromoCodeAppliedId, setPromoCodeType, setDiscountInPercentage) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setPromoCodeAnimation(true);
@@ -128,9 +171,10 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
                 setPromoCodeAppliedId(res?.data[0]?._id);
                 setPromoCodeAppliedStatus(true);
                 if (res?.data?.length > 0) {
+                    setPromoCodeType(res?.data[0]?.promoType?.type);
                     dispatch(setPromoCodeDetail(res?.data[0]?.discount));
                     setValidPromoCode(true);
-                } else { dispatch(setPromoCodeDetail("0")); promoCodeToggleModal(); setValidPromoCode(false); };
+                } else { dispatch(setPromoCodeDetail("0")); promoCodeToggleModal(); setValidPromoCode(false); setDiscountInPercentage(0) };
                 setPromoCodeAnimation(false);
 
             })
@@ -138,6 +182,8 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
                 promoCodeToggleModal();
                 setPromoCodeAnimation(false);
                 setValidPromoCode(false);
+                dispatch(setPromoCodeDetail("0"))
+                setDiscountInPercentage(0)
             });
     }
 }
@@ -170,6 +216,8 @@ export const emptyCart = () => {
         axios.post(`${Api}/cart/empty`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 dispatch(setCartDetail([]));
+                await Storage.storeData('lengthCart', 0);
+                dispatch(setCartLength(0))
             })
             .catch((err) => {
                 Toast.show({
@@ -185,10 +233,14 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
     return async (dispatch) => {
         setPlaceOrderAnimation(true);
         const accessToken = await Storage.retrieveData('token');
+        let activityLength = await Storage.retrieveData('lengthActivity');
         axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 setPlaceOrderAnimation(false);
-                navigate("orderReceived");
+                activityLength = activityLength + 1 ;
+                await Storage.storeData('lengthActivity', activityLength);
+                dispatch(setActivityLength(activityLength))
+                navigate("orderReceived" , {welcome: true, orderId:res?.data?.orderRefrence} );
             })
             .catch((err) => {
                 setPlaceOrderAnimation(false);

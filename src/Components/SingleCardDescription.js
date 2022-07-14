@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-
+import { useTranslation } from 'react-i18next';
 import {colors,fonts} from '../Utils/theme';
 
 const SingleCardDescription = ({item}) => {
+  const {t} = useTranslation();
   const flag = (item?.title == "BUSINESS_CARD" || item?.title == "BOOKLET" || item?.title == "STICKERS_LABEL") ? true:false;
   return (
     <View style={styles.paddingContainer}>
@@ -18,25 +19,25 @@ const SingleCardDescription = ({item}) => {
         {item?.category?.description}
       </Text>
       <View style={styles.categoryContainer}>
-        <Text style={styles.categoryType}>{flag ? "Paper type:" : "Paper:"}</Text>
+        <Text style={styles.categoryType}>{flag ? t("paper_type_product") : t("paper_product")}</Text>
         <Text style={styles.categoryDescription} >
           {item?.category?.paperType}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
-        <Text style={styles.categoryType}>Lead time:</Text>
+        <Text style={styles.categoryType}>{t('lead_time_product')}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
           {item?.category?.leadTime}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
-        <Text style={styles.categoryType}>Colour:</Text>
+        <Text style={styles.categoryType}>{t('colour_product')}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
           {item?.category?.colour}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
-        <Text style={styles.categoryType}>Sizes:</Text>
+        <Text style={styles.categoryType}>{t('size_product')}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
           {item?.category?.Sizes}
         </Text>

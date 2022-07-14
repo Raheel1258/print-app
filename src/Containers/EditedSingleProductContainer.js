@@ -35,7 +35,16 @@ const EditedSingleProductContainer = ({ route }) => {
 
   const [animation, setAnimation] = useState(false);
   const [designUrl, setDesignUrl] = useState([]);
-  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({ url: [{ url_link: '' }] })
+  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState(
+    // { url: [
+    //   { url_link: '12' },
+    //   { url_link: '123' }
+    // ]},
+    {
+      url: cartItem?.designUrl?.length > 0 ? cartItem?.designUrl?.map((item)=>{return {url_link: item}}) : [{url_link: ''}]
+    }
+  
+    )
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState('uploadFile');
@@ -62,7 +71,7 @@ const EditedSingleProductContainer = ({ route }) => {
   const [selectedWindow, setSelectedWindow] = useState(cartItem?.window && cartItem?.window);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState(cartItem?.remarks);
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(cartItem?.designFileUrl?.length > 0 ? cartItem?.designFileUrl :[]);
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
@@ -241,7 +250,8 @@ const EditedSingleProductContainer = ({ route }) => {
       category: state?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl: selectedUpload == "urlLink" ? designUrl : result,
+      designUrl: designUrl,
+      designFileUrl: result,
       preview: preview,
       numberOfPages: state?.numberOfPages[0] ? [{ name: state?.numberOfPages && state?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: state?.numberOfPages && state?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
       cut: selectedCut,
@@ -260,7 +270,6 @@ const EditedSingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
-    console.log("updated obj" ,obj);
     dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate));
 
 

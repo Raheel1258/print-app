@@ -140,6 +140,8 @@ const CartContainer = () => {
     dispatch(makeAddressPrimary(id,true));
   }
 
+
+
   const handlePayment = () => {
     // genToken();
     var date = getDate();
@@ -191,12 +193,13 @@ const CartContainer = () => {
     let totalPrice = 0;
     let amountInPercent = 0;
     cartItem && cartItem?.map((item) => {
-      quantity = item?.priceChart?.units;
-      unitPrice = item?.priceChart?.pricePerUnit;
-      deliveryCost = parseFloat(deliveryCost + item?.priceChart?.deliveryCost);
-      subTotal1 = parseFloat(quantity * unitPrice);
-      totalPrice = parseFloat(subTotal1);
+      // quantity = item?.priceChart?.units;
+      // unitPrice = item?.priceChart?.pricePerUnit;
+      deliveryCost = Math.round(deliveryCost + item?.priceChart?.deliveryCost);
+      subTotal1 = Math.round(subTotal1 + ( item?.priceChart?.pricePerUnit * item?.priceChart?.units ))
+      
     });
+    totalPrice = (subTotal1);
     if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !==""){
       if(promoCodeType == "PERCENTAGE"){
         totalPrice = parseFloat(totalPrice + deliveryCost);

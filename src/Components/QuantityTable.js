@@ -16,7 +16,7 @@ const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, priceChartAni
       <TouchableOpacity activeOpacity={1} onPress = { () => setSelectedPriceChart(item)} style={{...styles.tableItems, ...quantityStyle}}>
         <Text style={styles.priceText}>{item?.units}</Text>
         <Text style={styles.dollerPrice}>${Math.round(Number(item?.units * item?. pricePerUnit))}</Text>
-        <Text style={styles.priceText}>${Math.round(Number(item?.pricePerUnit))}</Text>
+        <Text style={styles.priceText}>${(Number(item?.pricePerUnit))?.toFixed(2)}</Text>
       </TouchableOpacity>
     );
   };

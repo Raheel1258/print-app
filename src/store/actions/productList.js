@@ -61,6 +61,12 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
 
   let values = defaultValuesObject;
 
+  if (values?.product == "Booklet (Stapled)" && values?.size == "A5") {
+    let x = values?.innerpage
+    const y = x.split(" ").filter((item => item !== "")).join(" ");
+    values['innerpage'] = y
+  } 
+
   if (values?.product !== "Spot UV Business Card") {
     delete values['spotuvside'];
   }
@@ -123,6 +129,12 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
 
   let values = defaultValuesObject;
 
+  if (values?.product == "Booklet (Stapled)" && values?.size == "A5") {
+    let x = values?.innerpage
+    const y = x.split(" ").filter((item => item !== "")).join(" ");
+    values['innerpage'] = y
+  }  
+  
   if (values?.product !== "Spot UV Business Card") {
     delete values['spotuvside'];
   }

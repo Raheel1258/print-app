@@ -17,7 +17,7 @@ const BottomSheetComponent = ({
   childern,
   height = '93%',
   languageTitle = undefined,
-  note = true,
+  note = false,
   onClose = true
 }) => {
   return (

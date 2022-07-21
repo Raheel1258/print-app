@@ -14,7 +14,7 @@ const DeliverAndCreditCard = ({
     addressLineTwo = '',
     selected,
     onPress,
-    handleSelectedPrimary
+    handleSelectedPrimary = () => {}
 }) => {
   // const new="sdsdfs";
   return (

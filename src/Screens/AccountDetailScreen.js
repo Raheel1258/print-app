@@ -13,7 +13,7 @@ import {
   MyAddresses,
   BottomSheetComponent,
   AddNewAddressForm,
-  AddNewCreditCardForm
+  AddNewCreditCardSheet
 } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
@@ -29,6 +29,7 @@ const AccountDetailScreen = ({
   animationUpdateUser, 
   handleUserAddressRemove,
   makePrimary,
+  userCardsDetails,
  }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
@@ -140,9 +141,19 @@ const AccountDetailScreen = ({
             <CategoriesTitleHeader
               title={t('my_payment')}
               description={t('new_card')}
-              // onPress={() => addCardetCardRBSheet.current.open()}
+              onPress={() => addCardetCardRBSheet.current.open()}
             />
-            <MyAddresses card title="Peter Park" description="Primary" />
+            {userCardsDetails?.length > 0 ? userCardsDetails?.map((item,index)=>{
+              return <>
+                <MyAddresses 
+                    card={item}
+                    title="Peter Park" 
+                    description={index == 0 ? true : false} 
+                    />
+                {index != userCardsDetails.length - 1 && <View style={styles.borderBottom} />}
+                </>
+              }) : <Text style={styles.emptyBox}>No card added</Text>}
+            
           </View>
           <View style={styles.screenBorderBottom} />
         </ScrollView>
@@ -153,7 +164,7 @@ const AccountDetailScreen = ({
           refRBSheet={addAddressRBSheet}
         />
         <BottomSheetComponent
-          childern={<AddNewCreditCardForm />}
+          childern={<AddNewCreditCardSheet />}
           title={t('add_new_cardet_card')}
           note={false}
           refRBSheet={addCardetCardRBSheet}

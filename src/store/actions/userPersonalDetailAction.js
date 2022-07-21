@@ -219,3 +219,48 @@ export const makeAddressPrimary = (id, flag) => {
 
     }
 }
+
+
+//getAllCard
+export const  getAllCards = () => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, {headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("res from back end for data", res?.data?.data);
+                dispatch(setUserCard(res?.data?.data))
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                Toast.show({
+                    type: 'error',
+                    text1: err?.response?.data?.message ? err?.response?.data?.message : 'Network Error',
+                });
+            });
+
+    }
+}
+//
+export const  addCards = (values) => {
+    return async (dispatch) => {
+        const apiKey =
+            'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
+        const client = new Stripe(apiKey);
+        const stripeToken = await client.createToken({
+            number: values?.cardNumber,
+            name: values?.cardName ?? "",
+            exp_month: values?.expiryMonth,
+            exp_year: values?.expiryYear,
+            cvc: values?.cvc,
+        });
+        if (stripeToken?.id){
+            console.log("stripe token" , stripeToken?.id);
+            dispatch(getAllCards())
+            Toast.show({
+                type: 'success',
+                text1: 'Card is added successfully',
+            });
+        }
+
+    }
+}

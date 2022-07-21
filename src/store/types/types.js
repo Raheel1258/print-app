@@ -21,6 +21,7 @@ export const CART_DETAIL = "CART_DETAIL";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const PROMO_CODE = "PROMO_CODE";
 export const CART_LENGTH = "CART_LENGTH";
+export const USER_CARDS_DATA= "USER_CARDS_DATA";
 
 //Activity_Types
 export const ACTIVITY_DETAIL = "ACTIVITY_DETAIL";

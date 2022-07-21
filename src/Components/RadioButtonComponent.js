@@ -23,6 +23,7 @@ const RadioButtonComponent = ({
   openfun = ()=>{},
   addressRadio
 }) => {
+  console.log("description123456" , description);
   const { t } = useTranslation();
   return (
     <View>
@@ -45,14 +46,21 @@ const RadioButtonComponent = ({
           </TouchableOpacity>
         </View> }
         
-        {(!addressRadio && description === "Select card") &&
+        {(!addressRadio && description !== "Noo") &&
           <View>
             <TouchableOpacity onPress={onPress}>
               <Text style={styles.deliveryText}>{title}</Text>
-              <Text style={styles.deliveryDescription}>{description}</Text>
+              <Text style={styles.deliveryDescription}>{description?.name}</Text>
             </TouchableOpacity>
           </View>
         }
+        {(description === "Noo") && <View>
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.deliveryText}>{title}</Text>
+            <Text style={styles.deliveryDescription}>{t("Select card")}</Text> 
+           
+          </TouchableOpacity>
+        </View> }
       </View>
       <View style={styles.borderBottom} />
       <View style={styles.container}>

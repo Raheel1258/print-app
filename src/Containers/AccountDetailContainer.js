@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary } from "../store/actions/userPersonalDetailAction"
+import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards } from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
@@ -14,11 +14,16 @@ const AccountDetailContainer = () => {
   const addCardetCardRBSheet = useRef();
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const isFocused = useIsFocused();
+
 
   const [animation, setAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
   const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
   const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
+  const userCardsDetails = useSelector(state => state?.userPersonalDetailReducer?.userCard);
+
+  console.log("cardddddsss " , userCardsDetails);
 
   const [personalDetail, setPersonalDetail] = useState({
     firstName: 'Peter',
@@ -38,7 +43,8 @@ const AccountDetailContainer = () => {
 
   useEffect(() => {
     dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
-  }, [])
+    dispatch(getAllCards()) 
+  }, [isFocused])
 
 
   const handleUpdatedPersonalDetail = (values) => {
@@ -67,6 +73,7 @@ const AccountDetailContainer = () => {
         userAddresses={userAddresses}
         animationUpdateUser={animationUpdateUser}
         handleUserAddressRemove={handleUserAddressRemove}
+        userCardsDetails={userCardsDetails}
       />
     </View>
   );

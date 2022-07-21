@@ -2,7 +2,7 @@ import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import * as types from '../types/types';
-import {setActivityLength} from '../actions/activitiesAction'
+import { setActivityLength } from '../actions/activitiesAction'
 
 import { Api } from '../../Utils/Api'
 import { t } from 'i18next';
@@ -37,9 +37,16 @@ function setPromoCodeDetail(data) {
     }
 }
 
-export function setCartLength(data){
+export function setCartLength(data) {
     return {
         type: types.CART_LENGTH,
+        data
+    }
+}
+
+function setUserCardData(data) {
+    return {
+        type: types.USER_CARDS_DATA,
         data
     }
 }
@@ -50,7 +57,7 @@ export const getCartData = (setAnimation, setTextValue) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
-            axios.get(`${Api}/cart`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.get(`${Api}/cart`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 await Storage.storeData('lengthCart', res?.data?.products?.length);
                 dispatch(setCartLength(res?.data?.products?.length))
@@ -116,7 +123,7 @@ export const addToCartAnotherDesign = (data) => {
             .then(async (res) => {
                 await Storage.storeData('lengthCart', res?.data?.products?.length);
                 dispatch(setCartLength(res?.data?.products?.length))
-               
+
                 dispatch(setAddToCart(res?.data?.products));
                 Toast.show({
                     type: 'success',
@@ -162,7 +169,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
 }
 
 //Promo Code
-export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus,setPromoCodeAppliedId, setPromoCodeType, setDiscountInPercentage) => {
+export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus, setPromoCodeAppliedId, setPromoCodeType, setDiscountInPercentage) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setPromoCodeAnimation(true);
@@ -237,10 +244,10 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
         axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 setPlaceOrderAnimation(false);
-                activityLength = activityLength + 1 ;
+                activityLength = activityLength + 1;
                 await Storage.storeData('lengthActivity', activityLength);
                 dispatch(setActivityLength(activityLength))
-                navigate("orderReceived" , {welcome: true, orderId:res?.data?.orderRefrence} );
+                navigate("orderReceived", { welcome: true, orderId: res?.data?.orderRefrence });
             })
             .catch((err) => {
                 setPlaceOrderAnimation(false);
@@ -274,6 +281,73 @@ export const getUserDetailForPlacingOrder = (setData, setAnimationForgettingAddr
 
     }
 }
+
+//get all cards
+export const getAllCards = (setAnimation, setCardData) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("res from back end for data", res?.data?.data);
+                setAnimation(false);
+                setCardData(res?.data?.data)
+                dispatch(setUserCardData(res?.data?.data))
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false)
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+
+    }
+}
+
+
+//Payment with Saved Card
+
+export const paymentWithSaveCard = (setPlaceOrderAnimation, card, orderObj, navigate) => {
+    return async (dispatch) => {
+        setPlaceOrderAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.post(`${Api}/stripe/paymentWithSavedCard`, card, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("res from back end for data", res);
+
+                let activityLength = await Storage.retrieveData('lengthActivity');
+                axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
+                    .then(async (res) => {
+                        setPlaceOrderAnimation(false);
+                        activityLength = activityLength + 1;
+                        await Storage.storeData('lengthActivity', activityLength);
+                        dispatch(setActivityLength(activityLength))
+                        navigate("orderReceived", { welcome: false, orderId: res?.data?.orderRefrence });
+                    })
+                    .catch((err) => {
+                        setPlaceOrderAnimation(false);
+                        Toast.show({
+                            type: 'error',
+                            text1: t('general_message'),
+                        });
+                    });
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setPlaceOrderAnimation(false)
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+    }
+}
+
+
+
+
 
 
 

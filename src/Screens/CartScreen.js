@@ -93,7 +93,6 @@ const CartScreen = ({
   userCardData,
   setUserCardData
 }) => {
-  console.log("data of card" , userCardData);
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (

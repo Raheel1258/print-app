@@ -304,7 +304,8 @@
     order_printing_in_process_status:'Printing in process',
 
     card_added_message:'Card is added successfully',
-    card_delete_message:'Card is deleted successfully'
+    card_delete_message:'Card is deleted successfully',
+    update_card_message:'Card is updated successfully'
 
 
 

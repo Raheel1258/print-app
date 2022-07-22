@@ -34,6 +34,7 @@ const AccountDetailScreen = ({
  }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
+  const [updateCard , setUpdateCard] = useState(undefined);
   return (
     <>
       {!animation ? <View style={styles.container}>
@@ -142,12 +143,13 @@ const AccountDetailScreen = ({
             <CategoriesTitleHeader
               title={t('my_payment')}
               description={t('new_card')}
-              onPress={() => addCardetCardRBSheet.current.open()}
+              onPress={() => {addCardetCardRBSheet.current.open(), setUpdateCard(undefined)}}
             />
             {userCardsDetails?.length > 0 ? userCardsDetails?.map((item,index)=>{
               return <>
                 <MyAddresses 
                     card={item}
+                    setUpdatedAddress={setUpdateCard} 
                     title="Peter Park" 
                     refRBSheet={addCardetCardRBSheet}
                     handleUserAddressRemove={handleUserCardRemove} 
@@ -161,14 +163,14 @@ const AccountDetailScreen = ({
           <View style={styles.screenBorderBottom} />
         </ScrollView>
         <BottomSheetComponent
-          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} updateAddress={updateAddress} setUpdatedAddress={setUpdatedAddress}/>}
+          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} updateAddress={updateAddress} />}
           title={updateAddress == undefined ? t('add_new_address') : t('update_address')}
           note={false}
           refRBSheet={addAddressRBSheet}
         />
         <BottomSheetComponent
-          childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet}/>}
-          title={t('add_new_cardet_card')}
+          childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} updateCard={updateCard} setUpdateCard={setUpdateCard}/>}
+          title={updateCard == undefined ? t('add_new_cardet_card'): 'Update Card'}
           note={false}
           refRBSheet={addCardetCardRBSheet}
         />

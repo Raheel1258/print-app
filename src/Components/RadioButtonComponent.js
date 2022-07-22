@@ -23,7 +23,6 @@ const RadioButtonComponent = ({
   openfun = ()=>{},
   addressRadio
 }) => {
-  console.log("description123456" , description);
   const { t } = useTranslation();
   return (
     <View>

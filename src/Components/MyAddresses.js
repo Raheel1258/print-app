@@ -46,12 +46,12 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
               <Text style={styles.cardNumText}>{card?.exp_month} / {card?.exp_year}</Text>
             </View>
             <View style={styles.cardPrivacyContainer}>
-              <Text style={styles.cardNumText}>CVV:</Text>
+              <Text style={styles.cardNumText}>CVC:</Text>
               <Text style={styles.cardNumText}>***</Text>
             </View>
           </View>
           <View style={styles.editableContainer}>
-            <TouchableOpacity onPress={() => console.log("edited address")} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('edit_product')}</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(card)}} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('edit_product')}</Text></TouchableOpacity>
             {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>{t('make_address_primary')}</Text></TouchableOpacity>}
             <TouchableOpacity onPress={() => handleUserAddressRemove(card?.id)} style={styles.paddingWrapper} ><Text style={styles.editableText}>{t('remove_product')}</Text></TouchableOpacity>
           </View>

@@ -289,7 +289,6 @@ export const getAllCards = (setAnimation, setCardData) => {
         const accessToken = await Storage.retrieveData('token')
         axios.get(`${Api}/stripe/getAllCards/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from back end for data", res?.data?.data);
                 setAnimation(false);
                 setCardData(res?.data?.data)
                 dispatch(setUserCardData(res?.data?.data))
@@ -315,7 +314,6 @@ export const paymentWithSaveCard = (setPlaceOrderAnimation, card, orderObj, navi
         const accessToken = await Storage.retrieveData('token')
         axios.post(`${Api}/stripe/paymentWithSavedCard`, card, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from back end for data", res);
 
                 let activityLength = await Storage.retrieveData('lengthActivity');
                 axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })

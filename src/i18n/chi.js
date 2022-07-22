@@ -554,7 +554,8 @@ export const chi = {
     order_printing_in_process_status:'印刷中',
 
     card_added_message:'卡添加成功',
-    card_delete_message:'卡已成功删除'
+    card_delete_message:'卡已成功删除',
+    update_card_message:'卡更新成功'
 
   },
 };

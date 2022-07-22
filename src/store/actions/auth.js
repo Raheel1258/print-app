@@ -59,7 +59,6 @@ export const login = (data, navigation, setAnimation, obj) => {
                 }
             })
             .catch((err) => {
-                console.log("log in error" , err.response);
                 setAnimation(false);
                 if(err?.response?.data?.statusCode === 400){
                     Toast.show({
@@ -248,7 +247,6 @@ export const addToCartWithToken = (data) => {
                 // navigate("cartStack");
             })
             .catch((err) => {
-                console.log("Error data cart Api call" , err);
                 if (err?.response?.status == 401) {
                     Toast.show({
                         type: 'error',

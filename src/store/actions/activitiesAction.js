@@ -81,7 +81,6 @@ export const allMarkToReadActivity = ( setAnimation) => {
         const accessToken = await Storage.retrieveData('token')
         axios.get(`${Api}/notifications/change/status/all`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("user response activity all" , res);
                 dispatch(getAllActivity(setAnimation))
             })
             .catch((err) => {

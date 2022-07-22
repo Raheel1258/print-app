@@ -74,8 +74,6 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
      }    
   }  
 
-  console.log(values['innerpage']);
-
   if (values?.product !== "Spot UV Business Card") {
     delete values['spotuvside'];
   }

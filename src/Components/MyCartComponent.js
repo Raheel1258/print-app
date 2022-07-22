@@ -89,9 +89,9 @@ const styles = ScaledSheet.create({
     fontSize: '14@s',
     fontStyle: 'normal',
     lineHeight: '20@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
-    color: colors.red,
+    color: colors.blackColor,
     width:'200@s',
   },
   OrderCardTitle:{

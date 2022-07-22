@@ -5,34 +5,41 @@ import RightArrow from '../Assests/Svgs/LeftArrow';
 import {AddressTextField, GreenButton} from '../Components';
 import { colors } from '../Utils/theme';
 import { Formik } from 'formik';
-import { addCreditCardSchema } from '../Utils/validationSchema';
-import {addCards} from "../store/actions/userPersonalDetailAction"
+import { addCreditCardSchema , updateCreditCardSchema} from '../Utils/validationSchema';
+import {addCards, updateCardStripe} from "../store/actions/userPersonalDetailAction"
 import { useDispatch } from 'react-redux';
 
-const AddNewCreditCardSheet = ({addCardetCardRBSheet}) => {
+const AddNewCreditCardSheet = ({addCardetCardRBSheet,updateCard }) => {
     const dispatch = useDispatch();
     const [cardAddAnimation, setCardAddAnimation] = useState(false);
     const [creditCardState, setCreditCardState] = useState({
         cardNumber: '',
-        cardName: '',
-        expiryMonth: '',
-        expiryYear: '',
+        cardName: updateCard?.name ?? '',
+        expiryMonth: updateCard?.exp_month ?? '',
+        expiryYear: updateCard?.exp_year ?? '',
         cvc:'',
     })
-
     const handleCreditCard = (values) => {
+      if(updateCard == undefined){
         dispatch(addCards(values, setCardAddAnimation, addCardetCardRBSheet))
-        console.log("values of cards", values);
+      }else {
+        dispatch(
+          updateCardStripe(
+            updateCard?.id,
+            {name:values.cardName, exp_month:values.expiryMonth , exp_year:values.expiryYear},
+              setCardAddAnimation, addCardetCardRBSheet))
       }
+       
+     }
   const {t} = useTranslation();
   return (
     <ScrollView>
-      <Formik initialValues={creditCardState} validationSchema={() =>addCreditCardSchema(t)} onSubmit={(values) => handleCreditCard(values)}>
+      <Formik initialValues={creditCardState} validationSchema={updateCard == undefined ? () =>addCreditCardSchema(t): updateCreditCardSchema(t)} onSubmit={(values) => handleCreditCard(values)}>
             {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
               const { cardNumber, cardName, expiryMonth, expiryYear, cvc } = values;
               return <>
               <View >
-                <AddressTextField
+                {!updateCard && <AddressTextField
                   value={cardNumber}
                   error={touched.cardNumber && errors.cardNumber}
                   title={t('card_number')}
@@ -41,7 +48,7 @@ const AddNewCreditCardSheet = ({addCardetCardRBSheet}) => {
                   secureTextEntry={false}
                   onChangeText={handleChange('cardNumber')}
                   onBlur={handleBlur('cardNumber')}
-                />
+                />}
                  <AddressTextField
                   value={cardName}
                   error={touched.cardName && errors.cardName}
@@ -53,7 +60,7 @@ const AddNewCreditCardSheet = ({addCardetCardRBSheet}) => {
                   onBlur={handleBlur('cardName')}
                 />
                  <AddressTextField
-                  value={expiryMonth}
+                  value={expiryMonth.toString()}
                   error={touched.expiryMonth && errors.expiryMonth}
                   title={t('expiry_month')}
                   keyboardType="phone-pad"
@@ -66,7 +73,7 @@ const AddNewCreditCardSheet = ({addCardetCardRBSheet}) => {
                   // childern={<RightArrow/>}
                 />
                  <AddressTextField
-                  value={expiryYear}
+                  value={expiryYear.toString()}
                   error={touched.expiryYear && errors.expiryYear}
                   title={t('expiry_year')}
                   keyboardType="phone-pad"
@@ -78,7 +85,7 @@ const AddNewCreditCardSheet = ({addCardetCardRBSheet}) => {
                   onBlur={handleBlur('expiryYear')}
                   // childern={<RightArrow/>}
                 />
-                <AddressTextField
+                {!updateCard &&<AddressTextField
                   value={cvc}
                   error={touched.cvc && errors.cvc}
                   title={t('Cvc')}
@@ -90,8 +97,8 @@ const AddNewCreditCardSheet = ({addCardetCardRBSheet}) => {
                   onChangeText={handleChange('cvc')}
                   onBlur={handleBlur('cvc')}
                   // childern={<RightArrow/>}
-                />
-                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={cardAddAnimation} title={t('add_card')}/>
+                />}
+                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={cardAddAnimation} title={updateCard ?'Update Card':('add_card')}/>
                 </View>
               </>
             }}

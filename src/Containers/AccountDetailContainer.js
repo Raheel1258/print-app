@@ -59,7 +59,6 @@ const AccountDetailContainer = () => {
 
   const handleUserCardRemove = (id) => {
     dispatch(deleteCard(id,setAnimation));
-    console.log("od of card" , id);
   }
 
   return (

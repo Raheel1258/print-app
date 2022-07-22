@@ -98,7 +98,7 @@ const AddNewCreditCardSheet = ({addCardetCardRBSheet,updateCard }) => {
                   onBlur={handleBlur('cvc')}
                   // childern={<RightArrow/>}
                 />}
-                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={cardAddAnimation} title={updateCard ?'Update Card':('add_card')}/>
+                <GreenButton  backgroundColor={colors.blackColor} onPress={handleSubmit} animation={cardAddAnimation} title={updateCard ? t('update_card'): t('add_card')}/>
                 </View>
               </>
             }}

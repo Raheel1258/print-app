@@ -306,7 +306,8 @@
     card_added_message:'Card is added successfully',
     card_delete_message:'Card is deleted successfully',
     update_card_message:'Card is updated successfully',
-    select_card:'Select Card'
+    select_card:'Select Card',
+    update_card:'Update Card'
 
 
 

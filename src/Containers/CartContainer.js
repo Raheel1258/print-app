@@ -189,7 +189,7 @@ const CartContainer = () => {
     else if(paymentMethodName == 'Credit Card' && userCardData == "Select card"){
       Toast.show({
         type: 'error',
-        text1: 'Select Card',
+        text1: t('select_card'),
       });
     }
     else {

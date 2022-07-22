@@ -555,7 +555,8 @@ export const chi = {
 
     card_added_message:'卡添加成功',
     card_delete_message:'卡已成功删除',
-    update_card_message:'卡更新成功'
+    update_card_message:'卡更新成功',
+    select_card:'选择卡'
 
   },
 };

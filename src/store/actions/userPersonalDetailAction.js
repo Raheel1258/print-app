@@ -24,6 +24,7 @@ function setUserDetail(user) {
 }
 
 function setUserCard(userCard) {
+    console.log('dfsd', userCard);
     return {
         type: types.USER_CARD,
         userCard,
@@ -64,7 +65,6 @@ export const deleteAddress = (addressid) => {
             .then(async (res) => {
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
                     text1: t('address_remove'),
@@ -121,7 +121,6 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
             })
             .catch((err) => {
                 setAnimation(false);
@@ -150,7 +149,6 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 setAnimationUpdateUser(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
                     text1: t('user_update'),
@@ -224,6 +222,7 @@ export const makeAddressPrimary = (id, flag) => {
 
 //getAllCard
 export const  getAllCards = (setAnimation) => {
+    console.log('calllingh');
     return async (dispatch) => {
         setAnimation(true);
         const accessToken = await Storage.retrieveData('token')

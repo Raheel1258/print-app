@@ -23,8 +23,6 @@ const AccountDetailContainer = () => {
   const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
   const userCardsDetails = useSelector(state => state?.userPersonalDetailReducer?.userCard);
 
-  console.log("cardddddsss " , userCardsDetails);
-
   const [personalDetail, setPersonalDetail] = useState({
     firstName: 'Peter',
     lastName: 'Peter',

@@ -9,7 +9,7 @@ import { addCreditCardSchema } from '../Utils/validationSchema';
 import {addCards} from "../store/actions/userPersonalDetailAction"
 import { useDispatch } from 'react-redux';
 
-const AddNewCreditCardSheet = () => {
+const AddNewCreditCardSheet = ({addCardetCardRBSheet}) => {
     const dispatch = useDispatch();
     const [cardAddAnimation, setCardAddAnimation] = useState(false);
     const [creditCardState, setCreditCardState] = useState({
@@ -21,7 +21,7 @@ const AddNewCreditCardSheet = () => {
     })
 
     const handleCreditCard = (values) => {
-        dispatch(addCards(values))
+        dispatch(addCards(values, setCardAddAnimation, addCardetCardRBSheet))
         console.log("values of cards", values);
       }
   const {t} = useTranslation();

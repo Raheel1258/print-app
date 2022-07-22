@@ -18,6 +18,7 @@ import {
   DeliverAddressComponent,
   AddNewAddressForm,
   AddNewCreditCardForm,
+  AddNewCreditCardSheet
 } from '../Components';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
@@ -267,7 +268,7 @@ const CartScreen = ({
             refRBSheet={addAddressRBSheet}
           />
           <BottomSheetComponent
-            childern={<AddNewCreditCardForm />}
+            childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet}/>}
             title={t('add_new_cardet_card')}
             note={false}
             refRBSheet={addCardetCardRBSheet}

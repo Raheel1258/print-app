@@ -30,6 +30,7 @@ const AccountDetailScreen = ({
   handleUserAddressRemove,
   makePrimary,
   userCardsDetails,
+  handleUserCardRemove
  }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
@@ -148,6 +149,8 @@ const AccountDetailScreen = ({
                 <MyAddresses 
                     card={item}
                     title="Peter Park" 
+                    refRBSheet={addCardetCardRBSheet}
+                    handleUserAddressRemove={handleUserCardRemove} 
                     description={index == 0 ? true : false} 
                     />
                 {index != userCardsDetails.length - 1 && <View style={styles.borderBottom} />}
@@ -164,7 +167,7 @@ const AccountDetailScreen = ({
           refRBSheet={addAddressRBSheet}
         />
         <BottomSheetComponent
-          childern={<AddNewCreditCardSheet />}
+          childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet}/>}
           title={t('add_new_cardet_card')}
           note={false}
           refRBSheet={addCardetCardRBSheet}

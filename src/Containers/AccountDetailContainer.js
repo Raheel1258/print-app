@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards } from "../store/actions/userPersonalDetailAction"
+import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards, deleteCard } from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
@@ -43,7 +43,7 @@ const AccountDetailContainer = () => {
 
   useEffect(() => {
     dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
-    dispatch(getAllCards()) 
+    dispatch(getAllCards(setAnimation)) 
   }, [isFocused])
 
 
@@ -57,6 +57,11 @@ const AccountDetailContainer = () => {
 
   const handleMakePrimary = (id) => {
     dispatch(makeAddressPrimary(id, false));
+  }
+
+  const handleUserCardRemove = (id) => {
+    dispatch(deleteCard(id,setAnimation));
+    console.log("od of card" , id);
   }
 
   return (
@@ -74,6 +79,7 @@ const AccountDetailContainer = () => {
         animationUpdateUser={animationUpdateUser}
         handleUserAddressRemove={handleUserAddressRemove}
         userCardsDetails={userCardsDetails}
+        handleUserCardRemove={handleUserCardRemove}
       />
     </View>
   );

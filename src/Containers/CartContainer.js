@@ -5,7 +5,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder, getAllCards, paymentWithSaveCard } from '../store/actions/cartAction';
+import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder, getAllCards, paymentWithSaveCard, makeCardPrimaryForCart } from '../store/actions/cartAction';
 import {makeAddressPrimary} from '../store/actions/userPersonalDetailAction'
 import Toast from 'react-native-toast-message';
 
@@ -26,6 +26,7 @@ const CartContainer = () => {
   const authRBSheet = useRef();
   const refRBSheet = useRef();
 
+  const [animationForCard, setAnimationForCard] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
@@ -57,6 +58,8 @@ const CartContainer = () => {
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState(userCardsDetails);
   const primaryAddress = userDetailData?.addresses?.filter((item) => item.primary == true);
+
+  console.log("alll cardssssssss", cardData);
 
   // const [cardData, setCardData] = useState([
   //   {
@@ -145,6 +148,11 @@ const CartContainer = () => {
 
   const handleSelectedPrimary = (id) => {
     dispatch(makeAddressPrimary(id,true));
+  }
+
+  const handleSelectedPrimaryCard = (id) =>{
+    const getLastPrimary = userCardsDetails?.filter(item => item.metadata.primary === "true");
+    dispatch(makeCardPrimaryForCart(id,getLastPrimary[0].id))
   }
 
 
@@ -303,6 +311,7 @@ const CartContainer = () => {
         handleCardsForBottomSheet={handleCardsForBottomSheet}
         userCardData={userCardData} 
         setUserCardData={setUserCardData}
+        handleSelectedPrimaryCard={handleSelectedPrimaryCard}
       />
     </View>
   );

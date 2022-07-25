@@ -91,7 +91,8 @@ const CartScreen = ({
   handleSelectedPrimary,
   handleCardsForBottomSheet,
   userCardData,
-  setUserCardData
+  setUserCardData,
+  handleSelectedPrimaryCard
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -229,6 +230,7 @@ const CartScreen = ({
                 setData={setData}
                 data={data}
                 handleSelectedPrimary={handleSelectedPrimary}
+                RBsheet = {refRBSheet}
                 animationForgettingAddress={animationForgettingAddress}
                 setShowDetail={setDeliveryUserAddress}
                 onPress={() => {
@@ -248,7 +250,9 @@ const CartScreen = ({
                 addNew={t('new_credit_card')}
                 data={cardData}
                 setData={setCardData}
+                handleSelectedPrimaryCard={handleSelectedPrimaryCard}
                 animationForgettingAddress={animationForgettingAddress}
+                RBsheet = {creditCardRBSheet}
                 setShowDetail={setUserCardData}
                 onPress={() => {
                   creditCardRBSheet.current.close();

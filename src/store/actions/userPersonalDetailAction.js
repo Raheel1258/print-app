@@ -341,3 +341,29 @@ export const updateCardStripe = (id,updateData,setAnimation, addCardetCardRBShee
             });
     }
 }
+
+
+
+export const makeCardPrimary = (id,prevId, setAnimation) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/stripe/makePrimaryCard/${id}/${prevId}`, {} ,{headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'success',
+                    text1: t('update_card_message')
+                });
+                dispatch(getAllCards(setAnimation));              
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+    }
+}

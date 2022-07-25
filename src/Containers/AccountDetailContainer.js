@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards, deleteCard } from "../store/actions/userPersonalDetailAction"
+import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards, deleteCard, makeCardPrimary } from "../store/actions/userPersonalDetailAction"
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
@@ -30,7 +30,8 @@ const AccountDetailContainer = () => {
     email: 'peter@gmail.com'
   });
 
-
+  console.log("all cards data" , userCardsDetails);
+  
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -57,6 +58,11 @@ const AccountDetailContainer = () => {
     dispatch(makeAddressPrimary(id, false));
   }
 
+  const handleMakePrimaryCard = (id) => {
+    const getLastPrimary = userCardsDetails?.filter(item => item.metadata.primary === "true");
+    dispatch(makeCardPrimary(id, getLastPrimary[0].id, setAnimation));
+  }
+
   const handleUserCardRemove = (id) => {
     dispatch(deleteCard(id,setAnimation));
   }
@@ -77,6 +83,7 @@ const AccountDetailContainer = () => {
         handleUserAddressRemove={handleUserAddressRemove}
         userCardsDetails={userCardsDetails}
         handleUserCardRemove={handleUserCardRemove}
+        handleMakePrimaryCard={handleMakePrimaryCard}
       />
     </View>
   );

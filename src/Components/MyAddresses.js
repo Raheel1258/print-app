@@ -33,7 +33,7 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
         <>
           <View style={styles.header}>
             <Text style={styles.headerTitle}>{card?.name}</Text>
-            {description && <Text style={styles.headerPrimary}>{t('show_address_primary')}</Text>}
+            {card?.metadata?.primary === "true" && <Text style={styles.headerPrimary}>{t('show_address_primary')}</Text>}
           </View>
           <View>
             <View style={styles.cardPrivacyContainer}>
@@ -52,7 +52,7 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
           </View>
           <View style={styles.editableContainer}>
             <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(card)}} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('edit_product')}</Text></TouchableOpacity>
-            {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>{t('make_address_primary')}</Text></TouchableOpacity>}
+            {card.metadata.primary === "false" && <TouchableOpacity onPress={() => makePrimary(card?.id)} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('make_address_primary')}</Text></TouchableOpacity>}
             <TouchableOpacity onPress={() => handleUserAddressRemove(card?.id)} style={styles.paddingWrapper} ><Text style={styles.editableText}>{t('remove_product')}</Text></TouchableOpacity>
           </View>
         </>}

@@ -344,6 +344,29 @@ export const paymentWithSaveCard = (setPlaceOrderAnimation, card, orderObj, navi
 }
 
 
+//
+export const makeCardPrimaryForCart = (id,prevId) => {
+    return async (dispatch) => {
+        // setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/stripe/makePrimaryCard/${id}/${prevId}`, {} ,{headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("res from make primar", res);
+                // setAnimation(false);   
+                // dispatch(getAllCards(setAnimation));              
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                // setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+    }
+}
+
+
 
 
 

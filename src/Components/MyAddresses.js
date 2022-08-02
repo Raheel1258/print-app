@@ -1,4 +1,3 @@
-import { t } from 'i18next';
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';

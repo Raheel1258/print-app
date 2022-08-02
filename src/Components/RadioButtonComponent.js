@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import UnCheckedCircleIcon from '../Assests/Svgs/UnCheckedCircleIcon';
 import CheckedBlueIcon from '../Assests/Svgs/CheckedBlueIcon';
 import { colors, fonts } from '../Utils/theme';
+import MasterCard from '../Assests/Svgs/MasterCard';
+import VisaCard from '../Assests/Svgs/VisaCard';
 [];
 const RadioButtonComponent = ({
   title,
@@ -50,6 +52,10 @@ const RadioButtonComponent = ({
             <TouchableOpacity onPress={onPress}>
               <Text style={styles.deliveryText}>{title}</Text>
               <Text style={styles.deliveryDescription}>{description?.name}</Text>
+              <View style={{flexDirection:'row', alignItems:'center', paddingLeft:10}} >
+              {description?.brand == "Visa" ? <VisaCard/>:<MasterCard /> }
+              <Text style={{...styles.deliveryDescription, paddingTop:2}}>{description?.brand} ({description?.exp_year})</Text>
+              </View>
             </TouchableOpacity>
           </View>
         }

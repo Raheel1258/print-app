@@ -62,9 +62,13 @@ export const getAllActivity = (setAnimation) => {
 //Change activity status  
 export const changeActivityStatus = (id, navigate , item) => {
     return async (dispatch) => {
-        const accessToken = await Storage.retrieveData('token')
+        const accessToken = await Storage.retrieveData('token');
+        let activityLength = await Storage.retrieveData('lengthActivity');
         axios.get(`${Api}/notifications/change/status/${id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                activityLength = activityLength-1;
+                await Storage.storeData('lengthActivity', activityLength);
+                dispatch(setActivityLength(activityLength));
                 navigate('myOrdersList' , {item:item})
             })
             .catch((err) => {

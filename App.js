@@ -46,7 +46,10 @@ import linking from './src/Utils/linking';
 const App = () => {
 
   useEffect(() => {
-    SplashScreen.hide();
+    setTimeout(()=>{
+      SplashScreen.hide();
+    },3000)
+    // SplashScreen.hide();
   }, []);
 
   const OneSignalComponent = () => {

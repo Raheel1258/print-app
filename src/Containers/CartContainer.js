@@ -115,7 +115,7 @@ const CartContainer = () => {
 
   useEffect(() => {
     handleTotalAmount();
-  }, [cartItem, promocodeDiscount, deliveryMethod])
+  }, [cartItem, promocodeDiscount, deliveryMethod, isFocused])
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -223,6 +223,7 @@ const CartContainer = () => {
   }
 
   const handleTotalAmount = () => {
+    console.log("carts items for amount" , cartItem);
     let deliveryCost = 0;
     let quantity = 0;
     let unitPrice = 0;
@@ -230,11 +231,11 @@ const CartContainer = () => {
     let totalPrice = 0;
     let amountInPercent = 0;
     cartItem && cartItem?.map((item) => {
+
       // quantity = item?.priceChart?.units;
       // unitPrice = item?.priceChart?.pricePerUnit;
       deliveryCost = Math.round(deliveryCost + item?.priceChart?.deliveryCost);
       subTotal1 = Math.round(subTotal1 + ( item?.priceChart?.pricePerUnit * item?.priceChart?.units ))
-      
     });
     totalPrice = (subTotal1);
     if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !==""){

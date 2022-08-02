@@ -5,7 +5,16 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder, getAllCards, paymentWithSaveCard, makeCardPrimaryForCart } from '../store/actions/cartAction';
+import { getCartData, PromoCodeVerifed, 
+  deleteProduct, 
+  placeOrderOffline, 
+  getUserDetailForPlacingOrder, 
+  getAllCards, 
+  paymentWithSaveCard, 
+  makeCardPrimaryForCart, 
+  getPrimaryAddress,
+  getPrimaryCards
+ } from '../store/actions/cartAction';
 import {makeAddressPrimary} from '../store/actions/userPersonalDetailAction'
 import Toast from 'react-native-toast-message';
 
@@ -57,10 +66,7 @@ const CartContainer = () => {
 
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState(userCardsDetails);
-  const primaryAddress = userDetailData?.addresses?.filter((item) => item.primary == true);
-
-  console.log("alll cardssssssss", cardData);
-
+  const primaryAddress = userDetailData?.addresses?.filter((item) => item?.primary == true);
   // const [cardData, setCardData] = useState([
   //   {
   //     id: '1',
@@ -92,12 +98,20 @@ const CartContainer = () => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && authRBSheet.current.open()
-      token ? dispatch(getCartData(setAnimation, setTextValue)) : setAnimation(false);
+      if(token){
+        dispatch(getCartData(setAnimation, setTextValue))
+        dispatch(getPrimaryAddress(setAnimation, setDeliveryUserAddress))
+        dispatch(getPrimaryCards(setAnimation, setUserCardData))
+      }else{
+        setAnimation(false);
+      }
+      // token ?  : setAnimation(false);
     });
   }, [isFocused])
 
   // useEffect(() => {
-  // }, [authRBSheet]);
+   
+  // }, []);
 
   useEffect(() => {
     handleTotalAmount();
@@ -224,6 +238,7 @@ const CartContainer = () => {
     });
     totalPrice = (subTotal1);
     if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !==""){
+      console.log("case promocode and delivery")
       if(promoCodeType == "PERCENTAGE"){
         totalPrice = parseFloat(totalPrice + deliveryCost);
         amountInPercent = (parseFloat(promocodeDiscount/100)*totalPrice);
@@ -237,9 +252,11 @@ const CartContainer = () => {
         setDiscountInPercentage(amountInPercent)
       }
     }else if(deliveryMethod == "Delivery" && promocodeDiscount && promocodeDiscount == "0"){
+      console.log("case delivery and no promocode")
       totalPrice = parseFloat(totalPrice + deliveryCost);
       setTotal(totalPrice)
     }else if(promocodeDiscount && promocodeDiscount != "0" && deliveryMethod !== "Delivery" && promoCodeType !==""){
+      console.log("case no delivery and just promocode")
       if(promoCodeType == "PERCENTAGE"){
         amountInPercent = (parseFloat(promocodeDiscount/100)*totalPrice);
         totalPrice = totalPrice - amountInPercent;
@@ -312,6 +329,7 @@ const CartContainer = () => {
         userCardData={userCardData} 
         setUserCardData={setUserCardData}
         handleSelectedPrimaryCard={handleSelectedPrimaryCard}
+        discountInPercentage={discountInPercentage}
       />
     </View>
   );

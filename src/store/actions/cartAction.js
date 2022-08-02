@@ -368,6 +368,68 @@ export const makeCardPrimaryForCart = (id,prevId) => {
 
 
 
+//Get Primary Address
+export const getPrimaryAddress = (setAnimation, setDeliveryUserAddress) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setAnimation(true);
+        axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                if(res?.data?.addresses?.length > 0){
+                    const primaryAddress = res?.data?.addresses?.filter((item) => item?.primary == true);
+                    setDeliveryUserAddress(primaryAddress[0])
+                }else{
+                    setDeliveryUserAddress('Select delivery address')
+                }
+               
+                setAnimation(false);
+            })
+            .catch((err) => {
+                setAnimation(false);
+                // if(err?.response?.data?.statusCode === 400){
+                //     Toast.show({
+                //         type: 'error',
+                //         text1: t('invalid_login_message'),
+                //     });
+                // }else
+                // Toast.show({
+                //     type: 'error',
+                //     text1: t('general_message'),
+                // });
+            });
+    }
+}
+
+
+//Get Primary Card 
+export const  getPrimaryCards = (setAnimation, setUserCardData) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, {headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                if(res?.data?.data?.length > 0){
+                    const primaryCard = res?.data?.data?.filter((item) => item?.metadata?.primary == 'true');
+                    setUserCardData(primaryCard[0]);
+                }else{
+                    setUserCardData('Select card');
+                }
+                
+            })
+            .catch((err) => {
+                setAnimation(false);
+                // Toast.show({
+                //     type: 'error',
+                //     text1: t('general_message'),
+                // });
+            });
+
+    }
+}
+
+
+
 
 
 

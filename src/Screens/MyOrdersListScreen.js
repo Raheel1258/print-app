@@ -110,7 +110,7 @@ const MyOrdersListScreen = ({ goBack, orderData,handleReceiptEmail, handlerSuppo
           method={`HK$ ${Math.round(orderData?.deliveryCost)}`}
           address={`HK$ ${Math.round(orderData?.total)}`}
           payment={orderData?.paymentMethod}
-          discountAmount = {`HK$ ${Math.round(orderData?.discount)}`}
+          discountAmount = {`(HK$${Math.round(orderData?.discount)})`}
         />
         <CategoriesTitleHeader title={t('order_support')} />
         <UploadFileComponent onPress={()=>handleReceiptEmail(orderData?.orderRefrence)} width={300} title={t('email_receipt')} />

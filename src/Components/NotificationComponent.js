@@ -24,7 +24,7 @@ const NotificationComponent = ({orderReceived, time,childern, border=true, seen,
             orderReceived =='OUT_FOR_DELIVERY' ? colors.lightOrangeColor : 
             orderReceived =='COMPLETED' ? colors.actvityGreenColor : 
             orderReceived =='READY_FOR_PICKUP' ? colors.lightGreenColor : 
-            orderReceived =='PRINTING' ? colors.printingColor : colors.lightRedColor  }}>{handleOrderStatus(orderReceived,t)}</Text>
+            orderReceived =='PRINTING' ? colors.printingColor : colors.lightRedColor}}>{handleOrderStatus(orderReceived,t)}</Text>
           <Text style={styles.timeText}>{getTimeFormat(time)}</Text>
         </View>
         </View>

@@ -29,9 +29,6 @@ const AccountDetailContainer = () => {
     phone: '23234234',
     email: 'peter@gmail.com'
   });
-
-  console.log("all cards data" , userCardsDetails);
-  
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }

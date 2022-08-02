@@ -25,7 +25,7 @@ const OrderDetailsComponent = ({ orderDate, deliveryMethod, deliveryAddress, pay
       }
      {address?.fullName ? <View style={styles.contentContainer}>
         <Text style={styles.title}>{deliveryAddress}</Text>
-        <Text numberOfLines={5} style={styles.description}>{`[${address?.fullName}],[${address?.addressLine1}],[${address?.addressLine2}],[${address?.area}],[${address?.district}],[${address?.cityCountry}]`}</Text>
+        <Text numberOfLines={5} style={styles.description}>{`${address?.fullName},${address?.companyName && address?.companyName},\n${address?.addressLine1},${address?.addressLine2},\n${address?.area},${address?.district},${address?.cityCountry}`}</Text>
       </View>: <View style={styles.contentContainer}>
         <Text style={styles.title}>{deliveryAddress}</Text>
         <Text numberOfLines={3} style={styles.description}>{address}</Text> 

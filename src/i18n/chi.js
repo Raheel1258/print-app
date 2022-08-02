@@ -507,7 +507,7 @@ export const chi = {
     // 紙質|交貨期|顏色|標準尺寸 
 
     //Latest changing
-    Cvc:'Cvc',
+    Cvc:'CSV',
     cvc_number: '123',
     payment:'Payment',
     pay:'Pay',
@@ -557,7 +557,10 @@ export const chi = {
     card_delete_message:'卡已成功删除',
     update_card_message:'卡更新成功',
     select_card:'选择卡',
-    update_card:'更新卡'
+    update_card:'更新卡',
+    cut:'切:',
+    window:'窗户:',
+    finishing: '精加工:'
 
   },
 };

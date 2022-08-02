@@ -5,6 +5,8 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  TouchableOpacity,
+  Linking
 } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -80,8 +82,9 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupState }
                 />
                   
                 <Text style={styles.signupDescription}>{t('by_signingup')}{' '}
-                  <Text style={styles.privacyText}>{t('terms_services')}</Text> {t('and_text')}{' '}
-                  <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
+                 <TouchableOpacity onPress={()=> Linking.openURL('https://printprint.com.hk/terms-of-use/')}><Text style={styles.privacyText}>{t('terms_services')}</Text></TouchableOpacity> 
+                  <Text>{' '}{t('and_text')}{' '}</Text>
+                 <TouchableOpacity onPress={()=> Linking.openURL('https://printprint.com.hk/privacy-policies/')}><Text style={styles.privacyText}>{t('privacy_policy')}</Text></TouchableOpacity>
                 </Text>
                 <View style={styles.buttonWrapper}>
                   <GreenButton title={t('create_account')} animation={animation} onPress={handleSubmit} />

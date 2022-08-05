@@ -6,7 +6,7 @@ import {
   ScrollView,
   Platform,
   TouchableOpacity,
-  Linking
+  Linking,
 } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -111,17 +111,17 @@ const styles = ScaledSheet.create({
   signupDescription: {
     fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
-    fontStyle: 'normal',
     // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '20@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    marginTop: '3@s',
+    marginTop: '13@s',
   },
   privacyText: {
     color: colors.greenColor,
+    marginBottom: Platform.OS == 'ios' ? '0@s' : '-4@s'
   },
 });
 

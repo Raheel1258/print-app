@@ -45,7 +45,7 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
               <Text style={styles.cardNumText}>{card?.exp_month} / {card?.exp_year}</Text>
             </View>
             <View style={styles.cardPrivacyContainer}>
-              <Text style={styles.cardNumText}>CVC:</Text>
+              <Text style={styles.cardNumText}>CSV:</Text>
               <Text style={styles.cardNumText}>***</Text>
             </View>
           </View>

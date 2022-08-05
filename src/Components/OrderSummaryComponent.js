@@ -18,8 +18,25 @@ const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMeth
         <Text style={styles.pricesText}>HK$ {Math.round(deliveryCost)}</Text>
       </View>}
      {promocodeDiscount != "0" && promocodeDiscount != "" && <View style={styles.contentContainer}>
+        {((promoCodeType == "PERCENTAGE")) ?
+        <>
         <Text style={styles.pricesText}>{t('discount_text')}</Text>
-        {promoCodeType == "PERCENTAGE" ?<Text style={styles.pricesText}>(HK$ {Math.round(discountInPercentage)})</Text>:<Text style={styles.pricesText}>(HK$ {Math.round(Number(promocodeDiscount))})</Text>}
+        <Text style={styles.pricesText}>(HK$ {Math.round(discountInPercentage)})</Text>
+        </>
+        :
+        ((promoCodeType == "DELIVERY_CHARGES") && (deliveryMethod == "Delivery"))? 
+        <>
+         <Text style={styles.pricesText}>{t('discount_text')}</Text>
+        <Text style={styles.pricesText}>(HK$ {Math.round(Number(deliveryCost))})</Text>
+        </> 
+        : 
+        promoCodeType == "AMOUNT" && 
+        <>
+         <Text style={styles.pricesText}>{t('discount_text')}</Text>
+        <Text style={styles.pricesText}>(HK$ {Math.round(Number(promocodeDiscount))})</Text>
+        </>
+        }
+        {/* {promoCodeType == "DELIVERY_CHARGES" && } */}
       </View>}
       <View style={styles.contentContainer}>
         <Text style={styles.totalText}>{t('total_pay')}</Text>

@@ -37,6 +37,32 @@ export const login = (data, navigation, setAnimation, obj) => {
         setAnimation(true);
         axios.post(`${Api}/user/login`, data)
             .then(async (res) => {
+
+                    //Activity Api
+                    const accessToken = await Storage.retrieveData('token');
+                    if(accessToken){
+                        axios.get(`${Api}/notifications/`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
+                        .then(async (res) => {
+                            let unRead = 0;
+                            const dataArray = res?.data?.map((item=> {
+                             item?.notifications?.map((item1)=>{
+                                if (item1.isRead === false){
+                                    unRead = unRead+1;
+                                }
+                                })
+                            }))
+                            await Storage.storeData('lengthActivity', unRead);
+                            dispatch(setActivityLength(unRead));
+                        })
+                        .catch((err) => {
+                            // setAnimation(false);
+                            // Toast.show({
+                            //     type: 'error',
+                            //     text1: t('general_message'),
+                            // });
+                        });
+                    }
+                    //END Activity API
                 Toast.show({
                     type: 'success',
                     text1: t('login_correct'),

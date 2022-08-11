@@ -21,6 +21,11 @@ const HomeContainer = () => {
   const homeSliderImagesCaptions = homeSliderImagesData?.map(item => (item.caption));
 
 
+  const newData = categoriesData?.sort((a, b) => {
+    return a.index - b.index;
+  });
+
+
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -33,7 +38,7 @@ const HomeContainer = () => {
 
   return (
     <View style={styles.container}>
-      <HomeScreen categories={categoriesData} homeSliderImages={homeSliderImagesData} homeSliderImagesCaptions={homeSliderImagesCaptions} animation={animation} navigate={navigate} />
+      <HomeScreen categories={newData} homeSliderImages={homeSliderImagesData} homeSliderImagesCaptions={homeSliderImagesCaptions} animation={animation} navigate={navigate} />
     </View>
   );
 };

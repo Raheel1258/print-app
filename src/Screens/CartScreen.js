@@ -18,6 +18,7 @@ import {
   DeliverAddressComponent,
   AddNewAddressForm,
   AddNewCreditCardForm,
+  AddNewCreditCardSheet
 } from '../Components';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
@@ -87,9 +88,12 @@ const CartScreen = ({
   userToken,
   promoCodeType,
   discountInPercentage,
-  handleSelectedPrimary
+  handleSelectedPrimary,
+  handleCardsForBottomSheet,
+  userCardData,
+  setUserCardData,
+  handleSelectedPrimaryCard
 }) => {
-
   const { t } = useTranslation();
   const navigation = useNavigation();
   const renderItem = ({ item, index }) => (
@@ -167,11 +171,12 @@ const CartScreen = ({
             />
             <CategoriesTitleHeader title={t('payment_method')} />
             <RadioButtonComponent
-              // onPress={() => creditCardRBSheet.current.open()}
+              onPress={() => handleCardsForBottomSheet()}
               toggleModal={toggleModal}
               title={t('cradit_card_text')}
               addressRadio = {false}
-              description="Select card"
+              description={userCardData?.id ? userCardData: "Noo"}
+              openfun = {()=>handleCardsForBottomSheet()}
               secondTitle={t('bank_transfer')}
               secondDescription={t("bank_detail")}
               radioButtonStatus={paymentMethod}
@@ -220,10 +225,12 @@ const CartScreen = ({
           <BottomSheetComponent
             childern={
               <DeliverAddressComponent
+                flagForRender={true}
                 addNew={t('new_address')}
                 setData={setData}
                 data={data}
                 handleSelectedPrimary={handleSelectedPrimary}
+                RBsheet = {refRBSheet}
                 animationForgettingAddress={animationForgettingAddress}
                 setShowDetail={setDeliveryUserAddress}
                 onPress={() => {
@@ -239,10 +246,14 @@ const CartScreen = ({
           <BottomSheetComponent
             childern={
               <DeliverAddressComponent
+                flagForRender={false}
                 addNew={t('new_credit_card')}
                 data={cardData}
                 setData={setCardData}
-                setShowDetail={setDeliveryUserAddress}
+                handleSelectedPrimaryCard={handleSelectedPrimaryCard}
+                animationForgettingAddress={animationForgettingAddress}
+                RBsheet = {creditCardRBSheet}
+                setShowDetail={setUserCardData}
                 onPress={() => {
                   creditCardRBSheet.current.close();
                   addCardetCardRBSheet.current.open();
@@ -260,7 +271,7 @@ const CartScreen = ({
             refRBSheet={addAddressRBSheet}
           />
           <BottomSheetComponent
-            childern={<AddNewCreditCardForm />}
+            childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet}/>}
             title={t('add_new_cardet_card')}
             note={false}
             refRBSheet={addCardetCardRBSheet}

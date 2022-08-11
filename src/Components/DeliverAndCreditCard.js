@@ -14,9 +14,9 @@ const DeliverAndCreditCard = ({
     addressLineTwo = '',
     selected,
     onPress,
-    handleSelectedPrimary
+    handleSelectedPrimary = () => {},
+    handleSelectedPrimaryCard = () =>{}
 }) => {
-  // const new="sdsdfs";
   return (
     <TouchableOpacity style={styles.borderContainer} onPress={onPress}>
       <View style={styles.marginContainer}>

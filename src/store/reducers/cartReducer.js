@@ -34,6 +34,13 @@ const cartReducer = createReducer({
 			cartLength: action.data,
 		};
 	},
+	//USER_CARDS_DATA
+	[types.USER_CARDS_DATA](state, action) {
+		return {
+			...state,
+			userCardsData: action.data,
+		};
+	},
 
 
 });

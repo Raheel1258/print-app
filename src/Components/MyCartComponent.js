@@ -40,6 +40,21 @@ const MyCartComponent = ({image, index, length, fontFamily=fonts.avenir_bold, ed
           <Text style={styles.quantityText} numberOfLines={1}>{t('halffold_product')}</Text>
         </View>} 
 
+        {item?.cut && <View style={styles.quantityContainer}>
+          <Text style={styles.quantityText}>{t('cut')} </Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.cut?.cutName}</Text>
+        </View>} 
+
+        {item?.window && <View style={styles.quantityContainer}>
+          <Text style={styles.quantityText}>{t('window')} </Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.window?.windowName}</Text>
+        </View>} 
+
+        {item?.finishing && <View style={styles.quantityContainer}>
+          <Text style={styles.quantityText}>{t('finishing')} </Text>
+          <Text style={styles.quantityText} numberOfLines={1}>{item?.finishing}</Text>
+        </View>} 
+
         {item?.priceChart?.coverPageNumber  && <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>{t('coverPageNumber_product')}</Text>
           <Text style={styles.quantityText} numberOfLines={1}>{item?.priceChart?.coverPageNumber}</Text>
@@ -89,9 +104,9 @@ const styles = ScaledSheet.create({
     fontSize: '14@s',
     fontStyle: 'normal',
     lineHeight: '20@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
-    color: colors.red,
+    color: colors.blackColor,
     width:'200@s',
   },
   OrderCardTitle:{

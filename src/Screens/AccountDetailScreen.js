@@ -13,7 +13,7 @@ import {
   MyAddresses,
   BottomSheetComponent,
   AddNewAddressForm,
-  AddNewCreditCardForm
+  AddNewCreditCardSheet
 } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
@@ -29,9 +29,13 @@ const AccountDetailScreen = ({
   animationUpdateUser, 
   handleUserAddressRemove,
   makePrimary,
+  userCardsDetails,
+  handleUserCardRemove,
+  handleMakePrimaryCard
  }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
+  const [updateCard , setUpdateCard] = useState(undefined);
   return (
     <>
       {!animation ? <View style={styles.container}>
@@ -140,21 +144,35 @@ const AccountDetailScreen = ({
             <CategoriesTitleHeader
               title={t('my_payment')}
               description={t('new_card')}
-              // onPress={() => addCardetCardRBSheet.current.open()}
+              onPress={() => {addCardetCardRBSheet.current.open(), setUpdateCard(undefined)}}
             />
-            <MyAddresses card title="Peter Park" description="Primary" />
+            {userCardsDetails?.length > 0 ? userCardsDetails?.map((item,index)=>{
+              return <>
+                <MyAddresses 
+                    card={item}
+                    setUpdatedAddress={setUpdateCard} 
+                    title="Peter Park" 
+                    refRBSheet={addCardetCardRBSheet}
+                    handleUserAddressRemove={handleUserCardRemove} 
+                    makePrimary={handleMakePrimaryCard}
+                    description={index == 0 ? true : false} 
+                    />
+                {index != userCardsDetails.length - 1 && <View style={styles.borderBottom} />}
+                </>
+              }) : <Text style={styles.emptyBox}>No card added</Text>}
+            
           </View>
           <View style={styles.screenBorderBottom} />
         </ScrollView>
         <BottomSheetComponent
-          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} updateAddress={updateAddress} setUpdatedAddress={setUpdatedAddress}/>}
+          childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} updateAddress={updateAddress} />}
           title={updateAddress == undefined ? t('add_new_address') : t('update_address')}
           note={false}
           refRBSheet={addAddressRBSheet}
         />
         <BottomSheetComponent
-          childern={<AddNewCreditCardForm />}
-          title={t('add_new_cardet_card')}
+          childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} updateCard={updateCard} setUpdateCard={setUpdateCard}/>}
+          title={updateCard == undefined ? t('add_new_cardet_card'): 'Update Card'}
           note={false}
           refRBSheet={addCardetCardRBSheet}
         />

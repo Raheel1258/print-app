@@ -360,10 +360,12 @@ const SingleProductScreen = ({
             <BottomSheetComponent
               title={t('sheet_upload_file')}
               refRBSheet={refRBSheet}
+              note={true}
               childern={<FilePickerInput result={result} setResult={setResult} />}
             />
             <BottomSheetComponent
               refRBSheet={urlRBSheet}
+              note={true}
               childern={<UrlPickerInput refRBSheet={urlRBSheet} title={t('sheet_upload_url')} initialValuesAddUrl={initialValuesAddUrl} handleAddFileUrl={handleAddFileUrl} />}
             />
             <VerificationModal

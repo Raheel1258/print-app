@@ -5,7 +5,16 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData, PromoCodeVerifed, deleteProduct, placeOrderOffline, getUserDetailForPlacingOrder } from '../store/actions/cartAction';
+import { getCartData, PromoCodeVerifed, 
+  deleteProduct, 
+  placeOrderOffline, 
+  getUserDetailForPlacingOrder, 
+  getAllCards, 
+  paymentWithSaveCard, 
+  makeCardPrimaryForCart, 
+  getPrimaryAddress,
+  getPrimaryCards
+ } from '../store/actions/cartAction';
 import {makeAddressPrimary} from '../store/actions/userPersonalDetailAction'
 import Toast from 'react-native-toast-message';
 
@@ -26,6 +35,7 @@ const CartContainer = () => {
   const authRBSheet = useRef();
   const refRBSheet = useRef();
 
+  const [animationForCard, setAnimationForCard] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [deliveryCost, setDeliveryCost] = useState(0);
@@ -38,6 +48,7 @@ const CartContainer = () => {
   const [animationForgettingAddress, setAnimationForgettingAddress] = useState(false)
   const [focused, setFocused] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(true);
+  const [userCardData, setUserCardData] = useState("Select card");
   const [paymentMethodName, setPaymentMethodName] = useState("Credit Card");
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPromoCodeModaVidible, setIsPromoCodeModaVidible] = useState(false);
@@ -51,27 +62,29 @@ const CartContainer = () => {
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
+  const userCardsDetails = useSelector(state => state?.cartReducer?.userCardsData);
 
   const [data, setData] = useState(userDetailData?.addresses);
-  const primaryAddress = userDetailData?.addresses?.filter((item) => item.primary == true);
-  const [cardData, setCardData] = useState([
-    {
-      id: '1',
-      title: 'Mastercard (9238)',
-      addressLineOne: 'Peter Leung',
-      addressLineTwo: 'Exp: 09/23',
-      children: <MasterCard />,
-      selected: true
-    },
-    {
-      id: '2',
-      title: 'Visa (1628)',
-      addressLineOne: 'Peter Leung',
-      addressLineTwo: 'Exp: 09/23',
-      children: <VisaCard />,
-      selected: false
-    },
-  ]);
+  const [cardData, setCardData] = useState(userCardsDetails);
+  const primaryAddress = userDetailData?.addresses?.filter((item) => item?.primary == true);
+  // const [cardData, setCardData] = useState([
+  //   {
+  //     id: '1',
+  //     title: 'Mastercard (9238)',
+  //     addressLineOne: 'Peter Leung',
+  //     addressLineTwo: 'Exp: 09/23',
+  //     children: <MasterCard />,
+  //     selected: true
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'Visa (1628)',
+  //     addressLineOne: 'Peter Leung',
+  //     addressLineTwo: 'Exp: 09/23',
+  //     children: <VisaCard />,
+  //     selected: false
+  //   },
+  // ]);
 
   // useEffect(() => {
   //   Storage.retrieveData('token').then((token) => {
@@ -85,18 +98,24 @@ const CartContainer = () => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
       !token && authRBSheet.current.open()
-      token ? dispatch(getCartData(setAnimation, setTextValue)) : setAnimation(false);
+      if(token){
+        dispatch(getCartData(setAnimation, setTextValue))
+        dispatch(getPrimaryAddress(setAnimation, setDeliveryUserAddress))
+        dispatch(getPrimaryCards(setAnimation, setUserCardData))
+      }else{
+        setAnimation(false);
+      }
+      // token ?  : setAnimation(false);
     });
   }, [isFocused])
 
   // useEffect(() => {
-  // }, [authRBSheet]);
-
-  console.log("Primary", primaryAddress);
+   
+  // }, []);
 
   useEffect(() => {
     handleTotalAmount();
-  }, [cartItem, promocodeDiscount, deliveryMethod])
+  }, [cartItem, promocodeDiscount, deliveryMethod, isFocused])
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -136,9 +155,21 @@ const CartContainer = () => {
     dispatch(getUserDetailForPlacingOrder(setData, setAnimationForgettingAddress));
   }
 
+  const handleCardsForBottomSheet = () => {
+    creditCardRBSheet?.current?.open();
+    dispatch(getAllCards(setAnimationForgettingAddress, setCardData)) 
+  }
+
   const handleSelectedPrimary = (id) => {
     dispatch(makeAddressPrimary(id,true));
   }
+
+  const handleSelectedPrimaryCard = (id) =>{
+    const getLastPrimary = userCardsDetails?.filter(item => item.metadata.primary === "true");
+    dispatch(makeCardPrimaryForCart(id,getLastPrimary[0].id))
+  }
+
+
 
   const handlePayment = () => {
     // genToken();
@@ -165,7 +196,7 @@ const CartContainer = () => {
       deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,
       subTotal: subTotal,
-      discount: (promocodeDiscount != undefined && promoCodeType == "PERCENTAGE") ? Math.round(discountInPercentage) : (promocodeDiscount != undefined) ? Math.round(promocodeDiscount) : 0,
+      discount: (promocodeDiscount != undefined && promoCodeType == "PERCENTAGE") ? Math.round(discountInPercentage) : (promocodeDiscount != undefined && promoCodeType == "DELIVERY_CHARGES") ? Math.round(deliveryCost) :(promocodeDiscount != undefined && promoCodeType == "AMOUNT") ? Math.round(promocodeDiscount) : 0,
       total: total >= 0 ? total: 0,
       status: "ORDER_RECIEVED",
       promoCodeApplied:promoCodeAppliedStatus,
@@ -176,14 +207,23 @@ const CartContainer = () => {
         type: 'error',
         text1: t('select_address'),
       });
-    } else {
-      if (paymentMethodName == "Credit Card") {
-        navigate('payment', { amount: total, orderObj: orderObj })
+    } 
+    else if(paymentMethodName == 'Credit Card' && userCardData == "Select card"){
+      Toast.show({
+        type: 'error',
+        text1: t('select_card'),
+      });
+    }
+    else {
+      if (paymentMethodName == "Credit Card" ) {
+        dispatch(paymentWithSaveCard(setPlaceOrderAnimation, {idCard:userCardData?.id, amount:total}, orderObj, navigate))
+        // navigate('payment', { amount: total, orderObj: orderObj })
       } else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
     }
   }
 
   const handleTotalAmount = () => {
+    console.log("carts items for amount" , cartItem);
     let deliveryCost = 0;
     let quantity = 0;
     let unitPrice = 0;
@@ -191,20 +231,29 @@ const CartContainer = () => {
     let totalPrice = 0;
     let amountInPercent = 0;
     cartItem && cartItem?.map((item) => {
-      quantity = item?.priceChart?.units;
-      unitPrice = item?.priceChart?.pricePerUnit;
-      deliveryCost = parseFloat(deliveryCost + item?.priceChart?.deliveryCost);
-      subTotal1 = parseFloat(quantity * unitPrice);
-      totalPrice = parseFloat(subTotal1);
+
+      // quantity = item?.priceChart?.units;
+      // unitPrice = item?.priceChart?.pricePerUnit;
+      deliveryCost = Math.round(deliveryCost + item?.priceChart?.deliveryCost);
+      subTotal1 = Math.round(subTotal1 + ( item?.priceChart?.pricePerUnit * item?.priceChart?.units ))
     });
+    totalPrice = (subTotal1);
     if(promocodeDiscount !=='0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !==""){
+      console.log("case promocode and delivery")
       if(promoCodeType == "PERCENTAGE"){
         totalPrice = parseFloat(totalPrice + deliveryCost);
         amountInPercent = (parseFloat(promocodeDiscount/100)*totalPrice);
         totalPrice = totalPrice - amountInPercent;
         setTotal(totalPrice);
         setDiscountInPercentage(amountInPercent)
-      }else{
+      }else if(promoCodeType == "DELIVERY_CHARGES"){
+        totalPrice = parseFloat(totalPrice + deliveryCost);
+        amountInPercent = deliveryCost;
+        totalPrice = totalPrice - amountInPercent;
+        setTotal(totalPrice);
+        setDiscountInPercentage(amountInPercent)
+      }
+      else{
         totalPrice = parseFloat(totalPrice + deliveryCost);
         totalPrice = totalPrice - parseFloat(promocodeDiscount);
         setTotal(totalPrice);
@@ -219,9 +268,17 @@ const CartContainer = () => {
         totalPrice = totalPrice - amountInPercent;
         setTotal(totalPrice);
         setDiscountInPercentage(amountInPercent);
-      }else{
+        
+      }else if(promoCodeType == "DELIVERY_CHARGES"){
+        totalPrice = parseFloat(totalPrice + deliveryCost);
+        amountInPercent = deliveryCost;
+        totalPrice = totalPrice - amountInPercent;
+        setTotal(totalPrice);
+        setDiscountInPercentage(amountInPercent)
+      }
+      else{
         totalPrice = totalPrice - parseFloat(promocodeDiscount);
-      setTotal(totalPrice)
+        setTotal(totalPrice)
       }
       
     }
@@ -230,7 +287,6 @@ const CartContainer = () => {
     }
     setDeliveryCost(deliveryCost);
     setSubTotal(subTotal1)
-
   }
 
   return (
@@ -282,6 +338,11 @@ const CartContainer = () => {
         animationForgettingAddress={animationForgettingAddress}
         promoCodeType={promoCodeType}
         handleSelectedPrimary={handleSelectedPrimary}
+        handleCardsForBottomSheet={handleCardsForBottomSheet}
+        userCardData={userCardData} 
+        setUserCardData={setUserCardData}
+        handleSelectedPrimaryCard={handleSelectedPrimaryCard}
+        discountInPercentage={discountInPercentage}
       />
     </View>
   );

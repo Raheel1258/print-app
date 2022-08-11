@@ -177,8 +177,8 @@
     added_item_message:'Item added to cart successfully',
     folding_product:'Folding:',
     corner_product: 'Corner:',
-    coverPageNumber_product: 'coverPageNumber:',
-    innerPageNumber_product: 'innerPageNumber:',
+    coverPageNumber_product: 'Cover Page:',
+    innerPageNumber_product: 'Inner Page:',
     halffold_product:'Half fold',
     edit_product:'Edit',
     remove_product:'Remove',
@@ -258,7 +258,7 @@
     update_address: 'Update Address',
 
     //Latest changing
-    Cvc:'Cvc',
+    Cvc:'CSV',
     cvc_number: '123',
     payment:'Payment',
     pay:'Pay',
@@ -302,6 +302,16 @@
     order_out_for_delivery_status:'Out for delivery',
     order_ready_for_pickup_status:'Ready for pickup',
     order_printing_in_process_status:'Printing in process',
+
+    card_added_message:'Card is added successfully',
+    card_delete_message:'Card is deleted successfully',
+    update_card_message:'Card is updated successfully',
+    select_card:'Select Card',
+    update_card:'Update Card',
+    cut:'Cut:',
+    window:'Window:',
+    finishing: 'Finishing:'
+
 
 
 

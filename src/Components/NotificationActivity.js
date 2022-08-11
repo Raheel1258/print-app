@@ -18,7 +18,7 @@ const handleOrderStatusForActivity = (orderNotify) => {
   else if(orderNotify=="CANCELLED"){
     return <OrderCancelledIcon/>;
   }
-  else if(orderNotify=="OUT_FOR_DELIVERY"){
+  else if(orderNotify == "OUT_FOR_DELIVERY"){
     return <DeliveryIcon/>;
   }
   else if(orderNotify=="READY_FOR_PICKUP"){
@@ -76,7 +76,7 @@ const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllAct
   // }
 
   const renderItem = ({item}, index) => {
-
+    console.log("activity status" , item)
     return(
     <NotificationComponent onPress={() => handleActivityIsRead(item?._id, item?.orderId)}
       orderCode={item?._id}

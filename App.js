@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store from "./src/store/store"
-import Toast,{ErrorToast} from 'react-native-toast-message';
+import Toast, { ErrorToast } from 'react-native-toast-message';
 import SplashScreen from 'react-native-splash-screen';
 import OneSignal from 'react-native-onesignal';
 
 import Routes from './src/Utils/Routes';
 import linking from './src/Utils/linking';
-
+import Storage from './src/Utils/Storage';
+import { getAllActivity } from './src/store/actions/activitiesAction';
 // const toastConfig = {
 //   error: props => (
 //     <ErrorToast
@@ -37,7 +38,7 @@ import linking from './src/Utils/linking';
 //         borderLeftColor:'red',
 //         borderLeftWidth:3
 //       }}
-      
+
 //     />
 //   ),
 // };
@@ -46,13 +47,22 @@ import linking from './src/Utils/linking';
 const App = () => {
 
   useEffect(() => {
-    setTimeout(()=>{
+    setTimeout(() => {
       SplashScreen.hide();
-    },3000)
+    }, 3000)
     // SplashScreen.hide();
   }, []);
 
   const OneSignalComponent = () => {
+
+    const dispatch = useDispatch()
+    const [animation, setAnimation] = useState(false);
+
+    const getData = () => {
+      Storage.retrieveData('token').then((token) => {
+        token && dispatch(getAllActivity(setAnimation));
+      });
+    }
 
     //OneSignal Init Code
     OneSignal.setLogLevel(6, 0);
@@ -80,6 +90,7 @@ const App = () => {
         console.log('additionalData: ', data);
         // Complete with null means don't show a notification.
         notificationReceivedEvent.complete(notification);
+        getData();
       },
     );
 
@@ -104,9 +115,9 @@ const App = () => {
         <StatusBar backgroundColor={"white"} barStyle={"dark-content"} />
         <NavigationContainer linking={linking}>
           <Routes />
+          <OneSignalComponent />
         </NavigationContainer>
-        <Toast/>
-        <OneSignalComponent />
+        <Toast />
       </SafeAreaView>
     </Provider>
   );

@@ -31,7 +31,7 @@ function setUserCard(userCard) {
 }
 
 //Add Address
-export const addAddress = (setAnimation, data, addAddressRBSheet) => {
+export const addAddress = (setAnimation, data, addAddressRBSheet, handleAddressForBottomSheet = () => { }) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
@@ -44,6 +44,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                 setAnimation(false);
                 dispatch(setUserAddress(res?.data?.addresses));
                 addAddressRBSheet.current.close();
+                handleAddressForBottomSheet();
             })
             .catch((err) => {
                 setAnimation(false);

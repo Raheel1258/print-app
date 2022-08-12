@@ -157,7 +157,6 @@ const CartContainer = () => {
   }
 
   const handleCardsForBottomSheet = () => {
-    console.log('jiiaosda');
     creditCardRBSheet?.current?.open();
     dispatch(getAllCards(setAnimationForgettingAddress, setCardData))
   }

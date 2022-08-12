@@ -225,20 +225,28 @@ const CartScreen = ({
 
           <BottomSheetComponent
             childern={
-              <DeliverAddressComponent
-                flagForRender={true}
-                addNew={t('new_address')}
-                setData={setData}
-                data={data}
-                handleSelectedPrimary={handleSelectedPrimary}
-                RBsheet={refRBSheet}
-                animationForgettingAddress={animationForgettingAddress}
-                setShowDetail={setDeliveryUserAddress}
-                onPress={() => {
-                  refRBSheet.current.close();
-                  addAddressRBSheet.current.open();
-                }}
-              />
+              <>
+                <DeliverAddressComponent
+                  flagForRender={true}
+                  addNew={t('new_address')}
+                  setData={setData}
+                  data={data}
+                  handleSelectedPrimary={handleSelectedPrimary}
+                  RBsheet={refRBSheet}
+                  animationForgettingAddress={animationForgettingAddress}
+                  setShowDetail={setDeliveryUserAddress}
+                  onPress={() => {
+                    // refRBSheet.current.close();
+                    addAddressRBSheet.current.open();
+                  }}
+                />
+                <BottomSheetComponent
+                  childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} handleAddressForBottomSheet={handleAddressForBottomSheet} />}
+                  title={t('add_new_address')}
+                  note={false}
+                  refRBSheet={addAddressRBSheet}
+                />
+              </>
             }
             title={t('deviver_to')}
             note={false}
@@ -274,12 +282,12 @@ const CartScreen = ({
             note={false}
             refRBSheet={creditCardRBSheet}
           />
-          <BottomSheetComponent
+          {/* <BottomSheetComponent
             childern={<AddNewAddressForm />}
             title={t('add_new_address')}
             note={false}
             refRBSheet={addAddressRBSheet}
-          />
+          /> */}
           {/* <BottomSheetComponent
             childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} />}
             title={t('add_new_cardet_card')}

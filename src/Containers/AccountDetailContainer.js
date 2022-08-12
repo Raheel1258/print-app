@@ -66,7 +66,7 @@ const AccountDetailContainer = () => {
     if (id == getLastPrimary[0]?.id) {
       Toast.show({
         type: 'error',
-        text1: 'Can not delete primary card',
+        text1: 'Before removing the primary option, make another primary',
       });
     } else {
       dispatch(deleteCard(id, setAnimation));

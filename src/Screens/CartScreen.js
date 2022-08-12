@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, FlatList, ScrollView, ActivityIndicator, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
@@ -109,11 +109,12 @@ const CartScreen = ({
       handleRemoveProduct={handleRemoveProduct}
     />
   );
+
   return (
     <>
-      {!animation ? 
+      {!animation ?
         <View style={styles.container}>
-          {(!animation && cartItem?.length > 0 && userToken ) ? <ScrollView nestedScrollEnabled={true}>
+          {(!animation && cartItem?.length > 0 && userToken) ? <ScrollView nestedScrollEnabled={true}>
             <BackArrowHeader
               arrow={false}
               title={t('cart_text')}
@@ -160,8 +161,8 @@ const CartScreen = ({
               title={t('delivery_text')}
               secondTitle={t('pick_up')}
               description={deliveryUserAddress?.addressLine1 == undefined ? "No" : deliveryUserAddress}
-              addressRadio = {true}
-              openfun = {()=>handleAddressForBottomSheet()}
+              addressRadio={true}
+              openfun={() => handleAddressForBottomSheet()}
               secondDescription={t('company_address_delivery_heading')}
               thirdDescription={t('company_address_delivery')}
               radioButtonStatus={delivery}
@@ -174,9 +175,9 @@ const CartScreen = ({
               onPress={() => handleCardsForBottomSheet()}
               toggleModal={toggleModal}
               title={t('cradit_card_text')}
-              addressRadio = {false}
-              description={userCardData?.id ? userCardData: "Noo"}
-              openfun = {()=>handleCardsForBottomSheet()}
+              addressRadio={false}
+              description={userCardData?.id ? userCardData : "Noo"}
+              openfun={() => handleCardsForBottomSheet()}
               secondTitle={t('bank_transfer')}
               secondDescription={t("bank_detail")}
               radioButtonStatus={paymentMethod}
@@ -224,20 +225,28 @@ const CartScreen = ({
 
           <BottomSheetComponent
             childern={
-              <DeliverAddressComponent
-                flagForRender={true}
-                addNew={t('new_address')}
-                setData={setData}
-                data={data}
-                handleSelectedPrimary={handleSelectedPrimary}
-                RBsheet = {refRBSheet}
-                animationForgettingAddress={animationForgettingAddress}
-                setShowDetail={setDeliveryUserAddress}
-                onPress={() => {
-                  refRBSheet.current.close();
-                  addAddressRBSheet.current.open();
-                }}
-              />
+              <>
+                <DeliverAddressComponent
+                  flagForRender={true}
+                  addNew={t('new_address')}
+                  setData={setData}
+                  data={data}
+                  handleSelectedPrimary={handleSelectedPrimary}
+                  RBsheet={refRBSheet}
+                  animationForgettingAddress={animationForgettingAddress}
+                  setShowDetail={setDeliveryUserAddress}
+                  onPress={() => {
+                    // refRBSheet.current.close();
+                    addAddressRBSheet.current.open();
+                  }}
+                />
+                <BottomSheetComponent
+                  childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} handleAddressForBottomSheet={handleAddressForBottomSheet} />}
+                  title={t('add_new_address')}
+                  note={false}
+                  refRBSheet={addAddressRBSheet}
+                />
+              </>
             }
             title={t('deviver_to')}
             note={false}
@@ -245,37 +254,46 @@ const CartScreen = ({
           />
           <BottomSheetComponent
             childern={
-              <DeliverAddressComponent
-                flagForRender={false}
-                addNew={t('new_credit_card')}
-                data={cardData}
-                setData={setCardData}
-                handleSelectedPrimaryCard={handleSelectedPrimaryCard}
-                animationForgettingAddress={animationForgettingAddress}
-                RBsheet = {creditCardRBSheet}
-                setShowDetail={setUserCardData}
-                onPress={() => {
-                  creditCardRBSheet.current.close();
-                  addCardetCardRBSheet.current.open();
-                }}
-              />
+              <>
+                <DeliverAddressComponent
+                  flagForRender={false}
+                  addNew={t('new_credit_card')}
+                  data={cardData}
+                  setData={setCardData}
+                  handleSelectedPrimaryCard={handleSelectedPrimaryCard}
+                  animationForgettingAddress={animationForgettingAddress}
+                  RBsheet={creditCardRBSheet}
+                  setShowDetail={setUserCardData}
+                  onPress={() => {
+                    // creditCardRBSheet.current.close();
+                    addCardetCardRBSheet.current.open();
+                  }}
+
+                />
+                <BottomSheetComponent
+                  childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} handleCardsForBottomSheet={handleCardsForBottomSheet} />}
+                  title={t('add_new_cardet_card')}
+                  note={false}
+                  refRBSheet={addCardetCardRBSheet}
+                />
+              </>
             }
             title={t('credit_cards')}
             note={false}
             refRBSheet={creditCardRBSheet}
           />
-          <BottomSheetComponent
+          {/* <BottomSheetComponent
             childern={<AddNewAddressForm />}
             title={t('add_new_address')}
             note={false}
             refRBSheet={addAddressRBSheet}
-          />
-          <BottomSheetComponent
-            childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet}/>}
+          /> */}
+          {/* <BottomSheetComponent
+            childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} />}
             title={t('add_new_cardet_card')}
             note={false}
             refRBSheet={addCardetCardRBSheet}
-          />
+          /> */}
           {/* <BottomSheetComponent
             childern={
               <>
@@ -325,50 +343,50 @@ const CartScreen = ({
         : <View style={styles.loaderContainer}>
           <ActivityIndicator size="small" color="#000" animating={true} />
         </View>}
-        <BottomSheetComponent
-            childern={
-              <>
-                <View style={styles.logoWrapper}>
-                  <AuthenticationLogo />
-                </View>
-                <View style={styles.signinButtonWrapper}>
-                  <GreenButton
-                    backgroundColor={
-                      focused ? colors.greenColor : colors.whiteColor
-                    }
-                    color={focused ? colors.whiteColor : colors.greenColor}
-                    borderWidth={2}
-                    title={t('signup_text')}
-                    onPress={() => {
-                      authRBSheet.current.close();
-                      navigate('auth', { next: 'signup' });
-                      setFocused(true);
-                    }}
-                  />
-                </View>
-                <View style={styles.signinButtonWrapper}>
-                  <GreenButton
-                    title={t('sheet_login_in')}
-                    backgroundColor={
-                      focused ? colors.whiteColor : colors.greenColor
-                    }
-                    color={focused ? colors.greenColor : colors.whiteColor}
-                    borderWidth={2}
-                    onPress={() => {
-                      authRBSheet.current.close();
-                      navigate('auth', { next: 'signin' });
-                      setFocused(false);
-                    }}
-                  />
-                </View>
-              </>
-            }
-            languageTitle={t('Signup_today')}
-            // note={false}
-            refRBSheet={authRBSheet}
-            height={420}
-            // onClose={false}
-          />
+      <BottomSheetComponent
+        childern={
+          <>
+            <View style={styles.logoWrapper}>
+              <AuthenticationLogo />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                backgroundColor={
+                  focused ? colors.greenColor : colors.whiteColor
+                }
+                color={focused ? colors.whiteColor : colors.greenColor}
+                borderWidth={2}
+                title={t('signup_text')}
+                onPress={() => {
+                  authRBSheet.current.close();
+                  navigate('auth', { next: 'signup' });
+                  setFocused(true);
+                }}
+              />
+            </View>
+            <View style={styles.signinButtonWrapper}>
+              <GreenButton
+                title={t('sheet_login_in')}
+                backgroundColor={
+                  focused ? colors.whiteColor : colors.greenColor
+                }
+                color={focused ? colors.greenColor : colors.whiteColor}
+                borderWidth={2}
+                onPress={() => {
+                  authRBSheet.current.close();
+                  navigate('auth', { next: 'signin' });
+                  setFocused(false);
+                }}
+              />
+            </View>
+          </>
+        }
+        languageTitle={t('Signup_today')}
+        // note={false}
+        refRBSheet={authRBSheet}
+        height={420}
+      // onClose={false}
+      />
     </>
   );
 };

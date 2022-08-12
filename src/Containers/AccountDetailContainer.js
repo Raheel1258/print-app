@@ -4,10 +4,10 @@ import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards, deleteCard, makeCardPrimary } from "../store/actions/userPersonalDetailAction"
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
-
 
 const AccountDetailContainer = () => {
   const addAddressRBSheet = useRef();
@@ -39,7 +39,7 @@ const AccountDetailContainer = () => {
 
   useEffect(() => {
     dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
-    dispatch(getAllCards(setAnimation)) 
+    dispatch(getAllCards(setAnimation))
   }, [isFocused])
 
 
@@ -61,7 +61,16 @@ const AccountDetailContainer = () => {
   }
 
   const handleUserCardRemove = (id) => {
-    dispatch(deleteCard(id,setAnimation));
+    const getLastPrimary = userCardsDetails?.filter(item => item.metadata.primary === "true");
+
+    if (id == getLastPrimary[0]?.id) {
+      Toast.show({
+        type: 'error',
+        text1: 'Before removing the primary option, make another primary',
+      });
+    } else {
+      dispatch(deleteCard(id, setAnimation));
+    }
   }
 
   return (

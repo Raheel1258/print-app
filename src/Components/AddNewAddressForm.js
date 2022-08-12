@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { addAddress, updateUserAddress} from '../store/actions/userPersonalDetailAction'
+import { addAddress, updateUserAddress } from '../store/actions/userPersonalDetailAction'
 import { Formik } from 'formik';
 import { addAddressSchema } from '../Utils/validationSchema';
 import { ScaledSheet } from 'react-native-size-matters';
@@ -14,7 +14,7 @@ import CountryPicker from 'react-native-country-picker-modal'
 import { readDir } from 'jetifier/src/utils';
 import { State } from 'react-native-gesture-handler';
 
-const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
+const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForBottomSheet = () => { } }) => {
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
   const [isCountryPickerVisible, setIsCountryPickerVisible] = useState(false);
@@ -31,14 +31,13 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
   })
 
   const handleAddNewAddress = (values) => {
-    if(updateAddress == undefined)
-    {
-      dispatch(addAddress(setAnimation, { ...values, cityCountry: country?.name ?? 'Hong kong'}, addAddressRBSheet))
+    if (updateAddress == undefined) {
+      dispatch(addAddress(setAnimation, { ...values, cityCountry: country?.name ?? 'Hong kong' }, addAddressRBSheet, handleAddressForBottomSheet))
     }
     else {
       setAddressState({ ...values, cityCountry: country?.name })
-      dispatch(updateUserAddress(setAnimation , updateAddress?._id , { ...values, cityCountry: country?.name ?? updateAddress?.cityCountry}, addAddressRBSheet))
-      
+      dispatch(updateUserAddress(setAnimation, updateAddress?._id, { ...values, cityCountry: country?.name ?? updateAddress?.cityCountry }, addAddressRBSheet))
+
     }
     //!animation && addAddressRBSheet.current.close();
   }
@@ -123,24 +122,24 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
             // childern={<RightArrow />}
             />
 
-              <View>
-                <Text style={styles.titleText}>{t('city_country')}</Text>
-                <TouchableOpacity onPress={()=>setIsCountryPickerVisible(true)} style={styles.countryPicker}>
-                  <CountryPicker
-                    visible={isCountryPickerVisible}
-                    placeholder={ country?.name ?? updateAddress?.cityCountry ?? <Text style={styles.countryPlaceholder}>Select Country</Text>}
-                    // placeholderStyling={{color:'red',backgroundColor:'green'}}
-                    // placeholderStyle={{backgroundColor:'red'}}
-                    isCountryPickerVisible
-                    onSelect={setCountry}
-                    onClose={()=>setIsCountryPickerVisible(false)}
-                    withAlphaFilter
-                    withFilter
-                                      />
-              <RightArrow style={styles.iconWrapper} />
-                </TouchableOpacity>
+            <View>
+              <Text style={styles.titleText}>{t('city_country')}</Text>
+              <TouchableOpacity onPress={() => setIsCountryPickerVisible(true)} style={styles.countryPicker}>
+                <CountryPicker
+                  visible={isCountryPickerVisible}
+                  placeholder={country?.name ?? updateAddress?.cityCountry ?? <Text style={styles.countryPlaceholder}>Select Country</Text>}
+                  // placeholderStyling={{color:'red',backgroundColor:'green'}}
+                  // placeholderStyle={{backgroundColor:'red'}}
+                  isCountryPickerVisible
+                  onSelect={setCountry}
+                  onClose={() => setIsCountryPickerVisible(false)}
+                  withAlphaFilter
+                  withFilter
+                />
+                <RightArrow style={styles.iconWrapper} />
+              </TouchableOpacity>
               <View style={styles.borderBottom} />
-              </View>
+            </View>
 
 
             {/* <AddressTextField
@@ -168,7 +167,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress }) => {
               onChangeText={handleChange('contactNumber')}
               onBlur={handleBlur('contactNumber')}
             />
-            <GreenButton backgroundColor={colors.blackColor} onPress={handleSubmit} animation={animation}  title={updateAddress == undefined ? t('add_address'): t('update_address')} />
+            <GreenButton backgroundColor={colors.blackColor} onPress={handleSubmit} animation={animation} title={updateAddress == undefined ? t('add_address') : t('update_address')} />
           </>
         }}
       </Formik>
@@ -188,7 +187,7 @@ const styles = ScaledSheet.create({
   },
   iconWrapper: {
     transform: [{ rotate: '180deg' }],
-    marginBottom:'10@s'
+    marginBottom: '10@s'
   },
   borderBottom: {
     borderBottomWidth: 1,
@@ -200,11 +199,11 @@ const styles = ScaledSheet.create({
   countryPicker: {
     marginTop: '4@s',
     fontSize: '1@s',
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
-  countryPlaceholder:{
+  countryPlaceholder: {
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',

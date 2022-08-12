@@ -15,7 +15,7 @@ export const signupValidationSchema = (t) => {
     return (Yup.object({
         firstName: Yup.string().required(t('firstName_required')),
         lastName: Yup.string().required(t('lastName_required')),
-        phone:Yup.number().required(t('phone_required')),
+        phone: Yup.number().required(t('phone_required')),
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
         password: Yup.string().min(5, t('min_required_5')).required(t('password_required'))
     }))
@@ -75,10 +75,10 @@ export const addAddressSchema = (t) => {
 export const addCreditCardSchema = (t) => {
     return (Yup.object({
         cardNumber: Yup.string().min(16, "Minimun 16-digits required").max(16, "Max 16-digits required").required('Card-Number is required'),
-        cardName:Yup.string(),
+        cardName: Yup.string().required('Card holder name is required'),
         expiryMonth: Yup.string().min(1, "Min 1-digit").max(2, 'Max 2-digits required').required('Expiry Month is required'),
         expiryYear: Yup.string().min(4, "Min 4-digit").max(4, 'Max 4-digits required').required('Expiry Year is required'),
-        cvc: Yup.string().min(3, 'Min 3-digit required').max(4, 'Max 4-digit required').required('Cvc is required'),
+        cvc: Yup.string().min(3, 'Min 3-digit required').max(4, 'Max 4-digit required').required('CSV is required'),
     }))
 }
 
@@ -87,7 +87,7 @@ export const addCreditCardSchema = (t) => {
 export const updateCreditCardSchema = (t) => {
     return (Yup.object({
         // cardNumber: Yup.string().min(16, "Minimun 16-digits required").max(16, "Max 16-digits required").required('Card-Number is required'),
-        cardName:Yup.string(),
+        cardName: Yup.string(),
         expiryMonth: Yup.string().min(1, "Min 1-digit").max(2, 'Max 2-digits required').required('Expiry Month is required'),
         expiryYear: Yup.string().min(4, "Min 4-digit").max(4, 'Max 4-digits required').required('Expiry Year is required'),
         // cvc: Yup.string().min(3, 'Min 3-digit required').max(4, 'Max 4-digit required').required('Cvc is required'),

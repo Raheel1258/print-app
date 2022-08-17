@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, ScrollView, Text, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Linking } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
-import  i18n  from 'i18next';
+import i18n from 'i18next';
 
 
 import {
@@ -333,9 +333,9 @@ const SingleProductScreen = ({
             <CategoriesTitleHeader
               title={t('upload_design')}
               description={t('artwork_guidelines')}
-              onPress = {()=>{
-                i18n.language === 'en' ? Linking.openURL('https://printprint.com.hk/en/artwork-guidelines/'):
-                Linking.openURL('https://printprint.com.hk/artwork-guidelines/')
+              onPress={() => {
+                i18n.language === 'en' ? Linking.openURL('https://printprint.com.hk/en/artwork-guidelines/') :
+                  Linking.openURL('https://printprint.com.hk/artwork-guidelines/')
               }}
             />
             <UploadFileComponent
@@ -388,7 +388,7 @@ const SingleProductScreen = ({
               onSubmitEditing={() => { Keyboard.dismiss() }}
             />
             <View style={styles.bottomContainer}>
-              <TouchableOpacity onPress={()=> handleAnotherDesign()}>
+              <TouchableOpacity onPress={() => handleAnotherDesign()}>
                 <Text style={styles.addCart}>{t('add_to_cart')}</Text>
               </TouchableOpacity>
               <GreenButton
@@ -570,46 +570,46 @@ const SingleProductScreen = ({
                 })
               }
             />
-           <BottomSheetComponent
-        childern={
-          <>
-            <View style={styles.logoWrapper}>
-              <AuthenticationLogo />
-            </View>
-            <View style={styles.signinButtonWrapper}>
-              <GreenButton
-                backgroundColor={focused ? colors.greenColor : colors.whiteColor}
-                color={focused ? colors.whiteColor : colors.greenColor}
-                borderWidth={2}
-                title={t('signup_text')}
-                onPress={() => {
-                  accountRBSheet.current.close();
-                  navigate('auth', { next: 'signup' , obj: productData});
-                  setFocused(true);
-                }}
-              />
-            </View>
-            <View style={styles.signinButtonWrapper}>
-              <GreenButton
-                title={t('sheet_login_in')}
-                backgroundColor={focused ? colors.whiteColor : colors.greenColor}
-                color={focused ? colors.greenColor : colors.whiteColor}
-                borderWidth={2}
-                onPress={() => {
-                  accountRBSheet.current.close();
-                  navigate('auth', { next: 'signin', obj: productData});
-                  setFocused(false);
-                }}
-              />
-            </View>
-          </>
-        }
-        languageTitle={t('Signup_today')}
-        // note={false}
-        refRBSheet={accountRBSheet}
-        height={420}
-        // onClose={false}
-      />
+            <BottomSheetComponent
+              childern={
+                <>
+                  <View style={styles.logoWrapper}>
+                    <AuthenticationLogo />
+                  </View>
+                  <View style={styles.signinButtonWrapper}>
+                    <GreenButton
+                      backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+                      color={focused ? colors.whiteColor : colors.greenColor}
+                      borderWidth={2}
+                      title={t('signup_text')}
+                      onPress={() => {
+                        accountRBSheet.current.close();
+                        navigate('auth', { next: 'signup', obj: productData });
+                        setFocused(true);
+                      }}
+                    />
+                  </View>
+                  <View style={styles.signinButtonWrapper}>
+                    <GreenButton
+                      title={t('sheet_login_in')}
+                      backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+                      color={focused ? colors.greenColor : colors.whiteColor}
+                      borderWidth={2}
+                      onPress={() => {
+                        accountRBSheet.current.close();
+                        navigate('auth', { next: 'signin', obj: productData });
+                        setFocused(false);
+                      }}
+                    />
+                  </View>
+                </>
+              }
+              languageTitle={t('Signup_today')}
+              // note={false}
+              refRBSheet={accountRBSheet}
+              height={420}
+            // onClose={false}
+            />
 
           </ScrollView>
         </View> : <View style={styles.loaderContainer}>
@@ -625,7 +625,7 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.whiteColor,
   },
   marginContainer: {
-    marginBottom: '62@s',
+    // marginBottom: '62@s',
   },
   cardsContainer: {
     flexDirection: 'row',

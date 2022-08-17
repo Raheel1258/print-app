@@ -48,7 +48,16 @@ const AccountDetailContainer = () => {
   }
 
   const handleUserAddressRemove = (addressId) => {
-    dispatch(deleteAddress(addressId));
+    const getLastPrimary = userAddresses?.filter(item => item?.primary == true);
+
+    if (addressId == getLastPrimary[0]?._id) {
+      Toast.show({
+        type: 'error',
+        text1: 'Before removing the primary address, make another primary',
+      });
+    } else {
+      dispatch(deleteAddress(addressId));
+    }
   }
 
   const handleMakePrimary = (id) => {
@@ -66,7 +75,7 @@ const AccountDetailContainer = () => {
     if (id == getLastPrimary[0]?.id) {
       Toast.show({
         type: 'error',
-        text1: 'Before removing the primary option, make another primary',
+        text1: 'Before removing the primary card, make another primary',
       });
     } else {
       dispatch(deleteCard(id, setAnimation));

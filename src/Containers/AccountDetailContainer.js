@@ -8,6 +8,7 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
 import { colors } from '../Utils/theme';
+import { t } from 'i18next';
 
 const AccountDetailContainer = () => {
   const addAddressRBSheet = useRef();
@@ -53,7 +54,7 @@ const AccountDetailContainer = () => {
     if (addressId == getLastPrimary[0]?._id) {
       Toast.show({
         type: 'error',
-        text1: 'Before removing the primary address, make another primary',
+        text1: t('alter_message_for_primary_address'),
       });
     } else {
       dispatch(deleteAddress(addressId));
@@ -75,7 +76,7 @@ const AccountDetailContainer = () => {
     if (id == getLastPrimary[0]?.id) {
       Toast.show({
         type: 'error',
-        text1: 'Before removing the primary card, make another primary',
+        text1: t('alter_message_for_primary_card'),
       });
     } else {
       dispatch(deleteCard(id, setAnimation));

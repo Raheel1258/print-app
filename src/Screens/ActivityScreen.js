@@ -31,7 +31,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 contentContainerStyle={styles.flatlistContainer}
-              /> : <View style={styles.message}><Text style={{ color: 'black' }}>No Data</Text></View>}
+              /> : <View style={styles.message}><Text style={{ color: 'black' }}>{t('no_data_message')}</Text></View>}
             </>
 
         }

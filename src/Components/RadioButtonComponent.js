@@ -35,7 +35,7 @@ const RadioButtonComponent = ({
         {(description !== "No" && addressRadio) && <View>
           <TouchableOpacity onPress={onPress}>
             <Text style={styles.deliveryText}>{title}</Text>
-            <Text style={styles.deliveryDescription}>Deliver to:</Text>
+            <Text style={styles.deliveryDescription}>{t('deviver_to')}</Text>
             <Text numberOfLines={4} style={styles.deliveryDescription}>{`${description?.fullName}, ${description?.companyName && description?.companyName}\n${description?.addressLine1},${description?.addressLine2}\n${description?.area},${description?.district},${description?.cityCountry}`}</Text>
           </TouchableOpacity>
         </View> }

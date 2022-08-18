@@ -268,7 +268,7 @@ export const en = {
     select_address: 'Please select the address',
     order_message_payment: 'Order placed with payment successfully',
     network_error: 'Network Error',
-    general_message: 'Something Went Wrong, Please Try Again',
+    general_message: 'Something went wrong, Please try again later',
     login: 'Welcome to PrintPrint :)',
     reset_password_message: 'Password updated successfully',
     otp_message: 'Verification successful',
@@ -285,7 +285,7 @@ export const en = {
     invalid_otp: 'Invalid pin or pin expired!',
     invalid_login_message: 'Invalid Credentials',
     new_confirm_password_message: 'New and confirm password must be same',
-    user_already_exit_message: 'User already exists!',
+    user_already_exit_message: 'User already exist!',
     support_email_send: 'We will be in touch via e-mail within the next 24 hours',
     description_with_offline_orderPlace: "Order received! We will send you an order confirmation e-mail shortly with our bank information. We’ll begin processing your order as soon as the payment is received.",
     description_with_online_orderPlace: "Order received! We will begin processing your order shortly and let you know as soon as it is ready.",
@@ -322,11 +322,12 @@ export const en = {
     CardSheetName: "Card holder name is required",
     CardSheetMonth: "Expiry Month is required",
     CardSheetYear: "Expiry Year is required",
-    CardSheetCSV: "CSV is required"
+    CardSheetCSV: "CSV is required",
 
-
-
-
+    alert_message_pic:'You did not select any pic',
+    no_data_message:'No Data',
+    alter_message_for_primary_card: 'Before removing the primary card, make another primary',
+    alter_message_for_primary_address: 'Before removing the primary address, make another primary'
 
 
 

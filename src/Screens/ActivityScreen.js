@@ -8,7 +8,7 @@ import { BackArrowHeader, NotificationActivity, BottomSheetComponent, GreenButto
 import { colors, fonts } from '../Utils/theme';
 
 const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation, handleActivityIsRead, handleAllActivityRead, userToken }) => {
-  var sortedArray = activityData?.sort((a,b) => Date.parse(new Date(a._id)) - Date.parse(new Date(b._id)));
+  var sortedArray = activityData?.sort((a, b) => Date.parse(new Date(a._id)) - Date.parse(new Date(b._id)));
   const { t } = useTranslation();
   const renderItem = ({ item }) => {
 
@@ -31,7 +31,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 contentContainerStyle={styles.flatlistContainer}
-              /> : <View style={styles.message}><Text>No Data</Text></View>}
+              /> : <View style={styles.message}><Text style={{ color: 'black' }}>No Data</Text></View>}
             </>
 
         }
@@ -73,7 +73,7 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
           // note={false}
           refRBSheet={activityRBSheet}
           height={420}
-          // onClose={false}
+        // onClose={false}
         />
       </View>
     </>

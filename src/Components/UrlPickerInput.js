@@ -36,7 +36,7 @@ const UrlPickerInput = ({ title, refRBSheet, handleAddFileUrl, initialValuesAddU
                       secureTextEntry={false}
                       onChangeText={handleChange(`url.${i}.url_link`)}
                     />
-                    {values.url.length > 1 && <TouchableOpacity onPress={() => remove(i)}><Text style={styles.addMore}>Remove</Text></TouchableOpacity>}
+                    {values.url.length > 1 && <TouchableOpacity onPress={() => remove(i)}><Text style={styles.addMore}>{t('remove_text')}</Text></TouchableOpacity>}
                   </>)}
                   <TouchableOpacity onPress={() => push({ url_link: '' })}><Text style={styles.addMore}>{t('add_more')}</Text></TouchableOpacity>
                 </>

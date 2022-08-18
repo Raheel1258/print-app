@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {ScaledSheet} from 'react-native-size-matters';
-import {View, Text, Button} from 'react-native';
+import React, { useState } from 'react';
+import { ScaledSheet } from 'react-native-size-matters';
+import { View, Text, Button } from 'react-native';
 import Modal from 'react-native-modal';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import ModalButton from '../Components/GreenButton';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 const VerificationModal = ({
   toggleModal,
@@ -13,11 +13,11 @@ const VerificationModal = ({
   title,
   description,
   modalButton = 'Ok',
-  aditionalAction = () => {},
+  aditionalAction = () => { },
   backDrop = () => toggleModal(),
 
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <Modal isVisible={isModalVisible} onBackdropPress={backDrop}>

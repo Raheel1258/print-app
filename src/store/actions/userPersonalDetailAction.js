@@ -167,7 +167,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
 
 
 //Change-Password
-export const changePassword = (setAnimationChangePassowrd, userData, toggleModal) => {
+export const changePassword = (setAnimationChangePassowrd, userData, toggleModal, navigate) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimationChangePassowrd(true);
@@ -181,11 +181,22 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
                 toggleModal();
             })
             .catch((err) => {
-                setAnimationChangePassowrd(false);
+                
+                if(err?.response?.data?.statusCode === 400){
+                    setAnimationChangePassowrd(false);
+                    Toast.show({
+                        type: 'error',
+                        text1: t('change_password_invalide_message'),
+                    });
+                }else{
+                    setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
                     text1: t('general_message'),
                 });
+
+                }
+                
             });
 
     }

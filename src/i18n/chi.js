@@ -578,7 +578,8 @@ export const chi = {
     no_data_message:'無數據',
 
     alter_message_for_primary_card: '你必須選擇一張主卡',
-    alter_message_for_primary_address: '您必须选择一个主要地址'
+    alter_message_for_primary_address: '您必须选择一个主要地址',
+    change_password_invalide_message:'当前密码无效'
 
   },
 };

@@ -8,7 +8,7 @@ import { changePasswordSchema } from '../Utils/validationSchema'
 import { BackArrowHeader, InputTextField, GreenButton, VerificationModal } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePasswordState, handleChangePassword, animation, animationChangePassword }) => {
+const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePasswordState, handleChangePassword, animation, animationChangePassword , handleNavigationOnOK }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -61,6 +61,7 @@ const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePassw
                       description={t('successfully_changed_password')}
                       isModalVisible={isModalVisible}
                       toggleModal={toggleModal}
+                      aditionalAction ={handleNavigationOnOK }
                     />
                   </View>
                 </>

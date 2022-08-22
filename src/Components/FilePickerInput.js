@@ -46,7 +46,7 @@ const FilePickerInput = ({ result, setResult }) => {
       };
       launchImageLibrary(options, (response) => {
         if (response.didCancel) {
-          alert('You did not select any pic');
+          alert(t('alert_message_pic'));
           return;
         } else if (response.errorCode == 'camera_unavailable') {
           alert('Camera not available on device');

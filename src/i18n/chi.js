@@ -276,7 +276,7 @@ export const chi = {
     invalid_phone: '电话号码无效',
     phone_required: '电话号码为必填项',
     firstName_required: '名字是必填项',
-    lastName_required: '姓氏是必填项',
+    lastName_required: '姓氏',
     //<=Forgot Password Screen=>
     email_description: '請在以下輸入你的電郵地址，你會收到重設密碼的驗證碼電郵',
     send_text: '发送',
@@ -288,7 +288,7 @@ export const chi = {
     lets_print: '開始打印！',
     //<=Verification Password Screen=>
     verification_code: '驗證碼',
-    verification_description: '請輸入你電郵裡的驗證碼以重設密碼',
+    verification_description: '請輸入發送到您郵箱的驗證碼以重置您的密碼',
     reset_password: '重置密碼',
     confirm_new_password: '確認新密碼',
     confirm_text: '確認',
@@ -315,7 +315,7 @@ export const chi = {
     upload_design: '上載你的產品設計',
     artwork_guidelines: '稿件需知',
     upload_file: '從你的裝置上傳',
-    upload_url: '稿件鏈結 (eg. Dropbox, Google Drive)',
+    upload_url: '鏈結 (例如. Dropbox, Google Drive)',
     upload_mail: '電郵我們',
     order_remark: '備註',
     anything_about_order: '其他訂單說明',
@@ -327,6 +327,7 @@ export const chi = {
     no_text: '否',
     upload_design_file: '⚠️ 在你上載設計檔之前...',
     file_compile: '請確認你的設計檔符合我們的稿件要求',
+    deviver_to: ' 送貨到',
 
 
     sheet_upload_file: '上載檔案',
@@ -517,11 +518,11 @@ export const chi = {
     select_address: '请选择地址',
     order_message_payment: '下单付款成功',
     network_error: '网络错误',
-    general_message: '出了点问题，请重试',
+    general_message: '發生錯誤，請稍後再試',
     login: '歡迎嚟到PrintPrint :)',
     reset_password_message: '密码更新成功',
     otp_message: '認證成功',
-    logout: '您已登出',
+    logout: '你已被登出',
     email_send: '你會在24小時內收到收據的電郵',
     address_add: '您已成功添加您的地址',
     address_remove: '成功删除地址',
@@ -529,12 +530,12 @@ export const chi = {
     user_update: '你的帳戶資料已更新',
     address_primary: '主地址更新成功',
     user_not_logged: '用户未登录',
-    login_correct: '歡迎你翻嚟:)',
+    login_correct: '歡迎回來',
     otp_send: '一次性密碼已發送到你電郵',
     invalid_otp: '无效的 pin 或 pin 已过期!',
     invalid_login_message: '无效证件',
     new_confirm_password_message: '新密码和确认密码必须相同',
-    user_already_exit_message: '用户已存在!',
+    user_already_exit_message: '用戶已存在!',
     support_email_send: '我們會在24小時內以電郵聯絡你',
     description_with_offline_orderPlace: "我們已經收到你的訂單！你將會收到一封附上我們銀行資料的電郵. 成功付款後，我們會盡快處理你的訂單",
     description_with_online_orderPlace: "我們已經收到你的訂單！我們會開始處理你的訂單 訂單完成後 你將會收到一封訂單通知電郵",
@@ -563,16 +564,22 @@ export const chi = {
     finishing: '精加工:',
 
     //new chainging
-    nameAddress: '全名是必填项',
-    sheetAddress: "地址为必填项",
-    areaAddress: "面积为必填项",
+    nameAddress: '名',
+    sheetAddress: "地址",
+    areaAddress: "地區",
     districtAddres: '地区为必填项',
 
-    CardSheet: "卡号为必填项",
-    CardSheetName: "持卡人姓名为必填项",
-    CardSheetMonth: "到期月份为必填项",
-    CardSheetYear: "到期年份为必填项",
-    CardSheetCSV: "需要 CSV"
+    CardSheet: "信用卡號碼",
+    CardSheetName: "信用卡名稱",
+    CardSheetMonth: "到期月份",
+    CardSheetYear: "到期年份",
+    CardSheetCSV: "安全碼",
+    alert_message_pic:'你沒有選擇任何圖片',
+    no_data_message:'無數據',
+
+    alter_message_for_primary_card: '你必須選擇一張主卡',
+    alter_message_for_primary_address: '您必须选择一个主要地址',
+    change_password_invalide_message:'当前密码无效'
 
   },
 };

@@ -4,6 +4,7 @@ import { View, Text, Button } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 
+
 import ModalButton from '../Components/GreenButton';
 import { colors, fonts } from '../Utils/theme';
 
@@ -12,7 +13,7 @@ const VerificationModal = ({
   isModalVisible,
   title,
   description,
-  modalButton = 'Ok',
+  modalButton = 'OK',
   aditionalAction = () => { },
   backDrop = () => toggleModal(),
 
@@ -27,7 +28,7 @@ const VerificationModal = ({
           <View style={styles.buttonWrapper}>
             <ModalButton
               backgroundColor={colors.blackColor}
-              title={modalButton}
+              title={modalButton == "OK" ? t('ok_text'): modalButton}
               onPress={() => {
                 toggleModal();
                 aditionalAction();

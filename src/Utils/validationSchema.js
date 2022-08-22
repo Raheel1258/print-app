@@ -7,7 +7,7 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 export const loginValidationSchema = (t) => {
     return (Yup.object({
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
-        password: Yup.string().min(5, t('min_required_5')).required(t('password_required'))
+        password: Yup.string().required(t('password_required'))
     }))
 }
 
@@ -53,7 +53,7 @@ export const updatePersonalDetailSchema = (t) => {
 
 export const changePasswordSchema = (t) => {
     return (Yup.object({
-        currentPassword: Yup.string().min(5, t('min_required_5')).required(t('current_password_required')),
+        currentPassword: Yup.string().required(t('current_password_required')),
         newPassword: Yup.string().min(5, t('min_required_5')).required(t('new_password_required')),
         confirmPassword: Yup.string().required(t('confirm_password_required'))
     }))

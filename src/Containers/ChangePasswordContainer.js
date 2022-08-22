@@ -26,6 +26,14 @@ const ChangePasswordContainer = () => {
     navigation.goBack();
   };
 
+  const navigate = (routeName, data = {}) => {
+    navigation.navigate(routeName, data)
+  }
+
+  const handleNavigationOnOK = () => {
+    goBack();
+  }
+
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -38,7 +46,7 @@ const ChangePasswordContainer = () => {
         text1: t('new_confirm_password_message'),
     });
     }else{
-      dispatch(changePassword(setAnimationChangePassowrd , {currentPassword:values.currentPassword , newPassword:values.newPassword}, toggleModal))
+      dispatch(changePassword(setAnimationChangePassowrd , {currentPassword:values.currentPassword , newPassword:values.newPassword}, toggleModal, navigate))
     }
    
   }
@@ -52,6 +60,7 @@ const ChangePasswordContainer = () => {
         isModalVisible={isModalVisible}
         changePasswordState={changePasswordState}
         animation={animation}
+        handleNavigationOnOK ={handleNavigationOnOK }
         handleChangePassword={handleChangePassword} />
     </View>
   );

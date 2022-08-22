@@ -5,6 +5,8 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  TouchableOpacity,
+  Linking,
 } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -80,8 +82,9 @@ const SignupScreen = ({ navigate, animation, handleSignup, goBack, signupState }
                 />
                   
                 <Text style={styles.signupDescription}>{t('by_signingup')}{' '}
-                  <Text style={styles.privacyText}>{t('terms_services')}</Text> {t('and_text')}{' '}
-                  <Text style={styles.privacyText}>{t('privacy_policy')}</Text>
+                 <TouchableOpacity onPress={()=> Linking.openURL('https://printprint.com.hk/terms-of-use/')}><Text style={styles.privacyText}>{t('terms_services')}</Text></TouchableOpacity> 
+                  <Text>{' '}{t('and_text')}{' '}</Text>
+                 <TouchableOpacity onPress={()=> Linking.openURL('https://printprint.com.hk/privacy-policies/')}><Text style={styles.privacyText}>{t('privacy_policy')}</Text></TouchableOpacity>
                 </Text>
                 <View style={styles.buttonWrapper}>
                   <GreenButton title={t('create_account')} animation={animation} onPress={handleSubmit} />
@@ -108,17 +111,17 @@ const styles = ScaledSheet.create({
   signupDescription: {
     fontFamily:fonts.avenir_regular,
     fontSize: '12@s',
-    fontStyle: 'normal',
     // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '20@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    marginTop: '3@s',
+    marginTop: '13@s',
   },
   privacyText: {
     color: colors.greenColor,
+    marginBottom: Platform.OS == 'ios' ? '0@s' : '-4@s'
   },
 });
 

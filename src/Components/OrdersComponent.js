@@ -39,7 +39,7 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
   
   return (
     <TouchableOpacity  onPress={() => navigate("myOrdersList" , {item:item})} style={styles.cardContainer}>
-      <Text style={styles.title}>#{item?._id}</Text>
+      <Text style={styles.title}>{item?.orderRefrence && item?.orderRefrence}</Text>
       <View style={styles.contentContainer}>
         <View>
           <View style={styles.ordersContainer}>
@@ -54,7 +54,7 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
               <DollarIcon />
             </View>
             <Text style={styles.orderText}>{t('order_ammount')}</Text>
-            <Text style={styles.orderText}>HK$ {item?.total}</Text>
+            <Text style={styles.orderText}>HK$ {Math.round(item?.total)}</Text>
           </View>
         </View>
         <View style={styles.arrowIcon}>
@@ -68,7 +68,7 @@ const OrdersComponent = ({orderNotify,navigate, item}) => {
         orderNotify =='READY_FOR_PICKUP' ? colors.lightGreenColor : 
         orderNotify =='PRINTING' ? colors.printingColor : colors.lightRedColor 
         }}>
-          {handleOrderStatus(orderNotify)}
+          {handleOrderStatus(orderNotify,t)}
           </Text>
     </TouchableOpacity>
   );

@@ -1,11 +1,15 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createSwitchNavigator, createAppContainer} from 'react-navigation';
-import {ScaledSheet} from 'react-native-size-matters';
+import React, { useEffect } from 'react';
+import Storage from '../Utils/Storage';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
-import {Text, View,Platform} from 'react-native';
-import { useSelector } from 'react-redux';
+import { Text, View, Platform } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCartLength } from '../store/actions/cartAction';
+import { setActivityLength } from '../store/actions/activitiesAction'
+
 
 import {
   SigninContainer,
@@ -29,7 +33,7 @@ import {
   PaymentContainer,
   EditedSingleProductContainer
 } from '../Containers';
-import {colors, fonts} from './theme';
+import { colors, fonts } from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
 import BrowseIcon from '../Assests/Svgs/BrowseIcon';
 import CartActiveIcon from '../Assests/Svgs/CartActiveIcon';
@@ -42,7 +46,10 @@ import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
 import AccountIcon from '../Assests/Svgs/AccountIcon';
 import EmptyCartScreen from '../Screens/EmptyCartScreen';
 
-
+// let cartLength = 0;
+// const fun1 = async() => {
+//   cartLength = await Storage.retrieveData('lengthCart')
+// }
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
 const Home = createStackNavigator();
@@ -54,12 +61,24 @@ const Activity = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    Storage.retrieveData('lengthCart').then(length => {
+      dispatch(setCartLength(length))
+    })
+  }, []);
+
+  useEffect(() => {
+    Storage.retrieveData('lengthActivity').then(length => {
+      dispatch(setActivityLength(length))
+    })
+  }, []);
   return (
     <Stack.Navigator initialRouteName="tab">
       <Stack.Screen
         name="tab"
         component={MyTabs}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       {/* <Stack.Screen
         name="home"
@@ -69,53 +88,53 @@ const App = () => {
       <Stack.Screen
         name="productsListing"
         component={ProductsListingContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="singleProduct"
         component={SingleProductContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="account"
         component={AccountContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="accountDetail"
         component={AccountDetailContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="payment"
         component={PaymentContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="myOrder"
         component={MyOrderContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="myOrdersList"
         component={MyOrdersListContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="changePassword"
         component={ChangePasswordContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="activity"
         component={ActivityContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="auth"
         component={AuthStack}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -124,38 +143,40 @@ const App = () => {
 const AuthStack = (props) => {
   const next = props?.route?.params?.next;
   return (
-    <Auth.Navigator initialRouteName={next ? next: "routeChecking"}>
+    <Auth.Navigator initialRouteName={next ? next : "routeChecking"}>
       <Auth.Screen
         name="routeChecking"
         component={RouteCheckingContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Auth.Screen
         name="signin"
         component={SigninContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
+        initialParams={{ obj: props?.route?.params?.obj ? props?.route?.params?.obj : "false" }}
       />
       <Auth.Screen
         name="signup"
         component={SignupContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
+        initialParams={{ obj: props?.route?.params?.obj ? props?.route?.params?.obj : "false" }}
       />
       <Auth.Screen
         name="forgotPassword"
         component={ForgotPasswordContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="verificationCode"
         component={VerificationCodeContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="resetPassword"
         component={ResetPasswordContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
-      <Auth.Screen component={App} name="home" options={{headerShown: false}} />
+      <Auth.Screen component={App} name="home" options={{ headerShown: false }} />
     </Auth.Navigator>
   );
 };
@@ -166,23 +187,23 @@ const HomeStack = () => {
       <Home.Screen
         name="home"
         component={HomeContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Home.Screen
         name="productsListing"
         component={ProductsListingContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Home.Screen
         name="singleProduct"
         component={SingleProductContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
-     
-       <Home.Screen
+
+      <Home.Screen
         name="authTest"
         component={AuthStack}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Home.Navigator>
   );
@@ -195,17 +216,17 @@ const OrderStack = () => {
       <Order.Screen
         name="myOrder"
         component={MyOrderContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Order.Screen
         name="myOrdersList"
         component={MyOrdersListContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
-    <Order.Screen
+      <Order.Screen
         name="Home"
         component={App}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Order.Navigator>
   );
@@ -218,12 +239,12 @@ const ActivityStack = () => {
       <Activity.Screen
         name="activity"
         component={ActivityContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Activity.Screen
         name="myOrdersList"
         component={MyOrdersListContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Activity.Navigator>
   );
@@ -235,17 +256,17 @@ const AccountStack = () => {
       <Account.Screen
         name="account"
         component={AccountContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Account.Screen
         name="accountDetail"
         component={AccountDetailContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Account.Screen
         name="Home"
         component={App}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Account.Navigator>
   );
@@ -257,12 +278,12 @@ const CartStack = () => {
       <Cart.Screen
         name="cart"
         component={CartContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Cart.Screen
         name="orderReceived"
         component={OrderReceivedContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       {/* <Cart.Screen
         name="emptyCart"
@@ -272,20 +293,29 @@ const CartStack = () => {
       <Cart.Screen
         name="editedSingleProduct"
         component={EditedSingleProductContainer}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Cart.Screen
         name="Home"
         component={App}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Cart.Navigator>
   );
 };
 
-const MyTabs = ({}) => {
-  const {t} = useTranslation();
-  const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
+const MyTabs = ({ }) => {
+  const { t } = useTranslation();
+  // fun1();
+  // useEffect(()=>{
+  //   console.log("useEffect of tab");
+  //   fun1();
+  // },[])
+  // console.log("length", fun1());
+
+  const cartItem = useSelector(state => state?.cartReducer?.cartLength);
+  const activityLength = useSelector(state => state?.activitiesReducer?.activityLength);
+
   return (
     <Tab.Navigator
       initialRouteName="homeStack"
@@ -304,15 +334,15 @@ const MyTabs = ({}) => {
       <Tab.Screen
         options={{
           title: '',
-          tabBarIcon: ({focused, color}) => (
+          tabBarIcon: ({ focused, color }) => (
             <View>
               {focused ? (
-                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                   <BrowseActiveIcon />
                   <Text style={styles.activeText}>{t('browse_text')}</Text>
                 </View>
               ) : (
-                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                   <BrowseIcon />
                   <Text style={styles.unActiveText}>{t('browse_text')}</Text>
                 </View>
@@ -327,19 +357,20 @@ const MyTabs = ({}) => {
 
       <Tab.Screen
         options={{
+          unmountOnBlur: true,
           title: '',
-          tabBarIcon: ({focused, color}) => (
+          tabBarIcon: ({ focused, color }) => (
             <View >
-             {cartItem && <View style={styles.cartNumContainer}>
-                <Text style={styles.cartNumText}>{cartItem?.length && cartItem?.length}</Text>
-              </View> }
+              {cartItem > 0 && <View style={styles.cartNumContainer}>
+                <Text style={styles.cartNumText}>{cartItem && cartItem}</Text>
+              </View>}
               {focused ? (
-                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                   <CartActiveIcon />
                   <Text style={styles.activeText}>{t('cart_text')}</Text>
                 </View>
               ) : (
-                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                   <CartIcon />
                   <Text style={styles.unActiveText}>{t('cart_text')}</Text>
                 </View>
@@ -354,7 +385,7 @@ const MyTabs = ({}) => {
       <Tab.Screen
         options={{
           title: '',
-          tabBarIcon: ({focused, color}) => (
+          tabBarIcon: ({ focused, color }) => (
             <View>
               {focused ? (
                 <View
@@ -364,7 +395,7 @@ const MyTabs = ({}) => {
                     marginTop: 2.2,
                   }}>
                   <OrderActiveIcon />
-                  <Text style={{...styles.activeText,marginTop:5}}>{t('order_text')}</Text>
+                  <Text style={{ ...styles.activeText, marginTop: 5 }}>{t('order_text')}</Text>
                 </View>
               ) : (
                 <View
@@ -374,7 +405,7 @@ const MyTabs = ({}) => {
                     marginTop: 2.2,
                   }}>
                   <OrdersIcon />
-                  <Text style={{...styles.unActiveText,marginTop:5}}>{t('order_text')}</Text>
+                  <Text style={{ ...styles.unActiveText, marginTop: 5 }}>{t('order_text')}</Text>
                 </View>
               )}
             </View>
@@ -387,8 +418,11 @@ const MyTabs = ({}) => {
       <Tab.Screen
         options={{
           title: '',
-          tabBarIcon: ({focused, color}) => (
+          tabBarIcon: ({ focused, color }) => (
             <View>
+              {activityLength > 0 && <View style={styles.notifyNumContainer}>
+                <Text style={styles.cartNumText}>{activityLength && activityLength}</Text>
+              </View>}
               {focused ? (
                 <View
                   style={{
@@ -418,15 +452,15 @@ const MyTabs = ({}) => {
       <Tab.Screen
         options={{
           title: '',
-          tabBarIcon: ({focused, color}) => (
+          tabBarIcon: ({ focused, color }) => (
             <View>
               {focused ? (
-                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                   <AccountActiveIcon />
                   <Text style={styles.activeText}>{t('account_text')}</Text>
                 </View>
               ) : (
-                <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                   <AccountIcon />
                   <Text style={styles.unActiveText}>{t('account_text')}</Text>
                 </View>
@@ -465,9 +499,9 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'center',
-    marginTop:'4@s'
+    marginTop: '4@s'
   },
   unActiveText: {
     fontFamily: fonts.avenir_regular,
@@ -475,35 +509,47 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'center',
-    marginTop:'4@s'
+    marginTop: '4@s'
   },
   tabContainer: {
     flexDirection: 'column',
     alignItems: 'center',
   },
-  cartNumContainer:{
-    backgroundColor:colors.greenColor,
-    width:'12.5@s',
-    height:'12.5@s',
-    borderRadius:'50@s',
-    justifyContent:'center',
-    alignItems:'center',
-    position:'absolute',
-  right:-2,
-  bottom:34,
-    zIndex:1,
+  cartNumContainer: {
+    backgroundColor: colors.greenColor,
+    width: '12.5@s',
+    height: '12.5@s',
+    borderRadius: '50@s',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    right: -2,
+    bottom: 34,
+    zIndex: 1,
   },
-  cartNumText:{
+  notifyNumContainer: {
+    backgroundColor: colors.greenColor,
+    width: '12.5@s',
+    height: '12.5@s',
+    borderRadius: '50@s',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 6,
+    bottom: 34,
+    zIndex: 1,
+  },
+  cartNumText: {
     fontFamily: fonts.avenir_bold,
     color: colors.whiteColor,
     fontSize: '8@s',
     fontStyle: 'normal',
     lineHeight: Platform.OS === 'ios' ? '14@s' : '10@s',
     letterSpacing: '0.1@s',
-    textAlign:'center',
-    zIndex:1,
+    textAlign: 'center',
+    zIndex: 1,
   }
 });
 

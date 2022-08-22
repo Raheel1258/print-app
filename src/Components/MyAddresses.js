@@ -3,53 +3,56 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
+import VisaCard from '../Assests/Svgs/VisaCard';
 import { colors, fonts } from '../Utils/theme';
+import {useTranslation} from 'react-i18next';
 
 const MyAddresses = ({ description, address, card, handleUserAddressRemove, refRBSheet, setUpdatedAddress, makePrimary, title }) => {
+  const {t} = useTranslation();
   return (
     <View style={styles.container}>
       {address &&
         <>
           <View style={styles.header}>
             <Text style={styles.headerTitle}>{title ?? address?.fullName}</Text>
-            {address?.primary == true && <Text style={styles.headerPrimary}>Primary</Text>}
+            {address?.primary == true && <Text style={styles.headerPrimary}>{t('show_address_primary')}</Text>}
           </View>
           <View>
             <Text style={styles.addressText}>{address?.addressLine1}</Text>
             <Text style={styles.addressText}>{address?.addressLine2}</Text>
           </View>
           <View style={styles.editableContainer}>
-            <TouchableOpacity onPress={() => { refRBSheet.current.open(), setUpdatedAddress(address) }} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-            {address?.primary == false && <TouchableOpacity onPress={() => makePrimary(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
-            <TouchableOpacity onPress={() => handleUserAddressRemove(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => { refRBSheet.current.open(), setUpdatedAddress(address) }} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('edit_product')}</Text></TouchableOpacity>
+            {address?.primary == false && <TouchableOpacity onPress={() => makePrimary(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('make_address_primary')}</Text></TouchableOpacity>}
+            <TouchableOpacity onPress={() => handleUserAddressRemove(address?._id)} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('remove_product')}</Text></TouchableOpacity>
           </View>
 
         </>}
         {card &&
         <>
           <View style={styles.header}>
-            <Text style={styles.headerTitle}>{title}</Text>
-            <Text style={styles.headerPrimary}>Primary</Text>
+            <Text style={styles.headerTitle}>{card?.name}</Text>
+            {card?.metadata?.primary === "true" && <Text style={styles.headerPrimary}>{t('show_address_primary')}</Text>}
           </View>
           <View>
             <View style={styles.cardPrivacyContainer}>
-              <Text style={styles.cardNumText}>Card number:</Text>
-              <Text style={styles.masterCardText}>Master (9881)</Text>
-              <MasterCard />
+              <Text style={styles.cardNumText}>{t('card_number')}:</Text>
+              <Text style={styles.masterCardText}>{card?.brand}</Text>
+             {card?.brand == "Visa" ? <VisaCard/>:<MasterCard /> }
             </View>
             <View style={styles.cardPrivacyContainer}>
-              <Text style={styles.cardNumText}>Expiry:</Text>
-              <Text style={styles.cardNumText}>12 / 25</Text>
+              <Text style={styles.cardNumText}>{t('expiry_month')}:</Text>
+              <Text style={styles.cardNumText}>{card?.exp_month} / {card?.exp_year}</Text>
             </View>
             <View style={styles.cardPrivacyContainer}>
-              <Text style={styles.cardNumText}>CVV:</Text>
+              <Text style={styles.cardNumText}>CSV:</Text>
               <Text style={styles.cardNumText}>***</Text>
             </View>
           </View>
           <View style={styles.editableContainer}>
-            <TouchableOpacity onPress={() => console.log("edited address")} style={styles.paddingWrapper}><Text style={styles.editableText}>Edit</Text></TouchableOpacity>
-            {!description && <TouchableOpacity style={styles.paddingWrapper}><Text style={styles.editableText}>Make Primary</Text></TouchableOpacity>}
-            <TouchableOpacity onPress={() => console.log("Remove address")} style={styles.paddingWrapper} ><Text style={styles.editableText}>Remove</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(card)}} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('edit_product')}</Text></TouchableOpacity>
+            {card.metadata.primary === "false" && <TouchableOpacity onPress={() => makePrimary(card?.id)} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('make_address_primary')}</Text></TouchableOpacity>}
+            <TouchableOpacity onPress={() => handleUserAddressRemove(card?.id)} style={styles.paddingWrapper} ><Text style={styles.editableText}>{t('remove_product')}</Text></TouchableOpacity>
           </View>
         </>}
     </View>

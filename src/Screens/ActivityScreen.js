@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList,ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
@@ -7,50 +7,33 @@ import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { BackArrowHeader, NotificationActivity, BottomSheetComponent, GreenButton } from '../Components';
 import { colors, fonts } from '../Utils/theme';
 
-const DATA = [
-  {
-    id: '1',
-    date: 'Today',
-    readMark: 'Mark as all read',
-  },
-  {
-    id: '2',
-    date: '2 March 2022',
-  },
-  {
-    id: '3',
-    date: '1 March 2022',
-  },
-];
-
-const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation,handleActivityIsRead,handleAllActivityRead }) => {
+const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation, handleActivityIsRead, handleAllActivityRead, userToken }) => {
+  var sortedArray = activityData?.sort((a, b) => Date.parse(new Date(a._id)) - Date.parse(new Date(b._id)));
   const { t } = useTranslation();
-  // const keys = Object.keys(activityData);
   const renderItem = ({ item }) => {
-    
+
     return (<>
       <NotificationActivity item={item} readMark={activityData[0]._id} handleActivityIsRead={handleActivityIsRead} handleAllActivityRead={handleAllActivityRead} />
     </>)
   };
   return (
     <>
-
       <View style={styles.container}>
         {
           animation ?
-          <View style={styles.loaderContainer}>
+            <View style={styles.loaderContainer}>
               <ActivityIndicator size="small" color="#000" animating={true} />
             </View>
-            :<>
+            : <>
               <BackArrowHeader arrow={false} goBack={goBack} title={t('activity_text')} borderBottomWidth={0} />
-             {activityData?.length > 0 ? <FlatList
-                data={activityData}
+              {(activityData?.length > 0 && userToken) ? <FlatList
+                data={sortedArray?.reverse()}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 contentContainerStyle={styles.flatlistContainer}
-              />: <View style={styles.message}><Text>No Data</Text></View>}
+              /> : <View style={styles.message}><Text style={{ color: 'black' }}>{t('no_data_message')}</Text></View>}
             </>
-             
+
         }
         <BottomSheetComponent
           childern={
@@ -87,10 +70,10 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
             </>
           }
           languageTitle={t('Signup_today')}
-          note={false}
+          // note={false}
           refRBSheet={activityRBSheet}
           height={420}
-          onClose={false}
+        // onClose={false}
         />
       </View>
     </>
@@ -117,12 +100,12 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  message:{
+  message: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    color:colors.blackColor,
-    fontFamily:fonts.avenir_bold,
+    color: colors.blackColor,
+    fontFamily: fonts.avenir_bold,
     fontSize: '14@s',
     fontStyle: 'normal',
     lineHeight: '22@s',

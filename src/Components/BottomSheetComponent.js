@@ -17,7 +17,7 @@ const BottomSheetComponent = ({
   childern,
   height = '93%',
   languageTitle = undefined,
-  note = true,
+  note = false,
   onClose = true
 }) => {
   return (
@@ -38,21 +38,21 @@ const BottomSheetComponent = ({
             padding: 20,
           },
         }}>
-          <View style={styles.headerContainer}>
-            {title ? (
-              <>
-                <Text style={styles.headerTitle}>{title}</Text>
-                <TouchableOpacity
-                  onPress={() => refRBSheet.current.close()}
-                  style={styles.iconWrapper}>
-                  <CloseIcon />
-                </TouchableOpacity>
-              </>
-            ) : (
-              <Text style={styles.titleText}>{languageTitle}</Text>
-            )}
-          </View>
-          <ScrollView>
+        <View style={styles.headerContainer}>
+          {title ? (
+            <>
+              <Text style={styles.headerTitle}>{title}</Text>
+              <TouchableOpacity
+                onPress={() => refRBSheet?.current?.close()}
+                style={styles.iconWrapper}>
+                <CloseIcon />
+              </TouchableOpacity>
+            </>
+          ) : (
+            <Text style={styles.titleText}>{languageTitle}</Text>
+          )}
+        </View>
+        <ScrollView>
           {childern}
           {note && (
             <>
@@ -80,7 +80,7 @@ const styles = ScaledSheet.create({
     fontSize: '14@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.blackColor,
   },
   iconWrapper: {
@@ -91,7 +91,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.blackColor,
     textAlign: 'center',
     marginBottom: -25,

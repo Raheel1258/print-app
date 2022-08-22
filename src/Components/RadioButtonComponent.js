@@ -1,43 +1,78 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import UnCheckedCircleIcon from '../Assests/Svgs/UnCheckedCircleIcon';
 import CheckedBlueIcon from '../Assests/Svgs/CheckedBlueIcon';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
+import MasterCard from '../Assests/Svgs/MasterCard';
+import VisaCard from '../Assests/Svgs/VisaCard';
 [];
 const RadioButtonComponent = ({
   title,
   description,
+  description1,
   secondTitle,
   secondDescription,
   thirdDescription,
   onPress,
   radioButtonStatus,
   setRadioButtonStatus,
-  toggleModal = ()=> {},
+  toggleModal = () => { },
   handleCheckedOne,
   handleCheckedTwo,
+  openfun = ()=>{},
+  addressRadio
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => {setRadioButtonStatus(true); handleCheckedOne()}}>
+        <TouchableOpacity style={styles.radioButtonWrapper} onPress={() => { setRadioButtonStatus(true); handleCheckedOne(); openfun() }}>
           {radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
-        <View>
+        {(description !== "No" && addressRadio) && <View>
           <TouchableOpacity onPress={onPress}>
             <Text style={styles.deliveryText}>{title}</Text>
-            <Text style={styles.deliveryDescription}>{description}</Text>
+            <Text style={styles.deliveryDescription}>{t('deviver_to')}</Text>
+            <Text numberOfLines={4} style={styles.deliveryDescription}>{`${description?.fullName}, ${description?.companyName && description?.companyName}\n${description?.addressLine1},${description?.addressLine2}\n${description?.area},${description?.district},${description?.cityCountry}`}</Text>
           </TouchableOpacity>
-        </View>
+        </View> }
+        {(description === "No") && <View>
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.deliveryText}>{title}</Text>
+            <Text style={styles.deliveryDescription}>{t("select_address_state")}</Text> 
+           
+          </TouchableOpacity>
+        </View> }
+        
+        {(!addressRadio && description !== "Noo") &&
+          <View>
+            <TouchableOpacity onPress={onPress}>
+              <Text style={styles.deliveryText}>{title}</Text>
+              <Text style={styles.deliveryDescription}>{description?.name}</Text>
+              <View style={{flexDirection:'row', alignItems:'center', paddingLeft:10}} >
+              {description?.brand == "Visa" ? <VisaCard/>:<MasterCard /> }
+              <Text style={{...styles.deliveryDescription, paddingTop:2}}>{description?.brand} ({description?.exp_year})</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        }
+        {(description === "Noo") && <View>
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.deliveryText}>{title}</Text>
+            <Text style={styles.deliveryDescription}>{t("Select card")}</Text> 
+           
+          </TouchableOpacity>
+        </View> }
       </View>
       <View style={styles.borderBottom} />
       <View style={styles.container}>
-        <TouchableOpacity style={secondTitle === 'Bank Transfer / Cheque' ? styles.radiostyling : styles.radioButtonWrapper} onPress={() =>{setRadioButtonStatus(false) 
-          toggleModal(); handleCheckedTwo()}}>
+        <TouchableOpacity style={secondTitle === 'Bank Transfer / Cheque' ? styles.radiostyling : styles.radioButtonWrapper} onPress={() => {
+          setRadioButtonStatus(false)
+          toggleModal(); handleCheckedTwo()
+        }}>
           {!radioButtonStatus ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </TouchableOpacity>
         <TouchableOpacity>
@@ -62,7 +97,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     marginLeft: '10@s',
@@ -73,22 +108,23 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
     marginLeft: '10@s',
+    width:'280@s'
   },
   borderBottom: {
     borderBottomWidth: 1,
     borderBottomColor: colors.innerBorderColor,
     marginHorizontal: '20@s',
   },
-  radioButtonWrapper:{
-    padding:'5@s',
+  radioButtonWrapper: {
+    padding: '5@s',
   },
-  radiostyling:{
-    marginBottom:'13@s',
-    padding:'5@s',
+  radiostyling: {
+    marginBottom: '13@s',
+    padding: '5@s',
   }
 });
 

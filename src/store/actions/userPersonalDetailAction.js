@@ -1,6 +1,7 @@
 import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
+import Stripe from 'react-native-stripe-api';
 
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
@@ -30,7 +31,7 @@ function setUserCard(userCard) {
 }
 
 //Add Address
-export const addAddress = (setAnimation, data, addAddressRBSheet) => {
+export const addAddress = (setAnimation, data, addAddressRBSheet, handleAddressForBottomSheet = () => { }) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
@@ -43,6 +44,7 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
                 setAnimation(false);
                 dispatch(setUserAddress(res?.data?.addresses));
                 addAddressRBSheet.current.close();
+                handleAddressForBottomSheet();
             })
             .catch((err) => {
                 setAnimation(false);
@@ -59,11 +61,10 @@ export const addAddress = (setAnimation, data, addAddressRBSheet) => {
 export const deleteAddress = (addressid) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
-        axios.patch(`${Api}/user/address/delete/${addressid}`,{} ,{ headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.patch(`${Api}/user/address/delete/${addressid}`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
                     text1: t('address_remove'),
@@ -79,7 +80,7 @@ export const deleteAddress = (addressid) => {
 }
 
 //update address
-export const updateUserAddress = (setAnimation, _id , data, addAddressRBSheet) => {
+export const updateUserAddress = (setAnimation, _id, data, addAddressRBSheet) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         addAddressRBSheet.current.close();
@@ -120,20 +121,19 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                 setAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
             })
             .catch((err) => {
                 setAnimation(false);
-                if(err?.response?.data?.statusCode === 400){
+                if (err?.response?.data?.statusCode === 400) {
                     Toast.show({
                         type: 'error',
                         text1: t('invalid_login_message'),
                     });
-                }else
-                Toast.show({
-                    type: 'error',
-                    text1: t('general_message'),
-                });
+                } else
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
             });
 
     }
@@ -149,7 +149,6 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
                 setAnimationUpdateUser(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                dispatch(setUserCard(res?.data?.cards))
                 Toast.show({
                     type: 'success',
                     text1: t('user_update'),
@@ -168,7 +167,7 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
 
 
 //Change-Password
-export const changePassword = (setAnimationChangePassowrd, userData, toggleModal) => {
+export const changePassword = (setAnimationChangePassowrd, userData, toggleModal, navigate) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimationChangePassowrd(true);
@@ -182,30 +181,43 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
                 toggleModal();
             })
             .catch((err) => {
-                setAnimationChangePassowrd(false);
+                
+                if(err?.response?.data?.statusCode === 400){
+                    setAnimationChangePassowrd(false);
+                    Toast.show({
+                        type: 'error',
+                        text1: t('change_password_invalide_message'),
+                    });
+                }else{
+                    setAnimationChangePassowrd(false);
                 Toast.show({
                     type: 'error',
                     text1: t('general_message'),
                 });
+
+                }
+                
             });
 
     }
 }
 
 //makeAddressPrimary
-export const makeAddressPrimary = (id) => {
+export const makeAddressPrimary = (id, flag) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         // setAnimationChangePassowrd(true);
-        axios.patch(`${Api}/user/address/${id}`, {}, {headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.patch(`${Api}/user/address/${id}`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 // setAnimationChangePassowrd(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
-                Toast.show({
-                    type: 'success',
-                    text1: t('address_primary'),
-                });
+                if (!flag) {
+                    Toast.show({
+                        type: 'success',
+                        text1: t('address_primary'),
+                    });
+                }
             })
             .catch((err) => {
                 // setAnimationChangePassowrd(false);
@@ -215,5 +227,156 @@ export const makeAddressPrimary = (id) => {
                 });
             });
 
+    }
+}
+
+
+//getAllCard
+export const getAllCards = (setAnimation) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                dispatch(setUserCard(res?.data?.data))
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+
+    }
+}
+//
+export const addCards = (values, setCardAddAnimation, addCardetCardRBSheet, handleCardsForBottomSheet) => {
+    return async (dispatch) => {
+        setCardAddAnimation(true);
+        const apiKey =
+            'pk_test_51Ke9OxBzWQiqU8xNrVvMRjEHD4ul3qrt1MaG0EgC4cDHq1uRDr5CJZmo8DJHdKY5TayeR0bfviJHNDudSQibSkfL00P4qLA4nz';
+        // const apiKey =
+        //     'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
+        const client = new Stripe(apiKey);
+        const stripeToken = await client.createToken({
+            number: values?.cardNumber,
+            name: values?.cardName ?? "",
+            exp_month: values?.expiryMonth,
+            exp_year: values?.expiryYear,
+            cvc: values?.cvc,
+        });
+        if (stripeToken?.id) {
+            const accessToken = await Storage.retrieveData('token')
+            axios.post(`${Api}/stripe/createCard/${stripeToken?.id}`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
+                .then(async (res) => {
+                    setCardAddAnimation(false);
+                    Toast.show({
+                        type: 'success',
+                        text1: t('card_added_message')
+                    });
+                    addCardetCardRBSheet.current.close();
+                    dispatch(getAllCards(setCardAddAnimation))
+                    handleCardsForBottomSheet()
+                })
+                .catch((err) => {
+                    setCardAddAnimation(false);
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+                });
+
+        } else {
+            setCardAddAnimation(false);
+            Toast.show({
+                type: 'error',
+                text1: stripeToken?.error?.message ? stripeToken?.error?.message : t('general_message'),
+            });
+        }
+
+    }
+}
+
+
+//deleteCard
+
+export const deleteCard = (id, setAnimation) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.delete(`${Api}/stripe/deleteCard/${id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'success',
+                    text1: t('card_delete_message')
+                });
+                dispatch(getAllCards(setAnimation));
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+    }
+}
+
+//updateCards
+
+
+export const updateCardStripe = (id, updateData, setAnimation, addCardetCardRBSheet) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/stripe/updateCard/${id}`, updateData, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'success',
+                    text1: t('update_card_message')
+                });
+                addCardetCardRBSheet.current.close();
+                dispatch(getAllCards(setAnimation));
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+    }
+}
+
+
+
+export const makeCardPrimary = (id, prevId, setAnimation) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/stripe/makePrimaryCard/${id}/${prevId}`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'success',
+                    text1: t('update_card_message')
+                });
+                dispatch(getAllCards(setAnimation));
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
     }
 }

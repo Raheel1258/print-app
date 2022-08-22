@@ -1,18 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View} from 'react-native';
+import { View, Text} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { addToCart} from "../store/actions/cartAction";
+import { addToCart, addToCartAnotherDesign} from "../store/actions/cartAction";
 import { getPriceChart} from "../store/actions/productList";
 import SingleProductScreen from '../Screens/SingleProductScreen';
+import Storage from '../Utils/Storage';
 import { colors } from '../Utils/theme';
 
 const SingleProductContainer = ({ route }) => {
 
-  const { t } = useTranslation();
+  const accountRBSheet = useRef();
+  const isFocused = useIsFocused();
+  const {t} = useTranslation();
+  const [focused, setFocused] = useState(true);
+  const [userToken, setUserToken] = useState(null);
   const { item, categoryTitle, productCategory } = route.params;
+  const [finalObjCart , setFinalObjCart] = useState({});
 
 
   const priceChart = useSelector(state => state?.productList?.priceChart);
@@ -33,8 +39,9 @@ const SingleProductContainer = ({ route }) => {
   const numberOfSidesRBSheet = useRef();
 
   const [animation, setAnimation] = useState(false);
+  const [anotherDesign, setAnotherDesign] = useState(false);
   const [designUrl, setDesignUrl] = useState([]);
-  const [initialValuesAddUrl, setInitialValuesAddUrl] = useState({ url: [{ url_link: '' }] })
+  const [initialValuesAddUrl,setInitialValuesAddUrl] = useState({ url: [{ url_link: '' }] })
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState('uploadFile');
@@ -60,6 +67,7 @@ const SingleProductContainer = ({ route }) => {
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
+
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
@@ -100,9 +108,16 @@ const SingleProductContainer = ({ route }) => {
   const [values, setValues] = useState(defaultValuesObject)
 
   useEffect(() => {
+    isFocused &&
+      Storage.retrieveData('token').then(token => {
+        setUserToken(token);
+      });
+  }, [isFocused]);
+
+  useEffect(() => {
     let newPriceChartArray = priceChart
     setSliceArray(newPriceChartArray?.slice(0, 5));
-  }, [priceChart])
+  }, [priceChart,anotherDesign ])
 
   useEffect(() => {
     dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
@@ -140,14 +155,15 @@ const SingleProductContainer = ({ route }) => {
 
 
   const handleAddToCart = () => {
-    const obj = {
+     const obj = {
       productId: item?._id,
       image: item?.image[0],
       title: item?.title,
       category: item?.category,
       size: selectedSize,
       priceChart: selectedPriceChart,
-      designUrl: selectedUpload == "urlLink" ? designUrl : result,
+      designUrl: designUrl,
+      designFileUrl: result,
       preview: preview,
       numberOfPages: item?.numberOfPages[0] ? [{ name: item?.numberOfPages && item?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: item?.numberOfPages && item?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
       cut: selectedCut,
@@ -167,9 +183,81 @@ const SingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
-    dispatch(addToCart(setAddToCartAnimation, obj, navigate));
+    setFinalObjCart(obj);
+    if(userToken){
+      dispatch(addToCart(setAddToCartAnimation, obj, navigate));
+    }
+    else{
+      accountRBSheet.current.open();
+    }
 
 
+  }
+
+  const handleAnotherDesign = () => {
+    const obj = {
+      productId: item?._id,
+      image: item?.image[0],
+      title: item?.title,
+      category: item?.category,
+      size: selectedSize,
+      priceChart: selectedPriceChart,
+      designUrl: designUrl,
+      designFileUrl: result,
+      preview: preview,
+      numberOfPages: item?.numberOfPages[0] ? [{ name: item?.numberOfPages && item?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: item?.numberOfPages && item?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
+      cut: selectedCut,
+      window: selectedWindow,
+      folding: selectedFolding,
+      paperType: allCardsPaperType,
+      spotUV: selectSpotUv,
+      corner: selectedCorner,
+      finishing: selectFinishing,
+      remarks: remarks,
+      cut: selectedCut,
+      numberOfSides: numberOfSides,
+      sendByMail: selectedUpload == "email" ? true : false
+    }
+    Object.keys(obj).forEach(key => {
+      if (obj[key] === undefined) {
+        delete obj[key];
+      }
+    });
+    if(userToken){
+      dispatch(addToCartAnotherDesign(obj));
+
+      setDesignUrl([]);
+      setInitialValuesAddUrl({ url: [{ url_link: '' }] })
+      setPriceChartAnimation(false);
+      setAddToCartAnimation(false);
+      setSelectedUpload('uploadFile');
+      setShape(item?.category?.productType);
+      setSelectedSize(item?.size && item?.size[0]);
+      setSelectedCorner(item?.corner && item?.corner[0]);
+      setSelectFinishing(item?.finishing && item?.finishing[0]);
+      setSelectSpotUv(item?.spotUV && item?.spotUV[0]);
+      setSelectedPriceChart(priceChart && priceChart[0]);
+      setPaperTypeCoverPages(item?.paperType && item?.paperType[0]);
+      setPaperTypeInnerPages(item?.paperType && item?.paperType[1]);
+      setNoOfPagesCoverPages(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
+      setNoOfPagesInnerPages(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
+    
+    
+      setAllCardsPaperType(item?.paperType && item?.paperType[0]);
+      setNumberOfSides(item?.numberOfSides && item?.numberOfSides[0]);
+    
+      setSelectedCut(item?.cut && item?.cut[0]);
+      setSelectedFolding(item?.folding && item?.folding[0]);
+    
+     setSelectedWindow(item?.window && item?.window[0]);
+     setPreview(true);
+      setRemarks('');
+      setResult([]);
+      setAnotherDesign(true);
+    }
+    else{
+      accountRBSheet.current.open();
+    }
   }
 
   return (
@@ -241,6 +329,12 @@ const SingleProductContainer = ({ route }) => {
         setValues={setValues}
         values={values}
         defaultValuesObject={defaultValuesObject}
+        accountRBSheet={accountRBSheet}
+        focused={focused}
+        setFocused={setFocused}
+        navigate={navigate}
+        handleAnotherDesign={handleAnotherDesign}
+        productData={finalObjCart}
       />
     </View>
   );

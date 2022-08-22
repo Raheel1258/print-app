@@ -1,5 +1,5 @@
 export const colors = {
-  whiteColor:'#fff',
+  whiteColor: '#fff',
   smokeWhiteColor: '#F5F5F5',
   blackColor: '#000',
   lightBlackColor: '#999999',
@@ -25,8 +25,8 @@ export const colors = {
 };
 
 export const fonts = {
-  avenir_bold:'AvenirLTStd-Black',
-  avenir_regular:'AvenirLTStd-Book',
-  avenir_light:'AvenirLTStd-Roman',
+  avenir_bold: 'AvenirLTStd-Black',
+  avenir_regular: 'AvenirLTStd-Book',
+  avenir_light: 'AvenirLTStd-Roman',
   avenir_next: 'AvenirNextLTPro-Heavy',
 }

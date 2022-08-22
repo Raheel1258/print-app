@@ -9,7 +9,7 @@ import { BackArrowHeader, OrdersComponent, BottomSheetComponent, GreenButton } f
 import { colors, fonts } from '../Utils/theme';
 
 
-const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData }) => {
+const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData, userToken }) => {
   const completedOrder = getAllOrderData?.filter((item) => item?.status == "COMPLETED");
   const activeOrder = getAllOrderData?.filter((item) => item?.status != "COMPLETED");
   const { t } = useTranslation();
@@ -21,27 +21,27 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
 
   const FirstRoute = () => (
     <>
-      {activeOrder?.length > 0 ? <View style={styles.activeContainer}>
+      {(activeOrder?.length > 0 && userToken) ? <View style={styles.activeContainer}>
         <FlatList
           data={activeOrder}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.flatlistContainer}
         />
-      </View> : <View style={styles.noProduct}><Text> No Data</Text></View>}
+      </View> : <View style={styles.noProduct}><Text style={{ color: 'black' }}>{t('no_active_order')}</Text></View>}
     </>
   );
 
   const SecondRoute = () => (
     <>
-      {completedOrder?.length > 0 ? <View style={styles.activeContainer}>
+      {(completedOrder?.length > 0 && userToken) ? <View style={styles.activeContainer}>
         <FlatList
           data={completedOrder}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.flatlistContainer}
         />
-      </View> : <View style={styles.noProduct}><Text> No Data</Text></View>}
+      </View> : <View style={styles.noProduct}><Text style={{ color: 'black' }}>{t('no_completed_order')}</Text></View>}
     </>);
 
   const renderScene = SceneMap({
@@ -51,8 +51,8 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
 
   const [index, setIndex] = React.useState(1);
   const [routes] = React.useState([
-    { key: 'first', title: 'Active' },
-    { key: 'second', title: 'Completed' },
+    { key: 'first', title: t('active_tab') },
+    { key: 'second', title: t('completed_tab') },
   ]);
 
   const renderTabBar = props => (
@@ -80,7 +80,8 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
             onIndexChange={setIndex}
             initialLayout={{ width: layout.width }}
           />
-        </View> : <View style={styles.loaderContainer}>
+        </View>
+        : <View style={styles.loaderContainer}>
           <ActivityIndicator size="small" color="#000" animating={true} />
         </View>}
       <BottomSheetComponent
@@ -118,10 +119,10 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
           </>
         }
         languageTitle={t('Signup_today')}
-        note={false}
+        // note={false}
         refRBSheet={orderRBSheet}
         height={420}
-        onClose={false}
+      // onClose={false}
       />
     </>
   );

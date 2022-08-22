@@ -21,7 +21,7 @@ const HomeScreen = ({ categories, homeSliderImages, animation }) => {
           <View style={styles.loaderContainer}>
             <ActivityIndicator size="small" color="#000" animating={true} />
           </View> :
-          <>
+          <ScrollView>
             <ImageSwiper sliderImages={homeSliderImages} />
             <View style={styles.container}>
               {categories && <Text style={styles.printText}>{t('lets_print')}</Text>}
@@ -33,7 +33,7 @@ const HomeScreen = ({ categories, homeSliderImages, animation }) => {
                 contentContainerStyle={styles.flatlistContainer}
               />
             </View>
-          </>
+          </ScrollView>
 
       }
     </>

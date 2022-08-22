@@ -2,9 +2,11 @@ import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import * as types from '../types/types';
+import { setActivityLength } from '../actions/activitiesAction'
 
 import { Api } from '../../Utils/Api'
 import { t } from 'i18next';
+
 
 
 function setCartDetail(cart) {
@@ -14,7 +16,7 @@ function setCartDetail(cart) {
     }
 }
 
-function setAddToCart(item) {
+export function setAddToCart(item) {
     return {
         type: types.ADD_TO_CART,
         item,
@@ -35,6 +37,20 @@ function setPromoCodeDetail(data) {
     }
 }
 
+export function setCartLength(data) {
+    return {
+        type: types.CART_LENGTH,
+        data
+    }
+}
+
+function setUserCardData(data) {
+    return {
+        type: types.USER_CARDS_DATA,
+        data
+    }
+}
+
 
 //Get Cart Data
 export const getCartData = (setAnimation, setTextValue) => {
@@ -43,6 +59,8 @@ export const getCartData = (setAnimation, setTextValue) => {
         setAnimation(true);
         axios.get(`${Api}/cart`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
+                dispatch(setCartLength(res?.data?.products?.length))
                 dispatch(setCartDetail(res?.data?.products));
                 dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
@@ -71,16 +89,48 @@ export const addToCart = (setAddToCartAnimation, data, navigate) => {
         setAddToCartAnimation(true);
         axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
+                dispatch(setCartLength(res?.data?.products?.length))
                 setAddToCartAnimation(false);
                 dispatch(setAddToCart(res?.data?.products));
                 Toast.show({
                     type: 'success',
-                    text1: 'Item added to cart successfully',
+                    text1: t('added_item_message')
                 });
-                navigate("cart");
+                navigate("cartStack");
             })
             .catch((err) => {
                 setAddToCartAnimation(false);
+                if (err?.response?.status == 401) {
+                    Toast.show({
+                        type: 'error',
+                        text1: "User is not logged in"
+                    });
+                } else
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+            });
+
+    }
+}
+
+export const addToCartAnotherDesign = (data) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                await Storage.storeData('lengthCart', res?.data?.products?.length);
+                dispatch(setCartLength(res?.data?.products?.length))
+
+                dispatch(setAddToCart(res?.data?.products));
+                Toast.show({
+                    type: 'success',
+                    text1: t('added_item_message'),
+                });
+            })
+            .catch((err) => {
                 if (err?.response?.status == 401) {
                     Toast.show({
                         type: 'error',
@@ -119,7 +169,7 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
 }
 
 //Promo Code
-export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus,setPromoCodeAppliedId) => {
+export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleModal, setValidPromoCode, setPromoCodeAppliedStatus, setPromoCodeAppliedId, setPromoCodeType, setDiscountInPercentage) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setPromoCodeAnimation(true);
@@ -128,9 +178,10 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
                 setPromoCodeAppliedId(res?.data[0]?._id);
                 setPromoCodeAppliedStatus(true);
                 if (res?.data?.length > 0) {
+                    setPromoCodeType(res?.data[0]?.promoType?.type);
                     dispatch(setPromoCodeDetail(res?.data[0]?.discount));
                     setValidPromoCode(true);
-                } else { dispatch(setPromoCodeDetail("0")); promoCodeToggleModal(); setValidPromoCode(false); };
+                } else { dispatch(setPromoCodeDetail("0")); promoCodeToggleModal(); setValidPromoCode(false); setDiscountInPercentage(0) };
                 setPromoCodeAnimation(false);
 
             })
@@ -138,6 +189,8 @@ export const PromoCodeVerifed = (setPromoCodeAnimation, data, promoCodeToggleMod
                 promoCodeToggleModal();
                 setPromoCodeAnimation(false);
                 setValidPromoCode(false);
+                dispatch(setPromoCodeDetail("0"))
+                setDiscountInPercentage(0)
             });
     }
 }
@@ -170,6 +223,8 @@ export const emptyCart = () => {
         axios.post(`${Api}/cart/empty`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 dispatch(setCartDetail([]));
+                await Storage.storeData('lengthCart', 0);
+                dispatch(setCartLength(0))
             })
             .catch((err) => {
                 Toast.show({
@@ -185,10 +240,14 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
     return async (dispatch) => {
         setPlaceOrderAnimation(true);
         const accessToken = await Storage.retrieveData('token');
+        let activityLength = await Storage.retrieveData('lengthActivity');
         axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 setPlaceOrderAnimation(false);
-                navigate("orderReceived");
+                activityLength = activityLength + 1;
+                await Storage.storeData('lengthActivity', activityLength);
+                dispatch(setActivityLength(activityLength))
+                navigate("orderReceived", { welcome: true, orderId: res?.data?.orderRefrence });
             })
             .catch((err) => {
                 setPlaceOrderAnimation(false);
@@ -222,6 +281,156 @@ export const getUserDetailForPlacingOrder = (setData, setAnimationForgettingAddr
 
     }
 }
+
+//get all cards
+export const getAllCards = (setAnimation, setCardData) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                setCardData(res?.data?.data)
+                dispatch(setUserCardData(res?.data?.data))
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setAnimation(false)
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+
+    }
+}
+
+
+//Payment with Saved Card
+
+export const paymentWithSaveCard = (setPlaceOrderAnimation, card, orderObj, navigate) => {
+    return async (dispatch) => {
+        setPlaceOrderAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.post(`${Api}/stripe/paymentWithSavedCard`, card, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+
+                let activityLength = await Storage.retrieveData('lengthActivity');
+                axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
+                    .then(async (res) => {
+                        setPlaceOrderAnimation(false);
+                        activityLength = activityLength + 1;
+                        await Storage.storeData('lengthActivity', activityLength);
+                        dispatch(setActivityLength(activityLength))
+                        navigate("orderReceived", { welcome: false, orderId: res?.data?.orderRefrence });
+                    })
+                    .catch((err) => {
+                        setPlaceOrderAnimation(false);
+                        Toast.show({
+                            type: 'error',
+                            text1: t('general_message'),
+                        });
+                    });
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                setPlaceOrderAnimation(false)
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+    }
+}
+
+
+//
+export const makeCardPrimaryForCart = (id,prevId) => {
+    return async (dispatch) => {
+        // setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.patch(`${Api}/stripe/makePrimaryCard/${id}/${prevId}`, {} ,{headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                console.log("res from make primar", res);
+                // setAnimation(false);   
+                // dispatch(getAllCards(setAnimation));              
+            })
+            .catch((err) => {
+                // setAnimationChangePassowrd(false);
+                // setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
+    }
+}
+
+
+
+//Get Primary Address
+export const getPrimaryAddress = (setAnimation, setDeliveryUserAddress) => {
+    return async (dispatch) => {
+        const accessToken = await Storage.retrieveData('token')
+        setAnimation(true);
+        axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                if(res?.data?.addresses?.length > 0){
+                    const primaryAddress = res?.data?.addresses?.filter((item) => item?.primary == true);
+                    setDeliveryUserAddress(primaryAddress[0])
+                }else{
+                    setDeliveryUserAddress('Select delivery address')
+                }
+               
+                setAnimation(false);
+            })
+            .catch((err) => {
+                setAnimation(false);
+                // if(err?.response?.data?.statusCode === 400){
+                //     Toast.show({
+                //         type: 'error',
+                //         text1: t('invalid_login_message'),
+                //     });
+                // }else
+                // Toast.show({
+                //     type: 'error',
+                //     text1: t('general_message'),
+                // });
+            });
+    }
+}
+
+
+//Get Primary Card 
+export const  getPrimaryCards = (setAnimation, setUserCardData) => {
+    return async (dispatch) => {
+        setAnimation(true);
+        const accessToken = await Storage.retrieveData('token')
+        axios.get(`${Api}/stripe/getAllCards/`, {headers: { "Authorization": `Bearer ${accessToken}` } })
+            .then(async (res) => {
+                setAnimation(false);
+                if(res?.data?.data?.length > 0){
+                    const primaryCard = res?.data?.data?.filter((item) => item?.metadata?.primary == 'true');
+                    setUserCardData(primaryCard[0]);
+                }else{
+                    setUserCardData('Select card');
+                }
+                
+            })
+            .catch((err) => {
+                setAnimation(false);
+                // Toast.show({
+                //     type: 'error',
+                //     text1: t('general_message'),
+                // });
+            });
+
+    }
+}
+
+
+
+
 
 
 

@@ -9,22 +9,7 @@ import { getCartData } from '../store/actions/cartAction';
 
 const EmptyCartContainer = () => {
   const navigation = useNavigation();
-  const isFocused = useIsFocused();
-  const dispatch = useDispatch();
-  const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
-
-  const navigate = (routeName, data = {}) => {
-    navigation.navigate(routeName, data)
-  }
-  if(cartItem?.length > 0){
-    navigate("cart")
-  }
-
-  // useEffect(() => {
-  //   console.log('hello');
-  //   dispatch(getCartData(()=>{},navigate))
-  // },[cartItem, isFocused])
-
+  
   return (
     <View style={styles.container}>
       <EmptyCartScreen />

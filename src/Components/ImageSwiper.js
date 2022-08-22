@@ -9,6 +9,7 @@ const ImageSwiper = ({ sliderImages, autoPlaySlider = true }) => {
     <View style={styles.container}>
       <Swiper
         autoplay={autoPlaySlider}
+        autoplayTimeout={5.2}
         dotStyle={styles.unActiveDotStyling}
         activeDotStyle={styles.activeDotStyling}
         showsButtons={false}>

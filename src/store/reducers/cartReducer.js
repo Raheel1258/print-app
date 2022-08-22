@@ -1,8 +1,9 @@
 import createReducer from '../createReducer';
 import * as types from "../types/types"
 
-
-const cartReducer = createReducer({}, {
+const cartReducer = createReducer({
+	cartLength : 0
+}, {
 	[types.CART_DETAIL](state, action) {
 		return {
 			...state,
@@ -25,6 +26,19 @@ const cartReducer = createReducer({}, {
 		return {
 			...state,
 			userDetail: action.data,
+		};
+	},
+	[types.CART_LENGTH](state, action) {
+		return {
+			...state,
+			cartLength: action.data,
+		};
+	},
+	//USER_CARDS_DATA
+	[types.USER_CARDS_DATA](state, action) {
+		return {
+			...state,
+			userCardsData: action.data,
 		};
 	},
 

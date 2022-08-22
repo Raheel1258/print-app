@@ -41,7 +41,7 @@ const AddNewCreditCardForm = ({creditCardState, handleCreditCard, animation}) =>
                   error={touched.expiryMonth && errors.expiryMonth}
                   title={t('expiry_month')}
                   keyboardType="phone-pad"
-                  placeholder={t('month_text')}
+                  placeholder={'MM'}
                   placeholderTextColor={colors.blackColor}
                   name="expiryMonth"
                   secureTextEntry={false}
@@ -54,7 +54,7 @@ const AddNewCreditCardForm = ({creditCardState, handleCreditCard, animation}) =>
                   error={touched.expiryYear && errors.expiryYear}
                   title={t('expiry_year')}
                   keyboardType="phone-pad"
-                  placeholder={t('year_text')}
+                  placeholder={'YYYY'}
                   placeholderTextColor={colors.blackColor}
                   name="expiryYear"
                   secureTextEntry={false}

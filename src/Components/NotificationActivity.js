@@ -18,7 +18,7 @@ const handleOrderStatusForActivity = (orderNotify) => {
   else if(orderNotify=="CANCELLED"){
     return <OrderCancelledIcon/>;
   }
-  else if(orderNotify=="OUT_FOR_DELIVERY"){
+  else if(orderNotify == "OUT_FOR_DELIVERY"){
     return <DeliveryIcon/>;
   }
   else if(orderNotify=="READY_FOR_PICKUP"){
@@ -60,7 +60,7 @@ const DATA = [
 const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllActivityRead}) => {
   const [data,setData] = useState(item?.notifications);
   const lengthItem = item?.notifications.length; 
-  const lastItemId = item?.notifications[lengthItem-1]._id;
+  const lastItemId = item?.notifications[0]._id;
   const {t} = useTranslation();
 
   // const handleData = (id) => {
@@ -76,7 +76,7 @@ const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllAct
   // }
 
   const renderItem = ({item}, index) => {
-
+    console.log("activity status" , item)
     return(
     <NotificationComponent onPress={() => handleActivityIsRead(item?._id, item?.orderId)}
       orderCode={item?._id}
@@ -93,12 +93,12 @@ const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllAct
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
-          {item?._id == getCurrentDate() ? 'Today' : getDateFormat(item?._id)}
+          {item?._id == getCurrentDate() ? t('today') : getDateFormat(item?._id)}
           </Text>
-       {item?._id == readMark && <TouchableOpacity onPress={()=>handleAllActivityRead()}><Text style={styles.headerText}>{"Mark as all read"}</Text></TouchableOpacity> }
+       {item?._id == readMark && <TouchableOpacity onPress={()=>handleAllActivityRead()}><Text style={styles.headerText}>{t("mark_as_all_read")}</Text></TouchableOpacity> }
       </View>
       <FlatList
-        data={item?.notifications && item?.notifications}
+        data={item?.notifications && item?.notifications.reverse()}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

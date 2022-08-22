@@ -1,6 +1,9 @@
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
 import * as types from '../types/types'
+import {setActivityLength} from '../actions/activitiesAction'
+import Storage from '../../Utils/Storage';
+
 
 import {Api} from '../../Utils/Api'
 import { t } from 'i18next';
@@ -25,6 +28,32 @@ export const getCategories = (setAnimation) => {
     setAnimation(true);
     axios.get(`${Api}/category/findall`)
         .then(async (res) => {
+             //Activity Api
+             const accessToken = await Storage.retrieveData('token');
+             console.log("accccTooo" , accessToken)
+             if(accessToken){
+              axios.get(`${Api}/notifications/`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
+              .then(async (res) => {
+                  let unRead = 0;
+                  const dataArray = res?.data?.map((item=> {
+                   item?.notifications?.map((item1)=>{
+                      if (item1.isRead === false){
+                          unRead = unRead+1;
+                      }
+                      })
+                  }))
+                  await Storage.storeData('lengthActivity', unRead);
+                  dispatch(setActivityLength(unRead));
+              })
+              .catch((err) => {
+                  // setAnimation(false);
+                  // Toast.show({
+                  //     type: 'error',
+                  //     text1: t('general_message'),
+                  // });
+              });
+              //END Activity API
+             }       
           dispatch(setCategories(res?.data));
           setAnimation(false);
         })

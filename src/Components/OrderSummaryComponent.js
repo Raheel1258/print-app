@@ -5,25 +5,42 @@ import { useTranslation } from 'react-i18next';
 
 import {colors, fonts} from '../Utils/theme';
 
-const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMethod, deliveryCost}) => {
+const OrderSummaryComponent = ({subTotal, promocodeDiscount, total, deliveryMethod, deliveryCost, promoCodeType, discountInPercentage}) => {
   const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('sub_total')}</Text>
-        <Text style={styles.pricesText}>(HK$ {(subTotal).toFixed(2)})</Text>
+        <Text style={styles.pricesText}>HK$ {Math.round(subTotal)}</Text>
       </View>
       {deliveryMethod == "Delivery" && <View style={styles.contentContainer}>
         <Text style={styles.pricesText}>{t('delivery_order_text')}</Text>
-        <Text style={styles.pricesText}>(HK$ {(deliveryCost).toFixed(2) })</Text>
+        <Text style={styles.pricesText}>HK$ {Math.round(deliveryCost)}</Text>
       </View>}
      {promocodeDiscount != "0" && promocodeDiscount != "" && <View style={styles.contentContainer}>
+        {((promoCodeType == "PERCENTAGE")) ?
+        <>
         <Text style={styles.pricesText}>{t('discount_text')}</Text>
-        <Text style={styles.pricesText}>(HK$ {parseFloat(promocodeDiscount).toFixed(2)})</Text>
+        <Text style={styles.pricesText}>(HK$ {Math.round(discountInPercentage)})</Text>
+        </>
+        :
+        ((promoCodeType == "DELIVERY_CHARGES") && (deliveryMethod == "Delivery"))? 
+        <>
+         <Text style={styles.pricesText}>{t('discount_text')}</Text>
+        <Text style={styles.pricesText}>(HK$ {Math.round(Number(deliveryCost))})</Text>
+        </> 
+        : 
+        promoCodeType == "AMOUNT" && 
+        <>
+         <Text style={styles.pricesText}>{t('discount_text')}</Text>
+        <Text style={styles.pricesText}>(HK$ {Math.round(Number(promocodeDiscount))})</Text>
+        </>
+        }
+        {/* {promoCodeType == "DELIVERY_CHARGES" && } */}
       </View>}
       <View style={styles.contentContainer}>
         <Text style={styles.totalText}>{t('total_pay')}</Text>
-        <Text style={styles.totalText}>HK$ {(total).toFixed(2)}</Text>
+        {total > 0 ? <Text style={styles.totalText}>HK$ {Math.round(total)}</Text>: <Text style={styles.totalText}>HK$ 0</Text>}
       </View>
     </View>
   );

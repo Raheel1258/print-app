@@ -9,10 +9,11 @@ import { login } from '../store/actions/auth';
 import SigninScreen from '../Screens/SigninScreen';
 import {colors} from '../Utils/theme';
 
-const SigninContainer = () => {
+const SigninContainer = ({route}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const {obj} = route.params;
   const [animation, setAnimation] = useState(false);
   const [deviceId, setDeviceId] = useState(null);
   const [loginData, setLoginData] = useState({
@@ -39,7 +40,7 @@ const SigninContainer = () => {
   }
  
   const handleLogin = (values) => {
-    dispatch(login({...values, deviceId:deviceId},navigation,setAnimation));
+    dispatch(login({...values, deviceId:deviceId},navigation,setAnimation, obj));
   };
 
   return (

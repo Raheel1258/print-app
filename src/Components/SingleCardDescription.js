@@ -1,26 +1,33 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import { useTranslation } from 'react-i18next';
-import {colors,fonts} from '../Utils/theme';
+import {useTranslation} from 'react-i18next';
+import {colors, fonts} from '../Utils/theme';
 
 const SingleCardDescription = ({item}) => {
   const {t} = useTranslation();
-  const flag = (item?.title == "BUSINESS_CARD" || item?.title == "BOOKLET" || item?.title == "STICKERS_LABEL") ? true:false;
+  const flag =
+    item?.title == 'BUSINESS_CARD' ||
+    item?.title == 'BOOKLET' ||
+    item?.title == 'STICKERS_LABEL'
+      ? true
+      : false;
   return (
     <View style={styles.paddingContainer}>
       <Text style={styles.productTitle} numberOfLines={1}>
         {item?.category?.name}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-       {item?.category?.pricePerHunderd}
+        {item?.category?.pricePerHunderd}
       </Text>
       <Text style={styles.productDescription}>
         {item?.category?.description}
       </Text>
       <View style={styles.categoryContainer}>
-        <Text style={styles.categoryType}>{flag ? t("paper_type_product") : t("paper_product")}</Text>
-        <Text style={styles.categoryDescription} >
+        <Text style={styles.categoryType}>
+          {flag ? t('paper_type_product') : t('paper_product')}
+        </Text>
+        <Text style={styles.categoryDescription}>
           {item?.category?.paperType}
         </Text>
       </View>
@@ -52,26 +59,26 @@ const styles = ScaledSheet.create({
     marginTop: '10@s',
   },
   productTitle: {
-    fontFamily:fonts.avenir_next,
+    fontFamily: fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
     lineHeight: '24@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
   },
   productPrice: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '13@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.greenColor,
     marginTop: '8@s',
   },
   productDescription: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
@@ -81,18 +88,18 @@ const styles = ScaledSheet.create({
     marginVertical: '7@s',
   },
   categoryType: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '13@s',
     fontStyle: 'normal',
     lineHeight: '16@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     width: '100@s',
   },
   categoryDescription: {
-    fontFamily:fonts.avenir_regular,
-    width:'230@s',
+    fontFamily: fonts.avenir_regular,
+    width: '210@s',
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '14@s',

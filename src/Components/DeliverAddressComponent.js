@@ -35,15 +35,17 @@ const DeliverAddressComponent = ({onPress, data, addNew, setData, setShowDetail,
   }
 
 const renderItem = ({item}) => {
-return (<DeliverAndCreditCard 
+return (
+<DeliverAndCreditCard 
       onPress={flagForRender ? () => {handleData(item?._id), handleSelectedPrimary(item?._id)}: ()=>{handleCardData(item?.id), handleSelectedPrimaryCard(item?.id)}} 
-      // item={item}
-      title={flagForRender ? item?.fullName: item?.name}
-      companyName = {flagForRender ? item?.companyName : item?.brand }
-      addressLineOne={flagForRender ? item.addressLine1 : `${item?.exp_month}/${item?.exp_year}`} 
-      addressLineTwo={flagForRender ? item?.addressLine2: item?.country} 
-      children={item?.children} 
-      selected={flagForRender ? item?.primary: item?.metadata.primary == "true" ? true: false} 
+      item={item}
+      flagForRender={flagForRender}
+      // title={flagForRender ? item?.fullName: item?.name}
+      // companyName = {flagForRender ? item?.companyName : item?.brand }
+      // addressLineOne={flagForRender ? item.addressLine1 : `${item?.exp_month}/${item?.exp_year}`} 
+      // addressLineTwo={flagForRender ? item?.addressLine2: item?.country} 
+      // children={item?.children} 
+      // selected={flagForRender ? item?.primary: item?.metadata.primary == "true" ? true: false} 
   />)
 };
 

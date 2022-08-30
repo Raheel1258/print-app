@@ -81,7 +81,7 @@ const RadioButtonComponent = ({
                 }}>
                 {description?.brand == 'Visa' ? <VisaCard /> : <MasterCard />}
                 <Text style={{...styles.deliveryDescription, paddingTop: 2}}>
-                  {description?.brand} ({description?.exp_year})
+                  {description?.brand} ({description?.last4})
                 </Text>
               </View>
             </TouchableOpacity>

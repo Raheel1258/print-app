@@ -5,6 +5,8 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {colors,fonts} from '../Utils/theme';
 import UnCheckedCircleIcon from '../Assests/Svgs/UnCheckedCircleIcon';
 import CheckedBlueIcon from '../Assests/Svgs/CheckedBlueIcon';
+import MasterCard from '../Assests/Svgs/MasterCard';
+import VisaCard from '../Assests/Svgs/VisaCard';
 
 const DeliverAndCreditCard = ({
     title,
@@ -14,33 +16,70 @@ const DeliverAndCreditCard = ({
     addressLineTwo = '',
     selected,
     onPress,
+    flagForRender,
+    item,
     handleSelectedPrimary = () => {},
     handleSelectedPrimaryCard = () =>{}
 }) => {
+
+  console.log("item value", item)
   return (
     <TouchableOpacity style={styles.borderContainer} onPress={onPress}>
-      <View style={styles.marginContainer}>
+      {flagForRender ? <View style={styles.marginContainer}>
         <View style={styles.titleHeader}>
           <Text style={styles.titleText} numberOfLines={1}>
-            {title}
+            {item?.fullName}
           </Text>
-         {children}
+         {/* {children} */}
         </View>
-        <Text style={companyName? styles.companyText : styles.companyStyle} numberOfLines={1}>
-           {companyName}
+        <Text style={item?.companyName? styles.companyText : styles.companyStyle} numberOfLines={1}>
+           {item?.companyName && item?.companyName}
         </Text>
         <View style={styles.contentContainer}>
           <View>
             <Text style={styles.addressText} numberOfLines={2}>
-            {addressLineOne}
+            {/* {`${item.addressLine1}, ${item.addressLine2}, ${item.area}, ${item.district}, ${item.cityCountry}`} */}
+            {`${
+                item?.addressLine1
+              }, ${item?.addressLine2}, ${item?.area}, ${
+                item?.district
+              }, ${item?.cityCountry}`}
             </Text>
-            <Text style={styles.addressText} numberOfLines={2}>
-            {addressLineTwo}
-            </Text>
+            {/* <Text style={styles.addressText} numberOfLines={2}>
+            {item?.addressLine2}
+            </Text> */}
           </View>
-          {selected ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
+          {item?.primary ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
         </View>
       </View>
+      :
+      <View style={styles.marginContainer}>
+        <View style={styles.titleHeader}>
+          <Text style={styles.titleText} numberOfLines={1}>
+            {`${item?.brand}(${item?.last4})`}
+          </Text>
+          {item?.brand == 'Visa' ? <VisaCard /> : <MasterCard />}
+         {/* {children} */}
+        </View>
+        {/* <Text style={styles.companyStyle} numberOfLines={1}>
+           {item?.brand}
+        </Text> */}
+        <View style={styles.contentContainer}>
+          <View>
+          <Text style={styles.addressText} numberOfLines={2}>
+            {item?.name}
+            </Text>
+            <Text style={styles.addressText} numberOfLines={2}>
+            Exp:{`${item?.exp_month}/${item?.exp_year}`}
+            </Text>
+            {/* <Text style={styles.addressText} numberOfLines={2}>
+            {item?.country}
+            </Text> */}
+          </View>
+          {item?.metadata.primary == "true" ? <CheckedBlueIcon /> : <UnCheckedCircleIcon />}
+        </View>
+      </View>
+      }
     </TouchableOpacity>
   );
 };

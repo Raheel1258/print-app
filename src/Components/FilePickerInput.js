@@ -31,11 +31,12 @@ const FilePickerInput = ({ result, setResult }) => {
 
   const handleDocumentSelection = useCallback(async () => {
     try {
-      // const pickerResult = await DocumentPicker.pickSingle({
-      //   type: [DocumentPicker.types.images],
-      //   presentationStyle: 'fullScreen',
-      //   copyTo: 'cachesDirectory',
-      // });
+      const pickerResult = await DocumentPicker.pickSingle({
+        type: [DocumentPicker.types.allFiles],
+        presentationStyle: 'fullScreen',
+        copyTo: 'cachesDirectory',
+      });
+
       const formData = new FormData();
       let options = {
         mediaType: 'photo',
@@ -44,29 +45,31 @@ const FilePickerInput = ({ result, setResult }) => {
         quality: 1,
         includeBase64: true
       };
-      launchImageLibrary(options, (response) => {
-        if (response.didCancel) {
-          alert(t('alert_message_pic'));
-          return;
-        } else if (response.errorCode == 'camera_unavailable') {
-          alert('Camera not available on device');
-          return;
-        } else if (response.errorCode == 'permission') {
-          alert('Permission not granted');
-          return;
-        } else if (response.errorCode == 'others') {
-          alert(response.errorMessage);
-          return;
-        } else {
-          const image = {
-            uri: response.uri,
-            name: response.fileName,
-            type: response.type,
-          }
-          formData.append('image', image);
-          dispatch(uploadFile(formData, setAnimation, setResult));
-        }
-      });
+      formData.append('image', pickerResult);
+      dispatch(uploadFile(formData, setAnimation, setResult));
+      // launchImageLibrary(options, (response) => {
+      //   if (response.didCancel) {
+      //     alert(t('alert_message_pic'));
+      //     return;
+      //   } else if (response.errorCode == 'camera_unavailable') {
+      //     alert('Camera not available on device');
+      //     return;
+      //   } else if (response.errorCode == 'permission') {
+      //     alert('Permission not granted');
+      //     return;
+      //   } else if (response.errorCode == 'others') {
+      //     alert(response.errorMessage);
+      //     return;
+      //   } else {
+      //     const image = {
+      //       uri: response.uri,
+      //       name: response.fileName,
+      //       type: response.type,
+      //     }
+      //     formData.append('image', image);
+      //     dispatch(uploadFile(formData, setAnimation, setResult));
+      //   }
+      // });
       
     } catch (e) {
       handleError(e);

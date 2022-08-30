@@ -92,7 +92,9 @@ const CartScreen = ({
   handleCardsForBottomSheet,
   userCardData,
   setUserCardData,
-  handleSelectedPrimaryCard
+  handleSelectedPrimaryCard,
+  renderScreenForAddress,
+  renderScreenForCard
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -251,6 +253,10 @@ const CartScreen = ({
             title={t('deviver_to')}
             note={false}
             refRBSheet={refRBSheet}
+            closePress={()=>{
+              renderScreenForAddress()
+              refRBSheet.current.close()
+            }}
           />
           <BottomSheetComponent
             childern={
@@ -281,6 +287,10 @@ const CartScreen = ({
             title={t('credit_cards')}
             note={false}
             refRBSheet={creditCardRBSheet}
+            closePress={()=>{
+              renderScreenForCard()
+              creditCardRBSheet.current.close()
+            }}
           />
           {/* <BottomSheetComponent
             childern={<AddNewAddressForm />}

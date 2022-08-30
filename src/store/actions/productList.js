@@ -232,6 +232,7 @@ export const uploadFile = (formData, setAnimation, setResult) => {
         setResult((prev) => {
           return [...prev, res?.data?.Location];
         });
+        
       })
       .catch((err) => {
         setAnimation(false);

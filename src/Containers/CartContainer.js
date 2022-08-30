@@ -2,9 +2,12 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { t } from 'i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import Toast from 'react-native-toast-message';
+
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   getCartData, PromoCodeVerifed,
   deleteProduct,
@@ -17,13 +20,11 @@ import {
   getPrimaryCards
 } from '../store/actions/cartAction';
 import { makeAddressPrimary } from '../store/actions/userPersonalDetailAction'
-import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
 import CartScreen from '../Screens/CartScreen';
 import { colors } from '../Utils/theme';
-import { t } from 'i18next';
 
 const CartContainer = () => {
   const navigation = useNavigation();
@@ -68,6 +69,7 @@ const CartContainer = () => {
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState(userCardsDetails);
   const primaryAddress = userDetailData?.addresses?.filter((item) => item?.primary == true);
+  const [renderScreen, setRenderScreen] = useState(false);
   // const [cardData, setCardData] = useState([
   //   {
   //     id: '1',
@@ -110,9 +112,7 @@ const CartContainer = () => {
     });
   }, [isFocused])
 
-  // useEffect(() => {
 
-  // }, []);
 
   useEffect(() => {
     handleTotalAmount();
@@ -134,6 +134,14 @@ const CartContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const renderScreenForAddress = () => {
+    dispatch(getPrimaryAddress(setAnimation, setDeliveryUserAddress))
+  }
+
+  const renderScreenForCard = () => {
+    dispatch(getPrimaryCards(setAnimation, setUserCardData))
+  }
 
   const promoCodeToggleModal = () => {
     setIsPromoCodeModaVidible(!isPromoCodeModaVidible);
@@ -344,6 +352,9 @@ const CartContainer = () => {
         setUserCardData={setUserCardData}
         handleSelectedPrimaryCard={handleSelectedPrimaryCard}
         discountInPercentage={discountInPercentage}
+        setRenderScreen={setRenderScreen}
+        renderScreenForAddress={renderScreenForAddress}
+        renderScreenForCard={renderScreenForCard}
       />
     </View>
   );

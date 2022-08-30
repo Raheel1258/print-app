@@ -250,9 +250,10 @@ const CartContainer = () => {
     if (promocodeDiscount !== '0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !== "") {
       console.log("case promocode and delivery")
       if (promoCodeType == "PERCENTAGE") {
-        totalPrice = parseFloat(totalPrice + deliveryCost);
+        // totalPrice = parseFloat(totalPrice);
         amountInPercent = (parseFloat(promocodeDiscount / 100) * totalPrice);
         totalPrice = totalPrice - amountInPercent;
+        totalPrice = parseFloat(totalPrice + deliveryCost);
         setTotal(totalPrice);
         setDiscountInPercentage(amountInPercent)
       } else if (promoCodeType == "DELIVERY_CHARGES") {
@@ -263,8 +264,8 @@ const CartContainer = () => {
         setDiscountInPercentage(amountInPercent)
       }
       else {
-        totalPrice = parseFloat(totalPrice + deliveryCost);
         totalPrice = totalPrice - parseFloat(promocodeDiscount);
+        totalPrice = parseFloat(totalPrice + deliveryCost);
         setTotal(totalPrice);
         setDiscountInPercentage(amountInPercent)
       }

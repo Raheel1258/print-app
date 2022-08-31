@@ -16,6 +16,7 @@ const MyCartComponent = ({
   handleRemoveProduct,
   handleEditProduct,
 }) => {
+  console.log("into detail component", item)
   const {t} = useTranslation();
   return (
     <View
@@ -65,7 +66,7 @@ const MyCartComponent = ({
             </View>
           )
         )}
-        {item?.corner?.cornerName && (
+        {!item?.corner  || (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('corner_product')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
@@ -83,7 +84,7 @@ const MyCartComponent = ({
           </View>
         )}
 
-        {item?.cut && (
+        {!item?.cut || (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('cut')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
@@ -92,7 +93,7 @@ const MyCartComponent = ({
           </View>
         )}
 
-        {item?.window && (
+        {!item?.window || (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('window')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
@@ -101,7 +102,7 @@ const MyCartComponent = ({
           </View>
         )}
 
-        {item?.finishing && (
+        {!item?.finishing || (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('finishing')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>

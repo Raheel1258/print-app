@@ -17,7 +17,8 @@ import {
   paymentWithSaveCard,
   makeCardPrimaryForCart,
   getPrimaryAddress,
-  getPrimaryCards
+  getPrimaryCards,
+  discountReset
 } from '../store/actions/cartAction';
 import { makeAddressPrimary } from '../store/actions/userPersonalDetailAction'
 
@@ -123,6 +124,9 @@ const CartContainer = () => {
   }
 
   const handleChange = (value) => {
+    if(validPromoCode){
+      dispatch(discountReset())
+    }
     setTextValue(value);
     setValidPromoCode(false)
   };

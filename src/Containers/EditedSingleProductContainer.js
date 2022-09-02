@@ -93,7 +93,7 @@ const EditedSingleProductContainer = ({ route }) => {
   } : productCategory === "FLYERS_LEAFLET" ? {
     category: 'flyer',
     product: cartItem?.category?.productType,
-    size: cartItem?.category?.name == "Rectangular Flyer" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
+    size: cartItem?.category?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
     papertype: allCardsPaperType?.substr(14, 7),
     folding: selectedFolding?.foldingName
   } : productCategory === "ENVELOPE" ? {

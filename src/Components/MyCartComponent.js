@@ -110,7 +110,7 @@ const MyCartComponent = ({
             </Text>
           </View>
         )}
-
+{/* 
         {item?.priceChart?.coverPageNumber && (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>
@@ -129,6 +129,29 @@ const MyCartComponent = ({
             </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
               {item?.priceChart?.innerPageNumber}
+            </Text>
+          </View>
+        )} */}
+
+
+        {!item?.numberOfPages || (
+          <View style={styles.quantityContainer}>
+            <Text style={styles.quantityText}>
+              {t('coverPageNumber_product')}
+            </Text>
+            <Text style={styles.quantityText} numberOfLines={1}>
+              {item?.numberOfPages[0]?.number[0]}
+            </Text>
+          </View>
+        )}
+
+        {!item?.numberOfPages || (
+          <View style={styles.quantityContainer}>
+            <Text style={styles.quantityText}>
+              {t('innerPageNumber_product')}
+            </Text>
+            <Text style={styles.quantityText} numberOfLines={1}>
+              {item?.numberOfPages[1]?.number[0]}
             </Text>
           </View>
         )}

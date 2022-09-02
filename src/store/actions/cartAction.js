@@ -427,6 +427,13 @@ export const  getPrimaryCards = (setAnimation, setUserCardData) => {
 
     }
 }
+export const  discountReset = () => {
+    return async (dispatch) => {
+        dispatch(setPromoCodeDetail("0"));
+    }
+}
+
+
 
 
 

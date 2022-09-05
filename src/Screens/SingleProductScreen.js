@@ -33,6 +33,7 @@ import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import {colors, fonts} from '../Utils/theme';
 
 const SingleProductScreen = ({
+  chi_eng,
   animation,
   priceChartAnimation,
   categoryTitle,
@@ -142,6 +143,8 @@ const SingleProductScreen = ({
       return `${selectedSize?.width} x ${selectedSize?.height}`;
     }
   };
+  const general_size = i18n.language == "en" ? item?.size : item?.size_chi;
+  const general_corner = i18n.language == "en" ? item?.corner : item?.corner_chi 
   return (
     <>
       {!animation ? (
@@ -174,7 +177,7 @@ const SingleProductScreen = ({
                   : ''
               }>
               {!(category === 'ENVELOPE' || category === 'LETTERHEAD') ? (
-                item?.size.map((item, index) => {
+                general_size?.map((item, index)  => {
                   category == 'STICKERS_LABEL' && getIndex(index);
 
                   return (
@@ -295,8 +298,8 @@ const SingleProductScreen = ({
               <>
                 <CategoriesTitleHeader title={t('choose_corner')} />
                 <View style={styles.cardsContainer}>
-                  {item?.corner &&
-                    item?.corner.map((item, index) => {
+                  {item?.corner  &&
+                    item?.corner?.map((item, index) => {
                       return (
                         <View key={index}>
                           <CardSizeComponent

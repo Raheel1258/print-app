@@ -9,6 +9,7 @@ import { getPriceChart} from "../store/actions/productList";
 import SingleProductScreen from '../Screens/SingleProductScreen';
 import Storage from '../Utils/Storage';
 import { colors } from '../Utils/theme';
+import i18n from 'i18next'
 
 const SingleProductContainer = ({ route }) => {
 
@@ -19,6 +20,36 @@ const SingleProductContainer = ({ route }) => {
   const [userToken, setUserToken] = useState(null);
   const { item, categoryTitle, productCategory } = route.params;
   const [finalObjCart , setFinalObjCart] = useState({});
+
+  console.log("itemmmmm", item);
+  console.log("default language", i18n.language)
+
+  const chi_eng = {
+    //Business
+    "標準":"Standard",
+    "短款":"Shortened",
+    "正方形":"Square",
+    "啞光":"Matte",
+    "光膠":"Glossy",
+    "圓角":"Round",
+    "單面":"1 side",
+    "双面":"2 side",
+    "Standard" : "Standard",
+    "Shortened":"Shortened",
+    "Square":"Square",
+    "Matte":"Matte",
+    "Glossy":"Glossy",
+    "Round":"Round",
+    "1 side":"1 side",
+    "2 side":"2 side"
+
+
+
+
+
+    //Booklet
+
+  }
 
 
   const priceChart = useSelector(state => state?.productList?.priceChart);
@@ -46,10 +77,10 @@ const SingleProductContainer = ({ route }) => {
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState('uploadFile');
   const [shape, setShape] = useState(item?.category?.productType);
-  const [selectedSize, setSelectedSize] = useState(item?.size && item?.size[0]);
-  const [selectedCorner, setSelectedCorner] = useState(item?.corner && item?.corner[0]);
-  const [selectFinishing, setSelectFinishing] = useState(item?.finishing && item?.finishing[0]);
-  const [selectSpotUv, setSelectSpotUv] = useState(item?.spotUV && item?.spotUV[0]);
+  const [selectedSize, setSelectedSize] = useState(i18n.language == "en" ? (item?.size && item?.size[0]):(item?.size_chi && item?.size_chi[0]));
+  const [selectedCorner, setSelectedCorner] = useState(i18n.language == "en" ? (item?.corner && item?.corner[0]): (item?.corner_chi && item?.corner_chi[0]));
+  const [selectFinishing, setSelectFinishing] = useState(i18n.language == "en" ? (item?.finishing && item?.finishing[0]):(item?.finishing_chi && item?.finishing_chi[0]));
+  const [selectSpotUv, setSelectSpotUv] = useState(i18n.language == "en" ? (item?.spotUV && item?.spotUV[0]):(item?.spotUV_chi && item?.spotUV_chi[0]) );
   const [selectedPriceChart, setSelectedPriceChart] = useState(priceChart && priceChart[0]);
   const [paperTypeCoverPages, setPaperTypeCoverPages] = useState(item?.paperType && item?.paperType[0]);
   const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(item?.paperType && item?.paperType[1]);
@@ -73,7 +104,7 @@ const SingleProductContainer = ({ route }) => {
     product: item?.category?.productType,
     size: `${selectedSize?.width} x ${selectedSize?.height}`,
     corner: `${selectedCorner?.cornerName} Corner`,
-    spotuvside: selectSpotUv
+    spotuvside: selectSpotUv 
   } : productCategory == "BOOKLET" ? {
     category: 'booklet',
     product: item?.category?.productType,
@@ -105,6 +136,8 @@ const SingleProductContainer = ({ route }) => {
     shape: item?.category?.productType
   }
   const [values, setValues] = useState(defaultValuesObject)
+
+  
 
   useEffect(() => {
     isFocused &&
@@ -333,6 +366,7 @@ const SingleProductContainer = ({ route }) => {
         navigate={navigate}
         handleAnotherDesign={handleAnotherDesign}
         productData={finalObjCart}
+        chi_eng={chi_eng}
       />
     </View>
   );

@@ -484,7 +484,7 @@ export const chi = {
     size: '尺寸:',
     choose_SpotUv: '局部 UV',
     spotUv: '單面/ 雙面:',
-    quantity_text: '數量:',
+    quantity_text: '數量',
     price_HK: '價錢 (HKS)',
     unit_text: '單價',
     show_more: '顯示更多',

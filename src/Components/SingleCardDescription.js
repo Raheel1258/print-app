@@ -4,6 +4,8 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import {colors, fonts} from '../Utils/theme';
 
+import i18n from 'i18next'
+
 const SingleCardDescription = ({item}) => {
   const {t} = useTranslation();
   const flag =
@@ -18,35 +20,35 @@ const SingleCardDescription = ({item}) => {
         {item?.category?.name}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-        {item?.category?.pricePerHunderd}
+        {i18n.language == "en" ? item?.category?.pricePerHunderd : item?.category?.pricePerHunderd_chi }
       </Text>
       <Text style={styles.productDescription}>
-        {item?.category?.description}
+        {i18n.language == "en" ?item?.category?.description : item?.category?.description_chi}
       </Text>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>
           {flag ? t('paper_type_product') : t('paper_product')}
         </Text>
         <Text style={styles.categoryDescription}>
-          {item?.category?.paperType}
+          {i18n.language == "en" ? item?.category?.paperType : item?.category?.paperType_chi}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>{t('lead_time_product')}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item?.category?.leadTime}
+          {i18n.language == "en" ? item?.category?.leadTime : item?.category?.leadTime_chi}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>{t('colour_product')}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item?.category?.colour}
+          {i18n.language == "en" ? item?.category?.colour : item?.category?.colour_chi}
         </Text>
       </View>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>{t('size_product')}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {item?.category?.Sizes}
+          {i18n.language == "en" ? item?.category?.Sizes :  item?.category?.Sizes_chi}
         </Text>
       </View>
     </View>

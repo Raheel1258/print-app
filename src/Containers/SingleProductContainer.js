@@ -56,7 +56,6 @@ const SingleProductContainer = ({ route }) => {
   const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
   const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
 
-
   const [allCardsPaperType, setAllCardsPaperType] = useState(item?.paperType && item?.paperType[0]);
   const [numberOfSides, setNumberOfSides] = useState(item?.numberOfSides && item?.numberOfSides[0]);
 
@@ -83,13 +82,13 @@ const SingleProductContainer = ({ route }) => {
   } : productCategory === "POSTER" ? {
     category: 'poster',
     product: item?.category?.productType,
-    size: selectedSize?.name,
+    size: selectedSize?.name, 
     papertype: allCardsPaperType.substr(14, 7),
     sides: numberOfSides
   } : productCategory === "FLYERS_LEAFLET" ? {
     category: 'flyer',
     product: item?.category?.productType,
-    size: item?.category?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
+    size: item?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
     papertype: allCardsPaperType.substr(14, 7),
     folding: selectedFolding?.foldingName
   } : productCategory === "ENVELOPE" ? {
@@ -225,7 +224,6 @@ const SingleProductContainer = ({ route }) => {
     });
     if(userToken){
       dispatch(addToCartAnotherDesign(obj));
-
       setDesignUrl([]);
       setInitialValuesAddUrl({ url: [{ url_link: '' }] })
       setPriceChartAnimation(false);

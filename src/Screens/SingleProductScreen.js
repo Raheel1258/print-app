@@ -136,7 +136,8 @@ const SingleProductScreen = ({
       return selectedSize?.name;
     } else if (
       category == 'FLYERS_LEAFLET' &&
-      item?.category?.name == 'Square Flyer'
+      // item?.category?.name == 'Square Flyer'
+      item?.index == "1"
     ) {
       return `${selectedSize?.width} x ${selectedSize?.height}`;
     }

@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { addToCart, addToCartAnotherDesign} from "../store/actions/cartAction";
 import { getPriceChart} from "../store/actions/productList";
 import SingleProductScreen from '../Screens/SingleProductScreen';
+import {chi_eng} from "../Utils/mockData";
 import Storage from '../Utils/Storage';
 import { colors } from '../Utils/theme';
 import i18n from 'i18next'
@@ -22,35 +23,11 @@ const SingleProductContainer = ({ route }) => {
   const [finalObjCart , setFinalObjCart] = useState({});
 
   console.log("itemmmmm", item);
-  console.log("default language", i18n.language)
-
-  const chi_eng = {
-    //Business
-    "標準":"Standard",
-    "短款":"Shortened",
-    "正方形":"Square",
-    "啞光":"Matte",
-    "光膠":"Glossy",
-    "圓角":"Round",
-    "單面":"1 side",
-    "双面":"2 side",
-    "Standard" : "Standard",
-    "Shortened":"Shortened",
-    "Square":"Square",
-    "Matte":"Matte",
-    "Glossy":"Glossy",
-    "Round":"Round",
-    "1 side":"1 side",
-    "2 side":"2 side"
 
 
-
-
-
-    //Booklet
-
+  const getObjKey = (obj,value) => {
+    return Object.keys(obj).find(key => obj[key] === value);
   }
-
 
   const priceChart = useSelector(state => state?.productList?.priceChart);
   const [sliceArray, setSliceArray] = useState([]);
@@ -80,52 +57,53 @@ const SingleProductContainer = ({ route }) => {
   const [selectedSize, setSelectedSize] = useState(i18n.language == "en" ? (item?.size && item?.size[0]):(item?.size_chi && item?.size_chi[0]));
   const [selectedCorner, setSelectedCorner] = useState(i18n.language == "en" ? (item?.corner && item?.corner[0]): (item?.corner_chi && item?.corner_chi[0]));
   const [selectFinishing, setSelectFinishing] = useState(i18n.language == "en" ? (item?.finishing && item?.finishing[0]):(item?.finishing_chi && item?.finishing_chi[0]));
-  const [selectSpotUv, setSelectSpotUv] = useState(i18n.language == "en" ? (item?.spotUV && item?.spotUV[0]):(item?.spotUV_chi && item?.spotUV_chi[0]) );
+  const [selectSpotUv, setSelectSpotUv] = useState(i18n.language == "en" ? (item?.spotUV && item?.spotUV[0]):(item?.spotUV_chi && item?.spotUV_chi[0]));
   const [selectedPriceChart, setSelectedPriceChart] = useState(priceChart && priceChart[0]);
-  const [paperTypeCoverPages, setPaperTypeCoverPages] = useState(item?.paperType && item?.paperType[0]);
-  const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(item?.paperType && item?.paperType[1]);
-  const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
-  const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
+  const [paperTypeCoverPages, setPaperTypeCoverPages] = useState(i18n.language == "en" ? (item?.paperType && item?.paperType[0]) :(item?.paperType_chi && item?.paperType_chi[0]));
+  const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(i18n.language == "en" ? (item?.paperType && item?.paperType[1]) :(item?.paperType_chi && item?.paperType_chi[1]));
+  const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState(i18n.language == "en"  ? (item?.numberOfPages && item?.numberOfPages[0]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[0]?.number[0]));
+  const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState(i18n.language == "en" ? (item?.numberOfPages && item?.numberOfPages[1]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[1]?.number[0]));
 
-  const [allCardsPaperType, setAllCardsPaperType] = useState(item?.paperType && item?.paperType[0]);
-  const [numberOfSides, setNumberOfSides] = useState(item?.numberOfSides && item?.numberOfSides[0]);
+  const [allCardsPaperType, setAllCardsPaperType] = useState(i18n.language == "en" ? (item?.paperType && item?.paperType[0]):(item?.paperType_chi && item?.paperType_chi[0]));
+  const [numberOfSides, setNumberOfSides] = useState(i18n.language == "en" ? (item?.numberOfSides && item?.numberOfSides[0]):(item?.numberOfSides_chi && item?.numberOfSides_chi[0]));
 
-  const [selectedCut, setSelectedCut] = useState(item?.cut && item?.cut[0]);
-  const [selectedFolding, setSelectedFolding] = useState(item?.folding && item?.folding[0]);
+  const [selectedCut, setSelectedCut] = useState(i18n.language == "en" ? (item?.cut && item?.cut[0]) : (item?.cut_chi && item?.cut_chi[0]));
+  const [selectedFolding, setSelectedFolding] = useState(i18n.language == "en"  ? (item?.folding && item?.folding[0]) : (item?.folding_chi && item?.folding_chi[0]) );
 
-  const [selectedWindow, setSelectedWindow] = useState(item?.window && item?.window[0]);
+  const [selectedWindow, setSelectedWindow] = useState(i18n.language == "en" ? item?.window && item?.window[0] : item?.window_chi && item?.window_chi[0] );
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
+
 
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
     product: item?.category?.productType,
     size: `${selectedSize?.width} x ${selectedSize?.height}`,
-    corner: `${selectedCorner?.cornerName} Corner`,
-    spotuvside: selectSpotUv 
+    corner: `${chi_eng[selectedCorner?.cornerName]} Corner`,
+    spotuvside: chi_eng[selectSpotUv]  ? "1 side" : chi_eng[selectSpotUv] 
   } : productCategory == "BOOKLET" ? {
     category: 'booklet',
     product: item?.category?.productType,
     size: selectedSize?.name,
-    innerpage: noOfPagesInnerPages
+    innerpage: chi_eng[noOfPagesInnerPages]
   } : productCategory === "POSTER" ? {
     category: 'poster',
     product: item?.category?.productType,
     size: selectedSize?.name, 
-    papertype: allCardsPaperType.substr(14, 7),
-    sides: numberOfSides
+    papertype: chi_eng[allCardsPaperType].substr(14, 7),
+    sides: chi_eng[numberOfSides]
   } : productCategory === "FLYERS_LEAFLET" ? {
     category: 'flyer',
     product: item?.category?.productType,
     size: item?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
-    papertype: allCardsPaperType.substr(14, 7),
-    folding: selectedFolding?.foldingName
+    papertype: chi_eng[allCardsPaperType].substr(14, 7),
+    folding: chi_eng[selectedFolding?.foldingName]
   } : productCategory === "ENVELOPE" ? {
     category: 'envelop',
     product: item?.category?.productType,
-    window: selectedWindow?.windowName
+    window: chi_eng[selectedWindow?.windowName]
   } : productCategory === "LETTERHEAD" ? {
     category: 'letterhead',
     product: item?.category?.productType,
@@ -145,6 +123,23 @@ const SingleProductContainer = ({ route }) => {
         setUserToken(token);
       });
   }, [isFocused]);
+
+  useEffect(() => {
+    setSelectedPriceChart(priceChart && priceChart[0]);
+    setSelectedSize(i18n.language == "en" ? (item?.size && item?.size[0]):(item?.size_chi && item?.size_chi[0]));
+    setSelectedCorner(i18n.language == "en" ? (item?.corner && item?.corner[0]): (item?.corner_chi && item?.corner_chi[0]));
+    setSelectFinishing(i18n.language == "en" ? (item?.finishing && item?.finishing[0]):(item?.finishing_chi && item?.finishing_chi[0]));
+    setSelectSpotUv(i18n.language == "en" ? (item?.spotUV && item?.spotUV[0]):(item?.spotUV_chi && item?.spotUV_chi[0]));
+    setAllCardsPaperType(i18n.language == "en" ? (item?.paperType && item?.paperType[0]):(item?.paperType_chi && item?.paperType_chi[0]));
+    setNumberOfSides(i18n.language == "en" ? (item?.numberOfSides && item?.numberOfSides[0]):(item?.numberOfSides_chi && item?.numberOfSides_chi[0]));
+    setSelectedCut(i18n.language == "en" ? (item?.cut && item?.cut[0]) : (item?.cut_chi && item?.cut_chi[0]));
+    setSelectedFolding(i18n.language == "en"  ? (item?.folding && item?.folding[0]) : (item?.folding_chi && item?.folding_chi[0]) );
+    setSelectedWindow(i18n.language == "en" ? item?.window && item?.window[0] : item?.window_chi && item?.window_chi[0] );
+    setPaperTypeCoverPages(i18n.language == "en" ? (item?.paperType && item?.paperType[0]) :(item?.paperType_chi && item?.paperType_chi[0]));
+    setPaperTypeInnerPages(i18n.language == "en" ? (item?.paperType && item?.paperType[1]) :(item?.paperType_chi && item?.paperType_chi[1]));
+    setNoOfPagesCoverPages(i18n.language == "en"  ? (item?.numberOfPages && item?.numberOfPages[0]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[0]?.number[0]));
+    setNoOfPagesInnerPages(i18n.language == "en" ? (item?.numberOfPages && item?.numberOfPages[1]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[1]?.number[0]));
+  },[i18n.language])
 
   useEffect(() => {
     let newPriceChartArray = priceChart
@@ -203,7 +198,8 @@ const SingleProductContainer = ({ route }) => {
       folding: selectedFolding,
       paperType: allCardsPaperType,
       spotUV: selectSpotUv,
-      corner: selectedCorner,
+      corner_chi: i18n.language == "chi" ? selectedCorner : {...selectedCorner , cornerName:getObjKey(chi_eng,chi_eng[selectedCorner.cornerName]), cornerDescription:getObjKey(chi_eng,chi_eng[selectedCorner.cornerDescription])},
+      corner: i18n.language == "eng" ? selectedCorner : {...selectedCorner, cornerName:chi_eng[selectedCorner.cornerName], cornerDescription:chi_eng[selectedCorner.cornerDescription]},
       finishing: selectFinishing,
       remarks: remarks,
       cut: selectedCut,
@@ -215,13 +211,14 @@ const SingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
+    console.log("checking before", obj)
     setFinalObjCart(obj);
-    if(userToken){
-      dispatch(addToCart(setAddToCartAnimation, obj, navigate));
-    }
-    else{
-      accountRBSheet.current.open();
-    }
+    // if(userToken){
+    //   dispatch(addToCart(setAddToCartAnimation, obj, navigate));
+    // }
+    // else{
+    //   accountRBSheet.current.open();
+    // }
 
 
   }
@@ -263,25 +260,21 @@ const SingleProductContainer = ({ route }) => {
       setAddToCartAnimation(false);
       setSelectedUpload('uploadFile');
       setShape(item?.category?.productType);
-      setSelectedSize(item?.size && item?.size[0]);
-      setSelectedCorner(item?.corner && item?.corner[0]);
-      setSelectFinishing(item?.finishing && item?.finishing[0]);
-      setSelectSpotUv(item?.spotUV && item?.spotUV[0]);
       setSelectedPriceChart(priceChart && priceChart[0]);
-      setPaperTypeCoverPages(item?.paperType && item?.paperType[0]);
-      setPaperTypeInnerPages(item?.paperType && item?.paperType[1]);
-      setNoOfPagesCoverPages(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
-      setNoOfPagesInnerPages(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
-    
-    
-      setAllCardsPaperType(item?.paperType && item?.paperType[0]);
-      setNumberOfSides(item?.numberOfSides && item?.numberOfSides[0]);
-    
-      setSelectedCut(item?.cut && item?.cut[0]);
-      setSelectedFolding(item?.folding && item?.folding[0]);
-    
-     setSelectedWindow(item?.window && item?.window[0]);
-     setPreview(true);
+      setSelectedSize(i18n.language == "en" ? (item?.size && item?.size[0]):(item?.size_chi && item?.size_chi[0]));
+      setSelectedCorner(i18n.language == "en" ? (item?.corner && item?.corner[0]): (item?.corner_chi && item?.corner_chi[0]));
+      setSelectFinishing(i18n.language == "en" ? (item?.finishing && item?.finishing[0]):(item?.finishing_chi && item?.finishing_chi[0]));
+      setSelectSpotUv(i18n.language == "en" ? (item?.spotUV && item?.spotUV[0]):(item?.spotUV_chi && item?.spotUV_chi[0]));
+      setAllCardsPaperType(i18n.language == "en" ? (item?.paperType && item?.paperType[0]):(item?.paperType_chi && item?.paperType_chi[0]));
+      setNumberOfSides(i18n.language == "en" ? (item?.numberOfSides && item?.numberOfSides[0]):(item?.numberOfSides_chi && item?.numberOfSides_chi[0]));
+      setSelectedCut(i18n.language == "en" ? (item?.cut && item?.cut[0]) : (item?.cut_chi && item?.cut_chi[0]));
+      setSelectedFolding(i18n.language == "en"  ? (item?.folding && item?.folding[0]) : (item?.folding_chi && item?.folding_chi[0]) );
+      setSelectedWindow(i18n.language == "en" ? item?.window && item?.window[0] : item?.window_chi && item?.window_chi[0] );
+      setPaperTypeCoverPages(i18n.language == "en" ? (item?.paperType && item?.paperType[0]) :(item?.paperType_chi && item?.paperType_chi[0]));
+      setPaperTypeInnerPages(i18n.language == "en" ? (item?.paperType && item?.paperType[1]) :(item?.paperType_chi && item?.paperType_chi[1]));
+      setNoOfPagesCoverPages(i18n.language == "en"  ? (item?.numberOfPages && item?.numberOfPages[0]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[0]?.number[0]));
+      setNoOfPagesInnerPages(i18n.language == "en" ? (item?.numberOfPages && item?.numberOfPages[1]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[1]?.number[0]));
+      setPreview(true);
       setRemarks('');
       setResult([]);
       setAnotherDesign(true);

@@ -237,7 +237,6 @@ const CartContainer = () => {
   }
 
   const handleTotalAmount = () => {
-    console.log("carts items for amount", cartItem);
     let deliveryCost = 0;
     let quantity = 0;
     let unitPrice = 0;

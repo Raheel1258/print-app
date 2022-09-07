@@ -119,7 +119,6 @@ export const signup = (data, navigation, setAnimation, obj) => {
                 })
                 if(obj !== "false"){
                     dispatch(addToCartWithToken(obj))
-                    console.log("iiiii" , obj);
                     navigation.navigate('cartStack', {next:'cart'});
                 }else{
                     navigation.reset({

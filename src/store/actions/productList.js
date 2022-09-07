@@ -108,7 +108,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         query = query + key + "=" + values[key] + "&"
       }
     })
-    console.log("path", `${Api}/price-chart/${values.category}?${query}`)
+    
     axios.get(`${Api}/price-chart/${values.category}?${query}`)
       .then(async (res) => {
         const newData = res?.data?.sort((a, b) => {
@@ -186,7 +186,6 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
         query = query + key + "=" + values[key] + "&"
       }
     })
-    console.log("path into edit", `${Api}/price-chart/${values.category}?${query}`)
     axios.get(`${Api}/price-chart/${values.category}?${query}`)
       .then(async (res) => {
         const newData = res?.data?.sort((a, b) => {

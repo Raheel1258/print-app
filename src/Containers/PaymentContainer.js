@@ -26,9 +26,6 @@ const PaymentContainer = ({route}) => {
 
     const handleCreditCard = (values) => {
         dispatch(genToken(values, navigate,amount,setAnimation,orderObj));
-        //navigate("orderReceived");
-        // console.log("result" , result);
-
     }
 
     const goBack = () => {

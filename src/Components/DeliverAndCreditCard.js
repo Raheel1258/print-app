@@ -22,7 +22,6 @@ const DeliverAndCreditCard = ({
     handleSelectedPrimaryCard = () =>{}
 }) => {
 
-  console.log("item value", item)
   return (
     <TouchableOpacity style={styles.borderContainer} onPress={onPress}>
       {flagForRender ? <View style={styles.marginContainer}>

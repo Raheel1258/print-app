@@ -351,7 +351,7 @@ export const makeCardPrimaryForCart = (id,prevId) => {
         const accessToken = await Storage.retrieveData('token')
         axios.patch(`${Api}/stripe/makePrimaryCard/${id}/${prevId}`, {} ,{headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                console.log("res from make primar", res);
+                
                 // setAnimation(false);   
                 // dispatch(getAllCards(setAnimation));              
             })

@@ -73,10 +73,6 @@ const SingleProductContainer = ({ route }) => {
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
 
-  console.log('slescted folder', selectedCut)
-
-  
-
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
@@ -267,7 +263,6 @@ const SingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
-    console.log("checking before", obj)
     setFinalObjCart(obj);
     if(userToken){
       dispatch(addToCart(setAddToCartAnimation, obj, navigate));
@@ -275,8 +270,6 @@ const SingleProductContainer = ({ route }) => {
     else{
       accountRBSheet.current.open();
     }
-
-
   }
 
   const handleAnotherDesign = () => {

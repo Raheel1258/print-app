@@ -349,7 +349,6 @@ const EditedSingleProductContainer = ({ route }) => {
         delete obj[key];
       }
     });
-    console.log("before edited objecr", obj)
     dispatch(editCartItem(setAddToCartAnimation, cartProductId, obj, navigate));
   }
 

@@ -230,9 +230,9 @@ const CartContainer = () => {
     }
     else {
       if (paymentMethodName == "Credit Card") {
-        dispatch(paymentWithSaveCard(setPlaceOrderAnimation, { idCard: userCardData?.id, amount: total }, orderObj, navigate))
+        dispatch(paymentWithSaveCard(setPlaceOrderAnimation, { idCard: userCardData?.id, amount: total }, {...orderObj, from:"App"}, navigate))
         // navigate('payment', { amount: total, orderObj: orderObj })
-      } else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
+      } else dispatch(placeOrderOffline(setPlaceOrderAnimation, {...orderObj, from:"App"}, navigate))
     }
   }
 

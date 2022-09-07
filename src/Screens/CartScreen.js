@@ -116,6 +116,7 @@ const CartScreen = ({
       navigate={navigate}
       handleEditProduct={handleEditProduct}
       handleRemoveProduct={handleRemoveProduct}
+      from={true}
     />
   );
 

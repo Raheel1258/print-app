@@ -3,6 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {colors, fonts} from '../Utils/theme';
 import {useTranslation} from 'react-i18next';
+import i18n from 'i18next';
 
 const MyCartComponent = ({
   image,
@@ -15,8 +16,8 @@ const MyCartComponent = ({
   navigate,
   handleRemoveProduct,
   handleEditProduct,
+  from,
 }) => {
-  console.log("into detail component", item)
   const {t} = useTranslation();
   return (
     <View
@@ -46,14 +47,14 @@ const MyCartComponent = ({
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>{t('size')}</Text>
           <Text style={styles.quantityText} numberOfLines={1}>
-            {item?.size?.name}
+            {from ? (i18n.language == "en" ? item?.size?.name : item?.size_chi && item?.size_chi?.name):item?.size?.name }
           </Text>
         </View>
         {item?.paperType ? (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('paper_type_product')}</Text>
             <Text style={styles.paperTypeDes} numberOfLines={1}>
-              {item?.paperType}
+              {from ? (i18n.language == "en" ? item?.paperType: item?.paperType_chi && item?.paperType_chi): item?.paperType}
             </Text>
           </View>
         ) : (
@@ -61,7 +62,7 @@ const MyCartComponent = ({
             <View style={styles.quantityContainer}>
               <Text style={styles.quantityText}>{t('paper_type_product')}</Text>
               <Text style={styles.paperTypeDes} numberOfLines={1}>
-                {item?.category?.paperType}
+                {from ? (i18n.language == "en" ? item?.category?.paperType : item?.category?.paperType_chi && item?.category?.paperType_chi):item?.category?.paperType}
               </Text>
             </View>
           )
@@ -70,7 +71,7 @@ const MyCartComponent = ({
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('corner_product')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.corner?.cornerName && item?.corner?.cornerName}
+              {from ? (i18n.language == "en" ? (item?.corner?.cornerName && item?.corner?.cornerName):(item?.corner_chi?.cornerName && item?.corner_chi?.cornerName)) : (item?.corner?.cornerName && item?.corner?.cornerName)}
             </Text>
           </View>
         )}
@@ -88,7 +89,7 @@ const MyCartComponent = ({
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('cut')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.cut?.cutName}
+              {from ? (i18n.language == "en" ? (item?.cut?.cutName) : (item?.cut_chi?.cutName)) : item?.cut?.cutName}
             </Text>
           </View>
         )}
@@ -97,7 +98,7 @@ const MyCartComponent = ({
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('window')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.window?.windowName}
+              {from ? (i18n.language == "en" ? item?.window?.windowName : item?.window_chi?.windowName) : item?.window?.windowName}
             </Text>
           </View>
         )}
@@ -106,7 +107,7 @@ const MyCartComponent = ({
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('finishing')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.finishing}
+              {from ? (i18n.language == "en" ? item?.finishing : item?.finishing_chi):item?.finishing}
             </Text>
           </View>
         )}
@@ -140,7 +141,7 @@ const MyCartComponent = ({
               {t('coverPageNumber_product')}
             </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.numberOfPages[0]?.number[0]}
+              {from ? (i18n.language == "en" ? item?.numberOfPages[0]?.number[0] : item?.numberOfPages_chi[0]?.number[0]):item?.numberOfPages[0]?.number[0]}
             </Text>
           </View>
         )}
@@ -151,7 +152,7 @@ const MyCartComponent = ({
               {t('innerPageNumber_product')}
             </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.numberOfPages[1]?.number[0]}
+              {from ? (i18n.language == "en" ? item?.numberOfPages[1]?.number[0]: item?.numberOfPages_chi[1]?.number[0]):item?.numberOfPages[1]?.number[0]}
             </Text>
           </View>
         )}

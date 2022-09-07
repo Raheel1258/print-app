@@ -81,6 +81,8 @@ const MyOrdersListScreen = ({
       index={index}
       length={item?.length}
       item={item}
+      from={orderData?.from == "App" ? true : false}
+
     />
   );
   return (

@@ -1450,6 +1450,7 @@ export const chi_eng = {
   "60  頁" :"60  pages",
 
 
+  "4 pages":"4 pages",
   "8  pages" :"8  pages",
   "12  pages":"12  pages",
   "16  pages":"16  pages",
@@ -1464,61 +1465,105 @@ export const chi_eng = {
   "52  pages":"52  pages",
   "56  pages":"56  pages",
   "60  pages" :"60  pages",
-  "Woodfree paper (140 gsm)" : "Woodfree paper (140 gsm)",
   "書紙(140 gsm)":"Woodfree paper (140 gsm)",
-  "Art Card (250 gsm)":"Art Card (250 gsm)",
   "雙粉咭(250 gsm)":"Art Card (250 gsm)",
+  "Woodfree paper (140 gsm)" : "Woodfree paper (140 gsm)",
+  "Art Card (250 gsm)":"Art Card (250 gsm)",
   "Matte-Silk":"Matte-Silk",
+
   "哑光丝":"Matte-Silk",
-  "Cover pages":"Cover pages",
-  "Inner pages":"Inner pages",
   "封面":"Cover pages",
   "內頁":"Inner pages",
+  "Cover pages":"Cover pages",
+  "Inner pages":"Inner pages",
+  
   "A6":"A6",
   "A5":"A5",
   "A4":"A4",
 
 
+  "32 頁":"32 pages",
+  "36 頁":"36 pages",
+  "40 頁":"40 pages",
+  "44 頁":"44 pages",
+  "48 頁":"48 pages",
+  "52 頁":"52 pages",
+  "56 頁":"56 pages",
+  "60 頁":"60 pages",
+  "64 頁":"64 pages",
+  "68 頁":"68 pages",
+  "72 頁":"72 pages",
+  "76 頁":"76 pages",
+  "80 頁":"80 pages",
+  "84 頁":"84 pages",
+  "88 頁":"88 pages",
+  "96 頁":"96 pages",
+  "100 頁":"100 pages",
+
+  "32 pages":"32 pages",
+  "36 pages":"36 pages",
+  "40 pages":"40 pages",
+  "44 pages":"44 pages",
+  "48 pages":"48 pages",
+  "52 pages":"52 pages",
+  "56 pages":"56 pages",
+  "60 pages":"60 pages",
+  "64 pages":"64 pages",
+  "68 pages":"68 pages",
+  "72 pages":"72 pages",
+  "76 pages":"76 pages",
+  "80 pages":"80 pages",
+  "84 pages":"84 pages",
+  "88 pages":"88 pages",
+  "96 pages":"96 pages",
+  "100 pages":"100 pages",
+
+ 
+
+
   //Poster
-  "Glossy paper (157 gsm)":"Glossy paper (157 gsm)",
-  "Glossy paper (400 gsm)":"Glossy paper (400 gsm)",
   "雙粉紙(157 gsm)":"Glossy paper (157 gsm)",
   "雙粉紙(400 gsm)":"Glossy paper (400 gsm)",
+  "Glossy paper (157 gsm)":"Glossy paper (157 gsm)",
+  "Glossy paper (400 gsm)":"Glossy paper (400 gsm)",
+ 
   "A3":"A3",
 
   //LetterHead
-  "Woodfree paper (100 gsm)":"Woodfree paper (100 gsm)",
   "書紙(100 gsm)":"Woodfree paper (100 gsm)",
+  "Woodfree paper (100 gsm)":"Woodfree paper (100 gsm)",
 
   //Flyer
-  "Glossy paper (140 gsm)":"Glossy paper (140 gsm)",
-  "Glossy paper (350 gsm)":"Glossy paper (350 gsm)",
+  
   "雙粉紙(140 gsm)":"Glossy paper (140 gsm)",
   "雙粉紙(350 gsm)":"Glossy paper (350 gsm)",
   "半折疊":"Half fold",
   "手風琴折疊":"Accordion fold",
   "Half fold":"Half fold",
   "Accordion fold":"Accordion fold",
+  "Glossy paper (140 gsm)":"Glossy paper (140 gsm)",
+  "Glossy paper (350 gsm)":"Glossy paper (350 gsm)",
 
   //Envelop
+  "開窗":"With window",
+  "無窗":"Without window",
   "4” x 9” (101.6mm x 228.6mm)":"4” x 9” (101.6mm x 228.6mm)",
   "With window":"With window",
   "Without window":"Without window",
-  "開窗":"With window",
-  "無窗":"Without window",
 
   //Stickers
 
+  "張裝":"In sheet",
+  "個裝":"Individual",
+  "小":"Tiny",
+  "細":"Small",
+  "大":"Large",
   "Individual":"Individual",
   "In sheet":"In sheet",
-  "個裝":"Individual",
-  "張裝":"In sheet",
   "Tiny":"Tiny",
   "Small":"Small",
   "Large":"Large",
-  "Tiny":"小",
-  "Small":"細",
-  "Large":"大"
+ 
 
 }
 

@@ -239,7 +239,7 @@ export const en = {
     size: 'Size:',
     choose_SpotUv: 'Choose spot UV',
     spotUv: 'Spot UV effect',
-    quantity_text: 'Quantity',
+    quantity_text: 'Quantity:',
     price_HK: 'Price (HK$)',
     unit_text: 'Unit price',
     show_more: 'Show more quantity',

@@ -43,6 +43,7 @@ const MyOrderContainer = () => {
       token && dispatch(getAllOrder(setAnimation))
     });
   }, [isFocused])
+  console.log("All order", getAllOrderData)
 
   return (
     <View style={styles.container}>

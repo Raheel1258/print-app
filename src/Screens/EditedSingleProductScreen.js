@@ -30,6 +30,7 @@ import {
 } from '../Components';
 import InfoIcon from '../Assests/Svgs/InfoIcon';
 import {colors, fonts} from '../Utils/theme';
+import i18n from 'i18next';
 
 const EditedSingleProductScreen = ({
   animation,
@@ -96,6 +97,7 @@ const EditedSingleProductScreen = ({
   sliceData,
   flag,
   remarks,
+  chi_eng={chi_eng}
 }) => {
   let widthOne = 120;
   let heightOne = 65;
@@ -129,11 +131,23 @@ const EditedSingleProductScreen = ({
       return selectedSize?.name;
     } else if (
       category == 'FLYERS_LEAFLET' &&
-      item?.category?.name == 'Square Flyer'
+      // item?.category?.name == 'Square Flyer'
+      item?.index == "1"
     ) {
       return `${selectedSize?.width} x ${selectedSize?.height}`;
     }
   };
+  const general_size = i18n.language == "en" ? item?.size : item?.size_chi;
+  const general_corner = i18n.language == "en" ? item?.corner : item?.corner_chi ;
+  const general_spotVu = i18n.language == "en" ? item?.spotUV : item?.spotUV_chi;
+  const general_finishing = i18n.language == "en" ? item?.finishing: item?.finishing_chi;
+  const general_paperType = i18n.language == "en" ? item?.paperType : item?.paperType_chi;
+  const general_numberOfSides = i18n.language == "en" ? item?.numberOfSides : item?.numberOfSides_chi;
+  const general_folding = i18n.language == "en" ? item?.folding : item?.folding_chi;
+  const general_cut = i18n.language == "en" ? item?.cut: item?.cut_chi;
+  const general_window = i18n.language == "en" ? item?.window: item?.window_chi;
+  const general_numberOfPages = i18n.language == "en" ? (item?.numberOfPages[0] && item?.numberOfPages[0]?.number) : (item?.numberOfPages[0] && item?.numberOfPages_chi[0]?.number) ;
+  const general_numberOfPagesInnerPages = i18n.language == "en" ? (item?.numberOfPages[1] && item?.numberOfPages[1]?.number) : (item?.numberOfPages[1] && item?.numberOfPages_chi[1]?.number)
   return (
     <>
       {!animation && item != undefined ? (
@@ -166,7 +180,7 @@ const EditedSingleProductScreen = ({
                   : ''
               }>
               {!(category === 'ENVELOPE' || category === 'LETTERHEAD') ? (
-                item?.size.map((item, index) => {
+                general_size?.map((item, index) => {
                   category == 'STICKERS_LABEL' && getIndex(index);
 
                   return (
@@ -287,8 +301,8 @@ const EditedSingleProductScreen = ({
               <>
                 <CategoriesTitleHeader title={t('choose_corner')} />
                 <View style={styles.cardsContainer}>
-                  {item?.corner &&
-                    item?.corner.map((item, index) => {
+                  {general_corner &&
+                    general_corner?.map((item, index) => {
                       return (
                         <View key={index}>
                           <CardSizeComponent
@@ -342,7 +356,7 @@ const EditedSingleProductScreen = ({
               <>
                 <CategoriesTitleHeader title={t('choose_cut')} />
                 <View style={styles.cardsContainer}>
-                  {item?.cut?.map((item, index) => {
+                  {general_cut?.map((item, index) => {
                     return (
                       <View key={index}>
                         <CardSizeComponent
@@ -371,7 +385,7 @@ const EditedSingleProductScreen = ({
                 <>
                   <CategoriesTitleHeader title={t('choose_folding')} />
                   <View style={styles.cardsContainer}>
-                    {item?.folding?.map((item, index) => {
+                    {general_folding?.map((item, index) => {
                       return (
                         <View key={index}>
                           <CardSizeComponent
@@ -405,7 +419,7 @@ const EditedSingleProductScreen = ({
               <>
                 <CategoriesTitleHeader title={t('choose_window')} />
                 <View style={styles.cardsContainer}>
-                  {item?.window?.map((item, index) => {
+                  {general_window?.map((item, index) => {
                     return (
                       <View key={index}>
                         <CardSizeComponent
@@ -557,7 +571,7 @@ const EditedSingleProductScreen = ({
               refRBSheet={finishingRBSheet}
               note={false}
               height={300}
-              childern={item?.finishing?.map((item, index) => {
+              childern={general_finishing?.map((item, index) => {
                 return (
                   <TouchableOpacity
                     key={index}
@@ -599,7 +613,7 @@ const EditedSingleProductScreen = ({
               refRBSheet={spotUvRBSheet}
               note={false}
               height={300}
-              childern={item?.spotUV?.map((item, index) => {
+              childern={general_spotVu?.map((item, index) => {
                 return (
                   <TouchableOpacity
                     key={index}
@@ -628,7 +642,7 @@ const EditedSingleProductScreen = ({
                   }}
                   style={styles.listContainer}>
                   <Text style={styles.listStyle}>
-                    {item?.paperType ? item?.paperType[0] : ''}
+                    {general_paperType ? general_paperType[0] : ''}
                   </Text>
                 </TouchableOpacity>
               }
@@ -648,7 +662,7 @@ const EditedSingleProductScreen = ({
                   }}
                   style={styles.listContainer}>
                   <Text style={styles.listStyle}>
-                    {item?.paperType ? item?.paperType[1] : ''}
+                    {general_paperType ? general_paperType[1] : ''}
                   </Text>
                 </TouchableOpacity>
               }
@@ -668,8 +682,8 @@ const EditedSingleProductScreen = ({
                 //   style={styles.listContainer}>
                 //   <Text style={styles.listStyle}>{noOfPagesCoverPages}</Text>
                 // </TouchableOpacity>
-                item?.numberOfPages &&
-                item?.numberOfPages[0]?.number?.map((item, index) => {
+                general_numberOfPages &&
+                general_numberOfPages?.map((item, index) => {
                   return (
                     <TouchableOpacity
                       key={index}
@@ -692,8 +706,8 @@ const EditedSingleProductScreen = ({
               note={false}
               height={430}
               childern={
-                item?.numberOfPages &&
-                item?.numberOfPages[1]?.number?.map((item, index) => {
+                general_numberOfPagesInnerPages &&
+                general_numberOfPagesInnerPages?.map((item, index) => {
                   return (
                     <TouchableOpacity
                       key={index}
@@ -716,7 +730,7 @@ const EditedSingleProductScreen = ({
               refRBSheet={allCardsPaperTypeRBSheet}
               note={false}
               height={330}
-              childern={item?.paperType?.map((item, index) => {
+              childern={general_paperType?.map((item, index) => {
                 return (
                   <TouchableOpacity
                     key={index}
@@ -741,7 +755,7 @@ const EditedSingleProductScreen = ({
               refRBSheet={numberOfSidesRBSheet}
               note={false}
               height={330}
-              childern={item?.numberOfSides?.map((item, index) => {
+              childern={general_numberOfSides?.map((item, index) => {
                 return (
                   <TouchableOpacity
                     key={index}

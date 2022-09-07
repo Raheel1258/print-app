@@ -261,7 +261,6 @@ const SingleProductContainer = ({ route }) => {
       cut_chi: i18n.language == "chi" ? selectedCut : selectedCut && {...selectedCut, cutName:getObjKey(chi_eng, chi_eng[selectedCut.cutName])},
       numberOfSides: i18n.language == "eng" ? numberOfSides : chi_eng[numberOfSides],
       numberOfSides_chi: i18n.language == "chi" ? numberOfSides : getObjKey(chi_eng, chi_eng[numberOfSides]),
-
     }
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {

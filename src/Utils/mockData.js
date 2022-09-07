@@ -1469,9 +1469,9 @@ export const chi_eng = {
   "雙粉咭(250 gsm)":"Art Card (250 gsm)",
   "Woodfree paper (140 gsm)" : "Woodfree paper (140 gsm)",
   "Art Card (250 gsm)":"Art Card (250 gsm)",
+  "哑光丝":"Matte-Silk",
   "Matte-Silk":"Matte-Silk",
 
-  "哑光丝":"Matte-Silk",
   "封面":"Cover pages",
   "內頁":"Inner pages",
   "Cover pages":"Cover pages",

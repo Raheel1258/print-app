@@ -97,6 +97,7 @@ const CartContainer = () => {
   //   })
 
   // }, [isFocused])
+  
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {

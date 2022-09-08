@@ -1419,6 +1419,8 @@ export const chi_eng = {
   "双面":"2 side",
   "傳統":"Traditional",
   "流暢":"Smooth",
+  "白咭(350g)":"Woodfree Card (350g)",
+  "Woodfree Card (350g)":"Woodfree Card (350g)",
   "Traditional":"Traditional",
   "Smooth":"Smooth",
   "Standard" : "Standard",
@@ -1430,6 +1432,12 @@ export const chi_eng = {
   "1 side":"1 side",
   "2 side":"2 side",
 
+  "糙紋咭片(700 gsm)":"Textured paper (700 gsm)",
+  "珍珠紙(300gsm)":"Pearl card (300 gsm)",
+  "糙紋紙 (350gsm)":"Textured paper (350 gsm)",
+  "Textured paper (350 gsm)":"Textured paper (350 gsm)",
+  "Pearl card (300 gsm)":"Pearl card (300 gsm)",
+  "Textured paper (700 gsm)":"Textured paper (700 gsm)",
 
 
   //Booklet
@@ -1467,10 +1475,13 @@ export const chi_eng = {
   "60  pages" :"60  pages",
   "書紙(140 gsm)":"Woodfree paper (140 gsm)",
   "雙粉咭(250 gsm)":"Art Card (250 gsm)",
-  "Woodfree paper (140 gsm)" : "Woodfree paper (140 gsm)",
-  "Art Card (250 gsm)":"Art Card (250 gsm)",
   "哑光丝":"Matte-Silk",
+  "雙粉咭(400 gsm)":"Art card (400 gsm)",
+  "啞膠雙粉咭(400 gsm)":"Matte art card (400 gsm)",
+  "Art card (400 gsm)":"Art card (400 gsm)",
+  "Art Card (250 gsm)":"Art Card (250 gsm)",
   "Matte-Silk":"Matte-Silk",
+  "Woodfree paper (140 gsm)" : "Woodfree paper (140 gsm)",
 
   "封面":"Cover pages",
   "內頁":"Inner pages",

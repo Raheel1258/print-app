@@ -1,7 +1,6 @@
 import Storage from '../../Utils/Storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
-import { activityData, newActivityStructure } from "../../Utils/mockData"
 import { getAllOrder } from './orderAction';
 
 import { Api } from '../../Utils/Api'
@@ -31,7 +30,6 @@ export const getAllActivity = (setAnimation) => {
   return async (dispatch) => {
     setAnimation(true);
     const accessToken = await Storage.retrieveData('token');
-    // dispatch(setActivityDetail(newActivityStructure))
     axios.get(`${Api}/notifications/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then(async (res) => {
         let unRead = 0;

@@ -4,7 +4,9 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { addToCart, editCartItem } from "../store/actions/cartAction";
+import { editCartItem } from "../store/actions/cartAction";
+import {getObjKey} from "../Utils/helperFunctions";
+
 import { getProductById, getPriceChartOnEdited } from "../store/actions/productList";
 import EditedSingleProductScreen from '../Screens/EditedSingleProductScreen';
 import { chi_eng } from "../Utils/mockData";
@@ -38,19 +40,13 @@ const EditedSingleProductContainer = ({ route }) => {
   const [animation, setAnimation] = useState(false);
   const [designUrl, setDesignUrl] = useState([]);
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState(
-    // { url: [
-    //   { url_link: '12' },
-    //   { url_link: '123' }
-    // ]},
     {
-      url: cartItem?.designUrl?.length > 0 ? cartItem?.designUrl?.map((item) => { return { url_link: item } }) : [{ url_link: '' }]
+      url: cartItem?.designUrl?.length > 0 ? 
+      cartItem?.designUrl?.map((item) => { return { url_link: item } }) 
+      : [{ url_link: '' }]
     }
 
   )
-
-  const getObjKey = (obj, value) => {
-    return Object.keys(obj).find(key => obj[key] === value);
-  }
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState('uploadFile');

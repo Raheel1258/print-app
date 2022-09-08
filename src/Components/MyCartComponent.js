@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {colors, fonts} from '../Utils/theme';
-import {useTranslation} from 'react-i18next';
-import {chi_eng} from "../Utils/mockData"
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { colors, fonts } from '../Utils/theme';
+import { useTranslation } from 'react-i18next';
+import { chi_eng } from "../Utils/mockData";
+import { getObjKey } from '../Utils/helperFunctions';
 import i18n from 'i18next';
 
 const MyCartComponent = ({
@@ -20,14 +21,7 @@ const MyCartComponent = ({
   from,
 }) => {
 
-  const getObjKey = (obj, value) => {
-    return Object.keys(obj).find(key => obj[key] === value);
-  }
-
-  console.log("item for cart" , item);
-
-  
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View
       style={{
@@ -37,7 +31,7 @@ const MyCartComponent = ({
       <Image
         transition={false}
         style={styles.cardImage}
-        source={{uri: image}}
+        source={{ uri: image }}
       />
       <View>
         <Text
@@ -63,7 +57,7 @@ const MyCartComponent = ({
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('paper_type_product')}</Text>
             <Text style={styles.paperTypeDes} numberOfLines={1}>
-              {i18n.language == "en" ? item?.paperType: getObjKey(chi_eng, item?.paperType)}
+              {i18n.language == "en" ? item?.paperType : getObjKey(chi_eng, item?.paperType)}
             </Text>
           </View>
         ) : (
@@ -76,11 +70,11 @@ const MyCartComponent = ({
             </View>
           )
         )}
-        {!item?.corner  || (
+        {!item?.corner || (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>{t('corner_product')} </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {i18n.language == "en" ? (item?.corner?.cornerName && item?.corner?.cornerName):(item?.corner?.cornerName && getObjKey(chi_eng, item?.corner?.cornerName))}
+              {i18n.language == "en" ? (item?.corner?.cornerName && item?.corner?.cornerName) : (item?.corner?.cornerName && getObjKey(chi_eng, item?.corner?.cornerName))}
             </Text>
           </View>
         )}
@@ -120,7 +114,7 @@ const MyCartComponent = ({
             </Text>
           </View>
         )}
-{/* 
+        {/* 
         {item?.priceChart?.coverPageNumber && (
           <View style={styles.quantityContainer}>
             <Text style={styles.quantityText}>
@@ -150,7 +144,7 @@ const MyCartComponent = ({
               {t('coverPageNumber_product')}
             </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {(i18n.language == "en" ? item?.numberOfPages[0]?.number[0] :  getObjKey(chi_eng, item?.numberOfPages[0]?.number[0]))}
+              {(i18n.language == "en" ? item?.numberOfPages[0]?.number[0] : getObjKey(chi_eng, item?.numberOfPages[0]?.number[0]))}
             </Text>
           </View>
         )}
@@ -161,7 +155,7 @@ const MyCartComponent = ({
               {t('innerPageNumber_product')}
             </Text>
             <Text style={styles.quantityText} numberOfLines={1}>
-              {(i18n.language == "en" ? item?.numberOfPages[1]?.number[0]: getObjKey(chi_eng, item?.numberOfPages[1]?.number[0]))}
+              {(i18n.language == "en" ? item?.numberOfPages[1]?.number[0] : getObjKey(chi_eng, item?.numberOfPages[1]?.number[0]))}
             </Text>
           </View>
         )}

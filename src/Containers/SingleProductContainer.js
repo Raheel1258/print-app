@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { addToCart, addToCartAnotherDesign } from "../store/actions/cartAction";
 import { getPriceChart } from "../store/actions/productList";
+import {getObjKey} from "../Utils/helperFunctions";
 import SingleProductScreen from '../Screens/SingleProductScreen';
 import { chi_eng } from "../Utils/mockData";
 import Storage from '../Utils/Storage';
@@ -15,23 +16,6 @@ import i18n from 'i18next'
 const SingleProductContainer = ({ route }) => {
 
   const accountRBSheet = useRef();
-  const isFocused = useIsFocused();
-  const { t } = useTranslation();
-  const [focused, setFocused] = useState(true);
-  const [userToken, setUserToken] = useState(null);
-  const { item, categoryTitle, productCategory } = route.params;
-  const [finalObjCart, setFinalObjCart] = useState({});
-
-
-  const getObjKey = (obj, value) => {
-    return Object.keys(obj).find(key => obj[key] === value);
-  }
-
-  const priceChart = useSelector(state => state?.productList?.priceChart);
-  const [sliceArray, setSliceArray] = useState([]);
-  const [flag, setflag] = useState(true)
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
   const refRBSheet = useRef();
   const urlRBSheet = useRef();
   const finishingRBSheet = useRef();
@@ -43,6 +27,22 @@ const SingleProductContainer = ({ route }) => {
   const noOfPagesInnerPagesRBSheet = useRef();
   const allCardsPaperTypeRBSheet = useRef();
   const numberOfSidesRBSheet = useRef();
+  const isFocused = useIsFocused();
+  const { t } = useTranslation();
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+
+  const { item, categoryTitle, productCategory } = route.params;
+  const priceChart = useSelector(state => state?.productList?.priceChart);
+
+  const [focused, setFocused] = useState(true);
+  const [userToken, setUserToken] = useState(null);
+  const [finalObjCart, setFinalObjCart] = useState({});
+  const [sliceArray, setSliceArray] = useState([]);
+  const [flag, setflag] = useState(true)
+  
+  
 
   const [animation, setAnimation] = useState(false);
   const [anotherDesign, setAnotherDesign] = useState(false);

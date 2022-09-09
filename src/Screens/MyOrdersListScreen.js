@@ -1,8 +1,7 @@
 import React from 'react';
-import {Text, View, FlatList, ScrollView} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
+import {Text, View, FlatList, ScrollView} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {handleOrderStatus} from '../Utils/helperFunctions';
 
 import {
   BackArrowHeader,
@@ -11,9 +10,11 @@ import {
   OrderDetailsComponent,
   UploadFileComponent,
 } from '../Components';
-import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
-import SecondBusinessCard from '../Assests/Images/Premium-business-card-two.png';
+
+import {handleOrderStatus,getObjKey} from '../Utils/helperFunctions';
 import {colors, fonts} from '../Utils/theme';
+import { chi_eng } from '../Utils/mockData';
+import i18n from 'i18next'
 
 // const DATA = [
 //   {
@@ -81,8 +82,6 @@ const MyOrdersListScreen = ({
       index={index}
       length={item?.length}
       item={item}
-      from={orderData?.from == "App" ? true : false}
-
     />
   );
   return (
@@ -118,7 +117,7 @@ const MyOrdersListScreen = ({
                 deliveryMethod={t('delivery_method')}
                 deliveryAddress={t('delivery_address')}
                 date={orderData?.orderDate}
-                method={orderData?.deliveryMethod}
+                method={i18n.language == "en" ? orderData?.deliveryMethod : getObjKey(chi_eng,orderData?.deliveryMethod)}
                 address={
                   orderData?.deliveryMethod === 'Delivery'
                     ? orderData?.deliveryAddress
@@ -135,7 +134,7 @@ const MyOrdersListScreen = ({
                 date={`HK$ ${Math.round(orderData?.subTotal)}`}
                 method={`HK$ ${Math.round(orderData?.deliveryCost)}`}
                 address={`HK$ ${Math.round(orderData?.total)}`}
-                payment={orderData?.paymentMethod}
+                payment={i18n.language == "en" ? orderData?.paymentMethod : getObjKey(chi_eng,orderData?.paymentMethod)}
                 discountAmount={`(HK$${Math.round(orderData?.discount)})`}
               />
               <CategoriesTitleHeader title={t('order_support')} />

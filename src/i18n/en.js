@@ -240,6 +240,7 @@ export const en = {
     choose_SpotUv: 'Choose spot UV',
     spotUv: 'Spot UV effect',
     quantity_text: 'Quantity:',
+    quantity_text_table: 'Quantity',
     price_HK: 'Price (HK$)',
     unit_text: 'Unit price',
     show_more: 'Show more quantity',
@@ -328,12 +329,9 @@ export const en = {
     no_data_message:'No Data',
     alter_message_for_primary_card: 'Before removing the primary card, make another primary',
     alter_message_for_primary_address: 'Before removing the primary address, make another primary',
-    change_password_invalide_message:'Current password is invalid'
-
-
-
-
-
+    change_password_invalide_message:'Current password is invalid',
+    exp_Card_Date:"Exp:",
+    number_required: 'Number is required',
 
   },
 };

@@ -116,7 +116,6 @@ const CartScreen = ({
       navigate={navigate}
       handleEditProduct={handleEditProduct}
       handleRemoveProduct={handleRemoveProduct}
-      from={true}
     />
   );
 
@@ -251,7 +250,8 @@ const CartScreen = ({
             </ScrollView>
           ) : (
             <>
-              <EmptyCartContainer />
+            {cartItem?.length == 0 &&
+              <EmptyCartContainer />}
             </>
           )}
 

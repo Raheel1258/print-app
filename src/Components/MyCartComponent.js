@@ -18,7 +18,6 @@ const MyCartComponent = ({
   navigate,
   handleRemoveProduct,
   handleEditProduct,
-  from,
 }) => {
 
   const { t } = useTranslation();

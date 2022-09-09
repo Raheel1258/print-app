@@ -3,6 +3,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors,fonts} from '../Utils/theme';
+import {useTranslation} from 'react-i18next';
 import UnCheckedCircleIcon from '../Assests/Svgs/UnCheckedCircleIcon';
 import CheckedBlueIcon from '../Assests/Svgs/CheckedBlueIcon';
 import MasterCard from '../Assests/Svgs/MasterCard';
@@ -21,6 +22,7 @@ const DeliverAndCreditCard = ({
     handleSelectedPrimary = () => {},
     handleSelectedPrimaryCard = () =>{}
 }) => {
+  const {t} = useTranslation();
 
   return (
     <TouchableOpacity style={styles.borderContainer} onPress={onPress}>
@@ -69,7 +71,7 @@ const DeliverAndCreditCard = ({
             {item?.name}
             </Text>
             <Text style={styles.addressText} numberOfLines={2}>
-            Exp:{`${item?.exp_month}/${item?.exp_year}`}
+            {`${t('exp_Card_Date')}${item?.exp_month}/${item?.exp_year}`}
             </Text>
             {/* <Text style={styles.addressText} numberOfLines={2}>
             {item?.country}

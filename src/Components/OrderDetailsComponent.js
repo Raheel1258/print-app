@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 
+
 import {colors, fonts} from '../Utils/theme';
 
 const OrderDetailsComponent = ({

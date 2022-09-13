@@ -170,7 +170,7 @@ export const chi_eng = {
   //Extra
   "送貨":"Delivery",
   "信用卡":"Credit Card",
-  "自取":"Self pickup",
+  "自取 ":"Self pickup",
   "自取":"Self pick-up",
   "銀行轉帳":"Bank Tarnsfer",
   "銀行轉帳":"Bank tarnsfer",

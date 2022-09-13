@@ -185,7 +185,7 @@ const CartScreen = ({
                 radioButtonStatus={delivery}
                 setRadioButtonStatus={setDelivery}
                 handleCheckedOne={() => setDeliveryMethod('Delivery')}
-                handleCheckedTwo={() => setDeliveryMethod('Self pickup')}
+                handleCheckedTwo={() => setDeliveryMethod('Self pick-up')}
               />
               <CategoriesTitleHeader title={t('payment_method')} />
               <RadioButtonComponent

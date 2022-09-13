@@ -31,12 +31,12 @@ const ImageSwiper = ({sliderImages, autoPlaySlider = true}) => {
                     {i18n.language == "en" ? <><Text style={styles.text}>
                       {(item?.caption && item?.caption.substring(0,21))}
                     </Text>
-                    <Text style={styles.textChi}>{item?.caption && item?.caption.substring(21)}</Text></>
+                    <Text style={styles.text1}>{item?.caption && item?.caption.substring(21)}</Text></>
                     :
                     <><Text style={styles.text}>
                       {(item?.caption_chi && item?.caption_chi.substring(0,4))}
                     </Text>
-                    <Text style={styles.textChi}>{item?.caption_chi && item?.caption_chi.substring(4)}</Text></>
+                    <Text style={styles.text1}>{item?.caption_chi && item?.caption_chi.substring(4)}</Text></>
                     }
                     </>
                     :
@@ -101,7 +101,7 @@ const styles = ScaledSheet.create({
     width: '310@s',
     marginBottom:'-25@s',
   },
-  textChi: {
+  text1: {
     fontFamily: fonts.avenir_next,
     fontSize: '22@s',
     fontStyle: 'normal',

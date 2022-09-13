@@ -4,8 +4,12 @@ import {ScaledSheet} from 'react-native-size-matters';
 import Swiper from 'react-native-swiper';
 import {colors, fonts} from '../Utils/theme';
 import i18n from 'i18next';
+import { chi_eng } from '../Utils/mockData';
+
+
 
 const ImageSwiper = ({sliderImages, autoPlaySlider = true}) => {
+  console.log("slider images", sliderImages);
   return (
     <View style={styles.container}>
       <Swiper
@@ -23,9 +27,23 @@ const ImageSwiper = ({sliderImages, autoPlaySlider = true}) => {
                     imageStyle={styles.image}
                     source={{uri: item?.image}}
                     transition={false}>
-                    <Text style={styles.text}>
-                      {i18n.language == "en" ? (item?.caption && item?.caption): (item?.caption_chi && item?.caption_chi)}
+                    {item?.caption == chi_eng[item.caption] ?
+                    <>
+                    {i18n.language == "en" ? <><Text style={styles.text}>
+                      {(item?.caption && item?.caption.substring(0,21))}
                     </Text>
+                    <Text style={styles.textChi}>{item?.caption && item?.caption.substring(21)}</Text></>
+                    :
+                    <><Text style={styles.text}>
+                      {(item?.caption_chi && item?.caption_chi.substring(0,4))}
+                    </Text>
+                    <Text style={styles.textChi}>{item?.caption_chi && item?.caption_chi.substring(4)}</Text></>
+                    }
+                    </>
+                    :
+                    <Text style={styles.text}>
+                    {i18n.language == "en" ? (item?.caption && item?.caption): (item?.caption_chi && item?.caption_chi)}
+                  </Text>}
                   </ImageBackground>
                 ) : (
                   <ImageBackground
@@ -82,6 +100,16 @@ const styles = ScaledSheet.create({
     marginTop: '40@s',
     padding: '25@s',
     width: '310@s',
+    marginBottom:'-25@s',
+  },
+  textChi: {
+    fontFamily: fonts.avenir_next,
+    fontSize: '22@s',
+    fontStyle: 'normal',
+    lineHeight: '27@s',
+    letterSpacing: '0.2@s',
+    color: colors.whiteColor,
+    marginLeft:'24@s'
   },
 });
 

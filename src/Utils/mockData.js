@@ -170,16 +170,18 @@ export const chi_eng = {
   //Extra
   "送貨":"Delivery",
   "信用卡":"Credit Card",
-  "自取":"Self pickup",
+  "自取 ":"Self pickup",
   "自取":"Self pick-up",
   "銀行轉帳":"Bank Tarnsfer",
   "銀行轉帳":"Bank tarnsfer",
+  "想印嘢?用PrintPrint一個App搞掂哂！":"Order your next print in just a few taps",
   "Self pick-up":"Self pick-up",
   "Bank tarnsfer":"Bank tarnsfer",
   "Bank Tarnsfer":"Bank Tarnsfer",
   "Self pickup":"Self pickup",
   "Delivery":"Delivery",
-  "Credit Card":"Credit Card" 
+  "Credit Card":"Credit Card",
+  "Order your next print in just a few taps":"Order your next print in just a few taps"
 
 
 

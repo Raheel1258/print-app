@@ -9,7 +9,6 @@ import { chi_eng } from '../Utils/mockData';
 
 
 const ImageSwiper = ({sliderImages, autoPlaySlider = true}) => {
-  console.log("slider images", sliderImages);
   return (
     <View style={styles.container}>
       <Swiper

@@ -30,7 +30,6 @@ export const getCategories = (setAnimation) => {
         .then(async (res) => {
              //Activity Api
              const accessToken = await Storage.retrieveData('token');
-             console.log("accccTooo" , accessToken)
              if(accessToken){
               axios.get(`${Api}/notifications/`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
               .then(async (res) => {

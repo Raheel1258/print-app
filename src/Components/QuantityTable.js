@@ -24,7 +24,7 @@ const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, priceChartAni
     <>
     {!priceChartAnimation ? <View style={styles.tableContainer}>
       <View style={styles.tableHeader}>
-        <Text style={styles.headerTitle}>{t('quantity_text')}</Text>
+        <Text style={styles.headerTitleQuantity}>{t('quantity_text_table')}</Text>
         <Text style={styles.headerTitle}>{t('price_HK')}</Text>
         <Text style={styles.headerTitle}>{t('unit_text')}</Text>
       </View>
@@ -67,16 +67,33 @@ const styles = ScaledSheet.create({
     borderRadius: '10@s',
     marginVertical: '17@s',
   },
+  headerTitleQuantity: {
+    fontFamily:fonts.avenir_bold,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    // fontWeight: '800',
+    // fontStyle: 'normal',
+    lineHeight: '13@s',
+    letterSpacing: '0.2@s',
+    textAlign: 'left',
+    width:'25%',
+    color: colors.blackColor,
+    paddingLeft:'18@s'
+  },
   headerTitle: {
     fontFamily:fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
     // fontWeight: '800',
-    fontStyle: 'normal',
+    // fontStyle: 'normal',
     lineHeight: '13@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
+    width:'25%',
     color: colors.blackColor,
+    // paddingLeft:'10@s'
+    // marginLeft:"10@s"
+    // padding:"10@s"
   },
   dollerPrice: {
     fontFamily:fonts.avenir_bold,
@@ -96,7 +113,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: '18@s',
+    // paddingHorizontal: '18@s',
     height: '50@s',
   },
   showMore: {

@@ -12,7 +12,7 @@ import {chi} from './chi';
   i18n.use(initReactI18next).init(
     {
     resources,
-    lng: 'en',
+    lng: 'chi',
   
     interpolation: {
       escapeValue: false,

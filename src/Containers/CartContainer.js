@@ -2,9 +2,12 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { t } from 'i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import Toast from 'react-native-toast-message';
+
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   getCartData, PromoCodeVerifed,
   deleteProduct,
@@ -14,16 +17,15 @@ import {
   paymentWithSaveCard,
   makeCardPrimaryForCart,
   getPrimaryAddress,
-  getPrimaryCards
+  getPrimaryCards,
+  discountReset
 } from '../store/actions/cartAction';
 import { makeAddressPrimary } from '../store/actions/userPersonalDetailAction'
-import Toast from 'react-native-toast-message';
 
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
 import CartScreen from '../Screens/CartScreen';
 import { colors } from '../Utils/theme';
-import { t } from 'i18next';
 
 const CartContainer = () => {
   const navigation = useNavigation();
@@ -68,6 +70,7 @@ const CartContainer = () => {
   const [data, setData] = useState(userDetailData?.addresses);
   const [cardData, setCardData] = useState(userCardsDetails);
   const primaryAddress = userDetailData?.addresses?.filter((item) => item?.primary == true);
+  const [renderScreen, setRenderScreen] = useState(false);
   // const [cardData, setCardData] = useState([
   //   {
   //     id: '1',
@@ -94,6 +97,7 @@ const CartContainer = () => {
   //   })
 
   // }, [isFocused])
+  
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
@@ -110,9 +114,7 @@ const CartContainer = () => {
     });
   }, [isFocused])
 
-  // useEffect(() => {
 
-  // }, []);
 
   useEffect(() => {
     handleTotalAmount();
@@ -123,6 +125,9 @@ const CartContainer = () => {
   }
 
   const handleChange = (value) => {
+    if(validPromoCode){
+      dispatch(discountReset())
+    }
     setTextValue(value);
     setValidPromoCode(false)
   };
@@ -134,6 +139,14 @@ const CartContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const renderScreenForAddress = () => {
+    dispatch(getPrimaryAddress(setAnimation, setDeliveryUserAddress))
+  }
+
+  const renderScreenForCard = () => {
+    dispatch(getPrimaryCards(setAnimation, setUserCardData))
+  }
 
   const promoCodeToggleModal = () => {
     setIsPromoCodeModaVidible(!isPromoCodeModaVidible);
@@ -224,7 +237,6 @@ const CartContainer = () => {
   }
 
   const handleTotalAmount = () => {
-    console.log("carts items for amount", cartItem);
     let deliveryCost = 0;
     let quantity = 0;
     let unitPrice = 0;
@@ -242,9 +254,10 @@ const CartContainer = () => {
     if (promocodeDiscount !== '0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !== "") {
       console.log("case promocode and delivery")
       if (promoCodeType == "PERCENTAGE") {
-        totalPrice = parseFloat(totalPrice + deliveryCost);
+        // totalPrice = parseFloat(totalPrice);
         amountInPercent = (parseFloat(promocodeDiscount / 100) * totalPrice);
         totalPrice = totalPrice - amountInPercent;
+        totalPrice = parseFloat(totalPrice + deliveryCost);
         setTotal(totalPrice);
         setDiscountInPercentage(amountInPercent)
       } else if (promoCodeType == "DELIVERY_CHARGES") {
@@ -255,8 +268,8 @@ const CartContainer = () => {
         setDiscountInPercentage(amountInPercent)
       }
       else {
-        totalPrice = parseFloat(totalPrice + deliveryCost);
         totalPrice = totalPrice - parseFloat(promocodeDiscount);
+        totalPrice = parseFloat(totalPrice + deliveryCost);
         setTotal(totalPrice);
         setDiscountInPercentage(amountInPercent)
       }
@@ -344,6 +357,9 @@ const CartContainer = () => {
         setUserCardData={setUserCardData}
         handleSelectedPrimaryCard={handleSelectedPrimaryCard}
         discountInPercentage={discountInPercentage}
+        setRenderScreen={setRenderScreen}
+        renderScreenForAddress={renderScreenForAddress}
+        renderScreenForCard={renderScreenForCard}
       />
     </View>
   );

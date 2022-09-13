@@ -108,10 +108,14 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         query = query + key + "=" + values[key] + "&"
       }
     })
+    
     axios.get(`${Api}/price-chart/${values.category}?${query}`)
       .then(async (res) => {
-        dispatch(setPriceChart(res?.data));
-        setSelectedPriceChart(res?.data[0]);
+        const newData = res?.data?.sort((a, b) => {
+          return a.units - b.units;
+        });
+        dispatch(setPriceChart(newData));
+        setSelectedPriceChart(newData[0]);
         // // setPriceChart(res?.data);
         setPriceChartAnimation(false);
       })
@@ -184,8 +188,11 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
     })
     axios.get(`${Api}/price-chart/${values.category}?${query}`)
       .then(async (res) => {
-        dispatch(setPriceChartOnEdit(res?.data));
-        setSelectedPriceChart(res?.data[0]);
+        const newData = res?.data?.sort((a, b) => {
+          return a.units - b.units;
+        });
+        dispatch(setPriceChartOnEdit(newData));
+        setSelectedPriceChart(newData[0]);
         // // setPriceChart(res?.data);
         setPriceChartAnimation(false);
       })
@@ -232,6 +239,7 @@ export const uploadFile = (formData, setAnimation, setResult) => {
         setResult((prev) => {
           return [...prev, res?.data?.Location];
         });
+        
       })
       .catch((err) => {
         setAnimation(false);

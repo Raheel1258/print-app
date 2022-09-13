@@ -19,8 +19,10 @@ const AccountContainer = () => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
-  const [languageToggle, setLanguageToggle] = useState(true);
+  const [languageToggle, setLanguageToggle] = useState(false);
 
+  // i18n.language
+  //i18n.changelanguage() 
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data);

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator, ScrollView } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
+
 
 import { AllCategoriesCard, ImageSwiper } from '../Components';
 import { colors, fonts } from '../Utils/theme';
@@ -12,7 +14,13 @@ const HomeScreen = ({ categories, homeSliderImages, animation }) => {
 
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
-    <AllCategoriesCard title={item.title} deliveryTime={item.deliveryTime} image={item.image} priceDescription={item.priceDescription} category={item.category} />
+    <AllCategoriesCard 
+    title={i18n.language == "en" ? item.title : item.title_chi} 
+    deliveryTime={i18n.language == "en" ? item.deliveryTime : item.deliveryTime_chi} 
+    image={item.image} 
+    priceDescription={i18n.language == "en" ? item.priceDescription : item.priceDescription_chi} 
+    category={item.category} 
+    />
   );
   return (
     <>

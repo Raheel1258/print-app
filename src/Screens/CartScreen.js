@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
-import { View, Text, FlatList, ScrollView, ActivityIndicator, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { ScaledSheet } from 'react-native-size-matters';
-import { useTranslation } from 'react-i18next';
-import { EmptyCartContainer } from '../Containers';
+import React, {useEffect} from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  ScrollView,
+  ActivityIndicator,
+  TextInput,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {ScaledSheet} from 'react-native-size-matters';
+import {useTranslation} from 'react-i18next';
+import {EmptyCartContainer} from '../Containers';
 import GreenCheckIcon from '../Assests/Svgs/GreenCheckIcon';
 
 import {
@@ -18,13 +25,13 @@ import {
   DeliverAddressComponent,
   AddNewAddressForm,
   AddNewCreditCardForm,
-  AddNewCreditCardSheet
+  AddNewCreditCardSheet,
 } from '../Components';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
 import SecondBusinessCard from '../Assests/Images/Premium-business-card-two.png';
-import { colors, fonts } from '../Utils/theme';
-import { NavigationContainer } from '@react-navigation/native';
+import {colors, fonts} from '../Utils/theme';
+import {NavigationContainer} from '@react-navigation/native';
 
 const DATA = [
   {
@@ -92,11 +99,13 @@ const CartScreen = ({
   handleCardsForBottomSheet,
   userCardData,
   setUserCardData,
-  handleSelectedPrimaryCard
+  handleSelectedPrimaryCard,
+  renderScreenForAddress,
+  renderScreenForCard
 }) => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const navigation = useNavigation();
-  const renderItem = ({ item, index }) => (
+  const renderItem = ({item, index}) => (
     <MyCartComponent
       image={item?.image}
       edit={true}
@@ -112,116 +121,139 @@ const CartScreen = ({
 
   return (
     <>
-      {!animation ?
+      {!animation ? (
         <View style={styles.container}>
-          {(!animation && cartItem?.length > 0 && userToken) ? <ScrollView nestedScrollEnabled={true}>
-            <BackArrowHeader
-              arrow={false}
-              title={t('cart_text')}
-              borderBottomWidth={0}
-              goBack={goBack}
-            />
-            <CategoriesTitleHeader title={t('my_cart')} />
-            <FlatList
-              data={cartItem && cartItem}
-              renderItem={renderItem}
-              keyExtractor={item => item.id}
-              contentContainerStyle={{ paddingBottom: 0 }}
-            />
-            <CategoriesTitleHeader title={t('promo_code')} />
+          {!animation && cartItem?.length > 0 && userToken ? (
+            <ScrollView nestedScrollEnabled={true}>
+              <BackArrowHeader
+                arrow={false}
+                title={t('cart_text')}
+                borderBottomWidth={0}
+                goBack={goBack}
+              />
+              <CategoriesTitleHeader title={t('my_cart')} />
+              <FlatList
+                data={cartItem && cartItem}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                contentContainerStyle={{paddingBottom: 0}}
+              />
+              <CategoriesTitleHeader title={t('promo_code')} />
 
-            {/* PromoCOde */}
-            <View style={styles.promoCode}>
-              <Text style={styles.textInputTitle}>{t('add_promo_code')}</Text>
-              <View style={styles.textInputContainer}>
-                <TextInput
-                  style={styles.textInput}
-                  // value={textValue}
-                  keyboardType="default"
-                  autoCapitalize="none"
-                  onChangeText={(text) => handleChange(text)}
-                />
-                <View>{(promocodeDiscount != "0" && textValue !== '' && validPromoCode == true) && <GreenCheckIcon />}</View>
+              {/* PromoCOde */}
+              <View style={styles.promoCode}>
+                <Text style={styles.textInputTitle}>{t('add_promo_code')}</Text>
+                <View style={styles.textInputContainer}>
+                  <TextInput
+                    style={styles.textInput}
+                    // value={textValue}
+                    keyboardType="default"
+                    autoCapitalize="none"
+                    onChangeText={text => handleChange(text)}
+                  />
+                  <View>
+                    {promocodeDiscount != '0' &&
+                      textValue !== '' &&
+                      validPromoCode == true && <GreenCheckIcon />}
+                  </View>
+                </View>
               </View>
-
-            </View>
-            <View style={styles.buttonWrapper}>
-              <GreenButton
-                onPress={() => handlePromoCodeValidation()}
-                backgroundColor={colors.inputBorderColor}
-                color={colors.lightBlackColor}
-                title={t('apply_code')}
-                buttonHeight={50}
-                animation={promoCodeAnimation}
+              <View style={styles.buttonWrapper}>
+                <GreenButton
+                  onPress={() => handlePromoCodeValidation()}
+                  backgroundColor={colors.inputBorderColor}
+                  color={colors.lightBlackColor}
+                  title={t('apply_code')}
+                  buttonHeight={50}
+                  animation={promoCodeAnimation}
+                />
+              </View>
+              <CategoriesTitleHeader title={t('delivery_pickup_option')} />
+              <RadioButtonComponent
+                onPress={() => handleAddressForBottomSheet()}
+                title={t('delivery_text')}
+                secondTitle={t('pick_up')}
+                description={
+                  deliveryUserAddress?.addressLine1 == undefined
+                    ? 'No'
+                    : deliveryUserAddress
+                }
+                addressRadio={true}
+                openfun={() => handleAddressForBottomSheet()}
+                secondDescription={t('company_address_delivery_heading')}
+                thirdDescription={t('company_address_delivery')}
+                radioButtonStatus={delivery}
+                setRadioButtonStatus={setDelivery}
+                handleCheckedOne={() => setDeliveryMethod('Delivery')}
+                handleCheckedTwo={() => setDeliveryMethod('Self pickup')}
               />
-            </View>
-            <CategoriesTitleHeader title={t('delivery_pickup_option')} />
-            <RadioButtonComponent
-              onPress={() => handleAddressForBottomSheet()}
-              title={t('delivery_text')}
-              secondTitle={t('pick_up')}
-              description={deliveryUserAddress?.addressLine1 == undefined ? "No" : deliveryUserAddress}
-              addressRadio={true}
-              openfun={() => handleAddressForBottomSheet()}
-              secondDescription={t('company_address_delivery_heading')}
-              thirdDescription={t('company_address_delivery')}
-              radioButtonStatus={delivery}
-              setRadioButtonStatus={setDelivery}
-              handleCheckedOne={() => setDeliveryMethod('Delivery')}
-              handleCheckedTwo={() => setDeliveryMethod('Self pickup')}
-            />
-            <CategoriesTitleHeader title={t('payment_method')} />
-            <RadioButtonComponent
-              onPress={() => handleCardsForBottomSheet()}
-              toggleModal={toggleModal}
-              title={t('cradit_card_text')}
-              addressRadio={false}
-              description={userCardData?.id ? userCardData : "Noo"}
-              openfun={() => handleCardsForBottomSheet()}
-              secondTitle={t('bank_transfer')}
-              secondDescription={t("bank_detail")}
-              radioButtonStatus={paymentMethod}
-              setRadioButtonStatus={setPaymentMethod}
-              paymentMethodName={setPaymentMethodName}
-              handleCheckedOne={() => setPaymentMethodName('Credit Card')}
-              handleCheckedTwo={() => setPaymentMethodName('Bank Tarnsfer')}
-            />
-            <CategoriesTitleHeader title={t('order_summary')} />
-            <OrderSummaryComponent discountInPercentage={discountInPercentage} promoCodeType={promoCodeType} subTotal={subTotal} promocodeDiscount={promocodeDiscount} total={total} deliveryMethod={deliveryMethod} deliveryCost={deliveryCost} />
-            <View style={styles.placeOrderContainer}>
-              <Text style={styles.orderPlaceText}>
-                <Text style={styles.confidenceText}>{t('order_confidence')} </Text>
-                {t('all_orders')}
-                <Text style={styles.fullRefundText}> {t('full_refund')} </Text>
-                {t('before_production')}
-              </Text>
-              <GreenButton
-                // onPress={() => navigate('orderReceived')}
-                onPress={() => handlePayment()}
-                backgroundColor={colors.blackColor}
-                buttonHeight={57}
-                title={t('place_order')}
-                animation={placeOrderAnimation}
-
-              />
-              <VerificationModal
-                title={t('pay_bank_transfer')}
-                description={t('bank_transfer_description')}
-                isModalVisible={isModalVisible}
+              <CategoriesTitleHeader title={t('payment_method')} />
+              <RadioButtonComponent
+                onPress={() => handleCardsForBottomSheet()}
                 toggleModal={toggleModal}
+                title={t('cradit_card_text')}
+                addressRadio={false}
+                description={userCardData?.id ? userCardData : 'Noo'}
+                openfun={() => handleCardsForBottomSheet()}
+                secondTitle={t('bank_transfer')}
+                secondDescription={t('bank_detail')}
+                radioButtonStatus={paymentMethod}
+                setRadioButtonStatus={setPaymentMethod}
+                paymentMethodName={setPaymentMethodName}
+                handleCheckedOne={() => setPaymentMethodName('Credit Card')}
+                handleCheckedTwo={() => setPaymentMethodName('Bank Tarnsfer')}
               />
+              <CategoriesTitleHeader title={t('order_summary')} />
+              <OrderSummaryComponent
+                discountInPercentage={discountInPercentage}
+                promoCodeType={promoCodeType}
+                subTotal={subTotal}
+                promocodeDiscount={promocodeDiscount}
+                total={total}
+                deliveryMethod={deliveryMethod}
+                deliveryCost={deliveryCost}
+              />
+              <View style={styles.placeOrderContainer}>
+                <Text style={styles.orderPlaceText}>
+                  <Text style={styles.confidenceText}>
+                    {t('order_confidence')}{' '}
+                  </Text>
+                  {t('all_orders')}
+                  <Text style={styles.fullRefundText}>
+                    {' '}
+                    {t('full_refund')}{' '}
+                  </Text>
+                  {t('before_production')}
+                </Text>
+                <GreenButton
+                  // onPress={() => navigate('orderReceived')}
+                  onPress={() => handlePayment()}
+                  backgroundColor={colors.blackColor}
+                  buttonHeight={57}
+                  title={t('place_order')}
+                  animation={placeOrderAnimation}
+                />
+                <VerificationModal
+                  title={t('pay_bank_transfer')}
+                  description={t('bank_transfer_description')}
+                  isModalVisible={isModalVisible}
+                  toggleModal={toggleModal}
+                />
 
-              <VerificationModal
-                title={t('invalid_promocode')}
-                description={t('invalid_promoCode_message')}
-                isModalVisible={isPromoCodeModaVidible}
-                toggleModal={promoCodeToggleModal}
-              />
-            </View>
-          </ScrollView> : <>
-            <EmptyCartContainer />
-          </>
-          }
+                <VerificationModal
+                  title={t('invalid_promocode')}
+                  description={t('invalid_promoCode_message')}
+                  isModalVisible={isPromoCodeModaVidible}
+                  toggleModal={promoCodeToggleModal}
+                />
+              </View>
+            </ScrollView>
+          ) : (
+            <>
+            {cartItem?.length == 0 &&
+              <EmptyCartContainer />}
+            </>
+          )}
 
           <BottomSheetComponent
             childern={
@@ -241,7 +273,12 @@ const CartScreen = ({
                   }}
                 />
                 <BottomSheetComponent
-                  childern={<AddNewAddressForm addAddressRBSheet={addAddressRBSheet} handleAddressForBottomSheet={handleAddressForBottomSheet} />}
+                  childern={
+                    <AddNewAddressForm
+                      addAddressRBSheet={addAddressRBSheet}
+                      handleAddressForBottomSheet={handleAddressForBottomSheet}
+                    />
+                  }
                   title={t('add_new_address')}
                   note={false}
                   refRBSheet={addAddressRBSheet}
@@ -251,6 +288,10 @@ const CartScreen = ({
             title={t('deviver_to')}
             note={false}
             refRBSheet={refRBSheet}
+            closePress={()=>{
+              renderScreenForAddress()
+              refRBSheet.current.close()
+            }}
           />
           <BottomSheetComponent
             childern={
@@ -268,10 +309,14 @@ const CartScreen = ({
                     // creditCardRBSheet.current.close();
                     addCardetCardRBSheet.current.open();
                   }}
-
                 />
                 <BottomSheetComponent
-                  childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} handleCardsForBottomSheet={handleCardsForBottomSheet} />}
+                  childern={
+                    <AddNewCreditCardSheet
+                      addCardetCardRBSheet={addCardetCardRBSheet}
+                      handleCardsForBottomSheet={handleCardsForBottomSheet}
+                    />
+                  }
                   title={t('add_new_cardet_card')}
                   note={false}
                   refRBSheet={addCardetCardRBSheet}
@@ -281,6 +326,10 @@ const CartScreen = ({
             title={t('credit_cards')}
             note={false}
             refRBSheet={creditCardRBSheet}
+            closePress={()=>{
+              renderScreenForCard()
+              creditCardRBSheet.current.close()
+            }}
           />
           {/* <BottomSheetComponent
             childern={<AddNewAddressForm />}
@@ -338,11 +387,12 @@ const CartScreen = ({
             height={420}
             // onClose={false}
           /> */}
-
         </View>
-        : <View style={styles.loaderContainer}>
+      ) : (
+        <View style={styles.loaderContainer}>
           <ActivityIndicator size="small" color="#000" animating={true} />
-        </View>}
+        </View>
+      )}
       <BottomSheetComponent
         childern={
           <>
@@ -359,7 +409,7 @@ const CartScreen = ({
                 title={t('signup_text')}
                 onPress={() => {
                   authRBSheet.current.close();
-                  navigate('auth', { next: 'signup' });
+                  navigate('auth', {next: 'signup'});
                   setFocused(true);
                 }}
               />
@@ -374,7 +424,7 @@ const CartScreen = ({
                 borderWidth={2}
                 onPress={() => {
                   authRBSheet.current.close();
-                  navigate('auth', { next: 'signin' });
+                  navigate('auth', {next: 'signin'});
                   setFocused(false);
                 }}
               />
@@ -385,7 +435,7 @@ const CartScreen = ({
         // note={false}
         refRBSheet={authRBSheet}
         height={420}
-      // onClose={false}
+        // onClose={false}
       />
     </>
   );
@@ -430,7 +480,7 @@ const styles = ScaledSheet.create({
   logoWrapper: {
     alignItems: 'center',
     marginVertical: '15@s',
-    marginBottom: '25@s'
+    marginBottom: '25@s',
   },
   signinButtonWrapper: {
     marginTop: '10@s',
@@ -460,7 +510,7 @@ const styles = ScaledSheet.create({
     paddingLeft: '0@s',
     paddingBottom: '7@s',
     textTransform: 'uppercase',
-    width: '90%'
+    width: '90%',
   },
   textInputContainer: {
     flexDirection: 'row',
@@ -471,8 +521,8 @@ const styles = ScaledSheet.create({
   },
   promoCode: {
     marginTop: '10@s',
-    marginHorizontal: '12@s'
-  }
+    marginHorizontal: '12@s',
+  },
 });
 
 export default CartScreen;

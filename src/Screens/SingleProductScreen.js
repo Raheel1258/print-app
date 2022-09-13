@@ -1,9 +1,18 @@
 import React from 'react';
-import { View, Image, ScrollView, Text, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Linking } from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
-import { useTranslation } from 'react-i18next';
+import {
+  View,
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+  Keyboard,
+  Linking,
+} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
+import {useTranslation} from 'react-i18next';
 import i18n from 'i18next';
-
 
 import {
   BackArrowHeader,
@@ -21,9 +30,10 @@ import {
 } from '../Components';
 import InfoIcon from '../Assests/Svgs/InfoIcon';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
-import { colors, fonts } from '../Utils/theme';
+import {colors, fonts} from '../Utils/theme';
 
 const SingleProductScreen = ({
+  chi_eng,
   animation,
   priceChartAnimation,
   categoryTitle,
@@ -93,23 +103,21 @@ const SingleProductScreen = ({
   navigate,
   handleAnotherDesign,
   remarks,
-  productData
+  productData,
 }) => {
   let widthOne = 120;
   let heightOne = 65;
   let marginTop = 20;
-  const getIndex = (index) => {
-    if (category == "STICKERS_LABEL" && index == 0) {
+  const getIndex = index => {
+    if (category == 'STICKERS_LABEL' && index == 0) {
       widthOne = 27;
       heightOne = 27;
       marginTop = 50;
-    }
-    else if (category == "STICKERS_LABEL" && index == 1) {
+    } else if (category == 'STICKERS_LABEL' && index == 1) {
       widthOne = 35;
       heightOne = 35;
       marginTop = 45;
-    }
-    else if (category == "STICKERS_LABEL" && index == 2) {
+    } else if (category == 'STICKERS_LABEL' && index == 2) {
       widthOne = 50;
       heightOne = 50;
       marginTop = 35;
@@ -118,190 +126,344 @@ const SingleProductScreen = ({
       heightOne = 65;
       marginTop = 30;
     }
-  }
-  const { t } = useTranslation();
+  };
+  const {t} = useTranslation();
   const getSize = () => {
     if (category == 'BOOKLET') {
-      return selectedSize?.name
+      return selectedSize?.name;
     } else if (category == 'BUSINESS_CARD') {
-      return `${selectedSize?.width} x ${selectedSize?.height}`
+      return `${selectedSize?.width} x ${selectedSize?.height}`;
     } else if (category == 'POSTER') {
-      return selectedSize?.name
-    } else if (category == "FLYERS_LEAFLET" && item?.category?.name == "Square Flyer") {
-      return `${selectedSize?.width} x ${selectedSize?.height}`
+      return selectedSize?.name;
+    } else if (
+      category == 'FLYERS_LEAFLET' &&
+      // item?.category?.name == 'Square Flyer'
+      item?.index == "1"
+    ) {
+      return `${selectedSize?.width} x ${selectedSize?.height}`;
     }
-  }
+  };
+  const general_size = i18n.language == "en" ? item?.size : item?.size_chi;
+  const general_corner = i18n.language == "en" ? item?.corner : item?.corner_chi ;
+  const general_spotVu = i18n.language == "en" ? item?.spotUV : item?.spotUV_chi;
+  const general_finishing = i18n.language == "en" ? item?.finishing: item?.finishing_chi;
+  const general_paperType = i18n.language == "en" ? item?.paperType : item?.paperType_chi;
+  const general_numberOfSides = i18n.language == "en" ? item?.numberOfSides : item?.numberOfSides_chi;
+  const general_folding = i18n.language == "en" ? item?.folding : item?.folding_chi;
+  const general_cut = i18n.language == "en" ? item?.cut: item?.cut_chi;
+  const general_window = i18n.language == "en" ? item?.window: item?.window_chi;
+  const general_numberOfPages = i18n.language == "en" ? (item?.numberOfPages[0] && item?.numberOfPages[0]?.number) : (item?.numberOfPages[0] && item?.numberOfPages_chi[0]?.number) ;
+  //item?.numberOfPages[1]?.number
+  const general_numberOfPagesInnerPages = i18n.language == "en" ? (item?.numberOfPages[1] && item?.numberOfPages[1]?.number) : (item?.numberOfPages[1] && item?.numberOfPages_chi[1]?.number)
   return (
     <>
-      {!animation ?
+      {!animation ? (
         <View style={styles.container}>
-          <BackArrowHeader goBack={goBack} title={categoryTitle} arrow={false} />
+          <BackArrowHeader
+            goBack={goBack}
+            title={categoryTitle}
+            arrow={false}
+          />
           <ScrollView style={styles.marginContainer}>
             <View style={styles.sliderWrapper}>
-              <ImageSwiper sliderImages={item?.image ? item?.image : []} autoPlaySlider={false} />
+              <ImageSwiper
+                sliderImages={item?.image ? item?.image : []}
+                autoPlaySlider={false}
+              />
               <SingleCardDescription item={item} />
             </View>
 
-            <CategoriesTitleHeader title={category === 'BOOKLET' ? t('choose_book_size') : t('choose_size')} />
-            <View style={!(category === "ENVELOPE" || category === "LETTERHEAD") ? styles.cardsContainer : ""}>
-              {!(category === "ENVELOPE" || category === "LETTERHEAD") ? item?.size.map((item, index) => {
-                category == "STICKERS_LABEL" && getIndex(index);
+            <CategoriesTitleHeader
+              title={
+                category === 'BOOKLET'
+                  ? t('choose_book_size')
+                  : t('choose_size')
+              }
+            />
+            <View
+              style={
+                !(category === 'ENVELOPE' || category === 'LETTERHEAD')
+                  ? styles.cardsContainer
+                  : ''
+              }>
+              {!(category === 'ENVELOPE' || category === 'LETTERHEAD') ? (
+                general_size?.map((item, index)  => {
+                  category == 'STICKERS_LABEL' && getIndex(index);
 
-                return (
-                  <View key={index}>
-                    <CardSizeComponent
-                      Childern={
-                        <Image transition={false} resizeMode='contain' style={item?.name == "Square" ? styles.squareStyling : { ...styles.squareImage, width: widthOne, height: heightOne, marginTop: marginTop }} source={{ uri: item?.image }} />}
-                      cardStandard={item?.name}
-                      cardDimensions={`${item?.width}mm x ${item?.height}mm`}
-                      selectedSize={selectedSize?.name}
-                      onPress={() => { setSelectedSize(item), setValues({ ...defaultValuesObject, size: getSize() }) }}
-                    />
-                  </View>
-                )
-              }) :
+                  return (
+                    <View key={index}>
+                      <CardSizeComponent
+                        Childern={
+                          <Image
+                            transition={false}
+                            resizeMode="contain"
+                            style={
+                              chi_eng[item?.name] == 'Square'
+                                ? styles.squareStyling
+                                : {
+                                    ...styles.squareImage,
+                                    width: widthOne,
+                                    height: heightOne,
+                                    marginTop: marginTop,
+                                  }
+                            }
+                            source={{uri: item?.image}}
+                          />
+                        }
+                        cardStandard={item?.name}
+                        cardDimensions={`${item?.width}mm x ${item?.height}mm`}
+                        selectedSize={selectedSize?.name}
+                        onPress={() => {
+                          setSelectedSize(item),
+                            setValues({
+                              ...defaultValuesObject,
+                              size: getSize(),
+                            });
+                        }}
+                      />
+                    </View>
+                  );
+                })
+              ) : (
                 <View>
-                  <UploadFileComponent title={t('size')} onPress={() => sizeRBSheet.current.open()} selection={selectedSize?.name ? selectedSize?.name : ""} />
-                </View>}
+                  <UploadFileComponent
+                    title={t('size')}
+                    onPress={() => sizeRBSheet.current.open()}
+                    selection={selectedSize?.name ? selectedSize?.name : ''}
+                  />
+                </View>
+              )}
             </View>
 
-            {!(category == "BOOKLET" || category == 'BUSINESS_CARD') &&
+            {!(category == 'BOOKLET' || category == 'BUSINESS_CARD') && (
               <>
                 <CategoriesTitleHeader title={t('paper_type')} />
-                <UploadFileComponent onPress={() => allCardsPaperTypeRBSheet.current.open()} title={t('paper')} selection={allCardsPaperType} />
+                <UploadFileComponent
+                  onPress={() => allCardsPaperTypeRBSheet.current.open()}
+                  title={t('paper')}
+                  selection={allCardsPaperType}
+                />
               </>
-            }
+            )}
 
-            {(category == "POSTER") &&
+            {category == 'POSTER' && (
               <>
                 <CategoriesTitleHeader title={t('side_number')} />
-                <UploadFileComponent onPress={() => numberOfSidesRBSheet.current.open()} title={t('side')} selection={numberOfSides} />
+                <UploadFileComponent
+                  onPress={() => numberOfSidesRBSheet.current.open()}
+                  title={t('side')}
+                  selection={numberOfSides}
+                />
               </>
-            }
+            )}
 
-            {(category == "BOOKLET") &&
+            {category == 'BOOKLET' && (
               <>
                 <CategoriesTitleHeader title={t('paper_type')} />
-                <UploadFileComponent onPress={() => paperTypeCoverPagesRBSheet.current.open()} title={t('cover_pages')} selection={paperTypeCoverPages} />
-                <UploadFileComponent onPress={() => paperTypeInnerPagesRBSheet.current.open()} title={t('inner_pages')} selection={paperTypeInnerPages} />
+                <UploadFileComponent
+                  onPress={() => paperTypeCoverPagesRBSheet.current.open()}
+                  title={t('cover_pages')}
+                  selection={paperTypeCoverPages}
+                />
+                <UploadFileComponent
+                  onPress={() => paperTypeInnerPagesRBSheet.current.open()}
+                  title={t('inner_pages')}
+                  selection={paperTypeInnerPages}
+                />
               </>
-            }
+            )}
 
-            {((category == "BUSINESS_CARD" && item?.category?.productType == "Matte / Glossy Business Card") || category == "BOOKLET") &&
+            {((category == 'BUSINESS_CARD' &&
+              item?.category?.productType == 'Matte / Glossy Business Card') ||
+              category == 'BOOKLET') && (
               <>
-                <CategoriesTitleHeader title={t('choose_finishing')} Children={<InfoIcon />} />
-                <UploadFileComponent onPress={() => finishingRBSheet.current.open()} title={t('finishing')} selection={selectFinishing} />
+                <CategoriesTitleHeader
+                  title={t('choose_finishing')}
+                  Children={<InfoIcon />}
+                />
+                <UploadFileComponent
+                  onPress={() => finishingRBSheet.current.open()}
+                  title={t('finishing')}
+                  selection={selectFinishing}
+                />
               </>
-            }
-
-
-            {(category === "BUSINESS_CARD" && item?.category?.productType === "Spot UV Business Card") &&
-              <>
-                <CategoriesTitleHeader title={t('choose_SpotUv')} Children={<InfoIcon />} />
-                <UploadFileComponent onPress={() => spotUvRBSheet.current.open()} title={t('spotUv')} selection={selectSpotUv} />
-              </>
-            }
+            )}
 
             {category === 'BUSINESS_CARD' &&
+              item?.category?.productType === 'Spot UV Business Card' && (
+                <>
+                  <CategoriesTitleHeader
+                    title={t('choose_SpotUv')}
+                    Children={<InfoIcon />}
+                  />
+                  <UploadFileComponent
+                    onPress={() => spotUvRBSheet.current.open()}
+                    title={t('spotUv')}
+                    selection={selectSpotUv}
+                  />
+                </>
+              )}
+
+            {category === 'BUSINESS_CARD' && (
               <>
                 <CategoriesTitleHeader title={t('choose_corner')} />
                 <View style={styles.cardsContainer}>
-                  {item?.corner && item?.corner.map((item, index) => {
-                    return (
-                      <View key={index}>
-                        <CardSizeComponent
-                          key={index}
-                          selectedCorner={selectedCorner?.cornerName}
-                          onPress={() => { setSelectedCorner(item), setValues({ ...defaultValuesObject, corner: `${item?.cornerName} Corner` }) }}
-                          Childern={
-                            <Image transition={false} resiseMode="contain" style={styles.cornerImage} source={{ uri: item?.image }} />}
-                          cardStandard={item?.cornerName}
-                          cardDimensions={item?.cornerDescription}
-                        />
-                      </View>
-                    )
-                  })
-                  }
+                  {general_corner  &&
+                    general_corner?.map((item, index) => {
+                      return (
+                        <View key={index}>
+                          <CardSizeComponent
+                            key={index}
+                            selectedCorner={selectedCorner?.cornerName}
+                            onPress={() => {
+                              setSelectedCorner(item),
+                                setValues({
+                                  ...defaultValuesObject,
+                                  corner: `${item?.cornerName} Corner`,
+                                });
+                            }}
+                            Childern={
+                              <Image
+                                transition={false}
+                                resiseMode="contain"
+                                style={styles.cornerImage}
+                                source={{uri: item?.image}}
+                              />
+                            }
+                            cardStandard={item?.cornerName}
+                            cardDimensions={item?.cornerDescription}
+                          />
+                        </View>
+                      );
+                    })}
                 </View>
-              </>}
-
-            {(category == "BOOKLET") &&
-              <>
-                <CategoriesTitleHeader title={t('number_pages')} Children={<InfoIcon />} />
-                <UploadFileComponent onPress={() => noOfPagesCoverPagesRBSheet.current.open()} title={t('cover_pages')} selection={noOfPagesCoverPages} />
-                <UploadFileComponent onPress={() => noOfPagesInnerPagesRBSheet.current.open()} title={t('inner_pages')} selection={noOfPagesInnerPages} />
               </>
-            }
+            )}
 
-            {category == "STICKERS_LABEL" &&
+            {category == 'BOOKLET' && (
+              <>
+                <CategoriesTitleHeader
+                  title={t('number_pages')}
+                  Children={<InfoIcon />}
+                />
+                <UploadFileComponent
+                  onPress={() => noOfPagesCoverPagesRBSheet.current.open()}
+                  title={t('cover_pages')}
+                  selection={noOfPagesCoverPages}
+                />
+                <UploadFileComponent
+                  onPress={() => noOfPagesInnerPagesRBSheet.current.open()}
+                  title={t('inner_pages')}
+                  selection={noOfPagesInnerPages}
+                />
+              </>
+            )}
+
+            {category == 'STICKERS_LABEL' && (
               <>
                 <CategoriesTitleHeader title={t('choose_cut')} />
                 <View style={styles.cardsContainer}>
-                  {item?.cut?.map((item, index) => {
+                  {general_cut?.map((item, index) => {
                     return (
                       <View key={index}>
                         <CardSizeComponent
                           Childern={
-                            <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
+                            <Image
+                              transition={false}
+                              resizeMode="contain"
+                              style={styles.squareImage}
+                              source={{uri: item?.image}}
+                            />
+                          }
                           cardStandard={item?.cutName}
                           cardDimensions={`${item?.cutWidth}mm x ${item?.cutHeight}mm`}
                           selectedSize={selectedCut?.cutName}
                           onPress={() => setSelectedCut(item)}
                         />
                       </View>
-                    )
+                    );
                   })}
                 </View>
               </>
-            }
+            )}
 
+            {category == 'FLYERS_LEAFLET' &&
+              item?.category?.productType === 'Flyer (A4)' && (
+                <>
+                  <CategoriesTitleHeader title={t('choose_folding')} />
+                  <View style={styles.cardsContainer}>
+                    {general_folding?.map((item, index) => {
+                      return (
+                        <View key={index}>
+                          <CardSizeComponent
+                            Childern={
+                              <Image
+                                transition={false}
+                                resizeMode="contain"
+                                style={styles.squareImage}
+                                source={{uri: item?.image}}
+                              />
+                            }
+                            cardStandard={item?.foldingName}
+                            cardDimensions={`${item?.foldingWidth}mm x ${item?.foldingHeight}mm`}
+                            selectedSize={selectedFolding?.foldingName}
+                            onPress={() => {
+                              setSelectedFolding(item),
+                                setValues({
+                                  ...defaultValuesObject,
+                                  folding: item?.foldingName,
+                                });
+                            }}
+                          />
+                        </View>
+                      );
+                    })}
+                  </View>
+                </>
+              )}
 
-            {(category == "FLYERS_LEAFLET" && item?.category?.productType === "Flyer (A4)") &&
-              <>
-                <CategoriesTitleHeader title={t('choose_folding')} />
-                <View style={styles.cardsContainer}>
-                  {item?.folding?.map((item, index) => {
-                    return (
-                      <View key={index}>
-                        <CardSizeComponent
-                          Childern={
-                            <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
-                          cardStandard={item?.foldingName}
-                          cardDimensions={`${item?.foldingWidth}mm x ${item?.foldingHeight}mm`}
-                          selectedSize={selectedFolding?.foldingName}
-                          onPress={() => { setSelectedFolding(item), setValues({ ...defaultValuesObject, folding: item?.foldingName }) }}
-                        />
-                      </View>
-                    )
-                  })}
-                </View>
-              </>
-            }
-
-
-            {(category == "ENVELOPE") &&
+            {category == 'ENVELOPE' && (
               <>
                 <CategoriesTitleHeader title={t('choose_window')} />
                 <View style={styles.cardsContainer}>
-                  {item?.window?.map((item, index) => {
+                  {general_window?.map((item, index) => {
                     return (
                       <View key={index}>
                         <CardSizeComponent
                           Childern={
-                            <Image transition={false} resizeMode='contain' style={styles.squareImage} source={{ uri: item?.image }} />}
+                            <Image
+                              transition={false}
+                              resizeMode="contain"
+                              style={styles.squareImage}
+                              source={{uri: item?.image}}
+                            />
+                          }
                           cardStandard={item?.windowName}
                           cardDimensions={`${item?.windowWidth}" x ${item?.windowHeight}"`}
                           selectedSize={selectedWindow?.windowName}
-                          onPress={() => { setSelectedWindow(item), setValues({ ...defaultValuesObject, window: item?.windowName }) }}
+                          onPress={() => {
+                            setSelectedWindow(item),
+                              setValues({
+                                ...defaultValuesObject,
+                                window: item?.windowName,
+                              });
+                          }}
                         />
                       </View>
-                    )
+                    );
                   })}
                 </View>
               </>
-            }
+            )}
             <CategoriesTitleHeader title={t('choose_quantity')} />
-            <QuantityTable sliceData={sliceData} flag={flag} sliceArray={sliceArray} priceChartAnimation={priceChartAnimation} selectedPriceChart={selectedPriceChart} setSelectedPriceChart={setSelectedPriceChart} />
+            <QuantityTable
+              sliceData={sliceData}
+              flag={flag}
+              sliceArray={sliceArray}
+              priceChartAnimation={priceChartAnimation}
+              selectedPriceChart={selectedPriceChart}
+              setSelectedPriceChart={setSelectedPriceChart}
+            />
             <CategoriesTitleHeader title={t('send_preview')} />
             <Text style={styles.previewDescription}>
               {t('preview_Descriptions')}
@@ -334,26 +496,36 @@ const SingleProductScreen = ({
               title={t('upload_design')}
               description={t('artwork_guidelines')}
               onPress={() => {
-                i18n.language === 'en' ? Linking.openURL('https://printprint.com.hk/en/artwork-guidelines/') :
-                  Linking.openURL('https://printprint.com.hk/artwork-guidelines/')
+                i18n.language === 'en'
+                  ? Linking.openURL(
+                      'https://printprint.com.hk/en/artwork-guidelines/',
+                    )
+                  : Linking.openURL(
+                      'https://printprint.com.hk/artwork-guidelines/',
+                    );
               }}
             />
             <UploadFileComponent
               width={320}
-              onPress={() => { refRBSheet.current.open(), setSelectedUpload('uploadFile') }}
+              onPress={() => {
+                refRBSheet.current.open(), setSelectedUpload('uploadFile');
+              }}
               title={t('upload_file')}
               isSelected={selectedUpload == 'uploadFile' ? true : false}
             />
             <UploadFileComponent
               width={320}
-              onPress={() => { urlRBSheet.current.open(), setSelectedUpload('urlLink') }}
+              onPress={() => {
+                urlRBSheet.current.open(), setSelectedUpload('urlLink');
+              }}
               title={t('upload_url')}
               isSelected={selectedUpload == 'urlLink' ? true : false}
-
             />
             <UploadFileComponent
               width={320}
-              onPress={() => { toggleModal(), setSelectedUpload('email') }}
+              onPress={() => {
+                toggleModal(), setSelectedUpload('email');
+              }}
               title={t('upload_mail')}
               isSelected={selectedUpload == 'email' ? true : false}
             />
@@ -361,12 +533,21 @@ const SingleProductScreen = ({
               title={t('sheet_upload_file')}
               refRBSheet={refRBSheet}
               note={true}
-              childern={<FilePickerInput result={result} setResult={setResult} />}
+              childern={
+                <FilePickerInput result={result} setResult={setResult} />
+              }
             />
             <BottomSheetComponent
               refRBSheet={urlRBSheet}
               note={true}
-              childern={<UrlPickerInput refRBSheet={urlRBSheet} title={t('sheet_upload_url')} initialValuesAddUrl={initialValuesAddUrl} handleAddFileUrl={handleAddFileUrl} />}
+              childern={
+                <UrlPickerInput
+                  refRBSheet={urlRBSheet}
+                  title={t('sheet_upload_url')}
+                  initialValuesAddUrl={initialValuesAddUrl}
+                  handleAddFileUrl={handleAddFileUrl}
+                />
+              }
             />
             <VerificationModal
               title={t('sent_text')}
@@ -385,7 +566,9 @@ const SingleProductScreen = ({
               style={styles.textAreaInput}
               keyboardType="default"
               returnKeyType="done"
-              onSubmitEditing={() => { Keyboard.dismiss() }}
+              onSubmitEditing={() => {
+                Keyboard.dismiss();
+              }}
             />
             <View style={styles.bottomContainer}>
               <TouchableOpacity onPress={() => handleAnotherDesign()}>
@@ -407,16 +590,19 @@ const SingleProductScreen = ({
               refRBSheet={finishingRBSheet}
               note={false}
               height={300}
-              childern={
-                item?.finishing?.map((item, index) => {
-                  return <TouchableOpacity key={index} onPress={() => {
-                    setSelectFinishing(item);
-                    finishingRBSheet.current.close()
-                  }} style={styles.listContainer}>
+              childern={general_finishing?.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      setSelectFinishing(item);
+                      finishingRBSheet.current.close();
+                    }}
+                    style={styles.listContainer}>
                     <Text style={styles.listStyle}>{item}</Text>
                   </TouchableOpacity>
-                })
-              }
+                );
+              })}
             />
 
             {/* Size BottomSheet */}
@@ -425,16 +611,19 @@ const SingleProductScreen = ({
               refRBSheet={sizeRBSheet}
               note={false}
               height={300}
-              childern={
-                item?.size?.map((item, index) => {
-                  return <TouchableOpacity key={index} onPress={() => {
-                    setSelectedSize(item);
-                    sizeRBSheet.current.close()
-                  }} style={styles.listContainer}>
+              childern={general_size?.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      setSelectedSize(item);
+                      sizeRBSheet.current.close();
+                    }}
+                    style={styles.listContainer}>
                     <Text style={styles.listStyle}>{item?.name}</Text>
                   </TouchableOpacity>
-                })
-              }
+                );
+              })}
             />
 
             {/* Spot Vu Effect */}
@@ -443,16 +632,19 @@ const SingleProductScreen = ({
               refRBSheet={spotUvRBSheet}
               note={false}
               height={300}
-              childern={
-                item?.spotUV?.map((item, index) => {
-                  return <TouchableOpacity key={index} onPress={() => {
-                    setSelectSpotUv(item);
-                    spotUvRBSheet.current.close()
-                  }} style={styles.listContainer}>
+              childern={general_spotVu?.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      setSelectSpotUv(item);
+                      spotUvRBSheet.current.close();
+                    }}
+                    style={styles.listContainer}>
                     <Text style={styles.listStyle}>{item}</Text>
                   </TouchableOpacity>
-                })
-              }
+                );
+              })}
             />
 
             {/* paperTypeCoverPagesRBSheet */}
@@ -462,12 +654,15 @@ const SingleProductScreen = ({
               note={false}
               height={300}
               childern={
-                <TouchableOpacity onPress={() => {
-                  setPaperTypeCoverPages(paperTypeCoverPages);
-                  paperTypeCoverPagesRBSheet.current.close()
-                }}
+                <TouchableOpacity
+                  onPress={() => {
+                    setPaperTypeCoverPages(paperTypeCoverPages);
+                    paperTypeCoverPagesRBSheet.current.close();
+                  }}
                   style={styles.listContainer}>
-                  <Text style={styles.listStyle}>{item?.paperType ? item?.paperType[0] : ''}</Text>
+                  <Text style={styles.listStyle}>
+                    {general_paperType ? general_paperType[0] : ""}
+                  </Text>
                 </TouchableOpacity>
               }
             />
@@ -479,12 +674,15 @@ const SingleProductScreen = ({
               note={false}
               height={300}
               childern={
-                <TouchableOpacity onPress={() => {
-                  setPaperTypeInnerPages(paperTypeInnerPages);
-                  paperTypeInnerPagesRBSheet.current.close()
-                }}
+                <TouchableOpacity
+                  onPress={() => {
+                    setPaperTypeInnerPages(paperTypeInnerPages);
+                    paperTypeInnerPagesRBSheet.current.close();
+                  }}
                   style={styles.listContainer}>
-                  <Text style={styles.listStyle}>{item?.paperType ? item?.paperType[1] : ''}</Text>
+                  <Text style={styles.listStyle}>
+                    {general_paperType ? general_paperType[1] : ""}
+                  </Text>
                 </TouchableOpacity>
               }
             />
@@ -503,13 +701,19 @@ const SingleProductScreen = ({
                 //   style={styles.listContainer}>
                 //   <Text style={styles.listStyle}>{noOfPagesCoverPages}</Text>
                 // </TouchableOpacity>
-                item?.numberOfPages && item?.numberOfPages[0]?.number?.map((item, index) => {
-                  return <TouchableOpacity key={index} onPress={() => {
-                    setNoOfPagesCoverPages(item);
-                    noOfPagesCoverPagesRBSheet.current.close()
-                  }} style={styles.listContainer}>
-                    <Text style={styles.listStyle}>{item}</Text>
-                  </TouchableOpacity>
+                general_numberOfPages &&
+                general_numberOfPages?.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        setNoOfPagesCoverPages(item);
+                        noOfPagesCoverPagesRBSheet.current.close();
+                      }}
+                      style={styles.listContainer}>
+                      <Text style={styles.listStyle}>{item}</Text>
+                    </TouchableOpacity>
+                  );
                 })
               }
             />
@@ -521,14 +725,20 @@ const SingleProductScreen = ({
               note={false}
               height={430}
               childern={
-                item?.numberOfPages && item?.numberOfPages[1]?.number?.map((item, index) => {
-                  return <TouchableOpacity key={index} onPress={() => {
-                    setNoOfPagesInnerPages(item);
-                    setValues({ ...defaultValuesObject, innerpage: item })
-                    noOfPagesInnerPagesRBSheet.current.close()
-                  }} style={styles.listContainer}>
-                    <Text style={styles.listStyle}>{item}</Text>
-                  </TouchableOpacity>
+                general_numberOfPagesInnerPages &&
+                general_numberOfPagesInnerPages?.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        setNoOfPagesInnerPages(item);
+                        setValues({...defaultValuesObject, innerpage: item});
+                        noOfPagesInnerPagesRBSheet.current.close();
+                      }}
+                      style={styles.listContainer}>
+                      <Text style={styles.listStyle}>{item}</Text>
+                    </TouchableOpacity>
+                  );
                 })
               }
             />
@@ -539,17 +749,23 @@ const SingleProductScreen = ({
               refRBSheet={allCardsPaperTypeRBSheet}
               note={false}
               height={330}
-              childern={
-                item?.paperType?.map((item, index) => {
-                  return <TouchableOpacity key={index} onPress={() => {
-                    setAllCardsPaperType(item);
-                    setValues({ ...defaultValuesObject, papertype: item.substr(14, 7) })
-                    allCardsPaperTypeRBSheet.current.close()
-                  }} style={styles.listContainer}>
+              childern={general_paperType?.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      setAllCardsPaperType(item);
+                      setValues({
+                        ...defaultValuesObject,
+                        papertype: item.substr(14, 7),
+                      });
+                      allCardsPaperTypeRBSheet.current.close();
+                    }}
+                    style={styles.listContainer}>
                     <Text style={styles.listStyle}>{item}</Text>
                   </TouchableOpacity>
-                })
-              }
+                );
+              })}
             />
 
             {/* numberOfSidesRBSheet */}
@@ -558,17 +774,20 @@ const SingleProductScreen = ({
               refRBSheet={numberOfSidesRBSheet}
               note={false}
               height={330}
-              childern={
-                item?.numberOfSides?.map((item, index) => {
-                  return <TouchableOpacity key={index} onPress={() => {
-                    setNumberOfSides(item);
-                    setValues({ ...defaultValuesObject, sides: item })
-                    numberOfSidesRBSheet.current.close()
-                  }} style={styles.listContainer}>
+              childern={general_numberOfSides?.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      setNumberOfSides(item);
+                      setValues({...defaultValuesObject, sides: item});
+                      numberOfSidesRBSheet.current.close();
+                    }}
+                    style={styles.listContainer}>
                     <Text style={styles.listStyle}>{item}</Text>
                   </TouchableOpacity>
-                })
-              }
+                );
+              })}
             />
             <BottomSheetComponent
               childern={
@@ -578,13 +797,15 @@ const SingleProductScreen = ({
                   </View>
                   <View style={styles.signinButtonWrapper}>
                     <GreenButton
-                      backgroundColor={focused ? colors.greenColor : colors.whiteColor}
+                      backgroundColor={
+                        focused ? colors.greenColor : colors.whiteColor
+                      }
                       color={focused ? colors.whiteColor : colors.greenColor}
                       borderWidth={2}
                       title={t('signup_text')}
                       onPress={() => {
                         accountRBSheet.current.close();
-                        navigate('auth', { next: 'signup', obj: productData });
+                        navigate('auth', {next: 'signup', obj: productData});
                         setFocused(true);
                       }}
                     />
@@ -592,12 +813,14 @@ const SingleProductScreen = ({
                   <View style={styles.signinButtonWrapper}>
                     <GreenButton
                       title={t('sheet_login_in')}
-                      backgroundColor={focused ? colors.whiteColor : colors.greenColor}
+                      backgroundColor={
+                        focused ? colors.whiteColor : colors.greenColor
+                      }
                       color={focused ? colors.greenColor : colors.whiteColor}
                       borderWidth={2}
                       onPress={() => {
                         accountRBSheet.current.close();
-                        navigate('auth', { next: 'signin', obj: productData });
+                        navigate('auth', {next: 'signin', obj: productData});
                         setFocused(false);
                       }}
                     />
@@ -608,13 +831,15 @@ const SingleProductScreen = ({
               // note={false}
               refRBSheet={accountRBSheet}
               height={420}
-            // onClose={false}
+              // onClose={false}
             />
-
           </ScrollView>
-        </View> : <View style={styles.loaderContainer}>
+        </View>
+      ) : (
+        <View style={styles.loaderContainer}>
           <ActivityIndicator size="small" color="#000" animating={true} />
-        </View>}
+        </View>
+      )}
     </>
   );
 };
@@ -696,7 +921,7 @@ const styles = ScaledSheet.create({
     paddingLeft: 7,
     fontSize: '14@s',
     marginBottom: '15@s',
-    color: colors.blackColor
+    color: colors.blackColor,
   },
   bottomContainer: {
     backgroundColor: colors.offWhiteColor,
@@ -751,7 +976,7 @@ const styles = ScaledSheet.create({
   listContainer: {
     borderBottomColor: colors.innerBorderColor,
     borderBottomWidth: 1,
-    paddingHorizontal: '10@s'
+    paddingHorizontal: '10@s',
   },
   loaderContainer: {
     flex: 1,
@@ -760,11 +985,11 @@ const styles = ScaledSheet.create({
   },
   logoWrapper: {
     alignItems: 'center',
-    marginVertical: '15@s'
+    marginVertical: '15@s',
   },
   signinButtonWrapper: {
-    marginTop: '20@s'
-  }
+    marginTop: '20@s',
+  },
 });
 
 export default SingleProductScreen;

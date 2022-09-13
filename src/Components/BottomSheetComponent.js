@@ -18,7 +18,8 @@ const BottomSheetComponent = ({
   height = '93%',
   languageTitle = undefined,
   note = false,
-  onClose = true
+  onClose = true,
+  closePress = () => refRBSheet?.current?.close()
 }) => {
   return (
     <View>
@@ -43,7 +44,7 @@ const BottomSheetComponent = ({
             <>
               <Text style={styles.headerTitle}>{title}</Text>
               <TouchableOpacity
-                onPress={() => refRBSheet?.current?.close()}
+                onPress={closePress}
                 style={styles.iconWrapper}>
                 <CloseIcon />
               </TouchableOpacity>

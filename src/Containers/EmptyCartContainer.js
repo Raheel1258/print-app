@@ -9,6 +9,7 @@ import { getCartData } from '../store/actions/cartAction';
 
 const EmptyCartContainer = () => {
   const navigation = useNavigation();
+  console.log("into empty screen")
   
   return (
     <View style={styles.container}>

@@ -485,6 +485,7 @@ export const chi = {
     choose_SpotUv: '局部 UV',
     spotUv: '單面/ 雙面:',
     quantity_text: '數量:',
+    quantity_text_table: '數量',
     price_HK: '價錢 (HKS)',
     unit_text: '單價',
     show_more: '顯示更多',
@@ -579,7 +580,9 @@ export const chi = {
 
     alter_message_for_primary_card: '你必須選擇一張主卡',
     alter_message_for_primary_address: '您必须选择一个主要地址',
-    change_password_invalide_message:'当前密码无效'
+    change_password_invalide_message:'当前密码无效',
+    exp_Card_Date:"到期日:",
+    number_required: '编号为必填项',
 
   },
 };

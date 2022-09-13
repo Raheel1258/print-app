@@ -15,7 +15,7 @@ export const signupValidationSchema = (t) => {
     return (Yup.object({
         firstName: Yup.string().required(t('firstName_required')),
         lastName: Yup.string().required(t('lastName_required')),
-        phone: Yup.number().required(t('phone_required')),
+        phone: Yup.number().required(t('phone_required')).typeError(t('number_required')),
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
         password: Yup.string().min(5, t('min_required_5')).required(t('password_required'))
     }))
@@ -46,7 +46,7 @@ export const updatePersonalDetailSchema = (t) => {
     return (Yup.object({
         firstName: Yup.string().required(t('firstName_required')),
         lastName: Yup.string().required(t('lastName_required')),
-        phone: Yup.number().required(t('phone_required')),
+        phone: Yup.number().required(t('phone_required')).typeError(t('number_required')),
         email: Yup.string().email(t('invalid_email')).required(t('email_required')),
     }))
 }
@@ -68,7 +68,7 @@ export const addAddressSchema = (t) => {
         area: Yup.string().required(t('areaAddress')),
         district: Yup.string().required(t('districtAddres')),
         // cityCountry: Yup.string(),
-        contactNumber: Yup.number().required(t('phone_required')),
+        contactNumber: Yup.number().required(t('phone_required')).typeError(t('number_required')),
     }))
 }
 

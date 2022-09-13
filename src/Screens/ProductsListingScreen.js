@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, ActivityIndicator,ScrollView, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import { useTranslation } from 'react-i18next';
+import i18n from 'i18next'
 
 import HeaderImage from '../Assests/Images/businesscard-header-image.png';
 import {ImageBackArrowHeader, ImageSlider, ImageSwiper} from '../Components';
@@ -17,14 +17,14 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
         <View style={styles.paddingContainer}>
       <Image style={styles.cardImage}   source={{uri: item?.image[0]}} />
         <Text style={styles.cardTitle}>{item?.category?.name}</Text>
-        <Text style={styles.cardPrice}>{item?.category?.pricePerHunderd}</Text>
+        <Text style={styles.cardPrice}>{i18n.language == "en" ? item?.category?.pricePerHunderd : item?.category?.pricePerHunderd_chi}</Text>
         <View style={styles.descriptionContainer}>
           <View style={styles.dotContainer} />
-          <Text style={styles.cardDescription}>{item?.feature1}</Text>
+          <Text style={styles.cardDescription}>{i18n.language == "en" ? item?.feature1 : item?.feature1_chi}</Text>
         </View>
         <View style={styles.descriptionContainer}>
           <View style={styles.dotContainer} />
-          <Text style={styles.cardDescription}>{item?.feature2}</Text>
+          <Text style={styles.cardDescription}>{i18n.language == "en" ? item?.feature2 : item?.feature2_chi}</Text>
         </View>
         </View>
       </TouchableOpacity>

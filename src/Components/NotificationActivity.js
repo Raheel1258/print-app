@@ -76,7 +76,6 @@ const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllAct
   // }
 
   const renderItem = ({item}, index) => {
-    console.log("activity status" , item)
     return(
     <NotificationComponent onPress={() => handleActivityIsRead(item?._id, item?.orderId)}
       orderCode={item?._id}

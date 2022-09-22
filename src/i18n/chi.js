@@ -496,7 +496,7 @@ export const chi = {
     inner_pages: '內文:',
     number_pages: '選擇頁數',
     side_number: '請選擇單/ 雙面印刷',
-    side: '边:',
+    side: '單面/雙面',
     choose_cut: '貼紙種類',
     choose_folding: '選擇折疊',
     choose_window: '請選擇開窗/ 無窗',
@@ -562,7 +562,7 @@ export const chi = {
     update_card: '更新卡',
     cut: '切:',
     window: '窗户:',
-    finishing: '精加工:',
+    finishing: '後期加工:',
 
     //new chainging
     nameAddress: '名',

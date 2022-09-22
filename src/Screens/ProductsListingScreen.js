@@ -16,7 +16,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
       {/* <ImageSwiper sliderImages={item?.image} autoPlaySlider={false}/> */}
         <View style={styles.paddingContainer}>
       <Image style={styles.cardImage}   source={{uri: item?.image[0]}} />
-        <Text style={styles.cardTitle}>{item?.category?.name}</Text>
+        <Text style={styles.cardTitle}>{i18n.language == "en" ? item?.category?.name : item?.category?.name_chi}</Text>
         <Text style={styles.cardPrice}>{i18n.language == "en" ? item?.category?.pricePerHunderd : item?.category?.pricePerHunderd_chi}</Text>
         <View style={styles.descriptionContainer}>
           <View style={styles.dotContainer} />

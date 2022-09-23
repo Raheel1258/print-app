@@ -75,6 +75,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
+    paddingTop:'3@s',
   },
   cardPrice: {
     fontFamily:fonts.avenir_bold,

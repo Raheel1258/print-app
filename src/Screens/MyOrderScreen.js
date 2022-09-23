@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList, useWindowDimensions, ActivityIndicator, Text } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -50,10 +50,17 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
   });
 
   const [index, setIndex] = React.useState(1);
-  const [routes] = React.useState([
+  const [routes, setRoutes] = React.useState([
     { key: 'first', title: t('active_tab') },
     { key: 'second', title: t('completed_tab') },
   ]);
+
+  useEffect(() => {
+    setRoutes([
+      { key: 'first', title: t('active_tab') },
+      { key: 'second', title: t('completed_tab') },
+    ])
+  }, [t('active_tab'), t('completed_tab')])
 
   const renderTabBar = props => (
     <TabBar

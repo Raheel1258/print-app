@@ -19,7 +19,7 @@ const AccountContainer = () => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
-  const [languageToggle, setLanguageToggle] = useState(false);
+  const [languageToggle, setLanguageToggle] = useState(true);
 
   // i18n.language
   //i18n.changelanguage() 

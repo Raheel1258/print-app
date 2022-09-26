@@ -17,7 +17,7 @@ const SingleCardDescription = ({item}) => {
   return (
     <View style={styles.paddingContainer}>
       <Text style={styles.productTitle} numberOfLines={1}>
-        {item?.category?.name}
+        {i18n.language == "en" ? item?.category?.name : item?.category?.name_chi}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
         {i18n.language == "en" ? item?.category?.pricePerHunderd : item?.category?.pricePerHunderd_chi }

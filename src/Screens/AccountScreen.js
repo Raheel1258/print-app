@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, Linking } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 
 
 
@@ -55,7 +56,7 @@ const AccountScreen = ({
             Children={<AccountIcon />}
           />
           <UploadFileComponent
-            onPress={() => languageToggle ? Linking.openURL('https://pri.cxstaging.com/en/faqs/') : Linking.openURL('https://pri.cxstaging.com/faqs/')}
+            onPress={() => i18n.language == "en" ? Linking.openURL('https://pri.cxstaging.com/en/faqs/') : Linking.openURL('https://pri.cxstaging.com/faqs/')}
             title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}
@@ -71,9 +72,9 @@ const AccountScreen = ({
                <View style={{marginTop:10}}>
                <GreenButton
                   backgroundColor={
-                    languageToggle ? colors.greenColor : colors.smokeWhiteColor
+                    i18n.language == "en" ? colors.greenColor : colors.smokeWhiteColor
                   }
-                  color={languageToggle ? colors.whiteColor : colors.greenColor}
+                  color={i18n.language == "en" ? colors.whiteColor : colors.greenColor}
                   onPress={() => { changeLanguageHandler('en'), setLanguageToggle(true) }}
                   title={'English'} />
                </View>
@@ -82,9 +83,9 @@ const AccountScreen = ({
                     onPress={() => { changeLanguageHandler('chi'), setLanguageToggle(false) }}
                     borderWidth={2}
                     backgroundColor={
-                      languageToggle ? colors.smokeWhiteColor : colors.greenColor
+                      i18n.language == "en" ? colors.smokeWhiteColor : colors.greenColor
                     }
-                    color={languageToggle ? colors.greenColor : colors.whiteColor}
+                    color={i18n.language == "en" ? colors.greenColor : colors.whiteColor}
                     title={t('chinese_text')} />
                 </View>
               </>}

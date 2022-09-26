@@ -208,7 +208,7 @@ const CartContainer = () => {
         // phone: userDetailData?.phone,
         // email: userDetailData?.email,
         // addressLine1: deliveryMethod == 'Delivery' ? deliveryUserAddress : "11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
-        //new
+        
       },
       deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,

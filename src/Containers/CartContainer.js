@@ -5,6 +5,8 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { t } from 'i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
+import i18n from 'i18next';
+
 
 import { getDate } from '../Utils/helperFunctions';
 import Storage from '../Utils/Storage';
@@ -206,6 +208,7 @@ const CartContainer = () => {
         // phone: userDetailData?.phone,
         // email: userDetailData?.email,
         // addressLine1: deliveryMethod == 'Delivery' ? deliveryUserAddress : "11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
+        
       },
       deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,
@@ -230,9 +233,9 @@ const CartContainer = () => {
     }
     else {
       if (paymentMethodName == "Credit Card") {
-        dispatch(paymentWithSaveCard(setPlaceOrderAnimation, { idCard: userCardData?.id, amount: total }, orderObj, navigate))
+        dispatch(paymentWithSaveCard(setPlaceOrderAnimation, { idCard: userCardData?.id, amount: total }, {...orderObj,language:i18n.language == "en" ? 'English' : "Chinese"} , navigate))
         // navigate('payment', { amount: total, orderObj: orderObj })
-      } else dispatch(placeOrderOffline(setPlaceOrderAnimation, orderObj, navigate))
+      } else dispatch(placeOrderOffline(setPlaceOrderAnimation, {...orderObj,language:i18n.language == "en" ? 'English' : "Chinese"}, navigate))
     }
   }
 

@@ -250,7 +250,7 @@ const CartScreen = ({
             </ScrollView>
           ) : (
             <>
-            {cartItem?.length == 0 &&
+            {(cartItem?.length == 0 || !userToken) &&
               <EmptyCartContainer />}
             </>
           )}

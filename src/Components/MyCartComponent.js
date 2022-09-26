@@ -37,7 +37,7 @@ const MyCartComponent = ({
           numberOfLines={2}
           // style={{...styles.cardTitle, fontFamily: fontFamily}}
           style={styles.cardTitle}>
-          {item?.category?.name}
+          {i18n.language == "en" ? item?.category?.name : item?.category?.name_chi }
         </Text>
         {/* <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text> */}
         <View style={styles.quantityContainer}>

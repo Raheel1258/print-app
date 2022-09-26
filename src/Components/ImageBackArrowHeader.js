@@ -51,10 +51,11 @@ fontFamily:fonts.avenir_next,
     // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '18@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     marginLeft:'15@s',
     marginTop:'35@s',
     color: colors.blackColor,
+    paddingTop:'3@s'
   },
   headerDescription:{
     fontSize: '12@s',

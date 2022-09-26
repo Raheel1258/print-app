@@ -4,11 +4,12 @@ export const chi_eng = {
   "標準":"Standard",
   "短款":"Shortened",
   "正方形":"Square",
-  "啞光":"Matte",
+  "啞膠":"Matte",
   "光膠":"Glossy",
   "圓角":"Round",
   "單面":"1 side",
-  "双面":"2 side",
+  // "双面":"2 side",
+  "雙面":"2 side",
   "傳統":"Traditional",
   "流暢":"Smooth",
   "白咭(350g)":"Woodfree Card (350g)",
@@ -67,7 +68,7 @@ export const chi_eng = {
   "60  pages" :"60  pages",
   "書紙(140 gsm)":"Woodfree paper (140 gsm)",
   "雙粉咭(250 gsm)":"Art Card (250 gsm)",
-  "哑光丝":"Matte-Silk",
+  "絲質啞膠":"Matte-Silk",
   "雙粉咭(400 gsm)":"Art card (400 gsm)",
   "啞膠雙粉咭(400 gsm)":"Matte art card (400 gsm)",
   "Art card (400 gsm)":"Art card (400 gsm)",
@@ -181,7 +182,52 @@ export const chi_eng = {
   "Self pickup":"Self pickup",
   "Delivery":"Delivery",
   "Credit Card":"Credit Card",
-  "Order your next print in just a few taps":"Order your next print in just a few taps"
+  "Order your next print in just a few taps":"Order your next print in just a few taps",
+
+
+
+  //Products name
+  "長形海報":"Rectangular Poster",
+  "A4 信紙":"Letterhead (A4)",
+  "高質純厚咭片":"Premium (Thick) Business Card",
+  "優雅珍珠咭片":"Classy Pearl (Textured Paper) Business Card",
+  "光面/啞面咭片":"Matte / Glossy Business Card",
+  "特厚咭片":"Bold (Extra Thick) Business Card",
+  "糙紋觸感咭片":"Style (Textured Paper) Business Card",
+  "騎馬釘裝書刊":"Stapled Binding Booklet",
+  "UV咭片":"Spot Gloss (UV) Business Card",
+  "膠裝書刊":"Perfect Binding Booklet",
+  "長形宣傳單張":"Rectangular Flyer",
+  "方形宣傳單張":"Square Flyer",
+  "橫口信封":"Horizontal Opening Envelope",
+  "企口信封":"Vertical Opening Envelope",
+  "摺疊宣傳單張":"Foldable Flyer",
+  "方形貼紙": "Square Sticker",
+  "長形貼紙":"Rectangular Sticker",
+  "圓形貼紙":"Round Sticker",
+
+  //PRODUCT NAME WITHOUT CHINES
+
+  "Rectangular Poster": "Rectangular Poster",
+  "Letterhead (A4)":"Letterhead (A4)",
+  "Premium (Thick) Business Card":"Premium (Thick) Business Card",
+  "Classy Pearl (Textured Paper) Business Card":"Classy Pearl (Textured Paper) Business Card",
+  "Matte / Glossy Business Card":"Matte / Glossy Business Card",
+  "Bold (Extra Thick) Business Card":"Bold (Extra Thick) Business Card",
+  "Style (Textured Paper) Business Card":"Style (Textured Paper) Business Card",
+  "Style (Textured Paper) Business Card":"Style (Textured Paper) Business Card",
+  "Stapled Binding Booklet":"Stapled Binding Bookle",
+  "Spot Gloss (UV) Business Card":"Spot Gloss (UV) Business Card",
+  "Perfect Binding Booklet":"Perfect Binding Booklet",
+  "Rectangular Flyer":"Rectangular Flyer",
+  "Square Flyer":"Square Flyer",
+  "Horizontal Opening Envelope":"Horizontal Opening Envelope",
+  "Vertical Opening Envelope":"Vertical Opening Envelope",
+  "Foldable Flyer":"Foldable Flyer",
+  "Square Sticker":"Square Sticker",
+  "Rectangular Sticker":"Rectangular Sticker",
+  "Round Sticker":"Round Sticker"
+
 
 
 

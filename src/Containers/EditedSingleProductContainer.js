@@ -95,7 +95,7 @@ const EditedSingleProductContainer = ({ route }) => {
   } : productCategory === "FLYERS_LEAFLET" ? {
     category: 'flyer',
     product: cartItem?.category?.productType,
-    size: cartItem?.category?.name == "Rectangular Flyer" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
+    size: (i18n.language == "en" ? (cartItem?.category?.name == "Rectangular Flyer") : getObjKey(chi_eng, cartItem?.category?.name)) ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
     papertype: chi_eng[allCardsPaperType].substr(14, 7),
     folding: chi_eng[selectedFolding?.foldingName]
   } : productCategory === "ENVELOPE" ? {

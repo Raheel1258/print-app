@@ -28,6 +28,7 @@
     "react-native-gesture-handler": "^2.3.2",
     "react-native-image-picker": "^3.3.2",
     "react-native-image-slider-box": "^1.1.20",
+    "react-native-localize": "^2.2.3",
     "react-native-modal": "^13.0.1",
     "react-native-onesignal": "^4.3.9",
     "react-native-pager-view": "^5.4.15",

@@ -159,7 +159,7 @@ const AccountDetailScreen = ({
                     />
                 {index != userCardsDetails.length - 1 && <View style={styles.borderBottom} />}
                 </>
-              }) : <Text style={styles.emptyBox}>No card added</Text>}
+              }) : <Text style={styles.emptyBox}>{t('no_card_added')}</Text>}
             
           </View>
           <View style={styles.screenBorderBottom} />

@@ -332,6 +332,7 @@ export const en = {
     change_password_invalide_message:'Current password is invalid',
     exp_Card_Date:"Exp:",
     number_required: 'Number is required',
+    no_card_added:'No card added'
 
   },
 };

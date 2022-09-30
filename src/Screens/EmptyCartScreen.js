@@ -15,7 +15,7 @@ const EmptyCartScreen = () => {
         <Text style={styles.orderReceived}>{t('cart_text')}</Text>
       </View>
       <CartNotifyComponent
-         emptyScreen={true}
+        emptyScreen={true}
         title={t('empty_cart')}
         description={t('empty_screen_description')}
         childern={<EmptyIcon />}
@@ -38,7 +38,7 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
-    lineHeight: '18@s',
+    lineHeight: '20@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,

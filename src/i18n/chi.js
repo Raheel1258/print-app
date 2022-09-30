@@ -583,6 +583,7 @@ export const chi = {
     change_password_invalide_message:'当前密码无效',
     exp_Card_Date:"到期日:",
     number_required: '编号为必填项',
+    no_card_added:'未添加卡'
 
   },
 };

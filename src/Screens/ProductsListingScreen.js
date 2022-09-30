@@ -75,7 +75,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
-    paddingTop:'3@s',
+    paddingTop:'5@s',
   },
   cardPrice: {
     fontFamily:fonts.avenir_bold,
@@ -83,7 +83,7 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     // fontWeight: '800',
     fontStyle: 'normal',
-    lineHeight: '12@s',
+    lineHeight: '18@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.greenColor,
@@ -94,6 +94,7 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     paddingHorizontal: '7@s',
     marginBottom: '5@s',
+    paddingTop:'3@s',
   },
   dotContainer: {
     backgroundColor: colors.greyColor,

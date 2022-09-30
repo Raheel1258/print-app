@@ -45,7 +45,7 @@ const styles = ScaledSheet.create({
     marginTop:'25@s',
   },
   headerTitle: {
-fontFamily:fonts.avenir_next,
+    fontFamily:fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
     // fontWeight: '800',
@@ -55,7 +55,8 @@ fontFamily:fonts.avenir_next,
     marginLeft:'15@s',
     marginTop:'35@s',
     color: colors.blackColor,
-    paddingTop:'3@s'
+    paddingTop:'5@s'
+    
   },
   headerDescription:{
     fontSize: '12@s',
@@ -64,7 +65,7 @@ fontFamily:fonts.avenir_next,
     marginLeft:'15@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     marginTop:'3@s',
     color: colors.blackColor,
   }

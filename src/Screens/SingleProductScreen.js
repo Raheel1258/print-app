@@ -850,7 +850,7 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.whiteColor,
   },
   marginContainer: {
-    // marginBottom: '62@s',
+    marginBottom: '62@s',
   },
   cardsContainer: {
     flexDirection: 'row',

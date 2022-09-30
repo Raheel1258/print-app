@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {View, Text, Image,TouchableOpacity} from 'react-native';
+import {View, Text, Image,TouchableOpacity, Platform} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {colors,fonts} from '../Utils/theme';
@@ -66,10 +66,10 @@ const styles = ScaledSheet.create({
   },
   descriptionText: {
     fontFamily:fonts.avenir_light,
-    fontSize: '10.5@s',
+    fontSize: Platform.OS === 'ios' ? '11.2@s' : '10.5@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
     width:'135@s'

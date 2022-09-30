@@ -452,7 +452,7 @@ export const chi = {
     total: '總計:',
 
     order_support: '訂單協助',
-    email_receipt: '確認電郵',
+    email_receipt: '發送訂單收據',
     contact_support: '聯絡客服有關此訂單',
     added_item_message: '產品已成功加入購物車',
     select_address_state: '選擇送貨地址',
@@ -545,7 +545,7 @@ export const chi = {
     make_address_primary: '设定为默认',
     show_address_primary: '默認',
     no_active_order: '没有有效订单',
-    no_completed_order: '没有完成的订单',
+    no_completed_order: '沒有已完成訂單',
 
 
     order_received_status: '已收到訂單',

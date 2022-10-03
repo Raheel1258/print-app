@@ -98,7 +98,7 @@ const styles = ScaledSheet.create({
     color: colors.whiteColor,
     marginTop: '40@s',
     padding: '25@s',
-    width: '310@s',
+    // width: '310@s',
     marginBottom:'-25@s',
   },
   text1: {
@@ -108,7 +108,7 @@ const styles = ScaledSheet.create({
     lineHeight: '27@s',
     letterSpacing: '0.2@s',
     color: colors.whiteColor,
-    marginLeft:'24@s'
+    marginLeft:'24@s',
   },
 });
 

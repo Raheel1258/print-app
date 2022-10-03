@@ -73,12 +73,12 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     // fontWeight: '800',
     // fontStyle: 'normal',
-    lineHeight: '13@s',
+    lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     width:'25%',
     color: colors.blackColor,
-    paddingLeft:'18@s'
+    paddingLeft:'18@s',
   },
   headerTitle: {
     fontFamily:fonts.avenir_bold,
@@ -86,7 +86,7 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     // fontWeight: '800',
     // fontStyle: 'normal',
-    lineHeight: '13@s',
+    lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     width:'25%',

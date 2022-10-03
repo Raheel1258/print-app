@@ -557,7 +557,7 @@ const EditedSingleProductScreen = ({
               <Text style={styles.addCart}>{t('add_to_cart')}</Text>
               <GreenButton
                 backgroundColor={colors.blackColor}
-                title={'Update'}
+                title={t('update_cart_button')}
                 animation={addToCartAnimation}
                 onPress={() => handleAddToCart()}
               />

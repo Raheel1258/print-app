@@ -357,7 +357,7 @@ const EditedSingleProductContainer = ({ route }) => {
         sliceArray={sliceArray}
         priceChartAnimation={priceChartAnimation}
         item={state}
-        categoryTitle={"Updated Cart Item"}
+        categoryTitle={t("update_cart_item_header")}
         category={productCategory}
         goBack={goBack}
         refRBSheet={refRBSheet}

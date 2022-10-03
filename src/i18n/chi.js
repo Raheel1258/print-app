@@ -583,7 +583,9 @@ export const chi = {
     change_password_invalide_message:'当前密码无效',
     exp_Card_Date:"到期日:",
     number_required: '编号为必填项',
-    no_card_added:'未添加卡'
+    no_card_added:'未添加卡',
+    update_cart_button:'更新',
+    update_cart_item_header:"更新的購物車項目"
 
   },
 };

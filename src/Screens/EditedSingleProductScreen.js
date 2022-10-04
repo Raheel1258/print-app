@@ -655,16 +655,30 @@ const EditedSingleProductScreen = ({
               note={false}
               height={300}
               childern={
-                <TouchableOpacity
-                  onPress={() => {
-                    setPaperTypeInnerPages(paperTypeInnerPages);
-                    paperTypeInnerPagesRBSheet.current.close();
-                  }}
-                  style={styles.listContainer}>
-                  <Text style={styles.listStyle}>
-                    {general_paperType ? general_paperType[1] : ''}
-                  </Text>
-                </TouchableOpacity>
+                general_paperType?.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        setPaperTypeInnerPages(item)
+                        paperTypeInnerPagesRBSheet.current.close();
+                      }}
+                      style={styles.listContainer}>
+                      <Text style={styles.listStyle}>{item}</Text>
+                    </TouchableOpacity>
+                  );
+                })
+
+                // <TouchableOpacity
+                //   onPress={() => {
+                //     setPaperTypeInnerPages(paperTypeInnerPages);
+                //     paperTypeInnerPagesRBSheet.current.close();
+                //   }}
+                //   style={styles.listContainer}>
+                //   <Text style={styles.listStyle}>
+                //     {general_paperType ? general_paperType[1] : ""}
+                //   </Text>
+                // </TouchableOpacity>
               }
             />
 

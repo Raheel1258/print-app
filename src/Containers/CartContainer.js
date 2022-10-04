@@ -73,34 +73,8 @@ const CartContainer = () => {
   const [cardData, setCardData] = useState(userCardsDetails);
   const primaryAddress = userDetailData?.addresses?.filter((item) => item?.primary == true);
   const [renderScreen, setRenderScreen] = useState(false);
-  // const [cardData, setCardData] = useState([
-  //   {
-  //     id: '1',
-  //     title: 'Mastercard (9238)',
-  //     addressLineOne: 'Peter Leung',
-  //     addressLineTwo: 'Exp: 09/23',
-  //     children: <MasterCard />,
-  //     selected: true
-  //   },
-  //   {
-  //     id: '2',
-  //     title: 'Visa (1628)',
-  //     addressLineOne: 'Peter Leung',
-  //     addressLineTwo: 'Exp: 09/23',
-  //     children: <VisaCard />,
-  //     selected: false
-  //   },
-  // ]);
 
-  // useEffect(() => {
-  //   Storage.retrieveData('token').then((token) => {
-  //     setUserToken(token);
-
-  //   })
-
-  // }, [isFocused])
   
-
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);

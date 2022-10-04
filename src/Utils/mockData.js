@@ -143,10 +143,17 @@ export const chi_eng = {
   "雙粉紙(350 gsm)":"Glossy paper (350 gsm)",
   "半折疊":"Half fold",
   "手風琴折疊":"Accordion fold",
+  "雙粉紙 (157 gsm)":"Art Card (157 gsm)",
+  "書紙 (140 gsm)":"Woodfree Paper (140 gsm)",
+  "雙粉咭 (350 gsm)":"Art Card (350 gsm)",
+
   "Half fold":"Half fold",
   "Accordion fold":"Accordion fold",
   "Glossy paper (140 gsm)":"Glossy paper (140 gsm)",
   "Glossy paper (350 gsm)":"Glossy paper (350 gsm)",
+  "Art Card (157 gsm)":"Art Card (157 gsm)",
+  "Woodfree Paper (140 gsm)":"Woodfree Paper (140 gsm)",
+  "Art Card (350 gsm)":"Art Card (350 gsm)",
 
   //Envelop
   "開窗":"With window",

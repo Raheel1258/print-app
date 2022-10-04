@@ -376,7 +376,7 @@ const SingleProductScreen = ({
                             />
                           }
                           cardStandard={item?.cutName}
-                          cardDimensions={`${item?.cutWidth}mm x ${item?.cutHeight}mm`}
+                          // cardDimensions={`${item?.cutWidth}mm x ${item?.cutHeight}mm`}
                           selectedSize={selectedCut?.cutName}
                           onPress={() => setSelectedCut(item)}
                         />
@@ -674,16 +674,31 @@ const SingleProductScreen = ({
               note={false}
               height={300}
               childern={
-                <TouchableOpacity
-                  onPress={() => {
-                    setPaperTypeInnerPages(paperTypeInnerPages);
-                    paperTypeInnerPagesRBSheet.current.close();
-                  }}
-                  style={styles.listContainer}>
-                  <Text style={styles.listStyle}>
-                    {general_paperType ? general_paperType[1] : ""}
-                  </Text>
-                </TouchableOpacity>
+
+                general_paperType?.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        setPaperTypeInnerPages(item)
+                        paperTypeInnerPagesRBSheet.current.close();
+                      }}
+                      style={styles.listContainer}>
+                      <Text style={styles.listStyle}>{item}</Text>
+                    </TouchableOpacity>
+                  );
+                })
+
+                // <TouchableOpacity
+                //   onPress={() => {
+                //     setPaperTypeInnerPages(paperTypeInnerPages);
+                //     paperTypeInnerPagesRBSheet.current.close();
+                //   }}
+                //   style={styles.listContainer}>
+                //   <Text style={styles.listStyle}>
+                //     {general_paperType ? general_paperType[1] : ""}
+                //   </Text>
+                // </TouchableOpacity>
               }
             />
 

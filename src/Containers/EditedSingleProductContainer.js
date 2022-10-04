@@ -90,13 +90,13 @@ const EditedSingleProductContainer = ({ route }) => {
     category: 'poster',
     product: cartItem?.category?.productType,
     size: selectedSize?.name,
-    papertype: chi_eng[allCardsPaperType].substr(14, 7),
+    papertype: chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
     sides: chi_eng[numberOfSides]
   } : productCategory === "FLYERS_LEAFLET" ? {
     category: 'flyer',
     product: cartItem?.category?.productType,
-    size: (i18n.language == "en" ? (cartItem?.category?.name == "Rectangular Flyer") : getObjKey(chi_eng, cartItem?.category?.name)) ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
-    papertype: chi_eng[allCardsPaperType].substr(14, 7),
+    size: cartItem?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
+    papertype: cartItem?.index == "1"  ? (chi_eng[allCardsPaperType] == "Art Card (157 gsm)"? "140 gsm" :chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1]) : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
     folding: chi_eng[selectedFolding?.foldingName]
   } : productCategory === "ENVELOPE" ? {
     category: 'envelop',
@@ -112,9 +112,7 @@ const EditedSingleProductContainer = ({ route }) => {
     shape: cartItem?.category?.productType
   }
 
-
   const [values, setValues] = useState(defaultValuesObject)
-  //usefffff
   useEffect(() => {
     if (state && productId) {
       setValues(productCategory == "BUSINESS_CARD" ? {
@@ -339,6 +337,7 @@ const EditedSingleProductContainer = ({ route }) => {
       cut_chi: i18n.language == "chi" ? selectedCut : selectedCut && { ...selectedCut, cutName: getObjKey(chi_eng, chi_eng[selectedCut.cutName]) },
       numberOfSides: i18n.language == "eng" ? numberOfSides : chi_eng[numberOfSides],
       numberOfSides_chi: i18n.language == "chi" ? numberOfSides : getObjKey(chi_eng, chi_eng[numberOfSides]),
+      index: cartItem?.index ? cartItem?.index : '100'
     }
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {

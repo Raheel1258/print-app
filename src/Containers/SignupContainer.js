@@ -6,6 +6,7 @@ import {View} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { signup } from '../store/actions/auth';
 import {colors} from '../Utils/theme';
+import i18n from 'i18next';
 
 import OneSignal from 'react-native-onesignal';
 import SignupScreen from '../Screens/SignupScreen';
@@ -45,7 +46,7 @@ const SignupContainer = ({route}) => {
 
   const handleSignup = (values) => {
       var date = getDate();
-      dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp"}, navigation, setAnimation, obj));    
+      dispatch(signup({...values, deviceId:deviceId, date:date, created:"InApp", language:i18n.language == "en" ? 'English' : "Chinese"}, navigation, setAnimation, obj));    
   };
 
 

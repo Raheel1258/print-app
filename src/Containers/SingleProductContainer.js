@@ -89,13 +89,13 @@ const SingleProductContainer = ({ route }) => {
     category: 'poster',
     product: item?.category?.productType,
     size: selectedSize?.name,
-    papertype: chi_eng[allCardsPaperType].substr(14, 7),
+    papertype: chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
     sides: chi_eng[numberOfSides]
   } : productCategory === "FLYERS_LEAFLET" ? {
     category: 'flyer',
     product: item?.category?.productType,
     size: item?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
-    papertype: chi_eng[allCardsPaperType].substr(14, 7),
+    papertype: item?.index == "1" ? (chi_eng[allCardsPaperType] == "Art Card (157 gsm)"? "140 gsm" :chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1]) : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
     folding: chi_eng[selectedFolding?.foldingName]
   } : productCategory === "ENVELOPE" ? {
     category: 'envelop',
@@ -111,8 +111,6 @@ const SingleProductContainer = ({ route }) => {
     shape: item?.category?.productType
   }
   const [values, setValues] = useState(defaultValuesObject)
-
-
 
   useEffect(() => {
     isFocused &&
@@ -257,6 +255,8 @@ const SingleProductContainer = ({ route }) => {
       cut_chi: i18n.language == "chi" ? selectedCut : selectedCut && {...selectedCut, cutName:getObjKey(chi_eng, chi_eng[selectedCut.cutName])},
       numberOfSides: i18n.language == "eng" ? numberOfSides : chi_eng[numberOfSides],
       numberOfSides_chi: i18n.language == "chi" ? numberOfSides : getObjKey(chi_eng, chi_eng[numberOfSides]),
+      index: item?.index ? item?.index : '100'
+
     }
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {

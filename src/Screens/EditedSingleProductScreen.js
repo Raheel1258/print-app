@@ -369,7 +369,7 @@ const EditedSingleProductScreen = ({
                             />
                           }
                           cardStandard={item?.cutName}
-                          cardDimensions={`${item?.cutWidth}mm x ${item?.cutHeight}mm`}
+                          // cardDimensions={`${item?.cutWidth}mm x ${item?.cutHeight}mm`}
                           selectedSize={selectedCut?.cutName}
                           onPress={() => setSelectedCut(item)}
                         />

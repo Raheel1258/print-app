@@ -1,9 +1,8 @@
 import createReducer from '../createReducer';
 import * as types from "../types/types"
 
-
 const activitiesReducer = createReducer({
-	activityLength : 0
+	activityLength: 0
 }, {
 	[types.ACTIVITY_DETAIL](state, action) {
 		return {
@@ -17,6 +16,6 @@ const activitiesReducer = createReducer({
 			activityLength: action.data,
 		};
 	},
-    
+
 });
 export default activitiesReducer;

@@ -2,19 +2,20 @@ import React from 'react';
 import {
   View,
   Text,
-  KeyboardAvoidingView,
   ScrollView,
   Platform,
   TouchableOpacity,
   Linking,
 } from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
-import {signupValidationSchema} from '../Utils/validationSchema';
-import {Formik} from 'formik';
 
-import {BackArrowHeader, InputTextField, GreenButton} from '../Components';
-import {colors, fonts} from '../Utils/theme';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import { Formik } from 'formik';
+
+import { BackArrowHeader, InputTextField, GreenButton } from '../Components';
+
+import { signupValidationSchema } from '../Utils/validationSchema';
+import { colors, fonts } from '../Utils/theme';
 
 const SignupScreen = ({
   navigate,
@@ -23,7 +24,7 @@ const SignupScreen = ({
   goBack,
   signupState,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <BackArrowHeader goBack={goBack} title={t('signup_text')} />
@@ -41,7 +42,7 @@ const SignupScreen = ({
               errors,
               touched,
             }) => {
-              const {firstName, lastName, phone, email, password} = values;
+              const { firstName, lastName, phone, email, password } = values;
               return (
                 <>
                   <InputTextField

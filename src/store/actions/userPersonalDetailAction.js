@@ -1,12 +1,11 @@
-import Storage from '../../Utils/Storage';
+import { t } from 'i18next';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import Stripe from 'react-native-stripe-api';
 
+import Storage from '../../Utils/Storage';
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
-import { t } from 'i18next';
-
 
 function setUserAddress(userAddress) {
     return {
@@ -165,7 +164,6 @@ export const updateCurrentUserDetail = (setAnimationUpdateUser, userData) => {
     }
 }
 
-
 //Change-Password
 export const changePassword = (setAnimationChangePassowrd, userData, toggleModal, navigate) => {
     return async (dispatch) => {
@@ -181,22 +179,22 @@ export const changePassword = (setAnimationChangePassowrd, userData, toggleModal
                 toggleModal();
             })
             .catch((err) => {
-                
-                if(err?.response?.data?.statusCode === 400){
+
+                if (err?.response?.data?.statusCode === 400) {
                     setAnimationChangePassowrd(false);
                     Toast.show({
                         type: 'error',
                         text1: t('change_password_invalide_message'),
                     });
-                }else{
+                } else {
                     setAnimationChangePassowrd(false);
-                Toast.show({
-                    type: 'error',
-                    text1: t('general_message'),
-                });
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
 
                 }
-                
+
             });
 
     }
@@ -229,7 +227,6 @@ export const makeAddressPrimary = (id, flag) => {
 
     }
 }
-
 
 //getAllCard
 export const getAllCards = (setAnimation) => {
@@ -300,9 +297,7 @@ export const addCards = (values, setCardAddAnimation, addCardetCardRBSheet, hand
     }
 }
 
-
 //deleteCard
-
 export const deleteCard = (id, setAnimation) => {
     return async (dispatch) => {
         setAnimation(true);
@@ -328,8 +323,6 @@ export const deleteCard = (id, setAnimation) => {
 }
 
 //updateCards
-
-
 export const updateCardStripe = (id, updateData, setAnimation, addCardetCardRBSheet) => {
     return async (dispatch) => {
         setAnimation(true);
@@ -354,8 +347,6 @@ export const updateCardStripe = (id, updateData, setAnimation, addCardetCardRBSh
             });
     }
 }
-
-
 
 export const makeCardPrimary = (id, prevId, setAnimation) => {
     return async (dispatch) => {

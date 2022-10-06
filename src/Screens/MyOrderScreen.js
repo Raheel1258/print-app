@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import { View, FlatList, useWindowDimensions, ActivityIndicator, Text } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
-import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { BackArrowHeader, OrdersComponent, BottomSheetComponent, GreenButton } from '../Components';
+
+import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { colors, fonts } from '../Utils/theme';
 
-
 const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, animation, getAllOrderData, userToken }) => {
-  const completedOrder = getAllOrderData?.filter((item) => item?.status == "COMPLETED");
-  const activeOrder = getAllOrderData?.filter((item) => item?.status != "COMPLETED");
   const { t } = useTranslation();
   const layout = useWindowDimensions();
+
+  const completedOrder = getAllOrderData?.filter((item) => item?.status == "COMPLETED");
+  const activeOrder = getAllOrderData?.filter((item) => item?.status != "COMPLETED");
 
   const renderItem = ({ item }) => (
     <OrdersComponent navigate={navigate} orderNotify={item.status} item={item} />
@@ -126,10 +128,8 @@ const MyOrderScreen = ({ navigate, goBack, focused, setFocused, orderRBSheet, an
           </>
         }
         languageTitle={t('Signup_today')}
-        // note={false}
         refRBSheet={orderRBSheet}
         height={420}
-      // onClose={false}
       />
     </>
   );

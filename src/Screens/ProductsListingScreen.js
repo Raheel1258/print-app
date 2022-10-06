@@ -1,19 +1,17 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, ActivityIndicator,ScrollView, Image} from 'react-native';
+
 import {ScaledSheet} from 'react-native-size-matters';
 import i18n from 'i18next'
 
-import HeaderImage from '../Assests/Images/businesscard-header-image.png';
-import {ImageBackArrowHeader, ImageSlider, ImageSwiper} from '../Components';
+import {ImageBackArrowHeader} from '../Components';
 import {colors,fonts} from '../Utils/theme';
-
 
 
 const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, categoryImage, animation, category }) => {
   const renderItem = ({ item }) => (
     <>
       <TouchableOpacity onPress={()=>navigate('singleProduct' , {item:item ,categoryTitle:categoryTitle ,productCategory:category})}>
-      {/* <ImageSwiper sliderImages={item?.image} autoPlaySlider={false}/> */}
         <View style={styles.paddingContainer}>
       <Image style={styles.cardImage}   source={{uri: item?.image[0]}} />
         <Text style={styles.cardTitle}>{i18n.language == "en" ? item?.category?.name : item?.category?.name_chi}</Text>
@@ -55,8 +53,6 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
   );
 };
 
-
-
 const styles = ScaledSheet.create({
   container: {
     flex: 1,
@@ -69,7 +65,6 @@ const styles = ScaledSheet.create({
     fontFamily:fonts.avenir_bold,
     fontSize: '14@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '14@s',
     letterSpacing: '0.2@s',
@@ -81,7 +76,6 @@ const styles = ScaledSheet.create({
     fontFamily:fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '18@s',
     letterSpacing: '0.2@s',
@@ -107,7 +101,6 @@ const styles = ScaledSheet.create({
     fontFamily:fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.2@s',

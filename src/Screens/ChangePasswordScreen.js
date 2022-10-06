@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
-import { changePasswordSchema } from '../Utils/validationSchema'
 
 import { BackArrowHeader, InputTextField, GreenButton, VerificationModal } from '../Components';
+
+import { changePasswordSchema } from '../Utils/validationSchema'
 import { colors, fonts } from '../Utils/theme';
 
-const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePasswordState, handleChangePassword, animation, animationChangePassword , handleNavigationOnOK }) => {
+const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePasswordState, handleChangePassword, animation, animationChangePassword, handleNavigationOnOK }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -61,7 +63,7 @@ const ChangePasswordScreen = ({ goBack, isModalVisible, toggleModal, changePassw
                       description={t('successfully_changed_password')}
                       isModalVisible={isModalVisible}
                       toggleModal={toggleModal}
-                      aditionalAction ={handleNavigationOnOK }
+                      aditionalAction={handleNavigationOnOK}
                     />
                   </View>
                 </>

@@ -1,12 +1,13 @@
-import Storage from '../../Utils/Storage';
+import { t } from 'i18next';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 
+import { setActivityLength } from '../actions/activitiesAction'
+import { setCartLength } from '../actions/cartAction'
+
+import Storage from '../../Utils/Storage';
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
-import { t } from 'i18next';
-import {setActivityLength} from '../actions/activitiesAction'
-import {setCartLength} from '../actions/cartAction'
 
 
 function setUserLogin(loginData) {
@@ -37,32 +38,26 @@ export const login = (data, navigation, setAnimation, obj) => {
         setAnimation(true);
         axios.post(`${Api}/user/login`, data)
             .then(async (res) => {
-
-                    //Activity Api
-                    const accessToken = await Storage.retrieveData('token');
-                    if(accessToken){
-                        axios.get(`${Api}/notifications/`,{ headers: { "Authorization": `Bearer ${accessToken}` } })
+                //Activity Api
+                const accessToken = await Storage.retrieveData('token');
+                if (accessToken) {
+                    axios.get(`${Api}/notifications/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
                         .then(async (res) => {
                             let unRead = 0;
-                            const dataArray = res?.data?.map((item=> {
-                             item?.notifications?.map((item1)=>{
-                                if (item1.isRead === false){
-                                    unRead = unRead+1;
-                                }
+                            const dataArray = res?.data?.map((item => {
+                                item?.notifications?.map((item1) => {
+                                    if (item1.isRead === false) {
+                                        unRead = unRead + 1;
+                                    }
                                 })
                             }))
                             await Storage.storeData('lengthActivity', unRead);
                             dispatch(setActivityLength(unRead));
                         })
                         .catch((err) => {
-                            // setAnimation(false);
-                            // Toast.show({
-                            //     type: 'error',
-                            //     text1: t('general_message'),
-                            // });
                         });
-                    }
-                    //END Activity API
+                }
+                //END Activity API
                 Toast.show({
                     type: 'success',
                     text1: t('login_correct'),
@@ -70,11 +65,11 @@ export const login = (data, navigation, setAnimation, obj) => {
                 setAnimation(false);
                 await Storage.storeData('token', res?.data?.accessToken);
                 dispatch(setUserLogin(res));
-                if(obj !== "false"){
+                if (obj !== "false") {
                     dispatch(addToCartWithToken(obj))
-                    navigation.navigate('cartStack', {next:'cart'});
+                    navigation.navigate('cartStack', { next: 'cart' });
                 }
-                else{
+                else {
                     navigation.reset({
                         index: 0,
                         routes: [{
@@ -86,18 +81,18 @@ export const login = (data, navigation, setAnimation, obj) => {
             })
             .catch((err) => {
                 setAnimation(false);
-                if(err?.response?.data?.statusCode === 400){
+                if (err?.response?.data?.statusCode === 400) {
                     Toast.show({
                         type: 'error',
                         text1: t('invalid_login_message'),
                     });
-                }else{
+                } else {
                     Toast.show({
                         type: 'error',
                         text1: t('general_message'),
                     });
                 }
-               
+
             });
     }
 };
@@ -117,10 +112,10 @@ export const signup = (data, navigation, setAnimation, obj) => {
                     type: 'success',
                     text1: t('login')
                 })
-                if(obj !== "false"){
+                if (obj !== "false") {
                     dispatch(addToCartWithToken(obj))
-                    navigation.navigate('cartStack', {next:'cart'});
-                }else{
+                    navigation.navigate('cartStack', { next: 'cart' });
+                } else {
                     navigation.reset({
                         index: 0,
                         routes: [{
@@ -129,23 +124,23 @@ export const signup = (data, navigation, setAnimation, obj) => {
                     });
 
                 }
-                
+
                 // navigation.navigate('home')
             })
             .catch((err) => {
                 setAnimation(false);
-                if(err?.response?.data?.statusCode == 400){
+                if (err?.response?.data?.statusCode == 400) {
                     Toast.show({
                         type: 'error',
                         text1: t('user_already_exit_message'),
                     });
-                }else {     
+                } else {
                     Toast.show({
                         type: 'error',
                         text1: t('general_message'),
                     });
                 }
-               
+
             });
     }
 }
@@ -155,53 +150,53 @@ export const forgotPassword = (data, navigate, setAnimation) => {
     return (dispatch) => {
         setAnimation(true);
         axios
-        	.patch(`${Api}/user/forgetpassword`, data)
-        	.then(async (res) => {
-        		Toast.show({
-        			type: 'success',
-        			text1: t('otp_send')
-        		})
+            .patch(`${Api}/user/forgetpassword`, data)
+            .then(async (res) => {
+                Toast.show({
+                    type: 'success',
+                    text1: t('otp_send')
+                })
                 setAnimation(false);
-               navigate('verificationCode');
-        	})
-        	.catch((err) => {
+                navigate('verificationCode');
+            })
+            .catch((err) => {
                 setAnimation(false);
-        		Toast.show({
-        			type: 'error',
-        			text1: t('general_message'),
-        		});
-        	});
+                Toast.show({
+                    type: 'error',
+                    text1: t('general_message'),
+                });
+            });
 
     }
 }
 
 //VerificationOptCode
-export const verificationOtpCode = (data,navigate, setAnimation) => {
+export const verificationOtpCode = (data, navigate, setAnimation) => {
     return (dispatch) => {
         setAnimation(true);
         axios
-        	.post(`${Api}/user/verifyotp`, {otp:data?.otpCode})
-        	.then(async (res) => {
-        		Toast.show({
-        			type: 'success',
-        			text1: t('otp_message')
-        		})
+            .post(`${Api}/user/verifyotp`, { otp: data?.otpCode })
+            .then(async (res) => {
+                Toast.show({
+                    type: 'success',
+                    text1: t('otp_message')
+                })
                 setAnimation(false);
-                navigate('resetPassword', {userId:res?.data?._id});
-        	})
-        	.catch((err) => {
+                navigate('resetPassword', { userId: res?.data?._id });
+            })
+            .catch((err) => {
                 setAnimation(false);
-                if(err?.response?.data?.statusCode === 400){
+                if (err?.response?.data?.statusCode === 400) {
                     Toast.show({
                         type: 'error',
                         text1: t('invalid_otp'),
                     });
-                }else
-        		Toast.show({
-        			type: 'error',
-        			text1: t('general_message'),
-        		});
-        	});
+                } else
+                    Toast.show({
+                        type: 'error',
+                        text1: t('general_message'),
+                    });
+            });
 
     }
 }
@@ -211,22 +206,22 @@ export const resetPasswordAction = (data, navigate, setAnimation) => {
     return (dispatch) => {
         setAnimation(true);
         axios
-        	.patch(`${Api}/user/resetpassword`, data)
-        	.then(async (res) => {
-        		Toast.show({
-        			type: 'success',
-        			text1:  t('reset_password_message')
-        		})
-               setAnimation(false);
-               navigate("signin");
-        	})
-        	.catch((err) => {
+            .patch(`${Api}/user/resetpassword`, data)
+            .then(async (res) => {
+                Toast.show({
+                    type: 'success',
+                    text1: t('reset_password_message')
+                })
                 setAnimation(false);
-        		Toast.show({
-        			type: 'error',
-        			text1: t('network_error'),
-        		});
-        	});
+                navigate("signin");
+            })
+            .catch((err) => {
+                setAnimation(false);
+                Toast.show({
+                    type: 'error',
+                    text1: t('network_error'),
+                });
+            });
 
     }
 }
@@ -263,13 +258,8 @@ export const addToCartWithToken = (data) => {
         axios.patch(`${Api}/cart/product/add`, data, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 await Storage.storeData('lengthCart', res?.data?.products?.length);
-                dispatch(setCartLength(res?.data?.products?.length)) 
+                dispatch(setCartLength(res?.data?.products?.length))
                 dispatch(setAddToCart(res?.data?.products));
-                // Toast.show({
-                //     type: 'success',
-                //     text1: 'Item added to cart successfully',
-                // });
-                // navigate("cartStack");
             })
             .catch((err) => {
                 if (err?.response?.status == 401) {

@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
-import { forgotPasswordValidationSchema } from '../Utils/validationSchema';
 
-import { BackArrowHeader, InputTextField, GreenButton, VerificationModal } from '../Components';
+import { BackArrowHeader, InputTextField, GreenButton } from '../Components';
+
+import { forgotPasswordValidationSchema } from '../Utils/validationSchema';
 import { colors, fonts } from '../Utils/theme';
 
 const ForgotPasswordScreen = ({ toggleModal, isModalVisible, animation, handleForgotPassword, forgotPasswordData, navigate, goBack }) => {
@@ -55,7 +57,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_regular,
     fontSize: '13@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '17@s',
     letterSpacing: '0.2@s',

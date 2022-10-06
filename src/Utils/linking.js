@@ -1,19 +1,12 @@
 const config = {
   screens: {
-    // activity: {
-    //   path: 'activity',
-    // },
-    // accountDetail: {
-    //   path: 'accountDetail',
-    // },
-
     tab: {
       screens: {
-          activityStack: {
-            screens:{
-              ActivityStack:'activity'
-            }
-          },
+        activityStack: {
+          screens: {
+            ActivityStack: 'activity'
+          }
+        },
       },
     },
   },

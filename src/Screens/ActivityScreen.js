@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
-import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { BackArrowHeader, NotificationActivity, BottomSheetComponent, GreenButton } from '../Components';
+
+import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { colors, fonts } from '../Utils/theme';
 
 const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate, activityData, animation, handleActivityIsRead, handleAllActivityRead, userToken }) => {
@@ -73,7 +75,6 @@ const ActivityScreen = ({ goBack, focused, setFocused, activityRBSheet, navigate
           // note={false}
           refRBSheet={activityRBSheet}
           height={420}
-        // onClose={false}
         />
       </View>
     </>
@@ -110,8 +111,6 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     lineHeight: '22@s',
   }
-
-
 });
 
 export default ActivityScreen;

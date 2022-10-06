@@ -9,8 +9,10 @@ import {
   ActivityIndicator,
   Keyboard,
 } from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 
 import {
   BackArrowHeader,
@@ -28,9 +30,9 @@ import {
   UrlPickerInput,
   VerificationModal,
 } from '../Components';
+
 import InfoIcon from '../Assests/Svgs/InfoIcon';
-import {colors, fonts} from '../Utils/theme';
-import i18n from 'i18next';
+import { colors, fonts } from '../Utils/theme';
 
 const EditedSingleProductScreen = ({
   animation,
@@ -97,7 +99,7 @@ const EditedSingleProductScreen = ({
   sliceData,
   flag,
   remarks,
-  chi_eng={chi_eng}
+  chi_eng = { chi_eng }
 }) => {
   let widthOne = 120;
   let heightOne = 65;
@@ -121,7 +123,7 @@ const EditedSingleProductScreen = ({
       marginTop = 30;
     }
   };
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const getSize = () => {
     if (category == 'BOOKLET') {
       return selectedSize?.name;
@@ -131,22 +133,21 @@ const EditedSingleProductScreen = ({
       return selectedSize?.name;
     } else if (
       category == 'FLYERS_LEAFLET' &&
-      // item?.category?.name == 'Square Flyer'
       item?.index == "1"
     ) {
       return `${selectedSize?.width} x ${selectedSize?.height}`;
     }
   };
   const general_size = i18n.language == "en" ? item?.size : item?.size_chi;
-  const general_corner = i18n.language == "en" ? item?.corner : item?.corner_chi ;
+  const general_corner = i18n.language == "en" ? item?.corner : item?.corner_chi;
   const general_spotVu = i18n.language == "en" ? item?.spotUV : item?.spotUV_chi;
-  const general_finishing = i18n.language == "en" ? item?.finishing: item?.finishing_chi;
+  const general_finishing = i18n.language == "en" ? item?.finishing : item?.finishing_chi;
   const general_paperType = i18n.language == "en" ? item?.paperType : item?.paperType_chi;
   const general_numberOfSides = i18n.language == "en" ? item?.numberOfSides : item?.numberOfSides_chi;
   const general_folding = i18n.language == "en" ? item?.folding : item?.folding_chi;
-  const general_cut = i18n.language == "en" ? item?.cut: item?.cut_chi;
-  const general_window = i18n.language == "en" ? item?.window: item?.window_chi;
-  const general_numberOfPages = i18n.language == "en" ? (item?.numberOfPages[0] && item?.numberOfPages[0]?.number) : (item?.numberOfPages[0] && item?.numberOfPages_chi[0]?.number) ;
+  const general_cut = i18n.language == "en" ? item?.cut : item?.cut_chi;
+  const general_window = i18n.language == "en" ? item?.window : item?.window_chi;
+  const general_numberOfPages = i18n.language == "en" ? (item?.numberOfPages[0] && item?.numberOfPages[0]?.number) : (item?.numberOfPages[0] && item?.numberOfPages_chi[0]?.number);
   const general_numberOfPagesInnerPages = i18n.language == "en" ? (item?.numberOfPages[1] && item?.numberOfPages[1]?.number) : (item?.numberOfPages[1] && item?.numberOfPages_chi[1]?.number)
   return (
     <>
@@ -194,13 +195,13 @@ const EditedSingleProductScreen = ({
                               item?.name == 'Square'
                                 ? styles.squareStyling
                                 : {
-                                    ...styles.squareImage,
-                                    width: widthOne,
-                                    height: heightOne,
-                                    marginTop: marginTop,
-                                  }
+                                  ...styles.squareImage,
+                                  width: widthOne,
+                                  height: heightOne,
+                                  marginTop: marginTop,
+                                }
                             }
-                            source={{uri: item?.image}}
+                            source={{ uri: item?.image }}
                           />
                         }
                         cardStandard={item?.name}
@@ -269,18 +270,18 @@ const EditedSingleProductScreen = ({
             {((category == 'BUSINESS_CARD' &&
               item?.category?.productType == 'Matte / Glossy Business Card') ||
               category == 'BOOKLET') && (
-              <>
-                <CategoriesTitleHeader
-                  title={t('choose_finishing')}
-                  Children={<InfoIcon />}
-                />
-                <UploadFileComponent
-                  onPress={() => finishingRBSheet.current.open()}
-                  title={t('finishing')}
-                  selection={selectFinishing}
-                />
-              </>
-            )}
+                <>
+                  <CategoriesTitleHeader
+                    title={t('choose_finishing')}
+                    Children={<InfoIcon />}
+                  />
+                  <UploadFileComponent
+                    onPress={() => finishingRBSheet.current.open()}
+                    title={t('finishing')}
+                    selection={selectFinishing}
+                  />
+                </>
+              )}
 
             {category === 'BUSINESS_CARD' &&
               item?.category?.productType === 'Spot UV Business Card' && (
@@ -320,7 +321,7 @@ const EditedSingleProductScreen = ({
                                 transition={false}
                                 resiseMode="contain"
                                 style={styles.cornerImage}
-                                source={{uri: item?.image}}
+                                source={{ uri: item?.image }}
                               />
                             }
                             cardStandard={item?.cornerName}
@@ -365,7 +366,7 @@ const EditedSingleProductScreen = ({
                               transition={false}
                               resizeMode="contain"
                               style={styles.squareImage}
-                              source={{uri: item?.image}}
+                              source={{ uri: item?.image }}
                             />
                           }
                           cardStandard={item?.cutName}
@@ -394,7 +395,7 @@ const EditedSingleProductScreen = ({
                                 transition={false}
                                 resizeMode="contain"
                                 style={styles.squareImage}
-                                source={{uri: item?.image}}
+                                source={{ uri: item?.image }}
                               />
                             }
                             cardStandard={item?.foldingName}
@@ -428,7 +429,7 @@ const EditedSingleProductScreen = ({
                               transition={false}
                               resizeMode="contain"
                               style={styles.squareImage}
-                              source={{uri: item?.image}}
+                              source={{ uri: item?.image }}
                             />
                           }
                           cardStandard={item?.windowName}
@@ -668,17 +669,6 @@ const EditedSingleProductScreen = ({
                     </TouchableOpacity>
                   );
                 })
-
-                // <TouchableOpacity
-                //   onPress={() => {
-                //     setPaperTypeInnerPages(paperTypeInnerPages);
-                //     paperTypeInnerPagesRBSheet.current.close();
-                //   }}
-                //   style={styles.listContainer}>
-                //   <Text style={styles.listStyle}>
-                //     {general_paperType ? general_paperType[1] : ""}
-                //   </Text>
-                // </TouchableOpacity>
               }
             />
 
@@ -689,13 +679,6 @@ const EditedSingleProductScreen = ({
               note={false}
               height={300}
               childern={
-                // <TouchableOpacity onPress={() => {
-                //   setNoOfPagesCoverPages(noOfPagesCoverPages);
-                //   noOfPagesCoverPagesRBSheet.current.close()
-                // }}
-                //   style={styles.listContainer}>
-                //   <Text style={styles.listStyle}>{noOfPagesCoverPages}</Text>
-                // </TouchableOpacity>
                 general_numberOfPages &&
                 general_numberOfPages?.map((item, index) => {
                   return (
@@ -727,7 +710,7 @@ const EditedSingleProductScreen = ({
                       key={index}
                       onPress={() => {
                         setNoOfPagesInnerPages(item);
-                        setValues({...defaultValuesObject, innerpage: item});
+                        setValues({ ...defaultValuesObject, innerpage: item });
                         noOfPagesInnerPagesRBSheet.current.close();
                       }}
                       style={styles.listContainer}>
@@ -775,7 +758,7 @@ const EditedSingleProductScreen = ({
                     key={index}
                     onPress={() => {
                       setNumberOfSides(item);
-                      setValues({...defaultValuesObject, sides: item});
+                      setValues({ ...defaultValuesObject, sides: item });
                       numberOfSidesRBSheet.current.close();
                     }}
                     style={styles.listContainer}>
@@ -855,7 +838,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
@@ -882,7 +864,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '17@s',
     letterSpacing: '0.2@s',
@@ -895,7 +876,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '18@s',
     letterSpacing: '0.2@s',
@@ -907,7 +887,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',

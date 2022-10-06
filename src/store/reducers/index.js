@@ -7,6 +7,4 @@ import cartReducer from "../reducers/cartReducer";
 import orderReducer from '../reducers/orderReducer';
 import activitiesReducer from '../reducers/activitiesReducer'
 
-
-
-export default combineReducers(Object.assign({ auth, categories, productList, userPersonalDetailReducer, cartReducer,orderReducer,activitiesReducer }));
+export default combineReducers(Object.assign({ auth, categories, productList, userPersonalDetailReducer, cartReducer, orderReducer, activitiesReducer }));

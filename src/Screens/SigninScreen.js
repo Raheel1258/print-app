@@ -1,21 +1,20 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { loginValidationSchema } from '../Utils/validationSchema';
 import { Formik } from "formik";
-
-
 
 import {
   BackArrowHeader,
   InputTextField,
   GreenButton,
 } from '../Components';
-import { colors,fonts } from '../Utils/theme';
 
+import { colors, fonts } from '../Utils/theme';
 
-const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) => {
+const SigninScreen = ({ navigate, handleLogin, animation, loginData, goBack }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -47,9 +46,6 @@ const SigninScreen = ({ navigate, handleLogin, animation, loginData , goBack}) =
                 <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("forgotPassword")}>
                   <Text style={styles.forgotPassword}>{t('forgot_password')}</Text>
                 </TouchableOpacity>
-                {/* <TouchableOpacity style={styles.forgotWrapper} onPress={() => navigate("signup")}>
-                  <Text style={styles.forgotPassword}>{t('Create your account')}</Text>
-                </TouchableOpacity> */}
                 <View style={styles.buttonWrapper}>
                   <GreenButton onPress={handleSubmit} animation={animation} title={t('login_text')} />
                 </View>
@@ -69,10 +65,9 @@ const styles = ScaledSheet.create({
     padding: '12@s',
   },
   forgotPassword: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '15@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',

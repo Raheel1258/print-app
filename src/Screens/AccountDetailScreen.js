@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
-import { updatePersonalDetailSchema } from '../Utils/validationSchema';
 
 import {
   BackArrowHeader,
@@ -15,27 +15,29 @@ import {
   AddNewAddressForm,
   AddNewCreditCardSheet
 } from '../Components';
+
+import { updatePersonalDetailSchema } from '../Utils/validationSchema';
 import { colors, fonts } from '../Utils/theme';
 
-const AccountDetailScreen = ({ 
-  goBack, 
-  navigate, 
-  animation, 
-  addAddressRBSheet, 
-  addCardetCardRBSheet, 
-  personalDetail, 
-  handleUpdatedPersonalDetail, 
-  userAddresses, 
-  animationUpdateUser, 
+const AccountDetailScreen = ({
+  goBack,
+  navigate,
+  animation,
+  addAddressRBSheet,
+  addCardetCardRBSheet,
+  personalDetail,
+  handleUpdatedPersonalDetail,
+  userAddresses,
+  animationUpdateUser,
   handleUserAddressRemove,
   makePrimary,
   userCardsDetails,
   handleUserCardRemove,
   handleMakePrimaryCard
- }) => {
+}) => {
   const { t } = useTranslation();
-  const [updateAddress , setUpdatedAddress] = useState(undefined);
-  const [updateCard , setUpdateCard] = useState(undefined);
+  const [updateAddress, setUpdatedAddress] = useState(undefined);
+  const [updateCard, setUpdateCard] = useState(undefined);
   return (
     <>
       {!animation ? <View style={styles.container}>
@@ -124,43 +126,42 @@ const AccountDetailScreen = ({
             <CategoriesTitleHeader
               title={t('my_address')}
               description={t('new_address')}
-              onPress={() => {addAddressRBSheet.current.open(), setUpdatedAddress(undefined)}}
+              onPress={() => { addAddressRBSheet.current.open(), setUpdatedAddress(undefined) }}
             />
           </View>
           {userAddresses?.length > 0 ? userAddresses?.map((item, index) => {
             return <>
-              <MyAddresses 
-              setUpdatedAddress={setUpdatedAddress} 
-              refRBSheet={addAddressRBSheet} 
-              handleUserAddressRemove={handleUserAddressRemove} 
-              address={item} 
-              makePrimary={makePrimary} />
+              <MyAddresses
+                setUpdatedAddress={setUpdatedAddress}
+                refRBSheet={addAddressRBSheet}
+                handleUserAddressRemove={handleUserAddressRemove}
+                address={item}
+                makePrimary={makePrimary} />
               {index != userAddresses.length - 1 && <View style={styles.borderBottom} />}
             </>
           }) : <Text style={styles.emptyBox}>{t('no_address_added')}</Text>}
 
-          {/* <MyAddresses address title="peter park" /> */}
           <View style={styles.categoriesWrapper}>
             <CategoriesTitleHeader
               title={t('my_payment')}
               description={t('new_card')}
-              onPress={() => {addCardetCardRBSheet.current.open(), setUpdateCard(undefined)}}
+              onPress={() => { addCardetCardRBSheet.current.open(), setUpdateCard(undefined) }}
             />
-            {userCardsDetails?.length > 0 ? userCardsDetails?.map((item,index)=>{
+            {userCardsDetails?.length > 0 ? userCardsDetails?.map((item, index) => {
               return <>
-                <MyAddresses 
-                    card={item}
-                    setUpdatedAddress={setUpdateCard} 
-                    title="Peter Park" 
-                    refRBSheet={addCardetCardRBSheet}
-                    handleUserAddressRemove={handleUserCardRemove} 
-                    makePrimary={handleMakePrimaryCard}
-                    description={index == 0 ? true : false} 
-                    />
+                <MyAddresses
+                  card={item}
+                  setUpdatedAddress={setUpdateCard}
+                  title="Peter Park"
+                  refRBSheet={addCardetCardRBSheet}
+                  handleUserAddressRemove={handleUserCardRemove}
+                  makePrimary={handleMakePrimaryCard}
+                  description={index == 0 ? true : false}
+                />
                 {index != userCardsDetails.length - 1 && <View style={styles.borderBottom} />}
-                </>
-              }) : <Text style={styles.emptyBox}>{t('no_card_added')}</Text>}
-            
+              </>
+            }) : <Text style={styles.emptyBox}>{t('no_card_added')}</Text>}
+
           </View>
           <View style={styles.screenBorderBottom} />
         </ScrollView>
@@ -171,8 +172,8 @@ const AccountDetailScreen = ({
           refRBSheet={addAddressRBSheet}
         />
         <BottomSheetComponent
-          childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} updateCard={updateCard} setUpdateCard={setUpdateCard}/>}
-          title={updateCard == undefined ? t('add_new_cardet_card'): 'Update Card'}
+          childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} updateCard={updateCard} setUpdateCard={setUpdateCard} />}
+          title={updateCard == undefined ? t('add_new_cardet_card') : 'Update Card'}
           note={false}
           refRBSheet={addCardetCardRBSheet}
         />

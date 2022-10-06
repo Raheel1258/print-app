@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
-import Storage from '../Utils/Storage';
+import { Text, View, Platform } from 'react-native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
-import { Text, View, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { setCartLength } from '../store/actions/cartAction';
 import { setActivityLength } from '../store/actions/activitiesAction'
-
-
 import {
   SigninContainer,
   HomeContainer,
@@ -33,6 +32,7 @@ import {
   PaymentContainer,
   EditedSingleProductContainer
 } from '../Containers';
+
 import { colors, fonts } from './theme';
 import BrowseActiveIcon from '../Assests/Svgs/BrowseActiveIcon';
 import BrowseIcon from '../Assests/Svgs/BrowseIcon';
@@ -45,11 +45,8 @@ import ActivityIcon from '../Assests/Svgs/ActivityIcon';
 import AccountActiveIcon from '../Assests/Svgs/AccountActiveIcon';
 import AccountIcon from '../Assests/Svgs/AccountIcon';
 import EmptyCartScreen from '../Screens/EmptyCartScreen';
+import Storage from '../Utils/Storage';
 
-// let cartLength = 0;
-// const fun1 = async() => {
-//   cartLength = await Storage.retrieveData('lengthCart')
-// }
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
 const Home = createStackNavigator();
@@ -80,11 +77,6 @@ const App = () => {
         component={MyTabs}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
-        name="home"
-        component={HomeContainer}
-        options={{headerShown: false}}
-      /> */}
       <Stack.Screen
         name="productsListing"
         component={ProductsListingContainer}
@@ -110,7 +102,6 @@ const App = () => {
         component={PaymentContainer}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="myOrder"
         component={MyOrderContainer}
@@ -285,11 +276,7 @@ const CartStack = () => {
         component={OrderReceivedContainer}
         options={{ headerShown: false }}
       />
-      {/* <Cart.Screen
-        name="emptyCart"
-        component={EmptyCartScreen}
-        options={{headerShown: false}}
-      /> */}
+
       <Cart.Screen
         name="editedSingleProduct"
         component={EditedSingleProductContainer}
@@ -306,12 +293,6 @@ const CartStack = () => {
 
 const MyTabs = ({ }) => {
   const { t } = useTranslation();
-  // fun1();
-  // useEffect(()=>{
-  //   console.log("useEffect of tab");
-  //   fun1();
-  // },[])
-  // console.log("length", fun1());
 
   const cartItem = useSelector(state => state?.cartReducer?.cartLength);
   const activityLength = useSelector(state => state?.activitiesReducer?.activityLength);

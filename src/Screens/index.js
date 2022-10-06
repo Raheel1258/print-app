@@ -38,5 +38,5 @@ export {
   ActivityScreen,
   PaymentScreen,
   EditedSingleProductScreen
-  
+
 };

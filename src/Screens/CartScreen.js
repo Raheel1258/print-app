@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,12 @@ import {
   ActivityIndicator,
   TextInput,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
-import {EmptyCartContainer} from '../Containers';
-import GreenCheckIcon from '../Assests/Svgs/GreenCheckIcon';
 
+import { useNavigation } from '@react-navigation/native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+
+import { EmptyCartContainer } from '../Containers';
 import {
   BackArrowHeader,
   CategoriesTitleHeader,
@@ -27,26 +27,12 @@ import {
   AddNewCreditCardForm,
   AddNewCreditCardSheet,
 } from '../Components';
+
+import GreenCheckIcon from '../Assests/Svgs/GreenCheckIcon';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import PremiumBusinessCard from '../Assests/Images/Premium-business-card.png';
 import SecondBusinessCard from '../Assests/Images/Premium-business-card-two.png';
-import {colors, fonts} from '../Utils/theme';
-import {NavigationContainer} from '@react-navigation/native';
-
-const DATA = [
-  {
-    id: '1',
-    image: PremiumBusinessCard,
-    edit: 'Edit',
-    remove: 'Remove',
-  },
-  {
-    id: '2',
-    image: SecondBusinessCard,
-    edit: 'Edit',
-    remove: 'Remove',
-  },
-];
+import { colors, fonts } from '../Utils/theme';
 
 const CartScreen = ({
   deliveryUserAddress,
@@ -103,9 +89,10 @@ const CartScreen = ({
   renderScreenForAddress,
   renderScreenForCard
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
-  const renderItem = ({item, index}) => (
+
+  const renderItem = ({ item, index }) => (
     <MyCartComponent
       image={item?.image}
       edit={true}
@@ -136,7 +123,7 @@ const CartScreen = ({
                 data={cartItem && cartItem}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
-                contentContainerStyle={{paddingBottom: 0}}
+                contentContainerStyle={{ paddingBottom: 0 }}
               />
               <CategoriesTitleHeader title={t('promo_code')} />
 
@@ -146,7 +133,6 @@ const CartScreen = ({
                 <View style={styles.textInputContainer}>
                   <TextInput
                     style={styles.textInput}
-                    // value={textValue}
                     keyboardType="default"
                     autoCapitalize="none"
                     onChangeText={text => handleChange(text)}
@@ -226,7 +212,6 @@ const CartScreen = ({
                   {t('before_production')}
                 </Text>
                 <GreenButton
-                  // onPress={() => navigate('orderReceived')}
                   onPress={() => handlePayment()}
                   backgroundColor={colors.blackColor}
                   buttonHeight={57}
@@ -250,8 +235,8 @@ const CartScreen = ({
             </ScrollView>
           ) : (
             <>
-            {(cartItem?.length == 0 || !userToken) &&
-              <EmptyCartContainer />}
+              {(cartItem?.length == 0 || !userToken) &&
+                <EmptyCartContainer />}
             </>
           )}
 
@@ -268,7 +253,6 @@ const CartScreen = ({
                   animationForgettingAddress={animationForgettingAddress}
                   setShowDetail={setDeliveryUserAddress}
                   onPress={() => {
-                    // refRBSheet.current.close();
                     addAddressRBSheet.current.open();
                   }}
                 />
@@ -288,7 +272,7 @@ const CartScreen = ({
             title={t('deviver_to')}
             note={false}
             refRBSheet={refRBSheet}
-            closePress={()=>{
+            closePress={() => {
               renderScreenForAddress()
               refRBSheet.current.close()
             }}
@@ -326,67 +310,11 @@ const CartScreen = ({
             title={t('credit_cards')}
             note={false}
             refRBSheet={creditCardRBSheet}
-            closePress={()=>{
+            closePress={() => {
               renderScreenForCard()
               creditCardRBSheet.current.close()
             }}
           />
-          {/* <BottomSheetComponent
-            childern={<AddNewAddressForm />}
-            title={t('add_new_address')}
-            note={false}
-            refRBSheet={addAddressRBSheet}
-          /> */}
-          {/* <BottomSheetComponent
-            childern={<AddNewCreditCardSheet addCardetCardRBSheet={addCardetCardRBSheet} />}
-            title={t('add_new_cardet_card')}
-            note={false}
-            refRBSheet={addCardetCardRBSheet}
-          /> */}
-          {/* <BottomSheetComponent
-            childern={
-              <>
-                <View style={styles.logoWrapper}>
-                  <AuthenticationLogo />
-                </View>
-                <View style={styles.signinButtonWrapper}>
-                  <GreenButton
-                    backgroundColor={
-                      focused ? colors.greenColor : colors.whiteColor
-                    }
-                    color={focused ? colors.whiteColor : colors.greenColor}
-                    borderWidth={2}
-                    title={t('signup_text')}
-                    onPress={() => {
-                      authRBSheet.current.close();
-                      navigate('auth', { next: 'signup' });
-                      setFocused(true);
-                    }}
-                  />
-                </View>
-                <View style={styles.signinButtonWrapper}>
-                  <GreenButton
-                    title={t('sheet_login_in')}
-                    backgroundColor={
-                      focused ? colors.whiteColor : colors.greenColor
-                    }
-                    color={focused ? colors.greenColor : colors.whiteColor}
-                    borderWidth={2}
-                    onPress={() => {
-                      authRBSheet.current.close();
-                      navigate('auth', { next: 'signin' });
-                      setFocused(false);
-                    }}
-                  />
-                </View>
-              </>
-            }
-            languageTitle={t('Signup_today')}
-            // note={false}
-            refRBSheet={authRBSheet}
-            height={420}
-            // onClose={false}
-          /> */}
         </View>
       ) : (
         <View style={styles.loaderContainer}>
@@ -409,7 +337,7 @@ const CartScreen = ({
                 title={t('signup_text')}
                 onPress={() => {
                   authRBSheet.current.close();
-                  navigate('auth', {next: 'signup'});
+                  navigate('auth', { next: 'signup' });
                   setFocused(true);
                 }}
               />
@@ -424,7 +352,7 @@ const CartScreen = ({
                 borderWidth={2}
                 onPress={() => {
                   authRBSheet.current.close();
-                  navigate('auth', {next: 'signin'});
+                  navigate('auth', { next: 'signin' });
                   setFocused(false);
                 }}
               />
@@ -432,10 +360,8 @@ const CartScreen = ({
           </>
         }
         languageTitle={t('Signup_today')}
-        // note={false}
         refRBSheet={authRBSheet}
         height={420}
-        // onClose={false}
       />
     </>
   );

@@ -1,11 +1,12 @@
-import Storage from '../../Utils/Storage';
-import axios from 'axios';
+import { t } from 'i18next';
 import Toast from 'react-native-toast-message';
+import axios from 'axios';
+
 import { getAllOrder } from './orderAction';
 
+import Storage from '../../Utils/Storage';
 import { Api } from '../../Utils/Api'
 import * as types from '../types/types';
-import { t } from 'i18next';
 
 
 function setActivityDetail(data) {

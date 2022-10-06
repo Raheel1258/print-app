@@ -1,7 +1,6 @@
 import createReducer from '../createReducer';
 import * as types from "../types/types"
 
-
 const auth = createReducer({}, {
 
 	[types.USER_LOGIN](state, action) {

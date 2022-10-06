@@ -1,13 +1,12 @@
-import Storage from '../../Utils/Storage';
+import { t } from 'i18next';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
-import * as types from '../types/types';
+
 import { setActivityLength } from '../actions/activitiesAction'
 
+import Storage from '../../Utils/Storage';
+import * as types from '../types/types';
 import { Api } from '../../Utils/Api'
-import { t } from 'i18next';
-
-
 
 function setCartDetail(cart) {
     return {
@@ -153,7 +152,6 @@ export const deleteProduct = (setAnimation, _id, navigate) => {
         setAnimation(true);
         axios.delete(`${Api}/cart/product/delete/${_id}`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                // dispatch(setCartDetail(res?.data?.products)); 
                 dispatch(getCartData(setAnimation, navigate));
                 dispatch(setPromoCodeDetail("0"));
                 setAnimation(false);
@@ -203,7 +201,6 @@ export const editCartItem = (setAddToCartAnimation, productId, obj, navigate) =>
             .then(async (res) => {
                 setAddToCartAnimation(false);
                 navigate("cart");
-                //dispatch(setCartDetail([]));
             })
             .catch((err) => {
                 setAddToCartAnimation(false);
@@ -294,7 +291,6 @@ export const getAllCards = (setAnimation, setCardData) => {
                 dispatch(setUserCardData(res?.data?.data))
             })
             .catch((err) => {
-                // setAnimationChangePassowrd(false);
                 setAnimation(false)
                 Toast.show({
                     type: 'error',
@@ -307,7 +303,6 @@ export const getAllCards = (setAnimation, setCardData) => {
 
 
 //Payment with Saved Card
-
 export const paymentWithSaveCard = (setPlaceOrderAnimation, card, orderObj, navigate) => {
     return async (dispatch) => {
         setPlaceOrderAnimation(true);
@@ -333,7 +328,6 @@ export const paymentWithSaveCard = (setPlaceOrderAnimation, card, orderObj, navi
                     });
             })
             .catch((err) => {
-                // setAnimationChangePassowrd(false);
                 setPlaceOrderAnimation(false)
                 Toast.show({
                     type: 'error',
@@ -345,19 +339,14 @@ export const paymentWithSaveCard = (setPlaceOrderAnimation, card, orderObj, navi
 
 
 //
-export const makeCardPrimaryForCart = (id,prevId) => {
+export const makeCardPrimaryForCart = (id, prevId) => {
     return async (dispatch) => {
         // setAnimation(true);
         const accessToken = await Storage.retrieveData('token')
-        axios.patch(`${Api}/stripe/makePrimaryCard/${id}/${prevId}`, {} ,{headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.patch(`${Api}/stripe/makePrimaryCard/${id}/${prevId}`, {}, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                
-                // setAnimation(false);   
-                // dispatch(getAllCards(setAnimation));              
             })
             .catch((err) => {
-                // setAnimationChangePassowrd(false);
-                // setAnimation(false);
                 Toast.show({
                     type: 'error',
                     text1: t('general_message'),
@@ -366,8 +355,6 @@ export const makeCardPrimaryForCart = (id,prevId) => {
     }
 }
 
-
-
 //Get Primary Address
 export const getPrimaryAddress = (setAnimation, setDeliveryUserAddress) => {
     return async (dispatch) => {
@@ -375,59 +362,45 @@ export const getPrimaryAddress = (setAnimation, setDeliveryUserAddress) => {
         setAnimation(true);
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
-                if(res?.data?.addresses?.length > 0){
+                if (res?.data?.addresses?.length > 0) {
                     const primaryAddress = res?.data?.addresses?.filter((item) => item?.primary == true);
                     setDeliveryUserAddress(primaryAddress[0])
-                }else{
+                } else {
                     setDeliveryUserAddress('Select delivery address')
                 }
-               
+
                 setAnimation(false);
             })
             .catch((err) => {
                 setAnimation(false);
-                // if(err?.response?.data?.statusCode === 400){
-                //     Toast.show({
-                //         type: 'error',
-                //         text1: t('invalid_login_message'),
-                //     });
-                // }else
-                // Toast.show({
-                //     type: 'error',
-                //     text1: t('general_message'),
-                // });
             });
     }
 }
 
-
 //Get Primary Card 
-export const  getPrimaryCards = (setAnimation, setUserCardData) => {
+export const getPrimaryCards = (setAnimation, setUserCardData) => {
     return async (dispatch) => {
         setAnimation(true);
         const accessToken = await Storage.retrieveData('token')
-        axios.get(`${Api}/stripe/getAllCards/`, {headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.get(`${Api}/stripe/getAllCards/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 setAnimation(false);
-                if(res?.data?.data?.length > 0){
+                if (res?.data?.data?.length > 0) {
                     const primaryCard = res?.data?.data?.filter((item) => item?.metadata?.primary == 'true');
                     setUserCardData(primaryCard[0]);
-                }else{
+                } else {
                     setUserCardData('Select card');
                 }
-                
+
             })
             .catch((err) => {
                 setAnimation(false);
-                // Toast.show({
-                //     type: 'error',
-                //     text1: t('general_message'),
-                // });
             });
 
     }
 }
-export const  discountReset = () => {
+
+export const discountReset = () => {
     return async (dispatch) => {
         dispatch(setPromoCodeDetail("0"));
     }

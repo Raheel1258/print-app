@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
-import EmptyIcon from '../Assests/Svgs/EmptyIcon';
 import { CartNotifyComponent } from '../Components';
+
+import EmptyIcon from '../Assests/Svgs/EmptyIcon';
 import { colors, fonts } from '../Utils/theme';
 
 const EmptyCartScreen = () => {

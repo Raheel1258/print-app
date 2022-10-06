@@ -325,16 +325,16 @@ export const en = {
     CardSheetYear: "Expiry Year is required",
     CardSheetCSV: "CSV is required",
 
-    alert_message_pic:'You did not select any pic',
-    no_data_message:'No Data',
+    alert_message_pic: 'You did not select any pic',
+    no_data_message: 'No Data',
     alter_message_for_primary_card: 'Before removing the primary card, make another primary',
     alter_message_for_primary_address: 'Before removing the primary address, make another primary',
-    change_password_invalide_message:'Current password is invalid',
-    exp_Card_Date:"Exp:",
+    change_password_invalide_message: 'Current password is invalid',
+    exp_Card_Date: "Exp:",
     number_required: 'Number is required',
-    no_card_added:'No card added',
-    update_cart_button:'Update',
-    update_cart_item_header:"Updated Cart Item"
+    no_card_added: 'No card added',
+    update_cart_button: 'Update',
+    update_cart_item_header: "Updated Cart Item"
 
   },
 };

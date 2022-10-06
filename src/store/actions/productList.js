@@ -1,11 +1,10 @@
-import Toast from 'react-native-toast-message';
-import Storage from '../../Utils/Storage';
-import axios from 'axios';
-import * as types from '../types/types'
-
 import { t } from 'i18next';
-import { Api } from '../../Utils/Api'
+import Toast from 'react-native-toast-message';
+import axios from 'axios';
 
+import Storage from '../../Utils/Storage';
+import { Api } from '../../Utils/Api'
+import * as types from '../types/types'
 
 export const setProductList = (data) => {
   return {
@@ -65,14 +64,14 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
     let x = values?.innerpage;
     const myArray = x.split(" ");
     const intoNumber = Number(myArray[0]);
-    if(intoNumber < 36){
+    if (intoNumber < 36) {
       const y = x.split(" ").filter((item => item !== "")).join(" ");
       values['innerpage'] = y
-     }
-     else{
+    }
+    else {
       values['innerpage'] = x
-     }    
-  }  
+    }
+  }
 
   if (values?.product !== "Spot UV Business Card") {
     delete values['spotuvside'];
@@ -108,7 +107,7 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         query = query + key + "=" + values[key] + "&"
       }
     })
-    
+
     axios.get(`${Api}/price-chart/${values.category}?${query}`)
       .then(async (res) => {
         const newData = res?.data?.sort((a, b) => {
@@ -116,7 +115,6 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
         });
         dispatch(setPriceChart(newData));
         setSelectedPriceChart(newData[0]);
-        // // setPriceChart(res?.data);
         setPriceChartAnimation(false);
       })
       .catch((err) => {
@@ -144,14 +142,14 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
     let x = values?.innerpage;
     const myArray = x.split(" ");
     const intoNumber = Number(myArray[0]);
-    if(intoNumber < 36){
+    if (intoNumber < 36) {
       const y = x.split(" ").filter((item => item !== "")).join(" ");
       values['innerpage'] = y
-     }
-     else{
+    }
+    else {
       values['innerpage'] = x
-     }    
-  }  
+    }
+  }
 
   if (values?.product !== "Spot UV Business Card") {
     delete values['spotuvside'];
@@ -193,7 +191,6 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
         });
         dispatch(setPriceChartOnEdit(newData));
         setSelectedPriceChart(newData[0]);
-        // // setPriceChart(res?.data);
         setPriceChartAnimation(false);
       })
       .catch((err) => {
@@ -225,21 +222,22 @@ export const getProductById = (id, setAnimation) => {
   }
 };
 
-
 //Upload file
 export const uploadFile = (formData, setAnimation, setResult) => {
   return async (dispatch) => {
     setAnimation(true);
-    axios.post(`${Api}/upload-file/image`, formData, {headers:{
-      accept: 'application/json',
-      'Content-Type':'multipart/form-data; boundary=testing'
-    }})
+    axios.post(`${Api}/upload-file/image`, formData, {
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'multipart/form-data; boundary=testing'
+      }
+    })
       .then(async (res) => {
         setAnimation(false);
         setResult((prev) => {
           return [...prev, res?.data?.Location];
         });
-        
+
       })
       .catch((err) => {
         setAnimation(false);
@@ -251,29 +249,4 @@ export const uploadFile = (formData, setAnimation, setResult) => {
   }
 };
 
-
-// export const uploadFile = (formData, setAnimation, setResult) => {
-//   return async (dispatch) => {
-//     setAnimation(true);
-//     axios({
-//       method: 'post',
-//       url: 'https://print-backend-app.herokuapp.com/api/v1/upload-file/image',
-//       data:formData
-
-//     })
-//       .then(async (res) => {
-//         setAnimation(false);
-//         setResult((prev) => {
-//           return [...prev, res?.data?.Location];
-//         });
-//       })
-//       .catch((err) => {
-//         setAnimation(false);
-//         Toast.show({
-//           type: 'error',
-//           text1: t('general_message')
-//         });
-//       });
-//   }
-// };
 

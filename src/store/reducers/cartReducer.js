@@ -2,7 +2,7 @@ import createReducer from '../createReducer';
 import * as types from "../types/types"
 
 const cartReducer = createReducer({
-	cartLength : 0
+	cartLength: 0
 }, {
 	[types.CART_DETAIL](state, action) {
 		return {
@@ -10,7 +10,7 @@ const cartReducer = createReducer({
 			cartDetail: action.cart,
 		};
 	},
-    [types.ADD_TO_CART](state, action) {
+	[types.ADD_TO_CART](state, action) {
 		return {
 			...state,
 			addedCartItem: action.item,

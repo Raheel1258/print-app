@@ -8,32 +8,32 @@ class Storage {
         const item = JSON.parse(retrievedItem);
         return item;
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   static async storeData(key, value) {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {}
+    } catch (error) { }
   }
 
   static async mergeData(key, value) {
     try {
       await AsyncStorage.mergeItem(key, JSON.stringify(value));
-    } catch (error) {}
+    } catch (error) { }
   }
 
   static async getAllKeys() {
     try {
       const allKeys = await AsyncStorage.getAllKeys();
       return allKeys;
-    } catch (error) {}
+    } catch (error) { }
   }
 
   static async removeData(key) {
     try {
       await AsyncStorage.removeItem(key);
-    } catch (error) {}
+    } catch (error) { }
   }
 }
 export default Storage;

@@ -1,7 +1,9 @@
 import React from 'react';
-import {ScaledSheet} from 'react-native-size-matters';
-import {Text, View, FlatList, ScrollView} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { Text, View, FlatList, ScrollView } from 'react-native';
+
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next'
 
 import {
   BackArrowHeader,
@@ -11,57 +13,10 @@ import {
   UploadFileComponent,
 } from '../Components';
 
-import {handleOrderStatus,getObjKey} from '../Utils/helperFunctions';
-import {colors, fonts} from '../Utils/theme';
+import { handleOrderStatus, getObjKey } from '../Utils/helperFunctions';
+import { colors, fonts } from '../Utils/theme';
 import { chi_eng } from '../Utils/mockData';
-import i18n from 'i18next'
 
-// const DATA = [
-//   {
-//     "image": [
-//       "https://print-print-app.s3.amazonaws.com/1.jpg",
-//       "https://print-print-app.s3.ap-south-1.amazonaws.com/Business_Card_Mockup_038.jpg"
-
-//     ],
-//     "title": "BUSINESS_CARD",
-//     "category": {
-//       "productType": "BizCard-Premium",
-//       "name": "Premium (Thick) Business Card",
-//       "pricePerHunderd": "68",
-//       "description": "Thick, smooth and premium. The Premium Business Card is a popular choice for professionals.",
-//       "paperType": "Woodfree Card(350g)",
-//       "leadTime": "2-3 business days",
-//       "colour": "CYMK",
-//       "Sizes": "3 sizes"
-//     },
-
-//     "size":
-//       {
-//         "name": "Standard",
-//         "height": "90",
-//         "width": "54",
-//         "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/standard.png"
-//       },
-
-//     "priceChart": {
-//       "quantity": "100",
-//       "unitPrice": "0.5"
-//     },
-//     "preview": true,
-//     "designUrl": "string",
-//     "remarks": "string",
-//     "corner":
-//     {
-//       "cornerName": "Square",
-//       "cornerDescription": "Traditional",
-//       "image": "https://print-print-app.s3.ap-south-1.amazonaws.com/square-image.png",
-//     },
-//   },
-// {
-//   id: '2',
-//   image: SecondBusinessCard,
-// },
-//];
 
 const MyOrdersListScreen = ({
   goBack,
@@ -70,10 +25,9 @@ const MyOrdersListScreen = ({
   handlerSupportEmail,
   userToken,
 }) => {
-  const {t} = useTranslation();
-  const renderItem = ({item, index}) => (
+  const { t } = useTranslation();
+  const renderItem = ({ item, index }) => (
     <MyCartComponent
-      // fontFamily={fonts.avenir_regular}
       image={
         item?.image
           ? item?.image
@@ -109,7 +63,7 @@ const MyOrdersListScreen = ({
                 data={orderData?.products && orderData?.products}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
-                contentContainerStyle={{paddingBottom: 0}}
+                contentContainerStyle={{ paddingBottom: 0 }}
               />
               <CategoriesTitleHeader title={t('order_details')} />
               <OrderDetailsComponent
@@ -117,7 +71,7 @@ const MyOrdersListScreen = ({
                 deliveryMethod={t('delivery_method')}
                 deliveryAddress={t('delivery_address')}
                 date={orderData?.orderDate}
-                method={i18n.language == "en" ? orderData?.deliveryMethod : getObjKey(chi_eng,orderData?.deliveryMethod)}
+                method={i18n.language == "en" ? orderData?.deliveryMethod : getObjKey(chi_eng, orderData?.deliveryMethod)}
                 address={
                   orderData?.deliveryMethod === 'Delivery'
                     ? orderData?.deliveryAddress
@@ -134,7 +88,7 @@ const MyOrdersListScreen = ({
                 date={`HK$ ${Math.round(orderData?.subTotal)}`}
                 method={`HK$ ${Math.round(orderData?.deliveryCost)}`}
                 address={`HK$ ${Math.round(orderData?.total)}`}
-                payment={i18n.language == "en" ? orderData?.paymentMethod : getObjKey(chi_eng,orderData?.paymentMethod)}
+                payment={i18n.language == "en" ? orderData?.paymentMethod : getObjKey(chi_eng, orderData?.paymentMethod)}
                 discountAmount={`(HK$${Math.round(orderData?.discount)})`}
               />
               <CategoriesTitleHeader title={t('order_support')} />

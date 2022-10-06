@@ -1,7 +1,5 @@
 import * as Yup from "yup";
 
-
-
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 export const loginValidationSchema = (t) => {
@@ -67,7 +65,6 @@ export const addAddressSchema = (t) => {
         addressLine2: Yup.string().required(t('sheetAddress')),
         area: Yup.string().required(t('areaAddress')),
         district: Yup.string().required(t('districtAddres')),
-        // cityCountry: Yup.string(),
         contactNumber: Yup.number().required(t('phone_required')).typeError(t('number_required')),
     }))
 }
@@ -83,14 +80,11 @@ export const addCreditCardSchema = (t) => {
 }
 
 //updateCreditCardSchema
-
 export const updateCreditCardSchema = (t) => {
     return (Yup.object({
-        // cardNumber: Yup.string().min(16, "Minimun 16-digits required").max(16, "Max 16-digits required").required('Card-Number is required'),
         cardName: Yup.string(),
         expiryMonth: Yup.string().min(1, "Min 1-digit").max(2, 'Max 2-digits required').required(t("CardSheetMonth")),
         expiryYear: Yup.string().min(4, "Min 4-digit").max(4, 'Max 4-digits required').required(t("CardSheetYear")),
-        // cvc: Yup.string().min(3, 'Min 3-digit required').max(4, 'Max 4-digit required').required('Cvc is required'),
     }))
 }
 

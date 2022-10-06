@@ -61,7 +61,7 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    lineHeight: '16@s',
+    lineHeight: '17@s',
     letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
   },
@@ -69,7 +69,7 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    lineHeight: '13@s',
+    lineHeight: '17@s',
     letterSpacing: '0.2@s',
     color: colors.blackColor, 
   }

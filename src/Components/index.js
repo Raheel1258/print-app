@@ -32,6 +32,7 @@ import NotificationComponent from './NotificationComponent';
 import NotificationActivity from './NotificationActivity';
 import ImageSwiper from './ImageSwiper';
 import AddNewCreditCardSheet from './AddNewCreditCardSheet'
+import StatusBarComponent from './StatusBarComponent';
 
 export {
   BackArrowHeader,
@@ -67,5 +68,6 @@ export {
   NotificationComponent,
   NotificationActivity,
   ImageSwiper,
-  AddNewCreditCardSheet
+  AddNewCreditCardSheet,
+  StatusBarComponent
 };

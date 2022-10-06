@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar, Appearance } from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { Provider, useDispatch } from 'react-redux';
@@ -12,6 +12,7 @@ import Routes from './src/Utils/Routes';
 import linking from './src/Utils/linking';
 import Storage from './src/Utils/Storage';
 import { getAllActivity } from './src/store/actions/activitiesAction';
+import { StatusBarComponent } from './src/Components';
 // const toastConfig = {
 //   error: props => (
 //     <ErrorToast
@@ -45,6 +46,9 @@ import { getAllActivity } from './src/store/actions/activitiesAction';
 
 
 const App = () => {
+  const colorScheme = Appearance.getColorScheme();
+  console.log("theme color", colorScheme)
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -107,18 +111,19 @@ const App = () => {
     return <></>;
   };
 
-
+ 
 
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor={"white"} barStyle={"dark-content"} />
+      {/* <SafeAreaView style={styles.container}> */}
+      <StatusBarComponent padding={50}/>
+        {/* <StatusBar backgroundColor={"white"} barStyle={"darkd-content"} /> */}
         <NavigationContainer linking={linking}>
           <Routes />
           <OneSignalComponent />
         </NavigationContainer>
         <Toast />
-      </SafeAreaView>
+      {/* </SafeAreaView> */}
     </Provider>
   );
 };

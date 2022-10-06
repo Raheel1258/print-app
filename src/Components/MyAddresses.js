@@ -87,7 +87,7 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     fontStyle: 'normal',
-    lineHeight: '12@s',
+    lineHeight: '17@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
@@ -111,12 +111,12 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    lineHeight: '16@s',
+    lineHeight: '17@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.greenColor,
     marginLeft: '-2@s',
-    marginRight: '5@s'
+    marginRight: '5@s',
   },
   paddingWrapper: {
     padding: '3@s'

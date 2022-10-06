@@ -326,9 +326,9 @@ const MyTabs = ({ }) => {
           borderTopColor: colors.lightGreyColor,
           backgroundColor: colors.whiteColor,
           position: 'absolute',
-          paddingBottom: 5,
+          paddingBottom: 10,
           paddingTop: 20,
-          height: Platform.OS === 'ios' ? 64 : 62,
+          height: Platform.OS === 'ios' ? 95 : 62,
         },
       }}>
       <Tab.Screen

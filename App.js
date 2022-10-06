@@ -17,7 +17,7 @@ import Storage from './src/Utils/Storage';
 
 
 const App = () => {
-  
+
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
@@ -74,16 +74,16 @@ const App = () => {
     return <></>;
   };
 
- 
+
 
   return (
     <Provider store={store}>
-      <StatusBarComponent padding={50}/>
-        <NavigationContainer linking={linking}>
-          <Routes />
-          <OneSignalComponent />
-        </NavigationContainer>
-        <Toast />
+      <StatusBarComponent padding={50} />
+      <NavigationContainer linking={linking}>
+        <Routes />
+        <OneSignalComponent />
+      </NavigationContainer>
+      <Toast />
     </Provider>
   );
 };

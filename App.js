@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar, Appearance } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { Provider, useDispatch } from 'react-redux';
@@ -46,10 +46,7 @@ import { StatusBarComponent } from './src/Components';
 
 
 const App = () => {
-  const colorScheme = Appearance.getColorScheme();
-  console.log("theme color", colorScheme)
-
-
+  
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();

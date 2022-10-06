@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { View, Text } from 'react-native';
 
-import {colors,fonts} from '../Utils/theme';
+import { ScaledSheet } from 'react-native-size-matters';
+
+import { colors, fonts } from '../Utils/theme';
 
 const StandardSizeCard = ({
   dotColor,
@@ -16,7 +17,7 @@ const StandardSizeCard = ({
 }) => {
   return (
     <View
-      style={{...styles.cardContainer, width: cardWidth, height: cardHeight}}>
+      style={{ ...styles.cardContainer, width: cardWidth, height: cardHeight }}>
       <Text style={styles.cardTitle} numberOfLines={1}>
         {name}
       </Text>
@@ -25,13 +26,13 @@ const StandardSizeCard = ({
       </Text>
       <View style={styles.halvorsonPositionContainer}>
         <View style={styles.contentContainer}>
-          <Text style={{...styles.cardStudio, width: textWidth}}>
+          <Text style={{ ...styles.cardStudio, width: textWidth }}>
             {studio}
           </Text>
-          <View style={{...styles.cardDot, backgroundColor: dotColor}} />
+          <View style={{ ...styles.cardDot, backgroundColor: dotColor }} />
         </View>
         <View
-          style={{...styles.cardGradientBorder, backgroundColor: borderColor}}
+          style={{ ...styles.cardGradientBorder, backgroundColor: borderColor }}
         />
       </View>
     </View>
@@ -49,23 +50,21 @@ const styles = ScaledSheet.create({
     marginTop: '7@s',
   },
   cardTitle: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '9@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     lineHeight: '9@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     marginTop: '2@s',
   },
   cardDirector: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '7@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '7@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     marginTop: '2@s',
@@ -95,10 +94,9 @@ const styles = ScaledSheet.create({
     marginTop: '2@s',
   },
   cardStudio: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '7@s',
     fontStyle: 'normal',
-    // fontWeight: '500',
     lineHeight: '8@s',
     letterSpacing: '0.4@s',
     textAlign: 'left',
@@ -110,23 +108,21 @@ const styles = ScaledSheet.create({
     height: '6@s',
     borderRadius: '50@s',
   },
-  standardText: {    
-    fontFamily:fonts.avenir_bold,
+  standardText: {
+    fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     lineHeight: '13@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
   },
   dimensionsText: {
-   fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '14@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
     marginTop: '4@s',

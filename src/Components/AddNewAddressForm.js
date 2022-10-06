@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { addAddress, updateUserAddress } from '../store/actions/userPersonalDetailAction'
 import { Formik } from 'formik';
-import { addAddressSchema } from '../Utils/validationSchema';
 import { ScaledSheet } from 'react-native-size-matters';
-
-import RightArrow from '../Assests/Svgs/LeftArrow';
-import { AddressTextField, GreenButton } from '../Components';
-import { colors, fonts } from '../Utils/theme';
 import CountryPicker from 'react-native-country-picker-modal'
-import { readDir } from 'jetifier/src/utils';
-import { State } from 'react-native-gesture-handler';
+
+import { AddressTextField, GreenButton } from '../Components';
+
+import { colors, fonts } from '../Utils/theme';
+import { addAddressSchema } from '../Utils/validationSchema';
+import RightArrow from '../Assests/Svgs/LeftArrow';
 
 const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForBottomSheet = () => { } }) => {
   const dispatch = useDispatch();
@@ -39,7 +39,6 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
       dispatch(updateUserAddress(setAnimation, updateAddress?._id, { ...values, cityCountry: country?.name ?? updateAddress?.cityCountry }, addAddressRBSheet))
 
     }
-    //!animation && addAddressRBSheet.current.close();
   }
 
   const { t } = useTranslation();
@@ -54,7 +53,6 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
               error={touched.fullName && errors.fullName}
               title={t('full_name')}
               keyboardType="default"
-              // placeholder={t('peter_leung')}
               name="fullName"
               secureTextEntry={false}
               onChangeText={handleChange('fullName')}
@@ -77,7 +75,6 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
               error={touched.addressLine1 && errors.addressLine1}
               title={t('address_line_1')}
               keyboardType="default"
-              // placeholder={t('park_text')}
               name="addressLine1"
               secureTextEntry={false}
               onChangeText={handleChange('addressLine1')}
@@ -89,7 +86,6 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
               error={touched.addressLine2 && errors.addressLine2}
               title={t('address_line_2')}
               keyboardType="default"
-              // placeholder={t('peter_mail')}
               name="addressLine2"
               secureTextEntry={false}
               onChangeText={handleChange('addressLine2')}
@@ -101,12 +97,10 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
               error={touched.area && errors.area}
               title={t('area_text')}
               keyboardType="default"
-              // placeholder={t('kowloon_text')}
               name="area"
               secureTextEntry={false}
               onChangeText={handleChange('area')}
               onBlur={handleBlur('area')}
-            // childern={<RightArrow />}
             />
 
             <AddressTextField
@@ -114,12 +108,10 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
               error={touched.district && errors.district}
               title={t('district_text')}
               keyboardType="default"
-              // placeholder={t('kwun_tong')}
               name="district"
               secureTextEntry={false}
               onChangeText={handleChange('district')}
               onBlur={handleBlur('district')}
-            // childern={<RightArrow />}
             />
 
             <View>
@@ -128,8 +120,6 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
                 <CountryPicker
                   visible={isCountryPickerVisible}
                   placeholder={country?.name ?? updateAddress?.cityCountry ?? <Text style={styles.countryPlaceholder}>Select Country</Text>}
-                  // placeholderStyling={{color:'red',backgroundColor:'green'}}
-                  // placeholderStyle={{backgroundColor:'red'}}
                   isCountryPickerVisible
                   onSelect={setCountry}
                   onClose={() => setIsCountryPickerVisible(false)}
@@ -141,27 +131,11 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
               <View style={styles.borderBottom} />
             </View>
 
-
-            {/* <AddressTextField
-              value={cityCountry}
-              error={touched.cityCountry && errors.cityCountry}
-              title={t('city_country')}
-              keyboardType="default"
-              placeholder={t('hong_kong')}
-              name="cityCountry"
-              secureTextEntry={false}
-              //  onPress={() => setIsCountryPickerVisible(!isCountryPickerVisible)}
-              // onChangeText={handleChange('cityCountry')}
-              onBlur={handleBlur('cityCountry')}
-              childern={<RightArrow />}
-            /> */}
-
             <AddressTextField
               value={contactNumber}
               error={touched.contactNumber && errors.contactNumber}
               title={t('contact_no')}
               keyboardType="phone-pad"
-              // placeholder={t('phone_pad')}
               name="contactNumber"
               secureTextEntry={false}
               onChangeText={handleChange('contactNumber')}

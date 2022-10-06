@@ -1,14 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllActivity, changeActivityStatus, allMarkToReadActivity } from '../store/actions/activitiesAction';
-import { getAllOrder } from '../store/actions/orderAction'
-import { colors } from '../Utils/theme';
 
-import Storage from '../Utils/Storage';
 import ActivityScreen from '../Screens/ActivityScreen';
+import { getAllActivity, changeActivityStatus, allMarkToReadActivity } from '../store/actions/activitiesAction';
+
+import { colors } from '../Utils/theme';
+import Storage from '../Utils/Storage';
 
 const ActivityContainer = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,9 @@ const ActivityContainer = () => {
   const [animation, setAnimation] = useState(false);
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
+  
   const activityData = useSelector(state => state?.activitiesReducer?.activitiesDetail)
   const getAllOrderData = useSelector(state => state?.orderReducer?.orderDetail);
-
-  // useEffect(() => {
-  //   dispatch(getAllActivity(setAnimation));
-  // }, [isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {

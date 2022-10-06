@@ -1,17 +1,18 @@
-import React, { Children } from 'react';
-import {View, Text,TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 
-import {colors,fonts} from '../Utils/theme';
+import { ScaledSheet } from 'react-native-size-matters';
 
-const CategoriesTitleHeader = ({title,description,onPress,Children}) => {
+import { colors, fonts } from '../Utils/theme';
+
+const CategoriesTitleHeader = ({ title, description, onPress, Children }) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.infoIconContainer}>
-      <Text style={styles.headerText}>{title}</Text>
-      {Children}
+        <Text style={styles.headerText}>{title}</Text>
+        {Children}
       </View>
-     <TouchableOpacity onPress={onPress} style={styles.touchableText}><Text style={styles.headerRightText}>{description}</Text></TouchableOpacity>
+      <TouchableOpacity onPress={onPress} style={styles.touchableText}><Text style={styles.headerRightText}>{description}</Text></TouchableOpacity>
     </View>
   );
 };
@@ -19,42 +20,40 @@ const CategoriesTitleHeader = ({title,description,onPress,Children}) => {
 const styles = ScaledSheet.create({
   headerContainer: {
     backgroundColor: colors.offWhiteColor,
-    width:'100%',
-    height:'60@s',
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
-paddingHorizontal:'15@s',
+    width: '100%',
+    height: '60@s',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: '15@s',
   },
   headerText: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '14@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     lineHeight: '20@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
-    color:colors.blackColor,
-    marginRight:'10@s',
+    color: colors.blackColor,
+    marginRight: '10@s',
   },
-  headerRightText:{
-    fontFamily:fonts.avenir_regular,
-      fontSize: '12@s',
-      fontStyle: 'normal',
-      // fontWeight: '400',
-      lineHeight: '17@s',
-     letterSpacing: '0.2@s',
-      textAlign: 'left',
-      color:colors.greenColor,
-      marginTop:'8@s',
+  headerRightText: {
+    fontFamily: fonts.avenir_regular,
+    fontSize: '12@s',
+    fontStyle: 'normal',
+    lineHeight: '17@s',
+    letterSpacing: '0.2@s',
+    textAlign: 'left',
+    color: colors.greenColor,
+    marginTop: '8@s',
   },
-  touchableText:{
-    paddingVertical:'7@s',
+  touchableText: {
+    paddingVertical: '7@s',
   },
-  infoIconContainer:{
-    flexDirection:'row',
-    alignItems:'center',
-    marginTop:'5@s',
+  infoIconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: '5@s',
   }
 });
 

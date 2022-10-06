@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 
 import { colors, fonts } from '../Utils/theme';
@@ -27,7 +28,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_bold,
     fontSize: '13@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '23@s',
     letterSpacing: '0.2@s',

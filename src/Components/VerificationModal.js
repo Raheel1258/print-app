@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScaledSheet } from 'react-native-size-matters';
-import { View, Text, Button } from 'react-native';
+
+import { View, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 
-
 import ModalButton from '../Components/GreenButton';
+
 import { colors, fonts } from '../Utils/theme';
 
 const VerificationModal = ({
@@ -28,7 +29,7 @@ const VerificationModal = ({
           <View style={styles.buttonWrapper}>
             <ModalButton
               backgroundColor={colors.blackColor}
-              title={modalButton == "OK" ? t('ok_text'): modalButton}
+              title={modalButton == "OK" ? t('ok_text') : modalButton}
               onPress={() => {
                 toggleModal();
                 aditionalAction();
@@ -52,7 +53,6 @@ const styles = ScaledSheet.create({
   sentText: {
     fontFamily: fonts.avenir_bold,
     fontSize: '14@s',
-    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '20@s',
     letterSpacing: '0.2@s',
@@ -64,7 +64,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '20@s',
     letterSpacing: '0.2@s',

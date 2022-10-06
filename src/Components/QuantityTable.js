@@ -1,45 +1,46 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import React from 'react';
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+
+import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
-import {colors,fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 
 
-const QuantityTable = ({selectedPriceChart, setSelectedPriceChart, priceChartAnimation, sliceArray, sliceData, flag }) => {
+const QuantityTable = ({ selectedPriceChart, setSelectedPriceChart, priceChartAnimation, sliceArray, sliceData, flag }) => {
   const { t } = useTranslation();
 
-  const renderItem = ({item}) => {
-    const quantityStyle = selectedPriceChart?._id == item?._id ? {...styles.selectedQuantity} : {...styles.notSelectedQuantity};
+  const renderItem = ({ item }) => {
+    const quantityStyle = selectedPriceChart?._id == item?._id ? { ...styles.selectedQuantity } : { ...styles.notSelectedQuantity };
     return (
-      <TouchableOpacity activeOpacity={1} onPress = { () => setSelectedPriceChart(item)} style={{...styles.tableItems, ...quantityStyle}}>
+      <TouchableOpacity activeOpacity={1} onPress={() => setSelectedPriceChart(item)} style={{ ...styles.tableItems, ...quantityStyle }}>
         <Text style={styles.priceText}>{item?.units}</Text>
-        <Text style={styles.dollerPrice}>${Math.round(Number(item?.units * item?. pricePerUnit))}</Text>
+        <Text style={styles.dollerPrice}>${Math.round(Number(item?.units * item?.pricePerUnit))}</Text>
         <Text style={styles.priceText}>${(Number(item?.pricePerUnit))?.toFixed(2)}</Text>
       </TouchableOpacity>
     );
   };
   return (
     <>
-    {!priceChartAnimation ? <View style={styles.tableContainer}>
-      <View style={styles.tableHeader}>
-        <Text style={styles.headerTitleQuantity}>{t('quantity_text_table')}</Text>
-        <Text style={styles.headerTitle}>{t('price_HK')}</Text>
-        <Text style={styles.headerTitle}>{t('unit_text')}</Text>
-      </View>
-      <FlatList
-        data={sliceArray && sliceArray}
-        renderItem={renderItem}
-        keyExtractor={item => item?.id}
+      {!priceChartAnimation ? <View style={styles.tableContainer}>
+        <View style={styles.tableHeader}>
+          <Text style={styles.headerTitleQuantity}>{t('quantity_text_table')}</Text>
+          <Text style={styles.headerTitle}>{t('price_HK')}</Text>
+          <Text style={styles.headerTitle}>{t('unit_text')}</Text>
+        </View>
+        <FlatList
+          data={sliceArray && sliceArray}
+          renderItem={renderItem}
+          keyExtractor={item => item?.id}
         />
-      {flag && <TouchableOpacity  onPress={()=>sliceData()} style={styles.tableBottom}>
-        <Text style={styles.showMore}>{t('show_more')}</Text>
-      </TouchableOpacity>}
-    </View>: <View style={styles.loaderContainer}>
-            <ActivityIndicator size="small" color="#000" animating={true} />
-          </View>}
-        </>
+        {flag && <TouchableOpacity onPress={() => sliceData()} style={styles.tableBottom}>
+          <Text style={styles.showMore}>{t('show_more')}</Text>
+        </TouchableOpacity>}
+      </View> : <View style={styles.loaderContainer}>
+        <ActivityIndicator size="small" color="#000" animating={true} />
+      </View>}
+    </>
   );
 };
 
@@ -50,7 +51,7 @@ const styles = ScaledSheet.create({
   },
   notSelectedQuantity: {
     borderWidth: 1,
-    borderTopWidth:0,
+    borderTopWidth: 0,
     borderColor: colors.innerBorderColor,
   },
   tableItems: {
@@ -68,41 +69,33 @@ const styles = ScaledSheet.create({
     marginVertical: '17@s',
   },
   headerTitleQuantity: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
-    // fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
-    width:'25%',
+    width: '25%',
     color: colors.blackColor,
-    paddingLeft:'18@s',
+    paddingLeft: '18@s',
   },
   headerTitle: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
-    // fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
-    width:'25%',
+    width: '25%',
     color: colors.blackColor,
-    // paddingLeft:'10@s'
-    // marginLeft:"10@s"
-    // padding:"10@s"
   },
   dollerPrice: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '13@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     width: '78@s',
     color: colors.blackColor,
@@ -113,17 +106,15 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    // paddingHorizontal: '18@s',
     height: '50@s',
   },
   showMore: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '16@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.greenColor,
   },
@@ -133,13 +124,12 @@ const styles = ScaledSheet.create({
     height: '50@s',
   },
   priceText: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     fontStyle: 'normal',
     lineHeight: '16@s',
-     letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     width: '58@s',

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 
-import { ScaledSheet } from 'react-native-size-matters';
-import { getCategories, getHomeSliderImages } from "../store/actions/categories";
+import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import { ScaledSheet } from 'react-native-size-matters';
 
 import HomeScreen from '../Screens/HomeScreen';
+import { getCategories, getHomeSliderImages } from "../store/actions/categories";
+
 import { colors } from '../Utils/theme';
 
 const HomeContainer = () => {
@@ -19,12 +20,9 @@ const HomeContainer = () => {
   const homeSliderImagesData = useSelector(state => state?.categories?.homeSliderImages);
 
   const homeSliderImagesCaptions = homeSliderImagesData?.map(item => (item.caption));
-
-
   const newData = categoriesData?.sort((a, b) => {
     return a.index - b.index;
   });
-
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -34,7 +32,6 @@ const HomeContainer = () => {
     dispatch(getCategories(setAnimation));
     dispatch(getHomeSliderImages());
   }, [])
-
 
   return (
     <View style={styles.container}>

@@ -1,28 +1,29 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View} from 'react-native';
+import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-import Storage from '../Utils/Storage';
 import i18n from 'i18next';
 
-import { logout } from '../store/actions/auth';
 import AccountScreen from '../Screens/AccountScreen';
+import { logout } from '../store/actions/auth';
+
+import Storage from '../Utils/Storage';
 import { colors } from '../Utils/theme';
 
 const AccountContainer = () => {
+  const isFocused = useIsFocused();
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const refRBSheet = useRef();
   const accountRBSheet = useRef();
+
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
-  const navigation = useNavigation();
-  const isFocused = useIsFocused();
-  const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
   const [languageToggle, setLanguageToggle] = useState(true);
-
-  // i18n.language
-  //i18n.changelanguage() 
 
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data);

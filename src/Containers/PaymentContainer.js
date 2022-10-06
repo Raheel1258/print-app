@@ -1,31 +1,32 @@
-import React, {useState} from "react";
-import { View, Text } from 'react-native';
+import React, { useState } from "react";
+import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
-import { colors } from '../Utils/theme';
-import { PaymentScreen } from "../Screens";
-import {genToken} from "../store/actions/paymentAction"
 import { useDispatch } from "react-redux";
 
+import { PaymentScreen } from "../Screens";
+import { genToken } from "../store/actions/paymentAction"
 
+import { colors } from '../Utils/theme';
 
-const PaymentContainer = ({route}) => {
-    const {amount, orderObj} = route.params;
-    const navigation = useNavigation();
+const PaymentContainer = ({ route }) => {
     const dispatch = useDispatch();
+    const navigation = useNavigation();
+
+    const { amount, orderObj } = route.params;
+
     const [animation, setAnimation] = useState(false);
     const [creditCardState, setCreditCardState] = useState({
         cardNumber: '',
         cardName: '',
         expiryMonth: '',
         expiryYear: '',
-        cvc:'',
+        cvc: '',
     })
 
-    
-
     const handleCreditCard = (values) => {
-        dispatch(genToken(values, navigate,amount,setAnimation,orderObj));
+        dispatch(genToken(values, navigate, amount, setAnimation, orderObj));
     }
 
     const goBack = () => {
@@ -37,15 +38,14 @@ const PaymentContainer = ({route}) => {
     }
     return (
         <View style={styles.container}>
-            <PaymentScreen goBack={goBack} 
-            animation={animation} 
-            handleCreditCard={handleCreditCard} 
-            navigate={navigate}
-            creditCardState={creditCardState}/>
+            <PaymentScreen goBack={goBack}
+                animation={animation}
+                handleCreditCard={handleCreditCard}
+                navigate={navigate}
+                creditCardState={creditCardState} />
         </View>
     )
 }
-
 
 const styles = ScaledSheet.create({
     container: {

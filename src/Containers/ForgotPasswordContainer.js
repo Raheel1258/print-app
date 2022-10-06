@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { types } from '@babel/core';
 import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { forgotPassword } from '../store/actions/auth';
-import Toast from 'react-native-toast-message';
 
 import ForgotPasswordScreen from '../Screens/ForgotPasswordScreen';
+
+import { forgotPassword } from '../store/actions/auth';
 import { colors } from '../Utils/theme';
 
 const ForgotPasswordContainer = () => {
@@ -19,7 +19,6 @@ const ForgotPasswordContainer = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: '',
   });

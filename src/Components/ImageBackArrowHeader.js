@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -48,7 +48,6 @@ const styles = ScaledSheet.create({
     fontFamily:fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     fontStyle: 'normal',
     lineHeight: '18@s',
     letterSpacing: '0.2@s',

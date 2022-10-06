@@ -1,17 +1,18 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
-import {colors, fonts} from '../Utils/theme';
+import { View, Text } from 'react-native';
 
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 import i18n from 'i18next'
 
-const SingleCardDescription = ({item}) => {
-  const {t} = useTranslation();
+import { colors, fonts } from '../Utils/theme';
+
+const SingleCardDescription = ({ item }) => {
+  const { t } = useTranslation();
   const flag =
     item?.title == 'BUSINESS_CARD' ||
-    item?.title == 'BOOKLET' ||
-    item?.title == 'STICKERS_LABEL'
+      item?.title == 'BOOKLET' ||
+      item?.title == 'STICKERS_LABEL'
       ? true
       : false;
   return (
@@ -20,10 +21,10 @@ const SingleCardDescription = ({item}) => {
         {i18n.language == "en" ? item?.category?.name : item?.category?.name_chi}
       </Text>
       <Text style={styles.productPrice} numberOfLines={1}>
-        {i18n.language == "en" ? item?.category?.pricePerHunderd : item?.category?.pricePerHunderd_chi }
+        {i18n.language == "en" ? item?.category?.pricePerHunderd : item?.category?.pricePerHunderd_chi}
       </Text>
       <Text style={styles.productDescription}>
-        {i18n.language == "en" ?item?.category?.description : item?.category?.description_chi}
+        {i18n.language == "en" ? item?.category?.description : item?.category?.description_chi}
       </Text>
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>
@@ -48,7 +49,7 @@ const SingleCardDescription = ({item}) => {
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryType}>{t('size_product')}</Text>
         <Text style={styles.categoryDescription} numberOfLines={1}>
-          {i18n.language == "en" ? item?.category?.Sizes :  item?.category?.Sizes_chi}
+          {i18n.language == "en" ? item?.category?.Sizes : item?.category?.Sizes_chi}
         </Text>
       </View>
     </View>

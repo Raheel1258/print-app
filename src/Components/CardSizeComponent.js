@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { View, Text, TouchableOpacity } from 'react-native';
 
-import {colors,fonts} from '../Utils/theme';
+import { ScaledSheet } from 'react-native-size-matters';
+
+import { colors, fonts } from '../Utils/theme';
 
 const CardSizeComponent = ({
   cardStandard,
@@ -14,14 +15,14 @@ const CardSizeComponent = ({
 }) => {
   const conditionalStyle =
     selectedSize == cardStandard || selectedCorner == cardStandard
-      ? {...styles.selected}
-      : {...styles.notSelected};
+      ? { ...styles.selected }
+      : { ...styles.notSelected };
 
   return (
     <TouchableOpacity
       activeOpacity={1}
       onPress={onPress}
-      style={{...styles.container, ...conditionalStyle}}>
+      style={{ ...styles.container, ...conditionalStyle }}>
       {Childern}
       <View style={styles.standardPositionContainer}>
         <Text style={styles.standardText} numberOfLines={1}>
@@ -63,10 +64,9 @@ const styles = ScaledSheet.create({
     marginTop: '7@s',
   },
   cardTitle: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '9@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     lineHeight: '9@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
@@ -74,10 +74,9 @@ const styles = ScaledSheet.create({
     marginTop: '2@s',
   },
   cardDirector: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '7@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '7@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
@@ -109,10 +108,9 @@ const styles = ScaledSheet.create({
     marginTop: '2@s',
   },
   cardStudio: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '7@s',
     fontStyle: 'normal',
-    // fontWeight: '500',
     lineHeight: '8@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
@@ -125,20 +123,18 @@ const styles = ScaledSheet.create({
     borderRadius: '50@s',
   },
   standardText: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
   },
   dimensionsText: {
-    fontFamily:fonts.avenir_regular,
+    fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '14@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',

@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, ImageBackground} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { View, Text, ImageBackground } from 'react-native';
+
+import { ScaledSheet } from 'react-native-size-matters';
 import Swiper from 'react-native-swiper';
-import {colors, fonts} from '../Utils/theme';
 import i18n from 'i18next';
+
+import { colors, fonts } from '../Utils/theme';
 import { chi_eng } from '../Utils/mockData';
 
-
-
-const ImageSwiper = ({sliderImages, autoPlaySlider = true}) => {
+const ImageSwiper = ({ sliderImages, autoPlaySlider = true }) => {
   return (
     <View style={styles.container}>
       <Swiper
@@ -24,30 +24,30 @@ const ImageSwiper = ({sliderImages, autoPlaySlider = true}) => {
                 {item?.image ? (
                   <ImageBackground
                     imageStyle={styles.image}
-                    source={{uri: item?.image}}
+                    source={{ uri: item?.image }}
                     transition={false}>
                     {item?.caption == chi_eng[item.caption] ?
-                    <>
-                    {i18n.language == "en" ? <><Text style={styles.text}>
-                      {(item?.caption && item?.caption.substring(0,21))}
-                    </Text>
-                    <Text style={styles.text1}>{item?.caption && item?.caption.substring(21)}</Text></>
-                    :
-                    <><Text style={styles.text}>
-                      {(item?.caption_chi && item?.caption_chi.substring(0,4))}
-                    </Text>
-                    <Text style={styles.text1}>{item?.caption_chi && item?.caption_chi.substring(4)}</Text></>
-                    }
-                    </>
-                    :
-                    <Text style={styles.text}>
-                    {i18n.language == "en" ? (item?.caption && item?.caption): (item?.caption_chi && item?.caption_chi)}
-                  </Text>}
+                      <>
+                        {i18n.language == "en" ? <><Text style={styles.text}>
+                          {(item?.caption && item?.caption.substring(0, 21))}
+                        </Text>
+                          <Text style={styles.text1}>{item?.caption && item?.caption.substring(21)}</Text></>
+                          :
+                          <><Text style={styles.text}>
+                            {(item?.caption_chi && item?.caption_chi.substring(0, 4))}
+                          </Text>
+                            <Text style={styles.text1}>{item?.caption_chi && item?.caption_chi.substring(4)}</Text></>
+                        }
+                      </>
+                      :
+                      <Text style={styles.text}>
+                        {i18n.language == "en" ? (item?.caption && item?.caption) : (item?.caption_chi && item?.caption_chi)}
+                      </Text>}
                   </ImageBackground>
                 ) : (
                   <ImageBackground
                     imageStyle={styles.image}
-                    source={{uri: item}}></ImageBackground>
+                    source={{ uri: item }}></ImageBackground>
                 )}
               </View>
             );
@@ -98,8 +98,7 @@ const styles = ScaledSheet.create({
     color: colors.whiteColor,
     marginTop: '40@s',
     padding: '25@s',
-    // width: '310@s',
-    marginBottom:'-25@s',
+    marginBottom: '-25@s',
   },
   text1: {
     fontFamily: fonts.avenir_next,
@@ -108,7 +107,7 @@ const styles = ScaledSheet.create({
     lineHeight: '27@s',
     letterSpacing: '0.2@s',
     color: colors.whiteColor,
-    marginLeft:'24@s',
+    marginLeft: '24@s',
   },
 });
 

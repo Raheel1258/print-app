@@ -1,35 +1,38 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
+
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards, deleteCard, makeCardPrimary } from "../store/actions/userPersonalDetailAction"
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
+import { getCurrentUserDetail, updateCurrentUserDetail, deleteAddress, makeAddressPrimary, getAllCards, deleteCard, makeCardPrimary } from "../store/actions/userPersonalDetailAction"
 import AccountDetailScreen from '../Screens/AccountDetailScreen';
+
 import { colors } from '../Utils/theme';
 import { t } from 'i18next';
 
 const AccountDetailContainer = () => {
-  const addAddressRBSheet = useRef();
-  const addCardetCardRBSheet = useRef();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
 
+  const addAddressRBSheet = useRef();
+  const addCardetCardRBSheet = useRef();
 
   const [animation, setAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
-  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
-  const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
   const userCardsDetails = useSelector(state => state?.userPersonalDetailReducer?.userCard);
-
   const [personalDetail, setPersonalDetail] = useState({
     firstName: 'Peter',
     lastName: 'Peter',
     phone: '23234234',
     email: 'peter@gmail.com'
   });
+
+  const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
+  const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
+
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
@@ -42,7 +45,6 @@ const AccountDetailContainer = () => {
     dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
     dispatch(getAllCards(setAnimation))
   }, [isFocused])
-
 
   const handleUpdatedPersonalDetail = (values) => {
     dispatch(updateCurrentUserDetail(setAnimationUpdateUser, values));

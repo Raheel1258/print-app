@@ -1,25 +1,24 @@
-import { t } from 'i18next';
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { View, Text } from 'react-native';
 
-import OrderReceivedScreen from '../Screens/OrderReceivedScreen';
-import {colors} from '../Utils/theme';
-import {fonts} from '../Utils/theme';
 import { useTranslation } from 'react-i18next';
+import { ScaledSheet } from 'react-native-size-matters';
 
-const CartNotifyComponent = ({title, order, description, childern, emptyScreen, description1, description2}) => {
-  const {t} = useTranslation();
+import { colors } from '../Utils/theme';
+import { fonts } from '../Utils/theme';
+
+const CartNotifyComponent = ({ title, order, description, childern, emptyScreen, description1, description2 }) => {
+  const { t } = useTranslation();
   return (
     <View style={emptyScreen ? styles.emptyContainer : styles.container}>
-      <Text style={emptyScreen ? styles.emptyText : styles.thankyouText }>{title}</Text>
+      <Text style={emptyScreen ? styles.emptyText : styles.thankyouText}>{title}</Text>
       {childern}
       {!emptyScreen && <Text style={styles.orderRefrence}>{t('order_ref')}{` ${order}`}</Text>}
       <Text style={styles.description}>{description}</Text>
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description1}</Text>}
       {!emptyScreen && <Text style={styles.thankyouDescription}>{description2}</Text>}
     </View>
-    
+
   );
 };
 
@@ -27,13 +26,13 @@ const styles = ScaledSheet.create({
   emptyContainer: {
     flex: 1,
     paddingHorizontal: '10@s',
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  container:{
+  container: {
     flex: 1,
     paddingHorizontal: '10@s',
-    alignItems:'center',
+    alignItems: 'center',
   },
   thankyouText: {
     fontFamily: fonts.avenir_next,
@@ -45,10 +44,9 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
     textAlign: 'center',
     marginBottom: '30@s',
-    marginTop:'40@s',
-
+    marginTop: '40@s',
   },
-  emptyText:{
+  emptyText: {
     fontFamily: fonts.avenir_next,
     fontSize: '18@s',
     fontStyle: 'normal',
@@ -58,7 +56,6 @@ const styles = ScaledSheet.create({
     color: colors.blackColor,
     textAlign: 'center',
     marginBottom: '60@s',
-
   },
   orderRefrence: {
     fontFamily: fonts.avenir_bold,
@@ -78,10 +75,10 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     textAlign: 'center',
     color: colors.lightBlackColor,
-    width:'240@s',
+    width: '240@s',
     marginTop: '20@s'
   },
-  thankyouDescription:{
+  thankyouDescription: {
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
@@ -89,8 +86,8 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.2@s',
     textAlign: 'center',
     color: colors.lightBlackColor,
-    width:'260@s',
-    marginTop:'20@s'
+    width: '260@s',
+    marginTop: '20@s'
   }
 });
 

@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
-import {changePassword} from "../store/actions/userPersonalDetailAction"
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { t } from 'i18next';
 import Toast from 'react-native-toast-message';
 
 import ChangePasswordScreen from '../Screens/ChangePasswordScreen';
+import { changePassword } from "../store/actions/userPersonalDetailAction"
+
 import { colors } from '../Utils/theme';
-import { t } from 'i18next';
 
 const ChangePasswordContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
-  const [animationChangePassword,setAnimationChangePassowrd] = useState(false);
+  const [animationChangePassword, setAnimationChangePassowrd] = useState(false);
   const [changePasswordState, setChangePasswordState] = useState({
     currentPassword: '',
     newPassword: '',
@@ -40,15 +42,15 @@ const ChangePasswordContainer = () => {
   };
 
   const handleChangePassword = (values) => {
-    if(values?.newPassword != values?.confirmPassword){
+    if (values?.newPassword != values?.confirmPassword) {
       Toast.show({
         type: 'error',
         text1: t('new_confirm_password_message'),
-    });
-    }else{
-      dispatch(changePassword(setAnimationChangePassowrd , {currentPassword:values.currentPassword , newPassword:values.newPassword}, toggleModal, navigate))
+      });
+    } else {
+      dispatch(changePassword(setAnimationChangePassowrd, { currentPassword: values.currentPassword, newPassword: values.newPassword }, toggleModal, navigate))
     }
-   
+
   }
 
   return (
@@ -60,7 +62,7 @@ const ChangePasswordContainer = () => {
         isModalVisible={isModalVisible}
         changePasswordState={changePasswordState}
         animation={animation}
-        handleNavigationOnOK ={handleNavigationOnOK }
+        handleNavigationOnOK={handleNavigationOnOK}
         handleChangePassword={handleChangePassword} />
     </View>
   );

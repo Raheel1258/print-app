@@ -1,14 +1,14 @@
-import React,{useState} from 'react';
-import { types } from '@babel/core';
-import {View} from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { verificationOtpCode } from '../store/actions/auth';
-import Toast from 'react-native-toast-message';
 
 import VerificationCodeScreen from '../Screens/VerificationCodeScreen';
-import {colors} from '../Utils/theme';
+import { verificationOtpCode } from '../store/actions/auth';
+
+import { colors } from '../Utils/theme';
 
 const VerificationCodeContainer = () => {
   const navigation = useNavigation();
@@ -16,7 +16,7 @@ const VerificationCodeContainer = () => {
 
   const [animation, setAnimation] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
-  const [useId , setUserId] = useState("");
+  const [useId, setUserId] = useState("");
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -27,7 +27,7 @@ const VerificationCodeContainer = () => {
   });
 
   const handleChange = (name, value) => {
-    setForgotPasswordData({...forgotPassword, [name]: value});
+    setForgotPasswordData({ ...forgotPassword, [name]: value });
   };
 
   const navigate = (routeName, data = {}) => {
@@ -39,28 +39,28 @@ const VerificationCodeContainer = () => {
   };
 
   const handleVerificationCode = (values) => {
-    dispatch(verificationOtpCode(values,navigate, setAnimation, setUserId));
-   
+    dispatch(verificationOtpCode(values, navigate, setAnimation, setUserId));
+
   };
-  
+
   return (
     <View style={styles.container}>
       <VerificationCodeScreen
-      handleVerificationCode={handleVerificationCode}
-      verificationCodeState={verificationCodeState}
-      animation={animation}
-      isModalVisible={isModalVisible}
-      toggleModal={toggleModal} 
-      navigate={navigate}
-      goBack={goBack}
+        handleVerificationCode={handleVerificationCode}
+        verificationCodeState={verificationCodeState}
+        animation={animation}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        navigate={navigate}
+        goBack={goBack}
       />
     </View>
   );
 };
 
-const styles = ScaledSheet.create ({
-  container:{
-    flex:1,
+const styles = ScaledSheet.create({
+  container: {
+    flex: 1,
     backgroundColor: colors.whiteColor,
   },
 });

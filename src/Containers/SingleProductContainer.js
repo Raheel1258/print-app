@@ -1,19 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { addToCart, addToCartAnotherDesign } from "../store/actions/cartAction";
-import { getPriceChart } from "../store/actions/productList";
-import {getObjKey} from "../Utils/helperFunctions";
-import SingleProductScreen from '../Screens/SingleProductScreen';
-import { chi_eng } from "../Utils/mockData";
-import Storage from '../Utils/Storage';
-import { colors } from '../Utils/theme';
 import i18n from 'i18next'
 
+import SingleProductScreen from '../Screens/SingleProductScreen';
+import { addToCart, addToCartAnotherDesign } from "../store/actions/cartAction";
+import { getPriceChart } from "../store/actions/productList";
+
+import { getObjKey } from "../Utils/helperFunctions";
+import { chi_eng } from "../Utils/mockData";
+import { colors } from '../Utils/theme';
+import Storage from '../Utils/Storage';
+
 const SingleProductContainer = ({ route }) => {
+  const isFocused = useIsFocused();
+  const { t } = useTranslation();
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const accountRBSheet = useRef();
   const refRBSheet = useRef();
@@ -27,11 +34,6 @@ const SingleProductContainer = ({ route }) => {
   const noOfPagesInnerPagesRBSheet = useRef();
   const allCardsPaperTypeRBSheet = useRef();
   const numberOfSidesRBSheet = useRef();
-  const isFocused = useIsFocused();
-  const { t } = useTranslation();
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
-
 
   const { item, categoryTitle, productCategory } = route.params;
   const priceChart = useSelector(state => state?.productList?.priceChart);
@@ -41,9 +43,6 @@ const SingleProductContainer = ({ route }) => {
   const [finalObjCart, setFinalObjCart] = useState({});
   const [sliceArray, setSliceArray] = useState([]);
   const [flag, setflag] = useState(true)
-  
-  
-
   const [animation, setAnimation] = useState(false);
   const [anotherDesign, setAnotherDesign] = useState(false);
   const [designUrl, setDesignUrl] = useState([]);
@@ -61,18 +60,14 @@ const SingleProductContainer = ({ route }) => {
   const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(i18n.language == "en" ? (item?.paperType && item?.paperType[1]) : (item?.paperType_chi && item?.paperType_chi[1]));
   const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState(i18n.language == "en" ? (item?.numberOfPages && item?.numberOfPages[0]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[0]?.number[0]));
   const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState(i18n.language == "en" ? (item?.numberOfPages && item?.numberOfPages[1]?.number[0]) : (item?.numberOfPages_chi && item?.numberOfPages_chi[1]?.number[0]));
-
   const [allCardsPaperType, setAllCardsPaperType] = useState(i18n.language == "en" ? (item?.paperType && item?.paperType[0]) : (item?.paperType_chi && item?.paperType_chi[0]));
   const [numberOfSides, setNumberOfSides] = useState(i18n.language == "en" ? (item?.numberOfSides && item?.numberOfSides[0]) : (item?.numberOfSides_chi && item?.numberOfSides_chi[0]));
-
   const [selectedCut, setSelectedCut] = useState(i18n.language == "en" ? (item?.cut && item?.cut[0]) : (item?.cut_chi && item?.cut_chi[0]));
   const [selectedFolding, setSelectedFolding] = useState(i18n.language == "en" ? (item?.folding && item?.folding[0]) : (item?.folding_chi && item?.folding_chi[0]));
-
   const [selectedWindow, setSelectedWindow] = useState(i18n.language == "en" ? item?.window && item?.window[0] : item?.window_chi && item?.window_chi[0]);
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState('');
   const [result, setResult] = useState([]);
-
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
@@ -95,7 +90,7 @@ const SingleProductContainer = ({ route }) => {
     category: 'flyer',
     product: item?.category?.productType,
     size: item?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
-    papertype: item?.index == "1" ? (chi_eng[allCardsPaperType] == "Art Card (157 gsm)"? "140 gsm" :chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1]) : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
+    papertype: item?.index == "1" ? (chi_eng[allCardsPaperType] == "Art Card (157 gsm)" ? "140 gsm" : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1]) : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
     folding: chi_eng[selectedFolding?.foldingName]
   } : productCategory === "ENVELOPE" ? {
     category: 'envelop',
@@ -177,34 +172,6 @@ const SingleProductContainer = ({ route }) => {
 
 
   const handleAddToCart = () => {
-    // const obj = {
-    //   productId: item?._id,
-    //   image: item?.image[0],
-    //   title: item?.title,
-    //   category: item?.category,
-    //   size: i18n.language == "eng" ? selectedSize : { ...selectedSize, name: chi_eng[selectedSize.name] },
-    //   size_chi: i18n.language == "chi" ? selectedSize : { ...selectedSize, name: getObjKey(chi_eng, chi_eng[selectedSize.name]) },
-    //   priceChart: selectedPriceChart,
-    //   designUrl: designUrl,
-    //   designFileUrl: result,
-    //   preview: preview,
-    //   numberOfPages: item?.numberOfPages[0] ? [{ name: item?.numberOfPages && item?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: item?.numberOfPages && item?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
-    //   cut: selectedCut,
-    //   window: selectedWindow,
-    //   folding: selectedFolding,
-    //   paperType: allCardsPaperType,
-    //   spotUV: i18n.language == "eng" ? selectSpotUv : chi_eng[selectSpotUv],
-    //   spotUV_chi: i18n.language == "chi" ? selectSpotUv : getObjKey(chi_eng, chi_eng[selectSpotUv]),
-    //   corner_chi: i18n.language == "chi" ? selectedCorner : selectedCorner && { ...selectedCorner, cornerName: getObjKey(chi_eng, chi_eng[selectedCorner.cornerName]), cornerDescription: getObjKey(chi_eng, chi_eng[selectedCorner.cornerDescription]) },
-    //   corner: i18n.language == "eng" ? selectedCorner : selectedCorner && { ...selectedCorner, cornerName: chi_eng[selectedCorner.cornerName], cornerDescription: chi_eng[selectedCorner.cornerDescription] },
-    //   finishing: i18n.language == "eng" ? selectFinishing : chi_eng[selectFinishing],
-    //   finishing_chi: i18n.language == "chi" ? selectFinishing : getObjKey(chi_eng, chi_eng[selectFinishing]),
-    //   remarks: remarks,
-    //   cut: selectedCut,
-    //   numberOfSides: numberOfSides,
-    //   sendByMail: selectedUpload == "email" ? true : false
-    // }
-
     const obj = {
       productId: item?._id,
       image: item?.image[0],
@@ -231,18 +198,17 @@ const SingleProductContainer = ({ route }) => {
 
       numberOfPages_chi: i18n.language == "chi" ? (item?.numberOfPages[0] ?
         [
-          { name: item?.numberOfPages && getObjKey(chi_eng,chi_eng[item?.numberOfPages[0]?.pageName]), number: [noOfPagesCoverPages] },
-          { name: item?.numberOfPages && getObjKey(chi_eng,chi_eng[item?.numberOfPages[1]?.pageName]), number: [noOfPagesInnerPages] }
+          { name: item?.numberOfPages && getObjKey(chi_eng, chi_eng[item?.numberOfPages[0]?.pageName]), number: [noOfPagesCoverPages] },
+          { name: item?.numberOfPages && getObjKey(chi_eng, chi_eng[item?.numberOfPages[1]?.pageName]), number: [noOfPagesInnerPages] }
         ] : undefined) : (item?.numberOfPages[0] ?
           [
-            { name: item?.numberOfPages && getObjKey(chi_eng,chi_eng[item?.numberOfPages[0]?.pageName]), number: [getObjKey(chi_eng,chi_eng[noOfPagesCoverPages])] },
-            { name: item?.numberOfPages && getObjKey(chi_eng,chi_eng[item?.numberOfPages[1]?.pageName]), number: [getObjKey(chi_eng,chi_eng[noOfPagesInnerPages])] }
+            { name: item?.numberOfPages && getObjKey(chi_eng, chi_eng[item?.numberOfPages[0]?.pageName]), number: [getObjKey(chi_eng, chi_eng[noOfPagesCoverPages])] },
+            { name: item?.numberOfPages && getObjKey(chi_eng, chi_eng[item?.numberOfPages[1]?.pageName]), number: [getObjKey(chi_eng, chi_eng[noOfPagesInnerPages])] }
           ] : undefined),
-      // cut: selectedCut,
-      window: i18n.language == "eng" ? selectedWindow : selectedWindow && {...selectedWindow, windowName: chi_eng[selectedWindow.windowName]} ,
-      window_chi: i18n.language == "chi" ? selectedWindow : selectedWindow && {...selectedWindow, windowName: getObjKey(chi_eng, chi_eng[selectedWindow.windowName])},
-      folding: i18n.language == "eng" ? selectedFolding : selectedFolding && {...selectedFolding, foldingName:chi_eng[selectedFolding.foldingName]},
-      folding_chi: i18n.language == "chi" ? selectedFolding : selectedFolding && {...selectedFolding, foldingName: getObjKey(chi_eng, chi_eng[selectedFolding.foldingName])},
+      window: i18n.language == "eng" ? selectedWindow : selectedWindow && { ...selectedWindow, windowName: chi_eng[selectedWindow.windowName] },
+      window_chi: i18n.language == "chi" ? selectedWindow : selectedWindow && { ...selectedWindow, windowName: getObjKey(chi_eng, chi_eng[selectedWindow.windowName]) },
+      folding: i18n.language == "eng" ? selectedFolding : selectedFolding && { ...selectedFolding, foldingName: chi_eng[selectedFolding.foldingName] },
+      folding_chi: i18n.language == "chi" ? selectedFolding : selectedFolding && { ...selectedFolding, foldingName: getObjKey(chi_eng, chi_eng[selectedFolding.foldingName]) },
       paperType: i18n.language == "eng" ? allCardsPaperType : chi_eng[allCardsPaperType],
       paperType_chi: i18n.language == "chi" ? allCardsPaperType : getObjKey(chi_eng, chi_eng[allCardsPaperType]),
       spotUV: i18n.language == "eng" ? selectSpotUv : chi_eng[selectSpotUv],
@@ -251,12 +217,11 @@ const SingleProductContainer = ({ route }) => {
       corner: i18n.language == "eng" ? selectedCorner : selectedCorner && { ...selectedCorner, cornerName: chi_eng[selectedCorner.cornerName], cornerDescription: chi_eng[selectedCorner.cornerDescription] },
       finishing: i18n.language == "eng" ? selectFinishing : chi_eng[selectFinishing],
       finishing_chi: i18n.language == "chi" ? selectFinishing : getObjKey(chi_eng, chi_eng[selectFinishing]),
-      cut: i18n.language == "eng" ? selectedCut : selectedCut && {...selectedCut, cutName:chi_eng[selectedCut.cutName]},
-      cut_chi: i18n.language == "chi" ? selectedCut : selectedCut && {...selectedCut, cutName:getObjKey(chi_eng, chi_eng[selectedCut.cutName])},
+      cut: i18n.language == "eng" ? selectedCut : selectedCut && { ...selectedCut, cutName: chi_eng[selectedCut.cutName] },
+      cut_chi: i18n.language == "chi" ? selectedCut : selectedCut && { ...selectedCut, cutName: getObjKey(chi_eng, chi_eng[selectedCut.cutName]) },
       numberOfSides: i18n.language == "eng" ? numberOfSides : chi_eng[numberOfSides],
       numberOfSides_chi: i18n.language == "chi" ? numberOfSides : getObjKey(chi_eng, chi_eng[numberOfSides]),
       index: item?.index ? item?.index : '100'
-
     }
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {
@@ -264,10 +229,10 @@ const SingleProductContainer = ({ route }) => {
       }
     });
     setFinalObjCart(obj);
-    if(userToken){
+    if (userToken) {
       dispatch(addToCart(setAddToCartAnimation, obj, navigate));
     }
-    else{
+    else {
       accountRBSheet.current.open();
     }
   }

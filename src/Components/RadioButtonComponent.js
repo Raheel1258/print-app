@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 import UnCheckedCircleIcon from '../Assests/Svgs/UnCheckedCircleIcon';
 import CheckedBlueIcon from '../Assests/Svgs/CheckedBlueIcon';
-import {colors, fonts} from '../Utils/theme';
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
+import { colors, fonts } from '../Utils/theme';
 [];
 const RadioButtonComponent = ({
   title,
@@ -19,13 +20,13 @@ const RadioButtonComponent = ({
   onPress,
   radioButtonStatus,
   setRadioButtonStatus,
-  toggleModal = () => {},
+  toggleModal = () => { },
   handleCheckedOne,
   handleCheckedTwo,
-  openfun = () => {},
+  openfun = () => { },
   addressRadio,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View>
       <View style={styles.container}>
@@ -45,13 +46,10 @@ const RadioButtonComponent = ({
               <Text style={styles.deliveryDescription}>{t('deviver_to')}</Text>
               <Text
                 numberOfLines={4}
-                style={styles.localDeliveryDescription}>{`${
-                description?.fullName
-              }, ${description?.companyName && description?.companyName}\n${
-                description?.addressLine1
-              }, ${description?.addressLine2}\n${description?.area}, ${
-                description?.district
-              }, ${description?.cityCountry}`}</Text>
+                style={styles.localDeliveryDescription}>{`${description?.fullName
+                  }, ${description?.companyName && description?.companyName}\n${description?.addressLine1
+                  }, ${description?.addressLine2}\n${description?.area}, ${description?.district
+                  }, ${description?.cityCountry}`}</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -80,7 +78,7 @@ const RadioButtonComponent = ({
                   paddingLeft: 10,
                 }}>
                 {description?.brand == 'Visa' ? <VisaCard /> : <MasterCard />}
-                <Text style={{...styles.deliveryDescription, paddingTop: 2}}>
+                <Text style={{ ...styles.deliveryDescription, paddingTop: 2 }}>
                   {description?.brand} ({description?.last4})
                 </Text>
               </View>

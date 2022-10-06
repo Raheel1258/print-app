@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { Formik, FieldArray } from 'formik';
-import { colors, fonts } from '../Utils/theme';
 
+import { colors, fonts } from '../Utils/theme';
 import CloseIcon from '../Assests/Svgs/CloseIcon';
 
 
@@ -67,7 +68,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     lineHeight: '13@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
@@ -77,7 +77,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '15@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',

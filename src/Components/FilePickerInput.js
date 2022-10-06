@@ -1,21 +1,19 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+
+import { useDispatch } from 'react-redux';
 import { ScaledSheet } from 'react-native-size-matters';
 import DocumentPicker, { isInProgress, pick } from 'react-native-document-picker';
 import { useTranslation } from 'react-i18next';
+
 import { uploadFile } from "../store/actions/productList"
-import { launchImageLibrary } from 'react-native-image-picker'
 
 import { colors, fonts } from '../Utils/theme';
-import { useDispatch } from 'react-redux';
 
 const FilePickerInput = ({ result, setResult }) => {
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState(false);
   const { t } = useTranslation();
-  // useEffect(() => {
-  //   console.log(JSON.stringify(result, null, 2));
-  // }, [result]);
   const handleError = err => {
     if (DocumentPicker.isCancel(err)) {
       console.warn('cancelled');
@@ -47,30 +45,6 @@ const FilePickerInput = ({ result, setResult }) => {
       };
       formData.append('image', pickerResult);
       dispatch(uploadFile(formData, setAnimation, setResult));
-      // launchImageLibrary(options, (response) => {
-      //   if (response.didCancel) {
-      //     alert(t('alert_message_pic'));
-      //     return;
-      //   } else if (response.errorCode == 'camera_unavailable') {
-      //     alert('Camera not available on device');
-      //     return;
-      //   } else if (response.errorCode == 'permission') {
-      //     alert('Permission not granted');
-      //     return;
-      //   } else if (response.errorCode == 'others') {
-      //     alert(response.errorMessage);
-      //     return;
-      //   } else {
-      //     const image = {
-      //       uri: response.uri,
-      //       name: response.fileName,
-      //       type: response.type,
-      //     }
-      //     formData.append('image', image);
-      //     dispatch(uploadFile(formData, setAnimation, setResult));
-      //   }
-      // });
-      
     } catch (e) {
       handleError(e);
     }
@@ -106,7 +80,6 @@ const FilePickerInput = ({ result, setResult }) => {
           {result?.length == 0 && <View style={styles.bottomBorder} />}
           <TouchableOpacity
             onPress={handleDocumentSelection}>
-            {/* <Text style={styles.browseText}>{t('browse_text')}</Text> */}
             {result?.length < 1 ? <Text style={styles.browseText}>{t('browse_text')}</Text> : <Text style={styles.browseText}>{t('add_more')}</Text>}
           </TouchableOpacity>
         </View> : <View style={styles.loaderContainer}>
@@ -123,7 +96,6 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     lineHeight: '16@s',
     letterSpacing: '0.2@s',
-    // textAlign: 'center',
     color: colors.blackColor,
     marginBottom: '0@s',
     marginTop: '15@s',
@@ -147,7 +119,6 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_light,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',

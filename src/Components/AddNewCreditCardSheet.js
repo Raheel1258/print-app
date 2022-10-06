@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
-import RightArrow from '../Assests/Svgs/LeftArrow';
-import { AddressTextField, GreenButton } from '../Components';
-import { colors } from '../Utils/theme';
 import { Formik } from 'formik';
-import { addCreditCardSchema, updateCreditCardSchema } from '../Utils/validationSchema';
+
+import { AddressTextField, GreenButton } from '../Components';
 import { addCards, updateCardStripe } from "../store/actions/userPersonalDetailAction"
+
+import { colors } from '../Utils/theme';
+import { addCreditCardSchema, updateCreditCardSchema } from '../Utils/validationSchema';
 import { useDispatch } from 'react-redux';
 
 const AddNewCreditCardSheet = ({ addCardetCardRBSheet, updateCard, handleCardsForBottomSheet = () => { } }) => {
@@ -70,7 +72,6 @@ const AddNewCreditCardSheet = ({ addCardetCardRBSheet, updateCard, handleCardsFo
                 secureTextEntry={false}
                 onChangeText={handleChange('expiryMonth')}
                 onBlur={handleBlur('expiryMonth')}
-              // childern={<RightArrow/>}
               />
               <AddressTextField
                 value={expiryYear.toString()}
@@ -83,7 +84,6 @@ const AddNewCreditCardSheet = ({ addCardetCardRBSheet, updateCard, handleCardsFo
                 secureTextEntry={false}
                 onChangeText={handleChange('expiryYear')}
                 onBlur={handleBlur('expiryYear')}
-              // childern={<RightArrow/>}
               />
               {!updateCard && <AddressTextField
                 value={cvc}
@@ -96,7 +96,6 @@ const AddNewCreditCardSheet = ({ addCardetCardRBSheet, updateCard, handleCardsFo
                 secureTextEntry={false}
                 onChangeText={handleChange('cvc')}
                 onBlur={handleBlur('cvc')}
-              // childern={<RightArrow/>}
               />}
               <GreenButton backgroundColor={colors.blackColor} onPress={handleSubmit} animation={cardAddAnimation} title={updateCard ? t('update_card') : t('add_card')} />
             </View>

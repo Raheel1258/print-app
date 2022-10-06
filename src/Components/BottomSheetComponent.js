@@ -1,13 +1,11 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
-import {
-  ArtworkGuidelines,
-  FilePickerInput,
-  PreferredLanguageBottomSheet,
-} from '../Components';
+import { ArtworkGuidelines } from '../Components';
+
 import CloseIcon from '../Assests/Svgs/CloseIcon';
 import { colors, fonts } from '../Utils/theme';
 

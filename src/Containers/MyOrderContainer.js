@@ -1,24 +1,26 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllOrder } from '../store/actions/orderAction'
-import Storage from '../Utils/Storage';
 
 import MyOrderScreen from '../Screens/MyOrderScreen';
+import { getAllOrder } from '../store/actions/orderAction'
+
+import Storage from '../Utils/Storage';
 import { colors } from '../Utils/theme';
 
 const MyOrderContainer = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const orderRBSheet = useRef();
   const isFocused = useIsFocused();
 
-
+  const orderRBSheet = useRef();
   const [animation, setAnimation] = useState(false);
   const [focused, setFocused] = useState(true);
   const [userToken, setUserToken] = useState(null);
+
   const getAllOrderData = useSelector(state => state?.orderReducer?.orderDetail);
 
   const navigate = (routeName, data = {}) => {
@@ -28,13 +30,6 @@ const MyOrderContainer = () => {
   const goBack = () => {
     navigation.goBack();
   };
-
-  // useEffect(() => {
-  //   Storage.retrieveData('token').then((token) => {
-  //     setUserToken(token);
-      
-  //   })
-  // }, [isFocused])
 
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
@@ -53,7 +48,7 @@ const MyOrderContainer = () => {
         animation={animation}
         setFocused={setFocused}
         userToken={userToken}
-        />
+      />
     </View>
   );
 };

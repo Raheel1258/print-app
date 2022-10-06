@@ -1,30 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
+import i18n from 'i18next'
 import { useTranslation } from 'react-i18next';
-import { editCartItem } from "../store/actions/cartAction";
-import {getObjKey} from "../Utils/helperFunctions";
 
-import { getProductById, getPriceChartOnEdited } from "../store/actions/productList";
 import EditedSingleProductScreen from '../Screens/EditedSingleProductScreen';
+import { editCartItem } from "../store/actions/cartAction";
+import { getProductById, getPriceChartOnEdited } from "../store/actions/productList";
+
+import { getObjKey } from "../Utils/helperFunctions";
 import { chi_eng } from "../Utils/mockData";
 import { colors } from '../Utils/theme';
-import i18n from 'i18next'
 
 const EditedSingleProductContainer = ({ route }) => {
-
-  const { t } = useTranslation();
-  const { productCategory, productId, cartItem, cartProductId } = route.params;
-
-  const priceChart = useSelector(state => state?.productList?.priceChartEdit);
-  const state = useSelector(state => state?.productList?.singleProduct);
-
-  const [sliceArray, setSliceArray] = useState([]);
-  const [flag, setflag] = useState(true)
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   const refRBSheet = useRef();
   const urlRBSheet = useRef();
   const finishingRBSheet = useRef();
@@ -37,15 +32,18 @@ const EditedSingleProductContainer = ({ route }) => {
   const allCardsPaperTypeRBSheet = useRef();
   const numberOfSidesRBSheet = useRef();
 
+  const { productCategory, productId, cartItem, cartProductId } = route.params;
+
+  const [sliceArray, setSliceArray] = useState([]);
+  const [flag, setflag] = useState(true)
   const [animation, setAnimation] = useState(false);
   const [designUrl, setDesignUrl] = useState([]);
   const [initialValuesAddUrl, setInitialValuesAddUrl] = useState(
     {
-      url: cartItem?.designUrl?.length > 0 ? 
-      cartItem?.designUrl?.map((item) => { return { url_link: item } }) 
-      : [{ url_link: '' }]
+      url: cartItem?.designUrl?.length > 0 ?
+        cartItem?.designUrl?.map((item) => { return { url_link: item } })
+        : [{ url_link: '' }]
     }
-
   )
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
@@ -60,20 +58,17 @@ const EditedSingleProductContainer = ({ route }) => {
   const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(i18n.language == "en" ? (cartItem?.paperType && "Woodfree paper (140 gsm)") : (cartItem?.paperType && "書紙(140 gsm)"));
   const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[0]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[0]?.number[0]));
   const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[1]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[1]?.number[0]));
-
-
-
-
   const [allCardsPaperType, setAllCardsPaperType] = useState(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType_chi && cartItem?.paperType_chi));
   const [numberOfSides, setNumberOfSides] = useState(i18n.language == "en" ? (cartItem?.numberOfSides && cartItem?.numberOfSides) : ((cartItem?.numberOfSides_chi && cartItem?.numberOfSides_chi)));
-
   const [selectedCut, setSelectedCut] = useState(i18n.language == "en" ? (cartItem?.cut && cartItem?.cut) : (cartItem?.cut_chi && cartItem?.cut_chi));
   const [selectedFolding, setSelectedFolding] = useState(i18n.language == "en" ? (cartItem?.folding && cartItem?.folding) : (cartItem?.folding_chi && cartItem?.folding_chi));
-
   const [selectedWindow, setSelectedWindow] = useState(i18n.language == "en" ? (cartItem?.window && cartItem?.window) : (cartItem?.window_chi && cartItem?.window_chi));
   const [preview, setPreview] = useState(true);
   const [remarks, setRemarks] = useState(cartItem?.remarks);
   const [result, setResult] = useState(cartItem?.designFileUrl?.length > 0 ? cartItem?.designFileUrl : []);
+
+  const priceChart = useSelector(state => state?.productList?.priceChartEdit);
+  const state = useSelector(state => state?.productList?.singleProduct);
 
   const defaultValuesObject = productCategory == "BUSINESS_CARD" ? {
     category: 'businesscard',
@@ -96,7 +91,7 @@ const EditedSingleProductContainer = ({ route }) => {
     category: 'flyer',
     product: cartItem?.category?.productType,
     size: cartItem?.index == "0" ? selectedSize?.name : `${selectedSize?.width} x ${selectedSize?.height}`,
-    papertype: cartItem?.index == "1"  ? (chi_eng[allCardsPaperType] == "Art Card (157 gsm)"? "140 gsm" :chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1]) : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
+    papertype: cartItem?.index == "1" ? (chi_eng[allCardsPaperType] == "Art Card (157 gsm)" ? "140 gsm" : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1]) : chi_eng[allCardsPaperType]?.match(/\(([^)]+)\)/)[1],
     folding: chi_eng[selectedFolding?.foldingName]
   } : productCategory === "ENVELOPE" ? {
     category: 'envelop',
@@ -113,6 +108,7 @@ const EditedSingleProductContainer = ({ route }) => {
   }
 
   const [values, setValues] = useState(defaultValuesObject)
+
   useEffect(() => {
     if (state && productId) {
       setValues(productCategory == "BUSINESS_CARD" ? {
@@ -188,9 +184,6 @@ const EditedSingleProductContainer = ({ route }) => {
     setSelectedWindow(i18n.language == "en" ? (cartItem?.window && cartItem?.window) : (cartItem?.window_chi && cartItem?.window_chi));
   }, [i18n.language])
 
-
-
-
   useEffect(() => {
     if (state && productId != undefined) {
       setShape(cartItem?.category?.productType);
@@ -211,36 +204,14 @@ const EditedSingleProductContainer = ({ route }) => {
     }
   }, [state])
 
-  // useEffect(() => {
-  //   if (item) {
-  //     setShape(item?.category?.productType);
-  //     setSelectedSize(item?.size && item?.size[0]);
-  //     setSelectedCorner(item?.corner && item?.corner[0]);
-  //     setSelectFinishing(item?.finishing && item?.finishing[0]);
-  //     setSelectSpotUv(item?.spotUV && item?.spotUV[0]);
-  //     setSelectedPriceChart(item?.priceChart[0] && item?.priceChart[0]);
-  //     setPaperTypeCoverPages(item?.paperType && item?.paperType[0]);
-  //     setPaperTypeInnerPages(item?.paperType && item?.paperType[1]);
-  //     setNoOfPagesCoverPages(item?.numberOfPages && item?.numberOfPages[0]?.number[0]);
-  //     setNoOfPagesInnerPages(item?.numberOfPages && item?.numberOfPages[1]?.number[0]);
-  //     setAllCardsPaperType(item?.paperType && item?.paperType[0]);
-  //     setNumberOfSides(item?.numberOfSides && item?.numberOfSides[0]);
-  //     setSelectedCut(item?.cut && item?.cut[0]);
-  //     setSelectedFolding(item?.folding && item?.folding[0]);
-  //     setSelectedWindow(item?.window && item?.window[0]);
-  //   }
-  // }, [item])
-
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
   }
 
   const sliceData = () => {
-    // setSliceArray(priceChart);
     setSliceArray((prev) => {
       return priceChart
     })
-    // setSelectedPriceChart(cartItem?.priceChart && cartItem?.priceChart);
     setflag(false);
   }
 
@@ -265,28 +236,6 @@ const EditedSingleProductContainer = ({ route }) => {
 
 
   const handleAddToCart = () => {
-    // const obj = {
-    //   productId: state?._id,
-    //   image: state?.image[0],
-    //   title: state?.title,
-    //   category: state?.category,
-    //   size: selectedSize,
-    //   priceChart: selectedPriceChart,
-    //   designUrl: designUrl,
-    //   designFileUrl: result,
-    //   preview: preview,
-    //   numberOfPages: state?.numberOfPages[0] ? [{ name: state?.numberOfPages && state?.numberOfPages[0]?.pageName, number: [noOfPagesCoverPages] }, { name: state?.numberOfPages && state?.numberOfPages[1]?.pageName, number: [noOfPagesInnerPages] }] : undefined,
-    //   cut: selectedCut,
-    //   window: selectedWindow,
-    //   folding: selectedFolding,
-    //   paperType: allCardsPaperType,
-    //   spotUV: selectSpotUv,
-    //   corner: selectedCorner,
-    //   finishing: selectFinishing,
-    //   remarks: remarks,
-    //   cut: selectedCut,
-    //   sendByMail: selectedUpload == "email" ? true: false
-    // }
     const obj = {
       productId: state?._id,
       image: state?.image[0],
@@ -320,7 +269,6 @@ const EditedSingleProductContainer = ({ route }) => {
             { name: state?.numberOfPages && getObjKey(chi_eng, chi_eng[state?.numberOfPages[0]?.pageName]), number: [getObjKey(chi_eng, chi_eng[noOfPagesCoverPages])] },
             { name: state?.numberOfPages && getObjKey(chi_eng, chi_eng[state?.numberOfPages[1]?.pageName]), number: [getObjKey(chi_eng, chi_eng[noOfPagesInnerPages])] }
           ] : undefined),
-      // cut: selectedCut,
       window: i18n.language == "eng" ? selectedWindow : selectedWindow && { ...selectedWindow, windowName: chi_eng[selectedWindow.windowName] },
       window_chi: i18n.language == "chi" ? selectedWindow : selectedWindow && { ...selectedWindow, windowName: getObjKey(chi_eng, chi_eng[selectedWindow.windowName]) },
       folding: i18n.language == "eng" ? selectedFolding : selectedFolding && { ...selectedFolding, foldingName: chi_eng[selectedFolding.foldingName] },

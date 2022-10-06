@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { Text, View } from 'react-native';
 
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
 const OrderDetailsComponent = ({
   orderDate,
@@ -18,7 +18,7 @@ const OrderDetailsComponent = ({
   discount,
   discountAmount,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -40,13 +40,10 @@ const OrderDetailsComponent = ({
       {address?.fullName ? (
         <View style={styles.contentContainer}>
           <Text style={styles.title}>{deliveryAddress}</Text>
-          <Text numberOfLines={5} style={styles.description}>{`${
-            address?.fullName
-          }, ${address?.companyName && address?.companyName}, \n${
-            address?.addressLine1
-          }, ${address?.addressLine2}, \n${address?.area}, ${
-            address?.district
-          }, ${address?.cityCountry}`}</Text>
+          <Text numberOfLines={5} style={styles.description}>{`${address?.fullName
+            }, ${address?.companyName && address?.companyName}, \n${address?.addressLine1
+            }, ${address?.addressLine2}, \n${address?.area}, ${address?.district
+            }, ${address?.cityCountry}`}</Text>
         </View>
       ) : (
         <View style={styles.contentContainer}>

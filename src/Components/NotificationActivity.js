@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
-import {View, Text, FlatList,TouchableOpacity} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {useTranslation} from 'react-i18next';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
-import {OrderReceivedIcon,OrderCompletedIcon,DeliveryIcon,OrderCancelledIcon,OrderPicupIcon,PrintingIcon} from '../Assests/Svgs';
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+
 import NotificationComponent from '../Components/NotificationComponent';
-import {colors, fonts} from '../Utils/theme';
-import { getCurrentDate,getDateFormat} from '../Utils/helperFunctions';
+
+import { OrderReceivedIcon, OrderCompletedIcon, DeliveryIcon, OrderCancelledIcon, OrderPicupIcon, PrintingIcon } from '../Assests/Svgs';
+import { colors, fonts } from '../Utils/theme';
+import { getCurrentDate, getDateFormat } from '../Utils/helperFunctions';
 
 const handleOrderStatusForActivity = (orderNotify) => {
-  if(orderNotify == "ORDER_RECIEVED"){
-    return <OrderReceivedIcon/>
+  if (orderNotify == "ORDER_RECIEVED") {
+    return <OrderReceivedIcon />
   }
-  else if(orderNotify=="COMPLETED"){
-    return <OrderCompletedIcon/>;
+  else if (orderNotify == "COMPLETED") {
+    return <OrderCompletedIcon />;
   }
-  else if(orderNotify=="CANCELLED"){
-    return <OrderCancelledIcon/>;
+  else if (orderNotify == "CANCELLED") {
+    return <OrderCancelledIcon />;
   }
-  else if(orderNotify == "OUT_FOR_DELIVERY"){
-    return <DeliveryIcon/>;
+  else if (orderNotify == "OUT_FOR_DELIVERY") {
+    return <DeliveryIcon />;
   }
-  else if(orderNotify=="READY_FOR_PICKUP"){
-    return <OrderPicupIcon/>;
+  else if (orderNotify == "READY_FOR_PICKUP") {
+    return <OrderPicupIcon />;
   }
-  else{
-    return <PrintingIcon/> ;
+  else {
+    return <PrintingIcon />;
   }
 
 }
@@ -37,7 +39,7 @@ const DATA = [
     orderReceived: '“Order received”',
     time: '12:45 PM',
     seen: false,
-    childern:<OrderReceivedIcon/>
+    childern: <OrderReceivedIcon />
   },
   {
     id: '2',
@@ -45,7 +47,7 @@ const DATA = [
     orderReceived: '“Completed”',
     time: '1h',
     seen: true,
-    childern:<OrderCompletedIcon/>
+    childern: <OrderCompletedIcon />
   },
   {
     id: '3',
@@ -53,48 +55,37 @@ const DATA = [
     orderReceived: '“Cancelled”',
     time: '2h',
     seen: true,
-    childern:<OrderCancelledIcon/>
+    childern: <OrderCancelledIcon />
   },
 ];
 
-const NotificationActivity = ({item,readMark, handleActivityIsRead, handleAllActivityRead}) => {
-  const [data,setData] = useState(item?.notifications);
-  const lengthItem = item?.notifications.length; 
+const NotificationActivity = ({ item, readMark, handleActivityIsRead, handleAllActivityRead }) => {
+  const [data, setData] = useState(item?.notifications);
+  const lengthItem = item?.notifications.length;
   const lastItemId = item?.notifications[0]._id;
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
-  // const handleData = (id) => {
-  //   setData((prev)=> {
-  //     return prev?.map((x,i)=>{
-  //       if(x?.orderId == id){  
-  //       return {...prev[i], isRead: false}
-  //       }else{
-  //         return {...prev[i], isRead: true}
-  //       }
-  //     })
-  //   })
-  // }
-
-  const renderItem = ({item}, index) => {
-    return(
-    <NotificationComponent onPress={() => handleActivityIsRead(item?._id, item?.orderId)}
-      orderCode={item?._id}
-      orderReceived={item?.orderStatus}
-      orderMessage={item?.message}
-      time={item?.updatedAt}
-      childern={handleOrderStatusForActivity(item?.orderStatus)}
-      border = {item?._id == lastItemId? false : true}
-      seen={item?.isRead}
-    />
-  )};
+  const renderItem = ({ item }, index) => {
+    return (
+      <NotificationComponent onPress={() => handleActivityIsRead(item?._id, item?.orderId)}
+        orderCode={item?._id}
+        orderReceived={item?.orderStatus}
+        orderMessage={item?.message}
+        time={item?.updatedAt}
+        childern={handleOrderStatusForActivity(item?.orderStatus)}
+        border={item?._id == lastItemId ? false : true}
+        seen={item?.isRead}
+      />
+    )
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
           {item?._id == getCurrentDate() ? t('today') : getDateFormat(item?._id)}
-          </Text>
-       {item?._id == readMark && <TouchableOpacity onPress={()=>handleAllActivityRead()}><Text style={styles.headerText}>{t("mark_as_all_read")}</Text></TouchableOpacity> }
+        </Text>
+        {item?._id == readMark && <TouchableOpacity onPress={() => handleAllActivityRead()}><Text style={styles.headerText}>{t("mark_as_all_read")}</Text></TouchableOpacity>}
       </View>
       <FlatList
         data={item?.notifications && item?.notifications.reverse()}

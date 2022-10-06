@@ -1,51 +1,53 @@
 import React from 'react';
-import {View, Text, TextInput} from 'react-native';
+import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {ScaledSheet} from 'react-native-size-matters';
-import {handleOrderStatus} from "../Utils/helperFunctions"
-import {getTimeFormat} from '../Utils/helperFunctions'
+import { ScaledSheet } from 'react-native-size-matters';
+import { handleOrderStatus } from "../Utils/helperFunctions"
+import { getTimeFormat } from '../Utils/helperFunctions'
 import { useTranslation } from 'react-i18next';
-import {colors, fonts} from '../Utils/theme';
+import { colors, fonts } from '../Utils/theme';
 
-const NotificationComponent = ({orderReceived, time,childern, border=true, seen, onPress,orderMessage
+const NotificationComponent = ({ orderReceived, time, childern, border = true, seen, onPress, orderMessage
 }) => {
   const { t } = useTranslation();
   return (
     <TouchableOpacity onPress={onPress}>
-    <View>
-      <View style={styles.contentContainer}>
-        <View  style={styles.orderCodeContainer}>
-       {childern}
-        <View>
-          <Text style={styles.orderStatus}>{orderMessage}
-          </Text> 
-          <Text style={{...styles.orderReceived, 
-            color: orderReceived =='ORDER_RECIEVED' ? colors.pearlColor : 
-            orderReceived =='OUT_FOR_DELIVERY' ? colors.lightOrangeColor : 
-            orderReceived =='COMPLETED' ? colors.actvityGreenColor : 
-            orderReceived =='READY_FOR_PICKUP' ? colors.lightGreenColor : 
-            orderReceived =='PRINTING' ? colors.printingColor : colors.lightRedColor}}>{handleOrderStatus(orderReceived,t)}</Text>
-          <Text style={styles.timeText}>{getTimeFormat(time)}</Text>
+      <View>
+        <View style={styles.contentContainer}>
+          <View style={styles.orderCodeContainer}>
+            {childern}
+            <View>
+              <Text style={styles.orderStatus}>{orderMessage}
+              </Text>
+              <Text style={{
+                ...styles.orderReceived,
+                color: orderReceived == 'ORDER_RECIEVED' ? colors.pearlColor :
+                  orderReceived == 'OUT_FOR_DELIVERY' ? colors.lightOrangeColor :
+                    orderReceived == 'COMPLETED' ? colors.actvityGreenColor :
+                      orderReceived == 'READY_FOR_PICKUP' ? colors.lightGreenColor :
+                        orderReceived == 'PRINTING' ? colors.printingColor : colors.lightRedColor
+              }}>{handleOrderStatus(orderReceived, t)}</Text>
+              <Text style={styles.timeText}>{getTimeFormat(time)}</Text>
+            </View>
+          </View>
+          {seen == false && <View style={styles.activeDot} />}
         </View>
-        </View>
-        {seen == false && <View style={styles.activeDot} />}
+        {border !== false && <View style={styles.borderBottom} />}
       </View>
-     {border !== false && <View style={styles.borderBottom}/>}
-      </View>
-      
-      </TouchableOpacity>
+
+    </TouchableOpacity>
   );
 };
 
 const styles = ScaledSheet.create({
 
-  contentContainer:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    marginTop:'12@s'
+  contentContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: '12@s'
   },
-  orderCodeContainer:{
-    flexDirection:'row',
+  orderCodeContainer: {
+    flexDirection: 'row',
   },
   orderStatus: {
     fontFamily: fonts.avenir_regular,
@@ -54,8 +56,8 @@ const styles = ScaledSheet.create({
     lineHeight: '17@s',
     letterSpacing: '0.2@s',
     color: colors.blackColor,
-    marginLeft:'10@s',
-    width:'265@s'
+    marginLeft: '10@s',
+    width: '265@s'
   },
   orderCode: {
     fontFamily: fonts.avenir_bold,
@@ -65,31 +67,31 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.pearlColor,
-    marginLeft:'10@s',
-    marginVertical:'4@s',
+    marginLeft: '10@s',
+    marginVertical: '4@s',
   },
   timeText: {
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
     lineHeight: '17@s',
-      letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     color: colors.lightBlackColor,
-    marginLeft:'10@s'
+    marginLeft: '10@s'
   },
   activeDot: {
     width: '8@s',
     height: '8@s',
     borderRadius: '50@s',
     backgroundColor: colors.greenColor,
-    marginTop:'5@s'
+    marginTop: '5@s'
   },
-  borderBottom:{
-    borderBottomWidth:1,
-    borderBottomColor:colors.inputBorderColor,
-    marginTop:'10@s'
+  borderBottom: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.inputBorderColor,
+    marginTop: '10@s'
   }
 });
 

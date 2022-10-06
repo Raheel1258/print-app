@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { t } from 'i18next';
@@ -7,9 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
 import i18n from 'i18next';
 
-
-import { getDate } from '../Utils/helperFunctions';
-import Storage from '../Utils/Storage';
+import CartScreen from '../Screens/CartScreen';
 import {
   getCartData, PromoCodeVerifed,
   deleteProduct,
@@ -24,9 +23,8 @@ import {
 } from '../store/actions/cartAction';
 import { makeAddressPrimary } from '../store/actions/userPersonalDetailAction'
 
-import MasterCard from '../Assests/Svgs/MasterCard';
-import VisaCard from '../Assests/Svgs/VisaCard';
-import CartScreen from '../Screens/CartScreen';
+import Storage from '../Utils/Storage';
+import { getDate } from '../Utils/helperFunctions';
 import { colors } from '../Utils/theme';
 
 const CartContainer = () => {
@@ -64,17 +62,16 @@ const CartContainer = () => {
   const [promoCodeAppliedId, setPromoCodeAppliedId] = useState("");
   const [promoCodeType, setPromoCodeType] = useState("");
   const [discountInPercentage, setDiscountInPercentage] = useState(0);
+  const [data, setData] = useState(userDetailData?.addresses);
+  const [renderScreen, setRenderScreen] = useState(false);
+  const [cardData, setCardData] = useState(userCardsDetails);
+
   const cartItem = useSelector(state => state?.cartReducer?.cartDetail);
   const userDetailData = useSelector(state => state?.cartReducer?.userDetail);
   const promocodeDiscount = useSelector(state => state?.cartReducer?.promoCode);
   const userCardsDetails = useSelector(state => state?.cartReducer?.userCardsData);
-
-  const [data, setData] = useState(userDetailData?.addresses);
-  const [cardData, setCardData] = useState(userCardsDetails);
   const primaryAddress = userDetailData?.addresses?.filter((item) => item?.primary == true);
-  const [renderScreen, setRenderScreen] = useState(false);
 
-  
   useEffect(() => {
     isFocused && Storage.retrieveData('token').then((token) => {
       setUserToken(token);
@@ -86,11 +83,8 @@ const CartContainer = () => {
       } else {
         setAnimation(false);
       }
-      // token ?  : setAnimation(false);
     });
   }, [isFocused])
-
-
 
   useEffect(() => {
     handleTotalAmount();
@@ -101,7 +95,7 @@ const CartContainer = () => {
   }
 
   const handleChange = (value) => {
-    if(validPromoCode){
+    if (validPromoCode) {
       dispatch(discountReset())
     }
     setTextValue(value);
@@ -159,10 +153,7 @@ const CartContainer = () => {
     dispatch(makeCardPrimaryForCart(id, getLastPrimary[0].id))
   }
 
-
-
   const handlePayment = () => {
-    // genToken();
     var date = getDate();
     const orderObj = {
       products: cartItem,
@@ -177,12 +168,6 @@ const CartContainer = () => {
         addressLine1: deliveryUserAddress?.addressLine1,
         addressLine2: deliveryUserAddress?.addressLine2,
         cityCountry: deliveryUserAddress?.cityCountry,
-        // firstName: userDetailData?.firstName,
-        // lastName: userDetailData?.lastName,
-        // phone: userDetailData?.phone,
-        // email: userDetailData?.email,
-        // addressLine1: deliveryMethod == 'Delivery' ? deliveryUserAddress : "11/F, 52 Hung To Road, Kwun Tong, Hong Kong"
-        
       },
       deliveryCost: deliveryMethod == "Delivery" ? deliveryCost : 0,
       paymentMethod: paymentMethodName,
@@ -207,9 +192,8 @@ const CartContainer = () => {
     }
     else {
       if (paymentMethodName == "Credit Card") {
-        dispatch(paymentWithSaveCard(setPlaceOrderAnimation, { idCard: userCardData?.id, amount: total }, {...orderObj,language:i18n.language == "en" ? 'English' : "Chinese"} , navigate))
-        // navigate('payment', { amount: total, orderObj: orderObj })
-      } else dispatch(placeOrderOffline(setPlaceOrderAnimation, {...orderObj,language:i18n.language == "en" ? 'English' : "Chinese"}, navigate))
+        dispatch(paymentWithSaveCard(setPlaceOrderAnimation, { idCard: userCardData?.id, amount: total }, { ...orderObj, language: i18n.language == "en" ? 'English' : "Chinese" }, navigate))
+      } else dispatch(placeOrderOffline(setPlaceOrderAnimation, { ...orderObj, language: i18n.language == "en" ? 'English' : "Chinese" }, navigate))
     }
   }
 
@@ -221,9 +205,6 @@ const CartContainer = () => {
     let totalPrice = 0;
     let amountInPercent = 0;
     cartItem && cartItem?.map((item) => {
-
-      // quantity = item?.priceChart?.units;
-      // unitPrice = item?.priceChart?.pricePerUnit;
       deliveryCost = Math.round(deliveryCost + item?.priceChart?.deliveryCost);
       subTotal1 = Math.round(subTotal1 + (item?.priceChart?.pricePerUnit * item?.priceChart?.units))
     });
@@ -231,7 +212,6 @@ const CartContainer = () => {
     if (promocodeDiscount !== '0' && promocodeDiscount != "" && deliveryMethod == "Delivery" && promoCodeType !== "") {
       console.log("case promocode and delivery")
       if (promoCodeType == "PERCENTAGE") {
-        // totalPrice = parseFloat(totalPrice);
         amountInPercent = (parseFloat(promocodeDiscount / 100) * totalPrice);
         totalPrice = totalPrice - amountInPercent;
         totalPrice = parseFloat(totalPrice + deliveryCost);

@@ -1,11 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {View, Text, Image,TouchableOpacity, Platform} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import { View, Text, Image, TouchableOpacity, Platform } from 'react-native';
 
-import {colors,fonts} from '../Utils/theme';
+import { useNavigation } from '@react-navigation/native';
+import { ScaledSheet } from 'react-native-size-matters';
 
-const AllCategoriesCard = ({title,deliveryTime,image,priceDescription, category}) => {
+import { colors, fonts } from '../Utils/theme';
+
+const AllCategoriesCard = ({ title, deliveryTime, image, priceDescription, category }) => {
   const navigation = useNavigation();
 
   const navigate = (routeName, data = {}) => {
@@ -13,19 +14,19 @@ const AllCategoriesCard = ({title,deliveryTime,image,priceDescription, category}
   }
 
   return (
-    <TouchableOpacity onPress={()=> navigate('productsListing' , {categoryTitle:title, categoryImage:image, category:category})}>
-    <View style={styles.headerContainer}>
-      <Image  transition={false} style={styles.cardImage} source={{uri: image}} />
-      <Text numberOfLines={1} style={styles.cardName}>{title}</Text>
-      <View style={styles.descriptionContainer}>
-        <View style={styles.dotContainer} />
-        <Text numberOfLines={1} style={styles.descriptionText}>{deliveryTime}</Text>
+    <TouchableOpacity onPress={() => navigate('productsListing', { categoryTitle: title, categoryImage: image, category: category })}>
+      <View style={styles.headerContainer}>
+        <Image transition={false} style={styles.cardImage} source={{ uri: image }} />
+        <Text numberOfLines={1} style={styles.cardName}>{title}</Text>
+        <View style={styles.descriptionContainer}>
+          <View style={styles.dotContainer} />
+          <Text numberOfLines={1} style={styles.descriptionText}>{deliveryTime}</Text>
+        </View>
+        <View style={styles.descriptionContainer}>
+          <View style={styles.dotContainer} />
+          <Text numberOfLines={1} style={styles.descriptionText}>{priceDescription}</Text>
+        </View>
       </View>
-      <View style={styles.descriptionContainer}>
-        <View style={styles.dotContainer} />
-        <Text numberOfLines={1} style={styles.descriptionText}>{priceDescription}</Text>
-      </View>
-    </View>
     </TouchableOpacity>
   );
 };
@@ -33,19 +34,18 @@ const AllCategoriesCard = ({title,deliveryTime,image,priceDescription, category}
 const styles = ScaledSheet.create({
   headerContainer: {
     marginTop: '15@s',
-    marginRight:'15@s',
+    marginRight: '15@s',
   },
   cardName: {
-    fontFamily:fonts.avenir_bold,
+    fontFamily: fonts.avenir_bold,
     fontSize: '14@s',
     fontStyle: 'normal',
-    // fontWeight: '800',
     lineHeight: '16@s',
-  letterSpacing: '0.2@s',
+    letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.blackColor,
     marginTop: '12@s',
-    marginBottom:'6@s',
+    marginBottom: '6@s',
   },
   cardImage: {
     width: '150@s',
@@ -55,7 +55,7 @@ const styles = ScaledSheet.create({
   descriptionContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom:'2@s'
+    marginBottom: '2@s'
   },
   dotContainer: {
     width: '5@s',
@@ -65,14 +65,14 @@ const styles = ScaledSheet.create({
     marginRight: '7@s',
   },
   descriptionText: {
-    fontFamily:fonts.avenir_light,
+    fontFamily: fonts.avenir_light,
     fontSize: Platform.OS === 'ios' ? '11.2@s' : '10.5@s',
     fontStyle: 'normal',
     lineHeight: '14@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.lightBlackColor,
-    width:'135@s'
+    width: '135@s'
   },
 });
 

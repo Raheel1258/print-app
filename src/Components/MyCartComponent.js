@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
-import { colors, fonts } from '../Utils/theme';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
+
+import { colors, fonts } from '../Utils/theme';
 import { chi_eng } from "../Utils/mockData";
 import { getObjKey } from '../Utils/helperFunctions';
-import i18n from 'i18next';
 
 const MyCartComponent = ({
   image,
@@ -35,11 +37,9 @@ const MyCartComponent = ({
       <View>
         <Text
           numberOfLines={2}
-          // style={{...styles.cardTitle, fontFamily: fontFamily}}
           style={styles.cardTitle}>
-          {i18n.language == "en" ? item?.category?.name : item?.category?.name_chi }
+          {i18n.language == "en" ? item?.category?.name : item?.category?.name_chi}
         </Text>
-        {/* <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text> */}
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>{t('quantity_text')}</Text>
           <Text style={styles.quantityText} numberOfLines={1}>
@@ -113,29 +113,6 @@ const MyCartComponent = ({
             </Text>
           </View>
         )}
-        {/* 
-        {item?.priceChart?.coverPageNumber && (
-          <View style={styles.quantityContainer}>
-            <Text style={styles.quantityText}>
-              {t('coverPageNumber_product')}
-            </Text>
-            <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.priceChart?.coverPageNumber}
-            </Text>
-          </View>
-        )}
-
-        {item?.priceChart?.innerPageNumber && (
-          <View style={styles.quantityContainer}>
-            <Text style={styles.quantityText}>
-              {t('innerPageNumber_product')}
-            </Text>
-            <Text style={styles.quantityText} numberOfLines={1}>
-              {item?.priceChart?.innerPageNumber}
-            </Text>
-          </View>
-        )} */}
-
 
         {!item?.numberOfPages || (
           <View style={styles.quantityContainer}>

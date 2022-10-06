@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
 
+import { ScaledSheet } from 'react-native-size-matters';
 
 import LeftArrow from '../Assests/Svgs/LeftArrow';
 import { colors, fonts } from '../Utils/theme';
 
-const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false , width=90}) => {
-  const borderStyle = { 
-    borderBottomWidth: isSelected ? 2 : 1 ,
+const UploadFileComponent = ({ title, onPress, Children, selection, isSelected = false, width = 90 }) => {
+  const borderStyle = {
+    borderBottomWidth: isSelected ? 2 : 1,
     borderBottomColor: isSelected ? null : colors.inputBorderColor,
     borderWidth: isSelected ? 2 : 0,
     borderColor: isSelected ? colors.greenColor : 0,
@@ -16,7 +16,7 @@ const UploadFileComponent = ({ title, onPress, Children, selection, isSelected =
 
   return (
     <TouchableOpacity
-      style={Children ? styles.accountContainer : 
+      style={Children ? styles.accountContainer :
         { ...styles.Container, ...borderStyle }}
       onPress={onPress}>
       <View style={styles.iconContainer}>
@@ -24,7 +24,7 @@ const UploadFileComponent = ({ title, onPress, Children, selection, isSelected =
           {Children}
         </View>
         <View style={styles.infoConatiner}>
-          <Text style={{...styles.title,width:width}} numberOfLines={1}>
+          <Text style={{ ...styles.title, width: width }} numberOfLines={1}>
             {title}
           </Text>
           <Text style={styles.desText}>{selection}</Text>
@@ -33,7 +33,7 @@ const UploadFileComponent = ({ title, onPress, Children, selection, isSelected =
       <View style={styles.rightArrow}>
         <LeftArrow />
       </View>
-      
+
     </TouchableOpacity>
   );
 };
@@ -45,8 +45,6 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: '20@s',
-
-    // borderBottomWidth: 1,
     borderWidth: 2,
     borderColor: colors.greenColor,
   },
@@ -63,13 +61,12 @@ const styles = ScaledSheet.create({
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width:'97%'
+    width: '97%'
   },
   title: {
     fontFamily: fonts.avenir_regular,
     fontSize: '12@s',
     fontStyle: 'normal',
-    // fontWeight: '400',
     lineHeight: '20@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',

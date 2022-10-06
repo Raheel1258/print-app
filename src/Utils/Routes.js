@@ -327,7 +327,7 @@ const MyTabs = ({ }) => {
           backgroundColor: colors.whiteColor,
           position: 'absolute',
           paddingBottom: 10,
-          paddingTop: 20,
+          paddingTop: Platform.OS === 'ios' ? 1 : 20,
           height: Platform.OS === 'ios' ? 95 : 62,
         },
       }}>

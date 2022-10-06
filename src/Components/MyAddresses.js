@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { ScaledSheet } from 'react-native-size-matters';
 
+import { ScaledSheet } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+
+import { colors, fonts } from '../Utils/theme';
 import MasterCard from '../Assests/Svgs/MasterCard';
 import VisaCard from '../Assests/Svgs/VisaCard';
-import { colors, fonts } from '../Utils/theme';
-import {useTranslation} from 'react-i18next';
 
 const MyAddresses = ({ description, address, card, handleUserAddressRemove, refRBSheet, setUpdatedAddress, makePrimary, title }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       {address &&
@@ -28,7 +29,7 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
           </View>
 
         </>}
-        {card &&
+      {card &&
         <>
           <View style={styles.header}>
             <Text style={styles.headerTitle}>{card?.name}</Text>
@@ -38,7 +39,7 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
             <View style={styles.cardPrivacyContainer}>
               <Text style={styles.cardNumText}>{t('card_number')}:</Text>
               <Text style={styles.masterCardText}>{card?.brand}</Text>
-             {card?.brand == "Visa" ? <VisaCard/>:<MasterCard /> }
+              {card?.brand == "Visa" ? <VisaCard /> : <MasterCard />}
             </View>
             <View style={styles.cardPrivacyContainer}>
               <Text style={styles.cardNumText}>{t('expiry_month')}:</Text>
@@ -50,7 +51,7 @@ const MyAddresses = ({ description, address, card, handleUserAddressRemove, refR
             </View>
           </View>
           <View style={styles.editableContainer}>
-            <TouchableOpacity onPress={() => {refRBSheet.current.open(), setUpdatedAddress(card)}} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('edit_product')}</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => { refRBSheet.current.open(), setUpdatedAddress(card) }} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('edit_product')}</Text></TouchableOpacity>
             {card.metadata.primary === "false" && <TouchableOpacity onPress={() => makePrimary(card?.id)} style={styles.paddingWrapper}><Text style={styles.editableText}>{t('make_address_primary')}</Text></TouchableOpacity>}
             <TouchableOpacity onPress={() => handleUserAddressRemove(card?.id)} style={styles.paddingWrapper} ><Text style={styles.editableText}>{t('remove_product')}</Text></TouchableOpacity>
           </View>

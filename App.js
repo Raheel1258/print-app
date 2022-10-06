@@ -1,48 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { ScaledSheet } from 'react-native-size-matters';
 import { Provider, useDispatch } from 'react-redux';
+
 import store from "./src/store/store"
-import Toast, { ErrorToast } from 'react-native-toast-message';
+import Toast from 'react-native-toast-message';
 import SplashScreen from 'react-native-splash-screen';
 import OneSignal from 'react-native-onesignal';
+import { getAllActivity } from './src/store/actions/activitiesAction';
+
+import { StatusBarComponent } from './src/Components';
 
 import Routes from './src/Utils/Routes';
 import linking from './src/Utils/linking';
 import Storage from './src/Utils/Storage';
-import { getAllActivity } from './src/store/actions/activitiesAction';
-import { StatusBarComponent } from './src/Components';
-// const toastConfig = {
-//   error: props => (
-//     <ErrorToast
-//       {...props}
-//       text1NumberOfLines={2}
-//       text1Style={{
-//         color: 'black',
-//         fontSize: 14,
-//         fontFamily: fonts.poppins_regular,
-//         paddingTop: 15,
-//       }}
-//       text2Style={{
-//         color: 'black',
-//         fontSize: 14,
-//         fontFamily: fonts.poppins_regular,
-//       }}
-//       text2NumberOfLines={2}
-//       style={{
-//         backgroundColor: 'white',
-//         borderRadius: 8,
-//         width: '100%',
-//         height: 'auto',
-//         paddingBottom: 15,
-//         borderLeftColor:'red',
-//         borderLeftWidth:3
-//       }}
-
-//     />
-//   ),
-// };
 
 
 const App = () => {
@@ -51,7 +22,6 @@ const App = () => {
     setTimeout(() => {
       SplashScreen.hide();
     }, 3000)
-    // SplashScreen.hide();
   }, []);
 
   const OneSignalComponent = () => {
@@ -65,7 +35,6 @@ const App = () => {
       });
     }
 
-    //OneSignal Init Code
     OneSignal.setLogLevel(6, 0);
 
     //Android id ---- fe2ee0f0-84e5-4650-b18b-1ad055d48339 -----
@@ -101,9 +70,6 @@ const App = () => {
         'OneSignal: notification opened:',
         notification.notification?.additionalData?.route,
       );
-      // Linking.openURL(
-      //   ''
-      // );
     });
     return <></>;
   };
@@ -112,15 +78,12 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      {/* <SafeAreaView style={styles.container}> */}
       <StatusBarComponent padding={50}/>
-        {/* <StatusBar backgroundColor={"white"} barStyle={"darkd-content"} /> */}
         <NavigationContainer linking={linking}>
           <Routes />
           <OneSignalComponent />
         </NavigationContainer>
         <Toast />
-      {/* </SafeAreaView> */}
     </Provider>
   );
 };

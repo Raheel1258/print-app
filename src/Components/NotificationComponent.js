@@ -6,9 +6,12 @@ import {handleOrderStatus} from "../Utils/helperFunctions"
 import {getTimeFormat} from '../Utils/helperFunctions'
 import { useTranslation } from 'react-i18next';
 import {colors, fonts} from '../Utils/theme';
+import i18n from 'i18next';
+import { compose } from 'redux';
 
-const NotificationComponent = ({orderReceived, time,childern, border=true, seen, onPress,orderMessage
+const NotificationComponent = ({orderReceived, time,childern, border=true, seen, onPress,orderMessage,orderMessage_chi
 }) => {
+  console.log("vdvd", orderMessage_chi)
   const { t } = useTranslation();
   return (
     <TouchableOpacity onPress={onPress}>
@@ -17,7 +20,7 @@ const NotificationComponent = ({orderReceived, time,childern, border=true, seen,
         <View  style={styles.orderCodeContainer}>
        {childern}
         <View>
-          <Text style={styles.orderStatus}>{orderMessage}
+          <Text style={styles.orderStatus}>{i18n.language == "en" ? orderMessage?.replace(orderReceived, "") : orderMessage_chi?.replace(orderReceived, "") }
           </Text> 
           <Text style={{...styles.orderReceived, 
             color: orderReceived =='ORDER_RECIEVED' ? colors.pearlColor : 

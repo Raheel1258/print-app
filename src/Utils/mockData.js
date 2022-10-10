@@ -149,10 +149,10 @@ export const chi_eng = {
 
   "Half fold":"Half fold",
   "Accordion fold":"Accordion fold",
+  "Woodfree Paper (140 gsm)":"Woodfree Paper (140 gsm)",
   "Glossy paper (140 gsm)":"Glossy paper (140 gsm)",
   "Glossy paper (350 gsm)":"Glossy paper (350 gsm)",
   "Art Card (157 gsm)":"Art Card (157 gsm)",
-  "Woodfree Paper (140 gsm)":"Woodfree Paper (140 gsm)",
   "Art Card (350 gsm)":"Art Card (350 gsm)",
 
   //Envelop
@@ -233,9 +233,7 @@ export const chi_eng = {
   "Foldable Flyer":"Foldable Flyer",
   "Square Sticker":"Square Sticker",
   "Rectangular Sticker":"Rectangular Sticker",
-  "Round Sticker":"Round Sticker"
-
-
+  "Round Sticker":"Round Sticker",
 
 
 }

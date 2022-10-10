@@ -12,6 +12,7 @@ const VerificationModal = ({
   toggleModal,
   isModalVisible,
   title,
+  height=290,
   description,
   modalButton = 'OK',
   aditionalAction = () => { },
@@ -22,7 +23,7 @@ const VerificationModal = ({
   return (
     <>
       <Modal isVisible={isModalVisible} onBackdropPress={backDrop}>
-        <View style={styles.modalContainer}>
+        <View style={{...styles.modalContainer,height}}>
           <Text style={styles.sentText}>{title}</Text>
           <Text style={styles.emailDescription}>{description}</Text>
           <View style={styles.buttonWrapper}>
@@ -66,7 +67,7 @@ const styles = ScaledSheet.create({
     fontStyle: 'normal',
     // fontWeight: '400',
     fontStyle: 'normal',
-    lineHeight: '20@s',
+    lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'center',
     marginTop: '25@s',

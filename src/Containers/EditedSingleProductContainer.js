@@ -11,10 +11,11 @@ import { getProductById, getPriceChartOnEdited } from "../store/actions/productL
 import EditedSingleProductScreen from '../Screens/EditedSingleProductScreen';
 import { chi_eng } from "../Utils/mockData";
 import { colors } from '../Utils/theme';
-import i18n from 'i18next'
+import i18n from 'i18next';
+
+
 
 const EditedSingleProductContainer = ({ route }) => {
-
   const { t } = useTranslation();
   const { productCategory, productId, cartItem, cartProductId } = route.params;
 
@@ -47,6 +48,7 @@ const EditedSingleProductContainer = ({ route }) => {
     }
 
   )
+  const [count, setCount] = useState(0);
   const [priceChartAnimation, setPriceChartAnimation] = useState(false);
   const [addToCartAnimation, setAddToCartAnimation] = useState(false);
   const [selectedUpload, setSelectedUpload] = useState('uploadFile');
@@ -168,7 +170,7 @@ const EditedSingleProductContainer = ({ route }) => {
 
   useEffect(() => {
     setflag(true);
-    dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
+    dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart, setCount, count));
   }, [values, state]);
 
   useEffect(() => {

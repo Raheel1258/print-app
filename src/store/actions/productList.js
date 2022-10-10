@@ -136,8 +136,8 @@ export const getPriceChart = (setPriceChartAnimation, defaultValuesObject, setSe
 };
 
 //Edit product
-export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart) => {
-
+export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart, setCount, count) => {
+  setCount(count+1);
   let values = defaultValuesObject;
 
   if (values?.product == "Booklet (Stapled)" && values?.size == "A5") {
@@ -192,7 +192,10 @@ export const getPriceChartOnEdited = (setPriceChartAnimation, defaultValuesObjec
           return a.units - b.units;
         });
         dispatch(setPriceChartOnEdit(newData));
-        setSelectedPriceChart(newData[0]);
+        console.log("count1", count)
+        if(count >= 4){
+          setSelectedPriceChart(newData[0]);
+        }
         // // setPriceChart(res?.data);
         setPriceChartAnimation(false);
       })

@@ -95,7 +95,8 @@ const MyOrdersListScreen = ({
               borderBottomWidth={15}
               arrow={false}
             />
-            <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator="false"
+            <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}
+            
             >
               <View style={styles.orderRefContainer}>
                 <Text style={styles.orderRefText}>{t('order_reference')}</Text>

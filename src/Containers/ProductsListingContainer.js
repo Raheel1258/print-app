@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {View} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScaledSheet } from 'react-native-size-matters';
 
@@ -8,9 +8,12 @@ import {getCategoriesProduct} from '../store/actions/productList';
 
 import ProductsListingScreen from '../Screens/ProductsListingScreen';
 import {colors} from '../Utils/theme';
+import i18n, { use } from 'i18next';
 
 
 const ProductsListingContainer = ({route}) => { 
+  const isFocused = useIsFocused();
+  const [languageState, setLanguageState] = useState(i18n.language);
   const {categoryTitle, categoryImage, category} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -27,7 +30,12 @@ const ProductsListingContainer = ({route}) => {
   };
 
   useEffect(()=>{
+    setLanguageState(i18n.language)
+  },[isFocused])
+
+  useEffect(()=>{
     dispatch(getCategoriesProduct(category,setAnimation));
+    
   },[])
   return (
     <View style={styles.container}>

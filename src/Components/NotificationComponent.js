@@ -11,7 +11,6 @@ import { compose } from 'redux';
 
 const NotificationComponent = ({orderReceived, time,childern, border=true, seen, onPress,orderMessage,orderMessage_chi
 }) => {
-  console.log("vdvd", orderMessage_chi)
   const { t } = useTranslation();
   return (
     <TouchableOpacity onPress={onPress}>

@@ -36,7 +36,7 @@ const MyCartComponent = ({
           numberOfLines={2}
           // style={{...styles.cardTitle, fontFamily: fontFamily}}
           style={styles.cardTitle}>
-          {i18n.language == "en" ? item?.category?.name : item?.category?.name_chi}
+          {i18n.language == "en" ? item?.category?.name : getObjKey(chi_eng, item?.category?.name)}
         </Text>
         {/* <Text style={styles.cardTitle}>{item?.category?.pricePerHunderd.substr(5,7)}</Text> */}
         <View style={styles.quantityContainer}>

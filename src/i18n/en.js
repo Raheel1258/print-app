@@ -302,7 +302,7 @@ export const en = {
     order_cancelled_status: 'Cancelled',
     order_out_for_delivery_status: 'Out for delivery',
     order_ready_for_pickup_status: 'Ready for pickup',
-    order_printing_in_process_status: 'Printing in process',
+    order_printing_in_process_status: 'Printing',
 
     card_added_message: 'Card is added successfully',
     card_delete_message: 'Card is deleted successfully',

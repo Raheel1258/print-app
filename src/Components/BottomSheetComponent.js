@@ -53,7 +53,7 @@ const BottomSheetComponent = ({
             <Text style={styles.titleText}>{languageTitle}</Text>
           )}
         </View>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {childern}
           {note && (
             <>

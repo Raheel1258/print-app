@@ -31,14 +31,15 @@ const AccountDetailScreen = ({
   makePrimary,
   userCardsDetails,
   handleUserCardRemove,
-  handleMakePrimaryCard
+  handleMakePrimaryCard,
+  detailAnimatin
  }) => {
   const { t } = useTranslation();
   const [updateAddress , setUpdatedAddress] = useState(undefined);
   const [updateCard , setUpdateCard] = useState(undefined);
   return (
     <>
-      {!animation ? <View style={styles.container}>
+      {(!animation && !detailAnimatin) ? <View style={styles.container}>
         <BackArrowHeader
           goBack={goBack}
           title={t('my_details')}

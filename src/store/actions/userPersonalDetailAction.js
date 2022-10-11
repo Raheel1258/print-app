@@ -106,10 +106,11 @@ export const updateUserAddress = (setAnimation, _id, data, addAddressRBSheet) =>
 }
 
 //Get Current UserPersonal detail
-export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
+export const getCurrentUserDetail = (setAnimation, setPersonalDetail, setDetailAnimation) => {
     return async (dispatch) => {
         const accessToken = await Storage.retrieveData('token')
         setAnimation(true);
+        setDetailAnimation(true);
         axios.get(`${Api}/user/find`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
                 setPersonalDetail({
@@ -119,11 +120,13 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail) => {
                     email: res?.data?.email
                 })
                 setAnimation(false);
+                setDetailAnimation(false)
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
             })
             .catch((err) => {
                 setAnimation(false);
+                setDetailAnimation(false);
                 if (err?.response?.data?.statusCode === 400) {
                     Toast.show({
                         type: 'error',
@@ -282,6 +285,7 @@ export const addCards = (values, setCardAddAnimation, addCardetCardRBSheet, hand
                     handleCardsForBottomSheet()
                 })
                 .catch((err) => {
+                    addCardetCardRBSheet.current.close();
                     setCardAddAnimation(false);
                     Toast.show({
                         type: 'error',
@@ -290,6 +294,7 @@ export const addCards = (values, setCardAddAnimation, addCardetCardRBSheet, hand
                 });
 
         } else {
+            addCardetCardRBSheet.current.close();
             setCardAddAnimation(false);
             Toast.show({
                 type: 'error',

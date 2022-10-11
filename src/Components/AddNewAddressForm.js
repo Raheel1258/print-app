@@ -44,7 +44,7 @@ const AddNewAddressForm = ({ addAddressRBSheet, updateAddress, handleAddressForB
 
   const { t } = useTranslation();
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Formik initialValues={addressState} validationSchema={() => addAddressSchema(t)} onSubmit={(values) => handleAddNewAddress(values)}>
         {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
           const { fullName, companyName, addressLine1, addressLine2, area, district, cityCountry, contactNumber } = values;

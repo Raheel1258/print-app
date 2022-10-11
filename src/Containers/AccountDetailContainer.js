@@ -19,16 +19,17 @@ const AccountDetailContainer = () => {
 
 
   const [animation, setAnimation] = useState(false);
+  const [detailAnimatin, setDetailAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
   const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
   const userDetails = useSelector(state => state?.userPersonalDetailReducer?.user);
   const userCardsDetails = useSelector(state => state?.userPersonalDetailReducer?.userCard);
 
   const [personalDetail, setPersonalDetail] = useState({
-    firstName: 'Peter',
-    lastName: 'Peter',
-    phone: '23234234',
-    email: 'peter@gmail.com'
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: ''
   });
   const navigate = (routeName, data = {}) => {
     navigation.navigate(routeName, data)
@@ -39,7 +40,7 @@ const AccountDetailContainer = () => {
   };
 
   useEffect(() => {
-    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
+    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail,setDetailAnimation));
     dispatch(getAllCards(setAnimation))
   }, [isFocused])
 
@@ -92,6 +93,7 @@ const AccountDetailContainer = () => {
         addAddressRBSheet={addAddressRBSheet}
         addCardetCardRBSheet={addCardetCardRBSheet}
         animation={animation}
+        detailAnimatin={detailAnimatin}
         personalDetail={personalDetail}
         handleUpdatedPersonalDetail={handleUpdatedPersonalDetail}
         userAddresses={userAddresses}

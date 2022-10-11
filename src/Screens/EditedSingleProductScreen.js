@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Keyboard,
+  Platform
 } from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
@@ -801,7 +802,7 @@ const styles = ScaledSheet.create({
     backgroundColor: colors.whiteColor,
   },
   marginContainer: {
-    marginBottom: '62@s',
+    marginBottom: Platform.OS === 'ios' ? '70@s' : '62@s',
   },
   cardsContainer: {
     flexDirection: 'row',

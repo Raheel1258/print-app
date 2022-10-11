@@ -98,7 +98,7 @@ const EditedSingleProductScreen = ({
   sliceData,
   flag,
   remarks,
-  chi_eng={chi_eng}
+  chi_eng
 }) => {
   let widthOne = 120;
   let heightOne = 65;
@@ -192,7 +192,7 @@ const EditedSingleProductScreen = ({
                             transition={false}
                             resizeMode="contain"
                             style={
-                              item?.name == 'Square'
+                              chi_eng[item?.name] == 'Square'
                                 ? styles.squareStyling
                                 : {
                                     ...styles.squareImage,

@@ -235,7 +235,31 @@ export const chi_eng = {
   "Rectangular Sticker":"Rectangular Sticker",
   "Round Sticker":"Round Sticker",
 
+  //Order Status
+  "已收到訂單" : "ORDER_RECIEVED",
+  "訂單已完成" : "COMPLETED",
+  "已寄出" : "OUT_FOR_DELIVERY",
+  "取消" : "CANCELLED",
+  "可以提取" : "READY_FOR_PICKUP",
+  "印刷中" : "PRINTING",
 
+  // "ORDER_RECIEVED" : "ORDER RECIEVED",
+  // "COMPLETED" : "COMPLETED",
+  // "OUT_FOR_DELIVERY" : "OUT FOR DELIVERY",
+  // "CANCELLED" : "CANCELLED",
+  // "READY_FOR_PICKUP" : "READY FOR PICKUP",
+  // "PRINTING" : "PRINTING",
+
+
+}
+
+export const orderStatusObj = {
+  "ORDER RECIEVED" : "ORDER_RECIEVED",
+  "COMPLETED" : "COMPLETED",
+  "OUT FOR DELIVERY" : "OUT_FOR_DELIVERY",
+  "CANCELLED" : "CANCELLED",
+  "READY FOR PICKUP" : "READY_FOR_PICKUP",
+  "PRINTING" : "PRINTING"
 }
 
 

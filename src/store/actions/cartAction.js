@@ -241,8 +241,9 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
         setPlaceOrderAnimation(true);
         const accessToken = await Storage.retrieveData('token');
         let activityLength = await Storage.retrieveData('lengthActivity');
-        axios.post(`${Api}/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
+        axios.post(`https://814d-116-58-9-130.in.ngrok.io/api/v1/order/add`, orderObj, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                console.log("res order", res)
                 setPlaceOrderAnimation(false);
                 activityLength = activityLength + 1;
                 await Storage.storeData('lengthActivity', activityLength);
@@ -250,6 +251,7 @@ export const placeOrderOffline = (setPlaceOrderAnimation, orderObj, navigate) =>
                 navigate("orderReceived", { welcome: true, orderId: res?.data?.orderRefrence });
             })
             .catch((err) => {
+                console.log("err order", err.response)
                 setPlaceOrderAnimation(false);
                 Toast.show({
                     type: 'error',

@@ -71,6 +71,7 @@ const NotificationActivity = ({ item, readMark, handleActivityIsRead, handleAllA
         orderCode={item?._id}
         orderReceived={item?.orderStatus}
         orderMessage={item?.message}
+        orderMessage_chi={item?.message_chi && item?.message_chi}
         time={item?.updatedAt}
         childern={handleOrderStatusForActivity(item?.orderStatus)}
         border={item?._id == lastItemId ? false : true}

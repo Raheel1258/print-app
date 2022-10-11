@@ -302,7 +302,7 @@ export const chi = {
 
     order_received_status: '已收到訂單',
     order_completed_status: '訂單已完成',
-    order_cancelled_status: '已收到訂單',
+    order_cancelled_status: '取消',
     order_out_for_delivery_status: '已寄出',
     order_ready_for_pickup_status: '可以提取',
     order_printing_in_process_status: '印刷中',

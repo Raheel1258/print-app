@@ -34,6 +34,7 @@ const EditedSingleProductContainer = ({ route }) => {
 
   const { productCategory, productId, cartItem, cartProductId } = route.params;
 
+  const [count, setCount] = useState(0);
   const [sliceArray, setSliceArray] = useState([]);
   const [flag, setflag] = useState(true)
   const [animation, setAnimation] = useState(false);
@@ -54,8 +55,8 @@ const EditedSingleProductContainer = ({ route }) => {
   const [selectFinishing, setSelectFinishing] = useState(i18n.language == "en" ? (cartItem?.finishing && cartItem?.finishing) : cartItem?.finishing_chi && cartItem?.finishing_chi);
   const [selectSpotUv, setSelectSpotUv] = useState(i18n.language == "en" ? cartItem?.spotUV : cartItem?.spotUV_chi);
   const [selectedPriceChart, setSelectedPriceChart] = useState(cartItem?.priceChart && cartItem?.priceChart);
-  const [paperTypeCoverPages, setPaperTypeCoverPages] = useState(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType_chi && cartItem?.paperType_chi));
-  const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(i18n.language == "en" ? (cartItem?.paperType && "Woodfree paper (140 gsm)") : (cartItem?.paperType && "書紙(140 gsm)"));
+  const [paperTypeCoverPages, setPaperTypeCoverPages] = useState(i18n.language == "en" ? (cartItem?.paperType && "Art Card (250 gsm)") : (cartItem?.paperType_chi && "雙粉咭(250 gsm)"));
+  const [paperTypeInnerPages, setPaperTypeInnerPages] = useState(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType && cartItem?.paperType_chi));
   const [noOfPagesCoverPages, setNoOfPagesCoverPages] = useState(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[0]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[0]?.number[0]));
   const [noOfPagesInnerPages, setNoOfPagesInnerPages] = useState(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[1]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[1]?.number[0]));
   const [allCardsPaperType, setAllCardsPaperType] = useState(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType_chi && cartItem?.paperType_chi));
@@ -164,7 +165,7 @@ const EditedSingleProductContainer = ({ route }) => {
 
   useEffect(() => {
     setflag(true);
-    dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
+    dispatch(getPriceChartOnEdited(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart, setCount, count));
   }, [values, state]);
 
   useEffect(() => {
@@ -173,8 +174,8 @@ const EditedSingleProductContainer = ({ route }) => {
     setSelectFinishing(i18n.language == "en" ? (cartItem?.finishing && cartItem?.finishing) : cartItem?.finishing_chi && cartItem?.finishing_chi);
     setSelectSpotUv(i18n.language == "en" ? cartItem?.spotUV : cartItem?.spotUV_chi);
     setSelectedPriceChart(cartItem?.priceChart && cartItem?.priceChart);
-    setPaperTypeCoverPages(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType_chi && cartItem?.paperType_chi));
-    setPaperTypeInnerPages(i18n.language == "en" ? (cartItem?.paperType && "Woodfree paper (140 gsm)") : (cartItem?.paperType && "書紙(140 gsm)"));
+    setPaperTypeCoverPages(i18n.language == "en" ? (cartItem?.paperType && "Art Card (250 gsm)") : (cartItem?.paperType_chi && "雙粉咭(250 gsm)"));
+    setPaperTypeInnerPages(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType && cartItem?.paperType_chi));
     setNoOfPagesCoverPages(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[0]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[0]?.number[0]));
     setNoOfPagesInnerPages(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[1]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[1]?.number[0]));
     setAllCardsPaperType(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType_chi && cartItem?.paperType_chi));
@@ -192,8 +193,8 @@ const EditedSingleProductContainer = ({ route }) => {
       setSelectFinishing(i18n.language == "en" ? (cartItem?.finishing && cartItem?.finishing) : cartItem?.finishing_chi && cartItem?.finishing_chi);
       setSelectSpotUv(i18n.language == "en" ? cartItem?.spotUV : cartItem?.spotUV_chi);
       setSelectedPriceChart(cartItem?.priceChart && cartItem?.priceChart);
-      setPaperTypeCoverPages(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType_chi && cartItem?.paperType_chi));
-      setPaperTypeInnerPages(i18n.language == "en" ? (cartItem?.paperType && "Woodfree paper (140 gsm)") : (cartItem?.paperType && "書紙(140 gsm)"));
+      setPaperTypeCoverPages(i18n.language == "en" ? (cartItem?.paperType && "Art Card (250 gsm)") : (cartItem?.paperType_chi && "雙粉咭(250 gsm)"));
+      setPaperTypeInnerPages(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType && cartItem?.paperType_chi));
       setNoOfPagesCoverPages(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[0]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[0]?.number[0]));
       setNoOfPagesInnerPages(i18n.language == "en" ? (cartItem?.numberOfPages && cartItem?.numberOfPages[1]?.number[0]) : (cartItem?.numberOfPages_chi && cartItem?.numberOfPages_chi[1]?.number[0]));
       setAllCardsPaperType(i18n.language == "en" ? (cartItem?.paperType && cartItem?.paperType) : (cartItem?.paperType_chi && cartItem?.paperType_chi));
@@ -273,8 +274,8 @@ const EditedSingleProductContainer = ({ route }) => {
       window_chi: i18n.language == "chi" ? selectedWindow : selectedWindow && { ...selectedWindow, windowName: getObjKey(chi_eng, chi_eng[selectedWindow.windowName]) },
       folding: i18n.language == "eng" ? selectedFolding : selectedFolding && { ...selectedFolding, foldingName: chi_eng[selectedFolding.foldingName] },
       folding_chi: i18n.language == "chi" ? selectedFolding : selectedFolding && { ...selectedFolding, foldingName: getObjKey(chi_eng, chi_eng[selectedFolding.foldingName]) },
-      paperType: i18n.language == "eng" ? allCardsPaperType : chi_eng[allCardsPaperType],
-      paperType_chi: i18n.language == "chi" ? allCardsPaperType : getObjKey(chi_eng, chi_eng[allCardsPaperType]),
+      paperType: i18n.language == "eng" ? (productCategory == "BOOKLET" ? paperTypeInnerPages:allCardsPaperType) : (productCategory ==  "BOOKLET"  ? chi_eng[paperTypeInnerPages] :chi_eng[allCardsPaperType]),
+      paperType_chi: i18n.language == "chi" ? (productCategory == "BOOKLET" ? paperTypeInnerPages:allCardsPaperType) : (productCategory == "BOOKLET" ? getObjKey(chi_eng, chi_eng[paperTypeInnerPages]) :getObjKey(chi_eng, chi_eng[allCardsPaperType])),
       spotUV: i18n.language == "eng" ? selectSpotUv : chi_eng[selectSpotUv],
       spotUV_chi: i18n.language == "chi" ? selectSpotUv : getObjKey(chi_eng, chi_eng[selectSpotUv]),
       corner_chi: i18n.language == "chi" ? selectedCorner : selectedCorner && { ...selectedCorner, cornerName: getObjKey(chi_eng, chi_eng[selectedCorner.cornerName]), cornerDescription: getObjKey(chi_eng, chi_eng[selectedCorner.cornerDescription]) },

@@ -1,13 +1,18 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ScaledSheet } from 'react-native-size-matters';
+import { chi_eng, orderStatusObj } from "../Utils/mockData";
+import { getObjKey } from '../Utils/helperFunctions';
+import i18n from 'i18next';
+
 import { handleOrderStatus } from "../Utils/helperFunctions"
 import { getTimeFormat } from '../Utils/helperFunctions'
 import { useTranslation } from 'react-i18next';
 import { colors, fonts } from '../Utils/theme';
 
-const NotificationComponent = ({ orderReceived, time, childern, border = true, seen, onPress, orderMessage
+const NotificationComponent = ({ orderReceived, time, childern, border = true, seen, onPress, orderMessage, orderMessage_chi
 }) => {
   const { t } = useTranslation();
   return (
@@ -17,7 +22,7 @@ const NotificationComponent = ({ orderReceived, time, childern, border = true, s
           <View style={styles.orderCodeContainer}>
             {childern}
             <View>
-              <Text style={styles.orderStatus}>{orderMessage}
+              <Text style={styles.orderStatus}>{i18n.language == "en" ? orderMessage?.replace(getObjKey(orderStatusObj,orderReceived), "") : orderMessage_chi?.replace(getObjKey(chi_eng,orderReceived), "")}
               </Text>
               <Text style={{
                 ...styles.orderReceived,

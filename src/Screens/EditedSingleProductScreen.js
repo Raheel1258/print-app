@@ -538,6 +538,7 @@ const EditedSingleProductScreen = ({
               description={t('you_can_send')}
               isModalVisible={isModalVisible}
               toggleModal={toggleModal}
+              height = {310}
             />
             <CategoriesTitleHeader title={t('order_remark')} />
             <Text style={styles.aboutOrder}>{t('anything_about_order')}</Text>

@@ -49,7 +49,7 @@ const MyOrdersListScreen = ({
               borderBottomWidth={15}
               arrow={false}
             />
-            <ScrollView nestedScrollEnabled={true}>
+            <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
               <View style={styles.orderRefContainer}>
                 <Text style={styles.orderRefText}>{t('order_reference')}</Text>
                 <Text style={styles.orderRefText}>
@@ -140,7 +140,7 @@ const styles = ScaledSheet.create({
     fontFamily: fonts.avenir_bold,
     fontSize: '12@s',
     fontStyle: 'normal',
-    lineHeight: '13@s',
+    lineHeight: '16@s',
     letterSpacing: '0.2@s',
     textAlign: 'left',
     color: colors.greenColor,

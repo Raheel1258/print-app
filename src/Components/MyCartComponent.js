@@ -38,7 +38,7 @@ const MyCartComponent = ({
         <Text
           numberOfLines={2}
           style={styles.cardTitle}>
-          {i18n.language == "en" ? item?.category?.name : item?.category?.name_chi}
+          {i18n.language == "en" ? item?.category?.name : getObjKey(chi_eng, item?.category?.name)}
         </Text>
         <View style={styles.quantityContainer}>
           <Text style={styles.quantityText}>{t('quantity_text')}</Text>

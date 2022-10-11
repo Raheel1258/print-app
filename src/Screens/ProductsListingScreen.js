@@ -6,6 +6,8 @@ import i18n from 'i18next'
 import HeaderImage from '../Assests/Images/businesscard-header-image.png';
 import {ImageBackArrowHeader, ImageSlider, ImageSwiper} from '../Components';
 import {colors,fonts} from '../Utils/theme';
+import { chi_eng } from "../Utils/mockData";
+import { getObjKey } from '../Utils/helperFunctions';
 
 
 
@@ -35,7 +37,7 @@ const ProductsListingScreen = ({ goBack, productList, navigate, categoryTitle, c
     <>
         <View style={styles.container}>
           <ScrollView nestedScrollEnabled={true}>
-          <ImageBackArrowHeader  title={categoryTitle} image={categoryImage} goBack={goBack} />
+          <ImageBackArrowHeader  title={i18n.language == "en" ? categoryTitle: getObjKey(chi_eng,categoryTitle)} image={categoryImage} goBack={goBack} />
           {animation ? 
           <View style={styles.loaderContainerProductList}>
           <ActivityIndicator size="small" color="#000" animating={true} />

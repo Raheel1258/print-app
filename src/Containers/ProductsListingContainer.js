@@ -11,6 +11,7 @@ import {colors} from '../Utils/theme';
 import i18n, { use } from 'i18next';
 
 
+
 const ProductsListingContainer = ({route}) => { 
   const isFocused = useIsFocused();
   const [languageState, setLanguageState] = useState(i18n.language);

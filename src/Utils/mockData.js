@@ -250,6 +250,22 @@ export const chi_eng = {
   // "READY_FOR_PICKUP" : "READY FOR PICKUP",
   // "PRINTING" : "PRINTING",
 
+  "咭片": "Business Card",
+  "書刊":"Booklet", 
+  "海報":"Poster",
+  "宣傳單張":"Flyers & Leaflet",
+  "貼紙":"Stickers & Label",
+  "信封":"Envelope",
+  "彩色信紙":"Letterhead",
+
+  "Business Card":"Business Card",
+  "Booklet":"Booklet",
+  "Poster":"Poster",
+  "Flyers & Leaflet":"Flyers & Leaflet",
+  "Stickers & Label":"Stickers & Label",
+  "Envelope":"Envelope",
+  "Letterhead":"Letterhead",
+
 
 }
 

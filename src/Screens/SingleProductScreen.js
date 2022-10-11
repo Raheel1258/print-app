@@ -34,7 +34,6 @@ import {
 import InfoIcon from '../Assests/Svgs/InfoIcon';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { colors, fonts } from '../Utils/theme';
-import { chi_eng } from "../Utils/mockData";
 import { getObjKey } from '../Utils/helperFunctions';
 
 const SingleProductScreen = ({

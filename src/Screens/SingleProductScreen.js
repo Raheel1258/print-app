@@ -34,6 +34,8 @@ import {
 import InfoIcon from '../Assests/Svgs/InfoIcon';
 import AuthenticationLogo from '../Assests/Svgs/AuthenticationLogo';
 import { colors, fonts } from '../Utils/theme';
+import { chi_eng } from "../Utils/mockData";
+import { getObjKey } from '../Utils/helperFunctions';
 
 const SingleProductScreen = ({
   chi_eng,
@@ -163,7 +165,8 @@ const SingleProductScreen = ({
         <View style={styles.container}>
           <BackArrowHeader
             goBack={goBack}
-            title={categoryTitle}
+            title={i18n.language == "en" ? categoryTitle: getObjKey(chi_eng,categoryTitle)}
+            // title={categoryTitle}
             arrow={false}
           />
           <ScrollView style={styles.marginContainer}>

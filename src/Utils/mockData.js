@@ -270,7 +270,7 @@ export const chi_eng = {
 }
 
 export const orderStatusObj = {
-  "ORDER RECIEVED" : "ORDER_RECIEVED",
+  "ORDER RECEIVED" : "ORDER_RECIEVED",
   "COMPLETED" : "COMPLETED",
   "OUT FOR DELIVERY" : "OUT_FOR_DELIVERY",
   "CANCELLED" : "CANCELLED",

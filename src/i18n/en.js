@@ -297,7 +297,7 @@ export const en = {
     no_active_order: 'No active order',
     no_completed_order: 'No completed order',
 
-    order_received_status: 'Order recieved',
+    order_received_status: 'Order received',
     order_completed_status: 'Order completed',
     order_cancelled_status: 'Cancelled',
     order_out_for_delivery_status: 'Out for delivery',

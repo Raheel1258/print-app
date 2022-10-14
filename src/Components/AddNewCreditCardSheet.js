@@ -35,7 +35,7 @@ const AddNewCreditCardSheet = ({ addCardetCardRBSheet, updateCard, handleCardsFo
   }
   const { t } = useTranslation();
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Formik initialValues={creditCardState} validationSchema={updateCard == undefined ? () => addCreditCardSchema(t) : updateCreditCardSchema(t)} onSubmit={(values) => handleCreditCard(values)}>
         {({ values, handleChange, handleSubmit, handleBlur, errors, touched }) => {
           const { cardNumber, cardName, expiryMonth, expiryYear, cvc } = values;

@@ -139,7 +139,7 @@ const SingleProductContainer = ({ route }) => {
   useEffect(() => {
     dispatch(getPriceChart(setPriceChartAnimation, defaultValuesObject, setSelectedPriceChart));
     setflag(true);
-  }, [values]);
+  }, [values, anotherDesign]);
 
 
   const navigate = (routeName, data = {}) => {

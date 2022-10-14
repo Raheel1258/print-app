@@ -21,13 +21,14 @@ const AccountDetailContainer = () => {
   const addCardetCardRBSheet = useRef();
 
   const [animation, setAnimation] = useState(false);
+  const [detailAnimatin, setDetailAnimation] = useState(false);
   const [animationUpdateUser, setAnimationUpdateUser] = useState(false);
   const userCardsDetails = useSelector(state => state?.userPersonalDetailReducer?.userCard);
   const [personalDetail, setPersonalDetail] = useState({
-    firstName: 'Peter',
-    lastName: 'Peter',
-    phone: '23234234',
-    email: 'peter@gmail.com'
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: ''
   });
 
   const userAddresses = useSelector(state => state?.userPersonalDetailReducer?.userAddress);
@@ -42,7 +43,7 @@ const AccountDetailContainer = () => {
   };
 
   useEffect(() => {
-    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail));
+    dispatch(getCurrentUserDetail(setAnimation, setPersonalDetail, setDetailAnimation));
     dispatch(getAllCards(setAnimation))
   }, [isFocused])
 
@@ -94,6 +95,7 @@ const AccountDetailContainer = () => {
         addAddressRBSheet={addAddressRBSheet}
         addCardetCardRBSheet={addCardetCardRBSheet}
         animation={animation}
+        detailAnimatin={detailAnimatin}
         personalDetail={personalDetail}
         handleUpdatedPersonalDetail={handleUpdatedPersonalDetail}
         userAddresses={userAddresses}

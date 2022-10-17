@@ -544,7 +544,7 @@ export const chi = {
     description2_for_thankyou: "多謝使用PrintPrint :)",
     make_address_primary: '设定为默认',
     show_address_primary: '默認',
-    no_active_order: '没有有效订单',
+    no_active_order: '沒有有效訂單',
     no_completed_order: '沒有已完成訂單',
 
 
@@ -558,7 +558,7 @@ export const chi = {
     card_added_message: '卡添加成功',
     card_delete_message: '卡已成功删除',
     update_card_message: '卡更新成功',
-    select_card: '选择卡',
+    select_card: '選擇信用卡',
     update_card: '更新卡',
     cut: '切:',
     window: '窗户:',

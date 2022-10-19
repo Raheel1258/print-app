@@ -47,7 +47,7 @@ const AccountScreen = ({
         goBack={goBack}
         borderBottomWidth={0}
       />
-      <ScrollView>
+      <ScrollView style={styles.marginContainer}>
         <View style={styles.paddingContainer}>
           <UploadFileComponent
             onPress={() => { userToken ? navigate('accountDetail') : accountRBSheet.current.open() }}
@@ -157,6 +157,9 @@ const styles = ScaledSheet.create({
   paddingContainer: {
     marginHorizontal: '15@s',
     marginTop: '7@s',
+  },
+  marginContainer: {
+    marginBottom: '90@s',
   },
   signOutDescription: {
     fontFamily: fonts.avenir_light,

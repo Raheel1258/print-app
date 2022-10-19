@@ -89,7 +89,7 @@ const RadioButtonComponent = ({
           <View>
             <TouchableOpacity onPress={onPress}>
               <Text style={styles.deliveryText}>{title}</Text>
-              <Text style={styles.deliveryDescription}>{t('Select card')}</Text>
+              <Text style={styles.deliveryDescription}>{t('select_card')}</Text>
             </TouchableOpacity>
           </View>
         )}

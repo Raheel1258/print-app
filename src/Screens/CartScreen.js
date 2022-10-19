@@ -187,7 +187,7 @@ const CartScreen = ({
                 setRadioButtonStatus={setPaymentMethod}
                 paymentMethodName={setPaymentMethodName}
                 handleCheckedOne={() => setPaymentMethodName('Credit Card')}
-                handleCheckedTwo={() => setPaymentMethodName('Bank Tarnsfer')}
+                handleCheckedTwo={() => setPaymentMethodName('Bank transfer')}
               />
               <CategoriesTitleHeader title={t('order_summary')} />
               <OrderSummaryComponent

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 import { ScaledSheet } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,7 @@ const OrderReceivedScreen = ({ welcome, orderId }) => {
       <View style={styles.header}>
         <Text style={styles.orderReceived}>{t('order_received_screen_title')}</Text>
       </View>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.marginContainer}>
       {welcome ? <CartNotifyComponent
         emptyScreen={false}
         title={t('thankyou_text')}
@@ -33,6 +34,7 @@ const OrderReceivedScreen = ({ welcome, orderId }) => {
         description2={t('description2_for_thankyou')}
         childern={<ThankyouIcon />}
       />}
+     </ScrollView>
     </View>
   );
 };
@@ -41,6 +43,9 @@ const styles = ScaledSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.whiteColor,
+  },
+  marginContainer: {
+    marginBottom: '90@s',
   },
   header: {
     borderBottomWidth: 10,

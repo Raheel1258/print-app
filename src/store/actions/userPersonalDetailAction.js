@@ -119,13 +119,13 @@ export const getCurrentUserDetail = (setAnimation, setPersonalDetail, setDetailA
                     email: res?.data?.email
                 })
                 setAnimation(false);
-                setDetailAnimation(true);
+                setDetailAnimation(false);
                 dispatch(setUserDetail(res?.data));
                 dispatch(setUserAddress(res?.data?.addresses))
             })
             .catch((err) => {
                 setAnimation(false);
-                setDetailAnimation(true);
+                setDetailAnimation(false);
                 if (err?.response?.data?.statusCode === 400) {
                     Toast.show({
                         type: 'error',
@@ -233,15 +233,18 @@ export const makeAddressPrimary = (id, flag) => {
 
 //getAllCard
 export const getAllCards = (setAnimation) => {
+    console.log("into get card");
     return async (dispatch) => {
         setAnimation(true);
         const accessToken = await Storage.retrieveData('token')
         axios.get(`${Api}/stripe/getAllCards/`, { headers: { "Authorization": `Bearer ${accessToken}` } })
             .then(async (res) => {
+                console.log("into get card res", res);
                 setAnimation(false);
                 dispatch(setUserCard(res?.data?.data))
             })
             .catch((err) => {
+                console.log("into get card err", err);
                 // setAnimationChangePassowrd(false);
                 setAnimation(false);
                 Toast.show({

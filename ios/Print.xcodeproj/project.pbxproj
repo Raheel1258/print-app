@@ -677,7 +677,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = RLTZVSCH33;
+				DEVELOPMENT_TEAM = 773R4L4FL4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
@@ -692,7 +692,7 @@
 				MARKETING_VERSION = 1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.printprint.printprint.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -715,7 +715,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = RLTZVSCH33;
+				DEVELOPMENT_TEAM = 773R4L4FL4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
@@ -729,7 +729,7 @@
 				);
 				MARKETING_VERSION = 1;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.printprint.printprint.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -747,7 +747,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Print/Print.entitlements;
 				CURRENT_PROJECT_VERSION = 23;
-				DEVELOPMENT_TEAM = RLTZVSCH33;
+				DEVELOPMENT_TEAM = 773R4L4FL4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Print/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -760,7 +760,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.printprint.printprint;
 				PRODUCT_NAME = Print;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -779,7 +779,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Print/Print.entitlements;
 				CURRENT_PROJECT_VERSION = 23;
-				DEVELOPMENT_TEAM = RLTZVSCH33;
+				DEVELOPMENT_TEAM = 773R4L4FL4;
 				INFOPLIST_FILE = Print/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -791,7 +791,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.printprintapp.printprintapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.printprint.printprint;
 				PRODUCT_NAME = Print;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.printprintapp.printprintapp.onesignal</string>
+		<string>group.com.printprint.printprint.OneSignalNotificationServiceExtension</string>
 	</array>
 </dict>
 </plist>

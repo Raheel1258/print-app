@@ -338,7 +338,12 @@ export const chi = {
     number_required: '编号为必填项',
     no_card_added: '未添加卡',
     update_cart_button: '更新',
-    update_cart_item_header: "更新的購物車項目"
+    update_cart_item_header: "更新的購物車項目",
+
+     //Latest
+     deleteMessgae: '刪除帳戶',
+     deleteModalTitle: "刪除帳戶要求已被接納",
+     deleteModalDes: "我們將於三至五天內處理你的要求"
 
   },
 };

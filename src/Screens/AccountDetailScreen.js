@@ -13,7 +13,8 @@ import {
   MyAddresses,
   BottomSheetComponent,
   AddNewAddressForm,
-  AddNewCreditCardSheet
+  AddNewCreditCardSheet,
+  VerificationModal
 } from '../Components';
 
 import { updatePersonalDetailSchema } from '../Utils/validationSchema';
@@ -34,7 +35,9 @@ const AccountDetailScreen = ({
   userCardsDetails,
   handleUserCardRemove,
   handleMakePrimaryCard,
-  detailAnimatin
+  detailAnimatin,
+  toggleModal,
+  isModalVisible
 }) => {
   const { t } = useTranslation();
   const [updateAddress, setUpdatedAddress] = useState(undefined);
@@ -164,6 +167,26 @@ const AccountDetailScreen = ({
             }) : <Text style={styles.emptyBox}>{t('no_card_added')}</Text>}
 
           </View>
+
+          <View style={styles.categoriesWrapper}>
+            <CategoriesTitleHeader
+            justifyContent='center'
+            color='#11C58F'
+            fontFamily={fonts.avenir_regular}
+              title={t("deleteMessgae")}
+              onPress={() => {toggleModal() }}
+              flagPress = {true}
+            />
+          </View>
+          <VerificationModal
+        title={t('deleteModalTitle')}
+        description={t('deleteModalDes')}
+        // title = {"Your request has been submitted"}
+        //         description= {"Our team will proceed to delete your account. This could take 3-5 days"}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+      />
+
           <View style={styles.screenBorderBottom} />
         </ScrollView>
         <BottomSheetComponent
@@ -178,9 +201,14 @@ const AccountDetailScreen = ({
           note={false}
           refRBSheet={addCardetCardRBSheet}
         />
+
+          
+        
       </View> : <View style={styles.loaderContainer}>
         <ActivityIndicator size="small" color="#000" animating={true} />
-      </View>}
+      </View>
+      
+      }
     </>
 
   );

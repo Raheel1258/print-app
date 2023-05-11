@@ -233,7 +233,6 @@ export const makeAddressPrimary = (id, flag) => {
 
 //getAllCard
 export const getAllCards = (setAnimation) => {
-    console.log("into get card");
     return async (dispatch) => {
         setAnimation(true);
         const accessToken = await Storage.retrieveData('token')
@@ -259,10 +258,9 @@ export const getAllCards = (setAnimation) => {
 export const addCards = (values, setCardAddAnimation, addCardetCardRBSheet, handleCardsForBottomSheet) => {
     return async (dispatch) => {
         setCardAddAnimation(true);
-        const apiKey =
-            'pk_test_51Ke9OxBzWQiqU8xNrVvMRjEHD4ul3qrt1MaG0EgC4cDHq1uRDr5CJZmo8DJHdKY5TayeR0bfviJHNDudSQibSkfL00P4qLA4nz';
         // const apiKey =
-        //     'pk_test_51KyFHhGeGlEJDOmcCqL8AVqDcShNxk8mTWBBvKDkMqR102d6epu3RY7Zzny8NBbn0D9O3EPm0n7GcgucKBseRue6001dM1qnAu';
+            // 'pk_test_51Ke9OxBzWQiqU8xNrVvMRjEHD4ul3qrt1MaG0EgC4cDHq1uRDr5CJZmo8DJHdKY5TayeR0bfviJHNDudSQibSkfL00P4qLA4nz';
+        const apiKey = "pk_live_51Ke9OxBzWQiqU8xN7NevhQVgz2EI79p7KM92uIZqAdxLQyPv7QOtleZFjefZm3ZTXteBrboIrZPtNVkeGeQ1wDI4005oJxc2ny"
         const client = new Stripe(apiKey);
         const stripeToken = await client.createToken({
             number: values?.cardNumber,

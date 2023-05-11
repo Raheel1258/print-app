@@ -334,7 +334,13 @@ export const en = {
     number_required: 'Number is required',
     no_card_added: 'No card added',
     update_cart_button: 'Update',
-    update_cart_item_header: "Updated Cart Item"
+    update_cart_item_header: "Updated Cart Item",
+
+    //Latest
+   
+   deleteMessgae: 'Request account deletion',
+     deleteModalTitle: "Your request has been submitted",
+     deleteModalDes: "Our team will proceed to delete your account. This could take 3-5 days"
 
   },
 };

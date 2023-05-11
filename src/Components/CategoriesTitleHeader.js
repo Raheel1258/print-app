@@ -5,11 +5,18 @@ import { ScaledSheet } from 'react-native-size-matters';
 
 import { colors, fonts } from '../Utils/theme';
 
-const CategoriesTitleHeader = ({ title, description, onPress, Children }) => {
+const CategoriesTitleHeader = ({ title, description, onPress, Children, justifyContent = 'space-between',color=colors.blackColor, fontFamily=fonts.avenir_bold, flagPress=false }) => {
   return (
-    <View style={styles.headerContainer}>
+    <View style={{...styles.headerContainer, justifyContent:justifyContent}}>
       <View style={styles.infoIconContainer}>
-        <Text style={styles.headerText}>{title}</Text>
+     
+        {
+          flagPress ?
+          <TouchableOpacity onPress={onPress}>
+          <Text  style={{...styles.headerText, color:color, fontFamily:fontFamily}}>{title}</Text>
+          </TouchableOpacity>: 
+           <Text  style={{...styles.headerText, color:color, fontFamily:fontFamily}}>{title}</Text>
+        }
         {Children}
       </View>
       <TouchableOpacity onPress={onPress} style={styles.touchableText}><Text style={styles.headerRightText}>{description}</Text></TouchableOpacity>
@@ -24,7 +31,6 @@ const styles = ScaledSheet.create({
     height: '60@s',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     paddingHorizontal: '15@s',
   },
   headerText: {

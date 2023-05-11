@@ -57,7 +57,6 @@ const BottomSheetComponent = ({
             <>
               <ArtworkGuidelines />
             </>
-
           )}
         </ScrollView>
       </RBSheet>

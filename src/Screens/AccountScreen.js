@@ -55,7 +55,7 @@ const AccountScreen = ({
             Children={<AccountIcon />}
           />
           <UploadFileComponent
-            onPress={() => i18n.language == "en" ? Linking.openURL('https://pri.cxstaging.com/en/faqs/') : Linking.openURL('https://pri.cxstaging.com/faqs/')}
+            onPress={() => i18n.language == "en" ? Linking.openURL('https://printprint.com.hk/en/faqs/') : Linking.openURL('https://printprint.com.hk/faqs/')}
             title={t('faqs_text')} Children={<FaqsIcon />} />
           <UploadFileComponent
             onPress={() => refRBSheet.current.open()}

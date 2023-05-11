@@ -86,6 +86,11 @@ const AccountDetailContainer = () => {
     }
   }
 
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.container}>
       <AccountDetailScreen
@@ -104,6 +109,8 @@ const AccountDetailContainer = () => {
         userCardsDetails={userCardsDetails}
         handleUserCardRemove={handleUserCardRemove}
         handleMakePrimaryCard={handleMakePrimaryCard}
+        toggleModal={toggleModal}
+        isModalVisible={isModalVisible}
       />
     </View>
   );
